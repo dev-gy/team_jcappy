@@ -15,7 +15,7 @@
    <context:component-scan base-package="test"/>
    
    <!-- 어노테이션 활성화 -->
-   <mvc:annotation-driven/>
+   <mvc:annotation-driven/> 
    
    <!-- default servlet -->
    <mvc:default-servlet-handler/>
@@ -28,6 +28,7 @@
    
    <!-- viewcontroller -->
 <!-- 	ex) <mvc:view-controller path="/folder/test.do"/> -->
+	<mvc:view-controller path="/project/mainpage.do"/>
 	<!-- DBCP -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 <!-- 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/> -->
