@@ -7,68 +7,7 @@
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="/jcappy/css/reset.css">
-    <style>
-        .review_board_wrap *{
-            box-sizing: border-box;
-        }
-        .review_board_wrap{
-            
-            width:1200px;
-            margin:0 auto;
-        }
-        .review_board_link{
-            margin:100px 0 0 0;
-            font-size: 20px;
-        }
-        .review_board_title {
-            font-size: 40px;
-            font-weight: bold;
-        }
-        .review_table {
-            width:300px;
-            height: 400px;
-            float:left;
-            text-align: center;
-            margin:50px 50px;
-            border:1px solid black;
-        }
-        .review_table > a > img {
-            width:298px;
-            height:250px;
-        }
-        .review_table > .day {
-            text-align: right;
-        }
-        .product_img  {
-            float:left;
-        }
-        .product_img > a > img {
-            width:50px;
-            height:75px;
-        }
-        .review_board_star {
-            
-            display: block;
-        }
-        .review_board_star > img {
-
-            width:200px;
-            height:50px;
-        }
-        .review_table_footer > a > p {
-            display: block;
-            width:350px;
-            height:25px;
-            text-align:left;
-            line-height: 25px;
-        }
-        .page_navigation{
-            text-align:center;
-            font-weight: bold;
-            font-size:30px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/jcappy/css/reviewBoard.css">
 </head>
 <body>
     <div class="review_board_wrap">
