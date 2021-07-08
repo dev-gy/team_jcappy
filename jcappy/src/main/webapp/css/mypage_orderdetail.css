@@ -1,0 +1,69 @@
+@charset "UTF-8";
+/* 마이페이지 기본 틀 */
+.mypage_wrap * {box-sizing: border-box; color: rgb(48, 48, 48);}
+.mypage_wrap {width: 1200px; margin: 0 auto;}
+
+/* 헤더 푸터 */
+.header {text-align: center; font-size: 40px; font-weight: bold; padding: 30px; background-color: #d8d8d8;}
+.footer {text-align: center; font-size: 40px; font-weight: bold; padding: 30px; background-color: #d8d8d8; clear: both;}
+
+/* 고객이름, 등급출력 부분 */
+#myheader {font-size: 40px; font-weight: bold; text-align: center; padding: 30px;}
+.myinfo {font-size: 50px;}
+
+/* 왼쪽 메뉴 */
+#submenu {font-weight: bold; width: 20%; height: 100%; font-size: 30px; padding: 15px; float: left; border: 1px solid black; border-radius: 30px; margin-bottom: 135px;}
+#submenu li {width: 100%; text-align: center; padding-top: 15px; padding-bottom: 15px;}
+#content {width: 80%; padding: 30px; float: left;}
+
+/* 왼쪽 메뉴 타이틀 */
+.subtitle {font-size: 30px; font-weight: bold;}
+
+/* 테이블 컬럼 컬러 */
+.col_color {background-color: #eeeeee;}
+
+/* 마이페이지 주문상세정보 */
+/* 주문번호, 주문날짜, 배송상태 */
+.detailtable_1 {margin-top: 50px; width: 100%; border-bottom: 2px solid #2a2a2a; table-layout: fixed;}
+.detailtable_1 td {font-size: 15px; padding: 5px; text-align: center;}
+.detailtable_1 td:nth-child(2n+1) {font-weight: bold; width: 10%;}
+.detailtable_1 td:nth-child(2) {width: 30%}
+.detailtable_1 td:nth-child(4) {width: 20%}
+.detailtable_1 td:nth-child(6) {width: 20%}
+/* 주문상품 */
+.detailtable_2 {margin-top: 50px; width: 100%; table-layout: fixed;}
+.detailtable_2 td {font-size: 15px; padding: 5px;}
+.detailtable_2 tr {border-bottom: 1px solid #2a2a2a; text-align: center;}
+.detailtable_2 tr:first-child {border-bottom: 2px solid #2a2a2a;}
+.detailtable_2 tr:first-child td {font-weight: bold;}
+.detailtable_2 tr:last-child {border-bottom: none;}
+.detailtable_2 tr:not(tr:nth-child(1)) td:nth-child(1) {text-align: left; padding-left: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.detailtable_2 tr:nth-child(1) td:nth-child(1) {width: 35%;}
+.detailtable_2 tr:nth-child(1) td:nth-child(2) {width: 8%;}
+.detailtable_2 tr:nth-child(1) td:nth-child(3) {width: 24%;}
+.detailtable_2 tr:nth-child(1) td:nth-child(4) {width: 24%;}
+.detailtable_2 tr:nth-child(1) td:nth-child(5) {width: 9%;}
+    /* 리뷰버튼 */
+.detailtable_2 tr td:nth-child(5) div {font-size: 12px; padding: 3px; border: 1px solid #2a2a2a; cursor: pointer;}
+    /* 상품이미지 */
+.detailtable_2 img {width: 80px; height: 80px;}
+/* 배송지정보 */
+.detailtable_3 {margin-top: 50px; width: 100%; table-layout: fixed;}
+.detailtable_3 td {font-size: 15px; padding: 5px;}
+.detailtable_3 tr {border-bottom: 1px solid #2a2a2a; text-align: center;}
+.detailtable_3 tr:first-child {border-bottom: 2px solid #2a2a2a; text-align: left; background-color: rgb(255, 255, 255);}
+.detailtable_3 tr:last-child {border-bottom: none;}
+.detailtable_3 tr td:first-child {font-weight: bold;}
+.detailtable_3 colgroup col:nth-child(1) {width: 30%;}
+.detailtable_3 colgroup col:nth-child(2) {width: 70%;}
+/* 결제정보 */
+.detailtable_4 {margin-top: 50px; width: 100%; table-layout: fixed;}
+.detailtable_4 td {font-size: 15px; padding: 5px;}
+.detailtable_4 tr {border-bottom: 1px solid #2a2a2a; text-align: center;}
+.detailtable_4 tr:first-child {border-bottom: 2px solid #2a2a2a; text-align: left; background-color: rgb(255, 255, 255);}
+.detailtable_4 tr:last-child {border-bottom: none;}
+.detailtable_4 tr td:first-child {font-weight: bold;}
+.detailtable_4 colgroup col:nth-child(1) {width: 30%;}
+.detailtable_4 colgroup col:nth-child(2) {width: 70%;}
+/* 주문취소버튼 */
+.detailtable_5 {margin-top: 50px; text-align: center; float: right; font-size: 15px; padding: 5px; border: 1px solid #2a2a2a; cursor: pointer;}
