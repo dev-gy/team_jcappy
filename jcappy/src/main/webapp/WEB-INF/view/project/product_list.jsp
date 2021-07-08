@@ -7,7 +7,6 @@
         <title>상품목록</title>
         <link rel="stylesheet" href="/jcappy/css/reset.css">
         <link rel="stylesheet" href="/jcappy/css/product_list.css">
-       
 </head>
 
 <body>

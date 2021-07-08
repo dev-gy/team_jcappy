@@ -5,84 +5,11 @@
 <head>
 <meta charset="UTF-8">
     <title>회원가입</title>
-    <link rel="stylesheet" href="/jcappy/css/reset.css">
-    <style>
-        .signIn_wrap{
-            width: 1200px;
-            margin: 0 auto; /* 가운데 정렬 */
-            box-sizing: border-box;  
-            border-collapse : collapse;
-        }
-        .header{
-            border: 1px solid #000000;
-            padding: 50px;
-            text-align: center;
-            box-sizing: border-box;  
-            border-collapse : collapse;
-        }
-        .signIn_wrap > .signIn_content{
-            border-right: 1px solid black;
-            border-left: 1px solid black;
-            padding: 100px;
-            text-align: center;
-            float: left;
-            width: 100%;
-            box-sizing: border-box;  
-            border-collapse : collapse;
-        }
-        .signIn_wrap > .signIn_content > .signIn_p{
-            padding: 30px;
-            font-size: 25px;
-            font-weight: bold;
-            box-sizing: border-box;  
-            border-collapse : collapse;
-        }
-        .signIn_wrap > .signIn_content > .signIn_form > .signIn_button{
-            height: 25px;
-            background-color: white;
-            border: 1px solid black;
-            width: 200px;
-            box-sizing: border-box;  
-            border-collapse : collapse;
-
-        }
-        .footer{
-            border: 1px solid #000000;
-            padding: 50px;
-            text-align: center;
-            clear: both;
-            box-sizing: border-box;  
-            border-collapse : collapse;
-        }
-    </style>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!--제이쿼리 스크립트-->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> <!--제이쿼리 ui-->
-
-    <script> 
-        $(function(){ 
-            $("#alert-success").hide(); 
-            $("#alert-danger").hide(); 
-            $("input").keyup(function(){ 
-                var pwd1=$("#pwd1").val(); 
-                var pwd2=$("#pwd2").val(); 
-            if(pwd1 != "" || pwd2 != ""){ 
-                if(pwd1 == pwd2){ 
-                    $("#alert-success").show(); 
-                    $("#alert-danger").hide(); 
-                    $("#submit").removeAttr("disabled"); 
-                    $("#submit").css("background-color","white");
-                } else{ $("#alert-success").hide(); 
-                        $("#alert-danger").show(); 
-                        $("#submit").attr("disabled", "disabled"); 
-                        $("#submit").css("background-color","#999");
-                    } 
-                }    
-            }); 
-        }); 
-    </script>
-
-
+    <script src="/jcappy/js/sign_up.js"></script>
+    <link rel="stylesheet" href="/jcappy/css/reset.css">
+    <link rel="stylesheet" href="/jcappy/css/sign_up.css">
 
 </head>
 <body>

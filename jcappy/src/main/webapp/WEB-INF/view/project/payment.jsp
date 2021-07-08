@@ -4,93 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <link rel="stylesheet" href="/jcappy/css/reset.css"/>
     <title>결제</title>
-    <style>
-        .cva {
-            margin: 0 auto;
-            width: 1200px;
-            overflow: hidden;
-        }
-        .left1 {
-            width: 360px;
-            float: left;
-            margin-left: 250px;
-        }
-        .right1 {
-            width: 250px;
-            float: right;     
-            margin-right: 250px;    
-            margin-top: 200px;
-        }
-        img {
-            width: 50px;
-            height: 50px;   
-            vertical-align: middle ;
-        }
-        .product {
-            text-align: center;
-        }
-        .pay{
-                padding: 30px;
-                font-weight: bolder;
-                font-size: 32px;
-                text-align: center;
-            }
-            .shop {
-                font-size: 20px;
-                font-weight: bolder;
-            }
-            .shop2 {
-                font-size: 20px;
-                font-weight: bolder;
-            }
-            .couname {
-                font-size: 20px;
-                font-weight: bolder;
-            }
-            table {
-                width: 100%;
-            }
-            table, th, td {
-                border: 1px solid #bcbcbc;
-                text-align: left;
-            }
-            input[type=text]{
-                color: rgb(94, 94, 94);
-            }
-            #wid {
-                width: 300px;
-            }
-            .co1{
-                text-align: left;
-            }
-            #cash {
-                font-size:16px;
-                text-align: left;
-            }
-            #cash1 {
-                font-size:16px;
-                right: 20px;
-                text-align: right;
-            }
-            .payment {
-                text-align: center;
-            }
-            #ppay {
-                width:100px;
-                height:50px;
-                font-size:18px; 
-            }
-    </style>
-    <script>
-        function agreeCheck(frm) {
-            if (frm.checkButton.disabled==true)
-                frm.checkButton.disabled=false
-            else
-                frm.checkButton.disabled=true
-                }
-    </script>
+    <script src="/jcappy/js/payment.js"></script>
+    <link rel="stylesheet" href="/jcappy/css/reset.css"/>
+    <link rel="stylesheet" href="/jcappy/css/payment.css">
+   
 </head>
 <body>
     <div class="cva">

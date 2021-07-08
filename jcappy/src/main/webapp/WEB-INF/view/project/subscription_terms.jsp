@@ -5,114 +5,12 @@
 <head>
 <meta charset="UTF-8">
     <title>가입약관</title>
-    <link rel="stylesheet" href="/jcappy/css/reset.css">
-    <style>
-        .policy_wrap{
-            width: 1200px;
-            margin: 0 auto; /* 가운데 정렬 */
-            box-sizing: border-box;
-            border-collapse : collapse;
-        }
-        .header{
-            border: 1px solid #000000;
-            padding: 50px;
-            text-align: center;
-            box-sizing: border-box;
-            border-collapse : collapse;
-        }
-        .policy_wrap > .policy_content{
-            text-align: center;
-            float: left;
-            width: 100%;
-            border-right: 1px solid black;
-            border-left: 1px solid black;
-            padding: 30px 0;
-            box-sizing: border-box;
-            border-collapse : collapse;
-        }
-        .footer{
-            border: 1px solid #000000;
-            padding: 50px;
-            text-align: center;
-            clear: both;
-            box-sizing: border-box;
-            border-collapse : collapse;
-        }
-        .policy_wrap > .policy_content > ul{
-            text-align: left;
-            padding: 30px;
-            box-sizing: border-box;
-            border-collapse : collapse;
-        }
-        .policy_wrap > .policy_content > .policy_checkbox{
-            text-align: left;
-            margin: 0 240px;
-            box-sizing: border-box;
-            border-collapse : collapse;
-        }
-        .policy_wrap > .policy_content > ul > .policy_p{
-            font-size: 25px;
-            font-weight: bold;
-            box-sizing: border-box;
-            border-collapse : collapse;
-        }
-        .policy_wrap > .policy_content > .policy_textarea{
-            height: 150px;
-            width: 60%;
-            box-sizing: border-box;
-            border-collapse : collapse;
-        }
-        .policy_wrap > .policy_content > .policy_button{
-            height: 25px;
-            margin-right: 5px;
-            width: 200px;
-            box-sizing: border-box;
-            border-collapse : collapse;
-        }
-    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!--제이쿼리 스크립트-->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> <!--제이쿼리 ui-->
+    <script src="/jcappy/js/subscription_terms.js"></script>
+    <link rel="stylesheet" href="/jcappy/css/reset.css">
+    <link rel="stylesheet" href="/jcappy/css/subscription_terms.css">
 
-    <script>
-       $(function(){
-        $('#checkAll').click(function(){
-            if($('#checkAll').prop('checked')){
-                $('#termsOfService').prop('checked', true);
-                $('#privacyPolicy').prop('checked', true);
-                $('#continue').attr('disabled', false); 
-                $("#continue").css("background-color","white");
-            } else{
-                $('#termsOfService').prop('checked', false);
-                $('#privacyPolicy').prop('checked', false);
-                $('#continue').attr('disabled', true);
-                $("#continue").css("background-color","#999");
-            }
-        })
-        $('#termsOfService').click(function(){
-            if($('#termsOfService').prop('checked') && $('#privacyPolicy').prop('checked')){
-                $('#checkAll').prop('checked', true);
-                $('#continue').attr('disabled', false);
-                $("#continue").css("background-color","white");
-            }else {
-                $('#checkAll').prop('checked', false);
-                $('#continue').attr('disabled', true);
-                $("#continue").css("background-color","#999");  
-            }
-        })
-        $('#privacyPolicy').click(function(){
-            if($('#termsOfService').prop('checked') && $('#privacyPolicy').prop('checked')){
-                $('#checkAll').prop('checked', true);
-                $('#continue').attr('disabled', false);
-                $("#continue").css("background-color","white");
-            }else {
-                $('#checkAll').prop('checked', false);
-                $('#continue').attr('disabled', true); 
-                $("#continue").css("background-color","#999"); 
-            }
-        })
-        
-       });
-    </script>
 </head>
 <body>
     
