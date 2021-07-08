@@ -28,14 +28,25 @@
    
    <!-- viewcontroller -->
 <!-- 	ex) <mvc:view-controller path="/folder/test.do"/> -->
+	<!-- 두용 -->
 	<mvc:view-controller path="/project/mainpage.do"/>
-	<mvc:view-controller path="/project/product_detail.do"/>
-	<mvc:view-controller path="/project/product_list.do"/>
 	<mvc:view-controller path="/project/reviewBoard.do"/>
 	<mvc:view-controller path="/project/reviewDetail.do"/>
 	<mvc:view-controller path="/project/reviewWrite.do"/>
+	
+	<!-- 시은 -->
+	<mvc:view-controller path="/project/product_detail.do"/>
+	<mvc:view-controller path="/project/product_list.do"/>
 	<mvc:view-controller path="/project/sign_up.do"/>
 	<mvc:view-controller path="/project/subscription_terms.do"/>
+	
+	<!-- 석민 -->
+	<mvc:view-controller path="/project/couponList.do"/>
+	<mvc:view-controller path="/project/mypage_coupon.do"/>
+	<mvc:view-controller path="/project/paycomplete.do"/>
+	<mvc:view-controller path="/project/payment.do"/>
+	<mvc:view-controller path="/project/shooping cart.do"/>
+	
 	
 	<!-- DBCP -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
