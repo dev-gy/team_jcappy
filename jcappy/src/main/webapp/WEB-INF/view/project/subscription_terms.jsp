@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/jcappy/css/subscription_terms.css">
 </head>
 <body>
-    <div></div>
+    <div> </div>
     <div class="policy_wrap">
         <div class="header">HEADER</div>
 
