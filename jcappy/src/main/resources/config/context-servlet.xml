@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+				http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+				http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">		
+	
+	<!-- 컴포넌트 스캔 -->
+   <context:component-scan base-package="test"/>
+   
+   <!-- 어노테이션 활성화 -->
+   <mvc:annotation-driven/>
+   
+   <!-- default servlet -->
+   <mvc:default-servlet-handler/>
+   
+   <!-- viewresolver -->
+   <mvc:view-resolvers>
+      <mvc:jsp prefix="/WEB-INF/view/"/>
+      <mvc:jsp suffix=".jsp"/>
+   </mvc:view-resolvers>
+   
+   <!-- viewcontroller -->
+<!-- 	ex) <mvc:view-controller path="/folder/test.do"/> -->
+	<!-- DBCP -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+<!-- 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/> -->
+<!-- 		<property name="url" value="jdbc:mysql://localhost:3307/project"/> -->
+<!-- 		<property name="username" value="project"/> -->
+<!-- 		<property name="password" value="project1234"/> -->
+	</bean>
+	
+	<!-- factory bean -->
+<!-- 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> -->
+<!-- 		<property name="dataSource" ref="dataSource"/> -->
+<!-- 		<property name="mapperLocations" value="classpath:/mapper/**/*.xml"/> -->
+<!-- 	</bean> -->
+	
+	<!-- dao에서 주입받아서 사용할 객체 -->
+<!-- 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"> -->
+<!-- 		<constructor-arg index="0" ref="sqlSessionFactory"/> -->
+<!-- 	</bean> -->
+	
+	<!-- 파일업로드 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 인코딩캐릭터셋 -->
+		<property name="defaultEncoding" value="UTF-8"/>
+		<!-- 파일업로드사이즈(바이트단위) -->
+		<property name="maxUploadSize" value="100000000"/>
+	</bean>
+</beans>
