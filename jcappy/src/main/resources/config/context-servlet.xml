@@ -29,6 +29,14 @@
    <!-- viewcontroller -->
 <!-- 	ex) <mvc:view-controller path="/folder/test.do"/> -->
 	<mvc:view-controller path="/project/mainpage.do"/>
+	<mvc:view-controller path="/project/product_detail.do"/>
+	<mvc:view-controller path="/project/product_list.do"/>
+	<mvc:view-controller path="/project/reviewBoard.do"/>
+	<mvc:view-controller path="/project/reviewDetail.do"/>
+	<mvc:view-controller path="/project/reviewWrite.do"/>
+	<mvc:view-controller path="/project/sign_up.do"/>
+	<mvc:view-controller path="/project/subscription_terms.do"/>
+	
 	<!-- DBCP -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 <!-- 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/> -->
