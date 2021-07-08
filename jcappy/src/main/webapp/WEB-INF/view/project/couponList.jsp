@@ -6,47 +6,8 @@
 <meta charset="UTF-8">
     <title>쿠폰 리스트</title>
     <link rel="stylesheet" href="/jcappy/css/reset.css"/>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        .wrap{
-            width: 1200px;
-            margin: 0 auto;
-        }  
-            table {
-            margin-left:auto; 
-            margin-right:auto;
-            width: 1200px;
-        }
-        
-        table, td, th {
-            border-collapse : collapse;
-            border : 1px solid black;
-        }
-        .coupon {
-            font-weight: bold;
-            font-size: 32px;
-            height: 100px;
-            
-        }
-        .a {
-            height: 200px;
-        }
-        #coupon {
-            border:1px;
-            text-align: center;
-        }
-        input[type=button] {
-            text-align: center;
-            width: 100px;
-            height: 30px;
-            margin-left: 550px;
-            background-color: gold;
-        }
-    </style>
+    <link rel="stylesheet" href="/jcappy/css/couponList.css">
+    
     <body>
         <div  class="wrap">
             <div class="coupon">적용 가능 쿠폰 리스트</div><br>

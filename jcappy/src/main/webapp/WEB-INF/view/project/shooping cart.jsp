@@ -4,92 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <link rel="stylesheet" href="/jcappy/css/reset.css"/>
     <title>장바구니</title>
-    <style>
-        *{
-              margin: 0;
-              padding: 0;
-              box-sizing: border-box;
-          }
-          .wrap{
-              width: 1200px;
-              margin: 0 auto;
-          }
-          .header {
-              text-align: center; 
-              font-size: 40px;
-              font-weight: bold;
-              padding: 30px;
-              background-color: #d8d8d8;
-          }
-          .t {
-              margin-left:auto; 
-              margin-right:auto;
-              border:1px; 
-              text-align: center;
-          } 
-  
-          .t1{
-              background-color: honeydew;
-          }
-          .t > thead > tr >th {
-              border-collapse : collapse;
-              border : 1px solid black;
-          }
-          .t2 > tr > td {
-              border-collapse : collapse;
-              border : 1px solid black;
-          }
-          input[type=button] {
-              background-color: silver;
-          }
-          #b1 {
-              width:100pt;
-              height:60pt;
-              background-color: gold;
-          }
-          #b2 {
-              width:100pt;
-              height:60pt;
-              background-color: gray;
-          }
-          #bb {
-              width: 40px;
-              height: 22px;
-          }
-          #moins {
-              width: 22px;
-              height: 22px;
-          }
-          #plus {
-              width: 22px;
-              height: 22px;
-          }
-          .p1 {
-              float: left;
-          }
-          .p2 {
-              padding: 50px;
-              text-align: center;
-          }
-          .footer {
-              text-align: center;
-              font-size: 40px;
-              font-weight: bold;
-              padding: 30px;
-              background-color: #d8d8d8;
-              clear: both;
-          }
-  </style>
-    <script>
-        function plus(){
-            alert('숫자는 커지고 커진만큼 금액도 바꿔!!')
-        }
-        function minus(){
-            alert('숫자는 작아지고 작아진만큼 금액도 바꿔!!')
-        }
-   </script>
+    <script src="/jcappy/js/shooping cart.js"></script>
+    <link rel="stylesheet" href="/jcappy/css/reset.css"/>
+    <link rel="stylesheet" href="/jcappy/css/shooping cart.css">
     </head>
 <body>
     <div class="wrap">
