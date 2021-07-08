@@ -47,6 +47,20 @@
 	<mvc:view-controller path="/project/payment.do"/>
 	<mvc:view-controller path="/project/shooping cart.do"/>
 	
+	<!-- 성재 -->
+	<mvc:view-controller path="/project/mypage_main.do"/>
+	<mvc:view-controller path="/project/mypage_ordercancel.do"/>
+	<mvc:view-controller path="/project/mypage_ordercancel_form.do"/>
+	<mvc:view-controller path="/project/mypage_ordercanceldetail.do"/>
+	<mvc:view-controller path="/project/mypage_orderdetail.do"/>
+	<mvc:view-controller path="/project/mypage_update_info.do"/>
+	
+	<!-- 광열 -->
+	<mvc:view-controller path="/project/mypage_qna.do"/>
+	<mvc:view-controller path="/project/mypage_qna_update.do"/>
+	<mvc:view-controller path="/project/mypage_qna_write.do"/>
+	<mvc:view-controller path="/project/notice.do"/>
+	<mvc:view-controller path="/project/notice_detail.do"/>
 	
 	<!-- DBCP -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
