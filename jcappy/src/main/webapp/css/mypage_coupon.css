@@ -1,0 +1,165 @@
+/* 마이페이지 기본 틀 */
+.mypage_wrap * {
+	box-sizing: border-box;
+	color: rgb(48, 48, 48);
+}
+
+/* 전체, 헤더 푸터 */
+.mypage_wrap {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.header {
+	text-align: center;
+	font-size: 40px;
+	font-weight: bold;
+	padding: 30px;
+	background-color: #d8d8d8;
+}
+
+.footer {
+	text-align: center;
+	font-size: 40px;
+	font-weight: bold;
+	padding: 30px;
+	background-color: #d8d8d8;
+	clear: both;
+}
+
+/* 고객이름, 등급출력 부분 */
+#myheader {
+	font-size: 40px;
+	font-weight: bold;
+	text-align: center;
+	padding: 30px;
+}
+
+.myinfo {
+	font-size: 50px;
+}
+
+/* 왼쪽 메뉴 */
+#submenu {
+	font-weight: bold;
+	width: 20%;
+	height: 100%;
+	font-size: 30px;
+	padding: 15px;
+	float: left;
+	border: 1px solid black;
+	border-radius: 30px;
+	margin-bottom: 135px;
+}
+
+#submenu li {
+	width: 100%;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+#content {
+	width: 80%;
+	padding: 30px;
+	float: left;
+}
+
+/* 왼쪽 메뉴 타이틀 */
+.subtitle {
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 120px;
+}
+
+/* 테이블 컬럼 컬러 */
+.col_color {
+	background-color: #eeeeee;
+}
+
+/* 마이페이지 주문조회 */
+.ordertable {
+	margin-top: 50px;
+	width: 100%;
+	text-align: center;
+	table-layout: fixed;
+	white-space: nomypage_wrap;
+}
+
+.ordertable td {
+	padding: 5px;
+	font-size: 15px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.ordertable tr {
+	border-bottom: 1px solid #2a2a2a;
+}
+
+.ordertable tr:first-child {
+	border-bottom: 2px solid #2a2a2a;
+}
+
+.ordertable tr:last-child {
+	border-bottom: none;
+}
+
+.ordertable tr:nth-child(1) td {
+	font-size: 23px;
+	font-weight: bold;
+}
+
+.ordertable tr:nth-child(1) td:nth-child(1) {
+	width: 15%;
+}
+
+.ordertable tr:nth-child(1) td:nth-child(2) {
+	width: 30%;
+}
+
+.ordertable tr:nth-child(1) td:nth-child(3) {
+	width: 25%;
+}
+
+.ordertable tr:nth-child(1) td:nth-child(4) {
+	width: 15%;
+}
+
+.ordertable tr:nth-child(1) td:nth-child(5) {
+	width: 15%;
+}
+
+table {
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+table, td, th {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+.coupon {
+	font-weight: bold;
+	font-size: 32px;
+	height: 100px;
+}
+
+.a {
+	height: 200px;
+}
+
+#coupon {
+	border: 1px;
+	text-align: center;
+}
+
+input[type=button] {
+	text-align: center;
+	width: 100px;
+	height: 30px;
+	margin-left: 550px;
+	background-color: gold;
+}
