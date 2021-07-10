@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+.info > .content {
+    width:600px;
+    padding:250px;
+    margin: 0 auto;
+   
+}
+.info > .content > .board_area {
+    width:600px;
+    height:auto;
+    border : 1px solid rgb(0, 0, 0);
+    
+   
+}
+.info > .content > .board_area > .board_title {
+    line-height:40px;
+    float:left;
+    width:100px;
+    text-align: center;
+    cursor: pointer;
+}
+.info > .content > .board_area > .board_title.on {
+    background-color: #d3d3d3;
+    color:#ffffff;
+}
+.info > .content > .board_area > .board_content > ul {
+    clear:both;
+    border-top:1px solid #999;
+}
+.info > .content > .board_area > .board_content > ul > li {
+    line-height:42px;
+    border-bottom: 1px solid #999;
+}
+#board_data {display: none;}
+.info > .content > .video_area {
+    height:450px;
+}
+.info > .content > .board_area > .board_content > ul > li > span {
+    float:right;
+}
+
+.btncs {
+    padding: 10px;
+    float: right;
+}
