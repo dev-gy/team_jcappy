@@ -62,6 +62,8 @@
 	<mvc:view-controller path="/project/notice.do"/>
 	<mvc:view-controller path="/project/notice_detail.do"/>
 
+
+	<mvc:view-controller path="/index.do"/>
 	<!-- DBCP -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 <!-- 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/> -->
