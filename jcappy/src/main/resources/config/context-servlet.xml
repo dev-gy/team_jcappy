@@ -64,6 +64,7 @@
 
 
 	<mvc:view-controller path="/index.do"/>
+	<mvc:view-controller path="/product/index.do"/>
 	<!-- DBCP -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 <!-- 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/> -->
