@@ -66,6 +66,181 @@
 	<mvc:view-controller path="/index.do"/>
 	<mvc:view-controller path="/product/index.do"/>
 	<mvc:view-controller path="/product/detail.do"/>
+	
+	<!-- 관리자 -->
+	
+	<!-- 로그인 화면 -->
+	<mvc:view-controller path="/admin/index.do"/> 
+	
+	<!-- 매출조회 -->
+	<mvc:view-controller path="/admin/account/index.do"/>
+	
+	<!-- 부가기능 -->
+	<mvc:view-controller path="/admin/add/index.do"/>
+	<mvc:view-controller path="/admin/add/coupon/list.do"/>
+	<mvc:view-controller path="/admin/add/coupon/detail.do"/>
+	<mvc:view-controller path="/admin/add/coupon/create.do"/>
+	
+	<!-- 주문 관리 -->
+	<mvc:view-controller path="/admin/order/list.do"/>
+	<mvc:view-controller path="/admin/order/detail.do"/>
+	
+	<!-- 관리자 계정 관리 -->
+	<mvc:view-controller path="/admin/auth/list.do"/>
+	<mvc:view-controller path="/admin/auth/detail.do"/>
+	<mvc:view-controller path="/admin/auth/create.do"/>
+	
+	<!-- 회원 관리 -->
+	<mvc:view-controller path="/admin/user/list.do"/>
+	<mvc:view-controller path="/admin/user/detail.do"/>
+	
+	<!-- 상품 관리 -->
+	<mvc:view-controller path="/admin/item/list.do"/>
+	<mvc:view-controller path="/admin/item/detail.do"/>
+	<mvc:view-controller path="/admin/item/create.do"/>
+	 
+	<!-- 리뷰 게시판 관리 -->
+	<mvc:view-controller path="/admin/board/review/list.do"/>
+	<mvc:view-controller path="/admin/board/review/detail.do"/>
+	
+	<!-- QNA 게시판 관리 -->
+	<mvc:view-controller path="/admin/board/qna/list.do"/>
+	<mvc:view-controller path="/admin/board/qna/detail.do"/>
+	
+	<!-- 공지사항 게시판 관리 -->
+	<mvc:view-controller path="/admin/board/notice/list.do"/>
+	<mvc:view-controller path="/admin/board/notice/detail.do"/>
+	<mvc:view-controller path="/admin/board/notice/create.do"/><!-- 관리자 -->
+	
+	<!-- 로그인 화면 -->
+	<mvc:view-controller path="/admin/index.do"/> 
+	
+	<!-- 매출조회 -->
+	<mvc:view-controller path="/admin/account/index.do"/>
+	
+	<!-- 부가기능 -->
+	<mvc:view-controller path="/admin/add/index.do"/>
+	<mvc:view-controller path="/admin/add/coupon/list.do"/>
+	<mvc:view-controller path="/admin/add/coupon/detail.do"/>
+	<mvc:view-controller path="/admin/add/coupon/create.do"/>
+	
+	<!-- 주문 관리 -->
+	<mvc:view-controller path="/admin/order/list.do"/>
+	<mvc:view-controller path="/admin/order/detail.do"/>
+	
+	<!-- 관리자 계정 관리 -->
+	<mvc:view-controller path="/admin/auth/list.do"/>
+	<mvc:view-controller path="/admin/auth/detail.do"/>
+	<mvc:view-controller path="/admin/auth/create.do"/>
+	
+	<!-- 회원 관리 -->
+	<mvc:view-controller path="/admin/user/list.do"/>
+	<mvc:view-controller path="/admin/user/detail.do"/>
+	
+	<!-- 상품 관리 -->
+	<mvc:view-controller path="/admin/item/list.do"/>
+	<mvc:view-controller path="/admin/item/detail.do"/>
+	<mvc:view-controller path="/admin/item/create.do"/>
+	 
+	<!-- 리뷰 게시판 관리 -->
+	<mvc:view-controller path="/admin/board/review/list.do"/>
+	<mvc:view-controller path="/admin/board/review/detail.do"/>
+	
+	<!-- QNA 게시판 관리 -->
+	<mvc:view-controller path="/admin/board/qna/list.do"/>
+	<mvc:view-controller path="/admin/board/qna/detail.do"/>
+	
+	<!-- 공지사항 게시판 관리 -->
+	<mvc:view-controller path="/admin/board/notice/list.do"/>
+	<mvc:view-controller path="/admin/board/notice/detail.do"/>
+	<mvc:view-controller path="/admin/board/notice/create.do"/><!-- 관리자 -->
+	
+	<!-- 로그인 화면 -->
+	<mvc:view-controller path="/admin/index.do"/> 
+	
+	<!-- 매출조회 -->
+	<mvc:view-controller path="/admin/account/index.do"/>
+	
+	<!-- 부가기능 -->
+	<mvc:view-controller path="/admin/add/index.do"/>
+	<mvc:view-controller path="/admin/add/coupon/list.do"/>
+	<mvc:view-controller path="/admin/add/coupon/detail.do"/>
+	<mvc:view-controller path="/admin/add/coupon/create.do"/>
+	
+	<!-- 주문 관리 -->
+	<mvc:view-controller path="/admin/order/list.do"/>
+	<mvc:view-controller path="/admin/order/detail.do"/>
+	
+	<!-- 관리자 계정 관리 -->
+	<mvc:view-controller path="/admin/auth/list.do"/>
+	<mvc:view-controller path="/admin/auth/detail.do"/>
+	<mvc:view-controller path="/admin/auth/create.do"/>
+	
+	<!-- 회원 관리 -->
+	<mvc:view-controller path="/admin/user/list.do"/>
+	<mvc:view-controller path="/admin/user/detail.do"/>
+	
+	<!-- 상품 관리 -->
+	<mvc:view-controller path="/admin/item/list.do"/>
+	<mvc:view-controller path="/admin/item/detail.do"/>
+	<mvc:view-controller path="/admin/item/create.do"/>
+	 
+	<!-- 리뷰 게시판 관리 -->
+	<mvc:view-controller path="/admin/board/review/list.do"/>
+	<mvc:view-controller path="/admin/board/review/detail.do"/>
+	
+	<!-- QNA 게시판 관리 -->
+	<mvc:view-controller path="/admin/board/qna/list.do"/>
+	<mvc:view-controller path="/admin/board/qna/detail.do"/>
+	
+	<!-- 공지사항 게시판 관리 -->
+	<mvc:view-controller path="/admin/board/notice/list.do"/>
+	<mvc:view-controller path="/admin/board/notice/detail.do"/>
+	<mvc:view-controller path="/admin/board/notice/create.do"/><!-- 관리자 -->
+	
+	<!-- 로그인 화면 -->
+	<mvc:view-controller path="/admin/index.do"/> 
+	
+	<!-- 매출조회 -->
+	<mvc:view-controller path="/admin/account/index.do"/>
+	
+	<!-- 부가기능 -->
+	<mvc:view-controller path="/admin/add/index.do"/>
+	<mvc:view-controller path="/admin/add/coupon/list.do"/>
+	<mvc:view-controller path="/admin/add/coupon/detail.do"/>
+	<mvc:view-controller path="/admin/add/coupon/create.do"/>
+	
+	<!-- 주문 관리 -->
+	<mvc:view-controller path="/admin/order/list.do"/>
+	<mvc:view-controller path="/admin/order/detail.do"/>
+	
+	<!-- 관리자 계정 관리 -->
+	<mvc:view-controller path="/admin/auth/list.do"/>
+	<mvc:view-controller path="/admin/auth/detail.do"/>
+	<mvc:view-controller path="/admin/auth/create.do"/>
+	
+	<!-- 회원 관리 -->
+	<mvc:view-controller path="/admin/user/list.do"/>
+	<mvc:view-controller path="/admin/user/detail.do"/>
+	
+	<!-- 상품 관리 -->
+	<mvc:view-controller path="/admin/item/list.do"/>
+	<mvc:view-controller path="/admin/item/detail.do"/>
+	<mvc:view-controller path="/admin/item/create.do"/>
+	 
+	<!-- 리뷰 게시판 관리 -->
+	<mvc:view-controller path="/admin/board/review/list.do"/>
+	<mvc:view-controller path="/admin/board/review/detail.do"/>
+	
+	<!-- QNA 게시판 관리 -->
+	<mvc:view-controller path="/admin/board/qna/list.do"/>
+	<mvc:view-controller path="/admin/board/qna/detail.do"/>
+	
+	<!-- 공지사항 게시판 관리 -->
+	<mvc:view-controller path="/admin/board/notice/list.do"/>
+	<mvc:view-controller path="/admin/board/notice/detail.do"/>
+	<mvc:view-controller path="/admin/board/notice/create.do"/>
+	
 	<!-- DBCP -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 <!-- 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/> -->
