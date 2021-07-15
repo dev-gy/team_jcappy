@@ -13,10 +13,7 @@ common style
 .cstyle_item { position: relative; border: 1px solid #a7a7a7;  margin: 30px; }
 .cstyle_border_gray { border: 1px solid #a7a7a7; }
 .cstyle_border_black { border: 1px solid #221f1f; }
-input[type="number"]:focus { outline:none; }
-input[type="number"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; }
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0px; padding: 0px; }
+input:focus { outline:none; }
 /*======================================
 top
 ========================================*/
@@ -94,13 +91,13 @@ product/index
 .product_content > .flex > .item > a > img { width: 300px; height: 300px; box-sizing: border-box; }
 
 /*======================================
-product/index
+product/detail
 ========================================*/
-product_detail_content { margin: 30px 0px;  box-sizing: border-box; border-collapse: collapse; }
+.product_detail_content { margin: 30px 0px;  box-sizing: border-box; border-collapse: collapse; }
 .product_detail_content > table > tbody > tr td { border: 1px solid black; box-sizing: border-box; border-collapse: collapse; } 
 .product_detail_content > table > tbody> button { width: 100%; height: 40px; display: table-cell; }
 .item_img_area { width: 50%; height: 650px; padding: 20px; box-sizing: border-box; overflow: hidden; }
-.item_img_area >.item_major_img { width: 500px; height: 500px; display: inline-block; background-size: cover; }
+.item_img_area > .item_major_img { width: 500px; height: 500px; display: inline-block; background-size: cover; }
 .item_img_area > .item_img_list { width: 100%; height: auto; display: flex; overflow: hidden; justify-content: center; }
 .item_img_area > .item_img_list > .item_minor_img { width: 100px; height: 100px; margin: 20px 10px 0px 10px; background-size: cover; }
 .item_info_area { width: 50%; height: 650px; text-align: left; vertical-align: top; padding: 20px; }
@@ -124,6 +121,5 @@ product_detail_content { margin: 30px 0px;  box-sizing: border-box; border-colla
 .review_area > ul > li > .review_content { width:auto;  display: table-cell; padding:20px 40px 20px 20px; cursor: pointer; }
 .review_area > ul > li > .review_content > .review_context { padding: 10px 0px; overflow: hidden; text-overflow: ellipsis; }
 .review_area > ul > li > .review_content > .review_img { width: 70px; height: 70px; margin-right: 10px; background-size: cover; display: inline-block; }
-.review_area > ul > li > .review_btn { width: 200px; height: 25px; margin: 40px;}
-
+.review_area > ul > li > .review_btn { width: 200px; height: 25px; margin: 40px; }
 
