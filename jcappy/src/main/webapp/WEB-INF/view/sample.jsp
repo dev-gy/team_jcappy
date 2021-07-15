@@ -12,9 +12,9 @@
     <div id="wrap">
         <%@ include file="/WEB-INF/view/include/top.jsp" %>
         <div id="container">
-			
+
 			<input type=text value="안녕">
-			
+
         </div>
         <%@ include file="/WEB-INF/view/include/bottom.jsp" %>
     </div>
