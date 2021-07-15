@@ -33,21 +33,21 @@
                     <h1 class="cstyle_h1">냉장고</h1>
                 </div>
                 <div class=" flex">
-                    <div class="item">
+                    <div class="item cstyle_border_gray">
                         <a href="">
                             <img src="/jcappy/img/r1.jpg">
                             <span>상품명</span>
                             <span>100,000</span>
                         </a>
                     </div>
-                    <div class="item">
+                    <div class="item cstyle_border_gray">
                         <a href="">
                             <img src="/jcappy/img/r2.jpg">
                             <span>상품명</span>
                             <span>100,000</span>
                         </a>
                     </div>
-                    <div class="item">
+                    <div class="item cstyle_border_gray">
                         <a href="">
                             <img src="/jcappy/img/r3.jpg">
                             <span>상품명</span>
@@ -56,30 +56,28 @@
                     </div>
                 </div>
                 <div>
-                    <button class="cstyle_btn">all view</button>
+                    <button class="all_view_btn cstyle_btn">all view</button>
                 </div>
             </div>
 
             <div class="main_content">
-                <div class="title">
-                    <h1>에어컨</h1>
-                </div>
+                <h1 class="cstyle_h1">에어컨</h1>
                 <div class="flex">
-                    <div class="item">
+                    <div class="item cstyle_border_gray">
                         <a href="">
                             <img src="/jcappy/img/a1.png">
                             <span>상품명</span>
                             <span>100,000</span>
                         </a>
                     </div>
-                    <div class="item">
+                    <div class="item cstyle_border_gray">
                         <a href="">
                             <img src="/jcappy/img/a2.png">
                             <span>상품명</span>
                             <span>100,000</span>
                         </a>
                     </div>
-                    <div class="item">
+                    <div class="item cstyle_border_gray">
                         <a href="">
                             <img src="/jcappy/img/a3.jpg">
                             <span>상품명</span>
@@ -88,7 +86,7 @@
                     </div>
                 </div>
                 <div>
-                    <button class="cstyle_btn">all view</button>
+                    <button class="all_view_btn cstyle_btn">all view</button>
                 </div>
             </div>
 
@@ -97,21 +95,21 @@
                     <h1>TV</h1>
                 </div>
                 <div class="flex">
-                    <div class="item">
+                    <div class="item cstyle_border_gray">
                         <a href="">
                             <img src="/jcappy/img/t1.jpg">
                             <span>상품명</span>
                             <span>100,000</span>
                         </a>
                     </div>
-                    <div class="item">
+                    <div class="item cstyle_border_gray">
                         <a href="">
                             <img src="/jcappy/img/t2.jpg">
                             <span>상품명</span>
                             <span>100,000</span>
                         </a>
                     </div>
-                    <div class="item">
+                    <div class="item cstyle_border_gray">
                         <a href="">
                             <img src="/jcappy/img/t3.webp">
                             <span>상품명</span>
@@ -120,30 +118,28 @@
                     </div>
                 </div>
                 <div>
-                    <button class="cstyle_btn">all view</button>
+                    <button class="all_view_btn cstyle_btn">all view</button>
                 </div>
             </div>
 
             <div class="main_content">
-                <div class="title">
-                    <h1>세탁기</h1>
-                </div>
+                <h1 class="cstyle_h1">세탁기</h1>
                 <div class="flex">
-                    <div class="item">
+                    <div class="item cstyle_border_gray">
                         <a href="">
                             <img src="/jcappy/img/w1.jpg">
                             <span>상품명</span>
                             <span>100,000</span>
                         </a>
                     </div>
-                    <div class="item">
+                    <div class="item cstyle_border_gray">
                         <a href="">
                             <img src="/jcappy/img/w2.jpg">
                             <span>상품명</span>
                             <span>100,000</span>
                         </a>
                     </div>
-                    <div class="item">
+                    <div class="item cstyle_border_gray">
                         <a href="">
                             <img src="/jcappy/img/w3.png">
                             <span>상품명</span>
@@ -152,7 +148,7 @@
                     </div>
                 </div>
                 <div>
-                    <button class="cstyle_btn">all view</button>
+                    <button class="all_view_btn cstyle_btn">all view</button>
                 </div>
             </div>
         </div>
