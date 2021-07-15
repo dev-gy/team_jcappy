@@ -14,7 +14,7 @@
         <div id="container">
 			
 			<input>
-			
+			정성재 test
         </div>
         <%@ include file="/WEB-INF/view/include/bottom.jsp" %>
     </div>
