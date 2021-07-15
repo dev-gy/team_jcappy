@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<script src="/jcappy/js/top.js"></script>
 <div id="header">
     <div class="size">
         <div class="logo">

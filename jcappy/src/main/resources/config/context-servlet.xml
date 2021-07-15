@@ -62,7 +62,7 @@
 	<mvc:view-controller path="/project/notice.do"/>
 	<mvc:view-controller path="/project/notice_detail.do"/>
 
-
+	<!-- 완료된 경로 -->
 	<mvc:view-controller path="/index.do"/>
 	<mvc:view-controller path="/product/index.do"/>
 	<mvc:view-controller path="/product/detail.do"/>
