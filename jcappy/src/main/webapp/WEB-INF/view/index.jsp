@@ -30,7 +30,7 @@
             </div>
             <div class="main_content">
                 <div class="title">
-                    <h1>냉장고</h1>
+                    <h1 class="cstyle_h1">냉장고</h1>
                 </div>
                 <div class=" flex">
                     <div class="item">
