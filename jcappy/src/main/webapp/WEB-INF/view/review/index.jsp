@@ -109,7 +109,8 @@
                 </div>
             </div>
         </div>
-        <a href=""><div class="review_board_page_navigation">< 1 2 3 4 ></div></a>
+        <a href="">
+        <div class="review_board_page_navigation">< 1 2 3 4 ></div></a>
     </div>
 				
 	
