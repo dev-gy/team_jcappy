@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Document</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
-<script src="/jcappy/js/index.js"></script>
 </head>
 <body>
     <div id="wrap">
@@ -16,7 +15,7 @@
         <div class="review_board_link">
             <a href="">home</a>-<a href="">review</a>
         </div>
-        <div class="review_board_title">Review</div>
+        <div class="review_board_title cstyle_h1"><h1>Review</h1></div>
         <div class="review_board_content">
             <div class="review_board_review_table">
                 <a href=""><img src="/jcappy/img/a1.png"></a>
@@ -109,7 +108,7 @@
                 </div>
             </div>
         </div>
-        <a href=""><div class="review_board_page_navigation">< 1 2 3 4 ></div></a>
+        <div class="review_board_page_navigation">< 1 2 3 4 ></div>
     </div>
 				
 	
