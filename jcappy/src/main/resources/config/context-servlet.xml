@@ -67,8 +67,11 @@
 	<mvc:view-controller path="/product/index.do"/>
 	<mvc:view-controller path="/product/detail.do"/>
 	
+	<mvc:view-controller path="/mypage/qna/index.do"/>
+	
 	<mvc:view-controller path="/review/index.do"/>
 	<mvc:view-controller path="/sample.do"/>
+	
 	
 	<!-- ========== 관리자 ========== -->
 	
