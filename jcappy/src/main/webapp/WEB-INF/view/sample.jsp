@@ -13,7 +13,7 @@
         <%@ include file="/WEB-INF/view/include/top.jsp" %>
         <div id="container">
 			
-			
+			<input>
 			
         </div>
         <%@ include file="/WEB-INF/view/include/bottom.jsp" %>
