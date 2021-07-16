@@ -12,10 +12,7 @@
         <%@ include file="/WEB-INF/view/include/top.jsp" %>
         <div id="container">
 			<div class="review_board_wrap">
-        <div class="review_board_link">
-            <a href="">home</a>-<a href="">review</a>
-        </div>
-        <div class="review_board_title cstyle_h1"><h1>Review</h1></div>
+        <div class="review_board_title"><h1 class="cstyle_h1">Review</h1></div>
         <div class="review_board_content">
             <div class="review_board_review_table">
                 <a href=""><img src="/jcappy/img/a1.png"></a>

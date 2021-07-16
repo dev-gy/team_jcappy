@@ -137,8 +137,7 @@ review/index
 ========================================*/
 .review_board_wrap * {box-sizing: border-box;}
 .review_board_wrap {width: 1200px;margin: 0 auto;}
-.review_board_link {margin: 100px 0 0 0; text-align:left;}
-.review_board_title{float:left; display:block;}
+.review_board_title{margin: 100px 0 0 0;}
 .review_board_content{clear:both;}
 .review_board_review_table {width: 300px;height: 400px;float: left;text-align: center;margin: 50px 50px;border: 1px solid black;overflow:hidden;}
 .review_board_review_table>a>img {width: 300px;height: 250px;}
@@ -168,15 +167,17 @@ mypage/qna/index
 review/detail
 ========================================*/
 .review_detail_wrap * {box-sizing: border-box;}
-.review_detail_wrap {width: 1200px;margin: 0 auto; text-align:left;}
-.review_detail_link {margin: 100px 0 0 0;}
-.review_detail_id {margin: 50px 0 0 0;}
+.review_detail_wrap {width: 1200px;margin: 0 auto;}
+.review_detail_title{margin: 100px 0 0 0;}
+.review_detail_id {margin: 50px 0 0 0;text-align:right;}
+.review_detail_day{text-align:right;}
 .review_detail_product {width: 400px;height: 100px;margin: 50px 0 0 0;}
 .review_detail_product_img {float: left;width: 100px;height: 100px;}
 .review_detail_product_img>a>img {width: 100px;height: 100px;}
-.review_detail_product_name {float: left;width: 300px;font-size: 20px;display: block;}
+.review_detail_product_name {float: left;width: 300px;font-size: 20px;display: block; text-align:left;}
 .review_detail_star {float: left;display: block;width: 300px;height: 70px;}
 .review_detail_star>img {width: 300px;height: 70px;}
+.review_detail_content{text-align:left; border:1px solid black;}
 .review_detail_content>.review_detail_img {margin: 0 auto;}
 .review_detail_content>.review_detail_img>img {width: 900px;height: 500px;}
 .review_detail_list_button {margin: 50px 0 0 0;}

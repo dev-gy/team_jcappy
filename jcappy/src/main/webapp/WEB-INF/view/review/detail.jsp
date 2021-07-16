@@ -13,9 +13,6 @@
         <div id="container">
 
 			<div class="review_detail_wrap">
-		        <div class="review_detail_link">
-		            <a href="">home</a>-<a href="">review</a>
-		        </div>
 		        <div class="review_detail_title"><h1 class="cstyle_h1">Review</h1></div>
 		        <div class="review_detail_id">회원아이디</div>
 		        <div class="review_detail_day">작성일(2021-7-1)</div>
