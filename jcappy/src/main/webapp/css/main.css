@@ -20,7 +20,7 @@ input:focus { outline:none; }
 layout
 ========================================*/
 #header { min-width: 1200px; width: 100%; height: 250px; }
-#container { width: 1200px; height: 100%; margin: 0px auto; text-align: center; clear: both; }
+#container { width: 1200px; height: 100%; margin: 0px auto; text-align: center; clear: both; overflow: hidden; }
 #footer { min-width: 1200px; width: 100%; height: 200px; bottom: 0px; background-color: #221f1f; clear: both; }
 
 /*======================================
@@ -50,10 +50,9 @@ include/bottom
 /*======================================
 include/mypage/sidebar
 ========================================*/
-.mypage_sidebar { width: 300px; height:auto; display: flex; background-color: #e7e7e7; flex-direction: column; padding: 0px 40px 40px 40px; margin-right: 50px; box-sizing: border-box; float: left;  }
+.mypage_sidebar { width: 300px; height: 100%; background-color: #e7e7e7; padding: 40px; margin-right: 50px; box-sizing: border-box; float: left;  }
 .mypage_sidebar > div { width: auto; height: 80px; color: #2f3134; cursor: pointer; text-align: left; border-bottom: 2px solid #a7a7a7; }
 .mypage_sidebar > div > h2 { padding-top: 40px; }
-
 /*======================================
 include/mypage/sidebar
 ========================================*/
