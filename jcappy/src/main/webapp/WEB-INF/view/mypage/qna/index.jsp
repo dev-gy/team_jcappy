@@ -21,8 +21,8 @@
 				</div>
 
 				<!-- 현재 페이지 컨텐츠 구현부 -->
-				<div class="qna_content">
-					<table class="qna_table">
+				<div class="mypage_content">
+					<table class="cstyle_table">
 						<colgroup>
 							<col width="80px">
 							<col width="500px">
@@ -31,14 +31,14 @@
 						</colgroup>
 						<thead>
 							<tr>
-								<th scope="col" class="cstyle_th">번호</th>
-								<th scope="col" class="cstyle_th">제목</th>
-								<th scope="col" class="cstyle_th">날짜</th>
-								<th scope="col" class="cstyle_th">처리상태</th>
+								<th scope="col">번호</th>
+								<th scope="col">제목</th>
+								<th scope="col">날짜</th>
+								<th scope="col">처리상태</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="qna_item">
+							<tr class="cstyle_tr">
 								<td class="item_no">2</td>
 								<td class="item_title"><a href="">회원정보수정요청</a></td>
 								<td class="item_cre_date">2021-05-27 16:00</td>
@@ -49,7 +49,7 @@
 									</div>
 								</td>
 							</tr>
-							<tr class="qna_item">
+							<tr class="cstyle_tr">
 								<td class="item_no">1</td>
 								<td class="item_title"><a href="">회원정보수정요청</a></td>
 								<td class="item_cre_date">2021-05-27 16:00</td>

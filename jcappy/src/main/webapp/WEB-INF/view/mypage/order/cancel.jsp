@@ -21,8 +21,8 @@
 				</div>
 
 				<!-- 현재 페이지 컨텐츠 구현부 -->
-				<div class="qna_content">
-					<table class="ordercanceltable">
+				<div class="mypage_content">
+					<table class="cstyle_table">
 						<colgroup>
 							<col width="100px">
 							<col width="250px">
@@ -30,21 +30,21 @@
 							<col width="100px">
 							<col width="150px">
 						</colgroup>
-						<tr class="qna_item">
-							<th class="cstyle_th">주문번호</th>
-							<th class="cstyle_th">주문상품</th>
-							<th class="cstyle_th">총주문금액</th>
-							<th class="cstyle_th">주문날짜</th>
-							<th class="cstyle_th">처리상태</th>
+						<tr>
+							<th>주문번호</th>
+							<th>주문상품</th>
+							<th>총주문금액</th>
+							<th>주문날짜</th>
+							<th>처리상태</th>
 						</tr>
-						<tr class="qna_item">
+						<tr>
 							<td><a href="mypage_ordercanceldetail.do" ><div>9999</div></a></td>
 							<td>냉장고 외1건</td>
 							<td>10,000,000원</td>
 							<td>2021-05-05</td>
 							<td>취소/교환/반품 요청</td>
 						</tr>
-						<tr class="qna_item">
+						<tr>
 							<td><a href=""><div>8888</div></a></td>
 							<td>세탁기 외2건</td>
 							<td>10,000,000원</td>
