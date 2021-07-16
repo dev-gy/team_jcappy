@@ -71,6 +71,7 @@
 	<mvc:view-controller path="/mypage/order/cancel.do"/>
 	
 	<mvc:view-controller path="/review/index.do"/>
+	<mvc:view-controller path="/review//detail.do"/>  
 	<mvc:view-controller path="/sample.do"/>
 	
 	
