@@ -7,7 +7,7 @@
 <title>Document</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 <style>
-
+      
 </style>
 </head>
 <body>
