@@ -4,87 +4,70 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="/jcappy/js/mypage_main.js"></script>
-    <link rel="stylesheet" href="/jcappy/css/reset.css">
-    <link rel="stylesheet" href="/jcappy/css/mypage_main.css">
+<title>Document</title>
+<%@ include file="/WEB-INF/view/include/head.jsp"%>
 </head>
-
 <body>
-    <!-- 헤더 -->
-    <div class="header">
-        <p>HEADER</p>
-    </div>
-    <div class="mypage_wrap">
-        <!-- 마이페이지 헤더 -->
-        <div id="myheader">
-            <span class="myinfo">손흥민</span> 회원님의 등급은 <span class='myinfo'>VIP</span>입니다.
-        </div>
-        <!-- 서브메뉴 -->
-        <div id='submenu'>
-            <ul>
-                <li><a href="mypage_main.do">주문조회</a></li>
-                <li><a href="mypage_update_info.do">정보수정</a></li>
-                <li><a href="">쿠폰함</a></li>
-                <li><a href="">1:1문의</a></li>
-                <li><a href="mypage_ordercancel.do">취소/교환/반품</a></li>
-                <li><a href="javascript:del();" >회원탈퇴</a></li>
-            </ul>
-        </div>
-        <!-- 본문 -->
-        <div id="content">
-            <!-- 서브메뉴 타이틀 -->
-            <div class="subheader">
-                <p class="subtitle">주문내역조회</p>
-            </div>
-            <!-- 서브메뉴 본문 -->
-            <!-- 주문조회 -->
-            <div>
-                <table class="ordertable">
-                    <colgroup>
-                        <col>
-                        <col class="col_color">
-                        <col>
-                        <col class="col_color">
-                        <col>
-                    </colgroup>
-                    <tr>
-                        <td>주문번호</td>
-                        <td>주문상품</td>
-                        <td>총주문금액</td>
-                        <td>주문날짜</td>
-                        <td>배송상태</td>
-                    </tr>
-                    <tr>
-                        <td><a href="mypage_orderdetail.do"><div>9999</div></a></td>
-                        <td>냉장고 외1건</td>
-                        <td>10,000,000원</td>
-                        <td>2021-05-05</td>
-                        <td>상품준비중</td>
-                    </tr>
-                    <tr>
-                        <td><a href=""><div>8888</div></a></td>
-                        <td>세탁기 외2건</td>
-                        <td>10,000,000원</td>
-                        <td>2021-05-05</td>
-                        <td>배송준비중</td>
-                    </tr>
-                    <tr>
-                        <td><a href=""><div>7777</div></a></td>
-                        <td>에어컨</td>
-                        <td>1,000,000원</td>
-                        <td>2021-05-05</td>
-                        <td>배송완료</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-    <!-- 푸터 -->
-    <div class="footer">
-        <p>FOOTER</p>
-    </div>
-</body>
+	<div id="wrap">
+		<%@ include file="/WEB-INF/view/include/top.jsp"%>
+		<div id="container">
+			<%@ include file="/WEB-INF/view/include/mypage/sidebar.jsp"%>
+			<%@ include file="/WEB-INF/view/include/mypage/userinfo.jsp"%>
+			<!-- 마이페이지 공통 컨텐츠 -->
+			<div class="mypage_content">
+				<!-- 마이페이지 공통 서브타이틀 -->
+				<div class="mypage_subtitle">
+					<h2>1:1 문의내역</h2>
+				</div>
 
+				<!-- 현재 페이지 컨텐츠 구현부 -->
+				<div class="qna_content">
+					<table class="qna_table">
+						<colgroup>
+							<col width="80px">
+							<col width="500px">
+							<col width="120px">
+							<col width="100px">
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col" class="cstyle_th">번호</th>
+								<th scope="col" class="cstyle_th">제목</th>
+								<th scope="col" class="cstyle_th">날짜</th>
+								<th scope="col" class="cstyle_th">처리상태</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="qna_item">
+								<td class="item_no">2</td>
+								<td class="item_title"><a href="">회원정보수정요청</a></td>
+								<td class="item_cre_date">2021-05-27 16:00</td>
+								<td>
+									<div class="item_state">처리완료</div>
+									<div>
+										<a href="">수정</a> / <a href="">삭제</a>
+									</div>
+								</td>
+							</tr>
+							<tr class="qna_item">
+								<td class="item_no">1</td>
+								<td class="item_title"><a href="">회원정보수정요청</a></td>
+								<td class="item_cre_date">2021-05-27 16:00</td>
+								<td>
+									<div class="item_state">접수대기</div> <a href="">수정</a> / <a
+									href="">삭제</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div>
+						<button class="qna_write_btn cstyle_btn">문의작성</button>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<%@ include file="/WEB-INF/view/include/bottom.jsp"%>
+	</div>
+</body>
 </html>

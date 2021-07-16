@@ -62,12 +62,25 @@
 	<mvc:view-controller path="/notice/notice.do"/>
 	<mvc:view-controller path="/project/notice_detail.do"/>
 
+	<!-- 임시등록입니다 -->
+	<mvc:view-controller path="/mypage/qna/edit.do"/>
+	<mvc:view-controller path="/mypage/qna/write.do"/>
+
 	<!-- 완료된 경로 -->
 	<mvc:view-controller path="/index.do"/>
 	<mvc:view-controller path="/product/index.do"/>
 	<mvc:view-controller path="/product/detail.do"/>
 	
-	<!-- 관리자 -->
+	<mvc:view-controller path="/mypage/qna/index.do"/>
+	<mvc:view-controller path="/mypage/order/cancel.do"/>
+	
+	<mvc:view-controller path="/review/index.do"/>
+	
+	<mvc:view-controller path="/sample.do"/>
+	
+	
+	
+	<!-- ========== 관리자 ========== -->
 	
 	<!-- 로그인 화면 -->
 	<mvc:view-controller path="/admin/index.do"/> 
@@ -110,7 +123,7 @@
 	<!-- 공지사항 게시판 관리 -->
 	<mvc:view-controller path="/admin/board/notice/list.do"/>
 	<mvc:view-controller path="/admin/board/notice/detail.do"/>
-	<mvc:view-controller path="/admin/board/notice/create.do"/><!-- 관리자 -->
+	<mvc:view-controller path="/admin/board/notice/create.do"/>
 	
 	
 	<!-- DBCP -->

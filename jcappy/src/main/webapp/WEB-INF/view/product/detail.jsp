@@ -47,44 +47,10 @@
 		});
 	});
 	
-	
+	function onlyNumber(obj) {
+	    obj.value = obj.value.replace(/[^0-9]/g, '');
+	}
 </script>
-<style>
-.product_detail_content { margin: 30px 0px;  box-sizing: border-box; border-collapse: collapse; }
-.product_detail_content > table > tbody > tr td { border: 1px solid black; box-sizing: border-box; border-collapse: collapse; } 
-.product_detail_content > table > tbody> button { width: 100%; height: 40px; display: table-cell; }
-.item_img_area { width: 50%; height: 650px; padding: 20px; box-sizing: border-box; overflow: hidden; }
-.item_img_area > .item_major_img { width: 500px; height: 500px; display: inline-block; background-size: cover; }
-.item_img_area > .item_img_list { width: 100%; height: auto; display: flex; overflow: hidden; justify-content: center; }
-.item_img_area > .item_img_list > .item_minor_img { width: 100px; height: 100px; margin: 20px 10px 0px 10px; background-size: cover; }
-.item_info_area { width: 50%; height: 650px; text-align: left; vertical-align: top; padding: 20px; }
-.item_info_area > .top { margin-bottom: 30px; }
-.item_info_area > .top > .item_info_price {padding-top: 30px; }
-.item_info_area > .middle { margin-bottom: 30px; }
-.item_info_area > .middle > hr { margin: 30px 0px; }
-.item_info_area > .bottom { line-height: 60px; }
-.item_info_area > .bottom > .item_count_area { width: auto; height: auto; display: table; box-sizing: border-box; border-collapse: collapse; }
-.item_info_area > .bottom > .item_count_area > * { display: table-cell; margin: 0px; padding: 0px; box-sizing: border-box; }
-.item_info_area > .bottom > .item_count_area > .minus_btn { width: 24px; height: 32px; font-size: 20px; line-height: 30px; text-align: center; }
-.item_info_area > .bottom > .item_count_area > .count { width: 80px; height: 32px; border: none; text-align: right; padding: 4px 10px; }
-.item_info_area > .bottom > .item_count_area > .plus_btn { width: 24px; height: 32px; font-size: 20px; line-height: 30px; text-align: center; }
-.item_info_area > .bottom > .total_price_area { display: flex; justify-content: space-between; }
-.item_info_area > .bottom > .btn_area { display: flex; justify-content: center; }
-.item_info_area > .bottom > .btn_area > button { width: 200px; height: 40px; margin: 30px 10px; }
-.product_detail_content > table > tbody > tr > .cstyle_tab { width: 100px; height: 40px; }
-.review_area { text-align: left; }
-.review_area > ul > li { width:100%; padding: 20px; border-bottom: 1px solid #a7a7a7; display: table; }
-.review_area > ul > li > .review_info { width: 200px; display: table-cell; padding: 20px 0px; }
-.review_area > ul > li > .review_content { width:auto;  display: table-cell; padding:20px 40px 20px 20px; cursor: pointer; }
-.review_area > ul > li > .review_content > .review_context { padding: 10px 0px; overflow: hidden; text-overflow: ellipsis; }
-.review_area > ul > li > .review_content > .review_img { width: 70px; height: 70px; margin-right: 10px; background-size: cover; display: inline-block; }
-.review_area > ul > li > .review_btn { width: 200px; height: 25px; margin: 40px; }
-
-input[type="number"]:focus { outline:none; }
-input[type="number"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; }
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; padding: 0; }
-</style>
 </head>
 
 <body>
@@ -118,7 +84,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
 									<p>수량 선택</p>
 										<span class="item_count_area cstyle_border_black">
 										 	<a class="minus_btn cstyle_btn" >-</a>
-											<input class="count" type="number" value="1">
+											<input class="count" type="text" value="1" oninput="onlyNumber(this);" />
 											<a class="plus_btn cstyle_btn" >+</a>
 										</span>
 									<div class="total_price_area">
