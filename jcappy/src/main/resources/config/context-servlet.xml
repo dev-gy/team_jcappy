@@ -77,7 +77,7 @@
 	
 	<mvc:view-controller path="/review/index.do"/>
 	<mvc:view-controller path="/review/detail.do"/>  
-	
+	<mvc:view-controller path="/review/write.do"/>  
 	
 	
 	<!-- ========== 관리자 ========== -->
