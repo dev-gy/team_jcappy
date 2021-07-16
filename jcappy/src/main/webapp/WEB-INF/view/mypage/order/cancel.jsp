@@ -6,9 +6,6 @@
 <meta charset="UTF-8">
 <title>Document</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
-<style>
-      
-</style>
 </head>
 <body>
 	<div id="wrap">
@@ -34,11 +31,11 @@
 							<col width="150px">
 						</colgroup>
 						<tr class="qna_item">
-							<td>주문번호</td>
-							<td>주문상품</td>
-							<td>총주문금액</td>
-							<td>주문날짜</td>
-							<td>처리상태</td>
+							<th class="cstyle_th">주문번호</th>
+							<th class="cstyle_th">주문상품</th>
+							<th class="cstyle_th">총주문금액</th>
+							<th class="cstyle_th">주문날짜</th>
+							<th class="cstyle_th">처리상태</th>
 						</tr>
 						<tr class="qna_item">
 							<td><a href="mypage_ordercanceldetail.do" ><div>9999</div></a></td>
