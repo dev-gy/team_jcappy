@@ -65,6 +65,7 @@
 	<!-- 임시등록입니다 -->
 	<mvc:view-controller path="/mypage/qna/edit.do"/>
 	<mvc:view-controller path="/mypage/qna/write.do"/>
+	<mvc:view-controller path="/sample.do"/>
 
 	<!-- 완료된 경로 -->
 	<mvc:view-controller path="/index.do"/>
@@ -76,7 +77,6 @@
 	
 	<mvc:view-controller path="/review/index.do"/>
 	<mvc:view-controller path="/review/detail.do"/>  
-	<mvc:view-controller path="/sample.do"/>
 	
 	
 	

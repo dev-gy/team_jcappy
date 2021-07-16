@@ -173,7 +173,7 @@ h1 {
 	font-size: 12px;
 	border-right-color: #efefef;
 	border-bottom-color: #efefef;
-	length: 300px;
+/* 	length: 300px; */
 	width: 100%;
 }
 .upload_alt {
@@ -258,8 +258,8 @@ jQuery(window).load(function(){
 		if(cnt != max){
 			_form.append("<div id='pop_content2_"+cnt+"' class='pop_con'></div>");
 			
-			var tag = "<dl><dt>첨부 "+(cnt+1)+". </dt><dd><input type='file' class='upload' id='uploadInputBox"+cnt+"' name='Filedata"+cnt+"'/></dd></dl>";
-// 			tag = tag + "<dl><dt>이미지설명</dt><dd><input type='text' class='upload_alt' id='img_alt"+cnt+"' name='image_alt' value='' onclick='blurAltInsert(this);'/></dd></dl>";
+			var tag = "<dl><dt>첨부 "+(cnt+1)+". </dt><dd><input type='file' class='upload' id='uploadInputBox"+cnt+"' name='Filedata"+cnt+"' accept='image/*'/></dd></dl>";
+ 			tag = tag + "<dl><dt>이미지설명</dt><dd><input type='text' class='upload_alt' id='img_alt"+cnt+"' name='image_alt' value='' onclick='blurAltInsert(this);'/></dd></dl>";
 			//tag = tag + "<dl><dt>width</dt><dd><input type='text' class='upload_width' id='width"+cnt+"' name='width' value=''/></dd></dl>";
 			
 			jQuery("#pop_content2_"+cnt).append(tag);
@@ -338,15 +338,15 @@ jQuery(window).load(function(){
 				<dl>
 					<dt>첨부 1.</dt>
 					<dd>
-						<input type="file" class="upload" id="uploadInputBox" name="Filedata0">
+						<input type="file" class="upload" id="uploadInputBox" name="Filedata0" accept="image/*">
 					</dd>
 				</dl>
-<!-- 				<dl> -->
-<!-- 					<dt>이미지설명</dt> -->
-<!-- 					<dd> -->
-<!-- 						<input type="text" class="upload_alt" id="img_alt0" name="image_alt" value="" onclick="blurAltInsert(this);"/> -->
-<!-- 					</dd> -->
-<!-- 				</dl> -->
+				<dl>
+					<dt>이미지설명</dt>
+					<dd>
+						<input type="text" class="upload_alt" id="img_alt0" name="image_alt" value="" onclick="blurAltInsert(this);"/>
+					</dd>
+				</dl>
 			</div>
 		</form>
 		<!-- //content --> 

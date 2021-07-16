@@ -7,7 +7,7 @@
 <title>Document</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 <style>
-.qna_write_content > form > .qna_title { width: 100%; font-size: 16px; margin: 10px 0px; }
+.qna_write_content > form > .qna_title { width: 100%; font-size: 12px; font-family: '돋움',Dotum,'굴림',Gulim,Helvetica,Sans-serif; line-height: 2; padding: 5px 15px; margin: 10px 0px; }
 .qna_write_content > form > #content { width: 100%; min-width: 800px; height: 300px; display: none; }
 .qna_write_content > form > .btn_wrap { float: right; margin: 10px 0px; }
 .qna_write_content > form > .btn_wrap > button { width: 100px; height: 40px; margin-left: 20px; }
@@ -40,8 +40,8 @@ function goSave() {
 				<!-- 현재 페이지 컨텐츠 구현부 -->
 				<div class="qna_write_content">
 					<form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data" >
-						<input class="qna_title" type="text" placeholder="제목">
-						<textarea id="content" placeholder="내용을 입력해주세요"></textarea>
+						<input class="qna_title" type="text">
+						<textarea id="content"></textarea>
 						<div class="btn_wrap">
 							<button class="cstyle_btn" onclick="javascript:goSave();">작성</button>
 							<button class="cstyle_btn" onclick="location.href='/mypage/qna/index'">취소</button>
