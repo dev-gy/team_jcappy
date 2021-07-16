@@ -19,9 +19,8 @@
 				<div class="mypage_subtitle">
 					<h2>1:1 문의내역</h2>
 				</div>
-
+				<div class="mypage_content">
 				<!-- 현재 페이지 컨텐츠 구현부 -->
-				<div class="현재 페이지 내용의_content">
 					
 				</div>
 				

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,9 +38,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="cstyle_tr">
+							<tr>
 								<td class="item_no">2</td>
-								<td class="item_title"><a href="">회원정보수정요청</a></td>
+								<td class="item_title cstyle_text_align_left"><a href="">회원정보수정요청</a></td>
 								<td class="item_cre_date">2021-05-27 16:00</td>
 								<td>
 									<div class="item_state">처리완료</div>
@@ -49,13 +49,15 @@
 									</div>
 								</td>
 							</tr>
-							<tr class="cstyle_tr">
+							<tr>
 								<td class="item_no">1</td>
-								<td class="item_title"><a href="">회원정보수정요청</a></td>
+								<td class="item_title cstyle_text_align_left"><a href="">회원정보수정요청</a></td>
 								<td class="item_cre_date">2021-05-27 16:00</td>
 								<td>
-									<div class="item_state">접수대기</div> <a href="">수정</a> / <a
-									href="">삭제</a>
+									<div class="item_state">접수대기</div>
+									<div>
+										<a href="">수정</a> / <a href="">삭제</a>
+									</div>
 								</td>
 							</tr>
 						</tbody>
@@ -64,7 +66,6 @@
 						<button class="qna_write_btn cstyle_btn">문의작성</button>
 					</div>
 				</div>
-				
 			</div>
 		</div>
 		<%@ include file="/WEB-INF/view/include/bottom.jsp"%>

@@ -59,13 +59,13 @@
 	<mvc:view-controller path="/project/mypage_qna.do"/>
 	<mvc:view-controller path="/project/mypage_qna_update.do"/>
 	<mvc:view-controller path="/project/mypage_qna_write.do"/>
-	<mvc:view-controller path="/notice/notice.do"/>
+	<mvc:view-controller path="/project/notice.do"/>
 	<mvc:view-controller path="/project/notice_detail.do"/>
 
 	<!-- 임시등록입니다 -->
-	<mvc:view-controller path="/mypage/qna/edit.do"/>
-	<mvc:view-controller path="/mypage/qna/write.do"/>
+	<mvc:view-controller path="/notice/index.do"/>
 	<mvc:view-controller path="/sample.do"/>
+	<mvc:view-controller path="/mypage/qna/edit.do"/>
 
 	<!-- 완료된 경로 -->
 	<mvc:view-controller path="/index.do"/>
@@ -73,6 +73,7 @@
 	<mvc:view-controller path="/product/detail.do"/>
 	
 	<mvc:view-controller path="/mypage/qna/index.do"/>
+	<mvc:view-controller path="/mypage/qna/write.do"/>
 	<mvc:view-controller path="/mypage/order/cancel.do"/>
 	
 	<mvc:view-controller path="/review/index.do"/>

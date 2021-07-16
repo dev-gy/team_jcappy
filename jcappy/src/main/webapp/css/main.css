@@ -14,10 +14,11 @@ common style
 .cstyle_table { border-top: 2px solid rgb(173, 173, 173); border-bottom: 2px solid rgb(173, 173, 173); }
 .cstyle_table th { font-size: 16px; padding: 10px 6px; font-weight: normal; }
 .cstyle_table tr { position: relative; border-top: 1px solid rgb(201, 201, 201); }
-.cstyle_table td { padding: 20px 6px; }
-.cstyle_table td > .item_title { text-align: left; }
+.cstyle_table td { padding: 20px 10px; }
 .cstyle_border_gray { border: 1px solid #a7a7a7; }
 .cstyle_border_black { border: 1px solid #221f1f; }
+.cstyle_text_align_left { text-align: left; }
+.cstyle_text_align_right { text-align: right; }
 input:focus { outline:none; }
 
 /*======================================
@@ -161,8 +162,8 @@ mypage/*
 /*======================================
 mypage/qna/index
 ========================================*/
-
-.qna_write_btn { width: 100px; height: 40px; margin:20px 0px; float: right; } 
+.qna_write_btn { width: 100px; height: 40px; margin:20px 0px; float: right; }
+ 
  /*======================================
 review/detail
 ========================================*/

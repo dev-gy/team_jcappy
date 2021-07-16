@@ -17,46 +17,42 @@
 			<div class="mypage_content">
 				<!-- 마이페이지 공통 서브타이틀 -->
 				<div class="mypage_subtitle">
-					<h2>취소/교환/반품</h2>
+					<h2>공지사항</h2>
 				</div>
 
 				<!-- 현재 페이지 컨텐츠 구현부 -->
 				<div class="mypage_content">
 					<table class="cstyle_table">
 						<colgroup>
+							<col width="80px">
+							<col>
 							<col width="100px">
-							<col width="250px">
-							<col width="200px">
-							<col width="100px">
-							<col width="150px">
 						</colgroup>
 						<thead>
 							<tr>
-								<th>주문번호</th>
-								<th>주문상품</th>
-								<th>총주문금액</th>
-								<th>주문날짜</th>
-								<th>처리상태</th>
+								<th scope="col">번호</th>
+								<th scope="col">제목</th>
+								<th scope="col">등록일</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td><a href="mypage_ordercanceldetail.do">9999</span></a></td>
-								<td class="cstyle_text_align_left">냉장고 외1건</td>
-								<td>10,000,000원</td>
-								<td>2021-05-05</td>
-								<td>취소/교환/반품 요청</td>
+								<td class="item_no">2</td>
+								<td class="item_title cstyle_text_align_left"><a href="">회원정보수정요청</a></td>
+								<td class="item_cre_date">2021-05-27</td>
 							</tr>
 							<tr>
-								<td><a href="">8888</a></td>
-								<td class="cstyle_text_align_left">세탁기 외2건</td>
-								<td>10,000,000원</td>
-								<td>2021-05-05</td>
-								<td>취소완료</td>
+								<td class="item_no">1</td>
+								<td class="item_title cstyle_text_align_left"><a href="">회원정보수정요청</a></td>
+								<td class="item_cre_date">2021-05-27</td>
 							</tr>
 						</tbody>
 					</table>
+					<div>
+						<button class="qna_write_btn cstyle_btn">문의작성</button>
+					</div>
 				</div>
+
 			</div>
 		</div>
 		<%@ include file="/WEB-INF/view/include/bottom.jsp"%>
