@@ -53,14 +53,19 @@ include/bottom
 #footer > .size > .info > .right { right: 0px; position: absolute; text-align: right; text-decoration: underline; }
 
 /*======================================
-include/mypage/sidebar
+mypage/*
 ========================================*/
-.mypage_sidebar { width: 300px; height: 100%; background-color: #e7e7e7; padding: 40px; margin-right: 50px; box-sizing: border-box; float: left;  }
-.mypage_sidebar > div { width: auto; height: 80px; color: #2f3134; cursor: pointer; text-align: left; border-bottom: 2px solid #a7a7a7; }
-.mypage_sidebar > div > h2 { padding-top: 40px; }
+.mypage_content { width: 800px; float: left; }
+.mypage_subtitle { text-align: left; padding: 10px 0px; }
 
 /*======================================
-include/mypage/sidebar
+mypage/sidebar
+========================================*/
+.mypage_sidebar { width: 300px; height: 100%; background-color: #e7e7e7; padding: 40px; margin-right: 50px; box-sizing: border-box; float: left;  }
+.mypage_sidebar > div { width: 100%; height: 80px; color: #2f3134; text-align: left; border-bottom: 2px solid #a7a7a7; }
+.mypage_sidebar > div > a { width: 100%; height: 100%; display: block; padding-top: 40px; box-sizing:border-box; font-size: 1.5em; font-weight: bold; }
+/*======================================
+mypage/userinfo
 ========================================*/
 .mypage_userinfo { width: 800px; height: 50px; float: left; margin: 50px 0px; box-sizing: border-box; line-height: 50px; } 
 .mypage_userinfo > h1 > a { text-decoration: underline; }
@@ -69,21 +74,21 @@ include/mypage/sidebar
 index
 ========================================*/
 .banner { width: 100%; text-align: center; }
-.swiper { width: 100%; height: 500px;  }
-.swiper_area { position: absolute; }
-.swiper_area > div { background-size: cover; background-repeat: no-repeat; }
-.swiper_content { width: 1200px; height: 100%; position: relative; margin: auto; }
-.swiper_content > .btn_area { width: 80px; height: 30px; right: 10px; top: auto; bottom: 10px; padding: 10px; background-color: #00000060; border-radius: 30px; display: flex; position: absolute; z-index: 2; }
+.banner > .swiper { width: 100%; height: 500px;  }
+.banner .swiper_area { position: absolute; }
+.banner .swiper_area > div { background-size: 100% 100%; }
+.banner .swiper_content { width: 1200px; height: 100%; position: relative; margin: auto; }
+.banner .swiper_content > .btn_area { width: 80px; height: 30px; right: 10px; top: auto; bottom: 10px; padding: 10px; background-color: #00000060; border-radius: 30px; display: flex; position: absolute; z-index: 2; }
 .main_content { width: 100%; height: 100%; margin: 30px 0px; }
 .main_content > .title { width: 100%; height: 80px; }
 .main_content > .flex { width: 100%; height: 100%; overflow: hidden; display: flex; justify-content: space-between; }
 .main_content > .flex > .item { width: 300px; height: 450px; position: relative; margin: 30px; }
 .main_content > .flex > .item > a > img { width: 100%; height: 400px; }
 .main_content > div > .all_view_btn { width: 80px; }
-.swiper-button-prev { left: 10px; }
-.swiper-button-next { right: 10px; }
-.swiper-button-prev::after { font-size: 24px; color: #ffffff; }
-.swiper-button-next::after { font-size: 24px; color: #ffffff; }
+.banner .swiper-button-prev { left: 10px; }
+.banner .swiper-button-next { right: 10px; }
+.banner .swiper-button-prev::after { font-size: 24px; color: #ffffff; }
+.banner .swiper-button-next::after { font-size: 24px; color: #ffffff; }
 
 /*======================================
 cart
@@ -163,12 +168,6 @@ review/index
 .review_board_star>img {width: 200px;height: 50px;}
 .review_board_review_table_footer>a>p {display: block;width: 350px;height: 25px;text-align: left;line-height: 25px;}
 .review_board_page_navigation {clear:both; margin:0 auto; width:200px; height:50px;}
-
-/*======================================
-mypage/*
-========================================*/
-.mypage_content { width: 800px; float: left; }
-.mypage_subtitle { text-align: left; padding: 10px 0px; }
 
 /*======================================
 mypage/qna/index
