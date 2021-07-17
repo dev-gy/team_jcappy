@@ -96,19 +96,21 @@
 	                        </div></td>
 	                    </tr>
 	                </tbody>
-	            </table><br>
-	            <div class="p1">
-	                <p>구매 가능 수량이 1개로 제한된 상품은 주문 취소 시, 24시간 내 가상계좌 재주문이 불가합니다.</p>
-	                <p>JCAPPY는 기본적으로 전 상품 무료 배송입니다.</p>
-	                <p>해외배송 상품은 배송료가 추가로 발생될 수 있습니다.</p>
-	                <p>2개 이상 브랜드를 주문하신 경우, 각각 개별 배송됩니다.</p>
-	                <p>장바구니에 담은 시점과 현재의 판매 가격이 달라질 수 있습니다.</p>
-	                <p> 결제 시 각종 할인 적용이 달라질 수 있습니다.</p>
-	                <p>수량 제한 상품의 경우, 가상계좌를 통한 주문은 최대 2건까지만 가능합니다.(미입금 주문 기준, 기존 주문 합산)</p>
-	            </div>
-	            <div class="p2">
-	                <input class="continue_btn cstyle_btn" id="b1" type="button" value="계속 쇼핑하기">
-	                <input class="buy_btn cstyle_btn" id="b2" type="button" onclick="location.href='payment.html';" value="주문하기">
+	            </table>
+				<div class="bottom_section">
+		            <div class="p1">
+		                <p>구매 가능 수량이 1개로 제한된 상품은 주문 취소 시, 24시간 내 가상계좌 재주문이 불가합니다.</p>
+		                <p>JCAPPY는 기본적으로 전 상품 무료 배송입니다.</p>
+		                <p>해외배송 상품은 배송료가 추가로 발생될 수 있습니다.</p>
+		                <p>2개 이상 브랜드를 주문하신 경우, 각각 개별 배송됩니다.</p>
+		                <p>장바구니에 담은 시점과 현재의 판매 가격이 달라질 수 있습니다.</p>
+		                <p> 결제 시 각종 할인 적용이 달라질 수 있습니다.</p>
+		                <p>수량 제한 상품의 경우, 가상계좌를 통한 주문은 최대 2건까지만 가능합니다.(미입금 주문 기준, 기존 주문 합산)</p>
+		            </div>
+		            <div class="p2">
+		                <input class="continue_btn cstyle_btn" id="b1" type="button" value="계속 쇼핑하기">
+		                <input class="buy_btn cstyle_btn" id="b2" type="button" onclick="location.href='payment.html';" value="주문하기">
+		            </div>
 	            </div>
 			</div>
         </div>

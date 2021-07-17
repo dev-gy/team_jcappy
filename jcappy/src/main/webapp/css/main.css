@@ -88,8 +88,12 @@ index
 /*======================================
 cart
 ========================================*/
-.cart_content { margin: 50px 0px; box-sizing: border-box; }
-.continue_btn, .buy_btn { width: 100px; height: 40px; margin: 20px 10px; } 
+.cart_content { padding: 50px 0px; box-sizing: border-box; }
+.continue_btn, .buy_btn { width: 100px; height: 40px; margin: 0px 10px; } 
+.bottom_section { width: 100%; height: auto; display:table; margin: 20px 0px; }
+.p1 { text-align: left; vertical-align: bottom; display: table-cell; }
+.p2 { text-align: right; vertical-align: bottom; display: table-cell; }
+
 /*======================================
 product/index
 ========================================*/
