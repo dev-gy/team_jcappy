@@ -21,7 +21,7 @@
 				</div>
 				<div class="mypage_content">
 					<!-- 현재 페이지 컨텐츠 구현부 -->
-					
+					<div class="mypage_for_line"></div>
 					<div class="cancel_write_content">
 						<form action="" method="POST">
 							<div>

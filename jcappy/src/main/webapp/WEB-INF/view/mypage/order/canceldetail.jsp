@@ -52,10 +52,10 @@
 								<col width="150px">
 							</colgroup>
 							<tr>
-								<th class="detail_title">상품</th>
-								<th class="detail_title">수량</th>
-								<th class="detail_title">상품금액</th>
-								<th class="detail_title">합계</th>
+								<th>상품</th>
+								<th>수량</th>
+								<th>상품금액</th>
+								<th>합계</th>
 							</tr>
 							<tr>
 								<td class="cstyle_text_align_left"><a href=""><img src="/jcappy/img/냉장고.jpg"></a>냉장고1</td>

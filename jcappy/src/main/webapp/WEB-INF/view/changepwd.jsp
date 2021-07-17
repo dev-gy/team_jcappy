@@ -42,7 +42,7 @@
 		                    	비밀번호: <input type="password" id="pwd1" required>
 		                    </div>
 		                    <div class="changepwd_board_pwd2">
-		                    	비밀번호 확인: <input type="password" id="pwd2" required>
+		                    	비밀번호 확인: <input type="password" id="pwd2"  required>
 		                    </div>
 		                    <div>
 		                    	<button class="cstyle_btn changepwd_btn" type="button" onclick="test()">저장</button> 
