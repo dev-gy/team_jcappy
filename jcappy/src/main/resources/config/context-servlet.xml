@@ -66,11 +66,8 @@
 	<mvc:view-controller path="/notice/index.do"/>
 	<mvc:view-controller path="/sample.do"/>
 	<mvc:view-controller path="/mypage/qna/edit.do"/>
+	<mvc:view-controller path="/cart.do"/>
 	
-	<mvc:view-controller path="/pay/complete.do"/>
-	<mvc:view-controller path="/pay/coupon.do"/>
-	<mvc:view-controller path="/pay/index.do"/>
-
 	<!-- 완료된 경로 -->
 	<mvc:view-controller path="/index.do"/>
 	<mvc:view-controller path="/product/index.do"/>
@@ -78,7 +75,9 @@
 	
 	<mvc:view-controller path="/mypage/qna/index.do"/>
 	<mvc:view-controller path="/mypage/qna/write.do"/>
-	
+	 
+	<mvc:view-controller path="/mypage/order/index.do"/>
+	<mvc:view-controller path="/mypage/order/detail.do"/>
 	<mvc:view-controller path="/mypage/order/cancel.do"/>
 	<mvc:view-controller path="/mypage/order/canceldetail.do"/>
 	<mvc:view-controller path="/mypage/order/cancelform.do"/>
