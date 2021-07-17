@@ -10,6 +10,18 @@
     <link rel="stylesheet" href="/jcappy/css/reset.css"/>
     <link rel="stylesheet" href="/jcappy/css/shooping cart.css">
 	<script src="/jcappy/js/index.js"></script>
+	
+<style>
+.t {margin-top: 100px}
+.t3 {margin-bottom: 100px}
+table {margin-left: auto;margin-right: auto; width: 1200px; }
+table, td, th {border-collapse: collapse; border: 1px solid black;}
+.p1 {float: left; text-align: left;}
+.p2 {padding-top: 80px; text-align: right;}
+#b1 {width:125px; height:50px; background-color: gold;}
+#b2 {width:125px; height:50px; background-color: gray;}
+</style>
+	
 </head>
 <body>
     <div id="wrap">
@@ -101,20 +113,21 @@
                     </tr>
                 </tbody>
             </table><br>
-            <div class="p1">
-                <p>구매 가능 수량이 1개로 제한된 상품은 주문 취소 시, 24시간 내 가상계좌 재주문이 불가합니다.</p>
-                <p>JCAPPY는 기본적으로 전 상품 무료 배송입니다.</p>
-                <p>해외배송 상품은 배송료가 추가로 발생될 수 있습니다.</p>
-                <p>2개 이상 브랜드를 주문하신 경우, 각각 개별 배송됩니다.</p>
-                <p>장바구니에 담은 시점과 현재의 판매 가격이 달라질 수 있습니다.</p>
-                <p> 결제 시 각종 할인 적용이 달라질 수 있습니다.</p>
-                <p>수량 제한 상품의 경우, 가상계좌를 통한 주문은 최대 2건까지만 가능합니다.(미입금 주문 기준, 기존 주문 합산)</p>
-            </div>
-            <div class="p2">
-                <input id="b1" type=button value="계속 쇼핑하기">
-                <input id="b2" type=button onclick="location.href='payment.html';" value="주문하기">
-            </div>
-
+            <div class="t3">
+	            <div class="p1">
+	                <p>구매 가능 수량이 1개로 제한된 상품은 주문 취소 시, 24시간 내 가상계좌 재주문이 불가합니다.</p>
+	                <p>JCAPPY는 기본적으로 전 상품 무료 배송입니다.</p>
+	                <p>해외배송 상품은 배송료가 추가로 발생될 수 있습니다.</p>
+	                <p>2개 이상 브랜드를 주문하신 경우, 각각 개별 배송됩니다.</p>
+	                <p>장바구니에 담은 시점과 현재의 판매 가격이 달라질 수 있습니다.</p>
+	                <p> 결제 시 각종 할인 적용이 달라질 수 있습니다.</p>
+	                <p>수량 제한 상품의 경우, 가상계좌를 통한 주문은 최대 2건까지만 가능합니다.(미입금 주문 기준, 기존 주문 합산)</p>
+	            </div>
+	            <div class="p2">
+	                <input id="b1" type=button onclick="location.href='/jcappy/index.do';" value="계속 쇼핑하기">
+	                <input id="b2" type=button onclick="location.href='/jcappy/pay/index.do';" value="주문하기">
+	            </div>
+			</div>
         </div>
         <%@ include file="/WEB-INF/view/include/bottom.jsp" %>
     </div>

@@ -66,6 +66,10 @@
 	<mvc:view-controller path="/notice/index.do"/>
 	<mvc:view-controller path="/sample.do"/>
 	<mvc:view-controller path="/mypage/qna/edit.do"/>
+	
+	<mvc:view-controller path="/pay/complete.do"/>
+	<mvc:view-controller path="/pay/coupon.do"/>
+	<mvc:view-controller path="/pay/index.do"/>
 
 	<!-- 완료된 경로 -->
 	<mvc:view-controller path="/index.do"/>
@@ -78,7 +82,10 @@
 	
 	<mvc:view-controller path="/review/index.do"/>
 	<mvc:view-controller path="/review/detail.do"/>  
-	<mvc:view-controller path="/review/write.do"/>  
+	<mvc:view-controller path="/review/write.do"/> 
+	
+	<mvc:view-controller path="/mypage/coupon.do"/> 
+	<mvc:view-controller path="/cart.do"/>
 	
 	
 	<!-- ========== 관리자 ========== -->
