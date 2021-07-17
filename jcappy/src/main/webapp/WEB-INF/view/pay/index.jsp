@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>결제</title>
+    <link rel="stylesheet" href="/jcappy/css/reset.css"/>
+    <link rel="stylesheet" href="/jcappy/css/payment.css">
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 </head>
 <body>
@@ -77,7 +79,7 @@
 		            </div>
 		            <div class="size"><br>
 		                <form name="form">
-		                    <div class="shop2">결제 방법</div><br><br>
+		                    <div class="shop3">결제 방법</div><br><br>
 		                        <div class="payment">
 		                            <input type=radio name="money" checked>신용카드&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		                            <input type=radio name="money">계좌이체<br><br><br>
