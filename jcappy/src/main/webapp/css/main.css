@@ -146,6 +146,7 @@ product/detail
 
 .review_area > ul > li > .review_btn { width: 200px; height: 25px; margin: 40px;}
 .review_area > ul > li > .review_btn { width: 200px; height: 25px; margin: 40px; }
+
 /*======================================
 review/index
 ========================================*/
@@ -197,7 +198,16 @@ mypage/order/detail
 .order_detail_content .btn_wrap > button { width: 150px; height: 40px; margin-left: 20px; }
 .ordertable_button button {width: 60px; height: 30px;}
 
- /*=====================================
+/*======================================
+mypage/memberedit
+========================================*/
+.mypage_member_update {width: 400px; margin: 30px auto;}
+.mypage_member_update > form button {width: 80px; height: 30px; margin-left: 20px; margin-top: 20px; }
+.mypage_member_update input {width:100%; margin: 1px 0;}
+.mypage_member_update .zipcode {width:150px; float: left;}
+.mypage_member_update .cstyle_btn.search_zipcode {margin: 0; width: 45px; height: 30px; margin: 2px 0; float: right;}
+
+/*======================================
 review/detail
 =======================================*/
 .review_detail_wrap * {box-sizing: border-box;}
