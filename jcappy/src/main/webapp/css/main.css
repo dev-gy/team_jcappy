@@ -88,8 +88,12 @@ index
 /*======================================
 cart
 ========================================*/
-.cart_content { margin: 50px 0px; box-sizing: border-box; }
-.continue_btn, .buy_btn { width: 100px; height: 40px; margin: 20px 10px; } 
+.cart_content { padding: 50px 0px; box-sizing: border-box; }
+.continue_btn, .buy_btn { width: 100px; height: 40px; margin: 0px 10px; } 
+.bottom_section { width: 100%; height: auto; display:table; margin: 20px 0px; }
+.p1 { text-align: left; vertical-align: bottom; display: table-cell; }
+.p2 { text-align: right; vertical-align: bottom; display: table-cell; }
+
 /*======================================
 product/index
 ========================================*/
@@ -243,3 +247,33 @@ review/write
 .review_write_button>.review_write_cancle {width: 100px;margin: 0 25px 50px 25px;float: left;}
 .review_write_button>.review_write_submit > button {width: 100px;height: 40px;}
 .review_write_button>.review_write_cancle > button {width: 100px;height: 40px;}
+<<<<<<< HEAD
+/*======================================
+changepwd
+========================================*/
+.changepwd_top_subject{margin:100px 0 0 0}
+.changepwd_info2 > .changepwd_content2 {width:600px;padding:100px;margin: 0 auto;}
+.changepwd_info2 > .changepwd_content2 > .changepwd_board_area2 {width:600px;height: auto;border : 1px solid rgb(0, 0, 0);}
+.changepwd_board_title{line-height:40px;float:left;width:100px;height:40px; background-color: #d3d3d3;}
+.changepwd_board_content2{clear:both;border-top:1px solid black;}
+.changepwd_board_pwd {margin:25px 0 25px 20px;} 
+.changepwd_board_pwd2{margin:25px 0 25px 0;} 
+.changepwd_btn {width:100px; margin: 0 0 25px 0;}
+/*======================================
+changepwd
+========================================*/
+.findacountpwd_top_subject{margin:100px 0 0 0}
+.findacountpwd_content {width:600px;padding:250px;margin: 0 auto;}
+.findacountpwd_board_area {width:600px;height: auto;border : 1px solid rgb(0, 0, 0);}
+.findacountpwd_board_title {line-height:40px;float:left;width:100px;text-align: center;cursor: pointer;}
+.findacountpwd_board_title.on {background-color: #d3d3d3;color:#000000;}
+.findacountpwd_board_content {clear:both; border-top:1px solid black;}
+.findacountpwd_name{margin: 0 0 25px 10px;}
+.findacountpwd_email{margin: 0 0 25px 0;}
+#findacountpwd_board_pwd {display: none;}
+.findacountpwd_video_area {height:450px;}
+.findacountpwd_idf {margin:25px 0;}
+.findacountpwd_pwdf {margin:25px 0;}
+.findacountpwd_id{margin:0 0 25px 0;}
+=======
+>>>>>>> branch 'master' of https://github.com/Ummnaa/team_jcappy.git

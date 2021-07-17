@@ -91,7 +91,7 @@
 	<mvc:view-controller path="/mypage/coupon.do"/> 
 	<mvc:view-controller path="/cart.do"/>
 	<mvc:view-controller path="/changepwd.do"/>
-	
+	<mvc:view-controller path="/findacountpwd.do"/>
 	
 	
 	<!-- ========== 관리자 ========== -->
