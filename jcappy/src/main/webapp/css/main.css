@@ -222,3 +222,14 @@ review/write
 .review_write_button>.review_write_submit > button {width: 100px;height: 40px;}
 .review_write_button>.review_write_cancle > button {width: 100px;height: 40px;}
 
+/*======================================
+changepwd
+========================================*/
+.changepwd_top_subject{margin:100px 0 0 0}
+.changepwd_info2 > .changepwd_content2 {width:600px;padding:100px;margin: 0 auto;}
+.changepwd_info2 > .changepwd_content2 > .changepwd_board_area2 {width:600px;height: auto;border : 1px solid rgb(0, 0, 0);}
+.changepwd_board_title{line-height:40px;float:left;width:100px;height:40px; background-color: #d3d3d3;}
+.changepwd_board_content2{clear:both;border-top:1px solid black;}
+.changepwd_board_pwd {margin:25px 0 25px 20px;} 
+.changepwd_board_pwd2{margin:25px 0 25px 0;} 
+.changepwd_btn {width:100px; margin: 0 0 25px 0;}
