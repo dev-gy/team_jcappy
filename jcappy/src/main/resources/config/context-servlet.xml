@@ -78,7 +78,9 @@
 	
 	<mvc:view-controller path="/mypage/qna/index.do"/>
 	<mvc:view-controller path="/mypage/qna/write.do"/>
-	
+	 
+	<mvc:view-controller path="/mypage/order/index.do"/>
+	<mvc:view-controller path="/mypage/order/detail.do"/>
 	<mvc:view-controller path="/mypage/order/cancel.do"/>
 	<mvc:view-controller path="/mypage/order/canceldetail.do"/>
 	<mvc:view-controller path="/mypage/order/cancelform.do"/>

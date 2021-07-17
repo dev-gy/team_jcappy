@@ -38,6 +38,7 @@ function goSave() {
 				</div>
 
 				<!-- 현재 페이지 컨텐츠 구현부 -->
+				<div class="mypage_for_line"></div>
 				<div class="qna_write_content">
 					<form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data" >
 						<input class="qna_title" type="text">

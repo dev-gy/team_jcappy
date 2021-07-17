@@ -27,6 +27,7 @@
 				</div>
 
 				<!-- 현재 페이지 컨텐츠 구현부 -->
+				<div class="mypage_for_line"></div>
 				<div class="qna_edit_content">
 					<!-- 서브메뉴 본문 -->
 					<input class="qna_title" type="text" placeholder="제목">

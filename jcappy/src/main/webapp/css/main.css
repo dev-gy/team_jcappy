@@ -178,6 +178,14 @@ mypage/order/cancelform
 .cancel_write_content > form .btn_wrap { float: right; margin: 10px 0px; }
 .cancel_write_content > form .btn_wrap > button { width: 100px; height: 40px; margin-left: 20px; }
 .cancel_write_content select {float: left; margin: 10px 0;}
+.mypage_for_line {border-top: 2px solid rgb(173, 173, 173);}
+
+/*======================================
+mypage/order/detail
+========================================*/
+.order_detail_content .btn_wrap { float: right; margin: 10px 0px; }
+.order_detail_content .btn_wrap > button { width: 150px; height: 40px; margin-left: 20px; }
+.ordertable_button button {width: 60px; height: 30px;}
 
 /*======================================
 review/detail
