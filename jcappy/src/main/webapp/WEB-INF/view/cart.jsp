@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>장바구니</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
-<script src="/jcappy/js/index.js"></script>
+    <script src="/jcappy/js/shooping cart.js"></script>
+    <link rel="stylesheet" href="/jcappy/css/reset.css"/>
+    <link rel="stylesheet" href="/jcappy/css/shooping cart.css">
+	<script src="/jcappy/js/index.js"></script>
 </head>
 <body>
     <div id="wrap">
@@ -109,7 +112,7 @@
             </div>
             <div class="p2">
                 <input id="b1" type=button value="계속 쇼핑하기">
-                <input id="b2" type=button onclick="/jcappy/project/payment.do" value="주문하기">
+                <input id="b2" type=button onclick="location.href='payment.html';" value="주문하기">
             </div>
 
         </div>
