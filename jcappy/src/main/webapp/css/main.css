@@ -146,6 +146,7 @@ product/detail
 
 .review_area > ul > li > .review_btn { width: 200px; height: 25px; margin: 40px;}
 .review_area > ul > li > .review_btn { width: 200px; height: 25px; margin: 40px; }
+
 /*======================================
 review/index
 ========================================*/
@@ -225,6 +226,7 @@ review/detail
 .review_detail_content>.review_detail_img>img {width: 900px;height: 500px;}
 .review_detail_list_button {margin: 50px 0 0 0;}
 #review_detail_list_btn {width: 100px;height: 50px;background-color: #a7a7a7;}
+
  /*======================================
 review/write
 ========================================*/
@@ -247,7 +249,7 @@ review/write
 .review_write_button>.review_write_cancle {width: 100px;margin: 0 25px 50px 25px;float: left;}
 .review_write_button>.review_write_submit > button {width: 100px;height: 40px;}
 .review_write_button>.review_write_cancle > button {width: 100px;height: 40px;}
-<<<<<<< HEAD
+
 /*======================================
 changepwd
 ========================================*/
@@ -259,6 +261,7 @@ changepwd
 .changepwd_board_pwd {margin:25px 0 25px 20px;} 
 .changepwd_board_pwd2{margin:25px 0 25px 0;} 
 .changepwd_btn {width:100px; margin: 0 0 25px 0;}
+
 /*======================================
 changepwd
 ========================================*/
@@ -275,5 +278,3 @@ changepwd
 .findacountpwd_idf {margin:25px 0;}
 .findacountpwd_pwdf {margin:25px 0;}
 .findacountpwd_id{margin:0 0 25px 0;}
-=======
->>>>>>> branch 'master' of https://github.com/Ummnaa/team_jcappy.git
