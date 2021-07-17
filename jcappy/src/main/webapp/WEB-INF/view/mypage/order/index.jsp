@@ -37,21 +37,21 @@
 							<th>배송상태</th>
 						</tr>
 						<tr>
-							<td><a href="mypage_orderdetail.do"><div>9999</div></a></td>
+							<td><a href="/jcappy/mypage/order/detail.do"><div>9999</div></a></td>
 							<td class="cstyle_text_align_left">냉장고 외1건</td>
 							<td>10,000,000원</td>
 							<td>2021-05-05</td>
 							<td>상품준비중</td>
 						</tr>
 						<tr>
-							<td><a href=""><div>8888</div></a></td>
+							<td><a href="/jcappy/mypage/order/detail.do"><div>8888</div></a></td>
 							<td class="cstyle_text_align_left">세탁기 외2건</td>
 							<td>10,000,000원</td>
 							<td>2021-05-05</td>
 							<td>배송준비중</td>
 						</tr>
 						<tr>
-							<td><a href=""><div>7777</div></a></td>
+							<td><a href="/jcappy/mypage/order/detail.do"><div>7777</div></a></td>
 							<td class="cstyle_text_align_left">에어컨</td>
 							<td>1,000,000원</td>
 							<td>2021-05-05</td>

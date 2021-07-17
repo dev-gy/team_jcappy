@@ -63,28 +63,28 @@
 									<th></th>
 								</tr>
 								<tr>
-									<td class="cstyle_text_align_left"><a href=""><img
+									<td class="cstyle_text_align_left"><a href="/jcappy/mypage/product/detail.do"><img
 											src="/jcappy/img/냉장고.jpg"></a>냉장고1</td>
 									<td>1</td>
 									<td>1,000,000</td>
 									<td>1,000,000</td>
-									<td><button class="cstyle_btn" onclick="order_cancel();">리뷰작성</button></a></td>
+									<td><button class="cstyle_btn" onclick="location.href='/jcappy/review/write.do'">리뷰작성</button></td>
 								</tr>
 								<tr>
-									<td class="cstyle_text_align_left"><a href=""><img
+									<td class="cstyle_text_align_left"><a href="/jcappy/mypage/product/detail.do"><img
 											src="/jcappy/img/냉장고.jpg"></a>에어컨1</td>
 									<td>2</td>
 									<td>1,000,000</td>
 									<td>2,000,000</td>
-									<td><button class="cstyle_btn" onclick="order_cancel();">리뷰작성</button></td>
+									<td><button class="cstyle_btn" onclick="location.href='/jcappy/review/write.do">리뷰작성</button></td>
 								</tr>
 								<tr>
-									<td class="cstyle_text_align_left"><a href=""><img
+									<td class="cstyle_text_align_left"><a href="/jcappy/mypage/product/detail.do"><img
 											src="/jcappy/img/냉장고.jpg"></a>세탁기1</td>
 									<td>2</td>
 									<td>1,000,000</td>
 									<td>2,000,000</td>
-									<td><button class="cstyle_btn" onclick="order_cancel();">리뷰작성</button></td>
+									<td><button class="cstyle_btn" onclick="location.href='/jcappy/review/write.do">리뷰작성</button></td>
 								</tr>
 							</table>
 						</div>
@@ -137,7 +137,7 @@
 						<div class="mypage_for_blank"></div>
 						<!-- 취소/교환/반품 요청 -->
 						<div class="btn_wrap">
-							<button class="cstyle_btn" onclick="order_cancel();">취소/교환/반품	요청</button>
+							<button class="cstyle_btn" onclick="location.href='/jcappy/mypage/order/cancel.do'">취소/교환/반품 요청</button>
 						</div>
 					</div>
 				</div>

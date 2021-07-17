@@ -93,7 +93,7 @@
 									</div>
 									<div class="btn_area">
 										<button class="add_cart_btn cstyle_btn" onclick="location.href='{계속쇼핑?장바구니이동? 선택지 띄우기.. }'">장바구니</button>
-										<button class="buy_btn cstyle_btn" onclick="location.href='/jcappy/pay?{상품번호}'">주문하기</button>
+										<button class="buy_btn cstyle_btn" onclick="location.href='/jcappy/pay/index.do'">주문하기</button>
 									</div>
 								</div>
 							</td>

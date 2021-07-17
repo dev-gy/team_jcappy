@@ -81,7 +81,7 @@
 	<mvc:view-controller path="/mypage/order/detail.do"/>
 	<mvc:view-controller path="/mypage/order/cancel.do"/>
 	<mvc:view-controller path="/mypage/order/canceldetail.do"/>
-	<mvc:view-controller path="/mypage/order/cancelform.do"/>
+	<mvc:view-controller path="/mypage/order/cancelwrite.do"/>
 	<mvc:view-controller path="/mypage/memberedit.do"/>
 	         
 	<mvc:view-controller path="/review/index.do"/>
