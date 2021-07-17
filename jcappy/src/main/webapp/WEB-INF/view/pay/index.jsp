@@ -5,86 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>결제</title>
+    <link rel="stylesheet" href="/jcappy/css/reset.css"/>
+    <link rel="stylesheet" href="/jcappy/css/payment.css">
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
-
-<style>
- .cva {
-            margin: 0 auto;
-            width: 1200px;
-            overflow: hidden;
-        }
-        .left1 {
-            width: 360px;
-            float: left;
-            margin-left: 250px;
-        }
-        .right1 {
-            width: 250px;
-            float: right;     
-            margin-right: 250px;    
-            margin-top: 200px;
-        }
-        img {
-            width: 50px;
-            height: 50px;   
-            vertical-align: middle ;
-        }
-        .product {
-            text-align: center;
-        }
-        .pay{
-                padding: 30px;
-                font-weight: bolder;
-                font-size: 32px;
-                text-align: center;
-            }
-            .shop {
-                font-size: 20px;
-                font-weight: bolder;
-            }
-            .shop2 {
-                font-size: 20px;
-                font-weight: bolder;
-            }
-            .couname {
-                font-size: 20px;
-                font-weight: bolder;
-            }
-            table {
-                width: 100%;
-            }
-            table, th, td {
-                border: 1px solid #bcbcbc;
-                text-align: left;
-            }
-            input[type=text]{
-                color: rgb(94, 94, 94);
-            }
-            #wid {
-                width: 300px;
-            }
-            .co1{
-                text-align: left;
-            }
-            #cash {
-                font-size:16px;
-                text-align: left;
-            }
-            #cash1 {
-                font-size:16px;
-                right: 20px;
-                text-align: right;
-            }
-            .payment {
-                text-align: center;
-            }
-            #ppay {
-                width:100px;
-                height:50px;
-                font-size:18px; 
-            }
-</style>
-
 </head>
 <body>
     <div id="wrap">
@@ -156,7 +79,7 @@
 		            </div>
 		            <div class="size"><br>
 		                <form name="form">
-		                    <div class="shop2">결제 방법</div><br><br>
+		                    <div class="shop3">결제 방법</div><br><br>
 		                        <div class="payment">
 		                            <input type=radio name="money" checked>신용카드&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		                            <input type=radio name="money">계좌이체<br><br><br>
