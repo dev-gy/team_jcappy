@@ -3,22 +3,22 @@
 /*======================================
 common style
 ========================================*/
-.cstyle_btn { height: 40px; background-color: white; border: 1px solid #221f1f; cursor: pointer; }
-.cstyle_btn:hover {color: black; border-color: black; }
-.cstyle_btn:disabled { background-color: #a7a7a7; }
-.cstyle_tab { background-color: white; color: #a7a7a7; border: 1px solid #221f1f; cursor: pointer; }
-.tab_on { color: #221f1f; }
-.cstyle_h1 { display: inline; padding: 10px 20px; border-bottom: 2px solid #a7a7a7;  }
-.cstyle_flex { width: 100%; height: 100%; overflow: hidden; display: flex; justify-content: space-between; flex-wrap: wrap; }
-.cstyle_item { position: relative; border: 1px solid #a7a7a7;  margin: 30px; }
-.cstyle_table { border-top: 2px solid rgb(173, 173, 173); border-bottom: 2px solid rgb(173, 173, 173); }
-.cstyle_table th { font-size: 16px; padding: 10px 6px; font-weight: normal; }
-.cstyle_table tr { position: relative; border-top: 1px solid rgb(201, 201, 201); }
-.cstyle_table td { padding: 20px 10px; }
-.cstyle_border_gray { border: 1px solid #a7a7a7; }
-.cstyle_border_black { border: 1px solid #221f1f; }
-.cstyle_text_align_left { text-align: left; }
-.cstyle_text_align_right { text-align: right; }
+.cstyle_btn { height: 40px; background-color: white !important; border: 1px solid #221f1f !important; cursor: pointer !important; }
+.cstyle_btn:hover {color: black !important; border-color: black !important; }
+.cstyle_btn:disabled { background-color: #a7a7a7 !important; }
+.cstyle_tab { background-color: white !important; color: #a7a7a7 !important; border: 1px solid #221f1f; cursor: pointer !important; }
+.tab_on { color: #221f1f !important; }
+.cstyle_h1 { display: inline !important; padding: 10px 20px !important; border-bottom: 2px solid #a7a7a7 !important;  }
+.cstyle_flex { width: 100%; height: 100%; overflow: hidden !important; display: flex !important; justify-content: space-between !important; flex-wrap: wrap !important; }
+.cstyle_item { position: relative; border: 1px solid #a7a7a7 !important;  margin: 30px !important; }
+.cstyle_table { border-top: 2px solid #a7a7a7 !important; border-bottom: 2px solid #a7a7a7 !important; }
+.cstyle_table th { font-size: 16px !important;; padding: 10px 6px !important; font-weight: normal; }
+.cstyle_table tr { position: relative; border-top: 1px solid #c0c0c0!important; }
+.cstyle_table td { padding: 20px 10px !important; }
+.cstyle_border_gray { border: 1px solid #a7a7a7 !important; }
+.cstyle_border_black { border: 1px solid #221f1f !important; }
+.cstyle_text_align_left { text-align: left !important; }
+.cstyle_text_align_right { text-align: right !important; }
 input:focus { outline:none; }
 
 /*======================================
@@ -58,6 +58,7 @@ include/mypage/sidebar
 .mypage_sidebar { width: 300px; height: 100%; background-color: #e7e7e7; padding: 40px; margin-right: 50px; box-sizing: border-box; float: left;  }
 .mypage_sidebar > div { width: auto; height: 80px; color: #2f3134; cursor: pointer; text-align: left; border-bottom: 2px solid #a7a7a7; }
 .mypage_sidebar > div > h2 { padding-top: 40px; }
+
 /*======================================
 include/mypage/sidebar
 ========================================*/
@@ -72,7 +73,7 @@ index
 .swiper_area { position: absolute; }
 .swiper_area > div { background-size: cover; background-repeat: no-repeat; }
 .swiper_content { width: 1200px; height: 100%; position: relative; margin: auto; }
-.swiper_content > .btn_area { width: 80px; height: 30px; right: 10px; top: auto; bottom: 10px; padding: 10px; background-color: #00000060; border-radius: 30px; display: flex; position: absolute; z-index: 1 }
+.swiper_content > .btn_area { width: 80px; height: 30px; right: 10px; top: auto; bottom: 10px; padding: 10px; background-color: #00000060; border-radius: 30px; display: flex; position: absolute; z-index: 2; }
 .main_content { width: 100%; height: 100%; margin: 30px 0px; }
 .main_content > .title { width: 100%; height: 80px; }
 .main_content > .flex { width: 100%; height: 100%; overflow: hidden; display: flex; justify-content: space-between; }
@@ -84,6 +85,11 @@ index
 .swiper-button-prev::after { font-size: 24px; color: #ffffff; }
 .swiper-button-next::after { font-size: 24px; color: #ffffff; }
 
+/*======================================
+cart
+========================================*/
+.cart_content { margin: 50px 0px; box-sizing: border-box; }
+.continue_btn, .buy_btn { width: 100px; height: 40px; margin: 20px 10px; } 
 /*======================================
 product/index
 ========================================*/
@@ -188,6 +194,9 @@ mypage/order/detail
 .ordertable_button button {width: 60px; height: 30px;}
 
 /*======================================
+=======
+ /*======================================
+>>>>>>> branch 'master' of https://github.com/Ummnaa/team_jcappy.git
 review/detail
 ========================================*/
 .review_detail_wrap * {box-sizing: border-box;}
@@ -205,9 +214,8 @@ review/detail
 .review_detail_content>.review_detail_img {margin: 0 auto;}
 .review_detail_content>.review_detail_img>img {width: 900px;height: 500px;}
 .review_detail_list_button {margin: 50px 0 0 0;}
-#review_detail_list_btn {width: 100px;height: 50px;background-color: rgb(177, 175, 175);}
-
-/*======================================
+#review_detail_list_btn {width: 100px;height: 50px;background-color: #a7a7a7;}
+ /*======================================
 review/write
 ========================================*/
 .review_write_wrap * {box-sizing: border-box;}
@@ -229,15 +237,3 @@ review/write
 .review_write_button>.review_write_cancle {width: 100px;margin: 0 25px 50px 25px;float: left;}
 .review_write_button>.review_write_submit > button {width: 100px;height: 40px;}
 .review_write_button>.review_write_cancle > button {width: 100px;height: 40px;}
-
-/*======================================
-changepwd
-========================================*/
-.changepwd_top_subject{margin:100px 0 0 0}
-.changepwd_info2 > .changepwd_content2 {width:600px;padding:100px;margin: 0 auto;}
-.changepwd_info2 > .changepwd_content2 > .changepwd_board_area2 {width:600px;height: auto;border : 1px solid rgb(0, 0, 0);}
-.changepwd_board_title{line-height:40px;float:left;width:100px;height:40px; background-color: #d3d3d3;}
-.changepwd_board_content2{clear:both;border-top:1px solid black;}
-.changepwd_board_pwd {margin:25px 0 25px 20px;} 
-.changepwd_board_pwd2{margin:25px 0 25px 0;} 
-.changepwd_btn {width:100px; margin: 0 0 25px 0;}
