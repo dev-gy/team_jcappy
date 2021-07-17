@@ -21,7 +21,7 @@
 				</div>
 
 				<!-- 현재 페이지 컨텐츠 구현부 -->
-				<div class="mypage_content">
+				<div class="notice_content">
 					<table class="cstyle_table">
 						<colgroup>
 							<col width="80px">
