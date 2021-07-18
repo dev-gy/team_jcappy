@@ -5,6 +5,7 @@
 }
 
 .wrap {
+	margin-top: 200px;
 	width: 1200px;
 	margin: 0 auto;
 }
@@ -39,5 +40,6 @@ input[type=button] {
 	text-align: center;
 	width: 100px;
 	height: 30px;
+	margin-left: 550px;
 	background-color: gold;
 }

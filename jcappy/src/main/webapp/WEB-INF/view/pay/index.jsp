@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="/jcappy/css/reset.css"/>
     <link rel="stylesheet" href="/jcappy/css/payment.css">
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
+  <script>
+        function agreeCheck(frm) {
+            if (frm.checkButton.disabled==true)
+                frm.checkButton.disabled=false
+            else
+                frm.checkButton.disabled=true
+                }
+    </script>
 </head>
 <body>
     <div id="wrap">
@@ -18,18 +26,22 @@
 		        <div class="pay">결제하기</div><br>
 		        <div class="left1">
 		        <div class="shop">주문상품 정보</div><br>
-		        <img src="/jcappy/img/fridge.jpg">
-		        <span class="product">냉장고 101
-		            <div><br></div>
-		            <span>1,000,000원</span>
-		            <div><br></div>
-		        </span>
-		        <img src="/jcappy/img/laun.jsp.jpg">
-		        <span class="product">세탁기 302
-		            <div><br></div>
-		            <span>1,600,000원</span>
-		            <div><br></div>
-		        </span>
+		        <div class="ssl">
+			        <img src="/jcappy/img/fridge.jpg">
+			        <span class="product">냉장고 101
+			            <div><br></div>
+			            <span>1,000,000원</span>
+			            <div><br></div>
+			        </span>
+		        </div>
+		        <div class="ssl">
+			        <img src="/jcappy/img/laun.jsp.jpg">
+			        <span class="product">세탁기 302
+			            <div><br></div>
+			            <span>1,600,000원</span>
+			            <div><br></div>
+			        </span>
+			    </div>
 		        <div class="shop">주문자 정보</div><br>
 		            <div class="co1">
 		            <p>홍길동</p>
@@ -38,7 +50,7 @@
 		            </div><br>
 		            <div class="shop">배송 정보<br><br>
 		                <input type="text" value="이름을 입력해주세요">
-		                <input type="text" value="전화번호를 입력해주세요"><br><br>
+		                <input type="text" value="전화번호를 입력해주세요"><br>
 		                <input type="text" value="주소를 입력해주세요">
 		                <input type=button value="주소 찾기"><br>
 		                <input type="text" id="wid" value="주소를 입력해주세요"><br>
@@ -60,7 +72,7 @@
 		                        </tr>
 		                        <tr>
 		                        <th>쿠폰 할인</th>
-		                        <td><input type="button" value="쿠폰적용" onClick="location.href=/project/couponList.do"></td>
+		                        <td><input type="button" value="쿠폰적용" onClick="location.href='/jcappy/pay/coupon.do'"></td>
 		                        </tr>
 		                        <tr>
 		                            <th>할인 합계</th>
@@ -77,14 +89,14 @@
 		                <span id="cash">배송비</span> <span id="cash1">0원</span><br><br><hr><br>
 		                <span id="cash">최종 결제 금액</span> <span id="cash1">2,600,000원</span><br>
 		            </div>
-		            <div class="size"><br>
+		            <div class="size1"><br>
 		                <form name="form">
-		                    <div class="shop3">결제 방법</div><br><br>
+		                    <div class="shop2">결제 방법</div><br><br>
 		                        <div class="payment">
 		                            <input type=radio name="money" checked>신용카드&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		                            <input type=radio name="money">계좌이체<br><br><br>
 		                            <input type="checkbox" name="agree" onClick="agreeCheck(this.form)"> 구매조건 확인 및 결제 진행에 동의<br><br><br>
-		                            <input type="button" name="checkButton" value="결제하기" onClick="location.href='paycomplete.html'" disabled>
+		                            <input type="button" name="checkButton" value="결제하기" onClick="location.href='/jcappy/pay/complete.do'" disabled>
 		                        </div>
 		                    </form> 
 		                </div>
