@@ -18,9 +18,9 @@
 				</div>
 				<table class="cstyle_table">
 					<colgroup>
-						<col width="80px">
-						<col>
 						<col width="100px">
+						<col>
+						<col width="120px">
 					</colgroup>
 					<thead>
 						<tr>
@@ -31,7 +31,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td class="item_no">2</td>
+							<td class="item_no">23432</td>
 							<td class="item_title cstyle_text_align_left"><a href="">회원정보수정요청</a></td>
 							<td class="item_cre_date">2021-05-27</td>
 						</tr>
@@ -42,9 +42,6 @@
 						</tr>
 					</tbody>
 				</table>
-				<div>
-					<button class="qna_write_btn cstyle_btn" onclick="location.href='/jcappy/notice/write.do'">문의작성</button>
-				</div>
 			</div>
         </div>
         <%@ include file="/WEB-INF/view/include/bottom.jsp" %>

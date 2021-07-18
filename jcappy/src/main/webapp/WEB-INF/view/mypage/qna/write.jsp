@@ -44,8 +44,8 @@ function goSave() {
 						<input class="qna_title" type="text">
 						<textarea id="content"></textarea>
 						<div class="btn_wrap">
-							<button class="cstyle_btn" onclick="javascript:goSave();">작성</button>
-							<button class="cstyle_btn" onclick="location.href='/mypage/qna/index'">취소</button>
+							<input class="cstyle_btn" type="submit" value="작성">
+							<input class="cstyle_btn" type="button" value="취소" onclick="location.href='/mypage/qna/index.do'">
 						</div>
 					</form>
 				</div>

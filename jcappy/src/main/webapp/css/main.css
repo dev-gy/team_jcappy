@@ -12,9 +12,13 @@ common style
 .cstyle_flex { width: 100%; height: 100%; overflow: hidden !important; display: flex !important; justify-content: space-between !important; flex-wrap: wrap !important; }
 .cstyle_item { position: relative; border: 1px solid #a7a7a7 !important;  margin: 30px !important; }
 .cstyle_table { border-top: 2px solid #a7a7a7 !important; border-bottom: 2px solid #a7a7a7 !important; }
-.cstyle_table th { font-size: 16px !important;; padding: 10px 6px !important; font-weight: normal; }
+.cstyle_table th:nth-child(1) { padding-left: 30px !important; box-sizing: border-box; }
+.cstyle_table td:nth-child(1) { padding-left: 30px !important; box-sizing: border-box; }
+.cstyle_table th:nth-last-child(1) { padding-right: 30px !important; box-sizing: border-box; }
+.cstyle_table td:nth-last-child(1) { padding-right: 30px !important; box-sizing: border-box; }
+.cstyle_table th { font-size: 16px !important; padding: 10px 6px; font-weight: normal; }
 .cstyle_table tr { position: relative; border-top: 1px solid #c0c0c0!important; }
-.cstyle_table td { padding: 20px 10px !important; }
+.cstyle_table td { padding: 20px 10px }
 .cstyle_border_gray { border: 1px solid #a7a7a7 !important; }
 .cstyle_border_black { border: 1px solid #221f1f !important; }
 .cstyle_text_align_left { text-align: left !important; }
@@ -102,7 +106,8 @@ cart
 /*======================================
 notice
 ========================================*/
-.notice_content > .title{ margin: 50px; }
+.notice_content { margin: 50px 0px; }
+.notice_content > .title { margin: 50px; }
 
 /*======================================
 product/index
@@ -206,8 +211,11 @@ mypage/order/detail
 mypage/memberedit
 ========================================*/
 .mypage_member_update {width: 400px; margin: 30px auto;}
-.mypage_member_update > form button, input[type="submit"], input[type="button"] {width: 80px; height: 30px; margin-left: 20px; margin-top: 20px; }
-.mypage_member_update input[type="text"], input[type="password"] {width:100%; margin: 1px 0;}
+.mypage_member_update > form button, 
+.mypage_member_update > form input[type="submit"], 
+.mypage_member_update > form input[type="button"] {width: 80px; height: 30px; margin-left: 20px; margin-top: 20px; }
+.mypage_member_update input[type="text"], 
+.mypage_member_update input[type="password"] {width:100%; margin: 1px 0;}
 .mypage_member_update .zipcode {width:150px !important; float: left;}
 .mypage_member_update .search_zipcode {margin: 0; width: 45px; height: 30px; margin: 2px 0; float: right;}
 
