@@ -6,12 +6,6 @@
 <meta charset="UTF-8">
 <title>마이페이지 쿠폰함</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
-
-<style>
-table {margin-left: auto;margin-right: auto; width: 800px;}
-table, td, th {border-collapse: collapse; border: 1px solid black;}
-</style>
-
 </head>
 <body>
 	<div id="wrap">
@@ -28,7 +22,7 @@ table, td, th {border-collapse: collapse; border: 1px solid black;}
 
 				<!-- 현재 페이지 컨텐츠 구현부 -->
 					<div>
-	                <table id="coupon">
+	                <table class="cstyle_table">
 	                    <thead>
 	                        <tr>
 	                            <th>쿠폰명</th>

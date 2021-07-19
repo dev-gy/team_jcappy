@@ -35,7 +35,7 @@
                     </tbody>
                 </table>
             </div>
-                <input type="button" value="쿠폰 적용" onClick="location.href='payment.html'">
+                <input type="button" value="쿠폰 적용" onClick="location.href='/jcappy/pay/index.do'">
         </div>
     </body>
 </html>

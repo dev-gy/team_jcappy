@@ -51,21 +51,21 @@
 										<tr>
 											<td>우편번호</td>
 											<td class="zipcode_td">
-												<input class="zipcode" type="text" name="zipcode" value=""><button class="cstyle_btn search_zipcode" onclick="">검색</button>	
+												<input class="zipcode" id="zipcode" type="text" name="zipcode" value=""><input class="cstyle_btn search_zipcode" type="button" value="검색" onclick="daumPostcode($('#zipcode'), $('#addr1'), $('#addr2'));">
 											</td>
 										</tr>
 										<tr>
 											<td>주소</td>
-											<td><input type="text" name="name"  value=""></td>
+											<td><input type="text" id="addr1" name="name"  value=""></td>
 										</tr>
 										<tr>
 											<td>상세주소</td>
-											<td><input type="text" name="name" value=""></td>
+											<td><input type="text" id="addr2" name="name" value=""></td>
 										</tr>
 										<tr>
 											<td colspan="2">
-												<button class="cstyle_btn" onclick="submit();">수정</button>
-												<button class="cstyle_btn" onclick="back();">취소</button>
+												<input class="cstyle_btn" type="submit" value="수정">
+												<input class="cstyle_btn" type="button" value="취소" onclick="location.href='/jcappy/mypage/order/index.do'">
 											</td>
 										</tr>
 									</table>

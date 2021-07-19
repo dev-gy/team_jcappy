@@ -26,11 +26,11 @@
 						<form action="" method="POST">
 							<div>
 								<div>
-									<select>
-										<option name="cancel_type" value="0" selected>선택해주세요.</option>
-										<option name="cancel_type" value="1">취소</option>
-										<option name="cancel_type" value="2">교환</option>
-										<option name="cancel_type" value="3">반품</option>
+									<select name="cancel_type">
+										<option selected hidden="">선택해주세요</option>
+										<option value="1">취소</option>
+										<option value="2">교환</option>
+										<option value="3">반품</option>
 									</select>
 								</div>
 								<div>
@@ -38,8 +38,8 @@
 								</div>
 							</div>
 							<div class="btn_wrap">
-								<button class="cstyle_btn" onclick="cancel_back();">작성</button>
-								<button class="cstyle_btn" onclick="cancel_submit();">취소</button>
+								<input class="cstyle_btn" type="submit" value="작성">
+								<input class="cstyle_btn" type="button" value="취소" onclick="location.href='/jcappy/mypage/order/cancel.do'">
 							</div>
 						</form>
 					</div>

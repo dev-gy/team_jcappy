@@ -41,14 +41,14 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><a href="mypage_ordercanceldetail.do">9999</span></a></td>
+								<td><a href="/jcappy/mypage/order/cancelwrite.do">9999</a></td>
 								<td class="cstyle_text_align_left">냉장고 외1건</td>
 								<td>10,000,000원</td>
 								<td>2021-05-05</td>
 								<td>취소/교환/반품 요청</td>
 							</tr>
 							<tr>
-								<td><a href="">8888</a></td>
+								<td><a href="/jcappy/mypage/order/cancelwrite.do">8888</a></td>
 								<td class="cstyle_text_align_left">세탁기 외2건</td>
 								<td>10,000,000원</td>
 								<td>2021-05-05</td>

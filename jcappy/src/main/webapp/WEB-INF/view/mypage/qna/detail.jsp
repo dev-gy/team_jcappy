@@ -18,10 +18,14 @@
 <body>
     <div id="wrap">
         <%@ include file="/WEB-INF/view/include/top.jsp" %>
-        <div id="container">
-        	<div class="notice_write_content">
-				<div class="title">
-					<h1 class="cstyle_h1">공지사항</h1>
+       <div id="container">
+			<%@ include file="/WEB-INF/view/include/mypage/sidebar.jsp"%>
+			<%@ include file="/WEB-INF/view/include/mypage/userinfo.jsp"%>
+			<!-- 마이페이지 공통 컨텐츠 -->
+			<div class="mypage_content">
+				<!-- 마이페이지 공통 서브타이틀 -->
+				<div class="mypage_subtitle">
+					<h2>1:1 문의 작성</h2>
 				</div>
 				<table class="cstyle_table">
 					<colgroup>

@@ -63,35 +63,41 @@
 	<mvc:view-controller path="/project/notice_detail.do"/>
 
 	<!-- 임시등록입니다 -->
-	<mvc:view-controller path="/notice/index.do"/>
 	<mvc:view-controller path="/sample.do"/>
-	<mvc:view-controller path="/mypage/qna/edit.do"/>
-	<mvc:view-controller path="/cart.do"/>
-	<mvc:view-controller path="/join.do"/>
 	
 	<!-- 완료된 경로 -->
 	<mvc:view-controller path="/index.do"/>
+	<mvc:view-controller path="/cart.do"/>
+	<mvc:view-controller path="/join.do"/>
+	<mvc:view-controller path="/changepwd.do"/>
+	<mvc:view-controller path="/findacountpwd.do"/>
+
 	<mvc:view-controller path="/product/index.do"/>
 	<mvc:view-controller path="/product/detail.do"/>
+
+	<mvc:view-controller path="/pay/index.do"/>
+	<mvc:view-controller path="/pay/complete.do"/>
+
+	<mvc:view-controller path="/notice/index.do"/>
+	<mvc:view-controller path="/notice/detail.do"/>
 	
-	<mvc:view-controller path="/mypage/qna/index.do"/>
-	<mvc:view-controller path="/mypage/qna/write.do"/>
-	 
 	<mvc:view-controller path="/mypage/order/index.do"/>
 	<mvc:view-controller path="/mypage/order/detail.do"/>
 	<mvc:view-controller path="/mypage/order/cancel.do"/>
 	<mvc:view-controller path="/mypage/order/canceldetail.do"/>
-	<mvc:view-controller path="/mypage/order/cancelform.do"/>
+	<mvc:view-controller path="/mypage/order/cancelwrite.do"/>
+	<mvc:view-controller path="/mypage/qna/index.do"/>
+	<mvc:view-controller path="/mypage/qna/write.do"/>	 
+	<mvc:view-controller path="/mypage/qna/edit.do"/>
+	<mvc:view-controller path="/mypage/qna/detail.do"/>
 	<mvc:view-controller path="/mypage/memberedit.do"/>
-	         
-	<mvc:view-controller path="/review/index.do"/>
-	<mvc:view-controller path="/review/detail.do"/>  
-	<mvc:view-controller path="/review/write.do"/> 
-	
 	<mvc:view-controller path="/mypage/coupon.do"/> 
-	<mvc:view-controller path="/cart.do"/>
-	<mvc:view-controller path="/changepwd.do"/>
-	<mvc:view-controller path="/findacountpwd.do"/>
+	         
+	<mvc:view-controller path="/review/write.do"/> 
+
+	<!-- 삭제된 페이지 -->	
+<!-- 	<mvc:view-controller path="/review/index.do"/> -->
+<!-- 	<mvc:view-controller path="/review/detail.do"/>   -->
 	
 	
 	<!-- ========== 관리자 ========== -->

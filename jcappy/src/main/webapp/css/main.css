@@ -12,9 +12,13 @@ common style
 .cstyle_flex { width: 100%; height: 100%; overflow: hidden !important; display: flex !important; justify-content: space-between !important; flex-wrap: wrap !important; }
 .cstyle_item { position: relative; border: 1px solid #a7a7a7 !important;  margin: 30px !important; }
 .cstyle_table { border-top: 2px solid #a7a7a7 !important; border-bottom: 2px solid #a7a7a7 !important; }
-.cstyle_table th { font-size: 16px !important;; padding: 10px 6px !important; font-weight: normal; }
+.cstyle_table th:nth-child(1) { padding-left: 30px !important; box-sizing: border-box; }
+.cstyle_table td:nth-child(1) { padding-left: 30px !important; box-sizing: border-box; }
+.cstyle_table th:nth-last-child(1) { padding-right: 30px !important; box-sizing: border-box; }
+.cstyle_table td:nth-last-child(1) { padding-right: 30px !important; box-sizing: border-box; }
+.cstyle_table th { font-size: 16px !important; padding: 10px 6px; font-weight: normal; }
 .cstyle_table tr { position: relative; border-top: 1px solid #c0c0c0!important; }
-.cstyle_table td { padding: 20px 10px !important; }
+.cstyle_table td { padding: 20px 10px }
 .cstyle_border_gray { border: 1px solid #a7a7a7 !important; }
 .cstyle_border_black { border: 1px solid #221f1f !important; }
 .cstyle_text_align_left { text-align: left !important; }
@@ -53,14 +57,19 @@ include/bottom
 #footer > .size > .info > .right { right: 0px; position: absolute; text-align: right; text-decoration: underline; }
 
 /*======================================
-include/mypage/sidebar
+mypage/*
 ========================================*/
-.mypage_sidebar { width: 300px; height: 100%; background-color: #e7e7e7; padding: 40px; margin-right: 50px; box-sizing: border-box; float: left;  }
-.mypage_sidebar > div { width: auto; height: 80px; color: #2f3134; cursor: pointer; text-align: left; border-bottom: 2px solid #a7a7a7; }
-.mypage_sidebar > div > h2 { padding-top: 40px; }
+.mypage_content { width: 800px; float: left; }
+.mypage_subtitle { text-align: left; padding: 10px 0px; }
 
 /*======================================
-include/mypage/sidebar
+mypage/sidebar
+========================================*/
+.mypage_sidebar { width: 300px; height: 100%; background-color: #e7e7e7; padding: 40px; margin-right: 50px; box-sizing: border-box; float: left;  }
+.mypage_sidebar > div { width: 100%; height: 80px; color: #2f3134; text-align: left; border-bottom: 2px solid #a7a7a7; }
+.mypage_sidebar > div > a { width: 100%; height: 100%; display: block; padding-top: 40px; box-sizing:border-box; font-size: 1.5em; font-weight: bold; }
+/*======================================
+mypage/userinfo
 ========================================*/
 .mypage_userinfo { width: 800px; height: 50px; float: left; margin: 50px 0px; box-sizing: border-box; line-height: 50px; } 
 .mypage_userinfo > h1 > a { text-decoration: underline; }
@@ -69,21 +78,21 @@ include/mypage/sidebar
 index
 ========================================*/
 .banner { width: 100%; text-align: center; }
-.swiper { width: 100%; height: 500px;  }
-.swiper_area { position: absolute; }
-.swiper_area > div { background-size: cover; background-repeat: no-repeat; }
-.swiper_content { width: 1200px; height: 100%; position: relative; margin: auto; }
-.swiper_content > .btn_area { width: 80px; height: 30px; right: 10px; top: auto; bottom: 10px; padding: 10px; background-color: #00000060; border-radius: 30px; display: flex; position: absolute; z-index: 2; }
+.banner > .swiper { width: 100%; height: 500px;  }
+.banner .swiper_area { position: absolute; }
+.banner .swiper_area > div { background-size: 100% 100%; }
+.banner .swiper_content { width: 1200px; height: 100%; position: relative; margin: auto; }
+.banner .swiper_content > .btn_area { width: 80px; height: 30px; right: 10px; top: auto; bottom: 10px; padding: 10px; background-color: #00000060; border-radius: 30px; display: flex; position: absolute; z-index: 2; }
 .main_content { width: 100%; height: 100%; margin: 30px 0px; }
 .main_content > .title { width: 100%; height: 80px; }
 .main_content > .flex { width: 100%; height: 100%; overflow: hidden; display: flex; justify-content: space-between; }
 .main_content > .flex > .item { width: 300px; height: 450px; position: relative; margin: 30px; }
 .main_content > .flex > .item > a > img { width: 100%; height: 400px; }
 .main_content > div > .all_view_btn { width: 80px; }
-.swiper-button-prev { left: 10px; }
-.swiper-button-next { right: 10px; }
-.swiper-button-prev::after { font-size: 24px; color: #ffffff; }
-.swiper-button-next::after { font-size: 24px; color: #ffffff; }
+.banner .swiper-button-prev { left: 10px; }
+.banner .swiper-button-next { right: 10px; }
+.banner .swiper-button-prev::after { font-size: 24px; color: #ffffff; }
+.banner .swiper-button-next::after { font-size: 24px; color: #ffffff; }
 
 /*======================================
 cart
@@ -93,6 +102,12 @@ cart
 .bottom_section { width: 100%; height: auto; display:table; margin: 20px 0px; }
 .p1 { text-align: left; vertical-align: bottom; display: table-cell; }
 .p2 { text-align: right; vertical-align: bottom; display: table-cell; }
+
+/*======================================
+notice
+========================================*/
+.notice_content { margin: 50px 0px; }
+.notice_content > .title { margin: 50px; }
 
 /*======================================
 product/index
@@ -165,12 +180,6 @@ review/index
 .review_board_page_navigation {clear:both; margin:0 auto; width:200px; height:50px;}
 
 /*======================================
-mypage/*
-========================================*/
-.mypage_content { width: 800px; float: left; }
-.mypage_subtitle { text-align: left; padding: 10px 0px; }
-
-/*======================================
 mypage/qna/index
 ========================================*/
 .qna_write_btn { width: 100px; height: 40px; margin:20px 0px; float: right; }
@@ -183,33 +192,36 @@ mypage/order/canceldetail
 .ordertable_img img {width: 80px; height: 80px;}
 
 /*======================================
-mypage/order/cancelform
+mypage/order/cancelwrite
 ========================================*/
-.cancel_write_content > form #content { clear: both; width: 100%; min-width: 800px; height: 300px;}
+.cancel_write_content > form #content { clear: both; width: 100%; min-width: 800px; height: 300px; }
 .cancel_write_content > form .btn_wrap { float: right; margin: 10px 0px; }
-.cancel_write_content > form .btn_wrap > button { width: 100px; height: 40px; margin-left: 20px; }
-.cancel_write_content select {float: left; margin: 10px 0;}
-.mypage_for_line {border-top: 2px solid rgb(173, 173, 173);}
+.cancel_write_content > form .btn_wrap > input { width: 100px; height: 40px; margin-left: 20px; }
+.cancel_write_content select { float: left; margin: 10px 0; padding: 0px; }
+.mypage_for_line { border-top: 2px solid rgb(173, 173, 173); }
 
 /*======================================
 mypage/order/detail
 ========================================*/
 .order_detail_content .btn_wrap { float: right; margin: 10px 0px; }
 .order_detail_content .btn_wrap > button { width: 150px; height: 40px; margin-left: 20px; }
-.ordertable_button button {width: 60px; height: 30px;}
+.ordertable_button button { width: 60px; height: 30px; }
 
 /*======================================
 mypage/memberedit
 ========================================*/
 .mypage_member_update {width: 400px; margin: 30px auto;}
-.mypage_member_update > form button {width: 80px; height: 30px; margin-left: 20px; margin-top: 20px; }
-.mypage_member_update input {width:100%; margin: 1px 0;}
-.mypage_member_update .zipcode {width:150px; float: left;}
-.mypage_member_update .cstyle_btn.search_zipcode {margin: 0; width: 45px; height: 30px; margin: 2px 0; float: right;}
+.mypage_member_update > form button, 
+.mypage_member_update > form input[type="submit"], 
+.mypage_member_update > form input[type="button"] {width: 80px; height: 30px; margin-left: 20px; margin-top: 20px; }
+.mypage_member_update input[type="text"], 
+.mypage_member_update input[type="password"] {width:100%; margin: 1px 0;}
+.mypage_member_update .zipcode {width:150px !important; float: left;}
+.mypage_member_update .search_zipcode {margin: 0; width: 45px; height: 30px; margin: 2px 0; float: right;}
 
 /*======================================
 review/detail
-========================================*/
+=======================================*/
 .review_detail_wrap * {box-sizing: border-box;}
 .review_detail_wrap {width: 1200px;margin: 0 auto;}
 .review_detail_title{margin: 100px 0 0 0;}
