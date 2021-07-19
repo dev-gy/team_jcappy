@@ -1,4 +1,4 @@
-package jcappy;
+package jcappy.client;
 
 public class Test {
 
