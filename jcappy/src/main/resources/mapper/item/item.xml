@@ -3,7 +3,7 @@
 <mapper namespace="item">
 
 
-	<select id="selectAll" resultType="item.ItemVo" parameterType="item.ItemVo">
+	<select id="selectAll" resultType="jcappy.admin.item.ItemVo" parameterType="jcappy.admin.item.ItemVo">
 		SELECT * FROM item
 	</select>
 	

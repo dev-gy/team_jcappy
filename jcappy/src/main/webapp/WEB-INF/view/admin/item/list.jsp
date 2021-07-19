@@ -44,48 +44,12 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>1</td>
-										<td>삼성</td>
-										<td>양문형 냉장고1</td>
-										<td>1,000,000</td>
+										<td>${vo.ino }</td>
+										<td>${vo.icompany }</td>
+										<td>${vo.iname }</td>
+										<td>${vo.iprice }</td>
 										<td><input type="number" id="icount" name="icount" class="w100"/><a class="btns" href="#" onclick=""><strong>변경</strong></a></td>
-										<td>2021-07-10</td>
-										<td><a class="btns" href="#" onclick=""><strong>삭제</strong></a></td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>삼성</td>
-										<td>양문형 냉장고1</td>
-										<td>1,000,000</td>
-										<td><input type="number" id="icount" name="icount" class="w100"/><a class="btns" href="#" onclick=""><strong>변경</strong></a></td>
-										<td>2021-07-10</td>
-										<td><a class="btns" href="#" onclick=""><strong>삭제</strong></a></td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>삼성</td>
-										<td>양문형 냉장고1</td>
-										<td>1,000,000</td>
-										<td><input type="number" id="icount" name="icount" class="w100"/><a class="btns" href="#" onclick=""><strong>변경</strong></a></td>
-										<td>2021-07-10</td>
-										<td><a class="btns" href="#" onclick=""><strong>삭제</strong></a></td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td>삼성</td>
-										<td>양문형 냉장고1</td>
-										<td>1,000,000</td>
-										<td><input type="number" id="icount" name="icount" class="w100"/><a class="btns" href="#" onclick=""><strong>변경</strong></a></td>
-										<td>2021-07-10</td>
-										<td><a class="btns" href="#" onclick=""><strong>삭제</strong></a></td>
-									</tr>
-									<tr>
-										<td>5</td>
-										<td>삼성</td>
-										<td>양문형 냉장고1</td>
-										<td>1,000,000</td>
-										<td><input type="number" id="icount" name="icount" class="w100"/><a class="btns" href="#" onclick=""><strong>변경</strong></a></td>
-										<td>2021-07-10</td>
+										<td>${vo.iregdate }</td>
 										<td><a class="btns" href="#" onclick=""><strong>삭제</strong></a></td>
 									</tr>
 								</tbody>

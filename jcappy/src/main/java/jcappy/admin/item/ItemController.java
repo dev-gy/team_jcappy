@@ -10,11 +10,11 @@ public class ItemController {
 
 	@Autowired
 	ItemService service;
-	
+	  
 	@RequestMapping("/admin/item/list")
 	public String index(Model model, ItemVo vo) {
 		model.addAttribute("list", service.selectAll(vo));
-		return "item/list";
+		return "admin/item/list";
 	}
 	
 }

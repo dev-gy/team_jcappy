@@ -148,22 +148,22 @@
 	
 	<!-- DBCP -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-<!-- 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/> -->
-<!-- 		<property name="url" value="jdbc:mysql://localhost:3307/project"/> -->
-<!-- 		<property name="username" value="project"/> -->
-<!-- 		<property name="password" value="project1234"/> -->
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3307/jcappy"/>
+		<property name="username" value="jcappy"/>
+		<property name="password" value="jcappy"/>
 	</bean>
 	
 	<!-- factory bean -->
-<!-- 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> -->
-<!-- 		<property name="dataSource" ref="dataSource"/> -->
-<!-- 		<property name="mapperLocations" value="classpath:/mapper/**/*.xml"/> -->
-<!-- 	</bean> -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations" value="classpath:/mapper/**/*.xml"/>
+	</bean>
 	
 	<!-- dao에서 주입받아서 사용할 객체 -->
-<!-- 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"> -->
-<!-- 		<constructor-arg index="0" ref="sqlSessionFactory"/> -->
-<!-- 	</bean> -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"/>
+	</bean>
 	
 	<!-- 파일업로드 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
