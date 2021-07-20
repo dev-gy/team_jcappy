@@ -1,4 +1,4 @@
-package jcappy.admin.util;
+package jcappy.util;
 
 public class CommonVo {
 	private int pageRow;		// 페이지당 개수

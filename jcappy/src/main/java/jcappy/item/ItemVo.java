@@ -1,4 +1,4 @@
-package jcappy.admin.item;
+package jcappy.item;
 
 import java.sql.Timestamp;
 

@@ -1,4 +1,4 @@
-package jcappy.admin.notice;
+package jcappy.notice;
 
 import java.util.List;
 

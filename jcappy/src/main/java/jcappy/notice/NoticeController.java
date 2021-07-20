@@ -1,4 +1,4 @@
-package jcappy.admin.notice;
+package jcappy.notice;
 
 import java.io.File;
 import java.util.Date;

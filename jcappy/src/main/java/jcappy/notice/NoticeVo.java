@@ -1,8 +1,8 @@
-package jcappy.admin.notice;
+package jcappy.notice;
 
 import java.sql.Timestamp;
 
-import jcappy.admin.util.CommonVo;
+import jcappy.util.CommonVo;
 
 public class NoticeVo extends CommonVo {   
 	
