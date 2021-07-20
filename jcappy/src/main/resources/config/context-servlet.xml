@@ -42,7 +42,7 @@
 	<mvc:view-controller path="/cart.do"/>
 	<mvc:view-controller path="/join.do"/>
 	<mvc:view-controller path="/changepwd.do"/>
-	<mvc:view-controller path="/findacountpwd.do"/>
+	<mvc:view-controller path="/findaccountpwd.do"/>
 
 	<mvc:view-controller path="/product/index.do"/>
 	<mvc:view-controller path="/product/detail.do"/>
