@@ -15,4 +15,9 @@ public class ItemServiceImpl implements ItemService{
 	public List<ItemVo> selectAll(ItemVo vo) {
 		return dao.selectAll(vo);
 	}
+
+	@Override
+	public ItemVo detail(ItemVo vo) {
+		return dao.detail(vo);
+	}
 }

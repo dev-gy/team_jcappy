@@ -17,4 +17,10 @@ public class ItemController {
 		return "admin/item/list";
 	}
 	
+	@RequestMapping("/admin/item/detail")
+	public String detail(Model model, ItemVo vo) {
+		model.addAttribute("vo", service.detail(vo));
+		return "admin/item/detail";
+	}
+	
 }
