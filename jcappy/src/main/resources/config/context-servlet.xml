@@ -27,7 +27,9 @@
    </mvc:view-resolvers>
    
    <!-- viewcontroller -->
-<!-- 	ex) <mvc:view-controller path="/folder/test.do"/> -->
+	<!-- ex) <mvc:view-controller path="/folder/test.do"/> -->
+	
+	<!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓사용자↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
 	<!-- 두용 -->
 	<mvc:view-controller path="/project/mainpage.do"/>
 	<mvc:view-controller path="/project/reviewBoard.do"/>
@@ -96,12 +98,12 @@
 	<mvc:view-controller path="/review/write.do"/> 
 
 	<!-- 삭제된 페이지 -->	
-<!-- 	<mvc:view-controller path="/review/index.do"/> -->
-<!-- 	<mvc:view-controller path="/review/detail.do"/>   -->
+	<!-- <mvc:view-controller path="/review/index.do"/> -->
+	<!-- <mvc:view-controller path="/review/detail.do"/>   -->
+	<!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑사용자↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
 	
 	
-	<!-- ========== 관리자 ========== -->
-	
+	<!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓관리자↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
 	<!-- 로그인 화면 -->
 	<mvc:view-controller path="/admin/index.do"/> 
 	
@@ -144,14 +146,14 @@
 	<mvc:view-controller path="/admin/board/notice/list.do"/>
 	<mvc:view-controller path="/admin/board/notice/detail.do"/>
 	<mvc:view-controller path="/admin/board/notice/create.do"/>
-	
+	<!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑관리자↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
 	
 	<!-- DBCP -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3307/jcappy"/>
 		<property name="username" value="jcappy"/>
-		<property name="password" value="jcappy"/>
+		<property name="password" value="j1234"/>
 	</bean>
 	
 	<!-- factory bean -->
