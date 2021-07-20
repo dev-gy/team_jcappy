@@ -31,9 +31,9 @@ public class ItemVo {
 	private String direct;	// 오름차순 / 내림차순
 	
 	public ItemVo() { // 초기화 (값을 바꾸지 않으면 설정한 값으로 나옴)
-		this.pageRow = 10;
+		this.pageRow = 5;
 		this.reqPage = 1;
-		this.pageRange = 10;
+		this.pageRange = 5;
 		this.orderby = "regdate";
 		this.direct = "desc";
 	}
