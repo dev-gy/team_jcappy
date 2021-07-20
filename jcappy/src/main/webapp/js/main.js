@@ -63,7 +63,6 @@ function daumPostcode(elZipcode, elAddr1, elAddr2) {
                 // document.getElementById("sample6_extraAddress").value = extraAddr;
                 addr += extraAddr;
             }
-
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             elZipcode[0].value = data.zonecode;
             elAddr1[0].value = addr;
@@ -93,22 +92,34 @@ $(function () {
 /*======================================
 policy/servicepolicy
 ========================================*/
-$(function(){
-    $(".service_tab_btn1").addClass("tab_on");
-    $(".service2_area").hide();		
-    $(".cstyle_tab").on("click", function() {
-	$(".cstyle_tab").removeClass("tab_on");
-	$(this).addClass("tab_on");
-    });
-
-    $(".service_tab_btn1").on("click", function() {
-	$(".service2_area").hide();
-	$(".service1_area").show();
-    });
-    $(".service_tab_btn2").on("click", function() {
-	$(".service1_area").hide();
-	$(".service2_area").show();
-    });
+$(function() {
+	var type = "${param.type }";
+	if (type == "policy") {
+	   $(".policy_tab_btn").addClass("tab_on");
+	    $(".service_area").hide();
+	    $(".cstyle_tab").on("click", function() {
+			$(".cstyle_tab").removeClass("tab_on");
+			$(this).addClass("tab_on");
+	    });
+	} else {
+	 $(".service_tab_btn").addClass("tab_on");
+	    $(".policy_area").hide();		
+	    $(".cstyle_tab").on("click", function() {
+			$(".cstyle_tab").removeClass("tab_on");
+			$(this).addClass("tab_on");
+	    });
+	}
+   
+	$(".service_tab_btn").on("click", function() {
+		"location.href='/jcappy/policy/servicepolicy.do?type=service';"
+//    	$(".policy_area").hide();
+//    	$(".service_area").show();
+	});
+        $(".policy_tab_btn").on("click", function() {
+        "location.href='/jcappy/policy/servicepolicy.do?type=policy';"
+//    	$(".service_area").hide();
+//    	$(".policy_area").show();
+	});
 });
 
 /*======================================
