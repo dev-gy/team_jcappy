@@ -26,6 +26,13 @@ $(function() {
 	});
 });
 
+
+function goSave() {
+	oEditors.getById['content'].exec("UPDATE_CONTENTS_FIELD",[]);
+	$("#frm").submit();
+}
+
+
 function isDel() {
     if (confirm('삭제하시겠습니까?')) {
        // 삭제처리
@@ -70,7 +77,7 @@ function isDel() {
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="update" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="상품정보 상세보기">
 								<colgroup>
 									<col width="10%" />
@@ -136,7 +143,7 @@ function isDel() {
 									<a class="btns" href="list"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="edit?no=${vo.ino}"><strong>수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="javascript:goSave();"><strong>수정</strong></a>
 									<a class="btns" style="cursor:pointer;" href="javascript:isDel();"><strong>삭제</strong></a>
 								</div>
 							</div>

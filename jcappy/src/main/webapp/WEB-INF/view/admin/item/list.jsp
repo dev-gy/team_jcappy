@@ -8,29 +8,43 @@
 <title>상품 목록</title>
 <script>
 
-       function isDel() {
-          if (confirm('삭제하시겠습니까?')) {
-             // 삭제처리
-             $.ajax({
-                url:'delete',
-                data:{
-                   'ino':${vo.ino}
-                },
-                method:'post',
-                success:function(res) {
-                   console.log(res);
-                   if (res.trim() == 'true') {
-                      alert('정상적으로 삭제되었습니다.');
-                      location.href='list';
-                   } else {
-                      alert('삭제 실패');
-                   }
-                },
-                error : function(res) {
-                   console.log(res);
-                }
-             });
-          }
+		function goSave() {
+			oEditors.getById['icount'].exec("UPDATE_CONTENTS_FIELD",[]);
+			$("#frm").submit();
+		}
+
+		function isDel() {
+		    if (confirm('삭제하시겠습니까?')) {
+		       // 삭제처리
+		       $.ajax({
+		          url:'delete',
+		          data:{
+		             'ino':${vo.ino}
+		          },
+		          method:'post',
+		          success:function(res) {
+		             console.log(res);
+		             if (res.trim() == 'true') {
+		                alert('정상적으로 삭제되었습니다.');
+		                location.href='list';
+		             } else {
+		                alert('삭제 실패');
+		             }
+		          },
+		          error : function(res) {
+		             console.log(res);
+		          }
+		       });
+		    }
+		 }
+       
+       function move() {
+       	<c:if test="${!empty userInfo}">
+       	location.href='write';
+       	</c:if>
+       	<c:if test="${empty userInfo}">
+       	alert('로그인 후 사용가능합니다.');
+       	</c:if>
        }
     </script>
 </head>
@@ -84,7 +98,7 @@
 										<a href="detail?ino=${vo.ino }&reqPage=${itemVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.iname }</a>
 										</td>
 										<td>${vo.iprice }</td>
-										<td><input type="number" id="icount" name="icount" class="w100" value="${vo.icount }"/><a class="btns" href="#" onclick=""><strong>변경</strong></a></td>
+										<td><input type="number" id="icount" name="icount" class="w100" value="${vo.icount }"/><a class="btns" href="javascript:goSave();" onclick=""><strong>변경</strong></a></td>
 										<td>${vo.iregdate }</td>
 										<td><a href="javascript:isDel();" class="btns"><strong>삭제</strong></a></td>
 									</tr>
@@ -92,9 +106,12 @@
 								</tbody>
 							</table>
 							</form>
+							<div class="btnSet"  style="text-align:right;">
+		                        <a class="btns" href="javascript:move();"><strong>상품등록</strong></a>
+		                    </div>
 							<!-- 페이징 처리 -->
 							<div class='page'>
-								<ul>
+								<ul class='paging'>
 								<c:if test="${itemVo.startPage > itemVo.pageRange}">
 		                        	<li><a href="list?reqPage=${itemVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a></li>
 		                        </c:if>

@@ -4,9 +4,6 @@
 	
 	<select id="selectAll" resultType="jcappy.item.ItemVo" parameterType="jcappy.item.ItemVo">
 		SELECT * FROM item
-		WHERE ino=#{ino}
-		ORDER BY ${orderby} ${direct}
-		LIMIT ${startIdx},${pageRow}
 	</select>
 	
 	<select id="detail" resultType="jcappy.item.ItemVo" parameterType="jcappy.item.ItemVo">
@@ -15,7 +12,7 @@
 	
 	<insert id="insert" parameterType="jcappy.item.ItemVo">
 		INSERT INTO item (ino, iimg1, iimg2, iimg3, iprice, iname, icompany, icount, itype, icate, iregdate, idetail)
-		VALUES (#{ino}, #{iimg1 }, #{iimg2}, #{iimg3}, #{iprice}, #{iname}, #{icompany}, #{icount}, #{itype}, #{icate}, NOW(), #{idetail})
+		VALUES (#{ino}, #{iimg1}, #{iimg2}, #{iimg3}, #{iprice}, #{iname}, #{icompany}, #{icount}, #{itype}, #{icate}, NOW(), #{idetail})
 	</insert>
 	
 	<select id="count" resultType="int" parameterType="jcappy.item.ItemVo">
