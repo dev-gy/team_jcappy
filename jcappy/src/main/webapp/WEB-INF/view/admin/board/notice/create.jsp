@@ -55,7 +55,7 @@ $(function(){
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="insert" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -90,7 +90,7 @@ $(function(){
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="index.do"><strong>목록</strong></a>
+									<a class="btns" href="index"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
 									<a class="btns" style="cursor:pointer;" href="javascript:goSave();"><strong>저장</strong></a>
