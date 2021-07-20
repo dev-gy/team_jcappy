@@ -20,11 +20,36 @@ $(function() {
 		}, //boolean
 		fOnAppLoad : function(){
 			//예제 코드
-			//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+			//oEditors.getById["content"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
 		},
 		fCreator: "createSEditor2"
 	});
 });
+
+function isDel() {
+    if (confirm('삭제하시겠습니까?')) {
+       // 삭제처리
+       $.ajax({
+          url:'delete',
+          data:{
+             'ino':${vo.ino}
+          },
+          method:'post',
+          success:function(res) {
+             console.log(res);
+             if (res.trim() == 'true') {
+                alert('정상적으로 삭제되었습니다.');
+                location.href='list';
+             } else {
+                alert('삭제 실패');
+             }
+          },
+          error : function(res) {
+             console.log(res);
+          }
+       });
+    }
+ }
 </script>
 </head>
 <body> 
@@ -93,14 +118,14 @@ $(function() {
 									</tr><tr>
 										<th scope="row"><label for="">상품 이미지</label></th>
 										<td colspan="10">
-											<input type="file" id="file" name="file" class="w100"/>
-											<input type="text" id="iimg1" name="iimg1" class="w100" value="예시2222222222"/>	
+											<input type="file" id="file" name="file" class="w100"/>	
+											<input type="file" id="file" name="file" class="w100"/>	
+											<input type="file" id="file" name="file" class="w100"/>	
 										</td>
 									</tr><tr>
 										<th scope="row"><label for="">상품 상세이미지</label></th>
 										<td colspan="10">
-											<input type="file" id="file" name="file" class="w100"/>	
-											<input type="text" id="idetailimg" name="idetailimg" class="w100" value="예시22222222222"/>
+											<textarea name="content" id="content" style="width:100%;"></textarea>
 										</td>
 								</tbody>
 							</table>
@@ -108,11 +133,11 @@ $(function() {
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="index.do"><strong>목록</strong></a>
+									<a class="btns" href="list"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href=""><strong>삭제</strong></a>
-									<a class="btns" style="cursor:pointer;" href=""><strong>수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="edit?no=${vo.ino}"><strong>수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="javascript:isDel();"><strong>삭제</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

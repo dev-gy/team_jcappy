@@ -5,7 +5,34 @@
 <head>
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
-<title>Insert title here</title>
+<title>상품 목록</title>
+<script>
+
+       function isDel() {
+          if (confirm('삭제하시겠습니까?')) {
+             // 삭제처리
+             $.ajax({
+                url:'delete',
+                data:{
+                   'no':${vo.ino}
+                },
+                method:'post',
+                success:function(res) {
+                   console.log(res);
+                   if (res.trim() == 'true') {
+                      alert('정상적으로 삭제되었습니다.');
+                      location.href='list.do';
+                   } else {
+                      alert('삭제 실패');
+                   }
+                },
+                error : function(res) {
+                   console.log(res);
+                }
+             });
+          }
+       }
+    </script>
 </head>
 <body>
 <div id="wrap">
@@ -20,7 +47,7 @@
 				<div class="con">
 					<div id="bbs">
 						<div id="blist">
-							<p><span><strong>총 x개</strong>  |  1/x페이지</span></p>
+							<p><span><strong>총 ${itemVo.totCount }개</strong>  |  ${itemVo.reqPage}/${itemVo.totPage }페이지</span></p>
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="상품 목록">
 								<colgroup>
@@ -53,11 +80,13 @@
 									<tr>
 										<td>${vo.ino }</td>
 										<td>${vo.icompany }</td>
-										<td>${vo.iname }</td>
+										<td>
+										<a href="detail?no=${vo.ino }&reqPage=${itemVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.iname }</a>
+										</td>
 										<td>${vo.iprice }</td>
 										<td><input type="number" id="icount" name="icount" class="w100"/><a class="btns" href="#" onclick=""><strong>변경</strong></a></td>
 										<td>${vo.iregdate }</td>
-										<td><a class="btns" href="#" onclick=""><strong>삭제</strong></a></td>
+										<td><a href="javascript:isDel();" class="btns"><strong>삭제</strong></a></td>
 									</tr>
 								</c:forEach>
 								</tbody>

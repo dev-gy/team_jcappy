@@ -136,7 +136,7 @@
 	<!-- 상품 관리 -->
 	<mvc:view-controller path="/admin/item/list.do"/>
 	<mvc:view-controller path="/admin/item/detail.do"/>
-	<mvc:view-controller path="/admin/item/create.do"/>
+	<mvc:view-controller path="/admin/item/edit.do"/>
 	 
 	<!-- 리뷰 게시판 관리 -->
 	<mvc:view-controller path="/admin/board/review/list.do"/>

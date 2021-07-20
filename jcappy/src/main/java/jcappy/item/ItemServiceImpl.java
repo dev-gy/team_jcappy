@@ -20,4 +20,24 @@ public class ItemServiceImpl implements ItemService{
 	public ItemVo detail(ItemVo vo) {
 		return dao.detail(vo);
 	}
+
+	@Override
+	public int insert(ItemVo vo) {
+		return dao.insert(vo);
+	}
+
+	@Override
+	public ItemVo edit(ItemVo vo) {
+		return dao.detail(vo);
+	}
+	
+	@Override
+	public int update(ItemVo vo) {
+		return dao.update(vo);
+	}
+	
+	@Override
+	public int delete(ItemVo vo) {
+		return dao.delete(vo);
+	}
 }

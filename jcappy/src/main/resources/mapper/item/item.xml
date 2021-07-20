@@ -11,4 +11,19 @@
 		SELECT * FROM item WHERE ino = #{ino}
 	</select>
 	
+	<insert id="insert" parameterType="jcappy.item.ItemVo">
+		INSERT INTO item (ino, iimg1, iimg2, iimg3, iprice, iname, icompany, icount, itype, icate, iregdate, idetailimg)
+		VALUES (#{ino}, #{iimg1}, #{iimg2}, #{iimg3}, #{iprice}, #{iname}, #{icompany}, #{icount}, #{itype}, #{icate}, NOW(), #{idetailimg})
+	</insert>
+	
+	<update id="update" parameterType="jcappy.item.ItemVo">
+		UPDATE item SET
+			ino=#{ino}, iprice=#{iprice}, iname=#{iname}, icount=#{icount}, iregdate=NOW(), content=#{content}, content=#{content}
+		WHERE ino=#{ino}
+	</update>
+	
+	<delete id="delete" parameterType="jcappy.item.ItemVo">
+		DELETE FROM item WHERE ino=#{ino}
+	</delete>
+	
 </mapper>
