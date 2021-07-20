@@ -15,17 +15,16 @@
 			<div id="container">
             <div class="servicepolicy_content">
                 <div class="title">
-                    <h1 class="cstyle_h1">Service & Policy</h1>
+                    <h1 class="cstyle_h1">Service &amp; Policy</h1>
                 </div>
-                
                 <table>
                     <tr>
-                        <td class="service_tab_btn1 cstyle_tab">이용 약관</td>
-                        <td class="service_tab_btn2 cstyle_tab">정책</td>
+                        <td class="service_tab_btn cstyle_tab">이용 약관</td>
+                        <td class="policy_tab_btn cstyle_tab">정책</td>
                     </tr>
                     <tr>
-                        <td class="service1_area tab_item" colspan="2">
-                            <textarea class="textarea">
+                        <td class="service_area tab_item" colspan="2">
+                            <textarea class="textarea" disabled="disabled">
 제1장 총칙
 
 제1조(목적)
@@ -55,8 +54,8 @@
 당 사이트의 회원정보는 행정기관 타 사이트의 회원정보와 통합하여 관리될 수 있습니다.
                             </textarea>                               
                         </td>
-                        <td class="service2_area tab_item" colspan="2">
-                            <textarea class="textarea">
+                        <td class="policy_area tab_item" colspan="2">
+                            <textarea class="textarea" disabled="disabled">
 
 제7조(회원정보 사용에 대한 동의)
 ① 당 사이트가 처리하는 모든 개인정보는 개인정보 보호법 등 관련 법령상의 개인정보보호 규정을 준수하여 이용자의 개인정보 보호 및 권익을 보호합니다.
@@ -108,7 +107,7 @@
                 </table>   
             </div>
         </div>
-
+		<input type="hidden" name="type">
         </div>
         <%@ include file="/WEB-INF/view/include/bottom.jsp" %>
     </div>

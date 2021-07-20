@@ -127,7 +127,6 @@
 	<!-- 관리자 계정 관리 -->
 	<mvc:view-controller path="/admin/auth/list.do"/>
 	<mvc:view-controller path="/admin/auth/detail.do"/>
-	<mvc:view-controller path="/admin/auth/create.do"/>
 	
 	<!-- 회원 관리 -->
 	<mvc:view-controller path="/admin/user/list.do"/>
