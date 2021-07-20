@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comment">
+
+	<select id="selectAll" resultType="jcappy.comment.CommentVo" parameterType="jcappy.comment.CommentVo">
+		SELECT * FROM comment
+		WHERE cm_board_no=#{cm_board_no} AND cm_tablename=#{cm_tablename}
+		ORDER BY cm_regdate DESC
+		LIMIT ${startIdx},${pageRow}
+	</select>
+	
+	<select id="count" resultType="int" parameterType="jcappy.comment.CommentVo">
+		SELECT COUNT(*) FROM comment
+		WHERE cm_board_no=#{cm_board_no} AND cm_tablename=#{cm_tablename}
+	</select>
+	
+	<insert id="insert" parameterType="jcappy.comment.CommentVo">
+		INSERT INTO comment (cm_content, cm_regdate,cm_board_no, cm_tablename, mno)
+		VALUES (#{cm_content}, NOW(), #{cm_board_no}, #{cm_tablename}, 0)
+	</insert>
+	
+	<delete id="delete" parameterType="jcappy.comment.CommentVo">
+		DELETE FROM comment WHERE cm_no=#{cm_no}
+	</delete>
+	
+</mapper>
