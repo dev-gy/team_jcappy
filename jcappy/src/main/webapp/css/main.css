@@ -312,18 +312,12 @@ changepwd
 .changepwd_btn {width:100px; margin: 0 0 25px 0;}
 
 /*======================================
-changepwd
+findacountpwd
 ========================================*/
-.findacountpwd_top_subject{margin:100px 0 0 0}
-.findacountpwd_content {width:600px;padding:250px;margin: 0 auto;}
-.findacountpwd_board_area {width:600px;height: auto;border : 1px solid rgb(0, 0, 0);}
-.findacountpwd_board_title {line-height:40px;float:left;width:100px;text-align: center;cursor: pointer;}
-.findacountpwd_board_title.on {background-color: #d3d3d3;color:#000000;}
-.findacountpwd_board_content {clear:both; border-top:1px solid black;}
-.findacountpwd_name{margin: 0 0 25px 10px;}
-.findacountpwd_email{margin: 0 0 25px 0;}
-#findacountpwd_board_pwd {display: none;}
-.findacountpwd_video_area {height:450px;}
-.findacountpwd_idf {margin:25px 0;}
-.findacountpwd_pwdf {margin:25px 0;}
-.findacountpwd_id{margin:0 0 25px 0;}
+.findacountpwd_content{padding: 50px 0px 100px 0px;}
+.findacountpwd_content > .title{margin-bottom: 50px;}
+.findacountpwd_content  .cstyle_tab { height: 40px; box-sizing: border-box; width: 500px;}
+.findacountpwd_content  .tab_find{padding: 100px 0px;}
+.findacountpwd_content  .find_input{width: 300px;}
+.findacountpwd_content  .ex{width: 300px; margin: 50px 20px;}
+.findacountpwd_content  .table{width: 500px;margin: auto;}
