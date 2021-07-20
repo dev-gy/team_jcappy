@@ -64,6 +64,10 @@
 
 	<!-- 임시등록입니다 -->
 	<mvc:view-controller path="/sample.do"/>
+	<mvc:view-controller path="/policy/terms.do"/>
+	<mvc:view-controller path="/policy/servicepolicy.do"/>
+	<mvc:view-controller path="/join.do"/>
+	<mvc:view-controller path="/signin.do"/>
 	
 	<!-- 완료된 경로 -->
 	<mvc:view-controller path="/index.do"/>

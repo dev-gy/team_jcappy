@@ -5,7 +5,7 @@ common style
 ========================================*/
 .cstyle_btn { height: 40px; background-color: white !important; border: 1px solid #221f1f !important; cursor: pointer !important; }
 .cstyle_btn:hover {color: black !important; border-color: black !important; }
-.cstyle_btn:disabled { background-color: #a7a7a7 !important; }
+.cstyle_btn:disabled { background-color: #a7a7a7 !important; pointer-events: none !important; }
 .cstyle_tab { background-color: white !important; color: #a7a7a7 !important; border: 1px solid #221f1f; cursor: pointer !important; }
 .tab_on { color: #221f1f !important; }
 .cstyle_h1 { display: inline !important; padding: 10px 20px !important; border-bottom: 2px solid #a7a7a7 !important;  }
@@ -95,13 +95,33 @@ index
 .banner .swiper-button-next::after { font-size: 24px; color: #ffffff; }
 
 /*======================================
+join
+========================================*/
+.terms_content { padding: 50px 0px 100px 0px; }
+.terms_content > ul { margin-bottom: 70px; }
+.terms_content > .cstyle_tab { width: 50%; height: 40px; box-sizing: border-box; }
+.terms_content > .textarea { width: 100%; height: 1000px; }
+
+/*======================================
+signin
+========================================*/
+.signin_content{ padding: 50px 450px; width: 300px; }
+.signin_content > .title { margin: 50px; }
+.signin_content .ex { width: 300px; margin: 5px 0px; }
+.signin_content .signin_input { width: 300px; padding: 20px; }
+.signin_content .signin_checkbox { padding: 10px 0px; text-align: left; }
+.signin_content .signin_link { padding-bottom: 50px; }
+#join { float: left; }
+#find { float: right; }
+
+/*======================================
 cart
 ========================================*/
 .cart_content { padding: 50px 0px; box-sizing: border-box; }
-.continue_btn, .buy_btn { width: 100px; height: 40px; margin: 0px 10px; } 
-.bottom_section { width: 100%; height: auto; display:table; margin: 20px 0px; }
-.p1 { text-align: left; vertical-align: bottom; display: table-cell; }
-.p2 { text-align: right; vertical-align: bottom; display: table-cell; }
+.cart_content .continue_btn, .buy_btn { width: 100px; height: 40px; margin: 0px 10px; } 
+.cart_content .bottom_section { width: 100%; height: auto; display:table; margin: 20px 0px; }
+.cart_content .p1 { text-align: left; vertical-align: bottom; display: table-cell; }
+.cart_content .p2 { text-align: right; vertical-align: bottom; display: table-cell; }
 
 /*======================================
 notice
@@ -109,6 +129,23 @@ notice
 .notice_content { margin: 50px 0px; }
 .notice_content > .title { margin: 50px; }
 
+/*======================================
+policy/terms
+========================================*/
+.policy_content { padding: 50px; }
+.policy_content > .title { margin: 50px; }
+.policy_content .policy_checkbox { text-align: left; }
+.policy_content .policy_textarea { height: 200px; width: 100%; }
+.policy_content .ex { width: 300px; margin: 50px 20px; }
+
+/*======================================
+policy/servicepolicy
+========================================*/
+.servicepolicy_content { padding: 50px 0px 100px 0px; }
+.servicepolicy_content .title { margin: 50px; }
+.servicepolicy_content .cstyle_tab { width: 50%; height: 40px; box-sizing: border-box; }
+.servicepolicy_content .textarea { width: 100%; height: 1000px; }
+        
 /*======================================
 product/index
 ========================================*/

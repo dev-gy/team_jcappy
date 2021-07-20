@@ -51,7 +51,8 @@
 										<tr>
 											<td>우편번호</td>
 											<td class="zipcode_td">
-												<input class="zipcode" id="zipcode" type="text" name="zipcode" value=""><input class="cstyle_btn search_zipcode" type="button" value="검색" onclick="daumPostcode($('#zipcode'), $('#addr1'), $('#addr2'));">
+												<input class="zipcode" id="zipcode" type="text" name="zipcode" value="">
+												<input class="cstyle_btn search_zipcode" type="button" value="검색" onclick="daumPostcode($('#zipcode'), $('#addr1'), $('#addr2'));">
 											</td>
 										</tr>
 										<tr>
