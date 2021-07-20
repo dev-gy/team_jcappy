@@ -74,7 +74,7 @@ function daumPostcode(elZipcode, elAddr1, elAddr2) {
 }
 
 /*======================================
-top.jsp
+top
 ========================================*/
 $(function () {
     $(".depth1 > li").mouseover(function () {
@@ -88,4 +88,61 @@ $(function () {
     }).mouseleave(function () {
         $(this).css("background-color", "white").css("color", "#575757");
     });
+});
+
+/*======================================
+policy/servicepolicy
+========================================*/
+$(function(){
+    $(".service_tab_btn1").addClass("tab_on");
+    $(".service2_area").hide();		
+    $(".cstyle_tab").on("click", function() {
+	$(".cstyle_tab").removeClass("tab_on");
+	$(this).addClass("tab_on");
+    });
+
+    $(".service_tab_btn1").on("click", function() {
+	$(".service2_area").hide();
+	$(".service1_area").show();
+    });
+    $(".service_tab_btn2").on("click", function() {
+	$(".service1_area").hide();
+	$(".service2_area").show();
+    });
+});
+
+/*======================================
+policy/terms
+========================================*/
+$(function(){
+    $('#checkAll').click(function(){
+        if($('#checkAll').prop('checked')){
+            $('#termsOfService').prop('checked', true);
+            $('#privacyPolicy').prop('checked', true);
+            $('#continue').attr('disabled', false); 
+        } else{
+            $('#termsOfService').prop('checked', false);
+            $('#privacyPolicy').prop('checked', false);
+            $('#continue').attr('disabled', true);
+        }
+    })
+    $('#termsOfService').click(function(){
+        if($('#termsOfService').prop('checked') && $('#privacyPolicy').prop('checked')){
+            $('#checkAll').prop('checked', true);
+            $('#continue').attr('disabled', false);
+        }else {
+            $('#checkAll').prop('checked', false);
+            $('#continue').attr('disabled', true);
+        }
+    })
+    $('#privacyPolicy').click(function(){
+        if($('#termsOfService').prop('checked') && $('#privacyPolicy').prop('checked')){
+            $('#checkAll').prop('checked', true);
+            $('#continue').attr('disabled', false);
+        }else {
+            $('#checkAll').prop('checked', false);
+            $('#continue').attr('disabled', true); 
+        }
+    })
+
 });

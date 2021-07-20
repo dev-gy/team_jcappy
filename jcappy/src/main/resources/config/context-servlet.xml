@@ -27,7 +27,9 @@
    </mvc:view-resolvers>
    
    <!-- viewcontroller -->
-<!-- 	ex) <mvc:view-controller path="/folder/test.do"/> -->
+	<!-- ex) <mvc:view-controller path="/folder/test.do"/> -->
+	
+	<!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓사용자↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
 	<!-- 두용 -->
 	<mvc:view-controller path="/project/mainpage.do"/>
 	<mvc:view-controller path="/project/reviewBoard.do"/>
@@ -64,6 +66,10 @@
 
 	<!-- 임시등록입니다 -->
 	<mvc:view-controller path="/sample.do"/>
+	<mvc:view-controller path="/policy/terms.do"/>
+	<mvc:view-controller path="/policy/servicepolicy.do"/>
+	<mvc:view-controller path="/join.do"/>
+	<mvc:view-controller path="/signin.do"/>
 	
 	<!-- 완료된 경로 -->
 	<mvc:view-controller path="/index.do"/>
@@ -96,12 +102,12 @@
 	<mvc:view-controller path="/review/write.do"/> 
 
 	<!-- 삭제된 페이지 -->	
-<!-- 	<mvc:view-controller path="/review/index.do"/> -->
-<!-- 	<mvc:view-controller path="/review/detail.do"/>   -->
+	<!-- <mvc:view-controller path="/review/index.do"/> -->
+	<!-- <mvc:view-controller path="/review/detail.do"/>   -->
+	<!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑사용자↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
 	
 	
-	<!-- ========== 관리자 ========== -->
-	
+	<!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓관리자↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
 	<!-- 로그인 화면 -->
 	<mvc:view-controller path="/admin/index.do"/> 
 	
@@ -144,26 +150,26 @@
 	<mvc:view-controller path="/admin/board/notice/list.do"/>
 	<mvc:view-controller path="/admin/board/notice/detail.do"/>
 	<mvc:view-controller path="/admin/board/notice/create.do"/>
-	
+	<!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑관리자↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
 	
 	<!-- DBCP -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
- 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/> 
- 		<property name="url" value="jdbc:mysql://localhost:3307/jcappy"/> 
- 		<property name="username" value="jcappy"/> 
- 		<property name="password" value="j1234"/> 
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3307/jcappy"/>
+		<property name="username" value="jcappy"/>
+		<property name="password" value="j1234"/>
 	</bean>
 	
 	<!-- factory bean -->
- 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
- 		<property name="dataSource" ref="dataSource"/> 
- 		<property name="mapperLocations" value="classpath:/mapper/**/*.xml"/> 
- 	</bean> 
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations" value="classpath:/mapper/**/*.xml"/>
+	</bean>
 	
 	<!-- dao에서 주입받아서 사용할 객체 -->
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"> 
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
- 	</bean>
+	</bean>
 	
 	<!-- 파일업로드 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -171,5 +177,5 @@
 		<property name="defaultEncoding" value="UTF-8"/>
 		<!-- 파일업로드사이즈(바이트단위) -->
 		<property name="maxUploadSize" value="100000000"/>
-	</bean> 
+	</bean>
 </beans>

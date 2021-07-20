@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,60 +44,38 @@
 									</tr>
 								</thead>
 								<tbody>
+								<c:if test="${empty list }">
+		                            <tr>
+		                                <td colspan="7">등록된 글이 없습니다.</td>
+		                            </tr>
+		                        </c:if>
+								<c:forEach var="vo" items="${list }">    
 									<tr>
-										<td>1</td>
-										<td>삼성</td>
-										<td>양문형 냉장고1</td>
-										<td>1,000,000</td>
+										<td>${vo.ino }</td>
+										<td>${vo.icompany }</td>
+										<td>${vo.iname }</td>
+										<td>${vo.iprice }</td>
 										<td><input type="number" id="icount" name="icount" class="w100"/><a class="btns" href="#" onclick=""><strong>변경</strong></a></td>
-										<td>2021-07-10</td>
+										<td>${vo.iregdate }</td>
 										<td><a class="btns" href="#" onclick=""><strong>삭제</strong></a></td>
 									</tr>
-									<tr>
-										<td>2</td>
-										<td>삼성</td>
-										<td>양문형 냉장고1</td>
-										<td>1,000,000</td>
-										<td><input type="number" id="icount" name="icount" class="w100"/><a class="btns" href="#" onclick=""><strong>변경</strong></a></td>
-										<td>2021-07-10</td>
-										<td><a class="btns" href="#" onclick=""><strong>삭제</strong></a></td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>삼성</td>
-										<td>양문형 냉장고1</td>
-										<td>1,000,000</td>
-										<td><input type="number" id="icount" name="icount" class="w100"/><a class="btns" href="#" onclick=""><strong>변경</strong></a></td>
-										<td>2021-07-10</td>
-										<td><a class="btns" href="#" onclick=""><strong>삭제</strong></a></td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td>삼성</td>
-										<td>양문형 냉장고1</td>
-										<td>1,000,000</td>
-										<td><input type="number" id="icount" name="icount" class="w100"/><a class="btns" href="#" onclick=""><strong>변경</strong></a></td>
-										<td>2021-07-10</td>
-										<td><a class="btns" href="#" onclick=""><strong>삭제</strong></a></td>
-									</tr>
-									<tr>
-										<td>5</td>
-										<td>삼성</td>
-										<td>양문형 냉장고1</td>
-										<td>1,000,000</td>
-										<td><input type="number" id="icount" name="icount" class="w100"/><a class="btns" href="#" onclick=""><strong>변경</strong></a></td>
-										<td>2021-07-10</td>
-										<td><a class="btns" href="#" onclick=""><strong>삭제</strong></a></td>
-									</tr>
+								</c:forEach>
 								</tbody>
 							</table>
 							</form>
 							<!-- 페이징 처리 -->
 							<div class='page'>
-								<strong>1</strong>
-								<a href="">2</a>
-								<a href="">3</a>
-								<a href="">4</a>
+								<ul>
+								<c:if test="${itemVo.startPage > itemVo.pageRange}">
+		                        	<li><a href="list?reqPage=${itemVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a></li>
+		                        </c:if>
+		                        <c:forEach var="rp" begin="${itemVo.startPage}" end="${itemVo.endPage }">
+		                            <li><a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}' <c:if test="${rp==itemVo.reqPage }">class='current'</c:if>>${rp }</a></li>
+		                        </c:forEach>
+		                        <c:if test="${itemVo.totPage > itemVo.endPage}">
+		                        	<li><a href="list?reqPage=${itemVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a></li>
+		                        </c:if>
+								</ul>
 							</div>
 							<!-- //페이징 처리 -->
 							<form name="searchForm" id="searchForm" action="index.do"  method="post">
