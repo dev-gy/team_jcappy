@@ -31,7 +31,7 @@
     <div id="wrap">
         <%@ include file="/WEB-INF/view/include/top.jsp" %>
         <div id="container">
-            <div class="find_content">
+            <div class="findaccountpwd_content">
                 <div class="title">
                     <h1 class="cstyle_h1">이메일·비밀번호 찾기</h1>
                 </div>
