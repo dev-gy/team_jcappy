@@ -3,6 +3,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script>
+	function isDel() {
+		if (confirm('삭제하시겠습니까?')) {
+			// 삭제처리
+			$.ajax({
+				url:'delete.do',
+				data:{
+					'nno':${vo.nno}
+				},
+				method:'post',
+				success:function(res) {
+					console.log(res);
+					if (res.trim() == 'true') {
+						alert('정상적으로 삭제되었습니다.');
+						location.href='index.do';
+					} else {
+						alert('삭제 실패');
+					}
+				},
+				error : function(res) {
+					console.log(res);
+				}
+			});
+		}
+	}
+</script>
 </head>
 <body> 
 <div id="wrap">
@@ -36,41 +62,50 @@
 									<tr>
 										<th scope="row"><label for="">번호</label></th>
 										<td colspan="10">
-											1
+											${vo.nno}
+										
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">제목</label></th>
 										<td colspan="10">
-											1번째 공지사항입니다
+											${vo.ntitle }
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">조회수</label></th>
 										<td colspan="10">
-											243
+											${vo.nreadcount}
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">작성날짜</label></th>
 										<td colspan="10">
-											2021-7-10
+											${vo.nregdate }
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">내용</label></th>
 										<td colspan="10">
-											내용입니다.
+											${vo.ncontent}
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">첨부파일</label></th>
+										<td colspan="10">
+											<a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.nfile_org}&real=${vo.nfile_real}" 
+                            				target="_blank">${vo.nfile_org}</a>
 										</td>
 									</tr>
 								</tbody>
 							</table>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="<%=request.getContextPath()%>/admin/board/notice_list.do"><strong>목록</strong></a>
+									<a class="btns" href="index.do"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href=""><strong>삭제</strong></a>
+									<a class="btns" style="cursor:pointer;" href="edit.do?nno=${vo.nno}"><strong>수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="javascript:isDel();"><strong>삭제</strong></a>
 								</div>
 							</div>
 							<!--//btn-->
