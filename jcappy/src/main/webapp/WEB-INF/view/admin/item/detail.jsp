@@ -79,7 +79,7 @@ function isDel() {
 									<tr>
 										<th scope="row"><label for="">상품 번호</label></th>
 										<td colspan="10">
-											<input type="text" id="ino" name="ino" class="w100" value="예시2222222222222"/>	
+											<input type="text" id="ino" name="ino" class="w100" value="${vo.ino }"/>	
 										</td>
 									</tr>
 									<tr>
@@ -95,25 +95,25 @@ function isDel() {
 									<tr>
 										<th scope="row"><label for="">상품명</label></th>
 										<td colspan="10">
-											<input type="text" id="iname" name="iname" class="w100" value="예시222222222222"/>	
+											<input type="text" id="iname" name="iname" class="w100" value="${vo.iname }"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 가격</label></th>
 										<td colspan="10">
-											<input type="text" id="iprice" name="iprice" class="w100" value="예시222222222222"/>	
+											<input type="text" id="iprice" name="iprice" class="w100" value="${vo.iprice }"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 재고</label></th>
 										<td colspan="10">
-											<input type="text" id="icount" name="icount" class="w100" value="예시22222222222"/>	
+											<input type="text" id="icount" name="icount" class="w100" value="${vo.icount }"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 등록일</label></th>
 										<td colspan="10">
-											<input type="text" id="iregdate" name="iregdate" class="w100" value="예시2222222222"/>	
+											<input type="text" id="iregdate" name="iregdate" class="w100" value="${vo.iregdate }" readonly/>	
 										</td>
 									</tr><tr>
 										<th scope="row"><label for="">상품 이미지</label></th>

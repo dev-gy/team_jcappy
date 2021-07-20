@@ -8,6 +8,5 @@ public interface ItemService {
 	int insert(ItemVo vo);
 	int update(ItemVo vo);
 	ItemVo detail(ItemVo vo);
-	ItemVo edit(ItemVo vo);
 	int delete(ItemVo vo);
 }

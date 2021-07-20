@@ -14,14 +14,14 @@
              $.ajax({
                 url:'delete',
                 data:{
-                   'no':${vo.ino}
+                   'ino':${vo.ino}
                 },
                 method:'post',
                 success:function(res) {
                    console.log(res);
                    if (res.trim() == 'true') {
                       alert('정상적으로 삭제되었습니다.');
-                      location.href='list.do';
+                      location.href='list';
                    } else {
                       alert('삭제 실패');
                    }
@@ -51,13 +51,13 @@
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="상품 목록">
 								<colgroup>
-									<col class="w3" />
-									<col class="w3" />
-									<col class="w3" />
-									<col class="w3" />
-									<col class="w3" />
-									<col class="w3" />
-									<col class="w3" />
+									<col width="80px"/>
+									<col width="80px"/>
+									<col width="*"/>
+									<col width="120px"/>
+									<col width="80px"/>
+									<col width="160px"/>
+									<col width="80px"/>
 								</colgroup>
 								<thead>
 									<tr>
@@ -81,10 +81,10 @@
 										<td>${vo.ino }</td>
 										<td>${vo.icompany }</td>
 										<td>
-										<a href="detail?no=${vo.ino }&reqPage=${itemVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.iname }</a>
+										<a href="detail?ino=${vo.ino }&reqPage=${itemVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.iname }</a>
 										</td>
 										<td>${vo.iprice }</td>
-										<td><input type="number" id="icount" name="icount" class="w100"/><a class="btns" href="#" onclick=""><strong>변경</strong></a></td>
+										<td><input type="number" id="icount" name="icount" class="w100" value="${vo.icount }"/><a class="btns" href="#" onclick=""><strong>변경</strong></a></td>
 										<td>${vo.iregdate }</td>
 										<td><a href="javascript:isDel();" class="btns"><strong>삭제</strong></a></td>
 									</tr>

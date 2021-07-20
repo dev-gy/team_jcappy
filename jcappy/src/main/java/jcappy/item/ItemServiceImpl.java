@@ -13,6 +13,20 @@ public class ItemServiceImpl implements ItemService{
 	
 	@Override
 	public List<ItemVo> selectAll(ItemVo vo) {
+		int totCount = dao.count(vo);
+
+		int totPage = totCount / vo.getPageRow();
+		if (totCount % vo.getPageRow() > 0) totPage++;
+
+		int startPage = (vo.getReqPage()-1)/vo.getPageRange()
+						*vo.getPageRange()+1;
+		int endPage = startPage+vo.getPageRange()-1;
+		if (endPage > totPage) endPage = totPage;
+		
+		vo.setStartPage(startPage);
+		vo.setEndPage(endPage);
+		vo.setTotCount(totCount);
+		vo.setTotPage(totPage);
 		return dao.selectAll(vo);
 	}
 
@@ -20,15 +34,10 @@ public class ItemServiceImpl implements ItemService{
 	public ItemVo detail(ItemVo vo) {
 		return dao.detail(vo);
 	}
-
+	
 	@Override
 	public int insert(ItemVo vo) {
 		return dao.insert(vo);
-	}
-
-	@Override
-	public ItemVo edit(ItemVo vo) {
-		return dao.detail(vo);
 	}
 	
 	@Override
