@@ -6,89 +6,58 @@
 <meta charset="UTF-8">
 <title>Document</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
-<script>
-    $(function(){
-        $(".findacountpwd_board_title").click(function(){
-            $('.findacountpwd_board_title').removeClass('on');
-            $(this).addClass('on');
-            console.log($(this).text());
-            if ($(this).text()=='아이디 찾기') {
-                $('#findacountpwd_board_id').show();
-                $('#findacountpwd_board_pwd').hide();
-            } else {
-                $('#findacountpwd_board_id').hide();
-                $('#findacountpwd_board_pwd').show();
-            }
-        });
-    });
-    function test1() {
-        var p1 = document.getElementById('id').value;
-        var p2 = document.getElementById('email').value;
-        console.log(p1 + ", " + p2);
-        if (p1 != '' && p2 != '') {
-            alert("회원님의 아이디는 ㅁㄴㅇㄹ입니다");
-        } else {
-            alert("입력해주세요")
-        }
-    }
-
-    </script>
+<link rel="stylesheet" href="/jcappy/css/findacountpwd.css">
+	<script>
+		$(function(){
+		    $(".find_tab_btn1").addClass("tab_on");
+		    $(".findpwd_area").hide();		
+		    $(".cstyle_tab").on("click", function() {
+			$(".cstyle_tab").removeClass("tab_on");
+			$(this).addClass("tab_on");
+		    });
+		
+		    $(".find_tab_btn1").on("click", function() {
+			$(".findpwd_area").hide();
+			$(".findid_area").show();
+		    });
+		    $(".find_tab_btn2").on("click", function() {
+			$(".findid_area").hide();
+			$(".findpwd_area").show();
+		    });
+		    
+		});
+	</script>
 </head>
 <body>
     <div id="wrap">
         <%@ include file="/WEB-INF/view/include/top.jsp" %>
         <div id="container">
-			<div class="findacountpwd_top_subject">
-        		<h1 class="cstyle_h1">아이디 비밀번호 찾기</h1>
-        	</div>
-			<div class="findacountpwd_info">
-			    <div class="findacountpwd_content">
-			        <div class="findacountpwd_board_area">
-			            <div class="findacountpwd_board_title on">아이디 찾기</div>
-			            <div class="findacountpwd_board_title">비번 찾기</div>
-			            <div class="findacountpwd_board_content" id="findacountpwd_board_id">
-			                <form action="findId" class="find_Id" method="POST">
-			                <div class="findacountpwd_idf">
-			                	<div class="findacountpwd_name">
-			                		이름: <input type="text" name="name" id="id" required>
-			                	</div>
-			                	<div class="findacountpwd_email">
-			                		이메일: <input type="email" name="email" id="email" style="height:30px;" required>
-			                	</div>
-			            		<div>
-			            			 <button class="cstyle_btn" style="width:100px;" onclick="test1()">확인</button>
-			            		</div>
-			            		
-			                </div>
-			                 </form>
-			                
-			                
-			                    
-			                       
-			                          
-			                          
-			                           <!-- alert 창 띄우기 -->
-			                       
-			                        
-			                   
-			                    
-			                </ul>
-			            </div>
-			            <form action="findpwd" class="find_pwd" method="POST">
-			            <div class="findacountpwd_board_content" id="findacountpwd_board_pwd">
-			                <div class="findacountpwd_pwdf">
-			                	<div class="findacountpwd_id">
-			                		아이디: <input type="text" name="id" required>
-			                	</div>
-			                	<div class="findacountpwd_btn">
-			                		<button class="pwdbtn cstyle_btn" style="width:100px;" onclick="">확인</button> <!-- 비밀번호 재설정 페이지 링크-->
-			                	</div>
-			                </div>
-			            </form>      
-			            </div>
-			        </div>
-			    </div>
-
+            <div class="find_content">
+                <div class="title">
+                    <h1 class="cstyle_h1">이메일·비밀번호 찾기</h1>
+                </div>
+                <table class="table">
+                    <tr>
+                        <td class="find_tab_btn1 cstyle_tab">이메일 찾기</td>
+                        <td class="find_tab_btn2 cstyle_tab">비밀번호 찾기</td>
+                    </tr>
+                    <tr>
+                        <td class="findid_area tab_find" colspan="2">
+                            <form action="" method="post" class="findid_form">
+                                <input type="text" class="find_input" name="name" placeholder="이름" required="required"/><br>                               
+                                <input type="text" class="find_input" name="email" placeholder="연락처" required="required"/><br>
+                                <input class="cstyle_btn ex" type="submit" id="submit" value="이메일 찾기"/>  
+                            </form>                             
+                        </td>
+                        <td class="findpwd_area tab_find" colspan="2">
+                            <form action="" method="post" class="findpwd_form">
+                                <input type="text" class="find_input" name="id" placeholder="이름" required="required"/><br>
+                                <input type="text" class="find_input" name="email" placeholder="이메일" required="required"/><br>
+                                <input class="cstyle_btn ex" type="submit" id="submit" value="비밀번호 찾기"/>   
+                            </form>
+                        </td>
+                </table>   
+            </div>
         </div>
         <%@ include file="/WEB-INF/view/include/bottom.jsp" %>
     </div>
