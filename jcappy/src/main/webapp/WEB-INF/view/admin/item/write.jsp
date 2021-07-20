@@ -25,6 +25,11 @@ $(function() {
 		fCreator: "createSEditor2"
 	});
 });
+
+function goSave() {
+	oEditors.getById['content'].exec("UPDATE_CONTENTS_FIELD",[]);
+	$("#frm").submit();
+}
 </script>
 </head>
 <body> 
@@ -45,7 +50,7 @@ $(function() {
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="insert" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="상품 등록">
 								<colgroup>
 									<col width="10%" />
@@ -93,14 +98,14 @@ $(function() {
 									</tr><tr>
 										<th scope="row"><label for="">상품 이미지</label></th>
 										<td colspan="10">
-											<input type="file" id="file" name="file" class="w100"/>
-											<input type="text" id="iimg1" name="iimg1" class="w100"/>	
+											<input type="file" id="file" name="file" class="w100"/>	
+											<input type="file" id="file" name="file" class="w100"/>	
+											<input type="file" id="file" name="file" class="w100"/>	
 										</td>
 									</tr><tr>
 										<th scope="row"><label for="">상품 상세이미지</label></th>
 										<td colspan="10">
-											<input type="file" id="file" name="file" class="w100"/>	
-											<input type="text" id="idetailimg" name="idetailimg" class="w100"/>
+											<textarea name="content" id="content" style="width:100%;"></textarea>
 										</td>
 								</tbody>
 							</table>
@@ -111,7 +116,7 @@ $(function() {
 									<a class="btns" href="index.do"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;"><strong>저장</strong></a>
+									<a class="btns" href="javascript:goSave();" style="cursor:pointer;"><strong>저장</strong></a>
 								</div>
 							</div>
 							<!--//btn-->
