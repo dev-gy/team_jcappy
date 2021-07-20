@@ -52,9 +52,6 @@
 								<c:forEach var="vo" items="${list }">    
 									<tr>
 										<td>${vo.ino }</td>
-										<td>
-											<a href="detai?no=${vo.ino }"></a>
-										</td>
 										<td>${vo.icompany }</td>
 										<td>${vo.iname }</td>
 										<td>${vo.iprice }</td>
