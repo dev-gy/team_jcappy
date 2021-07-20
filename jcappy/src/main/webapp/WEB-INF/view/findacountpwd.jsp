@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Document</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
-<link rel="stylesheet" href="/jcappy/css/findacountpwd.css">
 	<script>
 		$(function(){
 		    $(".find_tab_btn1").addClass("tab_on");
