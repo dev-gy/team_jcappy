@@ -1,4 +1,4 @@
-package jcappy.admin.item;
+package jcappy.item;
 
 import java.util.List;
 
@@ -14,5 +14,9 @@ public class ItemDao {
 
 	public List<ItemVo> selectAll(ItemVo vo) {
 		return sqlSession.selectList("item.selectAll", vo);
+	}
+	
+	public ItemVo detail(ItemVo vo) {
+		return sqlSession.selectOne("item.detail", vo);
 	}
 }

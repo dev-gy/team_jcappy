@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -23,7 +24,7 @@
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="blist">
-							<p><span><strong>총 111개</strong>  |  1/12페이지</span></p>
+							<p><span><strong>총 ${noticeVo.totCount}개</strong>  |  ${noticeVo.reqPage}/${noticeVo.totPage }페이지</span></p>
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
@@ -42,68 +43,63 @@
 									</tr>
 								</thead>
 								<tbody>
+									<c:if test="${empty list }">
+			                            <tr>
+			                                <td class="first" colspan="5">등록된 글이 없습니다.</td>
+			                            </tr>
+			                        </c:if>
+									<c:forEach var="vo" items="${list}">
 									<tr>
-										<td class="first">1</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/notice_view.do">1번째 공지입니다.</a></td>
-										<td>2021-7-24</td>
-										<td class="last">232</td>
+										<td class="first">${vo.nno}</td>
+										<td class="title"><a href="detail.do?nno=${vo.nno}">${vo.ntitle}</a></td>
+										<td>${vo.nregdate} </td>
+										<td>${vo.nreadcount}</td>
 									</tr>
-									<tr>
-										<td class="first">2</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/notice_view.do">2번째 공지입니다.</a></td>
-										<td>2021-7-24</td>
-										<td class="last">564</td>
-									</tr>
-									<tr>
-										<td class="first">3</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/notice_view.do">3번째 공지입니다.</a></td>
-										<td>2021-7-24</td>
-										<td class="last">545</td>
-									</tr>
-									<tr>
-										<td class="first">4</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/notice_view.do">4번째 공지입니다.</a></td>
-										<td>2021-7-24</td>
-										<td class="last">423</td>
-									</tr>
-									<tr>
-										<td class="first">5</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/notice_view.do">5번째 공지입니다.</a></td>
-										<td>2021-7-24</td>
-										<td class="last">124</td>
-									</tr>
-									<tr>
-										<td class="first">6</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/notice_view.do">6번째 공지입니다.</a></td>
-										<td>2021-7-24</td>
-										<td class="last">514</td>
-									</tr>
+									
+																
+									</c:forEach>
+									
 								</tbody>
 							</table>
 							</form>
 							<!--//btn-->
 							<div class="btn">
 								<div class="btnRight">
-									<a class="wbtn" href="<%=request.getContextPath()%>/admin/board/notice_write.do"><strong>등록</strong> </a>
+									<a class="wbtn" href="write.do"><strong>등록</strong> </a>
 								</div>
 							</div>
 							<!-- 페이징 처리 -->
 							<div class='page'>
-								<strong>1</strong>
-								<a href="">2</a>
-								<a href="">3</a>
-								<a href="">4</a>
+								
+		                        <c:if test="${noticeVo.startPage > noticeVo.pageRange}">
+		                        	<span><a href="index.do?reqPage=${noticeVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a></span>
+		                        </c:if>
+		                        <c:forEach var="rp" begin="${noticeVo.startPage}" end="${noticeVo.endPage }">
+		                            <span><a href='index.do?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}' <c:if test="${rp==noticeVo.reqPage }">class='current'</c:if>>${rp }</a></span>
+		                        </c:forEach>
+		                        <c:if test="${noticeVo.totPage > noticeVo.endPage}">
+		                        	<span><a href="index.do?reqPage=${noticeVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a></span>
+		                        </c:if>
+		                        </ul> 
 							</div>
 							<!-- //페이징 처리 -->
 							<form name="searchForm" id="searchForm" action="index.do"  method="post">
 								<div class="search">
+									 <select id="orderby" name="orderby" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
+	                                    <option value="nregdate" <c:if test="${param.orderby=='nregdate'}">selected</c:if>>작성일</option>
+	                                    <option value="nreadcount" <c:if test="${param.orderby=='nreadcount'}">selected</c:if>>조회수</option>
+	                                </select>
+	                                <select id="direct" name="direct" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
+	                                    <option value="DESC" <c:if test="${param.direct=='DESC'}">selected</c:if>>내림차순</option>
+	                                    <option value="ASC" <c:if test="${param.direct=='ASC'}">selected</c:if>>오름차순</option>
+	                                </select>
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all">전체</option>
-										<option value="title">제목</option>
-										<option value="contents">내용</option>
+										<option value="ntitle">제목</option>
+										<option value="ncontent">내용</option>
 									</select>
-									<input type="text" name="sval" value="" title="검색할 내용을 입력해주세요" />
-									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
+									<input type="text" name="sval" value="${param.sval }" title="검색할 내용을 입력해주세요" />
+									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" onclick="$('#searchForm').submit();" />
 								</div>
 							</form>
 							<!-- //search --> 

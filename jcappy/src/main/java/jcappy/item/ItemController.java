@@ -1,4 +1,4 @@
-package jcappy.admin.item;
+package jcappy.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +15,12 @@ public class ItemController {
 	public String index(Model model, ItemVo vo) {
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/item/list";
+	}
+	
+	@RequestMapping("/admin/item/detail")
+	public String detail(Model model, ItemVo vo) {
+		model.addAttribute("vo", service.detail(vo));
+		return "admin/item/detail";
 	}
 	
 }

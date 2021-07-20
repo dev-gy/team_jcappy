@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+
+	<sql id="noticeWhere">
+		<where>
+			<if test="sval != null and sval != ''">
+				<if test="stype == 'all'">
+					ntitle LIKE '%${sval}%' OR ncontent LIKE '%${sval}%'
+				</if>
+				<if test="stype != 'all'">
+					${stype} LIKE '%${sval}%'
+				</if>
+			</if>
+			<if test="member_mno != 0">
+				AND member_mno=#{member_mno}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectAll" resultType="jcappy.notice.NoticeVo" parameterType="jcappy.notice.NoticeVo">
+		SELECT * FROM notice
+		<include refid="noticeWhere"/>
+		ORDER BY ${orderby} ${direct}
+		LIMIT ${startIdx},${pageRow}
+	</select>
+	
+	<select id="count" resultType="int" parameterType="jcappy.notice.NoticeVo">
+		SELECT COUNT(*) FROM notice
+		<include refid="noticeWhere"/>
+	</select>
+	
+	<select id="detail" resultType="jcappy.notice.NoticeVo" parameterType="jcappy.notice.NoticeVo">
+		SELECT * FROM notice WHERE nno = #{nno}
+	</select>
+	
+	<update id="updateReadcount" parameterType="jcappy.notice.NoticeVo">
+		UPDATE notice SET nreadcount=nreadcount+1 WHERE nno = #{nno}
+	</update>
+	
+	<insert id="insert" parameterType="jcappy.notice.NoticeVo">
+		INSERT INTO notice (ntitle, ncontent, nregdate, nreadcount, nfile_org, nfile_real)
+		VALUES (#{ntitle}, #{ncontent}, NOW(), 0, #{nfile_org}, #{nfile_real})
+	</insert>
+	
+	<update id="update" parameterType="jcappy.notice.NoticeVo">
+		UPDATE notice SET
+			ntitle=#{ntitle}, ncontent=#{ncontent}
+			<if test="nfile_org != null">
+				, nfile_org=#{nfile_org}, nfile_real=#{nfile_real}
+			</if>
+		WHERE nno=#{nno}
+	</update>
+	
+	<update id="delFilename" parameterType="jcappy.notice.NoticeVo">
+		UPDATE notice SET
+			nfile_org='', nfile_real=''
+		WHERE nno=#{nno}
+	</update>
+	
+	<delete id="delete" parameterType="jcappy.notice.NoticeVo">
+		DELETE FROM notice WHERE nno=#{nno}
+	</delete>
+	
+</mapper>

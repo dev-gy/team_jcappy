@@ -48,14 +48,14 @@ $(function(){
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지게시판 - [쓰기]</h2>
+					<h2>공지게시판 - [수정]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="update.do" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -69,24 +69,26 @@ $(function(){
 									<tr>
 										<th scope="row"><label for="">제목</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="ntitle" class="w100" title="제목을 입력해주세요" />	
+											<input type="text" id="title" name="ntitle" class="w100" title="제목을 입력해주세요" value="${vo.ntitle}" />	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">내용</label></th>
 										<td colspan="10">
-											<textarea id="contents" name="ncontent" title="내용을 입력해주세요" style="width:100%;"></textarea>	
+											<textarea id="contents" name="ncontent" title="내용을 입력해주세요" style="width:100%;">${vo.ncontent }</textarea>	
 										</td>
 									</tr>
 									<tr>
 			                        	<th scope="row">파일첨부</th>
 			                        	<td colspan="10">
+			                        		기존파일 : ${vo.nfile_org}
+                        					<input type="checkbox" name="isDel" value="1"><br>
 			                        		<input type="file" name="file">
 			                        	</td>
 			                        </tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="cmd" value="write" />
+							<input type="hidden" name="nno" value="${vo.nno}">
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

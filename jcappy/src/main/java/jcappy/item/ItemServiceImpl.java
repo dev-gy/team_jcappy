@@ -1,4 +1,4 @@
-package jcappy.admin.item;
+package jcappy.item;
 
 import java.util.List;
 
@@ -14,5 +14,10 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public List<ItemVo> selectAll(ItemVo vo) {
 		return dao.selectAll(vo);
+	}
+
+	@Override
+	public ItemVo detail(ItemVo vo) {
+		return dao.detail(vo);
 	}
 }
