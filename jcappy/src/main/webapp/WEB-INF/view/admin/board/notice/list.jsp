@@ -30,7 +30,7 @@
 								<colgroup>
 									<col class="w3" />
 									<col class="" />
-									<col class="w4" />
+									<col class="w15" />
 									<col class="w6" />
 								</colgroup>
 								<thead>
@@ -52,7 +52,7 @@
 									<tr>
 										<td class="first">${vo.nno}</td>
 										<td class="title"><a href="detail?nno=${vo.nno}">${vo.ntitle}</a></td>
-										<td>${vo.nregdate} </td>
+										<td><fmt:formatDate value="${vo.nregdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 										<td>${vo.nreadcount}</td>
 									</tr>
 									
@@ -80,7 +80,6 @@
 		                        <c:if test="${noticeVo.totPage > noticeVo.endPage}">
 		                        	<span><a href="index?reqPage=${noticeVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a></span>
 		                        </c:if>
-		                        </ul> 
 							</div>
 							<!-- //페이징 처리 -->
 							<form name="searchForm" id="searchForm" action="index.do"  method="post">

@@ -4,19 +4,19 @@
 
 	<select id="selectAll" resultType="jcappy.comment.CommentVo" parameterType="jcappy.comment.CommentVo">
 		SELECT * FROM comment
-		WHERE board_no=#{board_no} AND tablename=#{tablename}
+		WHERE cm_board_no=#{cm_board_no} AND cm_tablename=#{cm_tablename}
 		ORDER BY cm_regdate DESC
 		LIMIT ${startIdx},${pageRow}
 	</select>
 	
 	<select id="count" resultType="int" parameterType="jcappy.comment.CommentVo">
 		SELECT COUNT(*) FROM comment
-		WHERE board_no=#{board_no} AND tablename=#{tablename}
+		WHERE cm_board_no=#{cm_board_no} AND cm_tablename=#{cm_tablename}
 	</select>
 	
 	<insert id="insert" parameterType="jcappy.comment.CommentVo">
-		INSERT INTO comment (cm_content, cm_regdate,cm_board_no, cm_tablename)
-		VALUES (#{cm_content}, NOW(), #{cm_board_no}, #{cm_tablename})
+		INSERT INTO comment (cm_content, cm_regdate,cm_board_no, cm_tablename, mno)
+		VALUES (#{cm_content}, NOW(), #{cm_board_no}, #{cm_tablename}, 0)
 	</insert>
 	
 	<delete id="delete" parameterType="jcappy.comment.CommentVo">

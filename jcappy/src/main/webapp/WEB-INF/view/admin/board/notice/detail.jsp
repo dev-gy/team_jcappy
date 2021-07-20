@@ -29,21 +29,21 @@
 		}
 	}
 	function goSave() {
-		<c:if test="${!empty userInfo}">
-		if ($("#content").val().trim()=='') {
+		
+		if ($("#contents").val().trim() == '') {
 			alert('내용을 입력해 주세요');
 		} else {
 			if (confirm('댓글을 등록하시겠습니까?')) {
 				$.ajax({
         			url:'/jcappy/admin/comment/insert',
         			data:{
-        				cm_content:$("#content").val(),
+        				cm_content:$("#contents").val(),
         				cm_board_no:${vo.nno},
         			},
         			success:function(res) {
         				if (res.trim()=='true') {
         					alert('댓글이 등록되었습니다.');
-        					$("#content").val("");
+        					$("#contents").val("");
         					getComment(1);
         				} else {
         					alert('댓글 등록 실패');
@@ -52,11 +52,8 @@
         		});
 			}
 		}
-		</c:if>
-		<c:if test="${empty userInfo}">
-			alert('댓글은 로그인 후 등록가능합니다.');
-		</c:if>
 	}
+	
 	$(function(){
 		getComment(1);
 	});
@@ -162,6 +159,7 @@
 									</tr>
 								</tbody>
 							</table>
+							
 							<div class="btn">
 								<div class="btnLeft">
 									<a class="btns" href="index"><strong>목록</strong></a>
@@ -180,7 +178,7 @@
 		                        <tbody>
 		                        <tr>
 		                            <td>
-		                                <textarea name="content" id="content" style="width:100%;height:80px;"></textarea>
+		                                <textarea name="content" id="contents" style="width:100%;height:80px;"></textarea>
 		                            </td>
 		                            <td>
 		                            	<div class="btn">
@@ -192,6 +190,7 @@
 		                        </tr>
 		                        </tbody>
 		                    </table>
+		                    <div id="commentArea"></div>
 						</div>
 						<!-- //bread -->
 					</div>

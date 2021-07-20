@@ -138,19 +138,21 @@ public class NoticeController {
 	public String commentInsert(Model model, CommentVo vo) {
 		vo.setCm_tablename(TABLENAME);
 		int r = cService.insert(vo);
+		
 		if (r > 0) {
 			model.addAttribute("result", "true");
 		} else {
 			model.addAttribute("result", "false");
 		}
-		return "include/result";
+		
+		return "admin/include/result";
 	}
 	
 	@RequestMapping("/admin/comment/list")
 	public String commentList(Model model, CommentVo cv) {
 		cv.setCm_tablename(TABLENAME);
 		model.addAttribute("list", cService.selectAll(cv));
-		return "include/comment";
+		return "admin/include/comment";
 	}
 	@RequestMapping("/admin/comment/delete")
 	public String commentDelete(Model model, CommentVo vo) {
@@ -160,6 +162,6 @@ public class NoticeController {
 		} else {
 			model.addAttribute("result", "false");
 		}
-		return "include/result";
+		return "admin/include/result";
 	}
 }
