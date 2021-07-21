@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,12 +40,8 @@
 		 }
        
        function move() {
-       	<c:if test="${!empty userInfo}">
        	location.href='write';
-       	</c:if>
-       	<c:if test="${empty userInfo}">
-       	alert('로그인 후 사용가능합니다.');
-       	</c:if>
+
        }
     </script>
 </head>
@@ -61,7 +58,7 @@
 				<div class="con">
 					<div id="bbs">
 						<div id="blist">
-							<p><span><strong>총 ${itemVo.totCount }개</strong>  |  ${itemVo.reqPage}/${itemVo.totPage }페이지</span></p>
+							<p><span><strong>총 ${productVo.totCount }개</strong>  |  ${productVo.reqPage}/${productVo.totPage }페이지</span></p>
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="상품 목록">
 								<colgroup>
@@ -90,16 +87,16 @@
 		                                <td colspan="7">등록된 글이 없습니다.</td>
 		                            </tr>
 		                        </c:if>
-								<c:forEach var="vo" items="${list }">    
+								<c:forEach var="vo" items="${list }" varStatus="status">    
 									<tr>
 										<td>${vo.pno }</td>
 										<td>${vo.pcompany }</td>
 										<td>
-										<a href="detail?ino=${vo.ino }&reqPage=${itemVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.iname }</a>
+										<a href="detail?pno=${vo.pno }&reqPage=${productVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.pname }</a>
 										</td>
-										<td>${vo.iprice }</td>
-										<td><input type="number" id="icount" name="icount" class="w100" value="${vo.icount }"/><a class="btns" href="javascript:goSave();" onclick=""><strong>변경</strong></a></td>
-										<td>${vo.iregdate }</td>
+										<td>${vo.pprice }</td>
+										<td><input type="number" id="pcount" name="pcount" class="w100" value="${vo.pcount }"/><a class="btns" href="javascript:goSave();" onclick=""><strong>변경</strong></a></td>
+										<td>${vo.pregdate }</td>
 										<td><a href="javascript:isDel();" class="btns"><strong>삭제</strong></a></td>
 									</tr>
 								</c:forEach>
@@ -111,20 +108,23 @@
 		                    </div>
 							<!-- 페이징 처리 -->
 							<div class='page'>
-								<ul class='paging'>
-								<c:if test="${itemVo.startPage > itemVo.pageRange}">
-		                        	<li><a href="list?reqPage=${itemVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a></li>
-		                        </c:if>
-		                        <c:forEach var="rp" begin="${itemVo.startPage}" end="${itemVo.endPage }">
-		                            <li><a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}' <c:if test="${rp==itemVo.reqPage }">class='current'</c:if>>${rp }</a></li>
-		                        </c:forEach>
-		                        <c:if test="${itemVo.totPage > itemVo.endPage}">
-		                        	<li><a href="list?reqPage=${itemVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a></li>
-		                        </c:if>
-								</ul>
-							</div>
+                               <c:if test="${productVo.startPage > productVo.pageRange}">
+                                  <a href="list?reqPage=${productVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a>
+                               </c:if>
+                               <c:forEach var="rp" begin="${productVo.startPage}" end="${productVo.endPage }">
+                                <c:if test="${rp==productVo.reqPage }">
+                                   <strong>${productVo.reqPage }</strong>
+                                </c:if>
+                                <c:if test="${rp!=productVo.reqPage }">
+                                <a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'>${rp }</a>
+                                </c:if>
+                               </c:forEach>
+                               <c:if test="${productVo.totPage > productVo.endPage}">
+                                  <a href="list?reqPage=${productVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a>
+                               </c:if>
+                           </div>
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="index.do"  method="post">
+							<form name="searchForm" id="searchForm" action="list"  method="post">
 								<div class="search">
 									<select name="stype" title="브랜드">
 										<option value="sam">삼성</option>
