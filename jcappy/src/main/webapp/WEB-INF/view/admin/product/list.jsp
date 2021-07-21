@@ -14,17 +14,16 @@
 			$("#frm").submit();
 		}
 
-		function isDel() {
+		function isDel(no) {
+			console.log(no);
 		    if (confirm('삭제하시겠습니까?')) {
-		       // 삭제처리
 		       $.ajax({
 		          url:'delete',
 		          data:{
-		             'pno':${vo.pno}
+		             'pno':no
 		          },
 		          method:'post',
 		          success:function(res) {
-		             console.log(res);
 		             if (res.trim() == 'true') {
 		                alert('정상적으로 삭제되었습니다.');
 		                location.href='list';
@@ -33,7 +32,6 @@
 		             }
 		          },
 		          error : function(res) {
-		             console.log(res);
 		          }
 		       });
 		    }
@@ -97,7 +95,7 @@
 										<td>${vo.pprice }</td>
 										<td><input type="number" id="pcount" name="pcount" class="w100" value="${vo.pcount }"/><a class="btns" href="javascript:goSave();" onclick=""><strong>변경</strong></a></td>
 										<td>${vo.pregdate }</td>
-										<td><a href="javascript:isDel();" class="btns"><strong>삭제</strong></a></td>
+										<td><a href="javascript:isDel(${vo.pno });" class="btns"><strong>삭제</strong></a></td>
 									</tr>
 								</c:forEach>
 								</tbody>
@@ -131,8 +129,8 @@
 										<option value="lg">LG</option>
 										<option value="carrier">캐리어</option>
 									</select>
-									<input type="text" name="sval" value="" title="검색할 내용을 입력해주세요" />
-									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
+									<input type="text" name="sval" value="${param.sval }" title="검색할 내용을 입력해주세요" />
+									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" onclick="$('#searchForm').submit();" class="sbtn" alt="검색" />
 								</div>
 							</form>
 						</div>
