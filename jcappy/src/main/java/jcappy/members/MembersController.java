@@ -19,7 +19,7 @@ public class MembersController {
 	MembersService service;
 	
 	@GetMapping("/login.do")
-	public String loginForm(MembersVo vo, @CookieValue(value="cookieEmail", required = false) Cookie cookie) {
+	public String loginForm(MembersVo vo, @CookieValue(value="cookieId", required = false) Cookie cookie) {
 		if (cookie != null) {
 			vo.setMemail(cookie.getValue());
 		}
@@ -36,7 +36,7 @@ public class MembersController {
 	      } else {
 	         sess.setAttribute("membersInfo", mv);
 	         // 쿠키에 저장
-	         Cookie cookie = new Cookie("cookieId", vo.getMemail());
+	         Cookie cookie = new Cookie("cookieEmail", vo.getMemail());
 	         cookie.setPath("/");
 	         if ("check".equals(vo.getCheckEmail())) {
 	            cookie.setMaxAge(60*60*3);
@@ -47,7 +47,6 @@ public class MembersController {
 	          String url = "/index.do";
 	          if (req.getParameter("url") != null && !"".equals( req.getParameter("url"))) url = req.getParameter("url");
 	            return "redirect: "+url;
-
 	      }
 	   }
 	
