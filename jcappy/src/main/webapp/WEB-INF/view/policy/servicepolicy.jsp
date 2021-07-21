@@ -4,15 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>약관 및 정책</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 </head>
 <body>
     <div id="wrap">
         <%@ include file="/WEB-INF/view/include/top.jsp" %>
         <div id="container">
-
-			<div id="container">
             <div class="servicepolicy_content">
                 <div class="title">
                     <h1 class="cstyle_h1">Service &amp; Policy</h1>
@@ -106,8 +104,6 @@
                         </td>
                 </table>   
             </div>
-        </div>
-		<input type="hidden" name="type">
         </div>
         <%@ include file="/WEB-INF/view/include/bottom.jsp" %>
     </div>
