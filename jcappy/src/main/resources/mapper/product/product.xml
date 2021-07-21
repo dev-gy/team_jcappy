@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+	
+	<select id="selectAll" resultType="jcappy.product.ProductVo" parameterType="jcappy.product.ProductVo">
+		SELECT * FROM product
+	</select>
+	
+	<select id="detail" resultType="jcappy.product.ProductVo" parameterType="jcappy.product.ProductVo">
+		SELECT * FROM product WHERE pno=#{pno}
+	</select>
+	
+	<insert id="insert" parameterType="jcappy.product.ProductVo">
+		INSERT INTO product (pno, pimg1, pimg2, pimg3, pprice, pname, pcompany, pcount, ptype, pcate, pregdate, pdetail)
+		VALUES (#{pno}, #{pimg1}, #{pimg2}, #{pimg3}, #{pprice}, #{pname}, #{pcompany}, #{pcount}, #{ptype}, #{pcate}, NOW(), #{pdetail})
+	</insert>
+	
+	<select id="count" resultType="int" parameterType="jcappy.product.ProductVo">
+		SELECT COUNT(*) FROM product
+		WHERE pno=#{pno}
+	</select>
+	
+	<update id="update" parameterType="jcappy.product.ProductVo">
+		UPDATE product SET
+			pno=#{pno}, pprice=#{pprice}, pname=#{pname}, pcount=#{pcount}, pregdate=NOW(), content=#{content}, content=#{content}
+		WHERE pno=#{pno}
+	</update>
+	
+	<delete id="delete" parameterType="jcappy.product.ProductVo">
+		DELETE FROM product WHERE pno=#{pno}
+	</delete>
+	
+</mapper>

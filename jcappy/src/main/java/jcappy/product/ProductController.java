@@ -1,4 +1,4 @@
-package jcappy.item;
+package jcappy.product;
 
 import java.io.File;
 import java.util.Date;
@@ -13,30 +13,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-public class ItemController {
+public class ProductController {
 
 	@Autowired
-	ItemService service;
+	ProductService service;
 	  
-	@RequestMapping("/admin/item/list")
-	public String list(Model model, ItemVo vo) {
+	@RequestMapping("/admin/product/list")
+	public String list(Model model, ProductVo vo) {
 		model.addAttribute("list", service.selectAll(vo));
-		return "admin/item/list";
+		return "admin/product/list";
 	}
 	
-	@RequestMapping("/admin/item/detail")
-	public String detail(Model model, ItemVo vo) {
+	@RequestMapping("/admin/product/detail")
+	public String detail(Model model, ProductVo vo) {
 		model.addAttribute("vo", service.detail(vo));
-		return "admin/item/detail";
+		return "admin/product/detail";
 	}
 	
-	@RequestMapping("/admin/item/write")
-	public String write(Model model, ItemVo vo) {
-		return "admin/item/write";
+	@RequestMapping("/admin/product/write")
+	public String write(Model model, ProductVo vo) {
+		return "admin/product/write";
 	}
 	
-	@RequestMapping("/admin/item/insert")
-	public String insert(Model model, ItemVo vo, 
+	@RequestMapping("/admin/product/insert")
+	public String insert(Model model, ProductVo vo, 
 						@RequestParam MultipartFile file, HttpServletRequest req) {
 		if (!file.isEmpty()) { // 첨부파일이 있으면
 			try {
@@ -49,12 +49,12 @@ public class ItemController {
 				String path = req.getRealPath("/upload/"); // 경로
 				file.transferTo(new File(path+real)); // 경로+파일명 저장
 				// vo에 set
-				vo.setIimg1(org);
-				vo.setIimg2(org);
-				vo.setIimg3(org);
-				vo.setIimg1(real);
-				vo.setIimg2(real);
-				vo.setIimg3(real);
+				vo.setPimg1(org);
+				vo.setPimg2(org);
+				vo.setPimg3(org);
+				vo.setPimg1(real);
+				vo.setPimg2(real);
+				vo.setPimg3(real);
 			} catch (Exception e) {
 				
 			}
@@ -72,8 +72,8 @@ public class ItemController {
 	}
 	
 	
-	@RequestMapping("/admin/item/update")
-	public String update(Model model, ItemVo vo, 
+	@RequestMapping("/admin/product/update")
+	public String update(Model model, ProductVo vo, 
 						@RequestParam MultipartFile file, HttpServletRequest req) {
 	
 		int r = service.update(vo);
@@ -82,13 +82,13 @@ public class ItemController {
 			model.addAttribute("url", "list");
 		} else {
 			model.addAttribute("msg", "수정실패");
-			model.addAttribute("url", "detail?no="+vo.getIno());
+			model.addAttribute("url", "detail?no="+vo.getPno());
 		}
 		return "include/alert";
 	}
 	
-	@RequestMapping("/admin/item/delete")
-	public String delete(Model model, ItemVo vo, HttpServletRequest req) {
+	@RequestMapping("/admin/product/delete")
+	public String delete(Model model, ProductVo vo, HttpServletRequest req) {
 		int r = service.delete(vo);
 		if (r > 0) {
 			model.addAttribute("result", "true");
