@@ -2,7 +2,7 @@ package jcappy.members;
 
 import java.sql.Timestamp;
 
-public class membersVo {
+public class MembersVo {
 	
 	private int mno;
 	private String mname;
@@ -15,7 +15,15 @@ public class membersVo {
 	private String maddr;
 	private String maddrde;
 	
+	private String checkEmail;
+	
 	// getter & setter
+	public String getCheckEmail() {
+		return checkEmail;
+	}
+	public void setCheckEmail(String checkEmail) {
+		this.checkEmail = checkEmail;
+	}
 	public int getMno() {
 		return mno;
 	}
@@ -76,4 +84,5 @@ public class membersVo {
 	public void setMaddrde(String maddrde) {
 		this.maddrde = maddrde;
 	}
+	
 }

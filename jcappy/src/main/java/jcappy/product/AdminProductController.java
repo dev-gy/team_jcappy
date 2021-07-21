@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-public class ProductController {
+public class AdminProductController {
 
 	@Autowired
-	ProductService service;
+	AdminProductService service;
 	  
 	@RequestMapping("/admin/product/list")
 	public String list(Model model, ProductVo vo) {
@@ -49,12 +49,12 @@ public class ProductController {
 				String path = req.getRealPath("/upload/"); // 경로
 				file.transferTo(new File(path+real)); // 경로+파일명 저장
 				// vo에 set
-				vo.setPimg1(org);
-				vo.setPimg2(org);
-				vo.setPimg3(org);
-				vo.setPimg1(real);
-				vo.setPimg2(real);
-				vo.setPimg3(real);
+				vo.setPimg1_org(org);
+				vo.setPimg1_real(real);
+				vo.setPimg2_org(org);
+				vo.setPimg2_real(real);
+				vo.setPimg3_org(org);
+				vo.setPimg3_real(real);
 			} catch (Exception e) {
 				
 			}

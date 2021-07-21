@@ -29,6 +29,18 @@ function setEditor(holder){
 }
 function goSave() {
 	oEditors.getById['contents'].exec("UPDATE_CONTENTS_FIELD",[]);
+	if ($("#title").val().trim() == "") {
+		 alert("제목을 입력해 주세요");
+		 console.log($("#contents").val().trim());
+		 $("#title").focus();
+		 return false;
+	 }
+	
+	 if ($("#contents").val().trim() == "<p>&nbsp;</p>") {
+		 alert("내용을 입력해 주세요");
+		 $("#contents").focus();
+		 return false;
+	 }
 	$("#frm").submit();
 }
 var oEditors;
@@ -86,7 +98,6 @@ $(function(){
 			                        </tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="cmd" value="write" />
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

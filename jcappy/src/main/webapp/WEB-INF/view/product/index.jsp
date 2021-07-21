@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>상품목록</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
-
 </head>
 
 <body>
