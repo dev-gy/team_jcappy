@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
-	function isDel() {
-		if (confirm('삭제하시겠습니까?')) {
+	function isDel() {//게시글 삭제
+		if (confirm('삭제하시겠습니까?')) {  
 			// 삭제처리
 			$.ajax({
 				url:'delete.do',
@@ -28,7 +28,7 @@
 			});
 		}
 	}
-	function goSave() {
+	function goSave() { //댓글 입력
 		
 		if ($("#contents").val().trim() == '') {
 			alert('내용을 입력해 주세요');
@@ -58,7 +58,7 @@
 	$(function(){
 		getComment(1);
 	});
-	function getComment(reqPage) {
+	function getComment(reqPage) { // 댓글 리스트 불러오기
 		$.ajax({
 			url:'/jcappy/admin/comment/list',
 			data:{
@@ -70,12 +70,12 @@
 			}
 		})
 	}
-	function commentDel(no) {
+	function commentDel(no) { //댓글 삭제
 		if (confirm('댓글을 삭제하시겠습니까?')) {
     		$.ajax({
     			url:'/jcappy/admin/comment/delete',
     			data:{
-    				nno:no
+    				cm_no:no
     			},
     			success:function(res) {
     				if (res.trim()=='true') {
@@ -103,7 +103,7 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지게시판 - [읽기]</h2>
+					<h2>공지게시판 - [읽기] </h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -154,7 +154,7 @@
 									<tr>
 										<th scope="row"><label for="">첨부파일</label></th>
 										<td colspan="10">
-											<a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.nfile_org}&real=${vo.nfile_real}" 
+					<!-- 파일다운로드 -->		<a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.nfile_org}&real=${vo.nfile_real}" 
                             				target="_blank">${vo.nfile_org}</a>
 										</td>
 									</tr>

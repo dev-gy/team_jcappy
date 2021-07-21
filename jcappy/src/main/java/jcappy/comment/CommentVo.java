@@ -47,19 +47,18 @@ public class CommentVo extends CommonVo {
 	public void setCm_board_no(int cm_board_no) {
 		this.cm_board_no = cm_board_no;
 	}
-	public int getMno() {
-		return mno;
-	}
-	public void setMno(int mno) {
-		this.mno = mno;
-	}
+	
 	public String getCm_tablename() {
 		return cm_tablename;
 	}
 	public void setCm_tablename(String cm_tablename) {
 		this.cm_tablename = cm_tablename;
 	}
-	
-	
+	public int getMno() {
+		return mno;
+	}
+	public void setMno(int mno) {
+		this.mno = mno;
+	}
 	
 }
