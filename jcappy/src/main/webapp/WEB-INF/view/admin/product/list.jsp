@@ -9,7 +9,7 @@
 <script>
 
 		function goSave() {
-			oEditors.getById['icount'].exec("UPDATE_CONTENTS_FIELD",[]);
+			oEditors.getById['pcount'].exec("UPDATE_CONTENTS_FIELD",[]);
 			$("#frm").submit();
 		}
 
@@ -19,7 +19,7 @@
 		       $.ajax({
 		          url:'delete',
 		          data:{
-		             'ino':${vo.ino}
+		             'pno':${vo.pno}
 		          },
 		          method:'post',
 		          success:function(res) {
@@ -92,8 +92,8 @@
 		                        </c:if>
 								<c:forEach var="vo" items="${list }">    
 									<tr>
-										<td>${vo.ino }</td>
-										<td>${vo.icompany }</td>
+										<td>${vo.pno }</td>
+										<td>${vo.pcompany }</td>
 										<td>
 										<a href="detail?ino=${vo.ino }&reqPage=${itemVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.iname }</a>
 										</td>

@@ -1,4 +1,4 @@
-package jcappy.item;
+package jcappy.product;
 
 import java.util.List;
 
@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ItemServiceImpl implements ItemService{
+public class ProductServiceImpl implements ProductService{
 
 	@Autowired
-	ItemDao dao;
+	ProductDao dao;
 	
 	@Override
-	public List<ItemVo> selectAll(ItemVo vo) {
+	public List<ProductVo> selectAll(ProductVo vo) {
 		int totCount = dao.count(vo);
 
 		int totPage = totCount / vo.getPageRow();
@@ -31,22 +31,22 @@ public class ItemServiceImpl implements ItemService{
 	}
 
 	@Override
-	public ItemVo detail(ItemVo vo) {
+	public ProductVo detail(ProductVo vo) {
 		return dao.detail(vo);
 	}
 	
 	@Override
-	public int insert(ItemVo vo) {
+	public int insert(ProductVo vo) {
 		return dao.insert(vo);
 	}
 	
 	@Override
-	public int update(ItemVo vo) {
+	public int update(ProductVo vo) {
 		return dao.update(vo);
 	}
 	
 	@Override
-	public int delete(ItemVo vo) {
+	public int delete(ProductVo vo) {
 		return dao.delete(vo);
 	}
 }
