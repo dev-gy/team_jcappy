@@ -16,7 +16,7 @@ public class MembersVo {
 	private String maddrde;
 	
 	private String checkEmail;
-	
+	  
 	// getter & setter
 	public String getCheckEmail() {
 		return checkEmail;
