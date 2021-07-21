@@ -65,12 +65,14 @@ public class AddProduct {
 		AddProduct ai = new AddProduct();
 		ProductVo vo;
 
-		String clientId = ""; // 애플리케이션 클라이언트 아이디값"
-		String clientSecret = ""; // 애플리케이션 클라이언트 시크릿값"
+		String clientId = "epibLg29Ox5vRDeW4wNE"; // 애플리케이션 클라이언트 아이디값"
+		String clientSecret = "lBs8FXQQX9"; // 애플리케이션 클라이언트 시크릿값"
 
 		String[] searchArr = { "일반형냉장고", "양문형냉장고", "업소용냉장고", "벽걸이형에어컨", "스탠드형에어컨", "창문형에어컨", "일반세탁기", "드럼세탁기", "미니세탁기",
 				"LEDTV", "OLEDTV", "QLEDTV" };
 
+		String[] searchCompany = {"삼성전자", "LG전자", "캐리어", "위니아전자"};
+		
 		String text = null;
 		String apiURL = null;
 		String line = null;
@@ -120,6 +122,16 @@ public class AddProduct {
 							continue;
 						}
 
+						boolean check = false;
+						for (int l = 0; l < searchCompany.length; l++) {
+							if (searchCompany[l].equals((String) data.get("maker"))) {
+								check = true;
+								break;
+							}
+						}
+						
+						if (check == false) {continue;}
+						
 						vo = new ProductVo();
 
 						vo.setPname((String) data.get("title"));
