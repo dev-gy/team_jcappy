@@ -17,8 +17,8 @@ pageEncoding="UTF-8"%>
                 <p>사업자번호 123-12-1234</p>
             </div>
             <div class="right">
-                <p><a href="">이용약관</a></p>
-                <p><a href="">정책</a></p>
+                <p><a href="/jcappy/policy/servicepolicy/service">이용약관</a></p>
+                <p><a href="/jcappy/policy/servicepolicy/policy">정책</a></p>
             </div>
         </div>
     </div>

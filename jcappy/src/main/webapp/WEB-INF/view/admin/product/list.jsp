@@ -5,7 +5,48 @@
 <head>
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
-<title>Insert title here</title>
+<title>상품 목록</title>
+<script>
+
+		function goSave() {
+			oEditors.getById['pcount'].exec("UPDATE_CONTENTS_FIELD",[]);
+			$("#frm").submit();
+		}
+
+		function isDel() {
+		    if (confirm('삭제하시겠습니까?')) {
+		       // 삭제처리
+		       $.ajax({
+		          url:'delete',
+		          data:{
+		             'pno':${vo.pno}
+		          },
+		          method:'post',
+		          success:function(res) {
+		             console.log(res);
+		             if (res.trim() == 'true') {
+		                alert('정상적으로 삭제되었습니다.');
+		                location.href='list';
+		             } else {
+		                alert('삭제 실패');
+		             }
+		          },
+		          error : function(res) {
+		             console.log(res);
+		          }
+		       });
+		    }
+		 }
+       
+       function move() {
+       	<c:if test="${!empty userInfo}">
+       	location.href='write';
+       	</c:if>
+       	<c:if test="${empty userInfo}">
+       	alert('로그인 후 사용가능합니다.');
+       	</c:if>
+       }
+    </script>
 </head>
 <body>
 <div id="wrap">
@@ -20,17 +61,17 @@
 				<div class="con">
 					<div id="bbs">
 						<div id="blist">
-							<p><span><strong>총 x개</strong>  |  1/x페이지</span></p>
+							<p><span><strong>총 ${itemVo.totCount }개</strong>  |  ${itemVo.reqPage}/${itemVo.totPage }페이지</span></p>
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="상품 목록">
 								<colgroup>
-									<col class="w3" />
-									<col class="w3" />
-									<col class="w3" />
-									<col class="w3" />
-									<col class="w3" />
-									<col class="w3" />
-									<col class="w3" />
+									<col width="80px"/>
+									<col width="80px"/>
+									<col width="*"/>
+									<col width="120px"/>
+									<col width="80px"/>
+									<col width="160px"/>
+									<col width="80px"/>
 								</colgroup>
 								<thead>
 									<tr>
@@ -51,21 +92,26 @@
 		                        </c:if>
 								<c:forEach var="vo" items="${list }">    
 									<tr>
-										<td>${vo.ino }</td>
-										<td>${vo.icompany }</td>
-										<td>${vo.iname }</td>
+										<td>${vo.pno }</td>
+										<td>${vo.pcompany }</td>
+										<td>
+										<a href="detail?ino=${vo.ino }&reqPage=${itemVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.iname }</a>
+										</td>
 										<td>${vo.iprice }</td>
-										<td><input type="number" id="icount" name="icount" class="w100"/><a class="btns" href="#" onclick=""><strong>변경</strong></a></td>
+										<td><input type="number" id="icount" name="icount" class="w100" value="${vo.icount }"/><a class="btns" href="javascript:goSave();" onclick=""><strong>변경</strong></a></td>
 										<td>${vo.iregdate }</td>
-										<td><a class="btns" href="#" onclick=""><strong>삭제</strong></a></td>
+										<td><a href="javascript:isDel();" class="btns"><strong>삭제</strong></a></td>
 									</tr>
 								</c:forEach>
 								</tbody>
 							</table>
 							</form>
+							<div class="btnSet"  style="text-align:right;">
+		                        <a class="btns" href="javascript:move();"><strong>상품등록</strong></a>
+		                    </div>
 							<!-- 페이징 처리 -->
 							<div class='page'>
-								<ul>
+								<ul class='paging'>
 								<c:if test="${itemVo.startPage > itemVo.pageRange}">
 		                        	<li><a href="list?reqPage=${itemVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a></li>
 		                        </c:if>

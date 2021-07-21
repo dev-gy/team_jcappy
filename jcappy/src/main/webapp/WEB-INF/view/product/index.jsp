@@ -150,7 +150,6 @@
 			</div>
 		</div>
 
-	</div>
 	<%@ include file="/WEB-INF/view/include/bottom.jsp"%>
 	</div>
 </body>

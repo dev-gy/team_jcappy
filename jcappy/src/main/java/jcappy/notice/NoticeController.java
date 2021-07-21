@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import jcappy.comment.CommentService;
+import jcappy.comment.CommentVo;
+
 
 
 @Controller
@@ -19,29 +22,30 @@ public class NoticeController {
 	
 	@Autowired
 	NoticeService service;
-	
+	@Autowired
+	CommentService cService;
 	
 	static final String TABLENAME = "board";
 	
-	@RequestMapping("/admin/notice/index.do")
+	@RequestMapping("/admin/notice/index")
 	public String index(Model model, NoticeVo vo) {
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/board/notice/list";
 	}
 	
-	@RequestMapping("/admin/notice/detail.do")
+	@RequestMapping("/admin/notice/detail")
 	public String detail(Model model, NoticeVo vo) {
 		model.addAttribute("vo", service.detail(vo));
 		
 		return "admin/board/notice/detail";
 	}
 	
-	@RequestMapping("/admin/notice/write.do")
+	@RequestMapping("/admin/notice/write")
 	public String write(Model model, NoticeVo vo) {
 		return "admin/board/notice/create";
 	}
 	
-	@RequestMapping("/admin/notice/insert.do")
+	@RequestMapping("/admin/notice/insert")
 	public String insert(Model model, NoticeVo vo, 
 						@RequestParam MultipartFile file, HttpServletRequest req) {
 		//service.insert(vo, filename, req)
@@ -69,21 +73,21 @@ public class NoticeController {
 		// r == 0 : 비정상 -> alert -> 이전페이지로 이동
 		if (r > 0) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
-			model.addAttribute("url", "index.do");
+			model.addAttribute("url", "index");
 		} else {
 			model.addAttribute("msg", "등록실패");
-			model.addAttribute("url", "write.do");
+			model.addAttribute("url", "write");
 		}
 		return "admin/include/alert";
 	}
 	
-	@RequestMapping("/admin/notice/edit.do")
+	@RequestMapping("/admin/notice/edit")
 	public String edit(Model model, NoticeVo vo) {
 		model.addAttribute("vo", service.edit(vo));
 		return "admin/board/notice/edit";
 	}
 	
-	@RequestMapping("/admin/notice/update.do")
+	@RequestMapping("/admin/notice/update")
 	public String update(Model model, NoticeVo vo, 
 						@RequestParam MultipartFile file, HttpServletRequest req) {
 		//service.insert(vo, filename, req)
@@ -111,15 +115,15 @@ public class NoticeController {
 		// r == 0 : 비정상 -> alert -> 이전페이지로 이동
 		if (r > 0) {
 			model.addAttribute("msg", "정상적으로 수정되었습니다.");
-			model.addAttribute("url", "index.do");
+			model.addAttribute("url", "index");
 		} else {
 			model.addAttribute("msg", "수정실패");
-			model.addAttribute("url", "edit.do?no="+vo.getNno());
+			model.addAttribute("url", "edit?no="+vo.getNno());
 		}
 		return "admin/include/alert";
 	}
 	
-	@RequestMapping("/admin/notice/delete.do")
+	@RequestMapping("/admin/notice/delete")
 	public String delete(Model model, NoticeVo vo, HttpServletRequest req) {
 		int r = service.delete(vo);
 		if (r > 0) {
@@ -130,32 +134,34 @@ public class NoticeController {
 		return "admin/include/result";
 	}
 	
-//	@RequestMapping("/comment/insert.do")
-//	public String commentInsert(Model model, CommentVo vo) {
-//		vo.setTablename(TABLENAME);
-//		int r = cService.insert(vo);
-//		if (r > 0) {
-//			model.addAttribute("result", "true");
-//		} else {
-//			model.addAttribute("result", "false");
-//		}
-//		return "include/result";
-//	}
-//	
-//	@RequestMapping("/comment/list.do")
-//	public String commentList(Model model, CommentVo cv) {
-//		cv.setTablename(TABLENAME);
-//		model.addAttribute("list", cService.selectAll(cv));
-//		return "include/comment";
-//	}
-//	@RequestMapping("/comment/delete.do")
-//	public String commentDelete(Model model, CommentVo vo) {
-//		int r = cService.delete(vo);
-//		if (r > 0) {
-//			model.addAttribute("result", "true");
-//		} else {
-//			model.addAttribute("result", "false");
-//		}
-//		return "include/result";
-//	}
+	@RequestMapping("/admin/comment/insert")
+	public String commentInsert(Model model, CommentVo vo) {
+		vo.setCm_tablename(TABLENAME);
+		int r = cService.insert(vo);
+		
+		if (r > 0) {
+			model.addAttribute("result", "true");
+		} else {
+			model.addAttribute("result", "false");
+		}
+		
+		return "admin/include/result";
+	}
+	
+	@RequestMapping("/admin/comment/list")
+	public String commentList(Model model, CommentVo cv) {
+		cv.setCm_tablename(TABLENAME);
+		model.addAttribute("list", cService.selectAll(cv));
+		return "admin/include/comment";
+	}
+	@RequestMapping("/admin/comment/delete")
+	public String commentDelete(Model model, CommentVo vo) {
+		int r = cService.delete(vo);
+		if (r > 0) {
+			model.addAttribute("result", "true");
+		} else {
+			model.addAttribute("result", "false");
+		}
+		return "admin/include/result";
+	}
 }
