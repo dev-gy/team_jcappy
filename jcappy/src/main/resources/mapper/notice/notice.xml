@@ -12,14 +12,16 @@
 					${stype} LIKE '%${sval}%'
 				</if>
 			</if>
-			<if test="member_mno != 0">
-				AND member_mno=#{member_mno}
+			<if test="members_mno != 0">
+				AND members_mno=#{members_mno}
 			</if>
 		</where>
 	</sql>
 	
 	<select id="selectAll" resultType="jcappy.notice.NoticeVo" parameterType="jcappy.notice.NoticeVo">
-		SELECT * FROM notice
+		SELECT *,
+			(SELECT COUNT(*) FROM comment WHERE cm_board_no=notice.nno) AS comment_count 
+		FROM notice
 		<include refid="noticeWhere"/>
 		ORDER BY ${orderby} ${direct}
 		LIMIT ${startIdx},${pageRow}

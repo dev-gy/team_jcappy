@@ -11,7 +11,6 @@
     <div id="wrap">
         <%@ include file="/WEB-INF/view/include/top.jsp" %>
         <div id="container">
-			<div id="container">
             <div class="join_content">
                 <div class="title">
                     <h1 class="cstyle_h1">Join</h1>
@@ -29,7 +28,6 @@
                     <input class="cstyle_btn ex" type="submit" id="submit" value="가입하기"/>
                 </form>
             </div>
-        </div>
         </div>
         <%@ include file="/WEB-INF/view/include/bottom.jsp" %>
     </div>

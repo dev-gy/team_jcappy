@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,9 @@ public class NoticeController {
 	static final String TABLENAME = "board";
 	
 	@RequestMapping("/admin/notice/index")
-	public String index(Model model, NoticeVo vo) {
+	public String index(Model model, NoticeVo vo, HttpSession sess) {
+		
+		//sess.setAttribute("membersInfo", sess);
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/board/notice/list";
 	}

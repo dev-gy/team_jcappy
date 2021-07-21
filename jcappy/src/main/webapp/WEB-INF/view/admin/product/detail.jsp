@@ -39,7 +39,7 @@ function isDel() {
        $.ajax({
           url:'delete',
           data:{
-             'ino':${vo.ino}
+             'pno':${vo.pno}
           },
           method:'post',
           success:function(res) {
@@ -86,41 +86,39 @@ function isDel() {
 									<tr>
 										<th scope="row"><label for="">상품 번호</label></th>
 										<td colspan="10">
-											<input type="text" id="ino" name="ino" class="w100" value="${vo.ino }"/>	
+											<input type="text" id="ino" name="ino" class="w100" value="${vo.pno }"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">브랜드</label></th>
 										<td colspan="10">
 											<select name="stype" title="브랜드">
-												<option value="sam">삼성</option>
-												<option value="lg">LG</option>
-												<option value="carrier">캐리어</option>
+												<option value="">${vo.pcompany }</option>
 											</select>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품명</label></th>
 										<td colspan="10">
-											<input type="text" id="iname" name="iname" class="w100" value="${vo.iname }"/>	
+											<input type="text" id="pname" name="pname" class="w100" value="${vo.pname }"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 가격</label></th>
 										<td colspan="10">
-											<input type="text" id="iprice" name="iprice" class="w100" value="${vo.iprice }"/>	
+											<input type="text" id="pprice" name="pprice" class="w100" value="${vo.pprice }"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 재고</label></th>
 										<td colspan="10">
-											<input type="text" id="icount" name="icount" class="w100" value="${vo.icount }"/>	
+											<input type="text" id="pcount" name="pcount" class="w100" value="${vo.pcount }"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 등록일</label></th>
 										<td colspan="10">
-											<input type="text" id="iregdate" name="iregdate" class="w100" value="${vo.iregdate }" readonly/>	
+											<input type="text" id="pregdate" name="pregdate" class="w100" value="${vo.pregdate }" readonly/>	
 										</td>
 									</tr><tr>
 										<th scope="row"><label for="">상품 이미지</label></th>
