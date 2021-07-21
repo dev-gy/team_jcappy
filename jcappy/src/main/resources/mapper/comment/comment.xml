@@ -3,7 +3,9 @@
 <mapper namespace="comment">
 
 	<select id="selectAll" resultType="jcappy.comment.CommentVo" parameterType="jcappy.comment.CommentVo">
-		SELECT * FROM comment
+		SELECT *,
+		(SELECT name FROM members WHERE no=comment.mno) AS name
+		FROM comment
 		WHERE cm_board_no=#{cm_board_no} AND cm_tablename=#{cm_tablename}
 		ORDER BY cm_regdate DESC
 		LIMIT ${startIdx},${pageRow}
@@ -16,7 +18,7 @@
 	
 	<insert id="insert" parameterType="jcappy.comment.CommentVo">
 		INSERT INTO comment (cm_content, cm_regdate,cm_board_no, cm_tablename, mno)
-		VALUES (#{cm_content}, NOW(), #{cm_board_no}, #{cm_tablename}, 0)
+		VALUES (#{cm_content}, NOW(), #{cm_board_no}, #{cm_tablename}, #{mno})
 	</insert>
 	
 	<delete id="delete" parameterType="jcappy.comment.CommentVo">

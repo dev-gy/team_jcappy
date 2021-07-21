@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import jcappy.comment.CommentService;
 import jcappy.comment.CommentVo;
+import jcappy.members.MembersVo;
 
 
 
@@ -30,8 +31,13 @@ public class NoticeController {
 	
 	@RequestMapping("/admin/notice/index")
 	public String index(Model model, NoticeVo vo, HttpSession sess) {
-		
-		//sess.setAttribute("membersInfo", sess);
+		MembersVo fmv = new MembersVo();
+		fmv.setMemail("aaa");
+		fmv.setMpwd("aaa");
+		System.out.println("실험" + fmv.getMemail());
+		MembersVo mv = service.temporarySession(fmv);
+		System.out.println("실험"+mv.getMemail());
+		sess.setAttribute("membersInfo", sess);
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/board/notice/list";
 	}

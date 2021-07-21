@@ -39,6 +39,7 @@
         			data:{
         				cm_content:$("#contents").val(),
         				cm_board_no:${vo.nno},
+        				mno:${membersInfo.mno}
         			},
         			success:function(res) {
         				if (res.trim()=='true') {

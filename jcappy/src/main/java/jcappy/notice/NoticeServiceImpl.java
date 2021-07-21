@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jcappy.members.MembersVo;
+
 @Service
 public class NoticeServiceImpl implements NoticeService {
 
@@ -59,5 +61,10 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public int delete(NoticeVo vo) {
 		return dao.delete(vo);
+	}
+
+	@Override
+	public MembersVo temporarySession(MembersVo fmv) {
+		return dao.temporarySession(fmv);
 	}
 }
