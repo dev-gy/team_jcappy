@@ -94,6 +94,7 @@ function isDel() {
 										<td colspan="10">
 											<select name="stype" title="브랜드">
 												<option value="">${vo.pcompany }</option>
+												<option value="">만드렁</option>
 											</select>
 										</td>
 									</tr>
@@ -123,8 +124,16 @@ function isDel() {
 									</tr><tr>
 										<th scope="row"><label for="">상품 이미지</label></th>
 										<td colspan="10">
-											<input type="file" id="file" name="file" class="w100"/>	
-											<input type="file" id="file" name="file" class="w100"/>	
+											<img style="width: 50px;" src="${vo.pimg1_org}">
+											<img style="width: 50px;" src="${vo.pimg2_org}">
+											<img style="width: 50px;" src="${vo.pimg3_org}">
+										
+<%-- 											<a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.pimg1_org}&real=${vo.pimg1_real}"  --%>
+<%--                             				target="_blank">${vo.pimg1_org}</a> --%>
+<%-- 											<a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.pimg2_org}&real=${vo.pimg2_real}"  --%>
+<%--                             				target="_blank">${vo.pimg2_org}</a> --%>
+<%--                             				<a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.pimg3_org}&real=${vo.pimg3_real}"  --%>
+<%--                             				target="_blank">${vo.pimg3_org}</a> --%>
 											<input type="file" id="file" name="file" class="w100"/>	
 										</td>
 									</tr><tr>
