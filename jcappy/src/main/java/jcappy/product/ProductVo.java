@@ -7,9 +7,12 @@ import jcappy.util.CommonVo;
 public class ProductVo extends CommonVo {
 
 	private	int pno;
-	private String pimg1;
-	private String pimg2;
-	private String pimg3;
+	private String pimg1_org;
+	private String pimg1_real;
+	private String pimg2_org;
+	private String pimg2_real;
+	private String pimg3_org;
+	private String pimg3_real;
 	private int pprice;
 	private String pname;
 	private String pcompany;
@@ -18,29 +21,48 @@ public class ProductVo extends CommonVo {
 	private String pcate;
 	private Timestamp pregdate;
 	private String pdetail;
+	
 	public int getPno() {
 		return pno;
 	}
 	public void setPno(int pno) {
 		this.pno = pno;
 	}
-	public String getPimg1() {
-		return pimg1;
+	public String getPimg1_org() {
+		return pimg1_org;
 	}
-	public void setPimg1(String pimg1) {
-		this.pimg1 = pimg1;
+	public void setPimg1_org(String pimg1_org) {
+		this.pimg1_org = pimg1_org;
 	}
-	public String getPimg2() {
-		return pimg2;
+	public String getPimg1_real() {
+		return pimg1_real;
 	}
-	public void setPimg2(String pimg2) {
-		this.pimg2 = pimg2;
+	public void setPimg1_real(String pimg1_real) {
+		this.pimg1_real = pimg1_real;
 	}
-	public String getPimg3() {
-		return pimg3;
+	public String getPimg2_org() {
+		return pimg2_org;
 	}
-	public void setPimg3(String pimg3) {
-		this.pimg3 = pimg3;
+	public void setPimg2_org(String pimg2_org) {
+		this.pimg2_org = pimg2_org;
+	}
+	public String getPimg2_real() {
+		return pimg2_real;
+	}
+	public void setPimg2_real(String pimg2_real) {
+		this.pimg2_real = pimg2_real;
+	}
+	public String getPimg3_org() {
+		return pimg3_org;
+	}
+	public void setPimg3_org(String pimg3_org) {
+		this.pimg3_org = pimg3_org;
+	}
+	public String getPimg3_real() {
+		return pimg3_real;
+	}
+	public void setPimg3_real(String pimg3_real) {
+		this.pimg3_real = pimg3_real;
 	}
 	public int getPprice() {
 		return pprice;
@@ -91,6 +113,4 @@ public class ProductVo extends CommonVo {
 		this.pdetail = pdetail;
 	}
 	
-	
-
 }

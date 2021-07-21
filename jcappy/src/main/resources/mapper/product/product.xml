@@ -11,13 +11,12 @@
 	</select>
 	
 	<insert id="insert" parameterType="jcappy.product.ProductVo">
-		INSERT INTO product (pno, pimg1, pimg2, pimg3, pprice, pname, pcompany, pcount, ptype, pcate, pregdate, pdetail)
-		VALUES (#{pno}, #{pimg1}, #{pimg2}, #{pimg3}, #{pprice}, #{pname}, #{pcompany}, #{pcount}, #{ptype}, #{pcate}, NOW(), #{pdetail})
+		INSERT INTO product (pno, pimg1_org, pimg1_real, pimg2_org, pimg2_real, pimg3_org, pimg3_real, pprice, pname, pcompany, pcount, ptype, pcate, pregdate, pdetail)
+		VALUES (#{pno}, #{pimg1_org}, #{pimg1_real}, #{pimg2_org}, #{pimg2_real}, #{pimg3_org}, #{pimg3_real}, #{pprice}, #{pname}, #{pcompany}, #{pcount}, #{ptype}, #{pcate}, NOW(), #{pdetail})
 	</insert>
 	
 	<select id="count" resultType="int" parameterType="jcappy.product.ProductVo">
 		SELECT COUNT(*) FROM product
-		WHERE pno=#{pno}
 	</select>
 	
 	<update id="update" parameterType="jcappy.product.ProductVo">
