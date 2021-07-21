@@ -16,7 +16,7 @@
     <div class="signIn_wrap">
         <div class="header">HEADER</div>
         <div class="signIn_content">
-            <p class="signIn_p">Sign In</p>
+            <p class="signIn_p">Join</p>
             <form action="메인페이지.html" method="post" class="signIn_form">
                 <input type="text" name="id" placeholder="이메일" required="required" style="height: 30px;" width="30px"/><br>
                 <input type="password" id="pwd1" placeholder="비밀번호" required="required" style="height: 30px;" width="30px"/><br>
