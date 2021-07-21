@@ -3,31 +3,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script src="/jcappy/js/common.js"></script>
 <script>
-$(function() {
-	var oEditors = [];
-	nhn.husky.EZCreator.createInIFrame({
-		oAppRef: oEditors,
-		elPlaceHolder: "contents", // textarea ID
-		sSkinURI: "<%=request.getContextPath()%>/smarteditor/SmartEditor2Skin.html",	
-		htParams : {
-			bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-			bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-			bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-			fOnBeforeUnload : function(){
-				
-			}
-		}, //boolean
-		fOnAppLoad : function(){
-			//예제 코드
-			//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-		},
-		fCreator: "createSEditor2"
-	});
+var oEditors;
+$(function(){
+   oEditors = setEditor("contents"); // textarea 아이디 값
 });
 
 function goSave() {
-	oEditors.getById['content'].exec("UPDATE_CONTENTS_FIELD",[]);
+	oEditors.getById['contents'].exec("UPDATE_CONTENTS_FIELD",[]);
 	$("#frm").submit();
 }
 </script>
@@ -50,7 +34,7 @@ function goSave() {
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="insert" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="list" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="상품 등록">
 								<colgroup>
 									<col width="10%" />
@@ -66,9 +50,10 @@ function goSave() {
 										<th scope="row"><label for="">브랜드</label></th>
 										<td colspan="10">
 											<select name="stype" title="브랜드">
-												<option value="sam">삼성</option>
-												<option value="lg">LG</option>
+												<option value="sam">삼성전자</option>
+												<option value="lg">LG전자</option>
 												<option value="carrier">캐리어</option>
+												<option value="weenea">위니아전자</option>
 											</select>
 										</td>
 									</tr>
@@ -105,7 +90,7 @@ function goSave() {
 									</tr><tr>
 										<th scope="row"><label for="">상품 상세이미지</label></th>
 										<td colspan="10">
-											<textarea name="content" id="content" style="width:100%;"></textarea>
+											<textarea name="content" id="contents" style="width:100%;"></textarea>
 										</td>
 								</tbody>
 							</table>
