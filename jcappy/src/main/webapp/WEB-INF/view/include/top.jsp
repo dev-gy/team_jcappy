@@ -9,7 +9,7 @@
             </a>
         </div>
         <div class="member_menu">
-            <a href="/jcappy/signin.do">로그인</a> | <a href="/jcappy/join.do">회원가입</a>
+            <a href="/jcappy/signin.do">로그인</a> | <a href="/jcappy/policy/agreement.do">회원가입</a>
             <!-- <a href="">김조은님</a> | <a href="">마이페이지</a> | <a href="">장바구니</a> | <a href="">로그아웃</a> -->
         </div>
     </div>

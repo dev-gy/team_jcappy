@@ -18,7 +18,7 @@
 		        <div class="review_detail_day">작성일(2021-7-1)</div>
 		        <div class="review_detail_product">
 		            <div class="review_detail_product_img"><a href=""><img src="/jcappy/img/w1.jpg"></a></div>
-		            <a href=""><div class="review_detail_product_name">상품명</div></a>
+		            <a href=""><span class="review_detail_product_name">상품명</span></a>
 		            <div class="review_detail_star"><img src="/jcappy/img/star1.png"></div>
 		        </div>
 		        <div class="review_detail_content">
