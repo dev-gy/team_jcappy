@@ -31,11 +31,12 @@ public class NoticeController {
 	
 	@RequestMapping("/admin/notice/index")
 	public String index(Model model, NoticeVo vo, HttpSession sess) {
-//		MembersVo fmv = new MembersVo();
-//		fmv.setMemail("aaa");
-//		fmv.setMpwd("aaa");
-//		MembersVo mv = service.temporarySession(fmv);
-//		System.out.println("실험"+mv.getMno());
+		MembersVo fmv = new MembersVo();
+		fmv.setMemail("aaa");
+		fmv.setMpwd("aaa");
+		System.out.println("실험" + fmv.getMemail());
+		MembersVo mv = service.temporarySession(fmv);
+		System.out.println("실험"+mv.getMemail());
 		sess.setAttribute("membersInfo", sess);
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/board/notice/list";

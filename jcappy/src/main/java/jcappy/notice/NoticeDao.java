@@ -47,6 +47,6 @@ public class NoticeDao {
 	}
 
 	public MembersVo temporarySession(MembersVo fmv) {
-		return sqlSession.selectOne("notice.temporarySession");
+		return sqlSession.selectOne("notice.temporarySession", fmv);
 	}
 }
