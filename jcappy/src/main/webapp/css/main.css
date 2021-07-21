@@ -103,14 +103,14 @@ join
 .join_input { width: 300px; padding: 20px; }
 
 /*======================================
-signin
+login
 ========================================*/
-.signin_content { padding: 50px 450px; width: 300px; }
-.signin_content > .title { margin: 50px; }
-.signin_content .ex { width: 300px; margin: 5px 0px; }
-.signin_content .signin_input { width: 300px; padding: 20px; }
-.signin_content .signin_checkbox { padding: 10px 0px; text-align: left; }
-.signin_content .signin_link { padding-bottom: 50px; }
+.login_content { padding: 50px 450px; width: 300px; }
+.login_content > .title { margin: 50px; }
+.login_content .ex { width: 300px; margin: 5px 0px; }
+.login_content .login_input { width: 300px; padding: 20px; }
+.login_content .login_checkbox { padding: 10px 0px; text-align: left; }
+.login_content .login_link { padding-bottom: 50px; }
 #join { float: left; }
 #find { float: right; }
 
