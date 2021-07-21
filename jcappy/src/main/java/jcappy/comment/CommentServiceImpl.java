@@ -1,4 +1,4 @@
-package jcappy.item;
+package jcappy.comment;
 
 import java.util.List;
 
@@ -6,18 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ItemServiceImpl implements ItemService{
+public class CommentServiceImpl implements CommentService {
 
 	@Autowired
-	ItemDao dao;
+	CommentDao dao;
 	
 	@Override
-	public List<ItemVo> selectAll(ItemVo vo) {
-		int totCount = dao.count(vo);
-
+	public List<CommentVo> selectAll(CommentVo vo) {
+		int totCount = dao.count(vo); // 총갯수
+		// 총페이지수
 		int totPage = totCount / vo.getPageRow();
 		if (totCount % vo.getPageRow() > 0) totPage++;
-
+		// 시작페이지
 		int startPage = (vo.getReqPage()-1)/vo.getPageRange()
 						*vo.getPageRange()+1;
 		int endPage = startPage+vo.getPageRange()-1;
@@ -31,22 +31,13 @@ public class ItemServiceImpl implements ItemService{
 	}
 
 	@Override
-	public ItemVo detail(ItemVo vo) {
-		return dao.detail(vo);
-	}
-	
-	@Override
-	public int insert(ItemVo vo) {
+	public int insert(CommentVo vo) {
 		return dao.insert(vo);
 	}
-	
+
 	@Override
-	public int update(ItemVo vo) {
-		return dao.update(vo);
-	}
-	
-	@Override
-	public int delete(ItemVo vo) {
+	public int delete(CommentVo vo) {
 		return dao.delete(vo);
 	}
+
 }

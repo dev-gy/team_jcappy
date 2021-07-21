@@ -30,7 +30,7 @@
 								<colgroup>
 									<col class="w3" />
 									<col class="" />
-									<col class="w4" />
+									<col class="w15" />
 									<col class="w6" />
 								</colgroup>
 								<thead>
@@ -51,8 +51,8 @@
 									<c:forEach var="vo" items="${list}">
 									<tr>
 										<td class="first">${vo.nno}</td>
-										<td class="title"><a href="detail.do?nno=${vo.nno}">${vo.ntitle}</a></td>
-										<td>${vo.nregdate} </td>
+										<td class="title"><a href="detail?nno=${vo.nno}">${vo.ntitle}</a></td>
+										<td><fmt:formatDate value="${vo.nregdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 										<td>${vo.nreadcount}</td>
 									</tr>
 									
@@ -65,22 +65,21 @@
 							<!--//btn-->
 							<div class="btn">
 								<div class="btnRight">
-									<a class="wbtn" href="write.do"><strong>등록</strong> </a>
+									<a class="wbtn" href="write"><strong>등록</strong> </a>
 								</div>
 							</div>
 							<!-- 페이징 처리 -->
 							<div class='page'>
 								
 		                        <c:if test="${noticeVo.startPage > noticeVo.pageRange}">
-		                        	<span><a href="index.do?reqPage=${noticeVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a></span>
+		                        	<span><a href="index?reqPage=${noticeVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a></span>
 		                        </c:if>
 		                        <c:forEach var="rp" begin="${noticeVo.startPage}" end="${noticeVo.endPage }">
-		                            <span><a href='index.do?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}' <c:if test="${rp==noticeVo.reqPage }">class='current'</c:if>>${rp }</a></span>
+		                            <span><a href='index?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}' <c:if test="${rp==noticeVo.reqPage }">class='current'</c:if>>${rp }</a></span>
 		                        </c:forEach>
 		                        <c:if test="${noticeVo.totPage > noticeVo.endPage}">
-		                        	<span><a href="index.do?reqPage=${noticeVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a></span>
+		                        	<span><a href="index?reqPage=${noticeVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a></span>
 		                        </c:if>
-		                        </ul> 
 							</div>
 							<!-- //페이징 처리 -->
 							<form name="searchForm" id="searchForm" action="index.do"  method="post">

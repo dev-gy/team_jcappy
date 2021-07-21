@@ -30,40 +30,6 @@
 	<!-- ex) <mvc:view-controller path="/folder/test.do"/> -->
 	
 	<!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓사용자↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
-	<!-- 두용 -->
-	<mvc:view-controller path="/project/mainpage.do"/>
-	<mvc:view-controller path="/project/reviewBoard.do"/>
-	<mvc:view-controller path="/project/reviewDetail.do"/>
-	<mvc:view-controller path="/project/reviewWrite.do"/>
-	
-	<!-- 시은 -->
-	<mvc:view-controller path="/project/product_detail.do"/>
-	<mvc:view-controller path="/project/product_list.do"/>
-	<mvc:view-controller path="/project/sign_up.do"/>
-	<mvc:view-controller path="/project/subscription_terms.do"/>
-	
-	<!-- 석민 -->
-	<mvc:view-controller path="/project/couponList.do"/>
-	<mvc:view-controller path="/project/mypage_coupon.do"/>
-	<mvc:view-controller path="/project/paycomplete.do"/>
-	<mvc:view-controller path="/project/payment.do"/>
-	<mvc:view-controller path="/project/shooping cart.do"/>
-	
-	<!-- 성재 -->
-	<mvc:view-controller path="/project/mypage_main.do"/>
-	<mvc:view-controller path="/project/mypage_ordercancel.do"/>
-	<mvc:view-controller path="/project/mypage_ordercancel_form.do"/>
-	<mvc:view-controller path="/project/mypage_ordercanceldetail.do"/>
-	<mvc:view-controller path="/project/mypage_orderdetail.do"/>
-	<mvc:view-controller path="/project/mypage_update_info.do"/>
-	
-	<!-- 광열 -->
-	<mvc:view-controller path="/project/mypage_qna.do"/>
-	<mvc:view-controller path="/project/mypage_qna_update.do"/>
-	<mvc:view-controller path="/project/mypage_qna_write.do"/>
-	<mvc:view-controller path="/project/notice.do"/>
-	<mvc:view-controller path="/project/notice_detail.do"/>
-
 	<!-- 임시등록입니다 -->
 	<mvc:view-controller path="/sample.do"/>
 	<mvc:view-controller path="/policy/terms.do"/>
@@ -76,7 +42,7 @@
 	<mvc:view-controller path="/cart.do"/>
 	<mvc:view-controller path="/join.do"/>
 	<mvc:view-controller path="/changepwd.do"/>
-	<mvc:view-controller path="/findacountpwd.do"/>
+	<mvc:view-controller path="/findaccountpwd.do"/>
 
 	<mvc:view-controller path="/product/index.do"/>
 	<mvc:view-controller path="/product/detail.do"/>
@@ -127,7 +93,6 @@
 	<!-- 관리자 계정 관리 -->
 	<mvc:view-controller path="/admin/auth/list.do"/>
 	<mvc:view-controller path="/admin/auth/detail.do"/>
-	<mvc:view-controller path="/admin/auth/create.do"/>
 	
 	<!-- 회원 관리 -->
 	<mvc:view-controller path="/admin/user/list.do"/>
@@ -136,7 +101,7 @@
 	<!-- 상품 관리 -->
 	<mvc:view-controller path="/admin/item/list.do"/>
 	<mvc:view-controller path="/admin/item/detail.do"/>
-	<mvc:view-controller path="/admin/item/create.do"/>
+	<mvc:view-controller path="/admin/item/edit.do"/>
 	 
 	<!-- 리뷰 게시판 관리 -->
 	<mvc:view-controller path="/admin/board/review/list.do"/>
