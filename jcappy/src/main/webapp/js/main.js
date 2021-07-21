@@ -73,6 +73,16 @@ function daumPostcode(elZipcode, elAddr1, elAddr2) {
 }
 
 /*======================================
+utility
+========================================*/
+function getParameterByName(name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+  results = regex.exec(location.search);
+  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+/*======================================
 top
 ========================================*/
 $(function () {
@@ -93,16 +103,17 @@ $(function () {
 policy/servicepolicy
 ========================================*/
 $(function() {
-	var type = "${param.type }";
-	if (type == "policy") {
-	   $(".policy_tab_btn").addClass("tab_on");
+	var param = location.href.split("/");
+	param = param[param.length -1];
+	if (param == "policy") {
+		$(".policy_tab_btn").addClass("tab_on");
 	    $(".service_area").hide();
 	    $(".cstyle_tab").on("click", function() {
 			$(".cstyle_tab").removeClass("tab_on");
 			$(this).addClass("tab_on");
 	    });
-	} else {
-	 $(".service_tab_btn").addClass("tab_on");
+	} else if (param == "service") {
+	 	$(".service_tab_btn").addClass("tab_on");
 	    $(".policy_area").hide();		
 	    $(".cstyle_tab").on("click", function() {
 			$(".cstyle_tab").removeClass("tab_on");
@@ -111,14 +122,10 @@ $(function() {
 	}
    
 	$(".service_tab_btn").on("click", function() {
-		"location.href='/jcappy/policy/servicepolicy.do?type=service';"
-//    	$(".policy_area").hide();
-//    	$(".service_area").show();
+		location.href="/jcappy/policy/servicepolicy/service";
 	});
-        $(".policy_tab_btn").on("click", function() {
-        "location.href='/jcappy/policy/servicepolicy.do?type=policy';"
-//    	$(".service_area").hide();
-//    	$(".policy_area").show();
+    $(".policy_tab_btn").on("click", function() {
+       	location.href="/jcappy/policy/servicepolicy/policy";
 	});
 });
 
