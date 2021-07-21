@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="product">
-	
-	<select id="selectAll" resultType="jcappy.product.ProductVo">
+	<sql id="productWhere">
+		<where>
+			<if test="sval != null and sval != ''">
+				<if test="stype == 'all'">
+					pname LIKE '%${sval}%'
+				</if>
+				<if test="stype != 'all'">
+					pcompany=${stype} AND pname LIKE '%${sval}%'
+				</if>
+			</if>
+		</where>
+	</sql>
+	<select id="selectAll" resultType="jcappy.product.ProductVo" parameterType="jcappy.product.ProductVo">
 		SELECT * FROM product
+		<include refid="productWhere"/>
+		<if test="orderby == 'popular'">
+			ORDER BY (select AVG(review.rstar) FROM review)
+		</if>
+		<if test="orderby != 'popular'">
+			ORDER BY ${orderby}
+		</if>
+		${direct}
+		LIMIT ${startIndex}, ${pageRow}
 	</select>
-	
 	<select id="detail" resultType="jcappy.product.ProductVo" parameterType="jcappy.product.ProductVo">
 		SELECT * FROM product WHERE pno=#{pno}
 	</select>
