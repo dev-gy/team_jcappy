@@ -10,9 +10,8 @@ public class MembersDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public MembersVo signin(MembersVo vo) {
-		return sqlSession.selectOne("members.signin", vo);
+	public MembersVo login(MembersVo vo) {
+		return sqlSession.selectOne("members.login", vo);
 	}
-	
 
 }
