@@ -19,7 +19,7 @@
                     <input type="text" class="login_input" name="id" placeholder="이메일" required="required"/><br>
                     <input type="password" class="login_input" id="pwd1" placeholder="비밀번호" required="required"/><br>
                     <div class="login_checkbox">
-                        <input type="checkbox"> 로그인 상태 유지
+                        <input type="checkbox" name="checkId"> 로그인 상태 유지
                     </div>
                     <input class="cstyle_btn ex" type="submit" id="submit" value="로그인" onclick="login();"/>
                 </form>

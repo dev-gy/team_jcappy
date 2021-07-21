@@ -25,8 +25,8 @@ public class NoticeController {
 	NoticeService service;
 	@Autowired
 	CommentService cService;
-	
-	static final String TABLENAME = "board";
+	//tablename 변수 설정하여 comment insert, list 에서 사용
+	static final String TABLENAME = "notice";
 	
 	@RequestMapping("/admin/notice/index")
 	public String index(Model model, NoticeVo vo, HttpSession sess) {
@@ -57,7 +57,7 @@ public class NoticeController {
 				String org = file.getOriginalFilename(); // 원본파일명
 				String ext = ""; //확장자
 				
-				ext = org.substring(org.lastIndexOf("."));
+				ext = org.substring(org.lastIndexOf(".")); 
 				String real = new Date().getTime()+ext; // 서버에 저장할 파일명
 	//			System.out.println("org:"+org);
 	//			System.out.println("real:"+real);
@@ -139,7 +139,7 @@ public class NoticeController {
 	
 	@RequestMapping("/admin/comment/insert")
 	public String commentInsert(Model model, CommentVo vo) {
-		vo.setCm_tablename(TABLENAME);
+		vo.setCm_tablename(TABLENAME); // tablename 
 		int r = cService.insert(vo);
 		
 		if (r > 0) {

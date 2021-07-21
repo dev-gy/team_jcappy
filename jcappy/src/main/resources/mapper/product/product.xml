@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="product">
+<<<<<<< HEAD
 	<sql id="productWhere">
 		<where>
 			<if test="sval != null and sval != ''">
@@ -14,6 +15,10 @@
 		</where>
 	</sql>
 	<select id="selectAll" resultType="jcappy.product.ProductVo" parameterType="jcappy.product.ProductVo">
+=======
+	
+	<select id="selectAll" resultType="jcappy.product.ProductVo">
+>>>>>>> branch 'master' of https://github.com/Ummnaa/team_jcappy.git
 		SELECT * FROM product
 		<include refid="productWhere"/>
 		<if test="orderby == 'popular'">
