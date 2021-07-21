@@ -52,7 +52,7 @@
 									<c:forEach var="vo" items="${list}">
 									<tr>
 										<td class="first">${vo.nno}</td>
-										<td class="title"><a href="detail?nno=${vo.nno}">${vo.ntitle} [${vo.comment_count}]</a></td>
+										<td class="title"><a href="detail?nno=${vo.nno}&reqPage=${noticeVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.ntitle} [${vo.comment_count}]</a></td>
 										<td><fmt:formatDate value="${vo.nregdate }" pattern="yyyy-MM-dd"/> </td>
 										<td>${vo.nreadcount}</td>
 									</tr>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="product">
 	
-	<select id="selectAll" resultType="jcappy.product.ProductVo" parameterType="jcappy.product.ProductVo">
+	<select id="selectAll" resultType="jcappy.product.ProductVo">
 		SELECT * FROM product
 	</select>
 	
