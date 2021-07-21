@@ -6,12 +6,6 @@
 <meta charset="UTF-8">
 <title>Document</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
-<style>
-.qna_write_content > form > .qna_title { width: 100%; font-size: 12px; font-family: '돋움',Dotum,'굴림',Gulim,Helvetica,Sans-serif; line-height: 2; padding: 5px 15px; margin: 10px 0px; }
-.qna_write_content > form > #content { width: 100%; min-width: 800px; height: 300px; display: none; }
-.qna_write_content > form > .btn_wrap { float: right; margin: 10px 0px; }
-.qna_write_content > form > .btn_wrap > button { width: 100px; height: 40px; margin-left: 20px; }
-</style>
 <script>
 function goSave() {
     oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []); // submit 할 때, Smarteditor에서 작성한 데이터 전송하기 위한 코드
@@ -39,7 +33,7 @@ function goSave() {
 
 				<!-- 현재 페이지 컨텐츠 구현부 -->
 				<div class="mypage_for_line"></div>
-				<div class="qna_write_content">
+				<div class="qna_edit_content">
 					<form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data" >
 						<input class="qna_title" type="text" value="{수정할 글 제목}">
 						<textarea id="content">{수정할 글 내용}</textarea>

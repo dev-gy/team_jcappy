@@ -6,51 +6,6 @@
 <meta charset="UTF-8">
 <title>상품 상세페이지</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
-<script>
-	$(function() {
-		// 상품 이미지 보기 기능
-		$(".item_major_img").css({ "background-image": decodeURI($(".item_minor_img").eq(0).css("background-image")) });
-		$(".item_minor_img").on("click", function() {
-			$(".item_major_img").css({ "background-image": decodeURI($(this).css("background-image")) });
-			console.log(decodeURI($(".item_major_img").css("background-image")));
-		});
-		
-		// 상품 갯수 - + 버튼 기능
-		$(".minus_btn").on("click", function() {
-			var num = $(".count").val();
-			if (num > 1) {
-				$(".count").val(Number(num) - 1);			
-			}
-		});
-		$(".plus_btn").on("click", function() {
-			var num = $(".count").val();
-			if (/*남은 수량 갯수보다 작으면..*/true) {
-				$(".count").val(Number(num) + 1);			
-			}
-		});
-		
-		// 제품상세, 리뷰 탭 기능
-		$(".detail_tab_btn").addClass("tab_on");
-		$(".review_area").hide();		
-		$(".cstyle_tab").on("click", function() {
-			$(".cstyle_tab").removeClass("tab_on");
-			$(this).addClass("tab_on");
-		});
-		
-		$(".detail_tab_btn").on("click", function() {
-			$(".review_area").hide();
-			$(".detail_area").show();
-		});
-		$(".review_tab_btn").on("click", function() {
-			$(".detail_area").hide();
-			$(".review_area").show();
-		});
-	});
-	
-	function onlyNumber(obj) {
-	    obj.value = obj.value.replace(/[^0-9]/g, '');
-	}
-</script>
 </head>
 
 <body>

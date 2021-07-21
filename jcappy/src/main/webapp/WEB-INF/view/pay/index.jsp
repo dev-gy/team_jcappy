@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>결제</title>
-    <link rel="stylesheet" href="/jcappy/css/reset.css"/>
     <link rel="stylesheet" href="/jcappy/css/payment.css">
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
   <script>
@@ -16,16 +15,101 @@
                 frm.checkButton.disabled=true
                 }
     </script>
+    <style>
+    .pay_content > .title { margin: 50px; }
+    .pay_content > .left1 > .pay_list td:nth-child(1) { width: 50px; }
+    .pay_content > .left1 > .pay_list tr td { text-align: right; padding: 0px 10px; }
+    .pay_content > .left1 > .pay_list > tbody > tr > td > .prev_img { width: 50px; height: 50px; background-size: 50px; display: block; }
+        .left1 {
+            width: 360px;
+            float: left;
+            margin-left: 250px;
+        }
+        .right1 {
+            width: 250px;
+            float: right;     
+            margin-right: 250px;    
+            margin-top: 200px;
+        }
+        img {
+            width: 50px;
+            height: 50px;   
+            vertical-align: middle ;
+        }
+        .product {
+            text-align: center;
+        }
+        .pay{
+		    padding: 30px;
+		    font-weight: bolder;
+		    font-size: 32px;
+		    text-align: center;
+		}
+       
+        .shop2 {
+            font-size: 20px;
+            font-weight: bolder;
+        }
+        .couname {
+            font-size: 20px;
+            font-weight: bolder;
+        }
+        table {
+            width: 100%;
+        }
+        input[type=text]{
+            color: rgb(94, 94, 94);
+        }
+        #wid {
+            width: 300px;
+        }
+        .co1{
+            text-align: left;
+        }
+        #cash {
+            font-size:16px;
+            text-align: left;
+        }
+        #cash1 {
+            font-size:16px;
+            right: 20px;
+            text-align: right;
+        }
+        .payment {
+            text-align: center;
+        }
+        #ppay {
+            width:100px;
+            height:50px;
+            font-size:18px; 
+        }
+    </style>
 </head>
 <body>
     <div id="wrap">
         <%@ include file="/WEB-INF/view/include/top.jsp" %>
         <div id="container">
 
-			<div class="cva">
-		        <div class="pay">결제하기</div><br>
-		        <div class="left1">
-		        <div class="shop">주문상품 정보</div><br>
+			<div class="pay_content">
+		        <div class="title"><h1 class="cstyle_h1">결제하기</h1></div><br>
+	        	<div class="left1">
+		        	<h2>주문상품 정보</h2>
+		        	<table class="pay_list cstyle_table">
+		        		<thead>
+		        		<tr>
+		        			<th></th>
+		        			<th>상품명</th>
+		        			<th>가격</th>
+		        		</tr>
+		        		</thead>
+		        		<tbody>
+		        			<tr class="product">
+		        				<td><div class="prev_img" style="background-image: url('/jcappy/img/fridge.jpg');"></div></td>
+		        				<td><a class="name">{name}</a></td>
+		        				<td>{price}원</td>
+		        			</tr>
+		        		</tbody>
+		        	</table>
 		        <div class="ssl">
 			        <img src="/jcappy/img/fridge.jpg">
 			        <span class="product">냉장고 101

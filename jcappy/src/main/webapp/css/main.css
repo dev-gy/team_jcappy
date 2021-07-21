@@ -94,23 +94,28 @@ index
 .banner .swiper-button-prev::after { font-size: 24px; color: #ffffff; }
 .banner .swiper-button-next::after { font-size: 24px; color: #ffffff; }
 
-/*======================================
-join
-========================================*/
 .terms_content { padding: 50px 0px 100px 0px; }
 .terms_content > ul { margin-bottom: 70px; }
 .terms_content > .cstyle_tab { width: 50%; height: 40px; box-sizing: border-box; }
 .terms_content > .textarea { width: 100%; height: 1000px; }
 
 /*======================================
-login
+join
 ========================================*/
-.login_content{ padding: 50px 450px; width: 300px; }
-.login_content > .title { margin: 50px; }
-.login_content .ex { width: 300px; margin: 5px 0px; }
-.login_content .login_input { width: 300px; padding: 20px; }
-.login_content .login_checkbox { padding: 10px 0px; text-align: left; }
-.login_content .login_link { padding-bottom: 50px; }
+.join_content { padding: 50px; }
+.join_content > .title { margin: 50px; }
+.ex { width: 300px; margin: 50px 20px; }
+.join_input { width: 300px; padding: 20px; }
+
+/*======================================
+signin
+========================================*/
+.signin_content { padding: 50px 450px; width: 300px; }
+.signin_content > .title { margin: 50px; }
+.signin_content .ex { width: 300px; margin: 5px 0px; }
+.signin_content .signin_input { width: 300px; padding: 20px; }
+.signin_content .signin_checkbox { padding: 10px 0px; text-align: left; }
+.signin_content .signin_link { padding-bottom: 50px; }
 #join { float: left; }
 #find { float: right; }
 
@@ -124,13 +129,23 @@ cart
 .cart_content .p2 { text-align: right; vertical-align: bottom; display: table-cell; }
 
 /*======================================
-notice
+notice/index
 ========================================*/
 .notice_content { margin: 50px 0px; }
 .notice_content > .title { margin: 50px; }
 
 /*======================================
-policy/terms
+notice/datail
+========================================*/
+.notice_detail_content { margin: 50px 0px; }
+.notice_detail_content > .title { margin: 50px; }
+.notice_detail_content table { margin-bottom: 20px; }
+.notice_detail_content > .btn_wrap { margin: 20px 0px; box-sizing: border-box; overflow: hidden; }
+.notice_detail_content > .btn_wrap > input[type="button"] { width: 100px; height: 40px; float: right; }
+.notice_detail_content .notice_context { min-height: 300px; display: block; }
+
+/*======================================
+policy/agreement
 ========================================*/
 .policy_content { padding: 50px; }
 .policy_content > .title { margin: 50px; }
@@ -200,6 +215,15 @@ product/detail
 .review_area > ul > li > .review_btn { width: 200px; height: 25px; margin: 40px; }
 
 /*======================================
+pay/complete
+========================================*/
+.complete_content > .pay {margin: 150px; font-weight: bold; font-size: 32px; text-align: center;}
+.complete_content > p {font-size: 16px; text-align: center; height: 100px;}
+.complete_content > #cb1 {width: 75px; height: 25px; background-color: gold;}
+.complete_content > #cb2 {width: 50px; height: 25px; background-color: gray;}
+.complete_content > .cbb {padding-bottom: 100px}
+
+/*======================================
 review/index
 ========================================*/
 .review_board_wrap * {box-sizing: border-box;}
@@ -220,6 +244,22 @@ review/index
 mypage/qna/index
 ========================================*/
 .qna_write_btn { width: 100px; height: 40px; margin:20px 0px; float: right; }
+ 
+/*======================================
+mypage/qna/write
+========================================*/
+.qna_write_content > form > .qna_title { width: 100%; font-size: 12px; font-family: '돋움',Dotum,'굴림',Gulim,Helvetica,Sans-serif; line-height: 2; padding: 5px 15px; margin: 10px 0px; }
+.qna_write_content > form > #content { width: 100%; min-width: 800px; height: 300px; display: none; }
+.qna_write_content > form > .btn_wrap { float: right; margin: 10px 0px; }
+.qna_write_content > form > .btn_wrap > button { width: 100px; height: 40px; margin-left: 20px; }
+
+/*======================================
+mypage/qna/edit
+========================================*/
+.qna_edit_content > form > .qna_title { width: 100%; font-size: 12px; font-family: '돋움',Dotum,'굴림',Gulim,Helvetica,Sans-serif; line-height: 2; padding: 5px 15px; margin: 10px 0px; }
+.qna_edit_content > form > #content { width: 100%; min-width: 800px; height: 300px; display: none; }
+.qna_edit_content > form > .btn_wrap { float: right; margin: 10px 0px; }
+.qna_edit_content > form > .btn_wrap > button { width: 100px; height: 40px; margin-left: 20px; }
  
 /*======================================
 mypage/order/canceldetail

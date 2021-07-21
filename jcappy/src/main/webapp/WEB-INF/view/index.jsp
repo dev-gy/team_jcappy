@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Document</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
-<script src="/jcappy/js/index.js"></script>
 </head>
 <body>
     <div id="wrap">
