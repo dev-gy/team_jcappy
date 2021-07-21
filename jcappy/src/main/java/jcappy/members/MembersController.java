@@ -19,7 +19,7 @@ public class MembersController {
 	MembersService service;
 	
 	@GetMapping("/login.do")
-	public String loginForm(MembersVo vo, @CookieValue(value="cookieId", required = false) Cookie cookie) {
+	public String loginForm(MembersVo vo, @CookieValue(value="cookieEmail", required = false) Cookie cookie) {
 		if (cookie != null) {
 			vo.setMemail(cookie.getValue());
 		}

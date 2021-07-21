@@ -9,7 +9,7 @@ public class CommonVo {
 	private int pageRange;		// 하단페이지 범위
 	private int startPage;		// 시작페이지
 	private int endPage;		// 끝페이지
-	private String stype;		// 검색타입(전체,제목,내용)
+	private String stype;		// 검색타입(전체,제목,내용,브랜드)
 	private String sval;		// 검색어
 	private String orderby;		// 정렬컬럼
 	private String direct;		// 오름차순/내림차순
