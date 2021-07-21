@@ -86,7 +86,6 @@ $(function(){
 			                        </tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="cmd" value="write" />
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

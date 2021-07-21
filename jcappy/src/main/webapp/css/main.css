@@ -94,11 +94,6 @@ index
 .banner .swiper-button-prev::after { font-size: 24px; color: #ffffff; }
 .banner .swiper-button-next::after { font-size: 24px; color: #ffffff; }
 
-.terms_content { padding: 50px 0px 100px 0px; }
-.terms_content > ul { margin-bottom: 70px; }
-.terms_content > .cstyle_tab { width: 50%; height: 40px; box-sizing: border-box; }
-.terms_content > .textarea { width: 100%; height: 1000px; }
-
 /*======================================
 join
 ========================================*/

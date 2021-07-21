@@ -14,7 +14,7 @@ public class NoticeVo extends CommonVo {
 	private String nfile_org;	// 사용자가첨부한 원본파일명
 	private String nfile_real;	// 서버에 저장된 실제파일명
 	private String isDel;
-	private int member_mno;
+	private int members_mno;
 	
 	private int comment_count;
 	private String mname;
@@ -87,12 +87,12 @@ public class NoticeVo extends CommonVo {
 		this.isDel = isDel;
 	}
 
-	public int getMember_mno() {
-		return member_mno;
+	public int getMembers_mno() {
+		return members_mno;
 	}
 
-	public void setMember_mno(int member_mno) {
-		this.member_mno = member_mno;
+	public void setMembers_mno(int members_mno) {
+		this.members_mno = members_mno;
 	}
 
 	public int getComment_count() {

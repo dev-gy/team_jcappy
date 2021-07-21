@@ -2,7 +2,7 @@ package jcappy.product;
 
 import java.util.List;
 
-public interface ProductService {
+public interface AdminProductService {
 
 	List<ProductVo> selectAll(ProductVo vo);
 	int insert(ProductVo vo);
