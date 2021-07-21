@@ -75,7 +75,7 @@ function isDel() {
 										<td colspan="10">
 											<select name="stype" title="브랜드">
 												<option value="">${vo.pcompany }</option>
-												<option value="">만드렁</option>
+												<option value="">${pcompany }</option>
 											</select>
 										</td>
 									</tr>
