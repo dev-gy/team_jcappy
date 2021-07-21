@@ -23,7 +23,7 @@
 			ORDER BY ${orderby}
 		</if>
 		${direct}
-		LIMIT ${startIndex}, ${pageRow}
+		LIMIT ${startIdx}, ${pageRow}
 	</select>
 	<select id="detail" resultType="jcappy.product.ProductVo" parameterType="jcappy.product.ProductVo">
 		SELECT * FROM product WHERE pno=#{pno}

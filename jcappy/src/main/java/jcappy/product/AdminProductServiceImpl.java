@@ -27,6 +27,9 @@ public class AdminProductServiceImpl implements AdminProductService{
 		vo.setEndPage(endPage);
 		vo.setTotCount(totCount);
 		vo.setTotPage(totPage);
+		if ("regdate".equals(vo.getOrderby())) {
+			vo.setOrderby("pregdate");
+		}
 		return dao.selectAll(vo);
 	}
 
