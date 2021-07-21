@@ -2,6 +2,8 @@ package jcappy.notice;
 
 import java.util.List;
 
+import jcappy.members.MembersVo;
+
 
 public interface NoticeService {
 	List<NoticeVo> selectAll(NoticeVo vo);
@@ -10,4 +12,5 @@ public interface NoticeService {
 	NoticeVo edit(NoticeVo vo);
 	int update(NoticeVo vo);
 	int delete(NoticeVo vo);
+	MembersVo temporarySession(MembersVo fmv);
 }

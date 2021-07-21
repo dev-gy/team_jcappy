@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import jcappy.members.MembersVo;
+
 @Repository
 public class NoticeDao {
 	
@@ -42,5 +44,9 @@ public class NoticeDao {
 	
 	public int delete(NoticeVo vo) {
 		return sqlSession.delete("notice.delete", vo);
+	}
+
+	public MembersVo temporarySession(MembersVo fmv) {
+		return sqlSession.selectOne("notice.temporarySession");
 	}
 }
