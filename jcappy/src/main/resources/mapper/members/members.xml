@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="user">
-
-	<sql id="userWhere">
-		<where>
-			<if test="sval != null and sval != ''">
-				<if test="stype == 'all'">
-					id LIKE '%${sval}%' OR name LIKE '%${sval}%'
-				</if>
-				<if test="stype != 'all'">
-					${stype} LIKE '%${sval}%'
-				</if>
-			</if>
-		</where>
-	</sql>
+<mapper namespace="members">
 	
-	<select id="login" resultType="user.MembersVo" parameterType="user.MembersVo">
-		SELECT * FROM user WHERE email=#{memail} AND pwd=md5(#{mpwd})
+	<select id="login" resultType="jcappy.members.MembersVo" parameterType="jcappy.members.MembersVo">
+		SELECT * FROM user WHERE memail=#{memail} AND mpwd=md5(#{mpwd})
 	</select>
 </mapper>
