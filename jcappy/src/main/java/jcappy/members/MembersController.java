@@ -21,7 +21,7 @@ public class MembersController {
 	
 	@RequestMapping("/join.do")
 	public String join(Model model, MembersVo vo) {
-		return "/join";
+		return "/jcappy/index.do";
 	}
 	
 	@GetMapping("/login.do")
