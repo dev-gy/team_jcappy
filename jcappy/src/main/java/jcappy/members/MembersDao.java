@@ -13,5 +13,9 @@ public class MembersDao {
 	public MembersVo login(MembersVo vo) {
 		return sqlSession.selectOne("members.login", vo);
 	}
+	
+	public int join(MembersVo vo) {
+		return sqlSession.insert("members.insert", vo);
+	}
 
 }
