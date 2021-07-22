@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AdminController {
 
+	private static String authCode = "admin*";
+	
 	@Autowired
 	AdminService service;
 
@@ -35,6 +37,16 @@ public class AdminController {
 			model.addAttribute("result", "false");
 		} else {
 			model.addAttribute("result", "true");
+		}
+		return "include/result";
+	}
+	
+	@RequestMapping("/admin/auth/checkAuthority")
+	public String checkAuthority(Model model, @RequestParam String code) {
+		if (code.equals(authCode)) {
+			model.addAttribute("result", "true");
+		} else {
+			model.addAttribute("result", "false");
 		}
 		return "include/result";
 	}

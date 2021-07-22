@@ -4,61 +4,102 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script type="text/javascript">
-function admin_create_checkId() {
+
+function check_create_id(id, url) {
 	
-}
-function admin_create_checkPwd() {
-	
-}
-function admin_create_checkName() {
-	
-}
-function admin_create_auth() {
-	
-}
-function regAdmin() {
 	var check = true;
 	
-	if ($('#aid').val().trim() == '') {
+	if (id.val().trim() == '') {
 		alert('아이디를 입력해주세요');
-		$('#aid').focus();
+		id.focus();
 		check = false;
 	} else {
 		$.ajax({
-			url: "<%=request.getContextPath()%>/admin/auth/isDuplicateId",
+			url: url,
 			data: {
-				id: $('#aid').val()
+				id: id.val()
 			},
 			async: false,
 			success: function(res) {
 				if (res.trim() == 'true') {
 					alert('중복된 아이디 입니다. 다른 아이디를 입력해주세요.');
-					$('#aid').val('');
-					$('#aid').focus();
+					id.val('');
+					id.focus();
 					check = false;
+					return;
 				}
 			},
 		});
 	}
+	return check;
+}
+
+
+function regAdmin() {
+	
+	if (!check_create_id($('#aid'), "<%=request.getContextPath()%>/admin/auth/isDuplicateId")) {return;}
 	
 	var apwd = $('#apwd').val();
 	if (apwd.trim() == '') {
 		alert('비밀번호를 입력해주세요');
 		$('#apwd').focus();
-		check = false;
+		return;
 	}
 	
 	var check_apwd = $('#check_apwd').val(); 
 	if (check_apwd.trim() == '') {
 		alert('비밀번호 확인을 입력해주세요');
 		$('#check_apwd').focus();
-		check = false;
+		return;
 	}
 	
 	if (apwd != check_apwd) {
 		alert('입력하신 비밀번호가 일치하지 않습니다.');
 		$('#apwd').focus();
-		check = false;
+		return;
+	}
+	
+	if ($('#aname').val().trim() == '') {
+		alert('이름을 입력해주세요.');
+		$('#aname').focus();
+		return;
+	}
+	
+	var count = 0;
+	for (var i = 0; i < $('input[type=checkbox]').length; i++) {
+		if ($('input[type=checkbox]').eq(i).prop('checked')) {
+			count++;
+		}
+	}
+	
+	if (count < 1) {
+		alert('권한을 하나 이상 선택해야합니다.');
+		return;
+	}
+	
+	if ($('#admin_admin').prop("checked")) {
+		if ($('#check_authority').val().trim() == '') {
+			alert('"관리자계정" 권한은 권한코드를 필요로합니다.\n권한코드를 입력해주세요.');
+			$('#check_authority').focus();
+			return;
+		} else {
+			$.ajax({
+				url: "<%=request.getContextPath()%>/admin/auth/checkAuthority",
+				data: {
+					code: $('#check_authority').val()
+				},
+				async: false,
+				success: function(res) {
+					if (res.trim() == 'false') {
+						alert('코드가 잘못 입력되었습니다.');
+						$('#check_authority').val('');
+						$('#check_authority').focus();
+						check = false;
+						return;
+					}
+				},
+			});
+		}
 	}
 	
 	if (!check) {return;}
@@ -77,6 +118,18 @@ function regAdmin() {
 				}
 			},
 		});
+	}
+}
+
+$(function () {
+	$('#check_authority').hide();
+});
+
+function check_admin_authority() {
+	if ($('#admin_admin').prop("checked")) {
+		$('#check_authority').show();
+	} else {
+		$('#check_authority').hide();
 	}
 }
 
@@ -109,25 +162,25 @@ function regAdmin() {
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">관리자 아이디</label></th>
+										<th scope="row"><label for="aid">관리자 아이디</label></th>
 										<td colspan="10">
 											<input type="text" id="aid" name="aid" class="w100" />	
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">관리자 비밀번호</label></th>
+										<th scope="row"><label for="apwd">관리자 비밀번호</label></th>
 										<td colspan="10">
 											<input type="password" id="apwd" name="apwd" class="w100"/>	
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">비밀번호 확인</label></th>
+										<th scope="row"><label for="check_apwd">비밀번호 확인</label></th>
 										<td colspan="10">
 											<input type="password" id="check_apwd" name="check_apwd" class="w100" />	
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">관리자 이름</label></th>
+										<th scope="row"><label for="aname">관리자 이름</label></th>
 										<td colspan="10">
 											<input type="text" id="aname" name="aname" class="w100" />	
 										</td>
@@ -152,7 +205,9 @@ function regAdmin() {
 										<td class="admin_authority">
 											<label><input type="checkbox" id="admin_account" name="admin_account" value="1"/>매출조회</label>	
 											&nbsp;&nbsp;|&nbsp;&nbsp;
-											<label><input type="checkbox" id="admin_admin" name="admin_admin" value="1"/>관리자계정</label>	
+											<label><input type="checkbox" id="admin_admin" name="admin_admin" value="1" onClick="check_admin_authority();"/>관리자계정</label>
+											&nbsp;
+											<input type="text" id="check_authority" name="check_authority" class="w30" placeholder="권한코드 입력">
 										</td>
 									</tr>
 								</tbody>
