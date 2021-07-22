@@ -13,4 +13,8 @@ public class AdminDao {
 	public int insert (AdminVo vo) {
 		return sqlSession.insert("admin.insert", vo);
 	}
+	
+	public int isDuplicateId (String id) {
+		return sqlSession.selectOne("admin.isDuplicateId", id);
+	}
 }

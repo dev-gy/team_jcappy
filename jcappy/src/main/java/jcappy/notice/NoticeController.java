@@ -40,7 +40,7 @@ public class NoticeController {
 		//임시 로그인 세션 
 		MembersVo mv = service.temporarySession(fmv);
 		//임시 로그인 세션
-		sess.setAttribute("membersInfo", mv);
+		sess.setAttribute("membersInfo", mv);		
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/board/notice/list";
 	}
