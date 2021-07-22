@@ -32,27 +32,29 @@
                     <h1 class="cstyle_h1">냉장고</h1>
                 </div>
                 <div class=" flex">
+                <c:forEach var="vo" items="${rList }">
                     <div class="item cstyle_border_gray">
                         <a href="/jcappy/product/detail.do">
-                            <img src="/jcappy/img/r1.jpg">
-                            <span>상품명</span>
-                            <span>100,000</span>
+                            <span class="image" style="background-image: url('${vo.pimg1_org }');"></span>
+                            <span>${vo.pname }</span>
+                            <span>${vo.pprice }</span>
                         </a>
                     </div>
-                    <div class="item cstyle_border_gray">
-                        <a href="/jcappy/product/detail.do">
-                            <img src="/jcappy/img/r2.jpg">
-                            <span>상품명</span>
-                            <span>100,000</span>
-                        </a>
-                    </div>
-                    <div class="item cstyle_border_gray">
-                        <a href="/jcappy/product/detail.do">
-                            <img src="/jcappy/img/r3.jpg">
-                            <span>상품명</span>
-                            <span>100,000</span>
-                        </a>
-                    </div>
+                </c:forEach>
+<!--                     <div class="item cstyle_border_gray"> -->
+<!--                         <a href="/jcappy/product/detail.do"> -->
+<!--                             <img src="/jcappy/img/r2.jpg"> -->
+<!--                             <span>상품명</span> -->
+<!--                             <span>100,000</span> -->
+<!--                         </a> -->
+<!--                     </div> -->
+<!--                     <div class="item cstyle_border_gray"> -->
+<!--                         <a href="/jcappy/product/detail.do"> -->
+<!--                             <img src="/jcappy/img/r3.jpg"> -->
+<!--                             <span>상품명</span> -->
+<!--                             <span>100,000</span> -->
+<!--                         </a> -->
+<!--                     </div> -->
                 </div>
                 <div>
                     <button class="all_view_btn cstyle_btn" onclick="location.href'/jcappy/product/index.do">all view</button>

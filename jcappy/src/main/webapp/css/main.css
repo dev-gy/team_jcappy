@@ -78,7 +78,7 @@ mypage/userinfo
 index
 ========================================*/
 .banner { width: 100%; text-align: center; }
-.banner > .swiper { width: 100%; height: 500px;  }
+.banner > .swiper { width: 100%; height: 500px; }
 .banner .swiper_area { position: absolute; }
 .banner .swiper_area > div { background-size: 100% 100%; }
 .banner .swiper_content { width: 1200px; height: 100%; position: relative; margin: auto; }
@@ -87,7 +87,7 @@ index
 .main_content > .title { width: 100%; height: 80px; }
 .main_content > .flex { width: 100%; height: 100%; overflow: hidden; display: flex; justify-content: space-between; }
 .main_content > .flex > .item { width: 300px; height: 450px; position: relative; margin: 30px; }
-.main_content > .flex > .item > a > img { width: 100%; height: 400px; }
+.main_content > .flex > .item > a > .image { width: 100%; height: 400px; overflow: hidden; }
 .main_content > div > .all_view_btn { width: 80px; }
 .banner .swiper-button-prev { left: 10px; }
 .banner .swiper-button-next { right: 10px; }

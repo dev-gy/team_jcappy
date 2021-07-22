@@ -17,6 +17,28 @@ function onlyNumber(obj) {
 }
 
 /*======================================
+index
+========================================*/
+$(function () {
+    var swiper = new Swiper(".banner .swiper", {
+        centeredSlides: true,
+        loop: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: true,
+        },
+        pagination: {
+            el: ".banner .swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".banner .swiper-button-next",
+            prevEl: ".banner .swiper-button-prev",
+        },
+    });
+});
+
+/*======================================
 top
 ========================================*/
 $(function () {

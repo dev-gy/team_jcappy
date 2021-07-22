@@ -12,6 +12,6 @@ public class ProductServiceImpl implements ProductService {
 	ProductDao productDao;
 	
 	public List<ProductVo> selectAll(ProductVo vo) {
-		return null;
+		return productDao.selectAll(vo);
 	}
 }

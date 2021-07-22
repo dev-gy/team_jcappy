@@ -4,11 +4,11 @@
 	<sql id="productWhere">
 		<where>
 			<if test="sval != null and sval != ''">
-				<if test="stype == 'all'">
+				<if test="ftype == ''">
 					pname LIKE '%${sval}%'
 				</if>
-				<if test="stype != 'all'">
-					pcompany=${stype} AND pname LIKE '%${sval}%'
+				<if test="ftype != ''">
+					${ftype}=${fval} AND pname LIKE '%${sval}%'
 				</if>
 			</if>
 		</where>

@@ -9,10 +9,12 @@ public class CommonVo {
 	private int pageRange;		// 하단페이지 범위
 	private int startPage;		// 시작페이지
 	private int endPage;		// 끝페이지
-	private String stype;		// 검색타입(전체,제목,내용,브랜드)
+	private String stype;		// 검색타입(전체,제목,내용)
 	private String sval;		// 검색어
 	private String orderby;		// 정렬컬럼
 	private String direct;		// 오름차순/내림차순
+	private String ftype;		// 필터타입(컬럼명)
+	private String fval;		// 필터기준(대상 컬럼의 특정 값)
 	
 	public CommonVo() {
 		this.pageRow = 10;
@@ -116,5 +118,18 @@ public class CommonVo {
 
 	public void setPageRow(int pageRow) {
 		this.pageRow = pageRow;
+	}
+	
+	public String getFtype() {
+		return ftype;
+	}
+	public void setFtype(String ftype) {
+		this.ftype = ftype;
+	}
+	public String getFval() {
+		return fval;
+	}
+	public void setFval(String fval) {
+		this.fval = fval;
 	}
 }
