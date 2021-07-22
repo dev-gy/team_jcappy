@@ -9,10 +9,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AdminController {
 
-	private static String authCode = "admin*";
+	private static final String AUTHCODE = "admin*";
 	
 	@Autowired
 	AdminService service;
+	
+	@RequestMapping("/admin/auth/index")
+	public String index(Model model, AdminVo vo) {
+		model.addAttribute("list", service.selectAll(vo));
+		return "admin/auth/list";
+	}
 
 	@RequestMapping("/admin/auth/create")
 	public String create(Model model, AdminVo vo) {
@@ -43,7 +49,7 @@ public class AdminController {
 	
 	@RequestMapping("/admin/auth/checkAuthority")
 	public String checkAuthority(Model model, @RequestParam String code) {
-		if (code.equals(authCode)) {
+		if (code.equals(AUTHCODE)) {
 			model.addAttribute("result", "true");
 		} else {
 			model.addAttribute("result", "false");

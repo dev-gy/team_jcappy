@@ -1,5 +1,7 @@
 package jcappy.admin;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,25 @@ public class AdminServiceImpl implements AdminService{
 	AdminDao dao;
 	
 	@Override
+	public List<AdminVo> selectAll(AdminVo vo) {
+		int totalCount = dao.count(vo);
+		int totalPage = totalCount / vo.getPageRow();
+		if (totalCount % vo.getPageRow() > 0) {totalPage++;}
+		
+		vo.setTotCount(totalCount);
+		vo.setTotPage(totalPage);
+
+		int startPage = (vo.getReqPage() - 1) / vo.getPageRange() * vo.getPageRange() + 1;
+		int endPage = startPage + vo.getPageRange() - 1;
+		if (endPage > totalPage) {endPage = totalPage;}
+		
+		vo.setStartPage(startPage);
+		vo.setEndPage(endPage);
+		
+		return dao.selectAll(vo);
+	}
+
+	@Override
 	public int insert(AdminVo vo) {
 		return dao.insert(vo);
 	}
@@ -18,5 +39,4 @@ public class AdminServiceImpl implements AdminService{
 	public int isDuplicateId(String id) {
 		return dao.isDuplicateId(id);
 	}
-
 }

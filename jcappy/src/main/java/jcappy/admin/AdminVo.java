@@ -20,6 +20,10 @@ public class AdminVo extends CommonVo {
 	private int admin_admin;
 	private int auth;
 
+	AdminVo() {
+		super.setOrderby("aregdate");
+	}
+	
 	public int getAno() {
 		return ano;
 	}

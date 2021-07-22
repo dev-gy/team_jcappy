@@ -5,6 +5,7 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script type="text/javascript">
 
+// 아이디 체크 
 function check_create_id(id, url) {
 	
 	var check = true;
@@ -34,49 +35,78 @@ function check_create_id(id, url) {
 	return check;
 }
 
+// 비밀번호 체크
+function check_create_pwd(pwd, chkPwd) {
 
-function regAdmin() {
+	var check = true;
 	
-	if (!check_create_id($('#aid'), "<%=request.getContextPath()%>/admin/auth/isDuplicateId")) {return;}
-	
-	var apwd = $('#apwd').val();
-	if (apwd.trim() == '') {
+	if (pwd.val().trim() == '') {
 		alert('비밀번호를 입력해주세요');
-		$('#apwd').focus();
+		pwd.focus();
+		check = false;
 		return;
 	}
 	
-	var check_apwd = $('#check_apwd').val(); 
-	if (check_apwd.trim() == '') {
+	if (chkPwd.val().trim() == '') {
 		alert('비밀번호 확인을 입력해주세요');
-		$('#check_apwd').focus();
+		chkPwd.focus();
+		check = false;
 		return;
 	}
 	
-	if (apwd != check_apwd) {
+	if (pwd.val() != chkPwd.val()) {
 		alert('입력하신 비밀번호가 일치하지 않습니다.');
-		$('#apwd').focus();
+		pwd.focus();
+		check = false;
 		return;
 	}
+	return check;
+}
+
+// 이름 체크
+function check_create_name(name) {
 	
-	if ($('#aname').val().trim() == '') {
+	if (name.val().trim() == '') {
 		alert('이름을 입력해주세요.');
-		$('#aname').focus();
-		return;
+		name.focus();
+		return false;
+	} else {
+		return true;
 	}
+}
+
+// 체크박스 체크
+function check_create_auth(checkbox) {
 	
+	var check = true;
 	var count = 0;
-	for (var i = 0; i < $('input[type=checkbox]').length; i++) {
-		if ($('input[type=checkbox]').eq(i).prop('checked')) {
+	
+	for (var i = 0; i < checkbox.length; i++) {
+		if (checkbox.eq(i).prop('checked')) {
 			count++;
 		}
 	}
 	
 	if (count < 1) {
 		alert('권한을 하나 이상 선택해야합니다.');
+		check = false;
 		return;
 	}
+	return check;	
+}
+
+// 관리자 계정 등록
+function regAdmin() {
 	
+	if (!check_create_id($('#aid'), "<%=request.getContextPath()%>/admin/auth/isDuplicateId")) {return;}
+	
+	if (!check_create_pwd($('#apwd'), $('#check_apwd'))) {return;}
+
+	if (!check_create_name($('#aname'))) {return;}
+	 
+	if (!check_create_auth($('input[type=checkbox]'))) {return;}
+	
+	// 관리자계정 권한 선택 시, 권한 코드 입력체크
 	if ($('#admin_admin').prop("checked")) {
 		if ($('#check_authority').val().trim() == '') {
 			alert('"관리자계정" 권한은 권한코드를 필요로합니다.\n권한코드를 입력해주세요.');
@@ -102,8 +132,6 @@ function regAdmin() {
 		}
 	}
 	
-	if (!check) {return;}
-	
 	if (confirm("등록하시겠습니까?")) {
 		$.ajax({
 			url: "<%=request.getContextPath()%>/admin/auth/insert",
@@ -125,6 +153,7 @@ $(function () {
 	$('#check_authority').hide();
 });
 
+//관리자계정 권한 선택 시, 권한 코드 입력 칸 출력
 function check_admin_authority() {
 	if ($('#admin_admin').prop("checked")) {
 		$('#check_authority').show();
