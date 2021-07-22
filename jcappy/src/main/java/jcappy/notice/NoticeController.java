@@ -30,7 +30,7 @@ public class NoticeController {
 	static final String TABLENAME = "notice";
 	
 	//공지사항 인덱스
-	@RequestMapping("/admin/notice/index")
+	@RequestMapping("/admin/board/notice/list")
 	public String index(Model model, NoticeVo vo, HttpSession sess) {
 		MembersVo fmv = new MembersVo();
 		//임시 로그인 세션 이메일
@@ -45,19 +45,19 @@ public class NoticeController {
 		return "admin/board/notice/list";
 	}
 	//공지사항 상세페이지
-	@RequestMapping("/admin/notice/detail")
+	@RequestMapping("/admin/board/notice/detail")
 	public String detail(Model model, NoticeVo vo) {
 		model.addAttribute("vo", service.detail(vo));
 		
 		return "admin/board/notice/detail";
 	}
 	//공지사항 쓰기페이지
-	@RequestMapping("/admin/notice/write")
+	@RequestMapping("/admin/board/notice/write")
 	public String write(Model model, NoticeVo vo) {
 		return "admin/board/notice/create";
 	}
 	//공지사항 데이터 입력
-	@RequestMapping("/admin/notice/insert")
+	@RequestMapping("/admin/board/notice/insert")
 	public String insert(Model model, NoticeVo vo, 
 						@RequestParam MultipartFile file, HttpServletRequest req) {
 		//service.insert(vo, filename, req)
@@ -85,7 +85,7 @@ public class NoticeController {
 		// r == 0 : 비정상 -> alert -> 이전페이지로 이동
 		if (r > 0) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
-			model.addAttribute("url", "index");
+			model.addAttribute("url", "list");
 		} else {
 			model.addAttribute("msg", "등록실패");
 			model.addAttribute("url", "write");
@@ -93,13 +93,13 @@ public class NoticeController {
 		return "admin/include/alert";
 	}
 	//공지사항 수정페이지
-	@RequestMapping("/admin/notice/edit")
+	@RequestMapping("/admin/board/notice/edit")
 	public String edit(Model model, NoticeVo vo) {
 		model.addAttribute("vo", service.edit(vo));
 		return "admin/board/notice/edit";
 	}
 	//공지사항 업데이트
-	@RequestMapping("/admin/notice/update")
+	@RequestMapping("/admin/board/notice/update")
 	public String update(Model model, NoticeVo vo, 
 						@RequestParam MultipartFile file, HttpServletRequest req) {
 		//service.insert(vo, filename, req)
@@ -127,7 +127,7 @@ public class NoticeController {
 		// r == 0 : 비정상 -> alert -> 이전페이지로 이동
 		if (r > 0) {
 			model.addAttribute("msg", "정상적으로 수정되었습니다.");
-			model.addAttribute("url", "index");
+			model.addAttribute("url", "list");
 		} else {
 			model.addAttribute("msg", "수정실패");
 			model.addAttribute("url", "edit?no="+vo.getNno());
@@ -135,7 +135,7 @@ public class NoticeController {
 		return "admin/include/alert";
 	}
 	//공지사항 삭제
-	@RequestMapping("/admin/notice/delete")
+	@RequestMapping("/admin/board/notice/delete")
 	public String delete(Model model, NoticeVo vo, HttpServletRequest req) {
 		int r = service.delete(vo);
 		if (r > 0) {

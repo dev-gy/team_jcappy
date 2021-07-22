@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
-function setEditor(holder){ //스마트 에디터
+function notice_edit_setEditor(holder){ //스마트 에디터
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
@@ -27,8 +27,8 @@ function setEditor(holder){ //스마트 에디터
 	
 	return oEditors;
 }
-function goSave() { 
-	oEditors.getById['contents'].exec("UPDATE_CONTENTS_FIELD",[]);
+function notice_edit_goSave() { 
+	notice_edit_oEditors.getById['contents'].exec("UPDATE_CONTENTS_FIELD",[]);
 	if ($("#title").val().trim() == "") { // title 빈값 저장 안되게
 		 alert("제목을 입력해 주세요");
 		 console.log($("#contents").val().trim());
@@ -45,9 +45,9 @@ function goSave() {
 	
 	
 }
-var oEditors; //스마트 에디터
+var notice_edit_oEditors; //스마트 에디터
 $(function(){
-	oEditors = setEditor("contents"); // id
+	notice_edit_oEditors = notice_edit_setEditor("contents"); // id
 });
 </script>
 </head>
@@ -106,10 +106,10 @@ $(function(){
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="index"><strong>목록</strong></a>
+									<a class="btns" href="list"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="javascript:goSave();"><strong>저장</strong></a>
+									<a class="btns" style="cursor:pointer;" href="javascript:notice_edit_goSave();"><strong>저장</strong></a>
 								</div>
 							</div>
 							<!--//btn-->
