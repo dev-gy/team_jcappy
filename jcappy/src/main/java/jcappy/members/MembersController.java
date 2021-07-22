@@ -19,12 +19,27 @@ public class MembersController {
 	@Autowired
 	MembersService service;
 	
-	@RequestMapping("/join.do")
+	@RequestMapping("/join")
 	public String join(Model model, MembersVo vo) {
-		return "/jcappy/index.do";
+		return "/join";
 	}
 	
-	@GetMapping("/login.do")
+	@RequestMapping("/insert")
+	public String insert(Model model, MembersVo vo, HttpServletRequest req) {
+		int r = service.insert(vo);
+		// r > 0 : 정상 -> alert -> 목록으로 이동
+		// r == 0: 비정상 -> alert -> 이전 페이지로 이동
+		if (r>0) {
+			model.addAttribute("msg", "정상적으로 가입되었습니다");
+			model.addAttribute("url", "/jcappy/index");
+		} else {
+			model.addAttribute("msg", "가입 실패");
+			model.addAttribute("url", "/join");
+		}
+		return "include/alert";
+	}
+	
+	@GetMapping("/login")
 	public String loginForm(MembersVo vo, @CookieValue(value="cookieEmail", required = false) Cookie cookie) {
 		if (cookie != null) {
 			vo.setMemail(cookie.getValue());
@@ -32,7 +47,7 @@ public class MembersController {
 		return "/login";
 	}
 	
-	@PostMapping("/login.do")
+	@PostMapping("/login")
 	   public String login(Model model, MembersVo vo, HttpServletRequest req,HttpServletResponse res, HttpSession sess) {
 	      MembersVo mv = service.login(vo);
 	      if (mv == null) {
@@ -50,7 +65,7 @@ public class MembersController {
 	            cookie.setMaxAge(0);
 	         }
 	         res.addCookie(cookie);
-	          String url = "/jcappy/index.do";
+	          String url = "/jcappy/index";
 	          if (req.getParameter("url") != null && !"".equals( req.getParameter("url"))) url = req.getParameter("url");
 	            return "redirect: "+url;
 	      }
