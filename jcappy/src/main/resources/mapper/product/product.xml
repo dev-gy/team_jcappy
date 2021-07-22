@@ -29,7 +29,7 @@
 		SELECT * FROM product WHERE pno=#{pno}
 	</select>
 	
-	<insert id="insert" parameterType="jcappy.product.ProductVo">
+	<insert id="insert" parameterType="jcappy.product.ProductVo">  
 		INSERT INTO product (pno, pimg1_org, pimg1_real, pimg2_org, pimg2_real, pimg3_org, pimg3_real, pprice, pname, pcompany, pcount, ptype, pcate, pregdate, pdetail)
 		VALUES (#{pno}, #{pimg1_org}, #{pimg1_real}, #{pimg2_org}, #{pimg2_real}, #{pimg3_org}, #{pimg3_real}, #{pprice}, #{pname}, #{pcompany}, #{pcount}, #{ptype}, #{pcate}, NOW(), #{pdetail})
 	</insert>
@@ -40,7 +40,16 @@
 	
 	<update id="update" parameterType="jcappy.product.ProductVo">
 		UPDATE product SET
-			pno=#{pno}, pprice=#{pprice}, pname=#{pname}, pcount=#{pcount}, pregdate=NOW(), content=#{content}, content=#{content}
+			pno=#{pno}, pprice=#{pprice}, pname=#{pname}, pcount=#{pcount}, pregdate=NOW()
+			<if test="pimg1_org != null">
+	            , pimg1_org=#{pimg1_org}, pimg1_real=#{pimg1_real}
+	         </if>
+	         <if test="pimg2_org != null">
+	            , pimg2_org=#{pimg2_org}, pimg2_real=#{pimg2_real}
+	         </if>
+	         <if test="pimg3_org != null">
+	            , pimg3_org=#{pimg3_org}, pimg3_real=#{pimg3_real}
+	         </if>
 		WHERE pno=#{pno}
 	</update>
 	

@@ -38,17 +38,17 @@ public class AdminProductController {
 	@RequestMapping("/admin/product/insert")
 	public String insert(Model model, ProductVo vo, 
 						@RequestParam MultipartFile file, HttpServletRequest req) {
-		if (!file.isEmpty()) { // 첨부파일이 있으면
+		if (!file.isEmpty()) {
 			try {
-				String org = file.getOriginalFilename(); // 원본파일명
-				String ext = ""; //확장자
+				String org = file.getOriginalFilename();
+				String ext = "";
 				
 				ext = org.substring(org.lastIndexOf("."));
-				String real = new Date().getTime()+ext; // 서버에 저장할 파일명
-				// 파일 저장
-				String path = req.getRealPath("/upload/"); // 경로
-				file.transferTo(new File(path+real)); // 경로+파일명 저장
-				// vo에 set
+				String real = new Date().getTime()+ext;
+
+				String path = req.getRealPath("/upload/");
+				file.transferTo(new File(path+real));
+
 				vo.setPimg1_org(org);
 				vo.setPimg1_real(real);
 				vo.setPimg2_org(org);
@@ -74,15 +74,35 @@ public class AdminProductController {
 	
 	@RequestMapping("/admin/product/update")
 	public String update(Model model, ProductVo vo, 
-						@RequestParam MultipartFile file, HttpServletRequest req) {
+			@RequestParam MultipartFile file, HttpServletRequest req) {
 	
+		if (!file.isEmpty()) {
+			try {
+				String org = file.getOriginalFilename();
+				String ext = "";
+				ext = org.substring(org.lastIndexOf("."));
+				
+				String real = new Date().getTime() + ext;
+				String path = req.getRealPath("/upload/");
+				
+				file.transferTo(new File(path + real));
+				vo.setPimg1_org(org);
+				vo.setPimg1_real(real);
+				vo.setPimg2_org(org);
+				vo.setPimg2_real(real);
+				vo.setPimg3_org(org);
+				vo.setPimg3_real(real);
+			} catch (Exception e) {
+			}
+		}
 		int r = service.update(vo);
+
 		if (r > 0) {
 			model.addAttribute("msg", "정상적으로 수정되었습니다.");
 			model.addAttribute("url", "list");
 		} else {
 			model.addAttribute("msg", "수정실패");
-			model.addAttribute("url", "detail?no="+vo.getPno());
+			model.addAttribute("url", "detail?pno=" + vo.getPno());
 		}
 		return "include/alert";
 	}
