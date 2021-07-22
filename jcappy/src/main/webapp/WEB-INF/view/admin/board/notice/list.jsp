@@ -26,7 +26,6 @@
 					<div id="bbs">
 						<div id="blist">
 							<p><span><strong>총 ${noticeVo.totCount}개</strong>  |  ${noticeVo.reqPage}/${noticeVo.totPage }페이지</span></p>
-							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
 									<col class="w3" />
@@ -63,7 +62,6 @@
 									
 								</tbody>
 							</table>
-							</form>
 							<!--//btn-->
 							<div class="btn">
 								<div class="btnRight">
@@ -72,7 +70,6 @@
 							</div>
 							<!-- 페이징 처리 -->
 							<div class='page'>
-								
 		                        <c:if test="${noticeVo.startPage > noticeVo.pageRange}">
 		                        	<span><a href="list?reqPage=${noticeVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a></span>
 		                        </c:if>
