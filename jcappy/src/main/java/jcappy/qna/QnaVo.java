@@ -12,14 +12,15 @@ public class QnaVo extends CommonVo {
 	private Timestamp qregdate;
 	private int q_gno;
 	private int q_ono;
-	private int qnested;
+	private int q_nested;
 	private String qfile_org;	// 사용자가첨부한 원본파일명
 	private String qfile_real;	// 서버에 저장된 실제파일명
 	private int mno;
 	private String isDel;
 	
-	private int comment_count;
 	private String mname;
+	private String mphone;
+	private String memail;
 	
 	public int getQno() {
 		return qno;
@@ -57,11 +58,11 @@ public class QnaVo extends CommonVo {
 	public void setQ_ono(int q_ono) {
 		this.q_ono = q_ono;
 	}
-	public int getQnested() {
-		return qnested;
+	public int getQ_nested() {
+		return q_nested;
 	}
-	public void setQnested(int qnested) {
-		this.qnested = qnested;
+	public void setQ_nested(int q_nested) {
+		this.q_nested = q_nested;
 	}
 	public String getQfile_org() {
 		return qfile_org;
@@ -87,17 +88,22 @@ public class QnaVo extends CommonVo {
 	public void setIsDel(String isDel) {
 		this.isDel = isDel;
 	}
-	public int getComment_count() {
-		return comment_count;
-	}
-	public void setComment_count(int comment_count) {
-		this.comment_count = comment_count;
-	}
 	public String getMname() {
 		return mname;
 	}
 	public void setMname(String mname) {
 		this.mname = mname;
 	}
-	
+	public String getMphone() {
+		return mphone;
+	}
+	public void setMphone(String mphone) {
+		this.mphone = mphone;
+	}
+	public String getMemail() {
+		return memail;
+	}
+	public void setMemail(String memail) {
+		this.memail = memail;
+	}
 }

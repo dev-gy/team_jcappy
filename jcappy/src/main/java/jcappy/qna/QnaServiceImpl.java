@@ -38,19 +38,9 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override
 	public QnaVo detail(QnaVo vo) {
-		dao.updateReadcount(vo);
 		return dao.detail(vo);
 	}
 
-	@Override
-	public int insert(QnaVo vo) {
-		return dao.insert(vo);
-	}
-
-	@Override
-	public QnaVo edit(QnaVo vo) {
-		return dao.detail(vo);
-	}
 	
 	@Override
 	public int update(QnaVo vo) {
@@ -69,6 +59,16 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public MembersVo temporarySession(MembersVo fmv) {
 		return dao.temporarySession(fmv);
+	}
+
+	@Override
+	public int insertReply(QnaVo vo) {
+		vo.setQ_gno(dao.lastPk());
+		dao.gno(vo.getQ_gno());
+		dao.onoUpdate(vo);
+		vo.setQ_ono(vo.getQ_ono()+1);
+		vo.setQ_nested(vo.getQ_nested()+1);
+		return dao.insertReply(vo);
 	}
 
 	

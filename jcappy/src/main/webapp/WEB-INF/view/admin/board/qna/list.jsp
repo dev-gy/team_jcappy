@@ -25,8 +25,7 @@
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="blist">
-							<p><span><strong>총 111개</strong>  |  1/12페이지</span></p>
-							<form name="frm" id="frm" action="process.do" method="post">
+							<p><span><strong>총 ${qnaVo.totCount}개</strong>  |   ${qnaVo.reqPage}/${qnaVo.totPage }</span></p>
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
 									<col class="w3" />
@@ -40,8 +39,6 @@
 										<th scope="col">제목</th> 
 										<th scope="col">작성자</th>
 										<th scope="col">작성일</th>
-										
-										
 									</tr>
 								</thead>
 								<tbody>
@@ -53,26 +50,34 @@
 									<c:forEach var="vo" items="${list}">
 									<tr>
 										<td class="first">${vo.qno}</td>
-										<!-- 상세페이지 링크 and 리플 갯수 -->
-										<td class="title"><a href="detail?qno=${vo.qno}&reqPage=${qnaVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.qtitle} </a></td>
+										<!-- 상세페이지 링크  -->
+										<td class="title"><a href="detail?qno=${vo.qno}&reqPage=${qnaVo.reqPage}&stype=${param.stype}&sval=${param.sval}">${vo.qtitle} </a></td>
 										<td>${vo.mname }</td>
 										<td><fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 									</tr>
 									</c:forEach>
-									
 								</tbody>
 							</table>
-							</form>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
 							<div class='page'>
-								<strong>1</strong>
-								<a href="">2</a>
-								<a href="">3</a>
-								<a href="">4</a>
+		                        <c:if test="${qnaVo.startPage > qnaVo.pageRange}">
+		                        	<span><a href="list?reqPage=${qnaVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}"><</a></span>
+		                        </c:if>
+		                        <c:forEach var="rp" begin="${qnaVo.startPage}" end="${qnaVo.endPage }">
+		                        <c:if test="${qnaVo.reqPage == rp }">
+									<span><a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}'><strong>${rp }</strong></a></span>
+		                        </c:if>
+		                        <c:if test="${qnaVo.reqPage != rp }">
+		                            <span><a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}'>${rp }</a></span>
+		                        </c:if>
+		                        </c:forEach>
+		                        <c:if test="${qnaVo.totPage > qnaVo.endPage}">
+		                        	<span><a href="list?reqPage=${qnaVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}">></a></span>
+		                        </c:if>
 							</div>
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="index.do"  method="post">
+							<form name="searchForm" id="searchForm" action="list"  method="post">
 								<div class="search">
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all">전체</option>

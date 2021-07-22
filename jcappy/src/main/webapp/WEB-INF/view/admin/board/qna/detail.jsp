@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -36,73 +37,54 @@
 									<tr>
 										<th scope="row"><label for="">번호</label></th>
 										<td colspan="10">
-											1
+											${vo.qno}
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">제목</label></th>
 										<td colspan="10">
-											상품이 너무 예뻐요
+											${vo.qtitle}
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">작성날짜</label></th>
 										<td colspan="10">
-											2021-7-10
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">답변여부</label></th>
-										<td colspan="10">
-											Y
+											${vo.qregdate}
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">회원이름</label></th>
 										<td colspan="10">
-											안두용
+											${vo.mname}
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">회원연락처</label></th>
 										<td colspan="10">
-											010-5645-8941
+											${vo.mphone }
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">회원이메일</label></th>
 										<td colspan="10">
-											ady4709@naver.com
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">상품명</label></th>
-										<td colspan="10">
-											냉장고
+											${vo.memail }
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">내용</label></th>
 										<td colspan="10">
-											내용입니다.
+											${vo.qcontent}
 										</td>
 									</tr>
-									<tr>
-										<th scope="row"><label for="">답글</label></th>
-										<td colspan="10">
-											<textarea id="contents" name="contents" title="내용을 입력해주세요" style="width:100%;">최대한 빠른 조취 하도록 하겠습니다.</textarea>	
-										</td>
-									</tr>
-									
 									
 								</tbody>
 							</table>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="<%=request.getContextPath()%>/admin/board/qna_list.do"><strong>목록</strong></a>
+									<a class="btns" href="list?<c:if test="${!empty param.reqPage}">reqPage=${param.reqPage}</c:if>&stype=${param.stype}&sval=${param.sval}"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href=""><strong>수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="reply?qno=${vo.qno}"><strong>답글</strong></a>
 									<a class="btns" style="cursor:pointer;" href=""><strong>삭제</strong></a>
 								</div>
 							</div>
