@@ -15,7 +15,7 @@
                 <div class="title">
                     <h1 class="cstyle_h1">Join</h1>
                 </div>
-                <form action="메인페이지.html" method="post" class="join_form">
+                <form action="join.do" method="post" class="join_form">
                     <input type="text" class="join_input" name="id" placeholder="이메일" required="required"/><br>
                     <input type="password" class="join_input" id="pwd1" placeholder="비밀번호" required="required"/><br>
                     <input type="password" class="join_input" id="pwd2" placeholder="비밀번호 확인" required="required"/><br><br>

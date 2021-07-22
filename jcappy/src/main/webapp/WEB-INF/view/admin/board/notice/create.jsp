@@ -1,10 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
-function setEditor(holder){ //스마트 에디터
+function notice_create_setEditor(holder){ //스마트 에디터
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
@@ -27,8 +28,8 @@ function setEditor(holder){ //스마트 에디터
 	
 	return oEditors;
 }
-function goSave() {
-	oEditors.getById['contents'].exec("UPDATE_CONTENTS_FIELD",[]);
+function notice_create_goSave() {
+	notice_create_oEditors.getById['contents'].exec("UPDATE_CONTENTS_FIELD",[]);
 	if ($("#title").val().trim() == "") { //title 빈값이면 저장안되게
 		 alert("제목을 입력해 주세요");
 		 console.log($("#contents").val().trim());
@@ -43,9 +44,9 @@ function goSave() {
 	 }
 	$("#frm").submit();
 }
-var oEditors; //스마트 에디터
+var notice_create_oEditors; //스마트 에디터
 $(function(){
-	oEditors = setEditor("contents"); // id
+	notice_create_oEditors = notice_create_setEditor("contents"); // id
 });
 </script>
 </head>
@@ -101,10 +102,10 @@ $(function(){
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="index"><strong>목록</strong></a>
+									<a class="btns" href="list?<c:if test="${!empty param.reqPage}">reqPage=${param.reqPage}</c:if>&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="javascript:goSave();"><strong>저장</strong></a>
+									<a class="btns" style="cursor:pointer;" href="javascript:notice_create_goSave();"><strong>저장</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

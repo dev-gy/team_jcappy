@@ -11,12 +11,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MembersController {
 	
 	@Autowired
 	MembersService service;
+	
+	@RequestMapping("/join.do")
+	public String join(Model model, MembersVo vo) {
+		return "/jcappy/index.do";
+	}
 	
 	@GetMapping("/login.do")
 	public String loginForm(MembersVo vo, @CookieValue(value="cookieEmail", required = false) Cookie cookie) {
@@ -39,12 +45,12 @@ public class MembersController {
 	         Cookie cookie = new Cookie("cookieEmail", vo.getMemail());
 	         cookie.setPath("/");
 	         if ("check".equals(vo.getCheckEmail())) {
-	            cookie.setMaxAge(60*60*3);
+	            cookie.setMaxAge(60*60*5);
 	         } else {
 	            cookie.setMaxAge(0);
 	         }
 	         res.addCookie(cookie);
-	          String url = "/index.do";
+	          String url = "/jcappy/index.do";
 	          if (req.getParameter("url") != null && !"".equals( req.getParameter("url"))) url = req.getParameter("url");
 	            return "redirect: "+url;
 	      }
