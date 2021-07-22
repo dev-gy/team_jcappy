@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
-function setEditor(holder){
+function setEditor(holder){ //스마트 에디터
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
@@ -29,21 +29,21 @@ function setEditor(holder){
 }
 function goSave() {
 	oEditors.getById['contents'].exec("UPDATE_CONTENTS_FIELD",[]);
-	if ($("#title").val().trim() == "") {
+	if ($("#title").val().trim() == "") { //title 빈값이면 저장안되게
 		 alert("제목을 입력해 주세요");
 		 console.log($("#contents").val().trim());
 		 $("#title").focus();
 		 return false;
 	 }
 	
-	 if ($("#contents").val().trim() == "<p>&nbsp;</p>") {
+	 if ($("#contents").val().trim() == "<p>&nbsp;</p>") { //contents 빈값이면 저장안되게
 		 alert("내용을 입력해 주세요");
 		 $("#contents").focus();
 		 return false;
 	 }
 	$("#frm").submit();
 }
-var oEditors;
+var oEditors; //스마트 에디터
 $(function(){
 	oEditors = setEditor("contents"); // id
 });

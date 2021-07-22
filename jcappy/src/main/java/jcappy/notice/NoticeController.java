@@ -29,31 +29,34 @@ public class NoticeController {
 	//tablename 변수 설정하여 comment insert, list 에서 사용
 	static final String TABLENAME = "notice";
 	
+	//공지사항 인덱스
 	@RequestMapping("/admin/notice/index")
 	public String index(Model model, NoticeVo vo, HttpSession sess) {
 		MembersVo fmv = new MembersVo();
-		fmv.setMemail("aaa");
-		fmv.setMpwd("aaa");
-		System.out.println("실험" + fmv.getMemail());
+		//임시 로그인 세션 이메일
+		fmv.setMemail("bbb");
+		//임시 로그인 세션 비밀번호
+		fmv.setMpwd("bbb");
+		//임시 로그인 세션 
 		MembersVo mv = service.temporarySession(fmv);
-		System.out.println("실험"+mv.getMemail());
-		sess.setAttribute("membersInfo", sess);
+		//임시 로그인 세션
+		sess.setAttribute("membersInfo", mv);
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/board/notice/list";
 	}
-	
+	//공지사항 상세페이지
 	@RequestMapping("/admin/notice/detail")
 	public String detail(Model model, NoticeVo vo) {
 		model.addAttribute("vo", service.detail(vo));
 		
 		return "admin/board/notice/detail";
 	}
-	
+	//공지사항 쓰기페이지
 	@RequestMapping("/admin/notice/write")
 	public String write(Model model, NoticeVo vo) {
 		return "admin/board/notice/create";
 	}
-	
+	//공지사항 데이터 입력
 	@RequestMapping("/admin/notice/insert")
 	public String insert(Model model, NoticeVo vo, 
 						@RequestParam MultipartFile file, HttpServletRequest req) {
@@ -89,13 +92,13 @@ public class NoticeController {
 		}
 		return "admin/include/alert";
 	}
-	
+	//공지사항 수정페이지
 	@RequestMapping("/admin/notice/edit")
 	public String edit(Model model, NoticeVo vo) {
 		model.addAttribute("vo", service.edit(vo));
 		return "admin/board/notice/edit";
 	}
-	
+	//공지사항 업데이트
 	@RequestMapping("/admin/notice/update")
 	public String update(Model model, NoticeVo vo, 
 						@RequestParam MultipartFile file, HttpServletRequest req) {
@@ -131,7 +134,7 @@ public class NoticeController {
 		}
 		return "admin/include/alert";
 	}
-	
+	//공지사항 삭제
 	@RequestMapping("/admin/notice/delete")
 	public String delete(Model model, NoticeVo vo, HttpServletRequest req) {
 		int r = service.delete(vo);
@@ -142,10 +145,11 @@ public class NoticeController {
 		}
 		return "admin/include/result";
 	}
-	
+	//댓글 데이터 입력
 	@RequestMapping("/admin/comment/insert")
 	public String commentInsert(Model model, CommentVo vo) {
-		vo.setCm_tablename(TABLENAME); // tablename 
+		// tablename notice
+		vo.setCm_tablename(TABLENAME); 
 		int r = cService.insert(vo);
 		
 		if (r > 0) {
@@ -156,13 +160,15 @@ public class NoticeController {
 		
 		return "admin/include/result";
 	}
-	
+	//댓글 리스트 불러오기
 	@RequestMapping("/admin/comment/list")
 	public String commentList(Model model, CommentVo cv) {
-		cv.setCm_tablename(TABLENAME);
+		// tablename notice
+		cv.setCm_tablename(TABLENAME); 
 		model.addAttribute("list", cService.selectAll(cv));
 		return "admin/include/comment";
 	}
+	// 댓글 삭제
 	@RequestMapping("/admin/comment/delete")
 	public String commentDelete(Model model, CommentVo vo) {
 		int r = cService.delete(vo);

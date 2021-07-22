@@ -24,9 +24,11 @@ public class NoticeServiceImpl implements NoticeService {
 		// 시작페이지
 		int startPage = (vo.getReqPage()-1)/vo.getPageRange()
 						*vo.getPageRange()+1;
+		// 마지막페이지
 		int endPage = startPage+vo.getPageRange()-1;
 		if (endPage > totPage) endPage = totPage;
 		
+		//커맨드객체에 세팅
 		vo.setStartPage(startPage);
 		vo.setEndPage(endPage);
 		vo.setTotCount(totCount);
@@ -52,6 +54,7 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Override
 	public int update(NoticeVo vo) {
+		//isDel이 1값이면 파일이름 초기화
 		if ("1".equals(vo.getIsDel())) {
 			dao.delFilename(vo);
 		}

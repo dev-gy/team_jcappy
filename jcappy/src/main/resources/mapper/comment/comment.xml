@@ -4,7 +4,7 @@
 
 	<select id="selectAll" resultType="jcappy.comment.CommentVo" parameterType="jcappy.comment.CommentVo">
 		SELECT *,
-		(SELECT name FROM members WHERE no=comment.mno) AS name
+		(SELECT mname FROM members WHERE mno=comment.mno) AS name
 		FROM comment
 		WHERE cm_board_no=#{cm_board_no} AND cm_tablename=#{cm_tablename}
 		ORDER BY cm_regdate DESC

@@ -20,9 +20,10 @@ public class CommentServiceImpl implements CommentService {
 		// 시작페이지
 		int startPage = (vo.getReqPage()-1)/vo.getPageRange()
 						*vo.getPageRange()+1;
+		// 끝페이지
 		int endPage = startPage+vo.getPageRange()-1;
 		if (endPage > totPage) endPage = totPage;
-		
+		//커맨드객체 세팅
 		vo.setStartPage(startPage);
 		vo.setEndPage(endPage);
 		vo.setTotCount(totCount);

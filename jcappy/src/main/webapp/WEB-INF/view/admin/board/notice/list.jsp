@@ -52,8 +52,9 @@
 									<c:forEach var="vo" items="${list}">
 									<tr>
 										<td class="first">${vo.nno}</td>
+										<!-- 상세페이지 링크 and 리플 갯수 -->
 										<td class="title"><a href="detail?nno=${vo.nno}&reqPage=${noticeVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.ntitle} [${vo.comment_count}]</a></td>
-										<td><fmt:formatDate value="${vo.nregdate }" pattern="yyyy-MM-dd"/> </td>
+										<td><fmt:formatDate value="${vo.nregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 										<td>${vo.nreadcount}</td>
 									</tr>
 									
@@ -83,6 +84,7 @@
 		                        </c:if>
 							</div>
 							<!-- //페이징 처리 -->
+							<!-- 검색 조건들 -->
 							<form name="searchForm" id="searchForm" action="index.do"  method="post">
 								<div class="search">
 									 <select id="orderby" name="orderby" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
@@ -102,6 +104,7 @@
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" onclick="$('#searchForm').submit();" />
 								</div>
 							</form>
+							<!-- //검색 조건들 -->
 							<!-- //search --> 
 						</div>
 						<!-- //blist -->
