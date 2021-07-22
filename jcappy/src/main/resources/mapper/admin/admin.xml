@@ -6,7 +6,7 @@
 		INSERT INTO admin 
 		(aid, apwd, aname, aregdate, admin_item, admin_order, admin_members, admin_board, admin_add, admin_account, admin_admin, auth)
 		VALUES
-		(#{aid}, #{apwd}, #{aname}, NOW(), #{admin_item}, #{admin_order}, #{admin_members}, #{admin_board}, #{admin_add}, #{admin_account}, #{admin_admin}, #{auth})
+		(#{aid}, MD5(#{apwd}), #{aname}, NOW(), #{admin_item}, #{admin_order}, #{admin_members}, #{admin_board}, #{admin_add}, #{admin_account}, #{admin_admin}, #{auth})
 	</insert>		
 	
 	<select id="isDuplicateId" resultType="int" parameterType="String">
