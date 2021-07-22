@@ -16,6 +16,10 @@ function onlyNumber(obj) {
     obj.value = obj.value.replace(/[^0-9]/g, '');
 }
 
+function priceToString(price) {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
 /*======================================
 index
 ========================================*/

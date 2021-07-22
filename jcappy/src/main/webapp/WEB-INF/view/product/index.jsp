@@ -26,8 +26,8 @@
 			<div class="search_content">
 				<p class="itemList_count">냉장고 32(총 개수)</p>
 				<div class="itemList_search">
-					<select>
-						<option value="1" selected>인기순</option>
+					<select name="orderby">
+						<option value="popular" selected>인기순</option>
 						<option value="2">가격 높은순</option>
 						<option value="3">가격 낮은순</option>
 					</select>

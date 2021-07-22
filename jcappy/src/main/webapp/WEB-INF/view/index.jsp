@@ -36,55 +36,12 @@
                     <div class="item cstyle_border_gray">
                         <a href="/jcappy/product/detail.do">
                             <span class="image" style="background-image: url('${vo.pimg1_org }');"></span>
-                            <span>${vo.pname }</span>
-                            <span>${vo.pprice }</span>
+                            <span class="name">${vo.pname }</span>
+                            <span class="price"><fmt:formatNumber maxFractionDigits="3" type="number" value="${vo.pprice }"/>원</span>
                         </a>
                     </div>
                 </c:forEach>
-<!--                     <div class="item cstyle_border_gray"> -->
-<!--                         <a href="/jcappy/product/detail.do"> -->
-<!--                             <img src="/jcappy/img/r2.jpg"> -->
-<!--                             <span>상품명</span> -->
-<!--                             <span>100,000</span> -->
-<!--                         </a> -->
-<!--                     </div> -->
-<!--                     <div class="item cstyle_border_gray"> -->
-<!--                         <a href="/jcappy/product/detail.do"> -->
-<!--                             <img src="/jcappy/img/r3.jpg"> -->
-<!--                             <span>상품명</span> -->
-<!--                             <span>100,000</span> -->
-<!--                         </a> -->
-<!--                     </div> -->
-                </div>
-                <div>
-                    <button class="all_view_btn cstyle_btn" onclick="location.href'/jcappy/product/index.do">all view</button>
-                </div>
-            </div>
 
-            <div class="main_content">
-                <h1 class="cstyle_h1">에어컨</h1>
-                <div class="flex">
-                    <div class="item cstyle_border_gray">
-                        <a href="/jcappy/product/detail.do">
-                            <img src="/jcappy/img/a1.png">
-                            <span>상품명</span>
-                            <span>100,000</span>
-                        </a>
-                    </div>
-                    <div class="item cstyle_border_gray">
-                        <a href="/jcappy/product/detail.do">
-                            <img src="/jcappy/img/a2.png">
-                            <span>상품명</span>
-                            <span>100,000</span>
-                        </a>
-                    </div>
-                    <div class="item cstyle_border_gray">
-                        <a href="/jcappy/product/detail.do">
-                            <img src="/jcappy/img/a3.jpg">
-                            <span>상품명</span>
-                            <span>100,000</span>
-                        </a>
-                    </div>
                 </div>
                 <div>
                     <button class="all_view_btn cstyle_btn" onclick="location.href'/jcappy/product/index.do">all view</button>
@@ -93,30 +50,18 @@
 
             <div class="main_content">
                 <div class="title">
-                    <h1>TV</h1>
+                    <h1 class="cstyle_h1">에어컨</h1>
                 </div>
-                <div class="flex">
+                <div class=" flex">
+                <c:forEach var="vo" items="${aList }">
                     <div class="item cstyle_border_gray">
                         <a href="/jcappy/product/detail.do">
-                            <img src="/jcappy/img/t1.jpg">
-                            <span>상품명</span>
-                            <span>100,000</span>
+                            <span class="image" style="background-image: url('${vo.pimg1_org }');"></span>
+                            <span class="name">${vo.pname }</span>
+                            <span class="price"><fmt:formatNumber maxFractionDigits="3" type="number" value="${vo.pprice }"/>원</span>
                         </a>
                     </div>
-                    <div class="item cstyle_border_gray">
-                        <a href="/jcappy/product/detail.do">
-                            <img src="/jcappy/img/t2.jpg">
-                            <span>상품명</span>
-                            <span>100,000</span>
-                        </a>
-                    </div>
-                    <div class="item cstyle_border_gray">
-                        <a href="/jcappy/product/detail.do">
-                            <img src="/jcappy/img/t3.webp">
-                            <span>상품명</span>
-                            <span>100,000</span>
-                        </a>
-                    </div>
+                </c:forEach>
                 </div>
                 <div>
                     <button class="all_view_btn cstyle_btn" onclick="location.href'/jcappy/product/index.do">all view</button>
@@ -124,29 +69,39 @@
             </div>
 
             <div class="main_content">
-                <h1 class="cstyle_h1">세탁기</h1>
-                <div class="flex">
+                <div class="title">
+                    <h1 class="cstyle_h1">TV</h1>
+                </div>
+                <div class=" flex">
+                <c:forEach var="vo" items="${tList }">
                     <div class="item cstyle_border_gray">
                         <a href="/jcappy/product/detail.do">
-                            <img src="/jcappy/img/w1.jpg">
-                            <span>상품명</span>
-                            <span>100,000</span>
+                            <span class="image" style="background-image: url('${vo.pimg1_org }');"></span>
+                            <span class="name">${vo.pname }</span>
+                            <span class="price"><fmt:formatNumber maxFractionDigits="3" type="number" value="${vo.pprice }"/>원</span>
                         </a>
                     </div>
+                </c:forEach>
+                </div>
+                <div>
+                    <button class="all_view_btn cstyle_btn" onclick="location.href'/jcappy/product/index.do">all view</button>
+                </div>
+            </div>
+
+            <div class="main_content">
+                <div class="title">
+                    <h1 class="cstyle_h1">세탁기</h1>
+                </div>
+                <div class=" flex">
+                <c:forEach var="vo" items="${wList }">
                     <div class="item cstyle_border_gray">
                         <a href="/jcappy/product/detail.do">
-                            <img src="/jcappy/img/w2.jpg">
-                            <span>상품명</span>
-                            <span>100,000</span>
+                            <span class="image" style="background-image: url('${vo.pimg1_org }');"></span>
+                            <span class="name">${vo.pname }</span>
+                            <span class="price"><fmt:formatNumber maxFractionDigits="3" type="number" value="${vo.pprice }"/>원</span>
                         </a>
                     </div>
-                    <div class="item cstyle_border_gray">
-                        <a href="/jcappy/product/detail.do">
-                            <img src="/jcappy/img/w3.png">
-                            <span>상품명</span>
-                            <span>100,000</span>
-                        </a>
-                    </div>
+                </c:forEach>
                 </div>
                 <div>
                     <button class="all_view_btn cstyle_btn" onclick="location.href'/jcappy/product/index.do">all view</button>
