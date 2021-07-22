@@ -77,7 +77,12 @@
 		                        	<span><a href="index?reqPage=${noticeVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a></span>
 		                        </c:if>
 		                        <c:forEach var="rp" begin="${noticeVo.startPage}" end="${noticeVo.endPage }">
-		                            <span><a href='index?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}' <c:if test="${rp==noticeVo.reqPage }">class='current'</c:if>>${rp }</a></span>
+		                        <c:if test="${noticeVo.reqPage == rp }">
+									<span><a href='index?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'><strong>${rp }</strong></a></span>
+		                        </c:if>
+		                        <c:if test="${noticeVo.reqPage != rp }">
+		                            <span><a href='index?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'>${rp }</a></span>
+		                        </c:if>
 		                        </c:forEach>
 		                        <c:if test="${noticeVo.totPage > noticeVo.endPage}">
 		                        	<span><a href="index?reqPage=${noticeVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a></span>

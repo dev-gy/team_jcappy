@@ -3,9 +3,84 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
-<style>
+<script type="text/javascript">
+function admin_create_checkId() {
 	
-</style>
+}
+function admin_create_checkPwd() {
+	
+}
+function admin_create_checkName() {
+	
+}
+function admin_create_auth() {
+	
+}
+function regAdmin() {
+	var check = true;
+	
+	if ($('#aid').val().trim() == '') {
+		alert('아이디를 입력해주세요');
+		$('#aid').focus();
+		check = false;
+	} else {
+		$.ajax({
+			url: "<%=request.getContextPath()%>/admin/auth/isDuplicateId",
+			data: {
+				id: $('#aid').val()
+			},
+			async: false,
+			success: function(res) {
+				if (res.trim() == 'true') {
+					alert('중복된 아이디 입니다. 다른 아이디를 입력해주세요.');
+					$('#aid').val('');
+					$('#aid').focus();
+					check = false;
+				}
+			},
+		});
+	}
+	
+	var apwd = $('#apwd').val();
+	if (apwd.trim() == '') {
+		alert('비밀번호를 입력해주세요');
+		$('#apwd').focus();
+		check = false;
+	}
+	
+	var check_apwd = $('#check_apwd').val(); 
+	if (check_apwd.trim() == '') {
+		alert('비밀번호 확인을 입력해주세요');
+		$('#check_apwd').focus();
+		check = false;
+	}
+	
+	if (apwd != check_apwd) {
+		alert('입력하신 비밀번호가 일치하지 않습니다.');
+		$('#apwd').focus();
+		check = false;
+	}
+	
+	if (!check) {return;}
+	
+	if (confirm("등록하시겠습니까?")) {
+		$.ajax({
+			url: "<%=request.getContextPath()%>/admin/auth/insert",
+			method: 'POST',
+			data: $('#frm').serialize(),
+			success: function(res) {
+				if (res.trim() == 'true') {
+					alert('정상적으로 등록되었습니다.');
+					location.href="<%=request.getContextPath()%>/admin/auth/create";
+				} else {
+					alert('오류발생, 등록에 실패하였습니다.');
+				}
+			},
+		});
+	}
+}
+
+</script>
 </head>
 <body> 
 <div id="wrap">
@@ -36,7 +111,7 @@
 									<tr>
 										<th scope="row"><label for="">관리자 아이디</label></th>
 										<td colspan="10">
-											<input type="text" id="aid" name="aid" class="w100"/>	
+											<input type="text" id="aid" name="aid" class="w100" />	
 										</td>
 									</tr>
 									<tr>
@@ -88,7 +163,7 @@
 									<a class="btns" href="list"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" onclick="$('#frm').submit();"><strong>등록</strong></a>
+									<a class="btns" onclick="regAdmin();"><strong>등록</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

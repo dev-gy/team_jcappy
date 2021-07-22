@@ -9,4 +9,7 @@
 		(#{aid}, #{apwd}, #{aname}, NOW(), #{admin_item}, #{admin_order}, #{admin_members}, #{admin_board}, #{admin_add}, #{admin_account}, #{admin_admin}, #{auth})
 	</insert>		
 	
+	<select id="isDuplicateId" resultType="int" parameterType="String">
+		SELECT COUNT(*) FROM admin WHERE aid=#{aid}  
+	</select>
 </mapper>

@@ -14,4 +14,9 @@ public class AdminServiceImpl implements AdminService{
 		return dao.insert(vo);
 	}
 
+	@Override
+	public int isDuplicateId(String id) {
+		return dao.isDuplicateId(id);
+	}
+
 }
