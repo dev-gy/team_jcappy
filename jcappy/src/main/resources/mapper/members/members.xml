@@ -7,8 +7,8 @@
 		SELECT * FROM members WHERE memail=#{memail} AND mpwd=#{mpwd}  
 	</select>
 	
-	<!-- 회원가입 -->
-	<insert id="join" parameterType="jcappy.members.MembersVo">
+	<!-- 회원 추가 -->
+	<insert id="insert" parameterType="jcappy.members.MembersVo">
 		INSERT INTO members (mname, mphone, memail, mpwd, mregdate, mzipcode, maddr, maddrde)
 		values (#{mname}, #{mphone}, #{memail}, md5(#{mpwd}), NOW(), #{mzipcode}, #{maddr}, #{maddrde}) <!-- pwd는 md5로 암호화 한것 -->
 	</insert>

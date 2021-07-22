@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -29,56 +31,35 @@
 								<colgroup>
 									<col class="w3" />
 									<col class="" />
-									<col class="w4" />
+									<col class="w6" />
 									<col class="w6" />
 								</colgroup>
 								<thead>
 									<tr>
 										<th scope="col" class="first">번호</th>
 										<th scope="col">제목</th> 
-										<th scope="col">답변상태</th> 
+										<th scope="col">작성자</th>
 										<th scope="col">작성일</th>
 										
 										
 									</tr>
 								</thead>
 								<tbody>
+									<c:if test="${empty list }">
+			                            <tr>
+			                                <td class="first" colspan="5">등록된 글이 없습니다.</td>
+			                            </tr>
+			                        </c:if>
+									<c:forEach var="vo" items="${list}">
 									<tr>
-										<td class="first">1</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/qna_view.do">상품이 상처가 나있어요</a></td>
-										<td>Y</td>
-										<td>2021-7-24</td>
+										<td class="first">${vo.qno}</td>
+										<!-- 상세페이지 링크 and 리플 갯수 -->
+										<td class="title"><a href="detail?qno=${vo.qno}&reqPage=${qnaVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.qtitle} </a></td>
+										<td>${vo.mname }</td>
+										<td><fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 									</tr>
-									<tr>
-										<td class="first">2</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/qna_view.do">상품이 기스가 나있어요</a></td>
-										<td>Y</td>
-										<td>2021-7-24</td>
-									</tr>
-									<tr>
-										<td class="first">3</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/qna_view.do">상품이 부러져 있어요</a></td>
-										<td>Y</td>
-										<td>2021-7-24</td>
-									</tr>
-									<tr>
-										<td class="first">4</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/qna_view.do">상품에 결함이 있어요</a></td>
-										<td>N</td>
-										<td>2021-7-24</td>
-									</tr>
-									<tr>
-										<td class="first">5</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/qna_view.do">상품이 너무 안좋아요</a></td>
-										<td>N</td>
-										<td>2021-7-24</td>
-									</tr>
-									<tr>
-										<td class="first">6</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/qna_view.do">상품이 너무 지저분해요</a></td>
-										<td>Y</td>
-										<td>2021-7-24</td>
-									</tr>
+									</c:forEach>
+									
 								</tbody>
 							</table>
 							</form>
