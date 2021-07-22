@@ -22,9 +22,9 @@ body{position:relative; height:100%;}
 
 #header .header_inner .util{position:absolute; right:10px; top:43px; height:28px;}
 #header .header_inner .util ul{overflow:hidden; float:right; margin:4px 0 0 0;}
-#header .header_inner .util ul li{float:left; margin:0 0px 0 0px; padding:0 11px 0 11px; background:url(/jcappy/img/admin/util_bar.gif) no-repeat left center;}
+#header .header_inner .util ul li{float:left; margin:0 0px 0 0px; padding:0 11px 0 11px; height:28px; /*background:url(/jcappy/img/admin/util_bar.gif) no-repeat left center;*/}
 #header .header_inner .util ul li.frist{background:none; padding-left:0;}
-#header .header_inner .util ul li a{color:#fff; font-size:11px;}
+#header .header_inner .util ul li a{color:#fff; font-size:18px;}
 
 
 /* menu::base========================================== */

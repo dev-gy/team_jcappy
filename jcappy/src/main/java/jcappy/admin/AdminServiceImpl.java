@@ -39,4 +39,9 @@ public class AdminServiceImpl implements AdminService{
 	public int isDuplicateId(String id) {
 		return dao.isDuplicateId(id);
 	}
+
+	@Override
+	public int groupDelete(AdminVo vo) {
+		return dao.groupDelete(vo);
+	}
 }

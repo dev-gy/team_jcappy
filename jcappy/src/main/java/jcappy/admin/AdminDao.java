@@ -27,4 +27,8 @@ public class AdminDao {
 	public int isDuplicateId (String id) {
 		return sqlSession.selectOne("admin.isDuplicateId", id);
 	}
+	
+	public int groupDelete(AdminVo vo) {
+		return sqlSession.delete("admin.groupDelete", vo);
+	}
 }

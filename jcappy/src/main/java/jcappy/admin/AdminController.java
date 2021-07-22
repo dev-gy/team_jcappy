@@ -1,5 +1,7 @@
 package jcappy.admin;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +16,12 @@ public class AdminController {
 	@Autowired
 	AdminService service;
 	
-	@RequestMapping("/admin/auth/index")
+	@RequestMapping("/admin/auth/list")
 	public String index(Model model, AdminVo vo) {
+		System.out.println("★★★★★★★★" + vo.getAno());
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/auth/list";
-	}
+	}		
 
 	@RequestMapping("/admin/auth/create")
 	public String create(Model model, AdminVo vo) {
@@ -34,7 +37,7 @@ public class AdminController {
 		} else {
 			model.addAttribute("result", "false");
 		}
-		return "include/result";
+		return "admin/include/result";
 	}
 
 	@RequestMapping("/admin/auth/isDuplicateId")
@@ -44,7 +47,7 @@ public class AdminController {
 		} else {
 			model.addAttribute("result", "true");
 		}
-		return "include/result";
+		return "admin/include/result";
 	}
 	
 	@RequestMapping("/admin/auth/checkAuthority")
@@ -54,6 +57,17 @@ public class AdminController {
 		} else {
 			model.addAttribute("result", "false");
 		}
-		return "include/result";
+		return "admin/include/result";
+	}
+	
+	@RequestMapping("/admin/auth/groupDelete")
+	public String groupDelete(Model model, AdminVo vo, HttpServletRequest req) {
+
+		int result = service.groupDelete(vo);
+
+		model.addAttribute("msg", "총 " + result + " 건이 삭제되었습니다.");
+		model.addAttribute("url", "list");
+
+		return "include/alert";
 	}
 }

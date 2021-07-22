@@ -13,7 +13,7 @@ $(window).load(function(){
 		<!-- util : s -->
 		<div class="util">
 			<ul>
-				<li class="frist"><a href="<%=request.getContextPath()%>/admin/index.do" onclick="">Home</a></li>
+<%-- 				<li class="frist"><a href="<%=request.getContextPath()%>/admin/index.do" onclick="">Home</a></li> --%>
 				<li><a href="<%=request.getContextPath()%>/admin/logout.do">LogOut</a></li>
 			</ul>
 		</div>
@@ -35,7 +35,7 @@ $(window).load(function(){
 				</li>
 				<li><a href="<%=request.getContextPath()%>/admin/add/index.do" class="parent"><span>부가기능</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/admin/account/index.do" class="parent"><span>매출조회</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/auth/list.do" class="parent"><span>관리자계정</span></a></li>
+				<li><a href="<%=request.getContextPath()%>/admin/auth/list" class="parent"><span>관리자계정</span></a></li>
 			</ul>
 		</div>
 		<!--//gnb-->

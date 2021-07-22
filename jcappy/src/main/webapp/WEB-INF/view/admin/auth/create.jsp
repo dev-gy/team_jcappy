@@ -153,12 +153,40 @@ $(function () {
 	$('#check_authority').hide();
 });
 
-//관리자계정 권한 선택 시, 권한 코드 입력 칸 출력
+// 관리자계정 권한 선택 시, 권한 코드 입력 칸 출력
 function check_admin_authority() {
 	if ($('#admin_admin').prop("checked")) {
 		$('#check_authority').show();
 	} else {
 		$('#check_authority').hide();
+	}
+}
+
+// 관리자계정 권한 전체선택
+function checkAll() {
+
+	if ($('#allChk').prop("checked")) {
+		$('input[class=check_auth]').prop("checked", true);
+		check_admin_authority();
+	} else {
+		$('input[class=check_auth]').prop("checked", false);
+		check_admin_authority();
+	}
+}
+
+function checkOne() {
+	
+	var count = 0;
+	
+	for (var i = 0; i < $('input[class=check_auth]').length; i++) {
+		if ($('input[class=check_auth]').eq(i).prop("checked"))
+		count++;
+	}
+	
+	if (count == $('input[class=check_auth]').length) {
+		$('#allChk').prop("checked", true);
+	} else {
+		$('#allChk').prop("checked", false);
 	}
 }
 
@@ -215,26 +243,26 @@ function check_admin_authority() {
 										</td>
 									</tr>
 									<tr>
-										<th scope="row" rowspan="3"><label for="">접근권한</label></th>
+										<th scope="row" rowspan="3"><label for="allChk">접근권한</label>&nbsp;<input type="checkbox" name="allChk" id="allChk" onClick="checkAll();"/></th>
 										<td class="admin_authority">
-											<label><input type="checkbox" id="admin_item" name="admin_item" value="1"/>상품관리</label>
+											<label><input type="checkbox" class="check_auth" id="admin_item" name="admin_item" value="1" onClick="checkOne();"/>상품관리</label>
 											&nbsp;&nbsp;|&nbsp;&nbsp;	
-											<label><input type="checkbox" id="admin_order" name="admin_order" value="1"/>주문관리</label>
+											<label><input type="checkbox" class="check_auth" id="admin_order" name="admin_order" value="1" onClick="checkOne();"/>주문관리</label>
 											&nbsp;&nbsp;|&nbsp;&nbsp;	
-											<label><input type="checkbox" id="admin_members" name="admin_members" value="1"/>회원관리</label>
+											<label><input type="checkbox" class="check_auth" id="admin_members" name="admin_members" value="1" onClick="checkOne();"/>회원관리</label>
 										</td>
 									<tr>
 										<td class="admin_authority">
-											<label><input type="checkbox" id="admin_board" name="admin_board" value="1"/>게시판관리</label>
+											<label><input type="checkbox" class="check_auth" id="admin_board" name="admin_board" value="1" onClick="checkOne();"/>게시판관리</label>
 											&nbsp;&nbsp;|&nbsp;&nbsp;	
-											<label><input type="checkbox" id="admin_add" name="admin_add" value="1"/>부가기능관리</label>	
+											<label><input type="checkbox" class="check_auth" id="admin_add" name="admin_add" value="1" onClick="checkOne();"/>부가기능관리</label>	
 										</td>
 									</tr>
 									<tr>
 										<td class="admin_authority">
-											<label><input type="checkbox" id="admin_account" name="admin_account" value="1"/>매출조회</label>	
+											<label><input type="checkbox" class="check_auth" id="admin_account" name="admin_account" value="1" onClick="checkOne();"/>매출조회</label>	
 											&nbsp;&nbsp;|&nbsp;&nbsp;
-											<label><input type="checkbox" id="admin_admin" name="admin_admin" value="1" onClick="check_admin_authority();"/>관리자계정</label>
+											<label><input type="checkbox" class="check_auth" id="admin_admin" name="admin_admin" value="1" onClick="check_admin_authority(); checkOne();"/>관리자계정</label>
 											&nbsp;
 											<input type="text" id="check_authority" name="check_authority" class="w30" placeholder="권한코드 입력">
 										</td>

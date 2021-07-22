@@ -14,10 +14,11 @@
 			</if>
 		</where>
 	</sql>
-
+	
+	<!--관리자계정리스트 -->
 	<select id="selectAll" resultType="jcappy.admin.AdminVo" parameterType="jcappy.admin.AdminVo">
-		SELECT aid, aname, aregdate, admin_item, admin_order, admin_members, admin_board, admin_add, admin_account, admin_admin
-		FROM admin	
+		SELECT ano, aid, aname, aregdate, admin_item, admin_order, admin_members, admin_board, admin_add, admin_account, admin_admin
+		FROM admin 
 		<include refid="adminWhere"/>
 		ORDER BY ${orderby} ${direct}
 		LIMIT ${startIdx}, ${pageRow}
@@ -28,15 +29,26 @@
 		FROM admin
 		<include refid="adminWhere"/>
 	</select>
-	
+
+	<!-- 관리자계정등록 -->
 	<insert id="insert" parameterType="jcappy.admin.AdminVo">
 		INSERT INTO admin 
 		(aid, apwd, aname, aregdate, admin_item, admin_order, admin_members, admin_board, admin_add, admin_account, admin_admin, auth)
 		VALUES
 		(#{aid}, MD5(#{apwd}), #{aname}, NOW(), #{admin_item}, #{admin_order}, #{admin_members}, #{admin_board}, #{admin_add}, #{admin_account}, #{admin_admin}, #{auth})
-	</insert>		
-	
+	</insert>
+
+	<!-- 아이디중복체크 -->
 	<select id="isDuplicateId" resultType="int" parameterType="String">
 		SELECT COUNT(*) FROM admin WHERE aid=#{aid}  
 	</select>
+
+	<!-- 목록에서 일괄 삭제 -->
+	<delete id="groupDelete" parameterType="jcappy.admin.AdminVo">
+		DELETE FROM admin
+		WHERE ano IN
+		<foreach collection="anos" item="ano" index="index" open="(" close=")" separator=",">
+		${ano}
+		</foreach>
+	</delete>
 </mapper>
