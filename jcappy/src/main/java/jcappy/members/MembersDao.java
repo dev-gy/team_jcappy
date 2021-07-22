@@ -17,5 +17,8 @@ public class MembersDao {
 	public int insert(MembersVo vo) {
 		return sqlSession.insert("members.insert", vo);
 	}
+	public int isDuplicateEmail(String email) {
+		return sqlSession.selectOne("members.isDuplicateEmail", email);
+	}
 
 }

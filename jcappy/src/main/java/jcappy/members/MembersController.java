@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MembersController {
@@ -21,7 +22,17 @@ public class MembersController {
 	
 	@RequestMapping("/join")
 	public String join(Model model, MembersVo vo) {
-		return "/join";
+		return "members/join";
+	}
+	
+	@RequestMapping("/members/isDuplicateEmail")
+	public String isDuplicateEmail(Model model, @RequestParam String email) {
+		if (service.isDuplicateEmail(email) == 0) {
+			model.addAttribute("result", "false");
+		} else {
+			model.addAttribute("result", "true");
+		}
+		return "include/result";
 	}
 	
 	@RequestMapping("/insert")
@@ -44,7 +55,7 @@ public class MembersController {
 		if (cookie != null) {
 			vo.setMemail(cookie.getValue());
 		}
-		return "/login";
+		return "members/login";
 	}
 	
 	@PostMapping("/login")
