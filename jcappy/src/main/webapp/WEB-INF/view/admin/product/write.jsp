@@ -16,6 +16,47 @@ function goSave() {
 	$("#frm").submit();
 }
 </script>
+<script>
+$(function() {
+    $("#file1").on("change", function(){
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; 
+        if (/^image/.test( files[0].type)){ 
+            var reader = new FileReader(); 
+            reader.readAsDataURL(files[0]); 
+            reader.onloadend = function(){ 
+             $('.imagePreview1').css("background-image", "url("+this.result+")"); 
+            };
+        }
+    });
+});
+$(function() {
+    $("#file2").on("change", function(){
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; 
+        if (/^image/.test( files[0].type)){ 
+            var reader = new FileReader(); 
+            reader.readAsDataURL(files[0]); 
+            reader.onloadend = function(){ 
+             $('.imagePreview2').css("background-image", "url("+this.result+")"); 
+            };
+        }
+    });
+});
+$(function() {
+    $("#file3").on("change", function(){
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; 
+        if (/^image/.test( files[0].type)){ 
+            var reader = new FileReader(); 
+            reader.readAsDataURL(files[0]); 
+            reader.onloadend = function(){ 
+             $('.imagePreview3').css("background-image", "url("+this.result+")"); 
+            };
+        }
+    });
+});
+</script>
 </head>
 <body> 
 <div id="wrap">
@@ -81,14 +122,29 @@ function goSave() {
 										<td colspan="10">
 											<input type="text" id="pregdate" name="pregdate" class="w100"/>	
 										</td>
-									</tr><tr>
-										<th scope="row"><label for="">상품 이미지</label></th>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">상품 이미지1</label></th>
 										<td colspan="10">
-											<input type="file" id="file" name="file" class="w100"/>	
-											<input type="file" id="file" name="file" class="w100"/>	
-											<input type="file" id="file" name="file" class="w100"/>	
+										<div class="imagePreview1"></div>
+											<input id="file1" type="file" name="image" class="img" />
 										</td>
-									</tr><tr>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">상품 이미지2</label></th>
+										<td>
+										<div class="imagePreview2"></div>	
+											<input id="file2" type="file" name="image" class="img" />	
+										</td>
+									</tr>
+									<tr>	
+										<th scope="row"><label for="">상품 이미지3</label></th>
+										<td>
+										<div class="imagePreview3"></div>
+											<input id="file3" type="file" name="image" class="img" />	
+										</td>
+									</tr>
+									<tr>
 										<th scope="row"><label for="">상품 상세이미지</label></th>
 										<td colspan="10">
 											<textarea name="content" id="contents" style="width:100%;"></textarea>
