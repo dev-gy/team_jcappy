@@ -19,15 +19,15 @@
 							<td class="item_img_area"><!-- style="background-image: url('/jcappy/img/상세 이미지1.jpg');" -->
 								<span class="item_major_img cstyle_border_gray" ></span>
 								<span class="item_img_list">
-									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img1" style="background-image: url('/jcappy/img/상세 이미지1.jpg');"></span>
-									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img2" style="background-image: url('/jcappy/img/상세 이미지2.jpg');"></span>
-									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img3" style="background-image: url('/jcappy/img/상세 이미지3.jpg');"></span>
+									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img1" style="background-image: url('${productVo.pimg1_org }');"></span>
+									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img2" style="background-image: url('${productVo.pimg2_org }');"></span>
+									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img3" style="background-image: url('${productVo.pimg3_org }');"></span>
 								</span>
 							</td>
 							<td class="item_info_area">
 								<div class="top">
 									<h1 class="item_name">삼성전자 RF85A9103AP 비스포크 냉장고 875L 21년 신모델 AC21585500</h1>
-									<h2 class="item_info_price">100,000,000원</h2>
+									<h2 class="item_info_price">${productVo.pprice } 원</h2>
 								</div>
 								<div class="middle">
 									<hr>

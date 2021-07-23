@@ -4,14 +4,14 @@
 	<sql id="productWhere">
 		<where>
 			<trim prefixOverrides="AND">
-				<if test="sptype != null and sptype != ''">
-					ptype=#{sptype}
+				<if test="tval != null and tval != ''">
+					ptype=#{tval}
 				</if>
-				<if test="spcate != null and spcate != ''">
-					AND pcate=#{spcate}
+				<if test="cval != null and cval != ''">
+					AND pcate=#{cval}
 				</if>
 				<if test="sval != null and sval != ''">
-					AND pname LIKE '%${sval}%'
+					AND ${stype} LIKE '%${sval}%'
 				</if>
 			</trim>
 		</where>

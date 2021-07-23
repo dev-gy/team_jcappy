@@ -12,19 +12,6 @@ public class ProductServiceImpl implements ProductService {
 	ProductDao productDao;
 	
 	public List<ProductVo> selectAll(ProductVo vo) {
-		// 기본은 인기 많은순, 1페이지당 15개 상품씩, 필터 조건은 상품타입
-		if (null == vo.getOrderby() || "".equals(vo.getOrderby()) || "popular".equals(vo.getOrderby())) { 
-			vo.setOrderby("popular");
-			vo.setDirect("DESC");
-		} else if ("price_desc".equals(vo.getOrderby())) {
-			vo.setOrderby("pprice");
-			vo.setDirect("DESC");
-		} else if ("price_asc".equals(vo.getOrderby())) {
-			vo.setOrderby("pprice");
-			vo.setDirect("ASC");
-		}
-		vo.setPageRow(15);
-				
 		int totCount = productDao.count(vo); // 총갯수
 		// 총페이지수
 		int totPage = totCount / vo.getPageRow();
@@ -41,5 +28,9 @@ public class ProductServiceImpl implements ProductService {
 		vo.setTotCount(totCount);
 		vo.setTotPage(totPage);
 		return productDao.selectAll(vo);
+	}
+	
+	public ProductVo detail(ProductVo vo) {
+		return productDao.detail(vo);
 	}
 }

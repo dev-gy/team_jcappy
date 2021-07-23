@@ -22,8 +22,8 @@ public class ProductVo extends CommonVo {
 	private Timestamp pregdate;
 	private String pdetail;
 	
-	private String sptype;
-	private String spcate;
+	private String tval;
+	private String cval;
 	
 	public int getPno() {
 		return pno;
@@ -145,17 +145,17 @@ public class ProductVo extends CommonVo {
 		this.pdetail = pdetail;
 	}
 	
-	public String getSptype() {
-		return sptype;
+	public String getTval() {
+		return tval;
 	}
-	public void setSptype(String sptype) {
-		this.sptype = sptype;
+	public void setTval(String tval) {
+		this.tval = tval;
 	}
-	public String getSpcate() {
-		return spcate;
+	public String getCval() {
+		return cval;
 	}
-	public void setSpcate(String spcate) {
-		this.spcate = spcate;
+	public void setCval(String cval) {
+		this.cval = cval;
 	}
 
 }
