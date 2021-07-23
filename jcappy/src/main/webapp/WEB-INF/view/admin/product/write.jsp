@@ -29,8 +29,7 @@ $(function() {
             };
         }
     });
-});
-$(function() {
+    
     $("#file2").on("change", function(){
         var files = !!this.files ? this.files : [];
         if (!files.length || !window.FileReader) return; 
@@ -42,8 +41,7 @@ $(function() {
             };
         }
     });
-});
-$(function() {
+    
     $("#file3").on("change", function(){
         var files = !!this.files ? this.files : [];
         if (!files.length || !window.FileReader) return; 
@@ -89,6 +87,23 @@ $(function() {
 										</td>
 									</tr> -->
 									<tr>
+										<th scope="row"><label for="">상품 종류</label></th>
+										<td colspan="10">
+											<select name="ptype" title="종류">
+												<option value="frez">냉장고</option>
+												<option value="air">에어컨</option>
+												<option value="tv">TV</option>
+												<option value="wash">세탁기</option>
+											</select>
+											<c:if test="${frez == ''}">
+											</c:if>
+											<select name="pcate" title="카테고리">
+												<option value="ㅁfrez">일반형냉장고</option>
+												<option value="bfrez">양문형냉장고</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
 										<th scope="row"><label for="">브랜드</label></th>
 										<td colspan="10">
 											<select name="stype" title="브랜드">
@@ -127,21 +142,21 @@ $(function() {
 										<th scope="row"><label for="">상품 이미지1</label></th>
 										<td colspan="10">
 										<div class="imagePreview1"></div>
-											<input id="file1" type="file" name="image" class="img" />
+											<input id="file1" type="file" name="file1" class="img" />
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 이미지2</label></th>
 										<td>
 										<div class="imagePreview2"></div>	
-											<input id="file2" type="file" name="image" class="img" />	
+											<input id="file2" type="file" name="file2" class="img" />	
 										</td>
 									</tr>
 									<tr>	
 										<th scope="row"><label for="">상품 이미지3</label></th>
 										<td>
 										<div class="imagePreview3"></div>
-											<input id="file3" type="file" name="image" class="img" />	
+											<input id="file3" type="file" name="file3" class="img" />	
 										</td>
 									</tr>
 									<tr>

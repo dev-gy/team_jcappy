@@ -28,8 +28,8 @@ public class AdminProductServiceImpl implements AdminProductService {
 		vo.setEndPage(endPage);
 		vo.setTotCount(totCount);
 		vo.setTotPage(totPage);
-		if ("regdate".equals(vo.getOrderby())) {
-			vo.setOrderby("pregdate");
+		if ("".equals(vo.getOrderby()) || vo.getOrderby() == null) {
+			vo.setOrderby("pno");
 		}
 		return dao.selectAll(vo);
 	}
