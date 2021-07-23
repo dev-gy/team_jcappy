@@ -31,4 +31,16 @@ public class AdminDao {
 	public int groupDelete(AdminVo vo) {
 		return sqlSession.delete("admin.groupDelete", vo);
 	}
+	
+	public AdminVo detail(AdminVo vo) {
+		return sqlSession.selectOne("admin.detail", vo);
+	}
+
+	public int delete (int ano) {
+		return sqlSession.delete("admin.delete", ano);
+	}
+
+	public int update (AdminVo vo) {
+		return sqlSession.delete("admin.update", vo);
+	}
 }

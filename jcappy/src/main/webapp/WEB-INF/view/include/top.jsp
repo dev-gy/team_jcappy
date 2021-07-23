@@ -4,7 +4,7 @@
 <div id="header">
     <div class="size">
         <div class="logo">
-            <a href="/jcappy/index.do">
+            <a href="/jcappy">
                 <img src="/jcappy/img/logo.png">
             </a>
         </div>

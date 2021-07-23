@@ -14,6 +14,10 @@ function check_create_id(id, url) {
 		alert('아이디를 입력해주세요');
 		id.focus();
 		check = false;
+	} else if (!/^[A-Za-z]{1}[A-Za-z0-9]{5,20}$/.test(id.val())) {
+		alert('아이디 : 영문대소문자로 시작, 영문대소문자, 숫자로 이루어진 5~20자');
+		id.focus();
+		check = false;
 	} else {
 		$.ajax({
 			url: url,
@@ -35,6 +39,15 @@ function check_create_id(id, url) {
 	return check;
 }
 
+// 아이디 체크 버튼
+function check_create_id_button(id, url) {
+	if (!check_create_id($('#aid'), "<%=request.getContextPath()%>/admin/auth/isDuplicateId")) {
+		return;
+	} else {
+		alert('사용할 수 있는 아이디입니다.');
+	}
+}
+
 // 비밀번호 체크
 function check_create_pwd(pwd, chkPwd) {
 
@@ -42,6 +55,11 @@ function check_create_pwd(pwd, chkPwd) {
 	
 	if (pwd.val().trim() == '') {
 		alert('비밀번호를 입력해주세요');
+		pwd.focus();
+		check = false;
+		return;
+	} else if (!/(?=.*\d)(?=.*[a-zA-ZS])(?=.*?[#?!@$%^&*-]).{6,20}/.test(pwd.val())) {
+		alert('비밀번호 : 영문대소문자, 숫자, 특수문자를 각 하나이상 포함한 6~20자');
 		pwd.focus();
 		check = false;
 		return;
@@ -68,6 +86,10 @@ function check_create_name(name) {
 	
 	if (name.val().trim() == '') {
 		alert('이름을 입력해주세요.');
+		name.focus();
+		return false;
+	} else if (!/^[가-힣a-zA-Z]{1,20}$/.test(name.val())) {
+		alert('이름 : 한글, 영문으로 이루어진 1~20자');
 		name.focus();
 		return false;
 	} else {
@@ -132,6 +154,8 @@ function regAdmin() {
 		}
 	}
 	
+	if (!check) {return;}
+	
 	if (confirm("등록하시겠습니까?")) {
 		$.ajax({
 			url: "<%=request.getContextPath()%>/admin/auth/insert",
@@ -140,7 +164,7 @@ function regAdmin() {
 			success: function(res) {
 				if (res.trim() == 'true') {
 					alert('정상적으로 등록되었습니다.');
-					location.href="<%=request.getContextPath()%>/admin/auth/create";
+					location.href="<%=request.getContextPath()%>/admin/auth/list";
 				} else {
 					alert('오류발생, 등록에 실패하였습니다.');
 				}
@@ -150,8 +174,7 @@ function regAdmin() {
 }
 
 $(function () {
-	$('#check_authority').hide();
-	check_admin_authority();
+	$('#check_authority').hide(); // 관리자계정권한 권한코드 입력 칸 숨기기
 });
 
 // 관리자계정 권한 선택 시, 권한 코드 입력 칸 출력
@@ -222,25 +245,26 @@ function checkOne() {
 									<tr>
 										<th scope="row"><label for="aid">관리자 아이디</label></th>
 										<td colspan="10">
-											<input type="text" id="aid" name="aid" class="w100" />	
+											<input type="text" id="aid" name="aid" class="w80" placeholder="영문으로 시작, 영문, 숫자로 이루어진 5~20자"/>
+											<span><a class="btns" href="#" onClick="check_create_id_button($('#aid'), '<%=request.getContextPath()%>/admin/auth/isDuplicateId');"><strong>체크</strong></a></span>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="apwd">관리자 비밀번호</label></th>
 										<td colspan="10">
-											<input type="password" id="apwd" name="apwd" class="w100"/>	
+											<input type="password" id="apwd" name="apwd" class="w100" placeholder="영문, 숫자, 특수문자를 각 하나이상 포함한 6~20자"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="check_apwd">비밀번호 확인</label></th>
 										<td colspan="10">
-											<input type="password" id="check_apwd" name="check_apwd" class="w100" />	
+											<input type="password" id="check_apwd" name="check_apwd" class="w100" placeholder="입력하신 비밀번호를 한번 더 입력해주세요."/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="aname">관리자 이름</label></th>
 										<td colspan="10">
-											<input type="text" id="aname" name="aname" class="w100" />	
+											<input type="text" id="aname" name="aname" class="w100" placeholder="한글, 영문으로 이루어진 1~20자"/>	
 										</td>
 									</tr>
 									<tr>
@@ -265,7 +289,7 @@ function checkOne() {
 											&nbsp;&nbsp;|&nbsp;&nbsp;
 											<label><input type="checkbox" class="check_auth" id="admin_admin" name="admin_admin" value="1" onClick="check_admin_authority(); checkOne();"/>관리자계정</label>
 											&nbsp;
-											<input type="text" id="check_authority" name="check_authority" class="w30" placeholder="권한코드 입력">
+											<input type="password" id="check_authority" name="check_authority" class="w30" placeholder="권한코드 입력"/>
 										</td>
 									</tr>
 								</tbody>
@@ -273,7 +297,7 @@ function checkOne() {
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="list"><strong>목록</strong></a>
+									<a class="btns" href="#" onClick="history.back();"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
 									<a class="btns" onclick="regAdmin();"><strong>등록</strong></a>

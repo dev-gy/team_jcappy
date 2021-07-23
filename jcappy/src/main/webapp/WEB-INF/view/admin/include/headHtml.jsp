@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <title>JCAPPY_MANAGEMENT</title>
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 <link href="<%=request.getContextPath()%>/css/admin/basic.css" rel="stylesheet" type="text/css" />
