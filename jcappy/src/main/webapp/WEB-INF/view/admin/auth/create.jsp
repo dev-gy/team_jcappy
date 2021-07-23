@@ -151,6 +151,7 @@ function regAdmin() {
 
 $(function () {
 	$('#check_authority').hide();
+	check_admin_authority();
 });
 
 // 관리자계정 권한 선택 시, 권한 코드 입력 칸 출력

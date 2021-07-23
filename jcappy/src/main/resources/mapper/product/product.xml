@@ -3,14 +3,7 @@
 <mapper namespace="product">
 	<sql id="productWhere">
 		<where>
-			<if test="fval != null and fval != ''">
-				<if test="ftype == ''">
-					pname LIKE '%${sval}%'
-				</if>
-				<if test="ftype != ''">
-					${ftype}=#{fval} AND pname LIKE '%${sval}%'
-				</if>
-			</if>
+			
 		</where>
 	</sql>
 	

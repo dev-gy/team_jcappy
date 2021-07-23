@@ -151,8 +151,8 @@
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">내용</label></th>
-										<td colspan="10">
+										<th scope="row" ><label for="" >내용</label></th>
+										<td colspan="10" style="vertical-align: top">
 											${vo.ncontent}
 										</td>
 									</tr>
