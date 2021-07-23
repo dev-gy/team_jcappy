@@ -71,16 +71,16 @@ public class ProductController {
 			}
 		} else if ("tv".equals(type)) {
 			vo.setSptype("TV");
-			a = "LED";
-			b = "QLED";
-			c = "OLED";
+			a = "LEDTV";
+			b = "QLEDTV";
+			c = "OLEDTV";
 			if (cate != null) {
 				if ("a".equals(cate)) {
-					vo.setSpcate("LED");
+					vo.setSpcate("LEDTV");
 				} else if ("b".equals(cate)) {
-					vo.setSpcate("QLED");
+					vo.setSpcate("QLEDTV");
 				} else if ("c".equals(cate)) {
-					vo.setSpcate("OLED");
+					vo.setSpcate("OLEDTV");
 				} else {
 					return "error";
 				}

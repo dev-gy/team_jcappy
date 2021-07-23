@@ -22,15 +22,14 @@
 					<div class="cstyle_btn"><a href="/jcappy/product/${type }/c">${c }</a></div>
 				</div>
 			</div>
-			<form id="searchForm" method="POST" action="/jcappy/product/${type }">
-				<p class="itemList_count">${productVo.sptype } productVo.totCount(총 개수)</p>
+			<form id="searchForm" method="GET" action="/jcappy/product/${type }?orderby=${param.orderby }&sval=${param.sval }">
+				<p class="itemList_count">${productVo.sptype } ${productVo.totCount }(총 개수)</p>
 				<div class="itemList_search">
-					<select name="orderby" onchange="$('#searchForm').submit();">
+					<select name="orderby">
 						<option value="popular" <c:if test="${productVo.orderby == 'popular' && productVo.direct == 'DESC' }">selected</c:if>>인기순</option>
-						<option value="pprice" <c:if test="${productVo.orderby == 'pprice' && productVo.direct == 'DESC' }">selected</c:if>>가격 높은순</option>
-						<option value="pprice" <c:if test="${productVo.orderby == 'pprice' && productVo.direct == 'ASC' }">selected</c:if>>가격 낮은순</option>
+						<option value="price_desc" <c:if test="${productVo.orderby == 'pprice' && productVo.direct == 'DESC' }">selected</c:if>>가격 높은순</option>
+						<option value="price_asc" <c:if test="${productVo.orderby == 'pprice' && productVo.direct == 'ASC' }">selected</c:if>>가격 낮은순</option>
 					</select>
-					<input type="hidden" name="direct" value="${productVo.direct }">
 					
 					<input type="text" name="sval" value="${productVo.sval }" placeholder="검색어를 입력해주세요.">
 					<button class="cstyle_btn" type="submit">검색</button>
@@ -51,14 +50,14 @@
 			</div>
 			<div class="pagenate clear">
 				<ul class="paging">
-					<c:if test="${productVo.startPage > productVo.pageRange}">
-						<li><a href="index.do?reqPage=${vo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">&lt;</a></li>
+					<c:if test="${productVo.startPage > productVo.pageRange }">
+						<li><a href="/jcappy/product/${type }?reqPage=${productVo.startPage - 1 }&orderby=${param.orderby }&sval=${param.sval }">&lt;</a></li>
 					</c:if>
-					<c:forEach var="rp" begin="${productVo.startPage}" end="${productVo.endPage }">
-					    <li><a href='index.do?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}' <c:if test="${rp==productVo.reqPage }">class='current'</c:if>>${rp }</a></li>
+					<c:forEach var="rp" begin="${productVo.startPage }" end="${productVo.endPage }">
+					    <li><a href="/jcappy/product/${type }?reqPage=${rp}&orderby=${param.orderby }&sval=${param.sval }" <c:if test="${rp==productVo.reqPage }">class='current'</c:if>>${rp }</a></li>
 					</c:forEach>
-					<c:if test="${productVo.totPage > productVo.endPage}">
-						<li><a href="index.do?reqPage=${productVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">&gt;</a></li>
+					<c:if test="${productVo.totPage > productVo.endPage }">
+						<li><a href="/jcappy/product/${type }?reqPage=${productVo.endPage + 1 }&orderby=${param.orderby }&sval=${param.sval }">&gt;</a></li>
 					</c:if>
 				</ul> 
 			</div>
