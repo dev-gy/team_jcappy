@@ -18,7 +18,6 @@ import jcappy.comment.CommentVo;
 import jcappy.members.MembersVo;
 
 
-
 @Controller
 public class QnaController {
 	
@@ -87,7 +86,13 @@ public class QnaController {
 			model.addAttribute("msg", "등록실패");
 			model.addAttribute("url", "reply");
 		}
-		return "include/alert";
+		return "admin/include/alert";
+	}
+	
+	@RequestMapping("/admin/board/qna/edit")
+	public String edit(Model model, QnaVo vo) {
+		model.addAttribute("vo", service.edit(vo));
+		return "admin/board/qna/edit";
 	}
 	
 	//공지사항 업데이트

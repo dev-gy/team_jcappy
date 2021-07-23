@@ -6,7 +6,7 @@
 		<where>
 			<if test="sval != null and sval != ''">
 				<if test="stype == 'all'">
-					title LIKE '%${sval}%' OR content LIKE '%${sval}%'
+					qtitle LIKE '%${sval}%' OR qcontent LIKE '%${sval}%'
 				</if>
 				<if test="stype != 'all'">
 					${stype} LIKE '%${sval}%'
@@ -37,10 +37,6 @@
 		
 	</select>
 	
-	<select id="lastPk" resultType="int">
-		SELECT max(qno) from qna
-	</select>
-	
 	<insert id="insertReply" parameterType="jcappy.qna.QnaVo">
 		INSERT INTO qna (qtitle, qcontent, qregdate,  qfile_org, qfile_real, mno, q_gno, q_ono, q_nested)
 		VALUES (#{qtitle}, #{qcontent}, NOW(), #{qfile_org}, #{qfile_real}, #{mno}, #{q_gno}, #{q_ono}, #{q_nested})
@@ -55,22 +51,22 @@
 	</update>
 	
 	<update id="update" parameterType="jcappy.qna.QnaVo">
-		UPDATE reply SET
-			title=#{title}, content=#{content}
-			<if test="filename_org != null">
-				, filename_org=#{filename_org}, filename_real=#{filename_real}
+		UPDATE qna SET
+			qtitle=#{qtitle}, qcontent=#{qcontent}
+			<if test="qfile_org != null">
+				, qfile_org=#{qfile_org}, qfile_real=#{qfile_real}
 			</if>
-		WHERE no=#{no}
+		WHERE qno=#{qno}
 	</update>
 	
 	<update id="delFilename" parameterType="jcappy.qna.QnaVo">
-		UPDATE reply SET
-			filename_org='', filename_real=''
-		WHERE no=#{no}
+		UPDATE qna SET
+			qfile_org='', qfile_real=''
+		WHERE qno=#{qno}
 	</update>
 	
 	<delete id="delete" parameterType="jcappy.qna.QnaVo">
-		DELETE FROM reply WHERE no=#{no}
+		DELETE FROM qna WHERE qno=#{qno}
 	</delete>
 	
 	<select id="temporarySession" resultType="jcappy.members.MembersVo" parameterType="jcappy.members.MembersVo">

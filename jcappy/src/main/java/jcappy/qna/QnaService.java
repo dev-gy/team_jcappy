@@ -12,5 +12,6 @@ public interface QnaService {
 	int delete(QnaVo vo);
 	MembersVo temporarySession(MembersVo fmv);
 	int insertReply(QnaVo vo);
+	QnaVo edit(QnaVo vo);
 	
 }
