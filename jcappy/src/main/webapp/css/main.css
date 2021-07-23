@@ -165,9 +165,10 @@ product/index
 ========================================*/
 .itemList_thema { width: 100%; height: 200px; line-height: 200px; font-size: 50px; }
 .itemList_thema > a { display: block; }
-.cate_menu { width: 100%; height: 40px; display: table; box-sizing: border-box; border-collapse: collapse; cursor: pointer; }
-.cate_menu > div { width: 33.3333%; height: 40px; display: table-cell; vertical-align: middle; }
-.search_content { width: 100%; height: 40px; margin-top: 30px; overflow: hidden; box-sizing: border-box; }
+.cate_menu { width: 100%; height: 40px; display: table; box-sizing: border-box; border-collapse: collapse; }
+.cate_menu > div { width: 33.3333%; height: 40px; display: table-cell; }
+.cate_menu > div > a { width:100%; height: 40px; display: block; line-height: 40px; }
+#search_form { width: 100%; height: 40px; margin-top: 30px; overflow: hidden; box-sizing: border-box; }
 .itemList_count { width:auto; height:100%; display: block; float: left; }
 .itemList_search { width:auto; height:100%; display: block; float: right; }
 .itemList_search > select { height: 30px; box-sizing: border-box; }
@@ -175,9 +176,12 @@ product/index
 .itemList_search > button { height: 30px; box-sizing: border-box; width: 30px; height: 30px; }
 .product_content { width: 100%; height: 100%; margin: 30px 0px; }
 .product_content > .flex { width: 100%; height: 100%; overflow: hidden; display: flex; justify-content: space-between; flex-wrap: wrap; }
-.product_content > .flex > .item { width: 300px; height: 350px; position: relative; border: 1px solid #a7a7a7;  margin: 30px; }
-.product_content > .flex > .item > a > img { width: 300px; height: 300px; box-sizing: border-box; }
-
+.product_content > .flex > .item { width: 300px; height: 400px; position: relative; margin: 30px; }
+.product_content > .flex > .item > a { display: block; }
+.product_content > .flex > .item > a > .image { width: 300px; height: 300px; display: inline-block; background-size: contain; background-repeat: no-repeat;  }
+.product_content > .flex > .item > a > .name { height: 40px; }
+.product_content > .flex > .item > a > .price { padding-top: 20px; }
+.product_content > .flex > .item > a > span { display: block; }
 /*======================================
 product/detail
 ========================================*/

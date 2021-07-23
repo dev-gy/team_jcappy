@@ -13,14 +13,11 @@ public class CommonVo {
 	private String sval;		// 검색어
 	private String orderby;		// 정렬컬럼
 	private String direct;		// 오름차순/내림차순
-	private String ftype;		// 필터타입(컬럼명)
-	private String fval;		// 필터기준(대상 컬럼의 특정 값)
 	
 	public CommonVo() {
 		this.pageRow = 10;
 		this.reqPage = 1;
 		this.pageRange = 10;
-		this.orderby = "regdate";
 		this.direct = "DESC";
 	}
 	public String getOrderby() {
@@ -118,18 +115,5 @@ public class CommonVo {
 
 	public void setPageRow(int pageRow) {
 		this.pageRow = pageRow;
-	}
-	
-	public String getFtype() {
-		return ftype;
-	}
-	public void setFtype(String ftype) {
-		this.ftype = ftype;
-	}
-	public String getFval() {
-		return fval;
-	}
-	public void setFval(String fval) {
-		this.fval = fval;
 	}
 }
