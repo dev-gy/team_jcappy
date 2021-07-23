@@ -17,10 +17,10 @@
 	<div id="nav">
 	    <div class="size">
 	        <ul class="depth1">
-	            <li><a href="/jcappy/product/index.do">냉장고</a></li>
-	            <li><a href="/jcappy/product/index.do">에어컨</a></li>
-	            <li><a href="/jcappy/product/index.do">TV</a></li>
-	            <li><a href="/jcappy/product/index.do">세탁기</a></li>
+	            <li><a href="/jcappy/product/refrigerator">냉장고</a></li>
+	            <li><a href="/jcappy/product/airconditioner">에어컨</a></li>
+	            <li><a href="/jcappy/product/tv">TV</a></li>
+	            <li><a href="/jcappy/product/washer">세탁기</a></li>
 	            <li><a href="/jcappy/notice/index.do">SERVICE</a>
 	                <ul class="depth2">
 	                    <li><a href="/jcappy/notice/index.do">공지사항</a>
