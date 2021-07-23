@@ -1,10 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
-function notice_edit_setEditor(holder){ //스마트 에디터
+function qna_reply_setEditor(holder){ //스마트 에디터
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
@@ -27,27 +28,25 @@ function notice_edit_setEditor(holder){ //스마트 에디터
 	
 	return oEditors;
 }
-function notice_edit_goSave() { 
-	notice_edit_oEditors.getById['contents'].exec("UPDATE_CONTENTS_FIELD",[]);
-	if ($("#title").val().trim() == "") { // title 빈값 저장 안되게
+function qna_reply_goSave() {
+	qna_reply_oEditors.getById['contents'].exec("UPDATE_CONTENTS_FIELD",[]);
+	if ($("#title").val().trim() == "") { //title 빈값이면 저장안되게
 		 alert("제목을 입력해 주세요");
 		 console.log($("#contents").val().trim());
 		 $("#title").focus();
 		 return false;
 	 }
 	
-	 if ($("#contents").val().trim() == "<p>&nbsp;</p>") { //contents 빈값 저장 안되게
+	 if ($("#contents").val().trim() == "<p>&nbsp;</p>") { //contents 빈값이면 저장안되게
 		 alert("내용을 입력해 주세요");
 		 $("#contents").focus();
 		 return false;
-	}
+	 }
 	$("#frm").submit();
-	
-	
 }
-var notice_edit_oEditors; //스마트 에디터
+var qna_reply_oEditors; //스마트 에디터
 $(function(){
-	notice_edit_oEditors = notice_edit_setEditor("contents"); // id
+	qna_reply_oEditors = qna_reply_setEditor("contents"); // id
 });
 </script>
 </head>
@@ -62,14 +61,18 @@ $(function(){
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지게시판 - [수정]</h2>
+					<h2>공지게시판 - [쓰기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="update" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="insertReply" enctype="multipart/form-data">
+							<input type="hidden" name="mno" value="${membersInfo.mno }">
+			                <input type="hidden" name="q_gno" value="${q_gno }">
+			                <input type="hidden" name="q_ono" value="${q_ono }">
+			                <input type="hidden" name="q_nested" value="${q_nested }">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -83,33 +86,30 @@ $(function(){
 									<tr>
 										<th scope="row"><label for="">제목</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="ntitle" class="w100" title="제목을 입력해주세요" value="${vo.ntitle}" />	
+											<input type="text" id="title" name="qtitle" class="w100" title="제목을 입력해주세요" />	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">내용</label></th>
 										<td colspan="10">
-											<textarea id="contents" name="ncontent" title="내용을 입력해주세요" style="width:100%;">${vo.ncontent }</textarea>	
+											<textarea id="contents" name="qcontent" title="내용을 입력해주세요" style="width:100%;"></textarea>	
 										</td>
 									</tr>
 									<tr>
 			                        	<th scope="row">파일첨부</th>
 			                        	<td colspan="10">
-			                        		기존파일 : ${vo.nfile_org}
-                    						<input type="checkbox" name="isDel" value="1"><br> <!-- 기존파일 초기화여부 -->
 			                        		<input type="file" name="file">
 			                        	</td>
 			                        </tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="nno" value="${vo.nno}">
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="list"><strong>목록</strong></a>
+									<a class="btns" href="list?<c:if test="${!empty param.reqPage}">reqPage=${param.reqPage}</c:if>&stype=${param.stype}&sval=${param.sval}"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href="javascript:notice_edit_goSave();"><strong>저장</strong></a>
+									<a class="btns" style="cursor:pointer;" href="javascript:qna_reply_goSave();"><strong>저장</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

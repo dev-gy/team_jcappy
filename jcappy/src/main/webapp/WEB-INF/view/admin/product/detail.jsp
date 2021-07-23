@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script src="/jcappy/js/common.js"></script>
 <script>
 var oEditors;
 $(function(){
@@ -13,31 +14,30 @@ function goSave() {
 	oEditors.getById['contents'].exec("UPDATE_CONTENTS_FIELD",[]);
 	$("#frm").submit();
 }
+</script>
+<script>
+       
+       function isDel() {
+          if (confirm('삭제하시겠습니까?')) {
 
-function isDel() {
-    if (confirm('삭제하시겠습니까?')) {
-       // 삭제처리
-       $.ajax({
-          url:'delete',
-          data:{
-             'pno':${vo.pno}
-          },
-          method:'post',
-          success:function(res) {
-             console.log(res);
-             if (res.trim() == 'true') {
-                alert('정상적으로 삭제되었습니다.');
-                location.href='list';
-             } else {
-                alert('삭제 실패');
-             }
-          },
-          error : function(res) {
-             console.log(res);
+             $.ajax({
+                url:'delete',
+                data:{
+                   'pno':${vo.pno}
+                },
+                method:'post',
+                success:function(res) {
+                   console.log(res);
+                   if (res.trim() == 'true') {
+                      alert('정상적으로 삭제되었습니다.');
+                      location.href='list';
+                   } else {
+                      alert('삭제 실패');
+                   }
+                },
+             });
           }
-       });
-    }
- }
+       }
 </script>
 </head>
 <body> 
@@ -58,7 +58,7 @@ function isDel() {
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="update" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="update	" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="상품정보 상세보기">
 								<colgroup>
 									<col width="10%" />
@@ -104,27 +104,27 @@ function isDel() {
 										</td>
 									</tr><tr>
 										<th scope="row"><label for="">상품 이미지</label></th>
-										<td colspan="10">
+										<td colspan="10" rowspan="1">
+										<input type="checkbox" name="nos" id="noimg"/>
 											<img style="width: 50px;" src="${vo.pimg1_org}">
-											<img style="width: 50px;" src="${vo.pimg2_org}">
-											<img style="width: 50px;" src="${vo.pimg3_org}">
-										
-<%-- 											<a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.pimg1_org}&real=${vo.pimg1_real}"  --%>
-<%--                             				target="_blank">${vo.pimg1_org}</a> --%>
-<%-- 											<a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.pimg2_org}&real=${vo.pimg2_real}"  --%>
-<%--                             				target="_blank">${vo.pimg2_org}</a> --%>
-<%--                             				<a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.pimg3_org}&real=${vo.pimg3_real}"  --%>
-<%--                             				target="_blank">${vo.pimg3_org}</a> --%>
 											<input type="file" id="file" name="file" class="w100"/>	
-										</td>
+											<input type="checkbox" name="nos" id="noimg"/>
+											<img style="width: 50px;" src="${vo.pimg2_org}">
+											<input type="file" id="file" name="file" class="w100"/>	
+											<input type="checkbox" name="nos" id="noimg"/>
+											<img style="width: 50px;" src="${vo.pimg3_org}">
+											<input type="file" id="file" name="file" class="w100"/>
+											<a class="btns" style="cursor:pointer;" href=""><strong>삭제</strong></a>
+										</td>	
 									</tr><tr>
-										<th scope="row"><label for="">상품 상세이미지</label></th>
+										<th scope="row"><label for="">상품 상세정보</label></th>
 										<td colspan="10">
 											<textarea name="content" id="contents" style="width:100%;"></textarea>
 										</td>
 								</tbody>
 							</table>
 							<input type="hidden" name="cmd" value="write" />
+							<input type="hidden" name="pno" value="${vo.pno}">	
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

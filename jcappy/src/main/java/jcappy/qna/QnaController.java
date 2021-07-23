@@ -1,4 +1,4 @@
-package jcappy.notice;
+package jcappy.qna;
 
 import java.io.File;
 import java.util.Date;
@@ -20,87 +20,79 @@ import jcappy.members.MembersVo;
 
 
 @Controller
-public class NoticeController {
+public class QnaController {
 	
 	@Autowired
-	NoticeService service;
+	QnaService service;
 	@Autowired
 	CommentService cService;
 	//tablename 변수 설정하여 comment insert, list 에서 사용
 	static final String TABLENAME = "notice";
 	
 	//공지사항 인덱스
-	@RequestMapping("/admin/board/notice/list")
-	public String index(Model model, NoticeVo vo, HttpSession sess) {
+	@RequestMapping("/admin/board/qna/list")
+	public String index(Model model, QnaVo vo, HttpSession sess) {
 		MembersVo fmv = new MembersVo();
 		//임시 로그인 세션 이메일
-		fmv.setMemail("bbb");
+		fmv.setMemail("aaa");
 		//임시 로그인 세션 비밀번호
-		fmv.setMpwd("bbb");
+		fmv.setMpwd("aaa");
 		//임시 로그인 세션 
 		MembersVo mv = service.temporarySession(fmv);
 		//임시 로그인 세션
 		sess.setAttribute("membersInfo", mv);		
 		model.addAttribute("list", service.selectAll(vo));
-		return "admin/board/notice/list";
+		return "admin/board/qna/list";
 	}
 	//공지사항 상세페이지
-	@RequestMapping("/admin/board/notice/detail")
-	public String detail(Model model, NoticeVo vo) {
+	@RequestMapping("/admin/board/qna/detail")
+	public String detail(Model model, QnaVo vo) {
 		model.addAttribute("vo", service.detail(vo));
+		return "admin/board/qna/detail";
+	}
+	
+	@RequestMapping("/admin/board/qna/reply")
+	public String reply(Model model, QnaVo vo) {
+		//model.addAttribute("vo", service.deatil(vo));
 		
-		return "admin/board/notice/detail";
+		QnaVo rv = service.detail(vo);
+		model.addAttribute("q_gno", rv.getQ_gno());
+		model.addAttribute("q_ono", rv.getQ_ono());
+		model.addAttribute("q_nested", rv.getQ_nested());
+		
+		return "admin/board/qna/reply";
 	}
-	//공지사항 쓰기페이지
-	@RequestMapping("/admin/board/notice/write")
-	public String write(Model model, NoticeVo vo) {
-		return "admin/board/notice/create";
-	}
-	//공지사항 데이터 입력
-	@RequestMapping("/admin/board/notice/insert")
-	public String insert(Model model, NoticeVo vo, 
+	
+	@RequestMapping("/admin/board/qna/insertReply")
+	public String insertReply(Model model, QnaVo vo, 
 						@RequestParam MultipartFile file, HttpServletRequest req) {
-		//service.insert(vo, filename, req)
 		if (!file.isEmpty()) { // 첨부파일이 있으면
 			try {
 				String org = file.getOriginalFilename(); // 원본파일명
 				String ext = ""; //확장자
-				
-				ext = org.substring(org.lastIndexOf(".")); 
+				ext = org.substring(org.lastIndexOf("."));
 				String real = new Date().getTime()+ext; // 서버에 저장할 파일명
-	//			System.out.println("org:"+org);
-	//			System.out.println("real:"+real);
-				// 파일 저장
 				String path = req.getRealPath("/upload/"); // 경로
 				file.transferTo(new File(path+real)); // 경로+파일명 저장
-				// vo에 set
-				vo.setNfile_org(org);
-				vo.setNfile_real(real);
+				vo.setQfile_org(org);
+				vo.setQfile_real(real);
 			} catch (Exception e) {
-				
 			}
 		}
-		int r = service.insert(vo);
-		// r > 0 : 정상 -> alert -> 목록으로 이동
-		// r == 0 : 비정상 -> alert -> 이전페이지로 이동
+		int r = service.insertReply(vo);
 		if (r > 0) {
 			model.addAttribute("msg", "정상적으로 등록되었습니다.");
 			model.addAttribute("url", "list");
 		} else {
 			model.addAttribute("msg", "등록실패");
-			model.addAttribute("url", "write");
+			model.addAttribute("url", "reply");
 		}
-		return "admin/include/alert";
+		return "include/alert";
 	}
-	//공지사항 수정페이지
-	@RequestMapping("/admin/board/notice/edit")
-	public String edit(Model model, NoticeVo vo) {
-		model.addAttribute("vo", service.edit(vo));
-		return "admin/board/notice/edit";
-	}
+	
 	//공지사항 업데이트
-	@RequestMapping("/admin/board/notice/update")
-	public String update(Model model, NoticeVo vo, 
+	@RequestMapping("/admin/board/qna/update")
+	public String update(Model model, QnaVo vo, 
 						@RequestParam MultipartFile file, HttpServletRequest req) {
 		//service.insert(vo, filename, req)
 		if (!file.isEmpty()) { // 첨부파일이 있으면
@@ -116,8 +108,8 @@ public class NoticeController {
 				String path = req.getRealPath("/upload/"); // 경로
 				file.transferTo(new File(path+real)); // 경로+파일명 저장
 				// vo에 set
-				vo.setNfile_org(org);
-				vo.setNfile_real(real);
+				vo.setQfile_org(org);
+				vo.setQfile_real(real);
 			} catch (Exception e) {
 				
 			}
@@ -130,48 +122,14 @@ public class NoticeController {
 			model.addAttribute("url", "list");
 		} else {
 			model.addAttribute("msg", "수정실패");
-			model.addAttribute("url", "edit?no="+vo.getNno());
+			model.addAttribute("url", "edit?no="+vo.getQno());
 		}
 		return "admin/include/alert";
 	}
 	//공지사항 삭제
-	@RequestMapping("/admin/board/notice/delete")
-	public String delete(Model model, NoticeVo vo, HttpServletRequest req) {
+	@RequestMapping("/admin/board/qna/delete")
+	public String delete(Model model, QnaVo vo, HttpServletRequest req) {
 		int r = service.delete(vo);
-		if (r > 0) {
-			model.addAttribute("result", "true");
-		} else {
-			model.addAttribute("result", "false");
-		}
-		return "admin/include/result";
-	}
-	//댓글 데이터 입력
-	@RequestMapping("/admin/comment/insert")
-	public String commentInsert(Model model, CommentVo vo) {
-		// tablename notice
-		vo.setCm_tablename(TABLENAME); 
-		int r = cService.insert(vo);
-		
-		if (r > 0) {
-			model.addAttribute("result", "true");
-		} else {
-			model.addAttribute("result", "false");
-		}
-		
-		return "admin/include/result";
-	}
-	//댓글 리스트 불러오기
-	@RequestMapping("/admin/comment/list")
-	public String commentList(Model model, CommentVo cv) {
-		// tablename notice
-		cv.setCm_tablename(TABLENAME); 
-		model.addAttribute("list", cService.selectAll(cv));
-		return "admin/include/comment";
-	}
-	// 댓글 삭제
-	@RequestMapping("/admin/comment/delete")
-	public String commentDelete(Model model, CommentVo vo) {
-		int r = cService.delete(vo);
 		if (r > 0) {
 			model.addAttribute("result", "true");
 		} else {

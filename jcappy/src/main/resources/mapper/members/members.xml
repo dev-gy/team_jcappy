@@ -2,7 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="members">
 	
+	<!-- 로그인 -->
 	<select id="login" resultType="jcappy.members.MembersVo" parameterType="jcappy.members.MembersVo">
-		SELECT * FROM user WHERE memail=#{memail} AND mpwd=md5(#{mpwd})
+		SELECT * FROM members WHERE memail=#{memail} AND mpwd=#{mpwd}  
 	</select>
+	
+	<!-- 회원 추가 -->
+	<insert id="insert" parameterType="jcappy.members.MembersVo">
+		INSERT INTO members (mname, mphone, memail, mpwd, mregdate, mzipcode, maddr, maddrde)
+		values (#{mname}, #{mphone}, #{memail}, md5(#{mpwd}), NOW(), #{mzipcode}, #{maddr}, #{maddrde}) <!-- pwd는 md5로 암호화 한것 -->
+	</insert>
 </mapper>

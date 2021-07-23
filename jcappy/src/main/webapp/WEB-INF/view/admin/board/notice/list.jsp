@@ -26,7 +26,6 @@
 					<div id="bbs">
 						<div id="blist">
 							<p><span><strong>총 ${noticeVo.totCount}개</strong>  |  ${noticeVo.reqPage}/${noticeVo.totPage }페이지</span></p>
-							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
 									<col class="w3" />
@@ -63,29 +62,32 @@
 									
 								</tbody>
 							</table>
-							</form>
 							<!--//btn-->
 							<div class="btn">
 								<div class="btnRight">
-									<a class="wbtn" href="write"><strong>등록</strong> </a>
+									<a class="wbtn" href="write?reqPage=${noticeVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><strong>등록</strong> </a>
 								</div>
 							</div>
 							<!-- 페이징 처리 -->
 							<div class='page'>
-								
 		                        <c:if test="${noticeVo.startPage > noticeVo.pageRange}">
-		                        	<span><a href="index?reqPage=${noticeVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a></span>
+		                        	<span><a href="list?reqPage=${noticeVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a></span>
 		                        </c:if>
 		                        <c:forEach var="rp" begin="${noticeVo.startPage}" end="${noticeVo.endPage }">
-		                            <span><a href='index?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}' <c:if test="${rp==noticeVo.reqPage }">class='current'</c:if>>${rp }</a></span>
+		                        <c:if test="${noticeVo.reqPage == rp }">
+									<span><a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'><strong>${rp }</strong></a></span>
+		                        </c:if>
+		                        <c:if test="${noticeVo.reqPage != rp }">
+		                            <span><a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'>${rp }</a></span>
+		                        </c:if>
 		                        </c:forEach>
 		                        <c:if test="${noticeVo.totPage > noticeVo.endPage}">
-		                        	<span><a href="index?reqPage=${noticeVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a></span>
+		                        	<span><a href="list?reqPage=${noticeVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a></span>
 		                        </c:if>
 							</div>
 							<!-- //페이징 처리 -->
 							<!-- 검색 조건들 -->
-							<form name="searchForm" id="searchForm" action="index.do"  method="post">
+							<form name="searchForm" id="searchForm" action="list"  method="post">
 								<div class="search">
 									 <select id="orderby" name="orderby" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
 	                                    <option value="nregdate" <c:if test="${param.orderby=='nregdate'}">selected</c:if>>작성일</option>

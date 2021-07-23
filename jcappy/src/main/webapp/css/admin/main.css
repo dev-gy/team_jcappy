@@ -6,3 +6,4 @@
 #admin_create .admin_authority input[type="checkbox"] {margin-right: 5px;}
 #admin_create .btns {cursor: pointer;}
 
+#admin_list .search select {margin: 0;}

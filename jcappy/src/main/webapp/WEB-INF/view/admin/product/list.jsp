@@ -9,10 +9,14 @@
 <title>상품 목록</title>
 <script>
 
-		function goSave() {
-			oEditors.getById['pcount'].exec("UPDATE_CONTENTS_FIELD",[]);
-			$("#frm").submit();
+		function goSaveCount() {
+			oEditors.getById['ppcount'].exec("UPDATE_CONTENTS_FIELD",[]);
+			$("#frmListCount").submit();
 		}
+		var oEditors;
+    	$(function(){
+    		oEditors = setEditor("ppcount"); // id
+    	});
 
 		function isDel(no) {
 			console.log(no);
@@ -57,7 +61,7 @@
 					<div id="bbs">
 						<div id="blist">
 							<p><span><strong>총 ${productVo.totCount }개</strong>  |  ${productVo.reqPage}/${productVo.totPage }페이지</span></p>
-							<form name="frm" id="frm" action="process.do" method="post">
+							<form name="frmListCount" id="frmListCount" action="update" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="상품 목록">
 								<colgroup>
 									<col width="80px"/>
@@ -90,10 +94,10 @@
 										<td>${vo.pno }</td>
 										<td>${vo.pcompany }</td>
 										<td>
-										<a href="detail?pno=${vo.pno }&reqPage=${productVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.pname }</a>
+										<a href="detail?pno=${vo.pno }">${vo.pname }</a>
 										</td>
 										<td>${vo.pprice }</td>
-										<td><input type="number" id="pcount" name="pcount" class="w100" value="${vo.pcount }"/><a class="btns" href="javascript:goSave();" onclick=""><strong>변경</strong></a></td>
+										<td><input type="number" id="pcount" name="pcount" class="w100" value="${vo.pcount }"/><a id="ppcount" class="btns" href="javascript:goSaveCount"><strong>변경</strong></a></td>
 										<td>${vo.pregdate }</td>
 										<td><a href="javascript:isDel(${vo.pno });" class="btns"><strong>삭제</strong></a></td>
 									</tr>
@@ -122,14 +126,16 @@
                                </c:if>
                            </div>
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="list"  method="post">
+							<form name="searchForm" id="searchForm" action=""  method="get">
 								<div class="search">
 									<select name="stype" title="브랜드">
-										<option value="sam">삼성</option>
-										<option value="lg">LG</option>
-										<option value="carrier">캐리어</option>
+										<option value="all">전체</option>
+										<option value="sam" <c:if test="${param.stype=='sam' }">selected</c:if>>삼성</option>
+										<option value="lg" <c:if test="${param.stype=='lg' }">selected</c:if>>LG</option>
+										<option value="carrier" <c:if test="${param.stype=='carrier' }">selected</c:if>>캐리어</option>
+										<option value="winia" <c:if test="${param.stype=='winia' }">selected</c:if>>위니아전자</option>
 									</select>
-									<input type="text" name="sval" value="${param.sval }" title="검색할 내용을 입력해주세요" />
+									<input type="text" id="sval" name="sval" value="${param.sval }" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" onclick="$('#searchForm').submit();" class="sbtn" alt="검색" />
 								</div>
 							</form>

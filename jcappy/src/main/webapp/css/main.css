@@ -103,9 +103,9 @@ join
 ========================================*/
 .join_content { padding: 50px; }
 .join_content > .title { margin: 50px; }
-.ex { width: 300px; margin: 50px 20px; }
 .join_input { width: 300px; padding: 20px; }
-
+.join_content .search_zipcode {width:100px; padding:10px;}
+.join_content .ex { width: 300px; margin: 50px 20px; }
 /*======================================
 login
 ========================================*/

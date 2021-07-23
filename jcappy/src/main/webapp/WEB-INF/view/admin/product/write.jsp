@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -34,18 +35,18 @@ function goSave() {
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="list" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="insert" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="상품 등록">
 								<colgroup>
 									<col width="10%" />
 								</colgroup>
 								<tbody>
-									<tr>
+									<!-- <tr> 앞으로 나올 번호 구현
 										<th scope="row"><label for="">상품 번호</label></th>
 										<td colspan="10">
 											<input type="text" id="ino" name="ino" class="w100"/>	
 										</td>
-									</tr>
+									</tr> -->
 									<tr>
 										<th scope="row"><label for="">브랜드</label></th>
 										<td colspan="10">
@@ -53,32 +54,32 @@ function goSave() {
 												<option value="sam">삼성전자</option>
 												<option value="lg">LG전자</option>
 												<option value="carrier">캐리어</option>
-												<option value="weenea">위니아전자</option>
+												<option value="winia">위니아전자</option>
 											</select>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품명</label></th>
 										<td colspan="10">
-											<input type="text" id="iname" name="iname" class="w100"/>	
+											<input type="text" id="pname" name="pname" class="w100"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 가격</label></th>
 										<td colspan="10">
-											<input type="text" id="iprice" name="iprice" class="w100"/>	
+											<input type="text" id="pprice" name="pprice" class="w100"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 재고</label></th>
 										<td colspan="10">
-											<input type="text" id="icount" name="icount" class="w100"/>	
+											<input type="text" id="pcount" name="pcount" class="w100"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 등록일</label></th>
 										<td colspan="10">
-											<input type="text" id="iregdate" name="iregdate" class="w100"/>	
+											<input type="text" id="pregdate" name="pregdate" class="w100"/>	
 										</td>
 									</tr><tr>
 										<th scope="row"><label for="">상품 이미지</label></th>
@@ -98,10 +99,10 @@ function goSave() {
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="index.do"><strong>목록</strong></a>
+									<a class="btns" href="list"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" href="javascript:goSave();" style="cursor:pointer;"><strong>저장</strong></a>
+									<a class="btns" href="javascript:goSave();" style="cursor:pointer;"><strong>등록</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

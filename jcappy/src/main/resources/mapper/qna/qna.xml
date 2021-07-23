@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna">
+
+	<sql id="qnaWhere">
+		<where>
+			<if test="sval != null and sval != ''">
+				<if test="stype == 'all'">
+					title LIKE '%${sval}%' OR content LIKE '%${sval}%'
+				</if>
+				<if test="stype != 'all'">
+					${stype} LIKE '%${sval}%'
+				</if>
+			</if>
+			<if test="mno != 0">
+				AND mno=#{mno}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectAll" resultType="jcappy.qna.QnaVo" parameterType="jcappy.qna.QnaVo">
+		SELECT *, 
+			(SELECT mname FROM members WHERE mno=qna.mno) AS mname
+		FROM qna
+		<include refid="qnaWhere"/>
+		ORDER BY q_gno DESC, q_ono ASC
+		LIMIT ${startIdx},${pageRow}
+	</select>
+	
+	<select id="count" resultType="int" parameterType="jcappy.qna.QnaVo">
+		SELECT COUNT(*) FROM qna
+		<include refid="qnaWhere"/>
+	</select>
+	
+	<select id="detail" resultType="jcappy.qna.QnaVo" parameterType="jcappy.qna.QnaVo">
+		SELECT * FROM qna q join members m on q.mno = m.mno and qno = #{qno}
+		
+	</select>
+	
+	<select id="lastPk" resultType="int">
+		SELECT max(qno) from qna
+	</select>
+	
+	<insert id="insertReply" parameterType="jcappy.qna.QnaVo">
+		INSERT INTO qna (qtitle, qcontent, qregdate,  qfile_org, qfile_real, mno, q_gno, q_ono, q_nested)
+		VALUES (#{qtitle}, #{qcontent}, NOW(), #{qfile_org}, #{qfile_real}, #{mno}, #{q_gno}, #{q_ono}, #{q_nested})
+	</insert>
+	
+	<update id="gno" parameterType="int">
+		UPDATE qna SET q_gno=#{xxx} WHERE qno=#{xxx}
+	</update>
+	
+	<update id="onoUpdate" parameterType="jcappy.qna.QnaVo">
+		UPDATE qna SET q_ono=q_ono+1 WHERE q_gno=#{q_gno} AND q_ono>#{q_ono}
+	</update>
+	
+	<update id="update" parameterType="jcappy.qna.QnaVo">
+		UPDATE reply SET
+			title=#{title}, content=#{content}
+			<if test="filename_org != null">
+				, filename_org=#{filename_org}, filename_real=#{filename_real}
+			</if>
+		WHERE no=#{no}
+	</update>
+	
+	<update id="delFilename" parameterType="jcappy.qna.QnaVo">
+		UPDATE reply SET
+			filename_org='', filename_real=''
+		WHERE no=#{no}
+	</update>
+	
+	<delete id="delete" parameterType="jcappy.qna.QnaVo">
+		DELETE FROM reply WHERE no=#{no}
+	</delete>
+	
+	<select id="temporarySession" resultType="jcappy.members.MembersVo" parameterType="jcappy.members.MembersVo">
+		SELECT * FROM members WHERE memail=#{memail} AND mpwd=#{mpwd}
+	</select>
+	
+	
+</mapper>
