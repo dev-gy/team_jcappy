@@ -44,4 +44,19 @@ public class AdminServiceImpl implements AdminService{
 	public int groupDelete(AdminVo vo) {
 		return dao.groupDelete(vo);
 	}
+
+	@Override
+	public AdminVo detail(AdminVo vo) {
+		return dao.detail(vo);
+	}
+
+	@Override
+	public int delete(int ano) {
+		return dao.delete(ano);
+	}
+
+	@Override
+	public int update(AdminVo vo) {
+		return dao.update(vo);
+	}
 }
