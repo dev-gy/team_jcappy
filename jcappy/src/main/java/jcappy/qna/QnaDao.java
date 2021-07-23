@@ -26,22 +26,15 @@ public class QnaDao {
 	public QnaVo detail(QnaVo vo) {
 		return sqlSession.selectOne("qna.detail", vo);
 	}
-	
-	public void updateReadcount(QnaVo vo) {
-		sqlSession.update("qna.updateReadcount", vo);
-	}
-	
+		
 	public void gno(int no) {
 		sqlSession.update("qna.gno", no);
 	}
 	
-	public int insert(QnaVo vo) {
-		return sqlSession.insert("qna.insert", vo);
+	public int insertReply(QnaVo vo) {
+		return sqlSession.insert("qna.insertReply", vo);
 	}
 	
-	public int insertqna(QnaVo vo) {
-		return sqlSession.insert("qna.insertqna", vo);
-	}
 	public int onoUpdate(QnaVo vo) {
 		return sqlSession.update("qna.onoUpdate", vo);
 	}

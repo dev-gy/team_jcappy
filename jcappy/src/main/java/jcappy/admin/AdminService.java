@@ -1,7 +1,14 @@
 package jcappy.admin;
 
+import java.util.List;
+
 public interface AdminService {
 	
-	public int insert(AdminVo vo);
-	public int isDuplicateId(String id);
+	List<AdminVo> selectAll(AdminVo vo);
+	int insert(AdminVo vo);
+	int isDuplicateId(String id);
+	int groupDelete(AdminVo vo);
+	AdminVo detail(AdminVo vo);
+	int delete(int ano);
+	int update(AdminVo vo);
 }

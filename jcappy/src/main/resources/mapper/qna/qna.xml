@@ -6,7 +6,7 @@
 		<where>
 			<if test="sval != null and sval != ''">
 				<if test="stype == 'all'">
-					title LIKE '%${sval}%' OR content LIKE '%${sval}%'
+					qtitle LIKE '%${sval}%' OR qcontent LIKE '%${sval}%'
 				</if>
 				<if test="stype != 'all'">
 					${stype} LIKE '%${sval}%'
@@ -33,51 +33,40 @@
 	</select>
 	
 	<select id="detail" resultType="jcappy.qna.QnaVo" parameterType="jcappy.qna.QnaVo">
-		SELECT * FROM reply WHERE no = #{no}
+		SELECT * FROM qna q join members m on q.mno = m.mno and qno = #{qno}
+		
 	</select>
 	
-	<update id="updateReadcount" parameterType="jcappy.qna.QnaVo">
-		UPDATE reply SET readcount=readcount+1 WHERE no = #{no}
-	</update>
-	
-	<insert id="insert" parameterType="jcappy.qna.QnaVo">
-		INSERT INTO reply (title, content, regdate, readcount, filename_org, filename_real, user_no)
-		VALUES (#{title}, #{content}, NOW(), 0, #{filename_org}, #{filename_real}, #{user_no})
-		<selectKey keyProperty="no" resultType="int" order="AFTER">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-	</insert>
-	
 	<insert id="insertReply" parameterType="jcappy.qna.QnaVo">
-		INSERT INTO reply (title, content, regdate, readcount, filename_org, filename_real, user_no, gno, ono, nested)
-		VALUES (#{title}, #{content}, NOW(), 0, #{filename_org}, #{filename_real}, #{user_no}, #{gno}, #{ono}, #{nested})
+		INSERT INTO qna (qtitle, qcontent, qregdate,  qfile_org, qfile_real, mno, q_gno, q_ono, q_nested)
+		VALUES (#{qtitle}, #{qcontent}, NOW(), #{qfile_org}, #{qfile_real}, #{mno}, #{q_gno}, #{q_ono}, #{q_nested})
 	</insert>
 	
 	<update id="gno" parameterType="int">
-		UPDATE reply SET gno=#{xxx} WHERE no=#{xxx}
+		UPDATE qna SET q_gno=#{xxx} WHERE qno=#{xxx}
 	</update>
 	
 	<update id="onoUpdate" parameterType="jcappy.qna.QnaVo">
-		UPDATE reply SET ono=ono+1 WHERE gno=#{gno} AND ono>#{ono}
+		UPDATE qna SET q_ono=q_ono+1 WHERE q_gno=#{q_gno} AND q_ono>#{q_ono}
 	</update>
 	
 	<update id="update" parameterType="jcappy.qna.QnaVo">
-		UPDATE reply SET
-			title=#{title}, content=#{content}
-			<if test="filename_org != null">
-				, filename_org=#{filename_org}, filename_real=#{filename_real}
+		UPDATE qna SET
+			qtitle=#{qtitle}, qcontent=#{qcontent}
+			<if test="qfile_org != null">
+				, qfile_org=#{qfile_org}, qfile_real=#{qfile_real}
 			</if>
-		WHERE no=#{no}
+		WHERE qno=#{qno}
 	</update>
 	
 	<update id="delFilename" parameterType="jcappy.qna.QnaVo">
-		UPDATE reply SET
-			filename_org='', filename_real=''
-		WHERE no=#{no}
+		UPDATE qna SET
+			qfile_org='', qfile_real=''
+		WHERE qno=#{qno}
 	</update>
 	
 	<delete id="delete" parameterType="jcappy.qna.QnaVo">
-		DELETE FROM reply WHERE no=#{no}
+		DELETE FROM qna WHERE qno=#{qno}
 	</delete>
 	
 	<select id="temporarySession" resultType="jcappy.members.MembersVo" parameterType="jcappy.members.MembersVo">

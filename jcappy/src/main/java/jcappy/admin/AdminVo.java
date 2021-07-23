@@ -19,6 +19,11 @@ public class AdminVo extends CommonVo {
 	private int admin_account;
 	private int admin_admin;
 	private int auth;
+	private int[] anos;
+
+	AdminVo() {
+		super.setOrderby("aregdate");
+	}
 
 	public int getAno() {
 		return ano;
@@ -122,5 +127,13 @@ public class AdminVo extends CommonVo {
 
 	public void setAuth(int auth) {
 		this.auth = auth;
+	}
+
+	public int[] getAnos() {
+		return anos;
+	}
+
+	public void setAnos(int[] anos) {
+		this.anos = anos;
 	}
 }

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -9,7 +10,7 @@
 		if (confirm('삭제하시겠습니까?')) {  
 			// 삭제처리
 			$.ajax({
-				url:'delete.do',
+				url:'delete',
 				data:{
 					'nno':${vo.nno}
 				},
@@ -147,12 +148,12 @@
 									<tr>
 										<th scope="row"><label for="">작성날짜</label></th>
 										<td colspan="10">
-											${vo.nregdate }
+											<fmt:formatDate value="${vo.nregdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td> 
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">내용</label></th>
-										<td colspan="10">
+										<th scope="row" ><label for="" >내용</label></th>
+										<td colspan="10" style="vertical-align: top;">
 											${vo.ncontent}
 										</td>
 									</tr>

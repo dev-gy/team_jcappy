@@ -6,3 +6,8 @@
 #admin_create .admin_authority input[type="checkbox"] {margin-right: 5px;}
 #admin_create .btns {cursor: pointer;}
 
+#admin_list .search select {margin: 0;}
+
+.imagePreview1{width: 100px; height: 50px; background-position: center center; background-size: cover; display: inline-block;}
+.imagePreview2{width: 100px; height: 50px; background-position: center center; background-size: cover; display: inline-block;}
+.imagePreview3{width: 100px; height: 50px; background-position: center center; background-size: cover; display: inline-block;}

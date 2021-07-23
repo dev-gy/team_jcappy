@@ -1,15 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
+	
+	<sql id="adminWhere">
+		<where>
+			<if test="sval != null and sval != ''"> <!-- AND는 에러 -->
+				<if test="stype == 'all'">
+					title LIKE '%${sval}%' OR content LIKE '%${sval}%'
+				</if>		
+				<if test="stype != 'all'">
+					${stype} LIKE '%${sval}%'
+				</if>		
+			</if>
+		</where>
+	</sql>
+	
+	<!--관리자계정리스트 -->
+	<select id="selectAll" resultType="jcappy.admin.AdminVo" parameterType="jcappy.admin.AdminVo">
+		SELECT ano, aid, aname, aregdate, admin_item, admin_order, admin_members, admin_board, admin_add, admin_account, admin_admin
+		FROM admin 
+		<include refid="adminWhere"/>
+		ORDER BY ${orderby} ${direct}
+		LIMIT ${startIdx}, ${pageRow}
+	</select>
+	
+	<select id="count" resultType="int" parameterType="jcappy.admin.AdminVo">
+		SELECT COUNT(*)	
+		FROM admin
+		<include refid="adminWhere"/>
+	</select>
 
+	<!-- 관리자계정등록 -->
 	<insert id="insert" parameterType="jcappy.admin.AdminVo">
 		INSERT INTO admin 
 		(aid, apwd, aname, aregdate, admin_item, admin_order, admin_members, admin_board, admin_add, admin_account, admin_admin, auth)
 		VALUES
 		(#{aid}, MD5(#{apwd}), #{aname}, NOW(), #{admin_item}, #{admin_order}, #{admin_members}, #{admin_board}, #{admin_add}, #{admin_account}, #{admin_admin}, #{auth})
-	</insert>		
-	
+	</insert>
+
+	<!-- 아이디중복체크 -->
 	<select id="isDuplicateId" resultType="int" parameterType="String">
 		SELECT COUNT(*) FROM admin WHERE aid=#{aid}  
 	</select>
+
+	<!-- 목록에서 일괄 삭제 -->
+	<delete id="groupDelete" parameterType="jcappy.admin.AdminVo">
+		DELETE FROM admin
+		WHERE ano IN
+		<foreach collection="anos" item="ano" index="index" open="(" close=")" separator=",">
+		${ano}
+		</foreach>
+	</delete>
+	
+	<!-- 관리자계정 상세 -->
+	<select id="detail" resultType="jcappy.admin.AdminVo" parameterType="jcappy.admin.AdminVo">
+		SELECT ano, aid, aname, aregdate, admin_item, admin_order, admin_members, admin_board, admin_add, admin_account, admin_admin
+		FROM admin 
+		WHERE ano = ${ano}
+	</select>
+	
+	<!-- 관리자계정 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM admin
+		WHERE ano = ${ano}
+	</delete>
+	
+	<!-- 관리자계정 수정 -->
+	<update id="update" parameterType="jcappy.admin.AdminVo">
+		UPDATE admin SET
+		aname=#{aname}, admin_item=${admin_item}, admin_order=${admin_order}, admin_members=${admin_members}, admin_board=${admin_board}, admin_add=${admin_add}, admin_account=${admin_account}, admin_admin=${admin_admin}
+		<if test="apwd != ''">, apwd=MD5(#{apwd})</if>
+		WHERE ano=${ano}
+	</update>
 </mapper>
