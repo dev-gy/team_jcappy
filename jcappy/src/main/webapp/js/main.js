@@ -75,8 +75,8 @@ $(function(){
     $("input").keyup(function(){
 	    // 키 입력시 비밀번호 일치여부 확인 및 결과툴팁 띄우기
 	    // 일치할 시 버튼 활성화, 일치하지 않을 시 버튼 비활성화
-        var pwd1=$(".join_content #mpwd1").val(); 
-        var pwd2=$(".join_content #mpwd2").val(); 
+        var pwd1=$(".join_content #mpwd").val(); 
+        var pwd2=$(".join_content #mpwd_check").val(); 
 	    if(pwd1 != "" || pwd2 != ""){ 
 	        if(pwd1 == pwd2){ 
 	            $(".join_content #alert-success").show(); 
@@ -88,7 +88,7 @@ $(function(){
             } 
         }    
     });
-}); 
+});
 
 /*======================================
 policy/servicepolicy

@@ -3,7 +3,7 @@ package jcappy.members;
 import java.sql.Timestamp;
 
 public class MembersVo {
-	
+	// InDB
 	private int mno;
 	private String mname;
 	private String mphone;
@@ -15,14 +15,16 @@ public class MembersVo {
 	private String maddr;
 	private String maddrde;
 	
-	private String checkEmail;
+	// NonDB
+	private String checkMemail;
 	  
 	// getter & setter
-	public String getCheckEmail() {
-		return checkEmail;
+	
+	public String getCheckMemail() {
+		return checkMemail;
 	}
-	public void setCheckEmail(String checkEmail) {
-		this.checkEmail = checkEmail;
+	public void setCheckMemail(String checkMemail) {
+		this.checkMemail = checkMemail;
 	}
 	public int getMno() {
 		return mno;

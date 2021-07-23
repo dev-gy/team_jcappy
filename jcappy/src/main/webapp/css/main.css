@@ -106,6 +106,7 @@ join
 .join_input { width: 300px; padding: 20px; }
 .join_content .search_zipcode {width:100px; padding:10px;}
 .join_content .ex { width: 300px; margin: 50px 20px; }
+.join_content #memail{width: 278px; padding: 10px; border: 1px solid #cccccc;}
 /*======================================
 login
 ========================================*/
@@ -351,12 +352,12 @@ changepwd
 .changepwd_btn {width:100px; margin: 0 0 25px 0;}
 
 /*======================================
-findaccountpwd
+findAccount
 ========================================*/
-.findaccountpwd_content{padding: 50px 0px 100px 0px;}
-.findaccountpwd_content > .title{margin-bottom: 50px;}
-.findaccountpwd_content  .cstyle_tab { height: 40px; box-sizing: border-box; width: 500px;}
-.findaccountpwd_content  .tab_find{padding: 100px 0px;}
-.findaccountpwd_content  .find_input{width: 300px;}
-.findaccountpwd_content  .ex{width: 300px; margin: 50px 20px;}
-.findaccountpwd_content  .table{width: 500px;margin: auto;}
+.findAccount_content{padding: 50px 0px 100px 0px;}
+.findAccount_content > .title{margin-bottom: 50px;}
+.findAccount_content  .cstyle_tab { height: 40px; box-sizing: border-box; width: 500px;}
+.findAccount_content  .tab_find{padding: 100px 0px;}
+.findAccount_content  .find_input{width: 300px;}
+.findAccount_content  .ex{width: 300px; margin: 50px 20px;}
+.findAccount_content  .table{width: 500px;margin: auto;}

@@ -18,9 +18,15 @@ public class MembersServiceImpl implements MembersService{
 	public int insert(MembersVo vo) {
 		return dao.insert(vo);
 	}
+	
 	@Override
 	public int isDuplicateEmail(String email) {
 		return dao.isDuplicateEmail(email);
+	}
+	
+	@Override
+	public MembersVo findId(MembersVo vo) {
+		return dao.findId(vo);
 	}
 
 }
