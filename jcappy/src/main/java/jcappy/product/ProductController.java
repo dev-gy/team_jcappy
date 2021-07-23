@@ -47,7 +47,6 @@ public class ProductController {
 			vo.setOrderby("pprice");
 			vo.setDirect("ASC");
 		}
-		vo.setPageRow(15);
 		
 		String a, b, c = "";	// a, b, c는 카테고리 좌측순서부터 카테고리의 이름
 		// type과 cate(a, b, c)에 해당하는 상품들의 정보를 vo에 입력

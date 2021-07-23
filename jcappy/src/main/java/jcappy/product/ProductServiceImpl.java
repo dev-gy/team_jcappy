@@ -12,6 +12,11 @@ public class ProductServiceImpl implements ProductService {
 	ProductDao productDao;
 	
 	public List<ProductVo> selectAll(ProductVo vo) {
+		// 검색 타입 및 페이지 아이템 갯수 설정
+		vo.setStype("pname");
+		vo.setPageRow(15);
+		
+		// 페이징 관련 값 세팅
 		int totCount = productDao.count(vo); // 총갯수
 		// 총페이지수
 		int totPage = totCount / vo.getPageRow();
