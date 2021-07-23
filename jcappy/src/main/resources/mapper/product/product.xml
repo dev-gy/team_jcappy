@@ -3,7 +3,17 @@
 <mapper namespace="product">
 	<sql id="productWhere">
 		<where>
-			
+			<trim prefixOverrides="AND">
+				<if test="sptype != null and sptype != ''">
+					ptype=#{sptype}
+				</if>
+				<if test="spcate != null and spcate != ''">
+					AND pcate=#{spcate}
+				</if>
+				<if test="sval != null and sval != ''">
+					AND pname LIKE '%${sval}%'
+				</if>
+			</trim>
 		</where>
 	</sql>
 	<select id="selectAll" resultType="jcappy.product.ProductVo" parameterType="jcappy.product.ProductVo">
