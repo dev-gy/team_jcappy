@@ -23,6 +23,9 @@
 						<div id="bbs">
 							<div id="blist">
 								<div class="admin_main_table">
+									<div onClick="location.href='product/list';">
+										<input type="text" name="admin_main_title" value="품절 임박 상품" disabled size="30">
+									</div>
 									<table>
 										<colgroup>
 											<col class="w25" />
@@ -60,6 +63,9 @@
 									</table>
 								</div>
 								<div class="admin_main_table">
+									<div onClick="location.href='';">
+										<input type="text" name="admin_main_title" value="최근 등록 게시글" disabled size="30">
+									</div>
 									<table>
 										<colgroup>
 											<col class="w25" />
@@ -97,6 +103,9 @@
 									</table>
 								</div>
 								<div class="admin_main_table">
+									<div onClick="location.href='';">
+										<input type="text" name="admin_main_title" value="최근 주문 목록" disabled size="30">
+									</div>
 									<table>
 										<colgroup>
 											<col class="w25" />
@@ -134,6 +143,9 @@
 									</table>
 								</div>
 								<div class="admin_main_table">
+									<div onClick="location.href='';">
+										<input type="text" name="admin_main_title" value="매출조회" disabled size="30">
+									</div>
 									<table>
 										<colgroup>
 											<col class="w25" />

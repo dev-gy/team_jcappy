@@ -73,7 +73,7 @@
 										</colgroup>
 										<thead>
 											<tr>
-												<th scope="col">상품 번호</th>
+												<th scope="col" class="first">상품 번호</th>
 												<th scope="col">브랜드</th>
 												<th scope="col">상품명</th>
 												<th scope="col">상품 가격</th>
@@ -90,7 +90,7 @@
 											</c:if>
 											<c:forEach var="vo" items="${list }" varStatus="status">
 												<tr>
-													<td>${vo.pno }</td>
+													<td class="first">${vo.pno }</td>
 													<td>${vo.pcompany }</td>
 													<td style="text-align: left; padding-left: 10px;"><a href="detail?pno=${vo.pno }">${vo.pname }</a></td>
 													<td><fmt:formatNumber value="${vo.pprice }" pattern="#,###,###"/></td>
@@ -108,20 +108,33 @@
 										</tbody>
 									</table>
 								</form>
-								<div class="btnSet" style="text-align: right;">
-									<a class="btns" href="write"><strong>등록</strong></a>
+								<div class="btn">
+									<div class="btnRight">
+										<a class="wbtn" href="write"><strong>등록</strong> </a>
+									</div>
 								</div>
+								
+								
+								
 								<!-- 페이징 처리 -->
 								<div class='page'>
 									<c:if test="${productVo.startPage > productVo.pageRange}">
 										<a
 											href="list?reqPage=${productVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a>
 									</c:if>
-									<c:forEach var="rp" begin="${productVo.startPage}"
-										end="${productVo.endPage }">
-										<a
-											href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'
-											<c:if test="${rp==productVo.reqPage }">class='current'</c:if>>${rp }</a>
+									<c:forEach var="rp" begin="${productVo.startPage}" end="${productVo.endPage }">
+										 <c:if test="${productVo.reqPage == rp }">
+			                        	    <a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'>
+												<strong>
+				                        	    	${rp }
+				                        	    </strong>
+			                        	    </a>
+		                        	    </c:if>
+		                        	    <c:if test="${productVo.reqPage != rp }">
+			                        	    <a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'>
+												${rp }
+											</a>
+		                        	    </c:if>
 									</c:forEach>
 									<c:if test="${productVo.totPage > productVo.endPage}">
 										<a

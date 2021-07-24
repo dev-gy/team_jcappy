@@ -8,13 +8,13 @@ $(window).load(function(){
 </script>
 <div id="header">
 	<div class="header_inner">
-		<h1 id="top_title">JCAPPY_MANAGEMENT</h1>
+		<a href="main"><h1 id="top_title">JCAPPY_MANAGEMENT</h1></a>
 		<p class="login_name"></p>
 		<!-- util : s -->
 		<div class="util">
 			<ul>
 <%-- 				<li class="frist"><a href="<%=request.getContextPath()%>/admin/index.do" onclick="">Home</a></li> --%>
-				<li><a href="<%=request.getContextPath()%>/admin/logout.do">LogOut</a></li>
+				<li><a href="<%=request.getContextPath()%>/admin/logout">LogOut</a></li>
 			</ul>
 		</div>
 		<!-- util : e --> 
