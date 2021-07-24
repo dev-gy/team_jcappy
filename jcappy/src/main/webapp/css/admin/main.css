@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /*======================================
 로그인화면
 ========================================*/
@@ -21,8 +22,6 @@
 #admin_create #bbs {width: 500px;}
 #admin_create .admin_authority input[type="checkbox"] {margin-right: 5px;}
 #admin_create .btns {cursor: pointer;}
-
-#admin_list .search select {margin: 0;}
 
 /*======================================
 메뉴 : 상품관리

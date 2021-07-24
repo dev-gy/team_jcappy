@@ -92,7 +92,7 @@
 												<tr>
 													<td>${vo.pno }</td>
 													<td>${vo.pcompany }</td>
-													<td style="text-align: left;"><a href="detail?pno=${vo.pno }">${vo.pname }</a></td>
+													<td style="text-align: left; padding-left: 10px;"><a href="detail?pno=${vo.pno }">${vo.pname }</a></td>
 													<td><fmt:formatNumber value="${vo.pprice }" pattern="#,###,###"/></td>
 													<td><input type="number" id="pcount" name="pcount" class="w100" value="${vo.pcount }" />
 													<a id="ppcount" class="btns" href="javascript:goSaveCount"><strong>변경</strong></a>	
