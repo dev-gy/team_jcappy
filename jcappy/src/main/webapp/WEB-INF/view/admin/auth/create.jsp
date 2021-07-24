@@ -130,6 +130,7 @@ function regAdmin() {
 	
 	// 관리자계정 권한 선택 시, 권한 코드 입력체크
 	if ($('#admin_admin').prop("checked")) {
+		var check = true;
 		if ($('#check_authority').val().trim() == '') {
 			alert('"관리자계정" 권한은 권한코드를 필요로합니다.\n권한코드를 입력해주세요.');
 			$('#check_authority').focus();
@@ -152,9 +153,8 @@ function regAdmin() {
 				},
 			});
 		}
+		if (!check) {return;}
 	}
-	
-	if (!check) {return;}
 	
 	if (confirm("등록하시겠습니까?")) {
 		$.ajax({

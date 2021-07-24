@@ -55,6 +55,58 @@ $(function() {
     });
 });
 </script>
+<script>
+var valueFactory = (function() {
+	  var cfrez = [일반형냉장고, 양문형냉장고];
+	  var cair = [스탠드형에어컨, 벽걸이형에어컨];
+	  var ctv = [LEDTV, OLEDTV, QLEDTV];
+	  var cwash = [일반세탁기, 드럼세탁기, 미니세탁기];
+
+	  return {
+	    create: function(target, value) {
+	      if (target === 'pcate') {
+	        if (value === 'frez') {
+	          return cfrez;
+	        } else if (value === 'air') {
+	          return cair;
+	        } else if (value === 'tv') {
+	          return ctv;
+	        } else if (value === 'wash') {
+	          return cwash;
+	        }
+	      }
+	    }
+	  }
+	})();
+
+	/**
+	 * @param target  값이 삽입될 select 태그명
+	 * @param value  값을 구분해줌
+	 */
+	var retrieves = function(target, value) {
+
+	  // 해당 target에 맞는 data 가져오는 부분
+	  // 나중에 DB와 연동할 시 ajax를(비동기부분) 이용해 data가져오는 구분으로 변경해도됨
+	  var arr = valueFactory.create(target, value);
+
+	  $("select[name=" + target + "]").empty();
+
+	  $.each(arr, function(idx, item) {
+	    $("<option>" + (target + "_" + item) + "</option>").attr({
+	      'value': (idx + 1),
+	    }).appendTo($("select[name=" + target + "]"));
+
+	  });
+	};
+
+	//select 태그 중 hierarchy란 클래스를 가지고 있는 Element가 change 이벤트가 발생 할시 실행함
+	$("select.hierarchy").on('change', function() {
+	  var target = $(this).data('target');
+	  var value = $(this).val();
+
+	  retrieves(target, value);
+	});
+</script>
 </head>
 <body> 
 <div id="wrap">
@@ -77,7 +129,7 @@ $(function() {
 							<form method="post" name="frm" id="frm" action="insert" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="상품 등록">
 								<colgroup>
-									<col width="10%" />
+									<col width="10%"/>
 								</colgroup>
 								<tbody>
 									<!-- <tr> 앞으로 나올 번호 구현
@@ -89,18 +141,19 @@ $(function() {
 									<tr>
 										<th scope="row"><label for="">상품 종류</label></th>
 										<td colspan="10">
-											<select name="ptype" title="종류">
+										<span>
+											<select class="hierarchy" name="ptype" id="ptype" title="종류" data-target="pcate">
+												<option value="" selected disabled>종류를 선택</option>
 												<option value="frez">냉장고</option>
 												<option value="air">에어컨</option>
 												<option value="tv">TV</option>
 												<option value="wash">세탁기</option>
 											</select>
-											<c:if test="${frez == ''}">
-											</c:if>
-											<select name="pcate" title="카테고리">
-												<option value="ㅁfrez">일반형냉장고</option>
-												<option value="bfrez">양문형냉장고</option>
+										</span>
+										<span>
+											<select class="hierarchy" name="pcate" id="pcate" title="카테고리">
 											</select>
+										</span>
 										</td>
 									</tr>
 									<tr>

@@ -1,11 +1,13 @@
 package jcappy.admin;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -39,7 +41,7 @@ public class AdminController {
 		} else {
 			model.addAttribute("result", "false");
 		}
-		return "admin/include/result";
+		return "include/result";
 	}
 
 	// 관리자계정 아이디 중복 체크
@@ -50,7 +52,7 @@ public class AdminController {
 		} else {
 			model.addAttribute("result", "true");
 		}
-		return "admin/include/result";
+		return "include/result";
 	}
 	
 	// '관리자계정' 권한의 권한코드 체크
@@ -61,7 +63,7 @@ public class AdminController {
 		} else {
 			model.addAttribute("result", "false");
 		}
-		return "admin/include/result";
+		return "include/result";
 	}
 	
 	// 관리자계정 목록에서 일괄 삭제
@@ -99,7 +101,7 @@ public class AdminController {
 		} else {
 			model.addAttribute("result", "false");
 		}
-		return "admin/include/result";
+		return "include/result";
 	}
 	
 	// 관리자계정 수정
@@ -113,6 +115,34 @@ public class AdminController {
 		} else {
 			model.addAttribute("result", "false");
 		}
-		return "admin/include/result";
+		return "include/result";
+	}
+	
+	// 로그인 폼
+	@RequestMapping("/admin/loginForm")
+	public String loginForm(Model model, AdminVo vo) {
+		return "admin/index";
+	}
+
+	// 로그인처리
+	@RequestMapping("/admin/login")
+	public String login(Model model, AdminVo vo, HttpSession session) {
+		
+		AdminVo adminInfo = service.login(vo);
+		
+		if (adminInfo != null) {
+			session.setAttribute("adminInfo", adminInfo);
+			return "redirect:/admin/main";
+		} else {
+			model.addAttribute("msg", "아이디와 비밀번호를 확인해주세요.");
+			model.addAttribute("url", "loginForm");
+			return "include/alert";
+		}
+	}
+	
+	// 관리자 로그인시, 메인페이지
+	@RequestMapping("/admin/main")
+	public String main(Model model, AdminVo vo) {
+		return "admin/main";
 	}
 }

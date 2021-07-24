@@ -40,6 +40,9 @@
 		}
 	}
 </script>
+<script>
+/* 재고량 버튼 클릭시 변경 */
+</script>
 </head>
 <body>
 	<div id="wrap">
@@ -55,8 +58,7 @@
 						<div id="bbs">
 							<div id="blist">
 								<p>
-									<span><strong>총 ${productVo.totCount }개</strong> |
-										${productVo.reqPage}/${productVo.totPage }페이지</span>
+									<span><strong>총 ${productVo.totCount }개</strong> | ${productVo.reqPage}/${productVo.totPage }페이지</span>
 								</p>
 								<form name="frmListCount" id="frmListCount" action="update"
 									method="post">
@@ -92,7 +94,7 @@
 												<tr>
 													<td>${vo.pno }</td>
 													<td>${vo.pcompany }</td>
-													<td style="text-align: left;"><a href="detail?pno=${vo.pno }">${vo.pname }</a></td>
+													<td style="text-align: left; padding-left: 10px;"><a href="detail?pno=${vo.pno }">${vo.pname }</a></td>
 													<td><fmt:formatNumber value="${vo.pprice }" pattern="#,###,###"/></td>
 													<td><input type="number" id="pcount" name="pcount" class="w100" value="${vo.pcount }" />
 													<a id="ppcount" class="btns" href="javascript:goSaveCount"><strong>변경</strong></a>	
