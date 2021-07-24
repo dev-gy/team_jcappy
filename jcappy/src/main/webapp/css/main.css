@@ -225,9 +225,9 @@ product/detail
 .review_area > ul > li > .review_content { width:auto;  display: table-cell; padding:20px 40px 20px 20px; cursor: pointer; }
 .review_area > ul > li > .review_content > .review_context { padding: 10px 0px; overflow: hidden; text-overflow: ellipsis; }
 .review_area > ul > li > .review_content > .review_img { width: 70px; height: 70px; margin-right: 10px; background-size: cover; display: inline-block; }
-
 .review_area > ul > li > .review_btn { width: 200px; height: 25px; margin: 40px;}
 .review_area > ul > li > .review_btn { width: 200px; height: 25px; margin: 40px; }
+#cart_btn_dialog > p { padding: 20px 0px; font-size: 16px; text-align: center; }
 
 /*======================================
 pay/complete

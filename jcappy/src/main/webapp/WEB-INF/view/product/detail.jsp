@@ -6,6 +6,61 @@
 <meta charset="UTF-8">
 <title>상품 상세페이지</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
+<script>
+$(function() {
+	// 상품가격 및 총합가격 초기화.
+	$("#price").text(Number(${vo.pprice }).toLocaleString("ko-KR")+"원");
+	$("#total_price").text(Number(${vo.pprice } * $("#count").val()).toLocaleString("ko-KR")+"원");
+	
+	// 스크롤시 다이얼로드 중앙 고정되도록 다이얼로그 옵션의 포지션 센터 위치 재등록
+	$(window).scroll(function() {
+		$("#cart_btn_dialog").dialog("option", "position", { my: "center", at: "center", of: window });
+	});
+	
+	// 다이얼로그 초기화
+	$("#cart_btn_dialog").dialog({
+		width: 350,	// 가로 300px
+		modal: true,	// 모달(뒷페이지 클릭방지) 활성화 true
+		autoOpen: false,	// 페이지 로드시 자동 활성화 false
+		resizable: false,		// 사이즈 조절 false
+		buttons: {			// 계속 쇼핑, 장바구니 이동 버튼 생성 및 함수 구현
+			"계속쇼핑": function() {
+				$(this).dialog("close");	// 현재 다이얼로그 닫기
+			},
+			"장바구니": function() {
+				location.href="/jcappy/cart.do";
+			}
+		},
+	}).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();	// 다이얼로그의 타이틀바를 클래스로 찾아서 제거 (타이틀바 사용안할 것)
+	
+});
+function cartpoupOpen() {
+	$("#cart_btn_dialog").dialog("open");	// 다이얼로그 열기
+}
+
+function infoUpdate() {
+	// 새로고침 방지를 위해 ajax로 상품 가격, 총합가격 데이터 갱신 및 업데이트
+	$.ajax({
+		url: "/jcappy/product/detail/calcPrice",
+		data: {	
+			price: ${vo.pprice },	
+			totalPrice: ${vo.pprice } * $("#count").val(),
+		},
+		type: "GET",
+		success: function(res) {
+			var data = JSON.parse(res);	// 하나 이상의 데이터이기 때문에 json형식으로 받아와 파싱 후 사용
+			$("#price").text(Number(data.price).toLocaleString("ko-KR")+"원");
+			$("#total_price").text(Number(data.totalPrice).toLocaleString("ko-KR")+"원");
+		},
+		error: function(res) {
+			console.log("error: " + res);
+		},
+	});
+}
+
+
+
+</script>
 </head>
 
 <body>
@@ -19,35 +74,36 @@
 							<td class="item_img_area"><!-- style="background-image: url('/jcappy/img/상세 이미지1.jpg');" -->
 								<span class="item_major_img cstyle_border_gray" ></span>
 								<span class="item_img_list">
-									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img1" style="background-image: url('${productVo.pimg1_org }');"></span>
-									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img2" style="background-image: url('${productVo.pimg2_org }');"></span>
-									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img3" style="background-image: url('${productVo.pimg3_org }');"></span>
+									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img1" style="background-image: url('${vo.pimg1_org }');"></span>
+									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img2" style="background-image: url('${vo.pimg2_org }');"></span>
+									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img3" style="background-image: url('${vo.pimg3_org }');"></span>
 								</span>
 							</td>
 							<td class="item_info_area">
 								<div class="top">
-									<h1 class="item_name">삼성전자 RF85A9103AP 비스포크 냉장고 875L 21년 신모델 AC21585500</h1>
-									<h2 class="item_info_price">${productVo.pprice } 원</h2>
+									<h1 class="item_name">${vo.pname }</h1>
+									<h2 class="item_info_price" id="price">${vo.pprice }원</h2>
 								</div>
 								<div class="middle">
 									<hr>
-									<p class="delivery_type">배송 방법 - 택배</p>
-									<p class="delivery_price">배송비 무료</p>
+										<p class="delivery_type">배송 방법 - 택배</p>
+										<p class="delivery_price">배송비 무료</p>
 									<hr>
 								</div>
 								<div class="bottom">
 									<p>수량 선택</p>
 										<span class="item_count_area cstyle_border_black">
-										 	<a class="minus_btn cstyle_btn" >-</a>
-											<input class="count" type="text" value="1" oninput="onlyNumber(this);" />
-											<a class="plus_btn cstyle_btn" >+</a>
+										 	<a class="minus_btn cstyle_btn" href="javascript:infoUpdate();">-</a>
+											<input class="count" id="count" type="text" value="1" oninput="onlyNumber(this);" />
+											<a class="plus_btn cstyle_btn" href="javascript:infoUpdate();">+</a>
 										</span>
 									<div class="total_price_area">
 										<h2>총 상품 금액</h2>
-										<h2 class="total_price">100,000,000원</h2>
+										<h2 class="total_price" id="total_price">${vo.pprice }원</h2>
+										<input type="hidden" >
 									</div>
 									<div class="btn_area">
-										<button class="add_cart_btn cstyle_btn" onclick="location.href='{계속쇼핑?장바구니이동? 선택지 띄우기.. }'">장바구니</button>
+										<button class="add_cart_btn cstyle_btn" onclick="cartpoupOpen();">장바구니</button>
 										<button class="buy_btn cstyle_btn" onclick="location.href='/jcappy/pay/index.do'">주문하기</button>
 									</div>
 								</div>
@@ -128,7 +184,11 @@
 				</table>
 			</div>
 		</div>
-	<%@ include file="/WEB-INF/view/include/bottom.jsp"%>
+	</div>
+	<%@ include file="/WEB-INF/view/include/bottom.jsp"%>		
+	<!--  카트 다이얼로그  -->
+	<div id="cart_btn_dialog">
+		<p class="dialog_context">선택하신 상품을 장바구니에 담았습니다.</p>
 	</div>
 </body>
 </html>
