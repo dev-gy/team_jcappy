@@ -63,6 +63,7 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override
 	public int insertReply(QnaVo vo) {
+		// 답글 알고리즘
 		dao.onoUpdate(vo);
 		vo.setQ_ono(vo.getQ_ono()+1);
 		vo.setQ_nested(vo.getQ_nested()+1);

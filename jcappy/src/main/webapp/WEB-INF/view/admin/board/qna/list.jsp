@@ -87,8 +87,8 @@
 										<option value="qtitle" <c:if test="${param.stype=='qtitle'}">selected</c:if>>제목</option>
 										<option value="qcontent" <c:if test="${param.stype=='qcontent'}">selected</c:if>>내용</option>
 									</select>
-									<input type="text" name="sval" value="" title="검색할 내용을 입력해주세요" />
-									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
+									<input type="text" name="sval" value="${param.sval}" title="검색할 내용을 입력해주세요" />
+									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" onclick="$('#searchForm').submit();"/>
 								</div>
 							</form>
 							<!-- //search --> 
