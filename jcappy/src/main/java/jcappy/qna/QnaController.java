@@ -23,12 +23,8 @@ public class QnaController {
 	
 	@Autowired
 	QnaService service;
-	@Autowired
-	CommentService cService;
-	//tablename 변수 설정하여 comment insert, list 에서 사용
-	static final String TABLENAME = "notice";
 	
-	//공지사항 인덱스
+	//qna 인덱스
 	@RequestMapping("/admin/board/qna/list")
 	public String index(Model model, QnaVo vo, HttpSession sess) {
 		MembersVo fmv = new MembersVo();
@@ -43,17 +39,20 @@ public class QnaController {
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/board/qna/list";
 	}
-	//공지사항 상세페이지
+	
+	//qna 상세페이지
 	@RequestMapping("/admin/board/qna/detail")
 	public String detail(Model model, QnaVo vo) {
 		model.addAttribute("vo", service.detail(vo));
 		return "admin/board/qna/detail";
 	}
 	
+	//qna 답글페이지
 	@RequestMapping("/admin/board/qna/reply")
 	public String reply(Model model, QnaVo vo) {
 		//model.addAttribute("vo", service.deatil(vo));
 		
+		// 답글 q_qno,q_ono,q_nested 값 세팅
 		QnaVo rv = service.detail(vo);
 		model.addAttribute("q_gno", rv.getQ_gno());
 		model.addAttribute("q_ono", rv.getQ_ono());
@@ -62,6 +61,7 @@ public class QnaController {
 		return "admin/board/qna/reply";
 	}
 	
+	//qna 답글insert
 	@RequestMapping("/admin/board/qna/insertReply")
 	public String insertReply(Model model, QnaVo vo, 
 						@RequestParam MultipartFile file, HttpServletRequest req) {
@@ -89,13 +89,14 @@ public class QnaController {
 		return "admin/include/alert";
 	}
 	
+	//qna 수정페이지
 	@RequestMapping("/admin/board/qna/edit")
 	public String edit(Model model, QnaVo vo) {
 		model.addAttribute("vo", service.edit(vo));
 		return "admin/board/qna/edit";
 	}
 	
-	//공지사항 업데이트
+	//qna 업데이트
 	@RequestMapping("/admin/board/qna/update")
 	public String update(Model model, QnaVo vo, 
 						@RequestParam MultipartFile file, HttpServletRequest req) {
@@ -131,7 +132,8 @@ public class QnaController {
 		}
 		return "admin/include/alert";
 	}
-	//공지사항 삭제
+	
+	//qna 삭제
 	@RequestMapping("/admin/board/qna/delete")
 	public String delete(Model model, QnaVo vo, HttpServletRequest req) {
 		int r = service.delete(vo);

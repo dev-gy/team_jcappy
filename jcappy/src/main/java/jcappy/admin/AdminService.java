@@ -11,4 +11,5 @@ public interface AdminService {
 	AdminVo detail(AdminVo vo);
 	int delete(int ano);
 	int update(AdminVo vo);
+	AdminVo login(AdminVo vo);
 }

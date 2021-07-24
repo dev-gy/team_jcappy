@@ -72,4 +72,11 @@
 		<if test="apwd != ''">, apwd=MD5(#{apwd})</if>
 		WHERE ano=${ano}
 	</update>
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="jcappy.admin.AdminVo" parameterType="jcappy.admin.AdminVo">
+		SELECT ano, aid, apwd, aname, aregdate, admin_item, admin_order, admin_members, admin_board, admin_add, admin_account, admin_admin
+		FROM admin
+		WHERE aid=#{aid} AND apwd=MD5(#{apwd})  
+	</select>
 </mapper>

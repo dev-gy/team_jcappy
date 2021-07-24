@@ -27,7 +27,7 @@ function loginCheck(){
 }
 
 function userid_chk() {
-	var f=document.board;
+	var f = document.board;
 	var useridname = CookieVal("cookie_userid");
 	
 	if (useridname=="null"){	
@@ -49,18 +49,16 @@ function CookieVal(cookieName) {
 	}
 	return "null" ;
 }
-//-->
-
 </script>
 </head>
-<body onload="userid_chk();">
+<body onload="userid_chk();" id="admin_login_body">
 <div id="login">
 	<div class="title">
-		<h1>SAMPLE <span>관리자모드</span></h1>
+		<h1>JCAPPY <span>MANAGEMENT</span></h1>
 		<p>관리자 로그인 후 이용가능합니다.</p>
 	</div>
 	<div class="login"> 
-	<form name="board" id="board" method="post" action="" onsubmit="return loginCheck();">
+	<form name="board" id="board" method="post" action="login" onsubmit="return loginCheck();">
 		<fieldset>
 			<legend>관리자모드 로그인</legend>
 			<div class="bgBox">
@@ -70,7 +68,7 @@ function CookieVal(cookieName) {
 							<label for="id"><strong>아이디</strong></label>
 						</dt>
 						<dd>
-							<input type="text" id="id" name="id" value="" title="아이디를 입력해주세요." style="ime-mode:inactive"/>
+							<input type="text" id="id" name="aid" value="" title="아이디를 입력해주세요." style="ime-mode:inactive"/>
 						</dd>
 					</dl>
 					<dl>
@@ -78,7 +76,7 @@ function CookieVal(cookieName) {
 							<label for="password"><strong>비밀번호</strong></label>
 						</dt>
 						<dd>
-							<input type="password" id="password" name="password" value="" title="비밀번호를 입력해주세요." />
+							<input type="password" id="password" name="apwd" value="" title="비밀번호를 입력해주세요." />
 						</dd>
 					</dl>
 				</div>
@@ -97,7 +95,7 @@ function CookieVal(cookieName) {
 	</form>
 	</div>
 	<div class="footer">
-		Copyrights (c) 2020 <a href="#" target="_blank">SAMPLE</a>. All Rights Reserved.  
+		Copyrights (c) 2021 <a href="#" target="_blank">JCAPPY </a>. All Rights Reserved.  
 	</div>
 </div>
 </body>

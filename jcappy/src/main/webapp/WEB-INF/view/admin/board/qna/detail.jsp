@@ -120,8 +120,8 @@ function qna_detail_isDel() {//게시글 삭제
 									<a class="btns" style="cursor:pointer;" href="reply?qno=${vo.qno}"><strong>답글</strong></a>
 									<c:if test="${membersInfo.mno == vo.mno }">
 									<a class="btns" style="cursor:pointer;" href="edit?qno=${vo.qno}"><strong>수정</strong></a>
-									</c:if>
 									<a class="btns" style="cursor:pointer;" href="javascript:qna_detail_isDel();"><strong>삭제</strong></a>
+									</c:if>
 								</div>
 							</div>
 							<!--//btn-->
