@@ -5,4 +5,5 @@ public interface MembersService {
 	MembersVo login(MembersVo vo);
 	int insert(MembersVo vo);
 	int isDuplicateEmail(String email);
+	MembersVo findId(MembersVo vo);
 }

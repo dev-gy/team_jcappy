@@ -26,11 +26,7 @@ public class QnaDao {
 	public QnaVo detail(QnaVo vo) {
 		return sqlSession.selectOne("qna.detail", vo);
 	}
-	
-	public int lastPk() {
-		return sqlSession.selectOne("qna.lastPk");
-	}
-	
+		
 	public void gno(int no) {
 		sqlSession.update("qna.gno", no);
 	}

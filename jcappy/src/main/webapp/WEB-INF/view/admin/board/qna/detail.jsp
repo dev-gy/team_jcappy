@@ -1,9 +1,36 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script>
+function qna_detail_isDel() {//게시글 삭제
+	if (confirm('삭제하시겠습니까?')) {  
+		// 삭제처리
+		$.ajax({
+			url:'delete',
+			data:{
+				'qno':${vo.qno}
+			},
+			method:'post',
+			success:function(res) {
+				console.log(res);
+				if (res.trim() == 'true') {
+					alert('정상적으로 삭제되었습니다.');
+					location.href='list';
+				} else {
+					alert('삭제 실패');
+				}
+			},
+			error : function(res) {
+				console.log(res);
+			}
+		});
+	}
+}
+</script>
 </head>
 <body> 
 <div id="wrap">
@@ -49,7 +76,7 @@
 									<tr>
 										<th scope="row"><label for="">작성날짜</label></th>
 										<td colspan="10">
-											${vo.qregdate}
+											<fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 										</td>
 									</tr>
 									<tr>
@@ -72,11 +99,17 @@
 									</tr>
 									<tr>
 										<th scope="row"><label for="">내용</label></th>
-										<td colspan="10">
+										<td colspan="10" style="vertical-align: top;">
 											${vo.qcontent}
 										</td>
 									</tr>
-									
+									<tr>
+										<th scope="row"><label for="">첨부파일</label></th>
+										<td colspan="10">
+					<!-- 파일다운로드 -->		<a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.qfile_org}&real=${vo.qfile_real}" 
+                            				target="_blank">${vo.qfile_org}</a>
+										</td>
+									</tr>
 								</tbody>
 							</table>
 							<div class="btn">
@@ -85,7 +118,10 @@
 								</div>
 								<div class="btnRight">
 									<a class="btns" style="cursor:pointer;" href="reply?qno=${vo.qno}"><strong>답글</strong></a>
-									<a class="btns" style="cursor:pointer;" href=""><strong>삭제</strong></a>
+									<c:if test="${membersInfo.mno == vo.mno }">
+									<a class="btns" style="cursor:pointer;" href="edit?qno=${vo.qno}"><strong>수정</strong></a>
+									</c:if>
+									<a class="btns" style="cursor:pointer;" href="javascript:qna_detail_isDel();"><strong>삭제</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

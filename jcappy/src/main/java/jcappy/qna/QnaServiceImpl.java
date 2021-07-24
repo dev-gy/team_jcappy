@@ -63,12 +63,15 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override
 	public int insertReply(QnaVo vo) {
-		vo.setQ_gno(dao.lastPk());
-		dao.gno(vo.getQ_gno());
 		dao.onoUpdate(vo);
 		vo.setQ_ono(vo.getQ_ono()+1);
 		vo.setQ_nested(vo.getQ_nested()+1);
 		return dao.insertReply(vo);
+	}
+
+	@Override
+	public QnaVo edit(QnaVo vo) {
+		return dao.detail(vo);
 	}
 
 	

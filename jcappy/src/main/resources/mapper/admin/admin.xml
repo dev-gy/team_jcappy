@@ -51,4 +51,25 @@
 		${ano}
 		</foreach>
 	</delete>
+	
+	<!-- 관리자계정 상세 -->
+	<select id="detail" resultType="jcappy.admin.AdminVo" parameterType="jcappy.admin.AdminVo">
+		SELECT ano, aid, aname, aregdate, admin_item, admin_order, admin_members, admin_board, admin_add, admin_account, admin_admin
+		FROM admin 
+		WHERE ano = ${ano}
+	</select>
+	
+	<!-- 관리자계정 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM admin
+		WHERE ano = ${ano}
+	</delete>
+	
+	<!-- 관리자계정 수정 -->
+	<update id="update" parameterType="jcappy.admin.AdminVo">
+		UPDATE admin SET
+		aname=#{aname}, admin_item=${admin_item}, admin_order=${admin_order}, admin_members=${admin_members}, admin_board=${admin_board}, admin_add=${admin_add}, admin_account=${admin_account}, admin_admin=${admin_admin}
+		<if test="apwd != ''">, apwd=MD5(#{apwd})</if>
+		WHERE ano=${ano}
+	</update>
 </mapper>

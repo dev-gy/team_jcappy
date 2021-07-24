@@ -47,11 +47,14 @@
 			                                <td class="first" colspan="5">등록된 글이 없습니다.</td>
 			                            </tr>
 			                        </c:if>
-									<c:forEach var="vo" items="${list}">
+									<c:forEach var="vo" items="${list}" varStatus="status">
 									<tr>
-										<td class="first">${vo.qno}</td>
+										<td class="first">${(qnaVo.totCount-status.index)-((qnaVo.reqPage-1)*qnaVo.pageRow)}</td>
 										<!-- 상세페이지 링크  -->
-										<td class="title"><a href="detail?qno=${vo.qno}&reqPage=${qnaVo.reqPage}&stype=${param.stype}&sval=${param.sval}">${vo.qtitle} </a></td>
+										<td class="title"><a href="detail?qno=${vo.qno}&reqPage=${qnaVo.reqPage}&stype=${param.stype}&sval=${param.sval}">
+										<c:forEach begin="1" end="${vo.q_nested}">&nbsp;&nbsp;&nbsp;</c:forEach>
+                                    	<c:if test="${vo.q_nested > 0}"><img src="/jcappy/img/admin/answer_icon.gif"></c:if>
+										${vo.qtitle} </a></td>
 										<td>${vo.mname }</td>
 										<td><fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 									</tr>
@@ -81,8 +84,8 @@
 								<div class="search">
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all">전체</option>
-										<option value="title">제목</option>
-										<option value="contents">내용</option>
+										<option value="qtitle" <c:if test="${param.stype=='qtitle'}">selected</c:if>>제목</option>
+										<option value="qcontent" <c:if test="${param.stype=='qcontent'}">selected</c:if>>내용</option>
 									</select>
 									<input type="text" name="sval" value="" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />

@@ -28,8 +28,8 @@ $(window).load(function(){
 					<div class="standard_left">
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/admin/board/review/list.do"><span>리뷰</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/board/qna/list.do"><span>문의</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/board/notice/list.do"><span>공지</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/board/qna/list"><span>문의</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/board/notice/list"><span>공지</span></a></li>
 					</ul>
 					</div>
 				</li>

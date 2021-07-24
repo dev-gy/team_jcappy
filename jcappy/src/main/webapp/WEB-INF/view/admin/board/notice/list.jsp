@@ -99,10 +99,10 @@
 	                                </select>
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all">전체</option>
-										<option value="ntitle">제목</option>
-										<option value="ncontent">내용</option>
+										<option value="ntitle" <c:if test="${param.stype=='ntitle'}">selected</c:if>>제목</option>
+										<option value="ncontent" <c:if test="${param.stype=='ncontent'}">selected</c:if>>내용</option>
 									</select>
-									<input type="text" name="sval" value="${param.sval }" title="검색할 내용을 입력해주세요" />
+									<input type="text" name="sval" value="${param.sval }"  title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" onclick="$('#searchForm').submit();" />
 								</div>
 							</form>
