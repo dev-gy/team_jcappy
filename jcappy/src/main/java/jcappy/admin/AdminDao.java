@@ -43,4 +43,8 @@ public class AdminDao {
 	public int update (AdminVo vo) {
 		return sqlSession.delete("admin.update", vo);
 	}
+	
+	public AdminVo login(AdminVo vo) {
+		return sqlSession.selectOne("admin.login", vo);
+	}
 }

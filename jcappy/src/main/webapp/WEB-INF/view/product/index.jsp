@@ -14,7 +14,7 @@
 		<div id="container">
 			<div class="menu_content">
 				<div class="itemList_thema" style="background-image: url('/jcappy/img/냉장고 대표.jpg');">
-					<a href="/jcappy/product/${type }">${productVo.sptype }</a>
+					<a href="/jcappy/product/${type }">${productVo.tval }</a>
 				</div>
 				<div class="cate_menu">
 					<div class="cstyle_btn"><a href="/jcappy/product/${type }/a">${a }</a></div>
@@ -23,7 +23,7 @@
 				</div>
 			</div>
 			<form id="searchForm" method="GET" action="/jcappy/product/${type }?orderby=${param.orderby }&sval=${param.sval }">
-				<p class="itemList_count">${productVo.sptype } ${productVo.totCount }(총 개수)</p>
+				<p class="itemList_count">${productVo.tval } ${productVo.totCount }(총 개수)</p>
 				<div class="itemList_search">
 					<select name="orderby">
 						<option value="popular" <c:if test="${productVo.orderby == 'popular' && productVo.direct == 'DESC' }">selected</c:if>>인기순</option>
