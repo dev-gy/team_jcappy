@@ -1,5 +1,8 @@
 package jcappy.product;
 
+import java.util.Map;
+
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +39,10 @@ public class ProductController {
 	@RequestMapping(value = {"/product/{type}", "/product/{type}/{cate}"})
 	public String productIndex(Model model, ProductVo vo, @PathVariable String type, @PathVariable(required = false) String cate, 
 			@RequestParam(required = false) String orderby) {
+		// 검색 타입 및 페이지 아이템 갯수 설정
+		vo.setStype("pname");
+		vo.setPageRow(15);
+		
 		// 기본은 인기 많은순, 1페이지당 15개 상품씩, 필터 조건은 상품타입
 		if (null == orderby || "".equals(orderby) || "popular".equals(orderby)) { 
 			vo.setOrderby("popular");
@@ -128,7 +135,13 @@ public class ProductController {
 	@RequestMapping("product/detail/{no}")
 	public String detail(Model model, ProductVo vo,  @PathVariable String no) {
 		vo.setPno(Integer.parseInt(no));
-		service.detail(vo);
+		model.addAttribute("vo", service.detail(vo));
 		return "/product/detail";
+	}
+	
+	@RequestMapping("product/detail/calcPrice")
+	public String calcPrice(Model model, @RequestParam Map<String, Object> params) {
+		model.addAttribute("result", new JSONObject(params));
+		return "/include/result";
 	}
 }
