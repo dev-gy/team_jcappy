@@ -40,6 +40,9 @@
 		}
 	}
 </script>
+<script>
+/* 재고량 버튼 클릭시 변경 */
+</script>
 </head>
 <body>
 	<div id="wrap">
@@ -55,8 +58,7 @@
 						<div id="bbs">
 							<div id="blist">
 								<p>
-									<span><strong>총 ${productVo.totCount }개</strong> |
-										${productVo.reqPage}/${productVo.totPage }페이지</span>
+									<span><strong>총 ${productVo.totCount }개</strong> | ${productVo.reqPage}/${productVo.totPage }페이지</span>
 								</p>
 								<form name="frmListCount" id="frmListCount" action="update"
 									method="post">
