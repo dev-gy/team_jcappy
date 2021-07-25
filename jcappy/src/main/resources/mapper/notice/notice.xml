@@ -17,7 +17,7 @@
 	
 	<select id="selectAll" resultType="jcappy.notice.NoticeVo" parameterType="jcappy.notice.NoticeVo">
 		SELECT *,
-			(SELECT COUNT(*) FROM comment WHERE cm_board_no=notice.nno) AS comment_count 
+			(SELECT COUNT(*) FROM comment WHERE cm_board_no=notice.nno AND cm_tablename='notice') AS comment_count 
 		FROM notice
 		<include refid="noticeWhere"/>
 		ORDER BY ${orderby} ${direct}

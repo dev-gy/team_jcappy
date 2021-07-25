@@ -146,7 +146,7 @@ public class NoticeController {
 		return "admin/include/result";
 	}
 	//댓글 데이터 입력
-	@RequestMapping("/admin/comment/insert")
+	@RequestMapping("/admin/board/notice/comment/insert")
 	public String commentInsert(Model model, CommentVo vo) {
 		// tablename notice
 		vo.setCm_tablename(TABLENAME); 
@@ -161,7 +161,7 @@ public class NoticeController {
 		return "admin/include/result";
 	}
 	//댓글 리스트 불러오기
-	@RequestMapping("/admin/comment/list")
+	@RequestMapping("/admin/board/notice/comment/list")
 	public String commentList(Model model, CommentVo cv) {
 		// tablename notice
 		cv.setCm_tablename(TABLENAME); 
@@ -169,7 +169,7 @@ public class NoticeController {
 		return "admin/include/comment";
 	}
 	// 댓글 삭제
-	@RequestMapping("/admin/comment/delete")
+	@RequestMapping("/admin/board/notice/comment/delete")
 	public String commentDelete(Model model, CommentVo vo) {
 		int r = cService.delete(vo);
 		if (r > 0) {

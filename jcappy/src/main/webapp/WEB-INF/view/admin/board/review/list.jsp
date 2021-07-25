@@ -23,7 +23,7 @@
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="blist">
-							<p><span><strong>총 111개</strong>  |  1/12페이지</span></p>
+							<p><span><strong>총 ${reviewVo.totCount}개</strong>  | ${reviewVo.reqPage}/${reviewVo.totPage }페이지</span></p>
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
@@ -31,76 +31,77 @@
 									<col class="" />
 									<col class="w4" />
 									<col class="w6" />
+									<col class="w6" />
 								</colgroup>
 								<thead>
 									<tr>
 										<th scope="col" class="first">번호</th>
 										<th scope="col">제목</th> 
+										<th scope="col">작성자</th>
 										<th scope="col">작성일</th>
 										<th scope="col" class="last">조회수</th>
 										
 									</tr>
 								</thead>
 								<tbody>
+									<c:if test="${empty list }">
+			                            <tr>
+			                                <td class="first" colspan="5">등록된 글이 없습니다.</td>
+			                            </tr>
+			                        </c:if>
+									<c:forEach var="vo" items="${list}">
 									<tr>
-										<td class="first">1</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/review_view.do">상품이 너무 이뻐요</a></td>
-										<td>2021-7-24</td>
-										<td class="last">232</td>
+										<td class="first">${vo.rno}</td>
+										<!-- 상세페이지 링크 and 리플 갯수 -->
+										<td class="title"><a href="detail?rno=${vo.rno}&reqPage=${reviewVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.rtitle} [${vo.comment_count}]</a></td>
+										<td>${vo.mname }</td>
+										<td><fmt:formatDate value="${vo.rregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
+										<td>${vo.rreadcount}</td>
 									</tr>
-									<tr>
-										<td class="first">2</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/review_view.do">상품이 너무 아름다워요</a></td>
-										<td>2021-7-24</td>
-										<td class="last">564</td>
-									</tr>
-									<tr>
-										<td class="first">3</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/review_view.do">상품이 너무 새것같아요</a></td>
-										<td>2021-7-24</td>
-										<td class="last">545</td>
-									</tr>
-									<tr>
-										<td class="first">4</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/review_view.do">상품이 너무 호화로와요</a></td>
-										<td>2021-7-24</td>
-										<td class="last">423</td>
-									</tr>
-									<tr>
-										<td class="first">5</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/review_view.do">상품이 너무 좋아요</a></td>
-										<td>2021-7-24</td>
-										<td class="last">124</td>
-									</tr>
-									<tr>
-										<td class="first">6</td>
-										<td class="title"><a href="<%=request.getContextPath()%>/admin/board/review_view.do">상품이 너무 깨끗해요</a></td>
-										<td>2021-7-24</td>
-										<td class="last">514</td>
-									</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 							</form>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
 							<div class='page'>
-								<strong>1</strong>
-								<a href="">2</a>
-								<a href="">3</a>
-								<a href="">4</a>
+		                        <c:if test="${reviewVo.startPage > reviewVo.pageRange}">
+		                        	<span><a href="list?reqPage=${reviewVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a></span>
+		                        </c:if>
+		                        <c:forEach var="rp" begin="${reviewVo.startPage}" end="${reviewVo.endPage }">
+		                        <c:if test="${reviewVo.reqPage == rp }">
+									<span><a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'><strong>${rp }</strong></a></span>
+		                        </c:if>
+		                        <c:if test="${reviewVo.reqPage != rp }">
+		                            <span><a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'>${rp }</a></span>
+		                        </c:if>
+		                        </c:forEach>
+		                        <c:if test="${reviewVo.totPage > reviewVo.endPage}">
+		                        	<span><a href="list?reqPage=${reviewVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a></span>
+		                        </c:if>
 							</div>
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="index.do"  method="post">
+							<!-- 검색 조건들 -->
+							<form name="searchForm" id="searchForm" action="list"  method="post">
 								<div class="search">
+									 <select id="orderby" name="orderby" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
+	                                    <option value="nregdate" <c:if test="${param.orderby=='rregdate'}">selected</c:if>>작성일</option>
+	                                    <option value="nreadcount" <c:if test="${param.orderby=='rreadcount'}">selected</c:if>>조회수</option>
+	                                </select>
+	                                <select id="direct" name="direct" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
+	                                    <option value="DESC" <c:if test="${param.direct=='DESC'}">selected</c:if>>내림차순</option>
+	                                    <option value="ASC" <c:if test="${param.direct=='ASC'}">selected</c:if>>오름차순</option>
+	                                </select>
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all">전체</option>
-										<option value="title">제목</option>
-										<option value="contents">내용</option>
+										<option value="ntitle" <c:if test="${param.stype=='rtitle'}">selected</c:if>>제목</option>
+										<option value="ncontent" <c:if test="${param.stype=='rcontent'}">selected</c:if>>내용</option>
 									</select>
-									<input type="text" name="sval" value="" title="검색할 내용을 입력해주세요" />
-									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
+									<input type="text" name="sval" value="${param.sval }"  title="검색할 내용을 입력해주세요" />
+									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" onclick="$('#searchForm').submit();" />
 								</div>
 							</form>
+							<!-- //검색 조건들 -->
 							<!-- //search --> 
 						</div>
 						<!-- //blist -->

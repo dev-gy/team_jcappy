@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+
+	<sql id="reviewWhere">
+		<where>
+			<if test="sval != null and sval != ''">
+				<if test="stype == 'all'">
+					rtitle LIKE '%${sval}%' OR rcontent LIKE '%${sval}%'
+				</if>
+				<if test="stype != 'all'">
+					${stype} LIKE '%${sval}%'
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectAll" resultType="jcappy.review.ReviewVo" parameterType="jcappy.review.ReviewVo">
+		SELECT *,
+			(SELECT mname FROM members WHERE mno=review.mno) AS mname,
+			(SELECT COUNT(*) FROM comment WHERE cm_board_no=review.rno AND cm_tablename='review') AS comment_count 
+		FROM review
+		<include refid="reviewWhere"/>
+		ORDER BY ${orderby} ${direct}
+		LIMIT ${startIdx},${pageRow}
+	</select>
+	
+	<select id="count" resultType="int" parameterType="jcappy.review.ReviewVo">
+		SELECT COUNT(*) FROM review
+		<include refid="reviewWhere"/>
+	</select>
+	
+	<select id="detail" resultType="jcappy.review.ReviewVo" parameterType="jcappy.review.ReviewVo">
+		SELECT * FROM review WHERE rno = #{rno}
+	</select>
+	
+	<update id="updateReadcount" parameterType="jcappy.review.ReviewVo">
+		UPDATE review SET rreadcount=rreadcount+1 WHERE rno = #{rno}
+	</update>
+	
+	<delete id="delete" parameterType="jcappy.review.ReviewVo">
+		DELETE FROM review WHERE rno=#{rno}
+	</delete>
+	
+	<select id="temporarySession" resultType="jcappy.members.MembersVo" parameterType="jcappy.members.MembersVo">
+		SELECT * FROM members WHERE memail=#{memail} AND mpwd=#{mpwd}
+	</select>
+	
+</mapper>
