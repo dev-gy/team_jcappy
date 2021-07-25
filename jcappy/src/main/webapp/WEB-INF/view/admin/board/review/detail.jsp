@@ -30,7 +30,7 @@
 	}
 	function review_detail_goSave() { //댓글 입력
 		<c:if test="${empty membersInfo}">
-			alert("로그인후 댓글을 입려할수 있습니다.");
+			alert("로그인후 댓글을 입력할수 있습니다.");
 		</c:if>
 		<c:if test="${!empty membersInfo}"> 
 		if ($("#contents").val().trim() == '') {
@@ -61,6 +61,11 @@
 	
 	$(function(){
 		getComment(1);
+		$('.starRev span').click(function(){
+			console.log(1)
+			  $(this).parent().children('span').removeClass('on');
+			  $(this).addClass('on').prevAll('span').addClass('on');
+		});
 	});
 	function getComment(reqPage) { // 댓글 리스트 불러오기
 		$.ajax({
@@ -92,8 +97,20 @@
     		});
 		}
 	}
-
+	
 </script>
+<style>
+.starR{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+.starR.on{background-position:0 0;}
+</style>
 </head>
 <body> 
 <div id="wrap">
@@ -138,9 +155,21 @@
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">제목</label></th>
+										<th scope="row"><label for="">별점</label></th>
 										<td colspan="10">
 											${vo.rstar }
+											<div class="starRev">
+											  <span class="starR on">별1</span>
+											  <span class="starR">별2</span>
+											  <span class="starR">별3</span>
+											  <span class="starR">별4</span>
+											  <span class="starR">별5</span>
+											  <span class="starR">별6</span>
+											  <span class="starR">별7</span>
+											  <span class="starR">별8</span>
+											  <span class="starR">별9</span>
+											  <span class="starR">별10</span>
+											</div>
 										</td>
 									</tr>
 									<tr>

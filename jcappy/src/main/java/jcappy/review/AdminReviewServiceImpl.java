@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import jcappy.members.MembersVo;
 
 @Service
-public class ReviewServiceImpl implements ReviewService {
+public class AdminReviewServiceImpl implements AdminReviewService {
 
 	@Autowired
 	ReviewDao dao;

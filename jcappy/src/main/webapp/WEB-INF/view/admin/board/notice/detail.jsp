@@ -32,7 +32,7 @@
 	}
 	function notice_detail_goSave() { //댓글 입력
 		<c:if test="${empty membersInfo}">
-			alert("로그인후 댓글을 입려할수 있습니다.");
+			alert("로그인후 댓글을 입력할수 있습니다.");
 		</c:if>
 		<c:if test="${!empty membersInfo}"> 
 		if ($("#contents").val().trim() == '') {

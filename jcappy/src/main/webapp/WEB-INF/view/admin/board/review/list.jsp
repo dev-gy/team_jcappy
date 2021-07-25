@@ -85,8 +85,8 @@
 							<form name="searchForm" id="searchForm" action="list"  method="post">
 								<div class="search">
 									 <select id="orderby" name="orderby" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
-	                                    <option value="nregdate" <c:if test="${param.orderby=='rregdate'}">selected</c:if>>작성일</option>
-	                                    <option value="nreadcount" <c:if test="${param.orderby=='rreadcount'}">selected</c:if>>조회수</option>
+	                                    <option value="rregdate" <c:if test="${param.orderby=='rregdate'}">selected</c:if>>작성일</option>
+	                                    <option value="rreadcount" <c:if test="${param.orderby=='rreadcount'}">selected</c:if>>조회수</option>
 	                                </select>
 	                                <select id="direct" name="direct" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
 	                                    <option value="DESC" <c:if test="${param.direct=='DESC'}">selected</c:if>>내림차순</option>
@@ -94,8 +94,8 @@
 	                                </select>
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all">전체</option>
-										<option value="ntitle" <c:if test="${param.stype=='rtitle'}">selected</c:if>>제목</option>
-										<option value="ncontent" <c:if test="${param.stype=='rcontent'}">selected</c:if>>내용</option>
+										<option value="rtitle" <c:if test="${param.stype=='rtitle'}">selected</c:if>>제목</option>
+										<option value="rcontent" <c:if test="${param.stype=='rcontent'}">selected</c:if>>내용</option>
 									</select>
 									<input type="text" name="sval" value="${param.sval }"  title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" onclick="$('#searchForm').submit();" />

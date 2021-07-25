@@ -5,7 +5,7 @@ import java.util.List;
 import jcappy.members.MembersVo;
 
 
-public interface ReviewService {
+public interface AdminReviewService {
 	List<ReviewVo> selectAll(ReviewVo vo);
 	ReviewVo detail(ReviewVo vo);
 	int insert(ReviewVo vo);
