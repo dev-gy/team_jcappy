@@ -84,19 +84,35 @@ public class MembersController {
 	      }
 	   }
 	
-	@GetMapping("/findId")
-	public String findId(Model model, MembersVo vo) {
-		return "members/findId";
+	@GetMapping("/findEmail")
+	public String findEmail(Model model, MembersVo vo) {
+		return "members/findEmail";
 	}
 	
-	@PostMapping("/findId")
-	public String findId2(Model model, MembersVo vo) {
-		MembersVo mv = service.findId(vo); 
+	@PostMapping("/findEmail")
+	public String findEmail2(Model model, MembersVo vo) {
+		MembersVo mv = service.findEmail(vo); 
 		String id ="";
 		if (mv != null) { 
 			id = mv.getMemail();
 		}
 		model.addAttribute("result", id);	
+		return "include/result";
+	}
+	
+	@GetMapping("/findPwd")
+	public String searchPwd(Model model, MembersVo vo) {
+		return "members/findPwd";
+	}
+	
+	@PostMapping("/findPwd.do")
+	public String searchPwd2(Model model, MembersVo vo) {
+		MembersVo mv = service.findPwd(vo);
+		if (mv != null) {
+			model.addAttribute("result", "ok");
+		} else {
+			model.addAttribute("result", "no");
+		}
 		return "include/result";
 	}
 	

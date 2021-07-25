@@ -368,12 +368,25 @@ changepwd
 .changepwd_btn {width:100px; margin: 0 0 25px 0;}
 
 /*======================================
-findAccount
+findEmail
 ========================================*/
-.findAccount_content{padding: 50px 0px 100px 0px;}
-.findAccount_content > .title{margin-bottom: 50px;}
-.findAccount_content  .cstyle_tab { height: 40px; box-sizing: border-box; width: 500px;}
-.findAccount_content  .tab_find{padding: 100px 0px;}
-.findAccount_content  .find_input{width: 300px;}
-.findAccount_content  .ex{width: 300px; margin: 50px 20px;}
-.findAccount_content  .table{width: 500px;margin: auto;}
+.findEmail_content{padding: 50px 0px 100px 0px;}
+.findEmail_content > .title{margin-bottom: 50px;}
+.findEmail_content  .cstyle_tab{ height: 40px; box-sizing: border-box; width: 500px;}
+.findEmail_content  .email{color: black !important; }
+.findEmail_content  .findEmail_area{padding: 100px 0px;}
+.findEmail_content  .find_input{width: 300px;}
+.findEmail_content  .ex{width: 300px; margin: 50px 20px;}
+.findEmail_content  .table{width: 500px;margin: auto;}
+
+/*======================================
+findPwd
+========================================*/
+.findPwd_content{padding: 50px 0px 100px 0px;}
+.findPwd_content > .title{margin-bottom: 50px;}
+.findPwd_content  .cstyle_tab{ height: 40px; box-sizing: border-box; width: 500px;}
+.findPwd_content  .pwd{color: black !important; }
+.findPwd_content  .findPwd_area{padding: 100px 0px;}
+.findPwd_content  .find_input{width: 300px;}
+.findPwd_content  .ex{width: 300px; margin: 50px 20px;}
+.findPwd_content  .table{width: 500px;margin: auto;}
