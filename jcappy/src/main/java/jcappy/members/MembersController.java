@@ -101,12 +101,12 @@ public class MembersController {
 	}
 	
 	@GetMapping("/findPwd")
-	public String searchPwd(Model model, MembersVo vo) {
+	public String findPwd(Model model, MembersVo vo) {
 		return "members/findPwd";
 	}
 	
-	@PostMapping("/findPwd.do")
-	public String searchPwd2(Model model, MembersVo vo) {
+	@PostMapping("/findPwd")
+	public String findPwd2(Model model, MembersVo vo) {
 		MembersVo mv = service.findPwd(vo);
 		if (mv != null) {
 			model.addAttribute("result", "ok");

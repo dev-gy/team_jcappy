@@ -20,17 +20,18 @@ public class SendMail {
 		try {
 			// 1. 발신자 (메일서버) 정보 설정 (Property에 설정)
 			Properties prop = System.getProperties();
-	        prop.put("mail.smtp.host", "smtp.naver.com");
+	        prop.put("mail.smtp.host", "smtp.gmail.com");
 	        prop.put("mail.smtp.port", "465");
 	        prop.put("mail.smtp.auth", "true");
 	        prop.put("mail.smtp.ssl.enable", "true");
+	        prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 	        prop.put("mail.smtp.ssl.protocols", "TLSv1.2"); // 에러나는 경우 TLS 버전
 
 
 			// 2. Session 객체 생성 (http세션을 말하는게 아니고 다운받은걸 말하는거임)
 	        Session session = Session.getDefaultInstance(prop, new Authenticator() {
 	            protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("아이디", "비번"); // 네이버 아이디 / 비밀번호
+					return new PasswordAuthentication("jcappy0322@gmail.com", "@j1234j@"); // 네이버 아이디 / 비밀번호
 				}
 			});
 	        session.setDebug(true);
@@ -51,6 +52,6 @@ public class SendMail {
 	}
 	
 	public static void main (String[] args) {
-		sendMail("seee0758@naver.com", "seee0758@gmail.com", "비밀번호 변경 테스트", "testpwd");
+		sendMail("jcappy06@gmail.com", "seee0758@gmail.com", "메일 전송 테스트", "testpwd");
 	}
 }

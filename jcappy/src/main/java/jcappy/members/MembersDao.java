@@ -27,7 +27,7 @@ public class MembersDao {
 	}
 	
 	public MembersVo findPwd(MembersVo vo) {
-		return sqlSession.selectOne("members.searchPwd", vo);
+		return sqlSession.selectOne("members.findPwd", vo);
 	}
 	
 	public int updateTempPwd(MembersVo vo) {
