@@ -61,19 +61,31 @@
 	
 	$(function(){
 		getComment(1);
-		var innerHtml = "";
 		var rstar = ${vo.rstar};
-		
-		for(var i=0; i<5; i++) {
-			if(i<rstar) {
-				innerHtml += "★";
-			} else {
-				innerHtml += "☆";
-			}
+		if(rstar >= 0 && rstar < 0.5) {
+			$('#rstar_img').attr('src','/jcappy/img/admin/star0.jpg');
+		} else if(rstar >= 0.5 && rstar < 1){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star05.jpg');
+		} else if(rstar >= 1 && rstar < 1.5){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star1.jpg');
+		} else if(rstar >= 1.5 && rstar < 2){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star15.jpg');
+		} else if(rstar >= 2 && rstar < 2.5){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star2.jpg');
+		} else if(rstar >= 2.5 && rstar < 3){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star25.jpg');
+		} else if(rstar >= 3 && rstar < 3.5){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star3.jpg');
+		} else if(rstar >= 3.5 && rstar < 4){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star35.jpg');
+		} else if(rstar >= 4 && rstar < 4.5){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star4.jpg');
+		} else if(rstar >= 4.5 && rstar < 5){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star45.jpg');
+		} else {
+			$('#rstar_img').attr('src','/jcappy/img/admin/star5.jpg');
 		}
-		$('#rstar').html(innerHtml)
-		
-		
+		 
 		
 	});
 	function getComment(reqPage) { // 댓글 리스트 불러오기
@@ -155,7 +167,7 @@
 										<th scope="row"><label for="">별점</label></th>
 										<td colspan="10">
 											${vo.rstar }점
-											<P id="rstar"> <!-- 부모 --> 
+											<img src="" id="rstar_img"> <!-- 부모 --> 
 												
 											<p>
 										</td>
