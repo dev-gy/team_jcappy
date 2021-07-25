@@ -53,5 +53,10 @@ public class MembersServiceImpl implements MembersService{
 
 		return mv;
 	}
+	
+	@Override
+	public int delete(MembersVo vo) {
+		return dao.delete(vo);
+	}
 
 }

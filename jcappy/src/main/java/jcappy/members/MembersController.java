@@ -116,5 +116,16 @@ public class MembersController {
 		return "include/result";
 	}
 	
+	@RequestMapping("/mypage/delete")
+	public String delete(Model model, MembersVo vo, HttpServletRequest req) {
+		int r = service.delete(vo);
+		if (r > 0) {
+			model.addAttribute("result", "true");
+		} else {
+			model.addAttribute("result", "false");
+		}
+		return "include/result";
+	}
+	
 
 }
