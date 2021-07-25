@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <div id="header">
     <div class="size">
@@ -9,7 +10,12 @@
             </a>
         </div>
         <div class="member_menu">
-            <a href="/jcappy/login.do">로그인</a> | <a href="/jcappy/policy/agreement.do">회원가입</a>
+        	<c:if test="${empty membersInfo }">
+            	<a href="/jcappy/login.do">로그인</a> | <a href="/jcappy/policy/agreement.do">회원가입</a>
+            </c:if>
+            <c:if test="${!empty membersInfo }">
+            	<a href="/jcappy/logout.do">로그아웃</a> | <a href="/jcappy/mypage/order/index.do">마이페이지</a>
+             </c:if>
             <!-- <a href="">김조은님</a> | <a href="">마이페이지</a> | <a href="">장바구니</a> | <a href="">로그아웃</a> -->
         </div>
     </div>

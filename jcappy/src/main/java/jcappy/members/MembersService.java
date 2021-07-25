@@ -7,4 +7,5 @@ public interface MembersService {
 	int isDuplicateEmail(String email);
 	MembersVo findEmail(MembersVo vo);
 	MembersVo findPwd(MembersVo vo);
+	int delete(MembersVo vo);
 }

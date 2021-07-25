@@ -33,4 +33,8 @@ public class MembersDao {
 	public int updateTempPwd(MembersVo vo) {
 		return sqlSession.update("members.updateTempPwd", vo);
 	}
+	
+	public int delete(MembersVo vo) {
+		return sqlSession.delete("members.delete", vo);
+	}
 }
