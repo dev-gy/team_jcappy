@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -39,6 +41,9 @@ function goSave() {
           }
        }
 </script>
+<script>
+/* select id = pcomp와 option id 의 값이 같을경우 그 값을 출력   */
+</script>
 </head>
 <body>
 	<div id="wrap">
@@ -73,13 +78,13 @@ function goSave() {
 											</tr>
 											<tr>
 												<th scope="row"><label for="">브랜드</label></th>
-												<td colspan="10"><select name="stype" title="브랜드">
-														<!-- ㅅ -->
-														<%-- <option value="">${vo.pcompany }</option>
+												<td colspan="10">
+												<select name="stype" title="브랜드">
+														<option value="pcomp">${vo.pcompany }</option>
 														<option value="sam">삼성전자</option>
 														<option value="lg">LG전자</option>
 														<option value="carrier">캐리어</option>
-														<option value="winia">위니아전자</option> --%>
+														<option value="winia">위니아전자</option>
 												</select></td>
 											</tr>
 											<tr>

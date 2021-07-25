@@ -384,7 +384,7 @@ a:hover.sbtn{color:#2e2e2e !important; text-decoration:none;}
 /*search*/
 #blist .search{position:relative; width:100%; margin:0px; padding:9px 0; text-align:center; vertical-align:middle;}
 #blist .search input{width:160px; height:20px; border:1px solid #cccccc; vertical-align:middle; display:inline;}
-#blist .search select{width:115px; height:20px; border:1px solid #cccccc; font-size:12px; vertical-align:middle; color:#706a5f; margin:0 5px 0 0; display:inline;}
+#blist .search select{width:115px; height:20px; border:1px solid #cccccc; font-size:12px; vertical-align:middle; color:#706a5f; margin:0 ; display:inline;}
 #blist .search .sbtn{position:relative; width:64px; height:23px; top:0px; *top:-2px; left:0px; border:none; vertical-align:bottom;}
 #blist .search #clinicList{ display:inline;}
 #color .search select{width:115px; height:20px; border:1px solid #cccccc; font-size:12px; vertical-align:middle; color:#706a5f; margin:0; display:inline;}

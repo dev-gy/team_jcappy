@@ -61,7 +61,7 @@ $(function(){
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지게시판 - [쓰기]</h2>
+					<h2>공지게시판 - [답글]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">

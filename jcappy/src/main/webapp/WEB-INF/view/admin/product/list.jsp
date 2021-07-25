@@ -40,6 +40,9 @@
 		}
 	}
 </script>
+<script>
+/* 재고량 버튼 클릭시 변경 */
+</script>
 </head>
 <body>
 	<div id="wrap">
@@ -55,8 +58,7 @@
 						<div id="bbs">
 							<div id="blist">
 								<p>
-									<span><strong>총 ${productVo.totCount }개</strong> |
-										${productVo.reqPage}/${productVo.totPage }페이지</span>
+									<span><strong>총 ${productVo.totCount }개</strong> | ${productVo.reqPage}/${productVo.totPage }페이지</span>
 								</p>
 								<form name="frmListCount" id="frmListCount" action="update"
 									method="post">
@@ -73,7 +75,7 @@
 										</colgroup>
 										<thead>
 											<tr>
-												<th scope="col">상품 번호</th>
+												<th scope="col" class="first">상품 번호</th>
 												<th scope="col">브랜드</th>
 												<th scope="col">상품명</th>
 												<th scope="col">상품 가격</th>
@@ -90,35 +92,51 @@
 											</c:if>
 											<c:forEach var="vo" items="${list }" varStatus="status">
 												<tr>
-													<td>${vo.pno }</td>
+													<td class="first">${vo.pno }</td>
 													<td>${vo.pcompany }</td>
-													<td><a href="detail?pno=${vo.pno }">${vo.pname }</a></td>
-													<td>${vo.pprice }</td>
-													<td><input type="number" id="pcount" name="pcount"
-														class="w100" value="${vo.pcount }" /><a id="ppcount"
-														class="btns" href="javascript:goSaveCount"><strong>변경</strong></a></td>
-													<td>${vo.pregdate }</td>
-													<td><a href="javascript:isDel(${vo.pno });"
-														class="btns"><strong>삭제</strong></a></td>
+													<td style="text-align: left; padding-left: 10px;"><a href="detail?pno=${vo.pno }">${vo.pname }</a></td>
+													<td><fmt:formatNumber value="${vo.pprice }" pattern="#,###,###"/></td>
+													<td><input type="number" id="pcount" name="pcount" class="w100" value="${vo.pcount }" />
+													<a id="ppcount" class="btns" href="javascript:goSaveCount"><strong>변경</strong></a>	
+													</td>
+													<td class="date">
+													<fmt:formatDate value="${vo.pregdate }" pattern="yyyy-MM-dd HH:mm:ss" />
+													</td>
+													<td>
+													<a href="javascript:isDel(${vo.pno });" class="btns"><strong>삭제</strong></a>
+													</td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
 								</form>
-								<div class="btnSet" style="text-align: right;">
-									<a class="btns" href="write"><strong>등록</strong></a>
+								<div class="btn">
+									<div class="btnRight">
+										<a class="wbtn" href="write"><strong>등록</strong> </a>
+									</div>
 								</div>
+								
+								
+								
 								<!-- 페이징 처리 -->
 								<div class='page'>
 									<c:if test="${productVo.startPage > productVo.pageRange}">
 										<a
 											href="list?reqPage=${productVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a>
 									</c:if>
-									<c:forEach var="rp" begin="${productVo.startPage}"
-										end="${productVo.endPage }">
-										<a
-											href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'
-											<c:if test="${rp==productVo.reqPage }">class='current'</c:if>>${rp }</a>
+									<c:forEach var="rp" begin="${productVo.startPage}" end="${productVo.endPage }">
+										 <c:if test="${productVo.reqPage == rp }">
+			                        	    <a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'>
+												<strong>
+				                        	    	${rp }
+				                        	    </strong>
+			                        	    </a>
+		                        	    </c:if>
+		                        	    <c:if test="${productVo.reqPage != rp }">
+			                        	    <a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'>
+												${rp }
+											</a>
+		                        	    </c:if>
 									</c:forEach>
 									<c:if test="${productVo.totPage > productVo.endPage}">
 										<a
@@ -128,21 +146,35 @@
 								<!-- //페이징 처리 -->
 								<form name="searchForm" id="searchForm" action="" method="get">
 									<div class="search">
-										<select name="stype" title="브랜드">
+										<select name="stype" title="검색분류선택">
+											<option value="all">전체</option>
+											<option value="pcompany"
+												<c:if test="${param.pcompany=='pcompany' }">selected</c:if>>브랜드명</option>
+											<option value="pname"
+												<c:if test="${param.pname=='pname' }">selected</c:if>>상품명</option>
+										</select> 
+										
+										<select name="ptype" title="종류">
+											<option value="all">전체</option>
+											<option value="frez"
+												<c:if test="${param.ptype=='frez' }">selected</c:if>>냉장고</option>
+											<option value="airc"
+												<c:if test="${param.ptype=='airc' }">selected</c:if>>에어컨</option>
+											<option value="tv"
+												<c:if test="${param.ptype=='tv' }">selected</c:if>>TV</option>
+											<option value="wash"
+												<c:if test="${param.ptype=='wash' }">selected</c:if>>세탁기</option>
+										</select>
+										<!-- if문 분류 선택시 분류의 카테고리 select가 나오게 구현 -->
+										<select name="pcate" title="카테고리">
 											<option value="all">전체</option>
 											<option value="sam"
-												<c:if test="${param.stype=='sam' }">selected</c:if>>삼성</option>
+												<c:if test="${param.pcate=='sam' }">selected</c:if>>일반형냉장고</option>
 											<option value="lg"
-												<c:if test="${param.stype=='lg' }">selected</c:if>>LG</option>
-											<option value="carrier"
-												<c:if test="${param.stype=='carrier' }">selected</c:if>>캐리어</option>
-											<option value="winia"
-												<c:if test="${param.stype=='winia' }">selected</c:if>>위니아전자</option>
-										</select> <input type="text" id="sval" name="sval"
-											value="${param.sval }" title="검색할 내용을 입력해주세요" /> <input
-											type="image"
-											src="<%=request.getContextPath()%>/img/admin/btn_search.gif"
-											class="sbtn" alt="검색" />
+												<c:if test="${param.pcate=='lg' }">selected</c:if>>양문형냉장고</option>
+										</select>
+										<input type="text" id="sval" name="sval" value="${param.sval }" title="검색할 내용을 입력해주세요" />
+										<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
 									</div>
 								</form>
 							</div>

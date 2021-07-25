@@ -1,13 +1,33 @@
 @charset "UTF-8";
+
 /*======================================
-관리자 계정 관리
+로그인화면
+========================================*/
+#admin_login_body {background: #F7F7F7;}
+
+/*======================================
+메인화면
+========================================*/
+#admin_main #bbs {width: 100%}   
+#admin_main #blist {width: fit-content; margin: 25px auto;}
+#admin_main .admin_main_table {position: relative; width: 700px; height: 250px;}
+#admin_main .admin_main_table:nth-child(1) {float: left; padding-right: 40px;}
+#admin_main .admin_main_table:nth-child(2) {float: left;}
+#admin_main .admin_main_table:nth-child(3) {clear: both; float: left; padding-right: 40px;}
+#admin_main .admin_main_table:nth-child(4) {float: left;}
+.admin_main_table > div {display: flex; justify-content: center; margin-bottom: 10px;}
+.admin_main_table > div input[name="admin_main_title"] {cursor: pointer; text-align: center;}
+
+/*======================================
+메뉴 : 관리자계정
 ========================================*/
 #admin_create #bbs {width: 500px;}
 #admin_create .admin_authority input[type="checkbox"] {margin-right: 5px;}
 #admin_create .btns {cursor: pointer;}
 
-#admin_list .search select {margin: 0;}
-
+/*======================================
+메뉴 : 상품관리
+========================================*/
 .imagePreview1{width: 100px; height: 50px; background-position: center center; background-size: cover; display: inline-block;}
 .imagePreview2{width: 100px; height: 50px; background-position: center center; background-size: cover; display: inline-block;}
 .imagePreview3{width: 100px; height: 50px; background-position: center center; background-size: cover; display: inline-block;}
