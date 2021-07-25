@@ -25,7 +25,7 @@
                 </form>
                 <div class="login_link">
                     <a href="/jcappy/policy/agreement.do" id="join">회원가입</a>
-                    <a href="/jcappy/findAccount" id="find">아이디·비밀번호 찾기</a>
+                    <a href="/jcappy/findEmail" id="find">아이디·비밀번호 찾기</a>
                 </div>
             </div>
         </div>

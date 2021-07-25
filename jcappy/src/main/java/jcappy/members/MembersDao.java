@@ -22,7 +22,15 @@ public class MembersDao {
 		return sqlSession.selectOne("members.isDuplicateEmail", email);
 	}
 	
-	public MembersVo findId(MembersVo vo) {
-		return sqlSession.selectOne("members.findId", vo);
+	public MembersVo findEmail(MembersVo vo) {
+		return sqlSession.selectOne("members.findEmail", vo);
+	}
+	
+	public MembersVo findPwd(MembersVo vo) {
+		return sqlSession.selectOne("members.findPwd", vo);
+	}
+	
+	public int updateTempPwd(MembersVo vo) {
+		return sqlSession.update("members.updateTempPwd", vo);
 	}
 }
