@@ -148,4 +148,16 @@ public class AdminProductController {
 		}
 		return "include/result";
 	}
+
+	@RequestMapping("/admin/product/updateImg")
+	public String updateImg(Model model, ProductVo vo, @RequestParam MultipartFile file, HttpServletRequest req) {
+
+		int r = service.updateImg(vo);
+		if (r > 0) {
+			model.addAttribute("result", "true");
+		} else {
+			model.addAttribute("result", "false");
+		}
+		return "include/result";
+	}
 }
