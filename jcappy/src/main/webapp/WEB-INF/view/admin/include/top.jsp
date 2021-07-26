@@ -5,10 +5,44 @@ $(window).load(function(){
 	// 메뉴 수에 맞게 width 값 수정.
 	$("ul.menu > li").css("width", (100 / $("ul.menu > li").length) + "%");
 });
+
+function checkAuth(servletPath) {
+	
+	if (servletPath == '/admin/product/list' && ${adminInfo.admin_product == 1}) {
+		location.href='<%=request.getContextPath()%>' + servletPath;
+		return;
+	} else if (servletPath == '/admin/order/list' && ${adminInfo.admin_order == 1}) {
+		location.href='<%=request.getContextPath()%>' + servletPath;
+		return;
+	} else if (servletPath == '/admin/members/list' && ${adminInfo.admin_members == 1}) {
+		location.href='<%=request.getContextPath()%>' + servletPath;
+		return;
+	} else if (servletPath == '/admin/board/review/list' && ${adminInfo.admin_board == 1}) {
+		location.href='<%=request.getContextPath()%>' + servletPath;
+		return;
+	} else if (servletPath == '/admin/add/list' && ${adminInfo.admin_add == 1}) {
+		location.href='<%=request.getContextPath()%>' + servletPath;
+		return;
+	} else if (servletPath == '/admin/account/list' && ${adminInfo.admin_account == 1}) {
+		location.href='<%=request.getContextPath()%>' + servletPath;
+		return;
+	} else if (servletPath == '/admin/auth/list' && ${adminInfo.admin_auth == 1}) {
+		location.href='<%=request.getContextPath()%>' + servletPath;
+		return;
+	} else {
+		alert('접근 권한이 없습니다.');
+		return;
+	}
+}
+
 </script>
 <div id="header">
 	<div class="header_inner">
-		<a href="main"><h1 id="top_title">JCAPPY_MANAGEMENT</h1></a>
+		<a href="/jcappy/admin/main">
+			<h1 id="top_title">
+				JCAPPY <span>MANAGEMENT</span>
+			</h1>
+		</a>
 		<p class="login_name"></p>
 		<!-- util : s -->
 		<div class="util">
@@ -21,10 +55,10 @@ $(window).load(function(){
 		
 		<div id="menu">
   			<ul class="menu">
-  				<li><a href="<%=request.getContextPath()%>/admin/product/list" class="parent"><span>상품관리</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/order/list" class="parent"><span>주문관리</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/user/list" class="parent"><span>회원관리</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/board/review/list" class="parent"><span>게시판관리</span></a>
+  				<li><a href="#" onClick="checkAuth('/admin/product/list');" class="parent"><span>상품관리</span></a></li>
+				<li><a href="#" onClick="checkAuth('/admin/order/list');" class="parent"><span>주문관리</span></a></li>
+				<li><a href="#" onClick="checkAuth('/admin/members/list');" class="parent"><span>회원관리</span></a></li>
+				<li><a href="#" onClick="checkAuth('/admin/board/review/list');" class="parent"><span>게시판관리</span></a>
 					<div class="standard_left">
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/admin/board/review/list"><span>리뷰게시판</span></a></li>
@@ -33,9 +67,9 @@ $(window).load(function(){
 					</ul>
 					</div>
 				</li>
-				<li><a href="<%=request.getContextPath()%>/admin/add/index" class="parent"><span>부가기능</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/account/index" class="parent"><span>매출조회</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin/auth/list" class="parent"><span>관리자계정</span></a></li>
+				<li><a href="#" onClick="checkAuth('/admin/add/index');" class="parent"><span>부가기능</span></a></li>
+				<li><a href="#" onClick="checkAuth('/admin/account/index');" class="parent"><span>매출조회</span></a></li>
+				<li><a href="#" onClick="checkAuth('/admin/auth/list');" class="parent"><span>관리자계정</span></a></li>
 			</ul>
 		</div>
 		<!--//gnb-->

@@ -83,7 +83,7 @@ public class AdminController {
 	public String detail(Model model, AdminVo vo) {
 		
 		AdminVo av = service.detail(vo);
-		if (av.getAdmin_admin() == 1) {
+		if (av.getAdmin_auth() == 1) {
 			model.addAttribute("AUTHCODE", AUTHCODE);
 		}
 		model.addAttribute("vo", service.detail(vo));
@@ -106,9 +106,9 @@ public class AdminController {
 	
 	// 관리자계정 수정
 	@RequestMapping("/admin/auth/update")
-	public String update(Model model, AdminVo vo) {
+	public String update(Model model, AdminVo vo, HttpSession session) {
 		
-		int result = service.update(vo);
+		int result = service.update(vo, session);
 
 		if (result > 0) {
 			model.addAttribute("result", "true");

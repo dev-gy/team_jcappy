@@ -2,6 +2,8 @@ package jcappy.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +58,22 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public int update(AdminVo vo) {
+	public int update(AdminVo vo, HttpSession session) {
+		
+		AdminVo adminInfo = (AdminVo)session.getAttribute("adminInfo");
+		
+		if (adminInfo != null) { // 관리자 계정 수정 시, 로그인한 계정이 있는지 체크 (인터셉터때문에 안해도되긴 함)
+		
+			if (adminInfo.getAno() == vo.getAno()) { // 만약 로그인한 계정과 수정한 계정의 ano 값이 같다면,
+				
+				adminInfo.setAno(vo.getAno());
+				dao.update(vo);
+				session.setAttribute("adminInfo", dao.detail(adminInfo));
+				// 수정한 정보가 로그인한 session에 바로 적용되도록해서, 수정 후 바로 메뉴에 대한 접근권한이 반영되도록 함.
+				
+				return 1;
+			}
+		}
 		return dao.update(vo);
 	}
 
