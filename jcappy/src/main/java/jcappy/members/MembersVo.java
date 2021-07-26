@@ -3,7 +3,7 @@ package jcappy.members;
 import java.sql.Timestamp;
 
 public class MembersVo {
-	// InDB
+	// DB
 	private int mno;
 	private String mname;
 	private String mphone;

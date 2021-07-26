@@ -44,7 +44,7 @@ $(function() {
                     <input type="text" class="join_input" name="mzipcode" id="mzipcode" placeholder="우편번호" required="required" onclick="daumPostcode($('#mzipcode'), $('#maddr'), $('#maddrde'));"/><br>
                     <input type="text" class="join_input" name="maddr"  id="maddr" placeholder="주소" required="required" onclick="daumPostcode($('#mzipcode'), $('#maddr'), $('#maddrde'));"/><br>
                     <input type="text" class="join_input" name="maddrde" id="maddrde" placeholder="상세주소" required="required" /><br><br>
-                    <input class="cstyle_btn ex" type="submit" id="submit" value="가입하기" onclick="/jcappy/index.do"/>
+                    <input class="cstyle_btn ex" type="submit" id="submit" value="가입하기"/>
                 </form>
             </div>
         </div>

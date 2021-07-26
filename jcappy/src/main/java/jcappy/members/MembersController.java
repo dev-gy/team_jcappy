@@ -40,11 +40,9 @@ public class MembersController {
 	@RequestMapping("/insert")
 	public String insert(Model model, MembersVo vo, HttpServletRequest req) {
 		int r = service.insert(vo);
-		// r > 0 : 정상 -> alert -> 목록으로 이동
-		// r == 0: 비정상 -> alert -> 이전 페이지로 이동
 		if (r>0) {
 			model.addAttribute("msg", "정상적으로 가입되었습니다");
-			model.addAttribute("url", "/jcappy/index");
+			model.addAttribute("url", "/jcappy/index.do");
 		} else {
 			model.addAttribute("msg", "가입 실패");
 			model.addAttribute("url", "/join");
@@ -62,7 +60,7 @@ public class MembersController {
 	}
 	
 	@PostMapping("/login")
-	   public String login(Model model, MembersVo vo, HttpServletRequest req,HttpServletResponse res, HttpSession sess) {
+	   public String login(Model model, MembersVo vo, HttpServletRequest req, HttpServletResponse res, HttpSession sess) {
 	      MembersVo mv = service.login(vo);
 	      if (mv == null) {
 	         model.addAttribute("msg", "이메일 또는 비밀번호가 올바르지 않습니다");
@@ -127,16 +125,15 @@ public class MembersController {
 		return "include/result";
 	}
 	
+	// 회원 탈퇴
 	@RequestMapping("/mypage/delete")
-	public String delete(Model model, MembersVo vo, HttpServletRequest req) {
-		int r = service.delete(vo);
-		if (r > 0) {
-			model.addAttribute("result", "true");
-		} else {
-			model.addAttribute("result", "false");
-		}
-		return "include/result";
+	public String delete(Model model, MembersVo vo, HttpServletRequest req, HttpSession sess) {
+		MembersVo membersInfo = (MembersVo)sess.getAttribute("membersInfo");
+		service.delete(vo);
+		sess.invalidate();
+		return "redirect: /jcappy/index.do";
 	}
+	
 	
 
 }

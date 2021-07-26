@@ -33,7 +33,7 @@
 		UPDATE members SET mpwd = md5(#{mpwd}) WHERE mname=#{mname} AND memail=#{memail}
 	</update>
 	
-	<!-- 	계정 삭제 -->
+	<!-- 계정 삭제 -->
 	<delete id="delete" parameterType="jcappy.members.MembersVo">
 		DELETE FROM members WHERE mno=#{mno}
 	</delete>

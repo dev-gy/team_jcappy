@@ -52,6 +52,6 @@ public class SendMail {
 	}
 	
 	public static void main (String[] args) {
-		sendMail("jcappy06@gmail.com", "seee0758@gmail.com", "메일 전송 테스트", "testpwd");
+		sendMail("jcappy0322@gmail.com", "seee0758@gmail.com", "메일 전송 테스트", "testpwd");
 	}
 }

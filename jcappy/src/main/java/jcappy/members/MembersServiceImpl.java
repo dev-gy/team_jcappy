@@ -48,7 +48,7 @@ public class MembersServiceImpl implements MembersService{
 			dao.updateTempPwd(vo); // 임시 비밀번호를 db에 수정
 			
 		// 3. 이메일로 임시비밀번호 전송
-		SendMail.sendMail("seee0758@naver.com", mv.getMemail(), "임시 비밀번호입니다.", "임시비밀번호: "+tempPwd);
+		SendMail.sendMail("jcappy0322@gmail.com", mv.getMemail(), "JCAPPY - 임시 비밀번호입니다.", "임시비밀번호: "+tempPwd);
 		}
 
 		return mv;
