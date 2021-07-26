@@ -54,8 +54,4 @@ public class AdminProductServiceImpl implements AdminProductService {
 		return dao.delete(vo);
 	}
 
-	@Override
-	public int updateImg(ProductVo vo) {
-		return dao.update(vo);
-	}
 }
