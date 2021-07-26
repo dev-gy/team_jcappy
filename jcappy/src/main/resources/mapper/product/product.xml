@@ -62,13 +62,4 @@
 		DELETE FROM product WHERE
 		pno=#{pno}
 	</delete>
-	
-	<update id="updateImg" parameterType="jcappy.product.ProductVo">
-		UPDATE product SET
-		 	pimg1_org=#{}, pimg1_real=#{}
-			pimg2_org=#{}, pimg2_real=#{}
-			pimg3_org=#{}, pimg3_real=#{}
-		WHERE pno=#{pno}
-	</update>
-
 </mapper>
