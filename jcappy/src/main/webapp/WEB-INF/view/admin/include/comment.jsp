@@ -22,7 +22,7 @@
                                 <td class="txt_l">
                                     ${vo.cm_content}
                                     <!-- 자기가 쓴 댓글이 아니면 삭제버튼이 안보임 -->
-                                    <c:if test="${membersInfo.mno == vo.mno}">
+                                    <c:if test="${adminInfo.ano == vo.ano}">
 										<a href="javascript:commentDel(${vo.cm_no});">[X]</a>
 									</c:if>
                                 </td>

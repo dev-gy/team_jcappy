@@ -27,15 +27,15 @@ public class QnaController {
 	//qna 인덱스
 	@RequestMapping("/admin/board/qna/list")
 	public String index(Model model, QnaVo vo, HttpSession sess) {
-		MembersVo fmv = new MembersVo();
-		//임시 로그인 세션 이메일
-		fmv.setMemail("aaa");
-		//임시 로그인 세션 비밀번호
-		fmv.setMpwd("aaa");
-		//임시 로그인 세션 
-		MembersVo mv = service.temporarySession(fmv);
-		//임시 로그인 세션
-		sess.setAttribute("membersInfo", mv);		
+//		MembersVo fmv = new MembersVo();
+//		//임시 로그인 세션 이메일
+//		fmv.setMemail("aaa");
+//		//임시 로그인 세션 비밀번호
+//		fmv.setMpwd("aaa");
+//		//임시 로그인 세션 
+//		MembersVo mv = service.temporarySession(fmv);
+//		//임시 로그인 세션
+//		sess.setAttribute("membersInfo", mv);		
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/board/qna/list";
 	}

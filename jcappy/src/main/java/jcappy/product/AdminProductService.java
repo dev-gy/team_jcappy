@@ -9,8 +9,6 @@ public interface AdminProductService {
 	int insert(ProductVo vo);
 
 	int update(ProductVo vo);
-	
-	int updateImg(ProductVo vo);
 
 	ProductVo detail(ProductVo vo);
 

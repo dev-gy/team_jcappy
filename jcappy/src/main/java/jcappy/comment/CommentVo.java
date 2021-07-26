@@ -12,7 +12,7 @@ public class CommentVo extends CommonVo {
 	private String cm_content;
 	private Timestamp cm_regdate;
 	private int cm_board_no;
-	private int mno;
+	private int ano;
 	private String cm_tablename;
 	private String name;
 	
@@ -54,11 +54,11 @@ public class CommentVo extends CommonVo {
 	public void setCm_tablename(String cm_tablename) {
 		this.cm_tablename = cm_tablename;
 	}
-	public int getMno() {
-		return mno;
+	public int getAno() {
+		return ano;
 	}
-	public void setMno(int mno) {
-		this.mno = mno;
+	public void setAno(int ano) {
+		this.ano = ano;
 	}
 	
 }

@@ -20,7 +20,8 @@
 	
 	<select id="selectAll" resultType="jcappy.qna.QnaVo" parameterType="jcappy.qna.QnaVo">
 		SELECT *, 
-			(SELECT mname FROM members WHERE mno=qna.mno) AS mname
+			(SELECT mname FROM members WHERE mno=qna.mno) AS mname,
+			(SELECT aname FROM admin WHERE ano = qna.ano) AS aname
 		FROM qna
 		<include refid="qnaWhere"/>
 		ORDER BY q_gno DESC, q_ono ASC
@@ -33,13 +34,17 @@
 	</select>
 	
 	<select id="detail" resultType="jcappy.qna.QnaVo" parameterType="jcappy.qna.QnaVo">
-		SELECT * FROM qna q join members m on q.mno = m.mno and qno = #{qno}
+		SELECT *,
+		(SELECT mname FROM members WHERE mno=qna.mno) AS mname,
+		(SELECT aname FROM admin WHERE ano = qna.ano) AS aname
+		FROM qna 
+		WHERE qno = #{qno}
 		
 	</select>
 	
 	<insert id="insertReply" parameterType="jcappy.qna.QnaVo">
-		INSERT INTO qna (qtitle, qcontent, qregdate,  qfile_org, qfile_real, mno, q_gno, q_ono, q_nested)
-		VALUES (#{qtitle}, #{qcontent}, NOW(), #{qfile_org}, #{qfile_real}, #{mno}, #{q_gno}, #{q_ono}, #{q_nested})
+		INSERT INTO qna (qtitle, qcontent, qregdate,  qfile_org, qfile_real, ano,  q_gno, q_ono, q_nested)
+		VALUES (#{qtitle}, #{qcontent}, NOW(), #{qfile_org}, #{qfile_real}, #{ano}, #{q_gno}, #{q_ono}, #{q_nested})
 	</insert>
 	
 	<update id="gno" parameterType="int">

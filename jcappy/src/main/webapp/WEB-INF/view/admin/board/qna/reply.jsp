@@ -69,7 +69,7 @@ $(function(){
 					<div id="bbs">
 						<div id="bread">
 							<form method="post" name="frm" id="frm" action="insertReply" enctype="multipart/form-data">
-							<input type="hidden" name="mno" value="${membersInfo.mno }">
+							<input type="hidden" name="ano" value="${adminInfo.ano}">
 			                <input type="hidden" name="q_gno" value="${q_gno }">
 			                <input type="hidden" name="q_ono" value="${q_ono }">
 			                <input type="hidden" name="q_nested" value="${q_nested }">
