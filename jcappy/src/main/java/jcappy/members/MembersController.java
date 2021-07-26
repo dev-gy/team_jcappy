@@ -52,6 +52,7 @@ public class MembersController {
 		return "include/alert";
 	}
 	
+	// 로그인
 	@GetMapping("/login")
 	public String loginForm(MembersVo vo, @CookieValue(value="cookieId", required = false) Cookie cookie) {
 		if (cookie != null) {
@@ -84,6 +85,15 @@ public class MembersController {
 	      }
 	   }
 	
+	@RequestMapping("/logout")
+	public String logout(Model model, HttpSession sess) {
+		sess.invalidate();
+		model.addAttribute("msg", "로그아웃 되었습니다.");
+		model.addAttribute("url", "/jcappy/index.do");
+		return "include/alert";
+	}
+	
+	//이메일 찾기
 	@GetMapping("/findEmail")
 	public String findEmail(Model model, MembersVo vo) {
 		return "members/findEmail";
@@ -100,6 +110,7 @@ public class MembersController {
 		return "include/result";
 	}
 	
+	//비밀번호 찾기
 	@GetMapping("/findPwd")
 	public String findPwd(Model model, MembersVo vo) {
 		return "members/findPwd";
