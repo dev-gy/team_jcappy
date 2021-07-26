@@ -56,56 +56,9 @@ $(function() {
 });
 </script>
 <script>
-var valueFactory = (function() {
-	  var cfrez = [일반형냉장고, 양문형냉장고];
-	  var cair = [스탠드형에어컨, 벽걸이형에어컨];
-	  var ctv = [LEDTV, OLEDTV, QLEDTV];
-	  var cwash = [일반세탁기, 드럼세탁기, 미니세탁기];
-
-	  return {
-	    create: function(target, value) {
-	      if (target === 'pcate') {
-	        if (value === 'frez') {
-	          return cfrez;
-	        } else if (value === 'air') {
-	          return cair;
-	        } else if (value === 'tv') {
-	          return ctv;
-	        } else if (value === 'wash') {
-	          return cwash;
-	        }
-	      }
-	    }
-	  }
-	})();
-
-	/**
-	 * @param target  값이 삽입될 select 태그명
-	 * @param value  값을 구분해줌
-	 */
-	var retrieves = function(target, value) {
-
-	  // 해당 target에 맞는 data 가져오는 부분
-	  // 나중에 DB와 연동할 시 ajax를(비동기부분) 이용해 data가져오는 구분으로 변경해도됨
-	  var arr = valueFactory.create(target, value);
-
-	  $("select[name=" + target + "]").empty();
-
-	  $.each(arr, function(idx, item) {
-	    $("<option>" + (target + "_" + item) + "</option>").attr({
-	      'value': (idx + 1),
-	    }).appendTo($("select[name=" + target + "]"));
-
-	  });
-	};
-
-	//select 태그 중 hierarchy란 클래스를 가지고 있는 Element가 change 이벤트가 발생 할시 실행함
-	$("select.hierarchy").on('change', function() {
-	  var target = $(this).data('target');
-	  var value = $(this).val();
-
-	  retrieves(target, value);
-	});
+if (value == 'frez'){
+	return frez;
+}
 </script>
 </head>
 <body> 
@@ -141,19 +94,42 @@ var valueFactory = (function() {
 									<tr>
 										<th scope="row"><label for="">상품 종류</label></th>
 										<td colspan="10">
-										<span>
-											<select class="hierarchy" name="ptype" id="ptype" title="종류" data-target="pcate">
-												<option value="" selected disabled>종류를 선택</option>
-												<option value="frez">냉장고</option>
-												<option value="air">에어컨</option>
-												<option value="tv">TV</option>
-												<option value="wash">세탁기</option>
+										<div>
+											<select name="ptype" id="ptype" title="종류">
+											    <option value="" selected disabled>종류 선택</option>
+											    <option value="frez">냉장고</option>
+											    <option value="air">에어컨</option>
+											    <option value="tv">TV</option>
+											    <option value="wash">세탁기</option>
 											</select>
-										</span>
-										<span>
-											<select class="hierarchy" name="pcate" id="pcate" title="카테고리">
+
+											<select name="pfrez" id="pfrez" title="카테고리">
+											 	<option value="" selected disabled>카테고리 선택</option>
+												<option value="lfrez">일반형냉장고</option>
+											    <option value="efrez">양문형냉장고</option>
 											</select>
-										</span>
+
+											<select name="pair" id="pair" title="카테고리">
+												<option value="" selected disabled>카테고리 선택</option>
+												<option value="wair">벽걸이형에어컨</option>
+											    <option value="sair">스탠드형에어컨</option>
+											    <option value="wdair">창문형에어컨</option>
+											</select>	
+											
+											<select name="ptv" id="ptv" title="카테고리">
+												<option value="" selected disabled>카테고리 선택</option>
+												<option value="ltv">LEDTV</option>
+											    <option value="oltv">OLEDTV</option>
+											    <option value="qltv">QLEDTV</option>
+											</select>			
+											
+											<select name="pwash" id="pwash" title="카테고리">
+												<option value="" selected disabled>카테고리 선택</option>
+												<option value="lwash">일반세탁기</option>
+											    <option value="dwash">드럼세탁기</option>
+											    <option value="mwash">미니세탁기</option>
+											</select>								
+										</div>
 										</td>
 									</tr>
 									<tr>
