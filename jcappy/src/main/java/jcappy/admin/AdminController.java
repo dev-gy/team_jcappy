@@ -69,7 +69,7 @@ public class AdminController {
 	// 관리자계정 목록에서 일괄 삭제
 	@RequestMapping("/admin/auth/groupDelete")
 	public String groupDelete(Model model, AdminVo vo, HttpServletRequest req) {
-
+		
 		int result = service.groupDelete(vo);
 
 		model.addAttribute("msg", "총 " + result + " 건이 삭제되었습니다.");
@@ -83,10 +83,11 @@ public class AdminController {
 	public String detail(Model model, AdminVo vo) {
 		
 		AdminVo av = service.detail(vo);
-		if (av.getAdmin_auth() == 1) {
+		av.setAuthList(av.getAuth().split(":"));
+		if (av.getAuthList()[6].equals("1")) {
 			model.addAttribute("AUTHCODE", AUTHCODE);
 		}
-		model.addAttribute("vo", service.detail(vo));
+		model.addAttribute("vo", av);
 		return "admin/auth/detail";
 	}
 	

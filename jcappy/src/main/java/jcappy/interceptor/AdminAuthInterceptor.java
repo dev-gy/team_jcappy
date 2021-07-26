@@ -18,6 +18,7 @@ public class AdminAuthInterceptor implements HandlerInterceptor {
 
 		HttpSession session = req.getSession();
 		AdminVo vo = (AdminVo) session.getAttribute("adminInfo");
+		vo.setAuthList(vo.getAuth().split(":"));
 
 		String[] URI = { "/admin/account/", "/admin/add/", "/admin/order/", "/admin/auth/", "/admin/members/",
 				"/admin/product/", "/admin/board/", "/admin/comment/" };
@@ -52,59 +53,17 @@ public class AdminAuthInterceptor implements HandlerInterceptor {
 		}
 	}
 
-	private boolean adminAccount(AdminVo vo) throws Exception {
-		if (vo.getAdmin_account() == 1) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	private boolean adminProduct(AdminVo vo) throws Exception {if (vo.getAuthList()[0].equals("1")) {return true;} else {return false;}}
+	
+	private boolean adminOrder(AdminVo vo) throws Exception {if (vo.getAuthList()[1].equals("1")) {return true;} else {return false;}}
+	
+	private boolean adminMembers(AdminVo vo) throws Exception {if (vo.getAuthList()[2].equals("1")) {return true;} else {return false;}}
+	
+	private boolean adminBoard(AdminVo vo) throws Exception {if (vo.getAuthList()[3].equals("1")) {return true;} else {return false;}}
+	
+	private boolean adminAdd(AdminVo vo) throws Exception {if (vo.getAuthList()[4].equals("1")) {return true;} else {return false;}}
+	
+	private boolean adminAccount(AdminVo vo) throws Exception {if (vo.getAuthList()[5].equals("1")) {return true;} else {return false;}}
 
-	private boolean adminAdd(AdminVo vo) throws Exception {
-		if (vo.getAdmin_add() == 1) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	private boolean adminAuth(AdminVo vo) throws Exception {
-		if (vo.getAdmin_auth() == 1) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	private boolean adminBoard(AdminVo vo) throws Exception {
-		if (vo.getAdmin_board() == 1) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	private boolean adminMembers(AdminVo vo) throws Exception {
-		if (vo.getAdmin_members() == 1) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	private boolean adminOrder(AdminVo vo) throws Exception {
-		if (vo.getAdmin_order() == 1) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	private boolean adminProduct(AdminVo vo) throws Exception {
-		if (vo.getAdmin_product() == 1) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	private boolean adminAuth(AdminVo vo) throws Exception {if (vo.getAuthList()[6].equals("1")) {return true;} else {return false;}}
 }
