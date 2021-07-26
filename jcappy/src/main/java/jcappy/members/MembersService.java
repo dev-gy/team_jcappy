@@ -8,4 +8,5 @@ public interface MembersService {
 	MembersVo findEmail(MembersVo vo);
 	MembersVo findPwd(MembersVo vo);
 	int delete(MembersVo vo);
+	int update(MembersVo vo);
 }

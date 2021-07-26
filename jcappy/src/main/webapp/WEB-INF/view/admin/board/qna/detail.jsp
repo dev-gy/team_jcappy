@@ -75,13 +75,27 @@ function qna_detail_isDel() {//게시글 삭제
 									</tr>
 									<tr>
 										<th scope="row"><label for="">작성자</label></th>
-										<c:if test="${!empty vo.mname}">
+										<c:if test="${empty vo.aname}">
 										<td colspan="10">${vo.mname }</td>
 										</c:if>
-										<c:if test="${empty vo.mname}">
+										<c:if test="${!empty vo.aname}">
 										<td colspan="10">${vo.aname}</td>
 										</c:if>
-									</tr>	
+									</tr>
+									<c:if test="${empty vo.aname}">
+									<tr>
+										<th scope="row"><label for="">이메일</label></th>
+										<td colspan="10">
+											${vo.memail}
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">전화번호</label></th>
+										<td colspan="10">
+											${vo.mphone}
+										</td>
+									</tr>
+									</c:if>	
 									<tr>
 										<th scope="row"><label for="">작성날짜</label></th>
 										<td colspan="10">

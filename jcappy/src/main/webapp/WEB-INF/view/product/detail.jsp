@@ -33,6 +33,56 @@ $(function() {
 		},
 	}).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();	// 다이얼로그의 타이틀바를 클래스로 찾아서 제거 (타이틀바 사용안할 것)
 	
+	// 상품 이미지 보기 기능
+	$(".item_major_img").css({ "background-image": decodeURI($(".item_minor_img").eq(0).css("background-image")) });
+	$(".item_minor_img").on("click", function() {
+		$(".item_major_img").css({ "background-image": decodeURI($(this).css("background-image")) });
+		console.log(decodeURI($(".item_major_img").css("background-image")));
+	});
+	
+	// 상품 갯수 - + 버튼 기능
+	$(".minus_btn").on("click", function() {
+		var num = $(".count").val();
+		if (num > 1) {
+			$(".count").val(Number(num) - 1);			
+		}
+	});
+	$(".plus_btn").on("click", function() {
+		var num = $(".count").val();
+		if (/*남은 수량 갯수보다 작으면..*/true) {
+			$(".count").val(Number(num) + 1);			
+		}
+	});
+	
+	// 제품상세, 리뷰 탭 기능
+	$(".detail_tab_btn").addClass("tab_on");
+	$(".review_area").hide();		
+	$(".cstyle_tab").on("click", function() {
+		$(".cstyle_tab").removeClass("tab_on");
+		$(this).addClass("tab_on");
+	});
+	
+	$(".detail_tab_btn").on("click", function() {
+		$(".review_area").hide();
+		$(".detail_area").show();
+	});
+	$(".review_tab_btn").on("click", function() {
+		$(".detail_area").hide();
+		$(".review_area").show();
+		
+		$.ajax({
+			url: "/jcappy/product/detail/review",
+			data: {
+				pno: ${vo.pno },
+			},
+			success: function(res) {
+				$("#review_area").html(res);
+			},
+			error: function(res) {
+				console.log("error: "+res);
+			}
+		});
+	});
 });
 function cartpoupOpen() {
 	$("#cart_btn_dialog").dialog("open");	// 다이얼로그 열기
@@ -57,9 +107,6 @@ function infoUpdate() {
 		},
 	});
 }
-
-
-
 </script>
 </head>
 
@@ -118,66 +165,8 @@ function infoUpdate() {
 								
 								<img class="itemInfo_info_img" src="/jcappy/img/상세 설명 이미지1.jpg">
 							</td>
-							<td class="review_area tab_item" colspan="2">
-								<ul>
-									<li>
-										<button class="review_btn cstyle_btn" onclick="location.href='/jcappy/review/write?{상품번호}'">리뷰 작성</button>
-									</li>
-									<li>
-										<div class="review_content">
-											<div class="review_score">별점 *****</div>
-											<div class="review_context">
-												빠른 배송과 포장 과정 영상 링크에 만족했습니다.정품 이라는것이 큰 장점인거 같아요.선물용으로 좋습니다.
-											</div>
-											<div class="review_img" style="background-image: url('/jcappy/img/리뷰 이미지.jpg');"></div>
-											<div class="review_img" style="background-image: url('/jcappy/img/리뷰 이미지.jpg');"></div>
-										</div>
-										<div class="review_info">
-											<div>작성자 {아이디 }</div>
-											<div>작성일 2013-04-25 13:07:32</div>
-										</div>
-									</li>
-									<li>
-										<div class="review_content">
-											<div class="review_score">별점 *****</div>
-											<div class="review_context">
-												첨엔 꽂을 때 잘 안들어가고 귀가 너무 아팠는데 약간 꺾어서 넣어주니까 잘 들어가더라구요.
-												쓰다보면 터득하는 노하우랄까.. 가끔씩 끊기는데 (어쩔땐 너무하다 싶을 때도 있고. 이동중 아닐 땐 안끊겨요)
-											</div>
-											<div class="review_img" style="background-image: url('/jcappy/img/리뷰 이미지.jpg');"></div>
-										</div>
-										<div class="review_info">
-											<div>작성자 {아이디 }</div>
-											<div>작성일 2013-04-25 13:07:32</div>
-										</div>
-									</li>
-									<li>
-										<div class="review_content">
-											<div class="review_score">별점 *****</div>
-											<div class="review_context">
-												모양도 이쁘고 사용도 편합니다
-											</div>
-										</div>
-										<div class="review_info">
-											<div>작성자 {아이디 }</div>
-											<div>작성일 2013-04-25 13:07:32</div>
-										</div>
-									</li>
-									<li>
-										<div class="review_content">
-											<div class="review_score">별점 *****</div>
-											<div class="review_context">
-												음질 좋습니다~~~
-											</div>
-											<div class="review_img" style="background-image: url('/jcappy/img/리뷰 이미지.jpg');"></div>
-											<div class="review_img" style="background-image: url('/jcappy/img/리뷰 이미지.jpg');"></div>
-										</div>
-										<div class="review_info">
-											<div>작성자 {아이디 }</div>
-											<div>작성일 2013-04-25 13:07:32</div>
-										</div>
-									</li>
-								</ul>
+							<td class="review_area tab_item" id="review_area" colspan="2">
+								
 							</td>
 						</tr>
 					</tbody>

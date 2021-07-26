@@ -53,7 +53,7 @@
 									<tr>
 										<td class="first">${vo.rno}</td>
 										<!-- 상세페이지 링크 and 리플 갯수 -->
-										<td class="title"><a href="detail?rno=${vo.rno}&reqPage=${reviewVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.rtitle} [${vo.comment_count}]</a></td>
+										<td class="title"><a href="detail?rno=${vo.rno}&reqPage=${reviewVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.pname}(${vo.rtitle}) [${vo.comment_count}]</a></td>
 										<td>${vo.mname }</td>
 										<td><fmt:formatDate value="${vo.rregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 										<td>${vo.rreadcount}</td>
@@ -96,6 +96,8 @@
 										<option value="all">전체</option>
 										<option value="rtitle" <c:if test="${param.stype=='rtitle'}">selected</c:if>>제목</option>
 										<option value="rcontent" <c:if test="${param.stype=='rcontent'}">selected</c:if>>내용</option>
+										<option value="mname" <c:if test="${param.stype=='mname'}">selected</c:if>>작성자</option>
+										<option value="pname" <c:if test="${param.stype=='pname'}">selected</c:if>>상품명</option>
 									</select>
 									<input type="text" name="sval" value="${param.sval }"  title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" onclick="$('#searchForm').submit();" />

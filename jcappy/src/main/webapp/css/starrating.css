@@ -1,0 +1,13 @@
+@charset "UTF-8";
+/* 아직 연구 못함.. */
+#review_score, #review_score > * {
+    height: 16px; 
+    background: url(http://i.imgur.com/YsyS5y8.png) 0 -16px repeat-x;
+    width: 80px;
+    display: inline-block;
+}
+ 
+#review_score > * {
+    background-position: 0 0;
+    max-width:80px; 
+}

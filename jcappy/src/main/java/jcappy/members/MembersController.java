@@ -127,11 +127,18 @@ public class MembersController {
 	
 	// 회원 탈퇴
 	@RequestMapping("/mypage/delete")
-	public String delete(Model model, MembersVo vo, HttpServletRequest req, HttpSession sess) {
+	public String delete(Model model, MembersVo vo, HttpSession sess) {
 		MembersVo membersInfo = (MembersVo)sess.getAttribute("membersInfo");
 		service.delete(vo);
 		sess.invalidate();
 		return "redirect: /jcappy/index.do";
+	}
+	
+	@RequestMapping("/mypage/memberedit")
+	public String update(Model model, MembersVo vo, HttpSession sess) {
+		MembersVo membersInfo = (MembersVo)sess.getAttribute("membersInfo");
+		service.update(vo);
+		return "mypage/memberedit";
 	}
 	
 	
