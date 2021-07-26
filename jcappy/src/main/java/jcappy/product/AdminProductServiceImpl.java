@@ -53,4 +53,5 @@ public class AdminProductServiceImpl implements AdminProductService {
 	public int delete(ProductVo vo) {
 		return dao.delete(vo);
 	}
+
 }

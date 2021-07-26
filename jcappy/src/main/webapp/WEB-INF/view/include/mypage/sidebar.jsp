@@ -12,20 +12,19 @@
 	});
 	
 	function isDel() {
-		if (confirm('삭제하시겠습니까?')) {
+		if (confirm('탈퇴 하시겠습니까?\n탈퇴한 계정은 복구할 수 없습니다.')) {
 			$.ajax({
 				url:'/jcappy/mypage/delete',
 				data:{
-					'mno':${vo.mno}
+					'mno':${membersInfo.mno}
 				},
 				method:'post',
-				success:function(res) {
-					console.log(res);
-					if (res.trim() == 'true') {
-						alert('정상적으로 삭제되었습니다.');
-						location.href='index.do';
+				success:function(data) {
+					if (data.trim() != 0) {
+						alert('정상적으로 탈퇴되었습니다.');
+						location.href='/jcappy/index.do';
 					} else {
-						alert('삭제 실패');
+						alert('탈퇴 실패');
 					}
 				},
 				error : function(res) {

@@ -148,4 +148,5 @@ public class AdminProductController {
 		}
 		return "include/result";
 	}
+
 }

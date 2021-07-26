@@ -5,6 +5,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -14,13 +16,13 @@ public class AdminLoginController {
 	AdminService service;
 	
 	// 로그인 폼
-	@RequestMapping("/admin/loginForm")
+	@GetMapping("/admin/login")
 	public String loginForm(Model model, AdminVo vo) {
 		return "admin/index";
 	}
 
 	// 로그인처리
-	@RequestMapping("/admin/login")
+	@PostMapping("/admin/login")
 	public String login(Model model, AdminVo vo, HttpSession session) {
 		
 		AdminVo adminInfo = service.login(vo);
@@ -30,7 +32,7 @@ public class AdminLoginController {
 			return "redirect:/admin/main";
 		} else {
 			model.addAttribute("msg", "아이디와 비밀번호를 확인해주세요.");
-			model.addAttribute("url", "loginForm");
+			model.addAttribute("url", "login");
 			return "include/alert";
 		}
 	}
@@ -41,7 +43,7 @@ public class AdminLoginController {
 		session.invalidate();
 		
 		model.addAttribute("msg", "로그아웃 되었습니다.");
-		model.addAttribute("url", "loginForm");
+		model.addAttribute("url", "login");
 		
 		return "include/alert";
 	}

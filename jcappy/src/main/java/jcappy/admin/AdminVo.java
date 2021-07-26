@@ -11,13 +11,13 @@ public class AdminVo extends CommonVo {
 	private String apwd;
 	private String aname;
 	private Timestamp aregdate;
-	private int admin_item;
+	private int admin_product;
 	private int admin_order;
 	private int admin_members;
 	private int admin_board;
 	private int admin_add;
 	private int admin_account;
-	private int admin_admin;
+	private int admin_auth;
 	private int auth;
 	private int[] anos;
 
@@ -65,12 +65,12 @@ public class AdminVo extends CommonVo {
 		this.aregdate = aregdate;
 	}
 
-	public int getAdmin_item() {
-		return admin_item;
+	public int getAdmin_product() {
+		return admin_product;
 	}
 
-	public void setAdmin_item(int admin_item) {
-		this.admin_item = admin_item;
+	public void setAdmin_product(int admin_product) {
+		this.admin_product = admin_product;
 	}
 
 	public int getAdmin_order() {
@@ -113,12 +113,12 @@ public class AdminVo extends CommonVo {
 		this.admin_account = admin_account;
 	}
 
-	public int getAdmin_admin() {
-		return admin_admin;
+	public int getAdmin_auth() {
+		return admin_auth;
 	}
 
-	public void setAdmin_admin(int admin_admin) {
-		this.admin_admin = admin_admin;
+	public void setAdmin_auth(int admin_auth) {
+		this.admin_auth = admin_auth;
 	}
 
 	public int getAuth() {

@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
 <script src="/jcappy/js/common.js"></script>
+
 <script>
 var oEditors;
 $(function(){
@@ -18,7 +19,6 @@ function goSave() {
 }
 </script>
 <script>
-       
        function isDel() {
           if (confirm('삭제하시겠습니까?')) {
 
@@ -43,6 +43,29 @@ function goSave() {
 </script>
 <script>
 /* select id = pcomp와 option id 의 값이 같을경우 그 값을 출력   */
+</script>
+<script>
+function isDelImg() {
+    if (confirm('삭제하시겠습니까?')) {
+
+       $.ajax({
+          url:'updateImg',
+          data:{
+             'pno':${vo.pno}
+          },
+          method:'post',
+          success:function(res) {
+             console.log(res);
+             if (res.trim() == 'true') {
+                alert('정상적으로 삭제되었습니다.');
+                location.href='detail?pno=${vo.pno}';s
+             } else {
+                alert('삭제 실패');
+             }
+          },
+       });
+    }
+ }
 </script>
 </head>
 <body>
@@ -117,7 +140,7 @@ function goSave() {
 												<input type="file" id="file" name="file" class="w100" />
 												<input type="checkbox" name="nos" id="noimg" /> <img style="width: 50px;" src="${vo.pimg3_org}">
 												<input type="file" id="file" name="file" class="w100" />
-												<a class="btns" style="cursor: pointer;" href=""><strong>삭제</strong></a>
+												<a class="btns" style="cursor: pointer;" href="javascript:isDelImg();"><strong>삭제</strong></a>
 												</td>
 											</tr>
 											<tr>
