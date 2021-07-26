@@ -32,7 +32,7 @@
 	}
 	function notice_detail_goSave() { //댓글 입력
 		<c:if test="${empty membersInfo}">
-			alert("로그인후 댓글을 입려할수 있습니다.");
+			alert("로그인후 댓글을 입력할수 있습니다.");
 		</c:if>
 		<c:if test="${!empty membersInfo}"> 
 		if ($("#contents").val().trim() == '') {
@@ -40,7 +40,7 @@
 		} else {
 			if (confirm('댓글을 등록하시겠습니까?')) {
 				$.ajax({
-        			url:'/jcappy/admin/comment/insert',
+        			url:'/jcappy/admin/board/notice/comment/insert',
         			data:{
         				cm_content:$("#contents").val(),
         				cm_board_no:${vo.nno},
@@ -50,7 +50,7 @@
         				if (res.trim()=='true') {
         					alert('댓글이 등록되었습니다.');
         					$("#contents").val("");
-        					notice_detail_getComment(1);
+        					getComment(1);
         				} else {
         					alert('댓글 등록 실패');
         				}
@@ -62,11 +62,11 @@
 	}
 	
 	$(function(){
-		notice_detail_getComment(1);
+		getComment(1);
 	});
-	function notice_detail_getComment(reqPage) { // 댓글 리스트 불러오기
+	function getComment(reqPage) { // 댓글 리스트 불러오기
 		$.ajax({
-			url:'/jcappy/admin/comment/list',
+			url:'/jcappy/admin/board/notice/comment/list',
 			data:{
 				cm_board_no:${vo.nno},
 				reqPage:reqPage
@@ -76,17 +76,17 @@
 			}
 		})
 	}
-	function notice_detail_commentDel(no) { //댓글 삭제
+	function commentDel(no) { //댓글 삭제
 		if (confirm('댓글을 삭제하시겠습니까?')) {
     		$.ajax({
-    			url:'/jcappy/admin/comment/delete',
+    			url:'/jcappy/admin/board/notice/comment/delete',
     			data:{
     				cm_no:no
     			},
     			success:function(res) {
     				if (res.trim()=='true') {
         				alert('댓글이 삭제되었습니다.');
-        				notice_detail_getComment(1);
+        				getComment(1);
     				} else {
     					alert('댓글 삭제 오류');
     				}

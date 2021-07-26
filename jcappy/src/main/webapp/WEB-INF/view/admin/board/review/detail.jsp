@@ -3,6 +3,123 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script>
+	function review_detail_isDel() {//게시글 삭제
+		if (confirm('삭제하시겠습니까?')) {  
+			// 삭제처리
+			$.ajax({
+				url:'delete',
+				data:{
+					'rno':${vo.rno}
+				},
+				method:'post',
+				success:function(res) {
+					console.log(res);
+					if (res.trim() == 'true') {
+						alert('정상적으로 삭제되었습니다.');
+						location.href='list';
+					} else {
+						alert('삭제 실패');
+					}
+				},
+				error : function(res) {
+					console.log(res);
+				}
+			});
+		}
+	}
+	function review_detail_goSave() { //댓글 입력
+		<c:if test="${empty membersInfo}">
+			alert("로그인후 댓글을 입력할수 있습니다.");
+		</c:if>
+		<c:if test="${!empty membersInfo}"> 
+		if ($("#contents").val().trim() == '') {
+			alert('내용을 입력해 주세요');
+		} else {
+			if (confirm('댓글을 등록하시겠습니까?')) {
+				$.ajax({
+        			url:'/jcappy/admin/board/review/comment/insert',
+        			data:{
+        				cm_content:$("#contents").val(),
+        				cm_board_no:${vo.rno},
+        				mno:${membersInfo.mno}
+        			},
+        			success:function(res) {
+        				if (res.trim()=='true') {
+        					alert('댓글이 등록되었습니다.');
+        					$("#contents").val("");
+        					getComment(1);
+        				} else {
+        					alert('댓글 등록 실패');
+        				}
+        			}
+        		});
+			}
+		}
+		</c:if>
+	}
+	
+	$(function(){
+		getComment(1);
+		var rstar = ${vo.rstar};
+		if(rstar >= 0 && rstar < 0.5) {
+			$('#rstar_img').attr('src','/jcappy/img/admin/star0.jpg');
+		} else if(rstar >= 0.5 && rstar < 1){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star05.jpg');
+		} else if(rstar >= 1 && rstar < 1.5){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star1.jpg');
+		} else if(rstar >= 1.5 && rstar < 2){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star15.jpg');
+		} else if(rstar >= 2 && rstar < 2.5){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star2.jpg');
+		} else if(rstar >= 2.5 && rstar < 3){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star25.jpg');
+		} else if(rstar >= 3 && rstar < 3.5){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star3.jpg');
+		} else if(rstar >= 3.5 && rstar < 4){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star35.jpg');
+		} else if(rstar >= 4 && rstar < 4.5){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star4.jpg');
+		} else if(rstar >= 4.5 && rstar < 5){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star45.jpg');
+		} else {
+			$('#rstar_img').attr('src','/jcappy/img/admin/star5.jpg');
+		}
+		 
+		
+	});
+	function getComment(reqPage) { // 댓글 리스트 불러오기
+		$.ajax({
+			url:'/jcappy/admin/board/review/comment/list',
+			data:{
+				cm_board_no:${vo.rno},
+				reqPage:reqPage
+			},
+			success:function(res) {
+				$("#commentArea").html(res);
+			}
+		})
+	}
+	function commentDel(no) { //댓글 삭제
+		if (confirm('댓글을 삭제하시겠습니까?')) {
+    		$.ajax({
+    			url:'/jcappy/admin/board/review/comment/delete',
+    			data:{
+    				cm_no:no
+    			},
+    			success:function(res) {
+    				if (res.trim()=='true') {
+        				alert('댓글이 삭제되었습니다.');
+        				getComment(1);
+    				} else {
+    					alert('댓글 삭제 오류');
+    				}
+    			}
+    		});
+		}
+	}
+	
+</script>
 </head>
 <body> 
 <div id="wrap">
@@ -36,68 +153,82 @@
 									<tr>
 										<th scope="row"><label for="">번호</label></th>
 										<td colspan="10">
-											1
+											${vo.rno}
+										
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">제목</label></th>
 										<td colspan="10">
-											상품이 너무 예뻐요
+											${vo.rtitle }
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">별점</label></th>
+										<td colspan="10">
+											${vo.rstar }점
+											<img src="" id="rstar_img"> <!-- 부모 --> 
+												
+											<p>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">조회수</label></th>
 										<td colspan="10">
-											243
+											${vo.rreadcount}
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">작성날짜</label></th>
 										<td colspan="10">
-											2021-7-10
+											<fmt:formatDate value="${vo.rregdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td> 
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">회원이름</label></th>
-										<td colspan="10">
-											안두용
+										<th scope="row" ><label for="" >내용</label></th>
+										<td colspan="10" style="vertical-align: top;">
+											${vo.rcontent}
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">회원연락처</label></th>
+										<th scope="row"><label for="">첨부파일</label></th>
 										<td colspan="10">
-											010-5645-8941
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">회원이메일</label></th>
-										<td colspan="10">
-											ady4709@naver.com
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">상품명</label></th>
-										<td colspan="10">
-											냉장고
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">내용</label></th>
-										<td colspan="10">
-											내용입니다.
+					<!-- 파일다운로드 -->		<a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.rfile_org}&real=${vo.rfile_real}" 
+                            				target="_blank">${vo.rfile_org}</a>
 										</td>
 									</tr>
 								</tbody>
 							</table>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="<%=request.getContextPath()%>/admin/board/review_list.do"><strong>목록</strong></a>
+									<a class="btns" href="list?<c:if test="${!empty param.reqPage}">reqPage=${param.reqPage}</c:if>&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href=""><strong>삭제</strong></a>
+									<a class="btns" style="cursor:pointer;" href="javascript:review_detail_isDel();"><strong>삭제</strong></a>
 								</div>
 							</div>
 							<!--//btn-->
+							<table class="board_write">
+		                    	<colgroup>
+		                            <col width="*" />
+		                            <col width="80px" />
+		                        </colgroup>
+		                        <tbody>
+		                        <tr>
+		                            <td>
+		                                <textarea name="content" id="contents" style="width:100%;height:80px;"></textarea>
+		                            </td>
+		                            <td>
+		                            	<div class="btn">
+											<div class="btnRight">
+												<a class="btns" style="cursor:pointer;" href="javascript:review_detail_goSave();"><strong>저장</strong></a>
+											</div>
+										</div>
+		                            </td>
+		                        </tr>
+		                        </tbody>
+		                    </table>
+		                    <div id="commentArea"></div>
 						</div>
 						<!-- //bread -->
 					</div>
