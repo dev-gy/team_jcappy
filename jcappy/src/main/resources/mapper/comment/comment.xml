@@ -4,7 +4,7 @@
 
 	<select id="selectAll" resultType="jcappy.comment.CommentVo" parameterType="jcappy.comment.CommentVo">
 		SELECT *,
-		(SELECT mname FROM members WHERE mno=comment.mno) AS name
+		(SELECT aname FROM admin WHERE ano=comment.ano) AS name
 		FROM comment
 		WHERE cm_board_no=#{cm_board_no} AND cm_tablename=#{cm_tablename}
 		ORDER BY cm_regdate DESC
@@ -17,8 +17,8 @@
 	</select>
 	
 	<insert id="insert" parameterType="jcappy.comment.CommentVo">
-		INSERT INTO comment (cm_content, cm_regdate,cm_board_no, cm_tablename, mno)
-		VALUES (#{cm_content}, NOW(), #{cm_board_no}, #{cm_tablename}, #{mno})
+		INSERT INTO comment (cm_content, cm_regdate,cm_board_no, cm_tablename, ano)
+		VALUES (#{cm_content}, NOW(), #{cm_board_no}, #{cm_tablename}, #{ano})
 	</insert>
 	
 	<delete id="delete" parameterType="jcappy.comment.CommentVo">

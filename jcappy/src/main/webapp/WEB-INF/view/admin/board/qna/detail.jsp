@@ -74,27 +74,18 @@ function qna_detail_isDel() {//게시글 삭제
 										</td>
 									</tr>
 									<tr>
+										<th scope="row"><label for="">작성자</label></th>
+										<c:if test="${!empty vo.mname}">
+										<td colspan="10">${vo.mname }</td>
+										</c:if>
+										<c:if test="${empty vo.mname}">
+										<td colspan="10">${vo.aname}</td>
+										</c:if>
+									</tr>	
+									<tr>
 										<th scope="row"><label for="">작성날짜</label></th>
 										<td colspan="10">
 											<fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">회원이름</label></th>
-										<td colspan="10">
-											${vo.mname}
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">회원연락처</label></th>
-										<td colspan="10">
-											${vo.mphone }
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">회원이메일</label></th>
-										<td colspan="10">
-											${vo.memail }
 										</td>
 									</tr>
 									<tr>
@@ -118,8 +109,10 @@ function qna_detail_isDel() {//게시글 삭제
 								</div>
 								<div class="btnRight">
 									<a class="btns" style="cursor:pointer;" href="reply?qno=${vo.qno}"><strong>답글</strong></a>
+									<c:if test="${adminInfo.ano == vo.ano || vo.q_nested == 0 }">
 									<a class="btns" style="cursor:pointer;" href="edit?qno=${vo.qno}"><strong>수정</strong></a>
 									<a class="btns" style="cursor:pointer;" href="javascript:qna_detail_isDel();"><strong>삭제</strong></a>
+									</c:if>
 								</div>
 							</div>
 							<!--//btn-->

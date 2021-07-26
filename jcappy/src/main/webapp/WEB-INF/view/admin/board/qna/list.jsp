@@ -55,7 +55,12 @@
 										<c:forEach begin="1" end="${vo.q_nested}">&nbsp;&nbsp;&nbsp;</c:forEach>
                                     	<c:if test="${vo.q_nested > 0}"><img src="/jcappy/img/admin/answer_icon.gif"></c:if>
 										${vo.qtitle} </a></td>
+										<c:if test="${!empty vo.mname}">
 										<td>${vo.mname }</td>
+										</c:if>
+										<c:if test="${empty vo.mname}">
+										<td>${vo.aname}</td>
+										</c:if>
 										<td><fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 									</tr>
 									</c:forEach>

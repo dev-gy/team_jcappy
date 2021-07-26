@@ -13,4 +13,6 @@ public interface AdminProductService {
 	ProductVo detail(ProductVo vo);
 
 	int delete(ProductVo vo);
+
+	int updateCount(ProductVo vo);
 }

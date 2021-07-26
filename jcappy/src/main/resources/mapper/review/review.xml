@@ -31,7 +31,10 @@
 	</select>
 	
 	<select id="detail" resultType="jcappy.review.ReviewVo" parameterType="jcappy.review.ReviewVo">
-		SELECT * FROM review WHERE rno = #{rno}
+		SELECT *,
+		(SELECT mname FROM members WHERE mno=review.mno) AS mname
+		FROM review 
+		WHERE rno = #{rno}
 	</select>
 	
 	<update id="updateReadcount" parameterType="jcappy.review.ReviewVo">

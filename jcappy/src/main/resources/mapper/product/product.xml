@@ -62,5 +62,4 @@
 		DELETE FROM product WHERE
 		pno=#{pno}
 	</delete>
-
 </mapper>

@@ -8,17 +8,11 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
 <title>상품 목록</title>
 <script>
-	function goSaveCount() {
-		oEditors.getById['ppcount'].exec("UPDATE_CONTENTS_FIELD", []);
-		$("#frmListCount").submit();
-	}
-	var oEditors;
-	$(function() {
-		oEditors = setEditor("ppcount"); // id
-	});
+function goSaveCount() {
+	$("#frmListCount").submit();
+}
 
 	function isDel(no) {
-		console.log(no);
 		if (confirm('삭제하시겠습니까?')) {
 			$.ajax({
 				url : 'delete',
@@ -60,7 +54,7 @@
 								<p>
 									<span><strong>총 ${productVo.totCount }개</strong> | ${productVo.reqPage}/${productVo.totPage }페이지</span>
 								</p>
-								<form name="frmListCount" id="frmListCount" action="update"
+								<form name="frmListCount" id="frmListCount" action="updateCount"
 									method="post">
 									<table width="100%" border="0" cellspacing="0" cellpadding="0"
 										summary="상품 목록">

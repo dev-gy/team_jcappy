@@ -148,4 +148,20 @@ public class AdminProductController {
 		}
 		return "include/result";
 	}
+	
+	@RequestMapping("/admin/product/updateCount")
+	public String updateCount(Model model, ProductVo vo, HttpServletRequest req) {
+
+		int r = service.updateCount(vo);
+
+		if (r > 0) {
+			model.addAttribute("msg", "정상적으로 수정되었습니다.");
+			model.addAttribute("url", "list");
+		} else {
+			model.addAttribute("msg", "수정실패");
+			model.addAttribute("url", "list");
+		}
+		return "include/alert";
+	}
+
 }

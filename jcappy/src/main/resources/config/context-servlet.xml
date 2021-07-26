@@ -73,9 +73,6 @@
 	
 	
 	<!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓관리자↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
-	<!-- 로그인 화면 -->
-	<mvc:view-controller path="/admin/index.do"/> 
-	
 	<!-- 매출조회 -->
 	<mvc:view-controller path="/admin/account/index.do"/>
 	
@@ -88,10 +85,6 @@
 	<!-- 주문 관리 -->
 	<mvc:view-controller path="/admin/order/list.do"/>
 	<mvc:view-controller path="/admin/order/detail.do"/>
-	
-	<!-- 관리자 계정 관리 -->
-	<mvc:view-controller path="/admin/auth/list.do"/>
-	<mvc:view-controller path="/admin/auth/detail.do"/>
 	
 	<!-- 회원 관리 -->
 	<mvc:view-controller path="/admin/user/list.do"/>
@@ -142,4 +135,27 @@
 		<!-- 파일업로드사이즈(바이트단위) -->
 		<property name="maxUploadSize" value="100000000"/>
 	</bean>
+	
+	<!-- 인터셉터 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+		<!-- 관리자 로그인 체크 -->
+			<mvc:mapping path="/admin/**"/>
+			<mvc:exclude-mapping path="/admin/login"/>
+			<bean class="jcappy.interceptor.AdminLoginInterceptor"/>
+		</mvc:interceptor>
+		
+		<!-- 권한별 메뉴 접근 제한 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/account/**"/>
+			<mvc:mapping path="/admin/add/**"/>
+			<mvc:mapping path="/admin/order/**"/>
+			<mvc:mapping path="/admin/auth/**"/>
+			<mvc:mapping path="/admin/members/**"/>
+			<mvc:mapping path="/admin/product/**"/>
+			<mvc:mapping path="/admin/board/**"/>
+			<mvc:mapping path="/admin/comment/**"/>
+			<bean class="jcappy.interceptor.AdminAuthInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>
