@@ -45,27 +45,27 @@ function goSave() {
 /* select id = pcomp와 option id 의 값이 같을경우 그 값을 출력   */
 </script>
 <script>
-// function isDelImg() {
-//     if (confirm('삭제하시겠습니까?')) {
+/* function isDelImg() {
+    if (confirm('삭제하시겠습니까?')) {
 
-//        $.ajax({
-//           url:'updateImg',
-//           data:{
-//              'pno':${vo.pno}
-//           },
-//           method:'post',
-//           success:function(res) {
-//              console.log(res);
-//              if (res.trim() == 'true') {
-//                 alert('정상적으로 삭제되었습니다.');
-//                 location.href='detail?pno=${vo.pno}';s
-//              } else {
-//                 alert('삭제 실패');
-//              }
-//           },
-//        });
-//     }
-//  }
+       $.ajax({
+          url:'updateImg',
+          data:{
+             'pno':${vo.pno}
+          },
+          method:'post',
+          success:function(res) {
+             console.log(res);
+             if (res.trim() == 'true') {
+                alert('정상적으로 삭제되었습니다.');
+                location.href='detail?pno=${vo.pno}';s
+             } else {
+                alert('삭제 실패');
+             }
+          },
+       });
+    }
+ } */
 </script>
 <script>
 $("#stype").change(function(){        
