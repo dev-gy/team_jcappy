@@ -16,7 +16,10 @@ public class QnaVo extends CommonVo {
 	private String qfile_org;	// 사용자가첨부한 원본파일명
 	private String qfile_real;	// 서버에 저장된 실제파일명
 	private int mno;
+	private int ano;
 	private String isDel;
+	
+	private String aname;
 	
 	private String mname;
 	private String mphone;
@@ -106,4 +109,17 @@ public class QnaVo extends CommonVo {
 	public void setMemail(String memail) {
 		this.memail = memail;
 	}
+	public int getAno() {
+		return ano;
+	}
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+	public String getAname() {
+		return aname;
+	}
+	public void setAname(String aname) {
+		this.aname = aname;
+	}
+	
 }

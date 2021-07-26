@@ -29,10 +29,10 @@
 		}
 	}
 	function review_detail_goSave() { //댓글 입력
-		<c:if test="${empty membersInfo}">
+		<c:if test="${empty adminInfo}">
 			alert("로그인후 댓글을 입력할수 있습니다.");
 		</c:if>
-		<c:if test="${!empty membersInfo}"> 
+		<c:if test="${!empty adminInfo}"> 
 		if ($("#contents").val().trim() == '') {
 			alert('내용을 입력해 주세요');
 		} else {
@@ -42,7 +42,7 @@
         			data:{
         				cm_content:$("#contents").val(),
         				cm_board_no:${vo.rno},
-        				mno:${membersInfo.mno}
+        				ano:${adminInfo.ano}
         			},
         			success:function(res) {
         				if (res.trim()=='true') {
@@ -161,6 +161,12 @@
 										<th scope="row"><label for="">제목</label></th>
 										<td colspan="10">
 											${vo.rtitle }
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">작성자</label></th>
+										<td colspan="10">
+											${vo.mname }
 										</td>
 									</tr>
 									<tr>

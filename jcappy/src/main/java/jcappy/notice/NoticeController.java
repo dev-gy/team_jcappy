@@ -32,15 +32,15 @@ public class NoticeController {
 	//공지사항 인덱스
 	@RequestMapping("/admin/board/notice/list")
 	public String index(Model model, NoticeVo vo, HttpSession sess) {
-		MembersVo fmv = new MembersVo();
-		//임시 로그인 세션 이메일
-		fmv.setMemail("bbb");
-		//임시 로그인 세션 비밀번호
-		fmv.setMpwd("bbb");
-		//임시 로그인 세션 
-		MembersVo mv = service.temporarySession(fmv);
-		//임시 로그인 세션
-		sess.setAttribute("membersInfo", mv);		
+//		MembersVo fmv = new MembersVo();
+//		//임시 로그인 세션 이메일
+//		fmv.setMemail("bbb");
+//		//임시 로그인 세션 비밀번호
+//		fmv.setMpwd("bbb");
+//		//임시 로그인 세션 
+//		MembersVo mv = service.temporarySession(fmv);
+//		//임시 로그인 세션
+//		sess.setAttribute("membersInfo", mv);		
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/board/notice/list";
 	}

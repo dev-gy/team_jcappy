@@ -29,7 +29,7 @@ public class AdminReviewController {
 	//tablename 변수 설정하여 comment insert, list 에서 사용
 	static final String TABLENAME = "review";
 	
-	//공지사항 인덱스
+	//리뷰 인덱스
 	@RequestMapping("/admin/board/review/list")
 	public String index(Model model, ReviewVo vo, HttpSession sess) {
 		MembersVo fmv = new MembersVo();
@@ -44,7 +44,7 @@ public class AdminReviewController {
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/board/review/list";
 	}
-	//공지사항 상세페이지
+	//리뷰 상세페이지
 	@RequestMapping("/admin/board/review/detail")
 	public String detail(Model model, ReviewVo vo) {
 		model.addAttribute("vo", service.detail(vo));
@@ -52,7 +52,7 @@ public class AdminReviewController {
 		return "admin/board/review/detail";
 	}
 	
-	//공지사항 삭제
+	//리뷰 삭제
 	@RequestMapping("/admin/board/review/delete")
 	public String delete(Model model, ReviewVo vo, HttpServletRequest req) {
 		int r = service.delete(vo);
