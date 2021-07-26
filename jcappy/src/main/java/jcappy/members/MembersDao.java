@@ -37,4 +37,8 @@ public class MembersDao {
 	public int delete(MembersVo vo) {
 		return sqlSession.delete("members.delete", vo);
 	}
+	
+	public int update(MembersVo vo) {
+		return sqlSession.update("user.update", vo);
+	}
 }

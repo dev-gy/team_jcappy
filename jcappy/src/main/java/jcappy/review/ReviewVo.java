@@ -13,8 +13,10 @@ public class ReviewVo extends CommonVo {
 	private Timestamp rregdate;
 	private String rfile_org;	// 사용자가첨부한 원본파일명
 	private String rfile_real;	// 서버에 저장된 실제파일명
-	private String isDel;
+	private int pno;
+	private int ono;
 	private int mno;
+	private String isDel;
 	private int rreadcount;
 	
 	private String mname;
@@ -90,6 +92,22 @@ public class ReviewVo extends CommonVo {
 
 	public void setIsDel(String isDel) {
 		this.isDel = isDel;
+	}
+
+	public int getPno() {
+		return pno;
+	}
+
+	public void setPno(int pno) {
+		this.pno = pno;
+	}
+
+	public int getOno() {
+		return ono;
+	}
+
+	public void setOno(int ono) {
+		this.ono = ono;
 	}
 
 	public int getMno() {

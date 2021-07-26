@@ -45,7 +45,7 @@ function goSave() {
 /* select id = pcomp와 option id 의 값이 같을경우 그 값을 출력   */
 </script>
 <script>
-function isDelImg() {
+/* function isDelImg() {
     if (confirm('삭제하시겠습니까?')) {
 
        $.ajax({
@@ -65,7 +65,20 @@ function isDelImg() {
           },
        });
     }
- }
+ } */
+</script>
+<script>
+$("#stype").change(function(){        
+	  var stype = $("#stype option:selected").val();
+
+	  if(stype == sam){
+	    $(".r50").show();
+	    $(".r150").hide();
+	  }else{
+	    $(".r50").hide();
+	    $(".r150").show();
+	  }
+	})
 </script>
 </head>
 <body>
@@ -102,7 +115,7 @@ function isDelImg() {
 											<tr>
 												<th scope="row"><label for="">브랜드</label></th>
 												<td colspan="10">
-												<select name="stype" title="브랜드">
+												<select name="stype" id="stype" title="브랜드">
 														<option value="pcomp">${vo.pcompany }</option>
 														<option value="sam">삼성전자</option>
 														<option value="lg">LG전자</option>

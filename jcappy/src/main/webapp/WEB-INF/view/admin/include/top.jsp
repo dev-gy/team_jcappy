@@ -20,6 +20,12 @@ function checkAuth(servletPath) {
 	} else if (servletPath == '/admin/board/review/list' && ${adminInfo.admin_board == 1}) {
 		location.href='<%=request.getContextPath()%>' + servletPath;
 		return;
+	} else if (servletPath == '/admin/board/qna/list' && ${adminInfo.admin_board == 1}) {
+		location.href='<%=request.getContextPath()%>' + servletPath;
+		return;
+	} else if (servletPath == '/admin/board/notice/list' && ${adminInfo.admin_board == 1}) {
+		location.href='<%=request.getContextPath()%>' + servletPath;
+		return;
 	} else if (servletPath == '/admin/add/list' && ${adminInfo.admin_add == 1}) {
 		location.href='<%=request.getContextPath()%>' + servletPath;
 		return;

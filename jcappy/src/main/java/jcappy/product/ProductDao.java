@@ -35,4 +35,8 @@ public class ProductDao {
 	public int delete(ProductVo vo) {
 		return sqlSession.delete("product.delete", vo);
 	}
+
+	public int updateCount(ProductVo vo) {
+		return sqlSession.update("product.updateCount", vo);
+	}
 }

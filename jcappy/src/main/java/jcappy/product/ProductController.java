@@ -10,11 +10,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jcappy.review.ReviewService;
+import jcappy.review.ReviewVo;
+
 
 @Controller
 public class ProductController {
 	@Autowired
-	ProductService service;
+	ProductService productService;
+	@Autowired
+	ReviewService reviewService;
+	
 	
 	@RequestMapping("/")
 	public String index(Model model) {
@@ -25,13 +31,13 @@ public class ProductController {
 		vo.setPageRow(3);
 		
 		vo.setTval("냉장고");
-		model.addAttribute("rList", service.selectAll(vo));
+		model.addAttribute("rList", productService.selectAll(vo));
 		vo.setTval("에어컨");
-		model.addAttribute("aList", service.selectAll(vo));
+		model.addAttribute("aList", productService.selectAll(vo));
 		vo.setTval("TV");
-		model.addAttribute("tList", service.selectAll(vo));
+		model.addAttribute("tList", productService.selectAll(vo));
 		vo.setTval("세탁기");
-		model.addAttribute("wList", service.selectAll(vo));
+		model.addAttribute("wList", productService.selectAll(vo));
 		
 		return "/index";
 	}
@@ -125,23 +131,29 @@ public class ProductController {
 			return "error";
 		}
 		// 세팅된 a, b, c 및 vo에 저장된 정보로 데이터를 구하여 전달 
-		model.addAttribute("list", service.selectAll(vo));
+		model.addAttribute("list", productService.selectAll(vo));
 		model.addAttribute("a", a);
 		model.addAttribute("b", b);
 		model.addAttribute("c", c);
 		return "/product/index";
 	}
 	
-	@RequestMapping("product/detail/{no}")
+	@RequestMapping("/product/detail/{no}")
 	public String detail(Model model, ProductVo vo,  @PathVariable String no) {
 		vo.setPno(Integer.parseInt(no));
-		model.addAttribute("vo", service.detail(vo));
+		model.addAttribute("vo", productService.detail(vo));
 		return "/product/detail";
 	}
 	
-	@RequestMapping("product/detail/calcPrice")
+	@RequestMapping("/product/detail/calcPrice")
 	public String calcPrice(Model model, @RequestParam Map<String, Object> params) {
 		model.addAttribute("result", new JSONObject(params));
 		return "/include/result";
+	}
+	
+	@RequestMapping ("/product/detail/review")
+	public String list(Model model, ReviewVo vo) { 
+		model.addAttribute("list", reviewService.selectAll(vo));
+		return "/include/review";
 	}
 }
