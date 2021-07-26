@@ -50,13 +50,13 @@ public class QnaController {
 	//qna 답글페이지
 	@RequestMapping("/admin/board/qna/reply")
 	public String reply(Model model, QnaVo vo) {
-		//model.addAttribute("vo", service.deatil(vo));
+		model.addAttribute("vo", service.detail(vo));
 		
 		// 답글 q_qno,q_ono,q_nested 값 세팅
-		QnaVo rv = service.detail(vo);
-		model.addAttribute("q_gno", rv.getQ_gno());
-		model.addAttribute("q_ono", rv.getQ_ono());
-		model.addAttribute("q_nested", rv.getQ_nested());
+//		QnaVo rv = service.detail(vo);
+//		model.addAttribute("q_gno", rv.getQ_gno());
+//		model.addAttribute("q_ono", rv.getQ_ono());
+//		model.addAttribute("q_nested", rv.getQ_nested());
 		
 		return "admin/board/qna/reply";
 	}

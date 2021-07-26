@@ -25,6 +25,10 @@ public class QnaVo extends CommonVo {
 	private String mphone;
 	private String memail;
 	
+	public QnaVo() {
+		setOrderby("qregdate");
+	}
+	
 	public int getQno() {
 		return qno;
 	}

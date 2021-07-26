@@ -55,10 +55,10 @@
 										<c:forEach begin="1" end="${vo.q_nested}">&nbsp;&nbsp;&nbsp;</c:forEach>
                                     	<c:if test="${vo.q_nested > 0}"><img src="/jcappy/img/admin/answer_icon.gif"></c:if>
 										${vo.qtitle} </a></td>
-										<c:if test="${!empty vo.mname}">
+										<c:if test="${empty vo.aname}">
 										<td>${vo.mname }</td>
 										</c:if>
-										<c:if test="${empty vo.mname}">
+										<c:if test="${!empty vo.aname}">
 										<td>${vo.aname}</td>
 										</c:if>
 										<td><fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
@@ -87,13 +87,21 @@
 							<!-- //페이징 처리 -->
 							<form name="searchForm" id="searchForm" action="list"  method="post">
 								<div class="search">
+									 <select id="orderby" name="orderby" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
+	                                    <option value="qregdate" <c:if test="${param.orderby=='rregdate'}">selected</c:if>>작성일</option>
+	                                </select>
+	                                <select id="direct" name="direct" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
+	                                    <option value="DESC" <c:if test="${param.direct=='DESC'}">selected</c:if>>내림차순</option>
+	                                    <option value="ASC" <c:if test="${param.direct=='ASC'}">selected</c:if>>오름차순</option>
+	                                </select>
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all">전체</option>
-										<option value="qtitle" <c:if test="${param.stype=='qtitle'}">selected</c:if>>제목</option>
-										<option value="qcontent" <c:if test="${param.stype=='qcontent'}">selected</c:if>>내용</option>
+										<option value="qtitle" <c:if test="${param.stype=='rtitle'}">selected</c:if>>제목</option>
+										<option value="qcontent" <c:if test="${param.stype=='rcontent'}">selected</c:if>>내용</option>
+										<option value="mname" <c:if test="${param.stype=='mname'}">selected</c:if>>작성자</option>
 									</select>
-									<input type="text" name="sval" value="${param.sval}" title="검색할 내용을 입력해주세요" />
-									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" onclick="$('#searchForm').submit();"/>
+									<input type="text" name="sval" value="${param.sval }"  title="검색할 내용을 입력해주세요" />
+									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" onclick="$('#searchForm').submit();" />
 								</div>
 							</form>
 							<!-- //search --> 

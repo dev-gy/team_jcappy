@@ -38,7 +38,6 @@ public class AdminReviewServiceImpl implements AdminReviewService {
 
 	@Override
 	public ReviewVo detail(ReviewVo vo) {
-		dao.updateReadcount(vo);
 		return dao.detail(vo);
 	}
 
