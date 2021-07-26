@@ -61,11 +61,32 @@
 	
 	$(function(){
 		getComment(1);
-		$('.starRev span').click(function(){
-			console.log(1)
-			  $(this).parent().children('span').removeClass('on');
-			  $(this).addClass('on').prevAll('span').addClass('on');
-		});
+		var rstar = ${vo.rstar};
+		if(rstar >= 0 && rstar < 0.5) {
+			$('#rstar_img').attr('src','/jcappy/img/admin/star0.jpg');
+		} else if(rstar >= 0.5 && rstar < 1){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star05.jpg');
+		} else if(rstar >= 1 && rstar < 1.5){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star1.jpg');
+		} else if(rstar >= 1.5 && rstar < 2){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star15.jpg');
+		} else if(rstar >= 2 && rstar < 2.5){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star2.jpg');
+		} else if(rstar >= 2.5 && rstar < 3){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star25.jpg');
+		} else if(rstar >= 3 && rstar < 3.5){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star3.jpg');
+		} else if(rstar >= 3.5 && rstar < 4){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star35.jpg');
+		} else if(rstar >= 4 && rstar < 4.5){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star4.jpg');
+		} else if(rstar >= 4.5 && rstar < 5){
+			$('#rstar_img').attr('src','/jcappy/img/admin/star45.jpg');
+		} else {
+			$('#rstar_img').attr('src','/jcappy/img/admin/star5.jpg');
+		}
+		 
+		
 	});
 	function getComment(reqPage) { // 댓글 리스트 불러오기
 		$.ajax({
@@ -99,18 +120,6 @@
 	}
 	
 </script>
-<style>
-.starR{
-  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
-  background-size: auto 100%;
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  text-indent: -9999px;
-  cursor: pointer;
-}
-.starR.on{background-position:0 0;}
-</style>
 </head>
 <body> 
 <div id="wrap">
@@ -157,19 +166,10 @@
 									<tr>
 										<th scope="row"><label for="">별점</label></th>
 										<td colspan="10">
-											${vo.rstar }
-											<div class="starRev">
-											  <span class="starR on">별1</span>
-											  <span class="starR">별2</span>
-											  <span class="starR">별3</span>
-											  <span class="starR">별4</span>
-											  <span class="starR">별5</span>
-											  <span class="starR">별6</span>
-											  <span class="starR">별7</span>
-											  <span class="starR">별8</span>
-											  <span class="starR">별9</span>
-											  <span class="starR">별10</span>
-											</div>
+											${vo.rstar }점
+											<img src="" id="rstar_img"> <!-- 부모 --> 
+												
+											<p>
 										</td>
 									</tr>
 									<tr>
