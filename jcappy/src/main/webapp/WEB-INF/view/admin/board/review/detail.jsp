@@ -154,7 +154,6 @@
 										<th scope="row"><label for="">번호</label></th>
 										<td colspan="10">
 											${vo.rno}
-										
 										</td>
 									</tr>
 									<tr>
@@ -164,9 +163,27 @@
 										</td>
 									</tr>
 									<tr>
+										<th scope="row"><label for="">상품명</label></th>
+										<td colspan="10">
+											${vo.pname }
+										</td>
+									</tr>
+									<tr>
 										<th scope="row"><label for="">작성자</label></th>
 										<td colspan="10">
 											${vo.mname }
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">이메일</label></th>
+										<td colspan="10">
+											${vo.memail}
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">전화번호</label></th>
+										<td colspan="10">
+											${vo.mphone}
 										</td>
 									</tr>
 									<tr>
@@ -174,8 +191,6 @@
 										<td colspan="10">
 											${vo.rstar }점
 											<img src="" id="rstar_img"> <!-- 부모 --> 
-												
-											<p>
 										</td>
 									</tr>
 									<tr>

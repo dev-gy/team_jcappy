@@ -7,32 +7,31 @@ $(window).load(function(){
 });
 
 function checkAuth(servletPath) {
-	
-	if (servletPath == '/admin/product/list' && ${adminInfo.admin_product == 1}) {
+	if (servletPath == '/admin/product/list' && ${adminInfo.authList[0] eq 1}) {
 		location.href='<%=request.getContextPath()%>' + servletPath;
 		return;
-	} else if (servletPath == '/admin/order/list' && ${adminInfo.admin_order == 1}) {
+	} else if (servletPath == '/admin/order/list' && ${adminInfo.authList[1] eq 1}) {
 		location.href='<%=request.getContextPath()%>' + servletPath;
 		return;
-	} else if (servletPath == '/admin/members/list' && ${adminInfo.admin_members == 1}) {
+	} else if (servletPath == '/admin/members/list' && ${adminInfo.authList[2] eq 1}) {
 		location.href='<%=request.getContextPath()%>' + servletPath;
 		return;
-	} else if (servletPath == '/admin/board/review/list' && ${adminInfo.admin_board == 1}) {
+	} else if (servletPath == '/admin/board/review/list' && ${adminInfo.authList[3] eq 1}) {
 		location.href='<%=request.getContextPath()%>' + servletPath;
 		return;
-	} else if (servletPath == '/admin/board/qna/list' && ${adminInfo.admin_board == 1}) {
+	} else if (servletPath == '/admin/board/qna/list' && ${adminInfo.authList[3] eq 1}) {
 		location.href='<%=request.getContextPath()%>' + servletPath;
 		return;
-	} else if (servletPath == '/admin/board/notice/list' && ${adminInfo.admin_board == 1}) {
+	} else if (servletPath == '/admin/board/notice/list' && ${adminInfo.authList[3] eq 1}) {
 		location.href='<%=request.getContextPath()%>' + servletPath;
 		return;
-	} else if (servletPath == '/admin/add/list' && ${adminInfo.admin_add == 1}) {
+	} else if (servletPath == '/admin/add/index' && ${adminInfo.authList[4] eq 1}) {
 		location.href='<%=request.getContextPath()%>' + servletPath;
 		return;
-	} else if (servletPath == '/admin/account/list' && ${adminInfo.admin_account == 1}) {
+	} else if (servletPath == '/admin/account/index' && ${adminInfo.authList[5] eq 1}) {
 		location.href='<%=request.getContextPath()%>' + servletPath;
 		return;
-	} else if (servletPath == '/admin/auth/list' && ${adminInfo.admin_auth == 1}) {
+	} else if (servletPath == '/admin/auth/list' && ${adminInfo.authList[6] eq 1}) {
 		location.href='<%=request.getContextPath()%>' + servletPath;
 		return;
 	} else {
@@ -67,9 +66,9 @@ function checkAuth(servletPath) {
 				<li><a href="#" onClick="checkAuth('/admin/board/review/list');" class="parent"><span>게시판관리</span></a>
 					<div class="standard_left">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/admin/board/review/list"><span>리뷰게시판</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/board/qna/list"><span>문의게시판</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/board/notice/list"><span>공지사항</span></a></li>
+						<li><a href="#" onClick="checkAuth('/admin/board/review/list');"><span>리뷰게시판</span></a></li>
+						<li><a href="#" onClick="checkAuth('/admin/board/qna/list');"><span>문의게시판</span></a></li>
+						<li><a href="#" onClick="checkAuth('/admin/board/notice/list');"><span>공지사항</span></a></li>
 					</ul>
 					</div>
 				</li>

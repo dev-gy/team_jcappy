@@ -85,6 +85,7 @@ function CookieVal(cookieName) {
 			</div>
 			<!-- //bgBox -->
 			<div class="joinList">
+				<div>하이</div>
 				<input type="checkbox" name="reg" id="reg"/> <label for="reg">아이디 저장</label>
 			</div>
 			<!-- //joinList -->

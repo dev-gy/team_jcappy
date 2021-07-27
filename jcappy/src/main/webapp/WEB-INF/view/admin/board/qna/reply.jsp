@@ -70,9 +70,10 @@ $(function(){
 						<div id="bread">
 							<form method="post" name="frm" id="frm" action="insertReply" enctype="multipart/form-data">
 							<input type="hidden" name="ano" value="${adminInfo.ano}">
-			                <input type="hidden" name="q_gno" value="${q_gno }">
-			                <input type="hidden" name="q_ono" value="${q_ono }">
-			                <input type="hidden" name="q_nested" value="${q_nested }">
+							<input type="hidden" name="mno" value="${vo.mno }">
+			                <input type="hidden" name="q_gno" value="${vo.q_gno }">
+			                <input type="hidden" name="q_ono" value="${vo.q_ono }">
+			                <input type="hidden" name="q_nested" value="${vo.q_nested }">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />

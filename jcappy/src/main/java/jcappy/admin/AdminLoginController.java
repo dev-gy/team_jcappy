@@ -28,6 +28,7 @@ public class AdminLoginController {
 		AdminVo adminInfo = service.login(vo);
 		
 		if (adminInfo != null) {
+			adminInfo.setAuthList(adminInfo.getAuth().split(":"));
 			session.setAttribute("adminInfo", adminInfo);
 			return "redirect:/admin/main";
 		} else {

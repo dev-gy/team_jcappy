@@ -20,8 +20,11 @@ public class ReviewVo extends CommonVo {
 	private int rreadcount;
 	
 	private String mname;
+	private String memail;
+	private String mphone;
 	private int comment_count;
-	
+	private String pname;
+
 
 	public ReviewVo() {
 		setOrderby("rregdate");
@@ -138,5 +141,26 @@ public class ReviewVo extends CommonVo {
 	public void setComment_count(int comment_count) {
 		this.comment_count = comment_count;
 	}
+	public String getPname() {
+		return pname;
+	}
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
 
+	public String getMemail() {
+		return memail;
+	}
+
+	public void setMemail(String memail) {
+		this.memail = memail;
+	}
+
+	public String getMphone() {
+		return mphone;
+	}
+
+	public void setMphone(String mphone) {
+		this.mphone = mphone;
+	}
 }
