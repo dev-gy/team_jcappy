@@ -70,11 +70,13 @@ $(function() {
 		$(".detail_area").hide();
 		$(".review_area").show();
 		
+		// 리뷰탭을 클릭 시 리뷰 해당 상품의 리뷰 데이터를 불러와 리뷰페이지를 리뷰영역에 출력
 		$.ajax({
 			url: "/jcappy/product/detail/review",
 			data: {
 				pno: ${vo.pno },
 			},
+			type: "GET",
 			success: function(res) {
 				$("#review_area").html(res);
 			},
@@ -88,13 +90,16 @@ function addCart() {
 	$.ajax({
 		url: "/jcappy/product/detail/addcart",
 		data: {	
-// 			mno: 로그인세션정보의 mno,
+			mno: 1,// 로그인세션정보의 mno,
 			pno: ${vo.pno },
 			scount: $("#count").val(),
 		},
 		type: "POST",
 		success: function(res) {
-			$("#cart_btn_dialog").dialog("open");	// 다이얼로그 열기
+			// 추가완료가 1건 이상일 경우 삼풍등록완료 장바구니 다이얼로그 띄우기
+			if (res > 0) {
+				$("#cart_btn_dialog").dialog("open");	// 다이얼로그 열기				
+			}
 		},
 		error: function(res) {
 			console.log("error: " + res);
@@ -108,7 +113,7 @@ function infoUpdate() {
 	$.ajax({
 		url: "/jcappy/product/detail/calcprice",
 		data: {	
-			price: ${vo.pprice },	
+			price: ${vo.pprice },
 			totalPrice: ${vo.pprice } * $("#count").val(),
 		},
 		type: "GET",
@@ -166,7 +171,7 @@ function infoUpdate() {
 										<input type="hidden" name="pno" value="${vo.pno }">
 									</div>
 									<div class="btn_area">
-										<button class="add_cart_btn cstyle_btn" onclick="addCart();">장바구니</button>
+										<button class="add_cart_btn cstyle_btn" type="button" onclick="addCart();">장바구니</button>
 										<button class="buy_btn cstyle_btn" type="submit">주문하기</button>
 									</div>
 								</form>

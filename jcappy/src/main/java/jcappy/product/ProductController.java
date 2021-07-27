@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jcappy.review.ReviewService;
 import jcappy.review.ReviewVo;
+import jcappy.shopcart.shopcartService;
+import jcappy.shopcart.shopcartVo;
 
 
 @Controller
@@ -20,6 +22,8 @@ public class ProductController {
 	ProductService productService;
 	@Autowired
 	ReviewService reviewService;
+	@Autowired
+	shopcartService shopcartService;
 	
 	
 	@RequestMapping("/")
@@ -158,8 +162,8 @@ public class ProductController {
 	}
 	
 	@RequestMapping ("/product/detail/addcart")
-	public String addCart(Model model, ReviewVo vo) { 
-		model.addAttribute("list", reviewService.selectAll(vo));
-		return "/include/review";
+	public String addCart(Model model, shopcartVo vo) { 
+		model.addAttribute("result", shopcartService.insert(vo));
+		return "/include/result";
 	}
 }
