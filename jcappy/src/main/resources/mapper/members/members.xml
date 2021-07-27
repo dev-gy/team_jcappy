@@ -40,7 +40,7 @@
 	
 	<!-- 회원 정보 수정 -->
 	<update id="update" parameterType="jcappy.members.MembersVo"> 
-		UPDATE members SET mpwd=md5(#{mpwd}), mname=#{mname}, mphone=#{mphone}, mzipcode=#{mzipcode}, maddr=#{maddr}, maddrde=#{maddrde} 
+		UPDATE members SET mpwd=md5(#{mpwd}), mname=#{mname}, mphone=#{mphone}, mzipcode=#{mzipcode}, maddr=#{maddr}, maddrde=#{maddrde}  
 		WHERE mno=#{mno}
 	</update>
 	
