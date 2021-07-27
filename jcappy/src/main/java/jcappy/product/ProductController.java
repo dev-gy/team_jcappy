@@ -145,7 +145,7 @@ public class ProductController {
 		return "/product/detail";
 	}
 	
-	@RequestMapping("/product/detail/calcPrice")
+	@RequestMapping("/product/detail/calcprice")
 	public String calcPrice(Model model, @RequestParam Map<String, Object> params) {
 		model.addAttribute("result", new JSONObject(params));
 		return "/include/result";
@@ -153,6 +153,12 @@ public class ProductController {
 	
 	@RequestMapping ("/product/detail/review")
 	public String list(Model model, ReviewVo vo) { 
+		model.addAttribute("list", reviewService.selectAll(vo));
+		return "/include/review";
+	}
+	
+	@RequestMapping ("/product/detail/addcart")
+	public String addCart(Model model, ReviewVo vo) { 
 		model.addAttribute("list", reviewService.selectAll(vo));
 		return "/include/review";
 	}
