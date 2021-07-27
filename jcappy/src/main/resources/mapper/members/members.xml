@@ -36,13 +36,8 @@
 	<!-- 계정 삭제 -->
 	<delete id="delete" parameterType="jcappy.members.MembersVo">
 		DELETE FROM members WHERE mno=#{mno}
-<<<<<<< HEAD
 	</delete>	
 	
-=======
-	</delete>
-
->>>>>>> branch 'master' of https://github.com/Ummnaa/team_jcappy.git
 	<!-- 회원 정보 수정 -->
 	<update id="update" parameterType="jcappy.members.MembersVo"> 
 		UPDATE members SET mpwd=md5(#{mpwd}), mname=#{mname}, mphone=#{mphone}, mzipcode=#{mzipcode}, maddr=#{maddr}, maddrde=#{maddrde}  
