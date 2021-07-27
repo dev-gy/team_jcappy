@@ -8,7 +8,7 @@ public class ShopcartServiceImpl implements ShopcartService {
 	
 	@Autowired
 	ShopcartDao shopcartDao;
-	
+
 	public int insert(ShopcartVo vo) {
 		return shopcartDao.insert(vo);
 	}

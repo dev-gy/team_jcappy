@@ -5,7 +5,7 @@ public class ShopcartVo {
 	private int sno;
 	private int pno;
 	private int scount;
-	
+
 	public int getMno() {
 		return mno;
 	}
