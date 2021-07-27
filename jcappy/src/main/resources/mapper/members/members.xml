@@ -36,17 +36,15 @@
 	<!-- 계정 삭제 -->
 	<delete id="delete" parameterType="jcappy.members.MembersVo">
 		DELETE FROM members WHERE mno=#{mno}
-	</delete>
-	
-	<!-- 회원 추가 -->
-<!-- 	<insert id="insert" parameterType="jcappy.members.MembersVo"> -->
-<!-- 		INSERT INTO members (mname, mphone, memail, mpwd, mregdate, mzipcode, maddr, maddrde) -->
-<!-- 		values (#{mname}, #{mphone}, #{memail}, md5(#{mpwd}), NOW(), #{mzipcode}, #{maddr}, #{maddrde}) pwd는 md5로 암호화 한것 -->
-<!-- 	</insert> -->
+	</delete>	
 	
 	<!-- 회원 정보 수정 -->
 	<update id="update" parameterType="jcappy.members.MembersVo"> 
 		UPDATE members SET mpwd=md5(#{mpwd}), mname=#{mname}, mphone=#{mphone}, mzipcode=#{mzipcode}, maddr=#{maddr}, maddrde=#{maddrde} 
 		WHERE mno=#{mno}
 	</update>
+	
+	<select id="detail" resultType="jcappy.members.MembersVo" parameterType="jcappy.members.MembersVo"> <!-- 상세보기 -->
+		SELECT * FROM members WHERE mno = #{mno}
+	</select>
 </mapper>
