@@ -149,6 +149,7 @@ public class AdminProductController {
 		return "include/result";
 	}
 	
+	// list에서 재고량 수정
 	@RequestMapping("/admin/product/updateCount")
 	public String updateCount(Model model, ProductVo vo, HttpServletRequest req) {
 
@@ -162,6 +163,18 @@ public class AdminProductController {
 			model.addAttribute("url", "list");
 		}
 		return "include/alert";
+	}
+	
+	// detail에서 이미지 삭제
+	@RequestMapping("/admin/product/deleteImg")
+	public String deleteImg(Model model, ProductVo vo, HttpServletRequest req) {
+		int r = service.delete(vo);
+		if (r > 0) {
+			model.addAttribute("result", "true");
+		} else {
+			model.addAttribute("result", "false");
+		}
+		return "include/result";
 	}
 
 }
