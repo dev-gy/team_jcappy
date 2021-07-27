@@ -90,7 +90,7 @@ function addCart() {
 	$.ajax({
 		url: "/jcappy/product/detail/addcart",
 		data: {	
-			mno: 1,// 로그인세션정보의 mno,
+			mno: ${sessionScope.membersInfo.mno },
 			pno: ${vo.pno },
 			scount: $("#count").val(),
 		},
