@@ -1,6 +1,6 @@
 package jcappy.shopcart;
 
-public class shopcartVo {
+public class ShopcartVo {
 	private int mno;
 	private int sno;
 	private int pno;

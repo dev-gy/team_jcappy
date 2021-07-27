@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class shopcartServiceImpl implements shopcartService {
+public class ShopcartServiceImpl implements ShopcartService {
 	
 	@Autowired
-	shopcartDao shopcartDao;
+	ShopcartDao shopcartDao;
 	
-	public int insert(shopcartVo vo) {
+	public int insert(ShopcartVo vo) {
 		return shopcartDao.insert(vo);
 	}
 }
