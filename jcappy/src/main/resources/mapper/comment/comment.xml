@@ -25,4 +25,7 @@
 		DELETE FROM comment WHERE cm_no=#{cm_no}
 	</delete>
 	
+	<delete id="allDelete" parameterType="jcappy.comment.CommentVo">
+		DELETE FROM comment WHERE cm_board_no=#{cm_board_no} AND cm_tablename=#{cm_tablename}
+	</delete>
 </mapper>

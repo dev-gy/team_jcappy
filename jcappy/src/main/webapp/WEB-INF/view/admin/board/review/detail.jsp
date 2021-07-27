@@ -5,28 +5,23 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
 	function review_detail_isDel() {//게시글 삭제
-		if (confirm('삭제하시겠습니까?')) {  
-			// 삭제처리
-			$.ajax({
-				url:'delete',
-				data:{
-					'rno':${vo.rno}
-				},
-				method:'post',
-				success:function(res) {
-					console.log(res);
-					if (res.trim() == 'true') {
-						alert('정상적으로 삭제되었습니다.');
-						location.href='list';
-					} else {
-						alert('삭제 실패');
+		$.ajax({
+			url:'/jcappy/admin/board/review/comment/ccount',
+			data:{
+				cm_board_no:${vo.rno}
+			},
+			success:function(res) {
+				if(res.trim() == 'true') {
+					if(confirm('댓글이 존재합니다 정말로 삭제하시겠습니까')) {
+						review_detail_del();
 					}
-				},
-				error : function(res) {
-					console.log(res);
+				} else {
+					if(confirm('정말로 삭제하시겠습니까?')) {
+						review_detail_del();
+					}
 				}
-			});
-		}
+			}
+		}); 
 	}
 	function review_detail_goSave() { //댓글 입력
 		<c:if test="${empty adminInfo}">
@@ -61,26 +56,26 @@
 	
 	$(function(){
 		getComment(1);
-		var rstar = ${vo.rstar};
-		if(rstar >= 0 && rstar < 0.5) {
+		var review_detail_rstar = ${vo.rstar};
+		if(review_detail_rstar >= 0 && review_detail_rstar < 0.5) {
 			$('#rstar_img').attr('src','/jcappy/img/admin/star0.jpg');
-		} else if(rstar >= 0.5 && rstar < 1){
+		} else if(review_detail_rstar >= 0.5 && review_detail_rstar < 1){
 			$('#rstar_img').attr('src','/jcappy/img/admin/star05.jpg');
-		} else if(rstar >= 1 && rstar < 1.5){
+		} else if(review_detail_rstar >= 1 && review_detail_rstar < 1.5){
 			$('#rstar_img').attr('src','/jcappy/img/admin/star1.jpg');
-		} else if(rstar >= 1.5 && rstar < 2){
+		} else if(review_detail_rstar >= 1.5 && review_detail_rstar < 2){
 			$('#rstar_img').attr('src','/jcappy/img/admin/star15.jpg');
-		} else if(rstar >= 2 && rstar < 2.5){
+		} else if(review_detail_rstar >= 2 && review_detail_rstar < 2.5){
 			$('#rstar_img').attr('src','/jcappy/img/admin/star2.jpg');
-		} else if(rstar >= 2.5 && rstar < 3){
+		} else if(review_detail_rstar >= 2.5 && review_detail_rstar < 3){
 			$('#rstar_img').attr('src','/jcappy/img/admin/star25.jpg');
-		} else if(rstar >= 3 && rstar < 3.5){
+		} else if(review_detail_rstar >= 3 && review_detail_rstar < 3.5){
 			$('#rstar_img').attr('src','/jcappy/img/admin/star3.jpg');
-		} else if(rstar >= 3.5 && rstar < 4){
+		} else if(review_detail_rstar >= 3.5 && review_detail_rstar < 4){
 			$('#rstar_img').attr('src','/jcappy/img/admin/star35.jpg');
-		} else if(rstar >= 4 && rstar < 4.5){
+		} else if(review_detail_rstar >= 4 && review_detail_rstar < 4.5){
 			$('#rstar_img').attr('src','/jcappy/img/admin/star4.jpg');
-		} else if(rstar >= 4.5 && rstar < 5){
+		} else if(review_detail_rstar >= 4.5 && review_detail_rstar < 5){
 			$('#rstar_img').attr('src','/jcappy/img/admin/star45.jpg');
 		} else {
 			$('#rstar_img').attr('src','/jcappy/img/admin/star5.jpg');
@@ -117,6 +112,27 @@
     			}
     		});
 		}
+	}
+	function review_detail_del() {
+		$.ajax({
+			url:'delete',
+			data:{
+				'rno':${vo.rno}
+			},
+			method:'post',
+			success:function(res) {
+				console.log(res);
+				if (res.trim() == 'true') {
+					alert('정상적으로 삭제되었습니다.');
+					location.href='list';
+				} else {
+					alert('삭제 실패');
+				}
+			},
+			error : function(res) {
+				console.log(res);
+			}
+		});
 	}
 	
 </script>

@@ -44,6 +44,7 @@ public class AdminReviewController {
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/board/review/list";
 	}
+	
 	//리뷰 상세페이지
 	@RequestMapping("/admin/board/review/detail")
 	public String detail(Model model, ReviewVo vo) {
@@ -55,7 +56,13 @@ public class AdminReviewController {
 	//리뷰 삭제
 	@RequestMapping("/admin/board/review/delete")
 	public String delete(Model model, ReviewVo vo, HttpServletRequest req) {
+		CommentVo cv = new CommentVo();
+		cv.setCm_board_no(vo.getRno());
+		cv.setCm_tablename(TABLENAME);
+		//게시글 안에 달린 전체 댓글 삭제
+		cService.allDelete(cv);
 		int r = service.delete(vo);
+		
 		if (r > 0) {
 			model.addAttribute("result", "true");
 		} else {
@@ -63,6 +70,7 @@ public class AdminReviewController {
 		}
 		return "admin/include/result";
 	}
+	
 	//댓글 데이터 입력
 	@RequestMapping("/admin/board/review/comment/insert")
 	public String commentInsert(Model model, CommentVo vo) {
@@ -78,6 +86,7 @@ public class AdminReviewController {
 		
 		return "admin/include/result";
 	}
+	
 	//댓글 리스트 불러오기
 	@RequestMapping("/admin/board/review/comment/list")
 	public String commentList(Model model, CommentVo cv) {
@@ -86,10 +95,25 @@ public class AdminReviewController {
 		model.addAttribute("list", cService.selectAll(cv));
 		return "admin/include/comment";
 	}
+	
 	// 댓글 삭제
 	@RequestMapping("/admin/board/review/comment/delete")
 	public String commentDelete(Model model, CommentVo vo) {
 		int r = cService.delete(vo);
+		if (r > 0) {
+			model.addAttribute("result", "true");
+		} else {
+			model.addAttribute("result", "false");
+		}
+		return "admin/include/result";
+	}
+	
+	//댓글 존재 여부 파악
+	@RequestMapping("/admin/board/review/comment/ccount")
+	public String ccount(Model model, CommentVo vo) {
+		vo.setCm_tablename(TABLENAME); 
+		int r = cService.ccount(vo);
+		System.out.println("실험:" + r);
 		if (r > 0) {
 			model.addAttribute("result", "true");
 		} else {
