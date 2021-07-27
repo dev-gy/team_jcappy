@@ -9,4 +9,6 @@ public interface MembersService {
 	MembersVo findPwd(MembersVo vo);
 	int delete(MembersVo vo);
 	int update(MembersVo vo);
+	MembersVo edit(MembersVo vo);
+	MembersVo detail(MembersVo vo);
 }
