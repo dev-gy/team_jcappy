@@ -36,7 +36,7 @@
 								<thead>
 									<tr>
 										<th scope="col" class="first">번호</th>
-										<th scope="col">제목</th> 
+										<th scope="col">[상품명]제목</th> 
 										<th scope="col">작성자</th>
 										<th scope="col">작성일</th>
 										<th scope="col" class="last">조회수</th>
@@ -53,7 +53,7 @@
 									<tr>
 										<td class="first">${vo.rno}</td>
 										<!-- 상세페이지 링크 and 리플 갯수 -->
-										<td class="title"><a href="detail?rno=${vo.rno}&reqPage=${reviewVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.pname}(${vo.rtitle}) [${vo.comment_count}]</a></td>
+										<td class="title"><a href="detail?rno=${vo.rno}&reqPage=${reviewVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">[${vo.pname}] ${vo.rtitle} [${vo.comment_count}]</a></td>
 										<td>${vo.mname }</td>
 										<td><fmt:formatDate value="${vo.rregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 										<td>${vo.rreadcount}</td>

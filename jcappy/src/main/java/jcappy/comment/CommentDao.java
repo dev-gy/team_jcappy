@@ -27,4 +27,8 @@ public class CommentDao {
 	public int delete(CommentVo vo) {
 		return sqlSession.delete("comment.delete", vo);
 	}
+
+	public Object allDelete(CommentVo vo) {
+		return sqlSession.delete("comment.allDelete", vo);
+	}
 }

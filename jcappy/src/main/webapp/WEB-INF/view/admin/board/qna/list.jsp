@@ -30,14 +30,14 @@
 								<colgroup>
 									<col class="w3" />
 									<col class="" />
-									<col class="w6" />
+									<col class="w8" />
 									<col class="w6" />
 								</colgroup>
 								<thead>
 									<tr>
 										<th scope="col" class="first">번호</th>
 										<th scope="col">제목</th> 
-										<th scope="col">작성자</th>
+										<th scope="col">작성자(이메일)</th>
 										<th scope="col">작성일</th>
 									</tr>
 								</thead>
@@ -56,10 +56,10 @@
                                     	<c:if test="${vo.q_nested > 0}"><img src="/jcappy/img/admin/answer_icon.gif"></c:if>
 										${vo.qtitle} </a></td>
 										<c:if test="${empty vo.aname}">
-										<td>${vo.mname }</td>
+										<td>${vo.mname }(${vo.memail})</td>
 										</c:if>
 										<c:if test="${!empty vo.aname}">
-										<td>${vo.aname}</td>
+										<td>관리자</td>
 										</c:if>
 										<td><fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 									</tr>

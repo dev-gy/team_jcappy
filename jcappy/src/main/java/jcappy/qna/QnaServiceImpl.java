@@ -57,11 +57,6 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public MembersVo temporarySession(MembersVo fmv) {
-		return dao.temporarySession(fmv);
-	}
-
-	@Override
 	public int insertReply(QnaVo vo) {
 		// 답글 알고리즘
 		dao.onoUpdate(vo);
@@ -75,5 +70,14 @@ public class QnaServiceImpl implements QnaService {
 		return dao.detail(vo);
 	}
 
-	
+	@Override
+	public QnaVo findZeroQ_ono(QnaVo vo) {
+		return dao.findZeroQ_ono(vo);
+	}
+
+	@Override
+	public int gnoAllDelete(int gnum) {
+		return dao.gnoAllDelete(gnum);
+	}
+
 }

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+	<%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -36,6 +36,29 @@ function goSaveCount() {
 </script>
 <script>
 /* 재고량 버튼 클릭시 변경 */
+</script>
+<script>
+function categoryChange(e) {
+    var pcate_frez = ["일반형냉장고", "양문형냉장고", "업소용냉장고"];
+    var pcate_air = ["스탠드형에어컨", "벽걸이형에어컨", "창문형에어컨"];
+    var pcate_tv = ["LEDTV", "QLEDTV", "OLEDTV"];
+    var pcate_wash = ["일반세탁기", "드럼세탁기", "미니세탁기"];
+    var target = document.getElementById("pcate");
+ 
+    if(e.value == "frez") var d = pcate_frez;
+    else if(e.value == "air") var d = pcate_air;
+    else if(e.value == "tv") var d = pcate_tv;
+    else if(e.value == "wash") var d = pcate_wash;
+ 
+    target.options.length = 0;
+ 
+    for (x in d) {
+        var opt = document.createElement("option");
+        opt.value = d[x];
+        opt.innerHTML = d[x];
+        target.appendChild(opt);
+    }    
+}
 </script>
 </head>
 <body>
@@ -148,24 +171,20 @@ function goSaveCount() {
 												<c:if test="${param.pname=='pname' }">selected</c:if>>상품명</option>
 										</select> 
 										
-										<select name="ptype" title="종류">
+										<select name="ptype" title="종류" onchange="categoryChange(this)">
 											<option value="all">전체</option>
 											<option value="frez"
 												<c:if test="${param.ptype=='frez' }">selected</c:if>>냉장고</option>
-											<option value="airc"
-												<c:if test="${param.ptype=='airc' }">selected</c:if>>에어컨</option>
+											<option value="air"
+												<c:if test="${param.ptype=='air' }">selected</c:if>>에어컨</option>
 											<option value="tv"
 												<c:if test="${param.ptype=='tv' }">selected</c:if>>TV</option>
 											<option value="wash"
 												<c:if test="${param.ptype=='wash' }">selected</c:if>>세탁기</option>
 										</select>
-										<!-- if문 분류 선택시 분류의 카테고리 select가 나오게 구현 -->
-										<select name="pcate" title="카테고리">
+										
+										<select name="pcate" id="pcate" title="카테고리">
 											<option value="all">전체</option>
-											<option value="sam"
-												<c:if test="${param.pcate=='sam' }">selected</c:if>>일반형냉장고</option>
-											<option value="lg"
-												<c:if test="${param.pcate=='lg' }">selected</c:if>>양문형냉장고</option>
 										</select>
 										<input type="text" id="sval" name="sval" value="${param.sval }" title="검색할 내용을 입력해주세요" />
 										<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />

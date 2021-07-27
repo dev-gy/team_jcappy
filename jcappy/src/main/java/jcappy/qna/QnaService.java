@@ -10,8 +10,8 @@ public interface QnaService {
 	QnaVo detail(QnaVo vo);
 	int update(QnaVo vo);
 	int delete(QnaVo vo);
-	MembersVo temporarySession(MembersVo fmv);
 	int insertReply(QnaVo vo);
 	QnaVo edit(QnaVo vo);
-	
+	QnaVo findZeroQ_ono(QnaVo vo);
+	int gnoAllDelete(int gnum);
 }

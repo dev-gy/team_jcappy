@@ -136,7 +136,14 @@ public class QnaController {
 	//qna 삭제
 	@RequestMapping("/admin/board/qna/delete")
 	public String delete(Model model, QnaVo vo, HttpServletRequest req) {
-		int r = service.delete(vo);
+		int r = 0;
+		QnaVo qv = service.findZeroQ_ono(vo);
+		if(qv.getQ_ono() > 0) {
+			r = service.delete(vo);
+		} else {
+			r = service.gnoAllDelete(qv.getQ_gno());
+		}
+		
 		if (r > 0) {
 			model.addAttribute("result", "true");
 		} else {

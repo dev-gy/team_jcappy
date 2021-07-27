@@ -79,7 +79,7 @@ function qna_detail_isDel() {//게시글 삭제
 										<td colspan="10">${vo.mname }</td>
 										</c:if>
 										<c:if test="${!empty vo.aname}">
-										<td colspan="10">${vo.aname}</td>
+										<td colspan="10">관리자</td>
 										</c:if>
 									</tr>
 									<c:if test="${empty vo.aname}">
@@ -123,10 +123,8 @@ function qna_detail_isDel() {//게시글 삭제
 								</div>
 								<div class="btnRight">
 									<a class="btns" style="cursor:pointer;" href="reply?qno=${vo.qno}"><strong>답글</strong></a>
-									<c:if test="${adminInfo.ano == vo.ano || vo.q_nested == 0 }">
 									<a class="btns" style="cursor:pointer;" href="edit?qno=${vo.qno}"><strong>수정</strong></a>
 									<a class="btns" style="cursor:pointer;" href="javascript:qna_detail_isDel();"><strong>삭제</strong></a>
-									</c:if>
 								</div>
 							</div>
 							<!--//btn-->
