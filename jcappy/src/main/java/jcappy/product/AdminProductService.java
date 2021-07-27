@@ -15,4 +15,6 @@ public interface AdminProductService {
 	int delete(ProductVo vo);
 
 	int updateCount(ProductVo vo);
+	
+	int deleteImg(ProductVo vo);
 }

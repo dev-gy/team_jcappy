@@ -60,6 +60,18 @@ if (value == 'frez'){
 	return frez;
 }
 </script>
+<script>
+	$(function() {
+		$("#selboxDirect").hide();
+		$("#selbox").change(function() {
+			if ($("#selbox").val() == "direct") {
+				$("#selboxDirect").show();
+			} else {
+				$("#selboxDirect").hide();
+			}
+		})
+	});
+</script>
 </head>
 <body> 
 <div id="wrap">
@@ -128,7 +140,7 @@ if (value == 'frez'){
 												<option value="lwash">일반세탁기</option>
 											    <option value="dwash">드럼세탁기</option>
 											    <option value="mwash">미니세탁기</option>
-											</select>								
+											</select>							
 										</div>
 										</td>
 									</tr>
@@ -140,7 +152,9 @@ if (value == 'frez'){
 												<option value="lg">LG전자</option>
 												<option value="carrier">캐리어</option>
 												<option value="winia">위니아전자</option>
+												<option value="direct">기타</option>
 											</select>
+											<input type="text" id="selboxDirect" name="selboxDirect"/>
 										</td>
 									</tr>
 									<tr>
@@ -189,7 +203,7 @@ if (value == 'frez'){
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">상품 상세이미지</label></th>
+										<th scope="row"><label for="">상품 상세정보</label></th>
 										<td colspan="10">
 											<textarea name="content" id="contents" style="width:100%;"></textarea>
 										</td>

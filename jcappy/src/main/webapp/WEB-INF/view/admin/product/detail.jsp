@@ -45,6 +45,7 @@ function goSave() {
 /* select id = pcomp와 option id 의 값이 같을경우 그 값을 출력   */
 </script>
 <script>
+																				/* jsp만 만들면 됨 deleteImg */
 /* function isDelImg() {
     if (confirm('삭제하시겠습니까?')) {
 
