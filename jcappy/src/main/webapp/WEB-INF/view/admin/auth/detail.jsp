@@ -108,7 +108,6 @@ function check_create_auth(checkbox) {
 			count++;
 		}
 	}
-	
 	if (count < 1) {
 		alert('권한을 하나 이상 선택해야합니다.');
 		check = false;
@@ -126,8 +125,8 @@ function updateAdmin() {
 		if (!check_create_pwd($('#apwd'), $('#check_apwd'))) {return;}
 	}
 	if (!check_create_name($('#aname'))) {return;}
-	 
-	if (!check_create_auth($('input[type=checkbox]'))) {return;}
+	
+	if (!check_create_auth($('input[class=check_auth]'))) {return;}
 	
 	// 관리자계정 권한 선택 시, 권한 코드 입력체크
 	if ($('#admin_auth').prop("checked")) {
@@ -157,6 +156,8 @@ function updateAdmin() {
 	
 	if (!check) {return;}
 	
+	checkbox_value();
+    
 	if (confirm("수정하시겠습니까?")) {
 		$.ajax({
 			url: "<%=request.getContextPath()%>/admin/auth/update",
@@ -178,7 +179,6 @@ $(function () {
 	$('#check_authority').hide(); // 관리자계정권한 권한코드 입력 칸 숨기기
 	checkOne();
 	check_admin_authority();
-	
 });
 
 // 관리자계정 권한 선택 시, 권한 코드 입력 칸 출력
@@ -239,6 +239,17 @@ function delAdmin(no) {
 	}
 }
 
+// 체크박스 선택하지 않은 값들도 넘겨주기위한 함수
+function checkbox_value() {
+	$('input[class=check_auth]').each(function() {  
+        if ($(this).prop("checked")) { 
+            $(this).val("1");
+        } else {
+            $(this).val("0");
+        }
+    });
+    $('input[class=check_auth]').prop("checked", true); 
+}
 </script>
 </head>
 <body> 
@@ -294,24 +305,24 @@ function delAdmin(no) {
 									<tr>
 										<th scope="row" rowspan="3"><label for="allChk">접근권한</label>&nbsp;<input type="checkbox" name="allChk" id="allChk" onClick="checkAll();"/></th>
 										<td class="admin_authority">
-											<label><input type="checkbox" class="check_auth" id="admin_product" name="admin_product" value="1" onClick="checkOne();" <c:if test="${vo.admin_product == '1' }">checked</c:if>/>상품관리</label>
+											<label><input type="checkbox" class="check_auth" id="admin_product" name="auths" value="1" onClick="checkOne();" <c:if test="${vo.authList[0] == '1' }">checked</c:if>/>상품관리</label>
 											&nbsp;&nbsp;|&nbsp;&nbsp;	
-											<label><input type="checkbox" class="check_auth" id="admin_order" name="admin_order" value="1" onClick="checkOne();" <c:if test="${vo.admin_order == '1' }">checked</c:if>/>주문관리</label>
+											<label><input type="checkbox" class="check_auth" id="admin_order" name="auths" value="1" onClick="checkOne();" <c:if test="${vo.authList[1] == '1' }">checked</c:if>/>주문관리</label>
 											&nbsp;&nbsp;|&nbsp;&nbsp;	
-											<label><input type="checkbox" class="check_auth" id="admin_members" name="admin_members" value="1" onClick="checkOne();" <c:if test="${vo.admin_members == '1' }">checked</c:if>/>회원관리</label>
+											<label><input type="checkbox" class="check_auth" id="admin_members" name="auths" value="1" onClick="checkOne();" <c:if test="${vo.authList[2] == '1' }">checked</c:if>/>회원관리</label>
 										</td>
 									<tr>
 										<td class="admin_authority">
-											<label><input type="checkbox" class="check_auth" id="admin_board" name="admin_board" value="1" onClick="checkOne();" <c:if test="${vo.admin_board == '1' }">checked</c:if>/>게시판관리</label>
+											<label><input type="checkbox" class="check_auth" id="admin_board" name="auths" value="1" onClick="checkOne();" <c:if test="${vo.authList[3] == '1' }">checked</c:if>/>게시판관리</label>
 											&nbsp;&nbsp;|&nbsp;&nbsp;	
-											<label><input type="checkbox" class="check_auth" id="admin_add" name="admin_add" value="1" onClick="checkOne();" <c:if test="${vo.admin_add == '1' }">checked</c:if>/>부가기능관리</label>	
+											<label><input type="checkbox" class="check_auth" id="admin_add" name="auths" value="1" onClick="checkOne();" <c:if test="${vo.authList[4] == '1' }">checked</c:if>/>부가기능관리</label>	
 										</td>
 									</tr>
 									<tr>
 										<td class="admin_authority">
-											<label><input type="checkbox" class="check_auth" id="admin_account" name="admin_account" value="1" onClick="checkOne();" <c:if test="${vo.admin_account == '1' }">checked</c:if>/>매출조회</label>	
+											<label><input type="checkbox" class="check_auth" id="admin_account" name="auths" value="1" onClick="checkOne();" <c:if test="${vo.authList[5] == '1' }">checked</c:if>/>매출조회</label>	
 											&nbsp;&nbsp;|&nbsp;&nbsp;
-											<label><input type="checkbox" class="check_auth" id="admin_auth" name="admin_auth" value="1" onClick="check_admin_authority(); checkOne();" <c:if test="${vo.admin_auth == '1' }">checked</c:if>/>관리자계정</label>
+											<label><input type="checkbox" class="check_auth" id="admin_auth" name="auths" value="1" onClick="check_admin_authority(); checkOne();" <c:if test="${vo.authList[6] == '1' }">checked</c:if>/>관리자계정</label>
 											&nbsp;
 											<input type="password" id="check_authority" name="check_authority" class="w30" placeholder="권한코드 입력" value="${AUTHCODE }"/>
 										</td>

@@ -29,11 +29,19 @@ public class AdminServiceImpl implements AdminService{
 		vo.setStartPage(startPage);
 		vo.setEndPage(endPage);
 		
-		return dao.selectAll(vo);
+		List<AdminVo> list = dao.selectAll(vo);
+		
+		for (int i = 0; i < list.size(); i++) {
+			AdminVo av = list.get(i);
+			av.setAuthList(av.getAuth().split(":"));
+		}
+		
+		return list;
 	}
 
 	@Override
 	public int insert(AdminVo vo) {
+		vo.setAuth(String.join(":", vo.getAuths()));
 		return dao.insert(vo);
 	}
 
@@ -59,6 +67,8 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public int update(AdminVo vo, HttpSession session) {
+		
+		vo.setAuth(String.join(":", vo.getAuths()));
 		
 		AdminVo adminInfo = (AdminVo)session.getAttribute("adminInfo");
 		

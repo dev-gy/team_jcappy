@@ -6,7 +6,7 @@
 		<where>
 			<if test="sval != null and sval != ''">
 				<if test="stype == 'all'">
-					rtitle LIKE '%${sval}%' OR rcontent LIKE '%${sval}%'
+					rtitle LIKE '%${sval}%' OR rcontent LIKE '%${sval}%' OR mname LIKE '%${sval}%' OR pname LIKE '%${sval}%' 
 				</if>
 				<if test="stype != 'all'">
 					${stype} LIKE '%${sval}%'
@@ -16,24 +16,21 @@
 	</sql>
 	
 	<select id="selectAll" resultType="jcappy.review.ReviewVo" parameterType="jcappy.review.ReviewVo">
-		SELECT *,
-			(SELECT mname FROM members WHERE mno=review.mno) AS mname,
-			(SELECT COUNT(*) FROM comment WHERE cm_board_no=review.rno AND cm_tablename='review') AS comment_count 
-		FROM review
+		SELECT *, 
+		(SELECT COUNT(*) FROM comment WHERE cm_board_no=r.rno AND cm_tablename='review') AS comment_count 
+		FROM review r LEFT JOIN product p ON r.pno = p.pno JOIN members m ON r.mno = m.mno
 		<include refid="reviewWhere"/>
 		ORDER BY ${orderby} ${direct}
 		LIMIT ${startIdx},${pageRow}
 	</select>
 	
 	<select id="count" resultType="int" parameterType="jcappy.review.ReviewVo">
-		SELECT COUNT(*) FROM review
+		SELECT COUNT(*) FROM review r LEFT JOIN product p ON r.pno = p.pno JOIN members m ON r.mno = m.mno
 		<include refid="reviewWhere"/>
 	</select>
 	
 	<select id="detail" resultType="jcappy.review.ReviewVo" parameterType="jcappy.review.ReviewVo">
-		SELECT *,
-		(SELECT mname FROM members WHERE mno=review.mno) AS mname
-		FROM review 
+		SELECT * FROM review r LEFT JOIN product p ON r.pno = p.pno JOIN members m ON r.mno = m.mno
 		WHERE rno = #{rno}
 	</select>
 	

@@ -109,13 +109,13 @@ function checkOne(name) {
 															<td><a href="detail?ano=${vo.ano }&orderby=${adminVo.orderby}&direct=${adminVo.direct}&pageRow=${adminVo.pageRow}&stype=${adminVo.stype }&sval=${adminVo.sval }&reqPage=${adminVo.reqPage}">${vo.aid }</a></td>
 															<td>${vo.aname}</td>
 															<td class="date"><fmt:formatDate value="${vo.aregdate }" pattern="yyyy-MM-dd"/></td>
-															<td>${vo.admin_product eq 1 ? "○": "-"}</td>
-															<td>${vo.admin_order eq 1 ? "○": "-"}</td>
-															<td>${vo.admin_members eq 1 ? "○": "-"}</td>
-															<td>${vo.admin_board eq 1 ? "○": "-"}</td>
-															<td>${vo.admin_add eq 1 ? "○": "-"}</td>
-															<td>${vo.admin_account eq 1 ? "○": "-"}</td>
-															<td>${vo.admin_auth eq 1 ? "○": "-"}</td>
+															<td>${vo.authList[0] eq 1 ? "○": "-"}</td>
+															<td>${vo.authList[1] eq 1 ? "○": "-"}</td>
+															<td>${vo.authList[2] eq 1 ? "○": "-"}</td>
+															<td>${vo.authList[3] eq 1 ? "○": "-"}</td>
+															<td>${vo.authList[4] eq 1 ? "○": "-"}</td>
+															<td>${vo.authList[5] eq 1 ? "○": "-"}</td>
+															<td>${vo.authList[6] eq 1 ? "○": "-"}</td>
 														</tr>
 													</c:forEach>
 												</c:when>

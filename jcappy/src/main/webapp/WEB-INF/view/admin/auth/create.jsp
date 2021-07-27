@@ -120,17 +120,18 @@ function check_create_auth(checkbox) {
 // 관리자 계정 등록
 function regAdmin() {
 	
+	var check = true;
+
 	if (!check_create_id($('#aid'), "<%=request.getContextPath()%>/admin/auth/isDuplicateId")) {return;}
 	
 	if (!check_create_pwd($('#apwd'), $('#check_apwd'))) {return;}
 
 	if (!check_create_name($('#aname'))) {return;}
 	 
-	if (!check_create_auth($('input[type=checkbox]'))) {return;}
+	if (!check_create_auth($('input[class=check_auth]'))) {return;}
 	
 	// 관리자계정 권한 선택 시, 권한 코드 입력체크
-	if ($('#admin_admin').prop("checked")) {
-		var check = true;
+	if ($('#admin_auth').prop("checked")) {
 		if ($('#check_authority').val().trim() == '') {
 			alert('"관리자계정" 권한은 권한코드를 필요로합니다.\n권한코드를 입력해주세요.');
 			$('#check_authority').focus();
@@ -153,8 +154,11 @@ function regAdmin() {
 				},
 			});
 		}
-		if (!check) {return;}
 	}
+
+	if (!check) {return;}
+	
+	checkbox_value();
 	
 	if (confirm("등록하시겠습니까?")) {
 		$.ajax({
@@ -179,7 +183,7 @@ $(function () {
 
 // 관리자계정 권한 선택 시, 권한 코드 입력 칸 출력
 function check_admin_authority() {
-	if ($('#admin_admin').prop("checked")) {
+	if ($('#admin_auth').prop("checked")) {
 		$('#check_authority').show();
 	} else {
 		$('#check_authority').hide();
@@ -214,6 +218,17 @@ function checkOne() {
 	}
 }
 
+//체크박스 선택하지 않은 값들도 넘겨주기위한 함수
+function checkbox_value() {
+	$('input[class=check_auth]').each(function() {  
+        if ($(this).prop("checked")) { 
+            $(this).val("1");
+        } else {
+            $(this).val("0");
+        }
+    });
+    $('input[class=check_auth]').prop("checked", true); 
+}
 </script>
 </head>
 <body> 
@@ -270,24 +285,24 @@ function checkOne() {
 									<tr>
 										<th scope="row" rowspan="3"><label for="allChk">접근권한</label>&nbsp;<input type="checkbox" name="allChk" id="allChk" onClick="checkAll();"/></th>
 										<td class="admin_authority">
-											<label><input type="checkbox" class="check_auth" id="admin_item" name="admin_item" value="1" onClick="checkOne();"/>상품관리</label>
+											<label><input type="checkbox" class="check_auth" id="admin_item" name="auths" value="1" onClick="checkOne();"/>상품관리</label>
 											&nbsp;&nbsp;|&nbsp;&nbsp;	
-											<label><input type="checkbox" class="check_auth" id="admin_order" name="admin_order" value="1" onClick="checkOne();"/>주문관리</label>
+											<label><input type="checkbox" class="check_auth" id="admin_order" name="auths" value="1" onClick="checkOne();"/>주문관리</label>
 											&nbsp;&nbsp;|&nbsp;&nbsp;	
-											<label><input type="checkbox" class="check_auth" id="admin_members" name="admin_members" value="1" onClick="checkOne();"/>회원관리</label>
+											<label><input type="checkbox" class="check_auth" id="admin_members" name="auths" value="1" onClick="checkOne();"/>회원관리</label>
 										</td>
 									<tr>
 										<td class="admin_authority">
-											<label><input type="checkbox" class="check_auth" id="admin_board" name="admin_board" value="1" onClick="checkOne();"/>게시판관리</label>
+											<label><input type="checkbox" class="check_auth" id="admin_board" name="auths" value="1" onClick="checkOne();"/>게시판관리</label>
 											&nbsp;&nbsp;|&nbsp;&nbsp;	
-											<label><input type="checkbox" class="check_auth" id="admin_add" name="admin_add" value="1" onClick="checkOne();"/>부가기능관리</label>	
+											<label><input type="checkbox" class="check_auth" id="admin_add" name="auths" value="1" onClick="checkOne();"/>부가기능관리</label>	
 										</td>
 									</tr>
 									<tr>
 										<td class="admin_authority">
-											<label><input type="checkbox" class="check_auth" id="admin_account" name="admin_account" value="1" onClick="checkOne();"/>매출조회</label>	
+											<label><input type="checkbox" class="check_auth" id="admin_account" name="auths" value="1" onClick="checkOne();"/>매출조회</label>	
 											&nbsp;&nbsp;|&nbsp;&nbsp;
-											<label><input type="checkbox" class="check_auth" id="admin_admin" name="admin_admin" value="1" onClick="check_admin_authority(); checkOne();"/>관리자계정</label>
+											<label><input type="checkbox" class="check_auth" id="admin_auth" name="auths" value="1" onClick="check_admin_authority(); checkOne();"/>관리자계정</label>
 											&nbsp;
 											<input type="password" id="check_authority" name="check_authority" class="w30" placeholder="권한코드 입력"/>
 										</td>
