@@ -87,10 +87,14 @@ $(function() {
 	});
 });
 function addCart() {
+	var mno;
+	if (sessionStorage.getItem("memberInfo") != "") {
+		mno = sessionStorage.getItem("memberInfo").mno;
+	}
 	$.ajax({
 		url: "/jcappy/product/detail/addcart",
 		data: {	
-			mno: ${sessionScope.membersInfo.mno },
+			mno: mno,
 			pno: ${vo.pno },
 			scount: $("#count").val(),
 		},
