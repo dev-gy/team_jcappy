@@ -41,6 +41,7 @@
 
 	<select id="count" resultType="int" parameterType="jcappy.product.ProductVo">
 		SELECT COUNT(*) FROM product
+		<include refid="productWhere" />
 	</select>
 
 	<update id="update" parameterType="jcappy.product.ProductVo">

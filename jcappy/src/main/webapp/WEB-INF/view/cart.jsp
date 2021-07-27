@@ -7,17 +7,48 @@
 <title>장바구니</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 </head>
+<script>
+function minus() {
+	if ($("#count").val() > 1) {
+		$("#count").val(Number($("#count").val()) - 1);
+		
+		$.ajax({
+			url: "",
+			data: "",
+			type: "post",
+			success: function() {
+				
+			}
+		});
+	}
+}
+
+function plus() {
+	$("#count").val(Number($("#count").val()) + 1);	
+}
+
+</script>
 <body>
     <div id="wrap">
         <%@ include file="/WEB-INF/view/include/top.jsp" %>
         <div id="container">
 			<div class="cart_content">
+				<div class="title">
+					<h1 class="cstyle_h1">장바구니</h1>
+				</div>
 				<table class="cstyle_table">
-	                <caption>장바구니</caption> 
+	                <colgroup>
+	                	<col width="100px">
+	                	<col>
+	                	<col width="100px">
+	                	<col width="100px">
+	                	<col width="140px">
+	                	<col width="100px">
+	                	<col width="100px">
+	                </colgroup> 
 	                <thead>
 	                    <tr>
 	                        <th>전체선택</th>
-	                        <th>날짜</th>
 	                        <th>상품명</th> 
 	                        <th>판매가</th>
 	                        <th>배송비</th>
@@ -29,71 +60,24 @@
 	                <tbody>
 	                    <tr>
 	                        <td><input type="checkbox"></td>
-	                        <td>2021.02.30</td>
 	                        <td>냉장고101</td>
 	                        <td>1,000,000</td>
 	                        <td>무료</td>
-	                        <td><div id="input_div">
-	                            <input type="button" value="-" id="moins" onclick="minus()">
+	                        <td><div class="input_div">
+	                            <input class="num_btn cstyle_btn" type="button" value="-" id="minus" onclick="minus();">
 	                            <input type="text" size="1" value="1" id="count">
-	                            <input type="button" value="+" id="plus" onclick="plus()">
+	                            <input class="num_btn cstyle_btn" type="button" value="+" id="plus" onclick="plus();">
 	                        </div>
 	                        </td>
 	                        <td>1,000,000</td>
-	                        <td><div id="input_div">
-	                            <input type="button" id="bb" value="삭제">
+	                        <td><div class="input_div">
+	                            <input class="delete_btn cstyle_btn" type="button" id="bb" value="삭제">
 	                        </div></td>
 	                    </tr>
 	                    <tr>
-	                        <td><input type="checkbox"></td>
-	                        <td>2021.05.05</td>
-	                        <td>세탁기302</td>
-	                        <td>1,600,000</td>
-	                        <td>무료</td>
-	                        <td><div id="input_div">
-	                            <input type="button" value="-" id="moins" onclick="minus()">
-	                            <input type="text" size="1" value="1" id="count">
-	                            <input type="button" value="+" id="plus" onclick="plus()">
-	                        </div>
-	                        </td>
-	                        <td>3,200,000</td>
-	                        <td><div id="input_div">
-	                            <input type="button" id="bb" value="삭제">
-	                        </div></td>
-	                    </tr>
-	                    <tr>
-	                        <td><input type="checkbox"></td>
-	                        <td>2021.05.25</td>
-	                        <td>에어컨211</td>
-	                        <td>2,000,000</td>
-	                        <td>무료</td>
-	                        <td><div id="input_div">
-	                            <input type="button" value="-" id="moins" onclick="minus()">
-	                            <input type="text" size="1" value="1" id="count">
-	                            <input type="button" value="+" id="plus" onclick="plus()">
-	                        </div>
-	                        </td>
-	                        <td>2,000,000</td>
-	                        <td><div id="input_div">
-	                            <input type="button" id="bb" value="삭제">
-	                        </div></td>
-	                    </tr>
-	                    <tr>
-	                        <td><input type="checkbox"></td>
-	                        <td>2021.06.22</td>
-	                        <td>냉장고105</td>
-	                        <td>3,500,000</td>
-	                        <td>무료</td>
-	                        <td><div id="input_div">
-	                            <input type="button" value="-" id="moins" onclick="minus()">
-	                            <input type="text" size="1" value="1" id="count">
-	                            <input type="button" value="+" id="plus" onclick="plus()">
-	                        </div>
-	                        </td>
-	                        <td>3,500,000</td>
-	                        <td><div id="input_div">
-	                            <input type="button" id="bb" value="삭제">
-	                        </div></td>
+	                    	<td colspan="7">
+	                    		<div class="result_price_info">스토어 주문합계 = {합계금액}</div>
+	                    	</td>
 	                    </tr>
 	                </tbody>
 	            </table>

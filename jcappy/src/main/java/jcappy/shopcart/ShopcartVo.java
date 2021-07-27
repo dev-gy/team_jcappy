@@ -5,6 +5,10 @@ public class ShopcartVo {
 	private int sno;
 	private int pno;
 	private int scount;
+	
+	private String pname;
+	private String pimg1_org;
+	private int pprice;
 
 	public int getMno() {
 		return mno;
@@ -27,8 +31,27 @@ public class ShopcartVo {
 	public int getScount() {
 		return scount;
 	}
+	
 	public void setScount(int scount) {
 		this.scount = scount;
+	}
+	public String getPname() {
+		return pname;
+	}
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+	public String getPimg1_org() {
+		return pimg1_org;
+	}
+	public void setPimg1_org(String pimg1_org) {
+		this.pimg1_org = pimg1_org;
+	}
+	public int getPprice() {
+		return pprice;
+	}
+	public void setPprice(int pprice) {
+		this.pprice = pprice;
 	}
 	
 	
