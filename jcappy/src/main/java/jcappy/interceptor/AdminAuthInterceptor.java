@@ -18,29 +18,29 @@ public class AdminAuthInterceptor implements HandlerInterceptor {
 
 		HttpSession session = req.getSession();
 		AdminVo vo = (AdminVo) session.getAttribute("adminInfo");
-		vo.setAuthList(vo.getAuth().split(":"));
+		vo.setAuthList(vo.getAuth().split(":")); // 등급의 정보가 담겨있는 문자열 데이터를 split으로 쪼개어 배열로 만들어서 담아준다.
 
 		String[] URI = { "/admin/account/", "/admin/add/", "/admin/order/", "/admin/auth/", "/admin/members/",
-				"/admin/product/", "/admin/board/", "/admin/comment/" };
+				"/admin/product/", "/admin/board/", "/admin/comment/" }; // 메뉴의 대분류가되는 주소를 배열로
 		
-		String reqURI = req.getServletPath();
+		String reqURI = req.getServletPath(); // 현재 요청 받은 servletPath
 
 		Boolean result = false;
 
-		Method[] methods = this.getClass().getDeclaredMethods();
+		Method[] methods = this.getClass().getDeclaredMethods(); // 선언된 메서드들의 배열
 		
 		OUTTER : for (int i = 0; i < URI.length; i++) {
-			if (reqURI.startsWith(URI[i])) {
+			if (reqURI.startsWith(URI[i])) { // 요청받은 servletPath가 해당 메뉴의 분류가되는 문자열로 시작하면,
 				for (int j = 0; j < methods.length; j++) {
-					if (methods[j].getName().toLowerCase().equals(URI[i].replace("/", ""))) {
-						result = (Boolean) methods[j].invoke(this.getClass().newInstance(), vo);
+					if (methods[j].getName().toLowerCase().equals(URI[i].replace("/", ""))) { // 선언되어있는 메서드 중에 '/'를 제외한 것과 같은 이름의 메서드를 찾고,
+						result = (Boolean) methods[j].invoke(this.getClass().newInstance(), vo); // 있으면 실행해서 권한 여부를 확인
 						break OUTTER;
 					}
 				}
 			}
 		}
 
-		if (result) {
+		if (result) { // 권한이 있으면 true를 리턴해서 가려던 컨트롤러로 가게되고, 없으면 false 리턴
 			return result;
 		} else {
 			res.setContentType("text/html; charset=UTF-8");

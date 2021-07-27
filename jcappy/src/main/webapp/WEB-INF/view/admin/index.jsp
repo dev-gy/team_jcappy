@@ -49,6 +49,17 @@ function CookieVal(cookieName) {
 	}
 	return "null" ;
 }
+
+// CapsLock 체크
+function checkCapsLock(event)  {
+	  if (event.getModifierState("CapsLock")) {
+	    document.getElementById("capsLock").innerText 
+	      = "Caps Lock이 켜져 있습니다."
+	  }else {
+	    document.getElementById("capsLock").innerText 
+	      = ""
+	  }
+	}
 </script>
 </head>
 <body onload="userid_chk();" id="admin_login_body">
@@ -76,7 +87,8 @@ function CookieVal(cookieName) {
 							<label for="password"><strong>비밀번호</strong></label>
 						</dt>
 						<dd>
-							<input type="password" id="password" name="apwd" value="" title="비밀번호를 입력해주세요." />
+							<input type="password" id="password" name="apwd" value="" title="비밀번호를 입력해주세요." onkeyup="checkCapsLock(event)"/>
+							<div id="capsLock"></div>
 						</dd>
 					</dl>
 				</div>
@@ -85,7 +97,6 @@ function CookieVal(cookieName) {
 			</div>
 			<!-- //bgBox -->
 			<div class="joinList">
-				<div>하이</div>
 				<input type="checkbox" name="reg" id="reg"/> <label for="reg">아이디 저장</label>
 			</div>
 			<!-- //joinList -->

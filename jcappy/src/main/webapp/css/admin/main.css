@@ -9,6 +9,7 @@ top.jsp
 로그인화면
 ========================================*/
 #admin_login_body {background: #F7F7F7;}
+#login .joinList {padding-top: 0;}
 
 /*======================================
 메인화면
