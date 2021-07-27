@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class shopcartDao {
+public class ShopcartDao {
 	
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	public int insert(shopcartVo vo) {
+	public int insert(ShopcartVo vo) {
 		return sqlSession.insert("shopcart.insert", vo);
 	}
 }

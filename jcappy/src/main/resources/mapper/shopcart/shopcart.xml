@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="shopcart">
 
-	<insert id="insert" parameterType="jcappy.shopcart.shopcartVo">
+	<insert id="insert" parameterType="jcappy.shopcart.ShopcartVo">
 		INSERT INTO shopcart (mno, sno, pno, scount) 
 		VALUES (#{mno}, #{sno}, #{pno}, #{scount})
 	</insert>
 	
-	<select id="selectAll" resultType="jcappy.shopcart.shopcartVo">
+	<select id="selectAll" resultType="jcappy.shopcart.ShopcartVo">
 		SELECT * FROM shopcart
 	</select>
 </mapper>
