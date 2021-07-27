@@ -83,6 +83,7 @@ public class MembersController {
 	      }
 	   }
 	
+	// 로그아웃
 	@RequestMapping("/logout")
 	public String logout(Model model, HttpSession sess) {
 		sess.invalidate();
@@ -134,13 +135,26 @@ public class MembersController {
 		return "redirect: /jcappy/index.do";
 	}
 	
+	// 회원 정보 수정
+	@RequestMapping("/mypage/update")
+	public String update(Model model, MembersVo vo) {
+		int r = service.update(vo);
+		if (r>0) {
+		model.addAttribute("msg", "정상적으로 수정되었습니다");
+		model.addAttribute("url", "/jcappy/index.do");
+		} else {
+			model.addAttribute("msg", "수정 실패");
+			model.addAttribute("url", "/jcappy/mypage/memberedit");
+		}
+		return "include/alert";
+	}
+	
+
 	@RequestMapping("/mypage/memberedit")
-	public String update(Model model, MembersVo vo, HttpSession sess) {
+	public String edit(Model model, MembersVo vo, HttpSession sess) {
 		MembersVo membersInfo = (MembersVo)sess.getAttribute("membersInfo");
-		service.update(vo);
+		model.addAttribute("vo", service.edit(vo));
 		return "mypage/memberedit";
 	}
 	
-	
-
 }

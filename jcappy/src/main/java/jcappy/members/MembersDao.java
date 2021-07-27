@@ -39,6 +39,10 @@ public class MembersDao {
 	}
 	
 	public int update(MembersVo vo) {
-		return sqlSession.update("user.update", vo);
+		return sqlSession.update("members.update", vo);
+	}
+	
+	public MembersVo detail(MembersVo vo) {
+		return sqlSession.selectOne("members.detail", vo);
 	}
 }

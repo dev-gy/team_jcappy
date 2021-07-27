@@ -25,7 +25,7 @@
 					<!-- 내정보수정 -->
 					<div>
 						<div class="mypage_member_update">
-							<form action="/mypage/memberedit" method="POST">
+							<form action="update" method="POST">
 								<div>
 									<table class="">
 										<colgroup>
@@ -38,34 +38,34 @@
 										</tr>
 										<tr>
 											<td>비밀번호</td>
-											<td><input class="pwd1" type="password" name="mpwd"></td>
+											<td><input class="pwd1" type="password" name="mpwd" value="${membersInfo.mpwd }"></td>
 										</tr>
 										<tr>
 											<td>비밀번호확인</td>
-											<td><input class="pwd2" type="password" name="mpwd"></td>
+											<td><input class="pwd2" type="password" name="mpwd" value="${membersInfo.mpwd }"></td>
 										</tr>
 										<tr>
 											<td>이름</td>
-											<td><input type="text" name="mname" value=""></td>
+											<td><input type="text" name="mname" value="${membersInfo.mname }"></td>
 										</tr>
 										<tr>
 											<td>연락처</td>
-											<td><input type="text" name="mphone" value=""></td>
+											<td><input type="text" name="mphone" value="${membersInfo.mphone }"></td>
 										</tr>
 										<tr>
 											<td>우편번호</td>
 											<td class="zipcode_td">
-												<input class="zipcode" id="zipcode" type="text" name="mzipcode" value="">
+												<input class="zipcode" id="zipcode" type="text" name="mzipcode" value="${membersInfo.mzipcode }">
 												<input class="cstyle_btn search_zipcode" type="button" value="검색" onclick="daumPostcode($('#zipcode'), $('#addr1'), $('#addr2'));">
 											</td>
 										</tr>
 										<tr>
 											<td>주소</td>
-											<td><input type="text" id="addr1" name="maddr"  value=""></td>
+											<td><input type="text" id="addr1" name="maddr"  value="${membersInfo.maddr }"></td>
 										</tr>
 										<tr>
 											<td>상세주소</td>
-											<td><input type="text" id="addr2" name="maddrde" value=""></td>
+											<td><input type="text" id="addr2" name="maddrde" value="${membersInfo.maddrde }"></td>
 										</tr>
 										<tr>
 											<td colspan="2">

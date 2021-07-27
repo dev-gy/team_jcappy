@@ -70,11 +70,13 @@ $(function() {
 		$(".detail_area").hide();
 		$(".review_area").show();
 		
+		// 리뷰탭을 클릭 시 리뷰 해당 상품의 리뷰 데이터를 불러와 리뷰페이지를 리뷰영역에 출력
 		$.ajax({
 			url: "/jcappy/product/detail/review",
 			data: {
 				pno: ${vo.pno },
 			},
+			type: "GET",
 			success: function(res) {
 				$("#review_area").html(res);
 			},
@@ -84,16 +86,34 @@ $(function() {
 		});
 	});
 });
-function cartpoupOpen() {
-	$("#cart_btn_dialog").dialog("open");	// 다이얼로그 열기
+function addCart() {
+	$.ajax({
+		url: "/jcappy/product/detail/addcart",
+		data: {	
+			mno: 1,// 로그인세션정보의 mno,
+			pno: ${vo.pno },
+			scount: $("#count").val(),
+		},
+		type: "POST",
+		success: function(res) {
+			// 추가완료가 1건 이상일 경우 삼풍등록완료 장바구니 다이얼로그 띄우기
+			if (res > 0) {
+				$("#cart_btn_dialog").dialog("open");	// 다이얼로그 열기				
+			}
+		},
+		error: function(res) {
+			console.log("error: " + res);
+		},
+	});
+	
 }
 
 function infoUpdate() {
 	// 새로고침 방지를 위해 ajax로 상품 가격, 총합가격 데이터 갱신 및 업데이트
 	$.ajax({
-		url: "/jcappy/product/detail/calcPrice",
+		url: "/jcappy/product/detail/calcprice",
 		data: {	
-			price: ${vo.pprice },	
+			price: ${vo.pprice },
 			totalPrice: ${vo.pprice } * $("#count").val(),
 		},
 		type: "GET",
@@ -138,21 +158,23 @@ function infoUpdate() {
 									<hr>
 								</div>
 								<div class="bottom">
+								<form action="/jcappy/pay/index.do" method="POST">
 									<p>수량 선택</p>
 										<span class="item_count_area cstyle_border_black">
 										 	<a class="minus_btn cstyle_btn" href="javascript:infoUpdate();">-</a>
-											<input class="count" id="count" type="text" value="1" oninput="onlyNumber(this);" />
+											<input class="count" id="count" type="text" name="pcount" value="1" oninput="onlyNumber(this);" />
 											<a class="plus_btn cstyle_btn" href="javascript:infoUpdate();">+</a>
 										</span>
 									<div class="total_price_area">
 										<h2>총 상품 금액</h2>
 										<h2 class="total_price" id="total_price">${vo.pprice }원</h2>
-										<input type="hidden" >
+										<input type="hidden" name="pno" value="${vo.pno }">
 									</div>
 									<div class="btn_area">
-										<button class="add_cart_btn cstyle_btn" onclick="cartpoupOpen();">장바구니</button>
-										<button class="buy_btn cstyle_btn" onclick="location.href='/jcappy/pay/index.do'">주문하기</button>
+										<button class="add_cart_btn cstyle_btn" type="button" onclick="addCart();">장바구니</button>
+										<button class="buy_btn cstyle_btn" type="submit">주문하기</button>
 									</div>
+								</form>
 								</div>
 							</td>
 						</tr>
