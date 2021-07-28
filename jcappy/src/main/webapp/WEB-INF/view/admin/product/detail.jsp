@@ -63,6 +63,7 @@ function groupDel(name) {
 		}
 	}
 }
+
 function check() {
 
 	if ($("#noimg").prop('checked')) {
