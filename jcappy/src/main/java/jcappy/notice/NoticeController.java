@@ -137,6 +137,12 @@ public class NoticeController {
 	//공지사항 삭제
 	@RequestMapping("/admin/board/notice/delete")
 	public String delete(Model model, NoticeVo vo, HttpServletRequest req) {
+		CommentVo cv = new CommentVo();
+		cv.setCm_board_no(vo.getNno());
+		cv.setCm_tablename(TABLENAME);
+		//게시글 안에 달린 전체 댓글 삭제
+		cService.allDelete(cv);
+		
 		int r = service.delete(vo);
 		if (r > 0) {
 			model.addAttribute("result", "true");
@@ -145,6 +151,7 @@ public class NoticeController {
 		}
 		return "admin/include/result";
 	}
+	
 	//댓글 데이터 입력
 	@RequestMapping("/admin/board/notice/comment/insert")
 	public String commentInsert(Model model, CommentVo vo) {
@@ -160,6 +167,7 @@ public class NoticeController {
 		
 		return "admin/include/result";
 	}
+	
 	//댓글 리스트 불러오기
 	@RequestMapping("/admin/board/notice/comment/list")
 	public String commentList(Model model, CommentVo cv) {
@@ -168,10 +176,25 @@ public class NoticeController {
 		model.addAttribute("list", cService.selectAll(cv));
 		return "admin/include/comment";
 	}
+	
 	// 댓글 삭제
 	@RequestMapping("/admin/board/notice/comment/delete")
 	public String commentDelete(Model model, CommentVo vo) {
 		int r = cService.delete(vo);
+		if (r > 0) {
+			model.addAttribute("result", "true");
+		} else {
+			model.addAttribute("result", "false");
+		}
+		return "admin/include/result";
+	}
+	
+	//댓글 존재 여부 파악
+	@RequestMapping("/admin/board/notice/comment/ccount")
+	public String ccount(Model model, CommentVo vo) {
+		vo.setCm_tablename(TABLENAME); 
+		int r = cService.ccount(vo);
+		System.out.println("실험:" + r);
 		if (r > 0) {
 			model.addAttribute("result", "true");
 		} else {

@@ -7,28 +7,23 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
 	function notice_detail_isDel() {//게시글 삭제
-		if (confirm('삭제하시겠습니까?')) {  
-			// 삭제처리
-			$.ajax({
-				url:'delete',
-				data:{
-					'nno':${vo.nno}
-				},
-				method:'post',
-				success:function(res) {
-					console.log(res);
-					if (res.trim() == 'true') {
-						alert('정상적으로 삭제되었습니다.');
-						location.href='list';
-					} else {
-						alert('삭제 실패');
+		$.ajax({
+			url:'/jcappy/admin/board/notice/comment/ccount',
+			data:{
+				cm_board_no:${vo.nno}
+			},
+			success:function(res) {
+				if(res.trim() == 'true') {
+					if(confirm('댓글이 존재합니다 정말로 삭제하시겠습니까')) {
+						notice_detail_del();
 					}
-				},
-				error : function(res) {
-					console.log(res);
+				} else {
+					if(confirm('정말로 삭제하시겠습니까?')) {
+						notice_detail_del();
+					}
 				}
-			});
-		}
+			}
+		}); 
 	}
 	function notice_detail_goSave() { //댓글 입력
 		<c:if test="${empty adminInfo}">
@@ -93,6 +88,27 @@
     			}
     		});
 		}
+	}
+	function notice_detail_del() {
+		$.ajax({
+			url:'delete',
+			data:{
+				'nno':${vo.nno}
+			},
+			method:'post',
+			success:function(res) {
+				console.log(res);
+				if (res.trim() == 'true') {
+					alert('정상적으로 삭제되었습니다.');
+					location.href='list';
+				} else {
+					alert('삭제 실패');
+				}
+			},
+			error : function(res) {
+				console.log(res);
+			}
+		});
 	}
 
 </script>

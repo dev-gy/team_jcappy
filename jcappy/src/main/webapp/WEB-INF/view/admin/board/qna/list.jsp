@@ -30,14 +30,14 @@
 								<colgroup>
 									<col class="w3" />
 									<col class="" />
-									<col class="w6" />
+									<col class="w8" />
 									<col class="w6" />
 								</colgroup>
 								<thead>
 									<tr>
 										<th scope="col" class="first">번호</th>
 										<th scope="col">제목</th> 
-										<th scope="col">작성자</th>
+										<th scope="col">작성자(이메일)</th>
 										<th scope="col">작성일</th>
 									</tr>
 								</thead>
@@ -56,10 +56,10 @@
                                     	<c:if test="${vo.q_nested > 0}"><img src="/jcappy/img/admin/answer_icon.gif"></c:if>
 										${vo.qtitle} </a></td>
 										<c:if test="${empty vo.aname}">
-										<td>${vo.mname }</td>
+										<td>${vo.mname }(${vo.memail})</td>
 										</c:if>
 										<c:if test="${!empty vo.aname}">
-										<td>${vo.aname}</td>
+										<td>관리자</td>
 										</c:if>
 										<td><fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 									</tr>
@@ -87,13 +87,6 @@
 							<!-- //페이징 처리 -->
 							<form name="searchForm" id="searchForm" action="list"  method="post">
 								<div class="search">
-									 <select id="orderby" name="orderby" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
-	                                    <option value="qregdate" <c:if test="${param.orderby=='rregdate'}">selected</c:if>>작성일</option>
-	                                </select>
-	                                <select id="direct" name="direct" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
-	                                    <option value="DESC" <c:if test="${param.direct=='DESC'}">selected</c:if>>내림차순</option>
-	                                    <option value="ASC" <c:if test="${param.direct=='ASC'}">selected</c:if>>오름차순</option>
-	                                </select>
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all">전체</option>
 										<option value="qtitle" <c:if test="${param.stype=='rtitle'}">selected</c:if>>제목</option>

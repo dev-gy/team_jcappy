@@ -50,8 +50,13 @@ public class QnaDao {
 	public int delete(QnaVo vo) {
 		return sqlSession.delete("qna.delete", vo);
 	}
-
-	public MembersVo temporarySession(MembersVo fmv) {
-		return sqlSession.selectOne("qna.temporarySession", fmv);
+	
+	public QnaVo findZeroQ_ono(QnaVo vo) {
+		return sqlSession.selectOne("qna.findZeroQ_ono", vo);
 	}
+
+	public int gnoAllDelete(int gnum) {
+		return sqlSession.delete("qna.gnoAllDelete", gnum);
+	}
+
 }
