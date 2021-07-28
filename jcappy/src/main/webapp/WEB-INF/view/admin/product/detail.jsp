@@ -45,28 +45,59 @@ function goSave() {
 /* select id = pcomp와 option id 의 값이 같을경우 그 값을 출력   */
 </script>
 <script>
-																				/* jsp만 만들면 됨 deleteImg */
-/* function isDelImg() {
-    if (confirm('삭제하시겠습니까?')) {
+function groupDel(name) {
 
-       $.ajax({
-          url:'updateImg',
-          data:{
-             'pno':${vo.pno}
-          },
-          method:'post',
-          success:function(res) {
-             console.log(res);
-             if (res.trim() == 'true') {
-                alert('정상적으로 삭제되었습니다.');
-                location.href='detail?pno=${vo.pno}';s
-             } else {
-                alert('삭제 실패');
-             }
-          },
-       });
-    }
- } */
+	var count=0;
+	for (var i=0; i<$('input[name="'+name+'"]').length; i++) {
+
+		if ($('input[name="'+name+'"]').eq(i).prop('checked')) {
+			count++;
+			break;
+		}
+	}
+	if (count == 0) {
+		alert('하나 이상 체크해 주세요');
+	} else {
+		if (confirm('삭제하시겠습니까?')) {
+			$("#frm").submit();
+		}
+	}
+}
+function check() {
+
+	if ($("#noimg").prop('checked')) {
+		for (var i=0; i<$('input[name="no"]').length; i++) {
+			$('input[name="no"]').eq(i).prop('checked','checked');
+		}
+	} else {
+		for (var i=0; i<$('input[name="no"]').length; i++) {
+			$('input[name="no"]').eq(i).prop('checked','');
+		}
+	}
+}
+</script>
+<script>
+function categoryChange(e) {
+    var pcate_frez = ["일반형냉장고", "양문형냉장고", "업소용냉장고"];
+    var pcate_air = ["스탠드형에어컨", "벽걸이형에어컨", "창문형에어컨"];
+    var pcate_tv = ["LEDTV", "QLEDTV", "OLEDTV"];
+    var pcate_wash = ["일반세탁기", "드럼세탁기", "미니세탁기"];
+    var target = document.getElementById("pcate");
+ 
+    if(e.value == "frez") var d = pcate_frez;
+    else if(e.value == "air") var d = pcate_air;
+    else if(e.value == "tv") var d = pcate_tv;
+    else if(e.value == "wash") var d = pcate_wash;
+ 
+    target.options.length = 0;
+ 
+    for (x in d) {
+        var opt = document.createElement("option");
+        opt.value = d[x];
+        opt.innerHTML = d[x];
+        target.appendChild(opt);
+    }    
+}
 </script>
 <script>
 $(document).ready(function(){
@@ -110,7 +141,35 @@ $(document).ready(function(){
 												<td colspan="10"><input type="text" id="ino" name="ino"
 													class="w100" value="${vo.pno }" /></td>
 											</tr>
+											<!-- <tr>
+												<th scope="row"><label for="">상품 종류</label></th>
+												<td colspan="10">
+												<div>
+													<select onchange="categoryChange(this)">
+														<option>종류 선택</option>
+														<option value="frez">냉장고</option>
+														<option value="air">에어컨</option>
+														<option value="tv">TV</option>
+														<option value="wash">세탁기</option>
+													</select> <select id="pcate">
+														<option>카테고리 선택</option>
+													</select>
+												</div>
+												</td>
+											</tr> -->
 											<tr>
+												<th scope="row"><label for="">상품 종류</label></th>
+												<td colspan="10">
+												<div>
+													<select onchange="categoryChange(this)">
+														<option>${vo.ptype }</option>
+													</select> <select id="pcate">
+														<option>${vo.pcate }</option>
+													</select>
+												</div>
+												</td>
+											</tr>
+											<!-- <tr>
 												<th scope="row"><label for="">브랜드</label></th>
 												<td colspan="10">
 												<select name="stype" id="stype" title="브랜드">
@@ -119,6 +178,14 @@ $(document).ready(function(){
 														<option value="carrier">캐리어</option>
 														<option value="winia">위니아전자</option>
 												</select>
+												</td>
+											</tr> -->
+											<tr>
+												<th scope="row"><label for="">브랜드</label></th>
+												<td colspan="10">
+													<select name="stype" id="stype" title="브랜드">
+														<option value="">${vo.pcompany }</option>
+													</select>
 												</td>
 											</tr>
 											<tr>
@@ -145,19 +212,27 @@ $(document).ready(function(){
 											<tr>
 												<th scope="row"><label for="">상품 이미지</label></th>
 												<td colspan="10" rowspan="1">
-												<input type="checkbox" name="nos" id="noimg" /> <img style="width: 50px;" src="${vo.pimg1_org}">
+												
+												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
+												<img style="width: 50px;" src="${vo.pimg1_org}">
 												<input type="file" id="file" name="file" class="w100" />
-												<input type="checkbox" name="nos" id="noimg" /> <img style="width: 50px;" src="${vo.pimg2_org}">
+												
+												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
+												<img style="width: 50px;" src="${vo.pimg2_org}">
 												<input type="file" id="file" name="file" class="w100" />
-												<input type="checkbox" name="nos" id="noimg" /> <img style="width: 50px;" src="${vo.pimg3_org}">
+												
+												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
+												<img style="width: 50px;" src="${vo.pimg3_org}">
 												<input type="file" id="file" name="file" class="w100" />
-												<a class="btns" style="cursor: pointer;" href="javascript:isDelImg();"><strong>삭제</strong></a>
+												
+												<a class="btns" style="cursor: pointer;" href="#" onclick="groupDel('nos');"><strong>삭제</strong> </a>
 												</td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품 상세정보</label></th>
-												<td colspan="10"><textarea name="content" id="contents"
-														style="width: 100%;"></textarea></td>
+												<td colspan="10">
+													<textarea name="contents" id="contents" style="width: 100%;">${vo.pdetail }</textarea>
+												</td>
 										</tbody>
 									</table>
 									<input type="hidden" name="cmd" value="write" /> <input

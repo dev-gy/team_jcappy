@@ -34,6 +34,6 @@ top.jsp
 /*======================================
 메뉴 : 상품관리
 ========================================*/
-.imagePreview1{width: 100px; height: 50px; background-position: center center; background-size: cover; display: inline-block;}
-.imagePreview2{width: 100px; height: 50px; background-position: center center; background-size: cover; display: inline-block;}
-.imagePreview3{width: 100px; height: 50px; background-position: center center; background-size: cover; display: inline-block;}
+.imagePreview1{width: 100px; height: 50px; background-position: center center; background-size: cover;}
+.imagePreview2{width: 100px; height: 50px; background-position: center center; background-size: cover;}
+.imagePreview3{width: 100px; height: 50px; background-position: center center; background-size: cover;}

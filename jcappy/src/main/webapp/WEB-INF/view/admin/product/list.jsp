@@ -114,7 +114,7 @@ function categoryChange(e) {
 													<td style="text-align: left; padding-left: 10px;"><a href="detail?pno=${vo.pno }">${vo.pname }</a></td>
 													<td><fmt:formatNumber value="${vo.pprice }" pattern="#,###,###"/></td>
 													<td><input type="number" id="pcount" name="pcount" class="w100" value="${vo.pcount }" />
-													<a id="ppcount" class="btns" href="javascript:goSaveCount"><strong>변경</strong></a>	
+													<a id="ppcount" class="btns" href="javascript:goSaveCount();	"><strong>변경</strong></a>	
 													</td>
 													<td class="date">
 													<fmt:formatDate value="${vo.pregdate }" pattern="yyyy-MM-dd HH:mm:ss" />
