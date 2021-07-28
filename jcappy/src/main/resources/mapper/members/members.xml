@@ -18,6 +18,11 @@
 		SELECT COUNT(*) FROM members WHERE memail=#{memail}
 	</select>
 	
+	<!-- 연락처 중복 확인 -->
+	<select id="isDuplicatePhone" resultType="int" parameterType="String">
+		SELECT COUNT(*) FROM members WHERE mphone=#{mphone}
+	</select>
+	
 	<!-- 이메일 찾기 -->
 	<select id="findEmail" resultType="jcappy.members.MembersVo" parameterType="jcappy.members.MembersVo">
 		SELECT * FROM members WHERE mname=#{mname} AND mphone=#{mphone}
@@ -41,11 +46,7 @@
 	<!-- 회원 정보 수정 -->
 	<update id="update" parameterType="jcappy.members.MembersVo"> 
 		UPDATE members SET mpwd=md5(#{mpwd}), mname=#{mname}, mphone=#{mphone}, mzipcode=#{mzipcode}, maddr=#{maddr}, maddrde=#{maddrde}  
-		WHERE mno=#{mno}
+		WHERE memail=#{memail}
 	</update>
 	
-	<!-- 상세보기 -->
-	<select id="detail" resultType="jcappy.members.MembersVo" parameterType="jcappy.members.MembersVo"> 
-		SELECT * FROM members WHERE mno = #{mno}
-	</select>
 </mapper>

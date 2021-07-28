@@ -56,9 +56,41 @@ $(function() {
 });
 </script>
 <script>
-if (value == 'frez'){
-	return frez;
+function categoryChange(e) {
+    var pcate_frez = ["일반형냉장고", "양문형냉장고", "업소용냉장고"];
+    var pcate_air = ["스탠드형에어컨", "벽걸이형에어컨", "창문형에어컨"];
+    var pcate_tv = ["LEDTV", "QLEDTV", "OLEDTV"];
+    var pcate_wash = ["일반세탁기", "드럼세탁기", "미니세탁기"];
+    var target = document.getElementById("pcate");
+ 
+    if(e.value == "frez") var d = pcate_frez;
+    else if(e.value == "air") var d = pcate_air;
+    else if(e.value == "tv") var d = pcate_tv;
+    else if(e.value == "wash") var d = pcate_wash;
+ 
+    target.options.length = 0;
+ 
+    for (x in d) {
+        var opt = document.createElement("option");
+        opt.value = d[x];
+        opt.innerHTML = d[x];
+        target.appendChild(opt);
+    }    
 }
+</script>
+<script>
+	$(function() {
+
+		$("#brandEtc").hide();
+		$("#stype").change(function() {
+
+			if ($("#stype").val() == "etc") {
+				$("#brandEtc").show();
+			} else {
+				$("#brandEtc").hide();
+			}
+		})
+	});
 </script>
 </head>
 <body> 
@@ -95,52 +127,29 @@ if (value == 'frez'){
 										<th scope="row"><label for="">상품 종류</label></th>
 										<td colspan="10">
 										<div>
-											<select name="ptype" id="ptype" title="종류">
-											    <option value="" selected disabled>종류 선택</option>
-											    <option value="frez">냉장고</option>
-											    <option value="air">에어컨</option>
-											    <option value="tv">TV</option>
-											    <option value="wash">세탁기</option>
+											<select onchange="categoryChange(this)">
+												<option>종류 선택</option>
+												<option value="frez">냉장고</option>
+												<option value="air">에어컨</option>
+												<option value="tv">TV</option>
+												<option value="wash">세탁기</option>
+											</select> <select id="pcate">
+												<option>카테고리 선택</option>
 											</select>
-
-											<select name="pfrez" id="pfrez" title="카테고리">
-											 	<option value="" selected disabled>카테고리 선택</option>
-												<option value="lfrez">일반형냉장고</option>
-											    <option value="efrez">양문형냉장고</option>
-											</select>
-
-											<select name="pair" id="pair" title="카테고리">
-												<option value="" selected disabled>카테고리 선택</option>
-												<option value="wair">벽걸이형에어컨</option>
-											    <option value="sair">스탠드형에어컨</option>
-											    <option value="wdair">창문형에어컨</option>
-											</select>	
-											
-											<select name="ptv" id="ptv" title="카테고리">
-												<option value="" selected disabled>카테고리 선택</option>
-												<option value="ltv">LEDTV</option>
-											    <option value="oltv">OLEDTV</option>
-											    <option value="qltv">QLEDTV</option>
-											</select>			
-											
-											<select name="pwash" id="pwash" title="카테고리">
-												<option value="" selected disabled>카테고리 선택</option>
-												<option value="lwash">일반세탁기</option>
-											    <option value="dwash">드럼세탁기</option>
-											    <option value="mwash">미니세탁기</option>
-											</select>								
 										</div>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">브랜드</label></th>
 										<td colspan="10">
-											<select name="stype" title="브랜드">
-												<option value="sam">삼성전자</option>
-												<option value="lg">LG전자</option>
-												<option value="carrier">캐리어</option>
-												<option value="winia">위니아전자</option>
-											</select>
+											<select name="stype" id="stype" title="브랜드">
+											<option value="sam">삼성전자</option>
+											<option value="lg">LG전자</option>
+											<option value="carrier">캐리어</option>
+											<option value="winia">위니아전자</option>
+											<option value="etc">기타</option>
+										</select>
+										<input type="text" id="brandEtc" name="brandEtc" />
 										</td>
 									</tr>
 									<tr>
@@ -189,7 +198,7 @@ if (value == 'frez'){
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">상품 상세이미지</label></th>
+										<th scope="row"><label for="">상품 상세정보</label></th>
 										<td colspan="10">
 											<textarea name="content" id="contents" style="width:100%;"></textarea>
 										</td>

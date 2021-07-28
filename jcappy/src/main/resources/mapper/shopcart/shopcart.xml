@@ -8,6 +8,10 @@
 	</insert>
 	
 	<select id="selectAll" resultType="jcappy.shopcart.ShopcartVo">
-		SELECT * FROM shopcart
+		SELECT shopcart.*, product.pname as pname, product.pimg1_org as pimg1_org, product.pprice as pprice 
+		FROM shopcart 
+		LEFT JOIN product 
+		ON shopcart.pno = product.pno
+		ORDER BY shopcart.sno ASC
 	</select>
 </mapper>

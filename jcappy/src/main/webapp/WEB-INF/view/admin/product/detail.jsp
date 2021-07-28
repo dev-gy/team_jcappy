@@ -45,6 +45,7 @@ function goSave() {
 /* select id = pcomp와 option id 의 값이 같을경우 그 값을 출력   */
 </script>
 <script>
+																				/* jsp만 만들면 됨 deleteImg */
 /* function isDelImg() {
     if (confirm('삭제하시겠습니까?')) {
 
@@ -68,17 +69,14 @@ function goSave() {
  } */
 </script>
 <script>
-$("#stype").change(function(){        
-	  var stype = $("#stype option:selected").val();
-
-	  if(stype == sam){
-	    $(".r50").show();
-	    $(".r150").hide();
-	  }else{
-	    $(".r50").hide();
-	    $(".r150").show();
-	  }
-	})
+$(document).ready(function(){
+	
+	  $("#stype").each(function(){
+	    if($(this).val()=="${vo.pcompany}"){
+	      $(this).prop("selected","selected"); // attr적용안될경우 prop으로 
+	    }
+	  });
+	});
 </script>
 </head>
 <body>
@@ -116,12 +114,12 @@ $("#stype").change(function(){
 												<th scope="row"><label for="">브랜드</label></th>
 												<td colspan="10">
 												<select name="stype" id="stype" title="브랜드">
-														<option value="pcomp">${vo.pcompany }</option>
 														<option value="sam">삼성전자</option>
 														<option value="lg">LG전자</option>
 														<option value="carrier">캐리어</option>
 														<option value="winia">위니아전자</option>
-												</select></td>
+												</select>
+												</td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품명</label></th>

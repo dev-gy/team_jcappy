@@ -9,7 +9,7 @@
 <script>
 $(function() {
 	// 상품가격 및 총합가격 초기화.
-	$("#price").text(Number(${vo.pprice }).toLocaleString("ko-KR")+"원");
+	$("#price").text(Number("${vo.pprice }").toLocaleString("ko-KR")+"원");
 	$("#total_price").text(Number(${vo.pprice } * $("#count").val()).toLocaleString("ko-KR")+"원");
 	
 	// 스크롤시 다이얼로드 중앙 고정되도록 다이얼로그 옵션의 포지션 센터 위치 재등록
@@ -74,7 +74,7 @@ $(function() {
 		$.ajax({
 			url: "/jcappy/product/detail/review",
 			data: {
-				pno: ${vo.pno },
+				pno: "${vo.pno }",
 			},
 			type: "GET",
 			success: function(res) {
@@ -88,28 +88,28 @@ $(function() {
 });
 
 function addCart() {
-	var mno;
-	if (sessionStorage.getItem("memberInfo") != "") {
-		mno = sessionStorage.getItem("memberInfo").mno;
+	if ("${sessionScope.membersInfo.mno }" == "") {
+		location.href="/jcappy/login";
+	} else {
+		$.ajax({
+			url: "/jcappy/product/detail/addcart",
+			data: {	
+				mno: "${sessionScope.membersInfo.mno }",
+				pno: "${vo.pno }",
+				scount: $("#count").val(),
+			},
+			type: "POST",
+			success: function(res) {
+				// 추가완료가 1건 이상일 경우 삼풍등록완료 장바구니 다이얼로그 띄우기
+				if (res > 0) {
+					$("#cart_btn_dialog").dialog("open");	// 다이얼로그 열기				
+				}
+			},
+			error: function(res) {
+				console.log("error: " + res);
+			},
+		});
 	}
-	$.ajax({
-		url: "/jcappy/product/detail/addcart",
-		data: {	
-			mno: mno,
-			pno: ${vo.pno },
-			scount: $("#count").val(),
-		},
-		type: "POST",
-		success: function(res) {
-			// 추가완료가 1건 이상일 경우 삼풍등록완료 장바구니 다이얼로그 띄우기
-			if (res > 0) {
-				$("#cart_btn_dialog").dialog("open");	// 다이얼로그 열기				
-			}
-		},
-		error: function(res) {
-			console.log("error: " + res);
-		},
-	});
 	
 }
 
@@ -118,8 +118,8 @@ function infoUpdate() {
 	$.ajax({
 		url: "/jcappy/product/detail/calcprice",
 		data: {	
-			price: ${vo.pprice },
-			totalPrice: ${vo.pprice } * $("#count").val(),
+			price: "${vo.pprice }",
+			totalPrice: "${vo.pprice }" * $("#count").val(),
 		},
 		type: "GET",
 		success: function(res) {

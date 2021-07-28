@@ -36,6 +36,17 @@ public class MembersController {
 		return "include/result";
 	}
 	
+	//연락처 중복 확인
+	@RequestMapping("/members/isDuplicatePhone")
+	public String isDuplicatePhone(Model model, @RequestParam String phone) {
+		if (service.isDuplicatePhone(phone) == 0) {
+			model.addAttribute("result", "false");
+		} else {
+			model.addAttribute("result", "true");
+		}
+		return "include/result";
+	}
+	
 	// 회원가입 insert
 	@RequestMapping("/insert")
 	public String insert(Model model, MembersVo vo, HttpServletRequest req) {
@@ -136,12 +147,12 @@ public class MembersController {
 	}
 	
 	// 회원 정보 수정
-	@RequestMapping("/mypage/update")
+	@RequestMapping("mypage/update")
 	public String update(Model model, MembersVo vo) {
 		int r = service.update(vo);
 		if (r>0) {
 		model.addAttribute("msg", "정상적으로 수정되었습니다");
-		model.addAttribute("url", "/jcappy/index.do");
+		model.addAttribute("url", "/jcappy");
 		} else {
 			model.addAttribute("msg", "수정 실패");
 			model.addAttribute("url", "/jcappy/mypage/memberedit");
@@ -149,12 +160,9 @@ public class MembersController {
 		return "include/alert";
 	}
 	
-
-	@RequestMapping("/mypage/memberedit")
-	public String edit(Model model, MembersVo vo, HttpSession sess) {
-		MembersVo membersInfo = (MembersVo)sess.getAttribute("membersInfo");
-		model.addAttribute("vo", service.edit(vo));
+	@RequestMapping("mypage/memberedit")
+	public String updateView() {
 		return "mypage/memberedit";
 	}
-	
+
 }
