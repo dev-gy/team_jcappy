@@ -8,25 +8,76 @@
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 </head>
 <script>
-function minus() {
-	if ($("#count").val() > 1) {
-		$("#count").val(Number($("#count").val()) - 1);
-		
+$(function() {
+	// count 값이 바뀌면 발생하는 이벤트
+	$(".count").on("change", function() {
+		// cart 테이블의 최상위 아이템요소
+		var elParent = $(this).closest(".cart_item");
+		// 호출자 요소
+		var elThis = $(this);
 		$.ajax({
-			url: "",
-			data: "",
-			type: "post",
-			success: function() {
-				
+			url: "/jcappy/cart/countupdate",
+			type: "POST",
+			data: $(this).closest("form").serialize(),	// form의 input요소의 값을 모두 보냄 (sno, pno, pprice, scount)
+			dataType: "json",	// json 타입으로 값을 받아옴
+			success: function(res) {
+				// 갯수가 성공적으로 갱신되었을 경우
+				if (res != "") {
+					// 데이터와 ui의 값이 일치하지 않을경우를 위해 데이터값으로 ui를 재갱신
+					// 현재 count input에 값 갱신 및 포커싱 끊기
+					elThis.val(res.scount).blur();
+					// 합가격 갱신 및 금액단위 표시
+					elParent.find(".total_price").text((Number(res.pprice) * res.scount).toLocaleString("ko-KR")+"원");
+				}
+			},
+			error: function(res) {
+				console.log(res);
 			}
 		});
-	}
-}
-
-function plus() {
-	$("#count").val(Number($("#count").val()) + 1);	
-}
-
+	});
+	
+	// 빼기버튼 클릭시 값이 1 초과일 경우 값-1 및 값변동 트리거 실행
+	$(".minus_btn").on("click", function() {
+		var elParent = $(this).closest(".cart_item");
+		var elCount = elParent.find(".count");
+		var count = Number(elCount.val());
+		var price = Number(elParent.find("[name=pprice]").val());	// hidden으로 넣어둔 가격객체를 찾아 값 저장
+		if (count > 1) {
+			count -= 1;
+			elCount.val(count).trigger("change");
+		}
+	});
+	
+	// 빼기버튼 클릭시 값+1 및 값변동 트리거 실행
+	$(".plus_btn").on("click", function() {
+		var elParent = $(this).closest(".cart_item");
+		var elCount = elParent.find(".count");
+		var count = Number(elCount.val());
+		var price = Number(elParent.find("[name=pprice]").val());	// hidden으로 넣어둔 가격객체를 찾아 값 저장
+		count += 1;
+		elCount.val(count).trigger("change");
+	});
+	
+	$(".delete_btn").on("click", function() {
+		var elParent = $(this).closest(".cart_item");
+		$.ajax({
+			url: "/jcappy/cart/delete",
+			type:"POST",
+			data: {
+				sno: elParent.find("[name=sno]").val(),
+			},
+			success: function(res) {
+				if (res > 0) {
+					location.reload();
+				}
+			},
+			error: function(res) {
+				console.log("error: cart.jsp");
+			}
+		});
+		
+	})
+});
 </script>
 <body>
     <div id="wrap">
@@ -58,22 +109,30 @@ function plus() {
 	                    </tr>
 	                </thead>
 	                <tbody>
-	                    <tr>
-	                        <td><input type="checkbox"></td>
-	                        <td>냉장고101</td>
-	                        <td>1,000,000</td>
-	                        <td>무료</td>
-	                        <td><div class="input_div">
-	                            <input class="num_btn cstyle_btn" type="button" value="-" id="minus" onclick="minus();">
-	                            <input type="text" size="1" value="1" id="count">
-	                            <input class="num_btn cstyle_btn" type="button" value="+" id="plus" onclick="plus();">
-	                        </div>
-	                        </td>
-	                        <td>1,000,000</td>
-	                        <td><div class="input_div">
-	                            <input class="delete_btn cstyle_btn" type="button" id="bb" value="삭제">
-	                        </div></td>
-	                    </tr>
+	                	<c:forEach var="vo" items="${list }">                		
+		                    <tr class="cart_item">
+		                        <td><input type="checkbox"></td>
+		                        <td>${vo.pname }</td>
+		                        <td class="price"><fmt:formatNumber value="${vo.pprice }" />원</td>
+		                        <td>무료</td>
+		                        <td>
+		                        <div class="input_div">
+		                        	<form class="num_frm" onsubmit="return false;">
+			                            <input class="minus_btn num_btn cstyle_btn" type="button" value="-">
+			                            <input class="count" type="text" name="scount" value="${vo.scount }">
+			                            <input class="plus_btn num_btn cstyle_btn" type="button" value="+">
+			                            <input type="hidden" name="sno" value="${vo.sno }">
+			                            <input type="hidden" name="pno" value="${vo.pno }">
+			                            <input type="hidden" name="pprice" value="${vo.pprice }">
+		                        	</form>
+		                        </div>
+		                        </td>
+		                        <td class="total_price"><fmt:formatNumber value="${vo.pprice * vo.scount }" />원</td>
+		                        <td><div class="input_div">
+		                            <input class="delete_btn cstyle_btn" type="button" value="삭제">
+		                        </div></td>
+		                    </tr>
+	                	</c:forEach>
 	                    <tr>
 	                    	<td colspan="7">
 	                    		<div class="result_price_info">스토어 주문합계 = {합계금액}</div>
