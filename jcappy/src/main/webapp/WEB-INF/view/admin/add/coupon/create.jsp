@@ -4,27 +4,52 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
-$(function() {
-	var oEditors = [];
-	nhn.husky.EZCreator.createInIFrame({
-		oAppRef: oEditors,
-		elPlaceHolder: "contents", // textarea ID
-		sSkinURI: "<%=request.getContextPath()%>/smarteditor/SmartEditor2Skin.html",	
-		htParams : {
-			bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-			bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-			bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-			fOnBeforeUnload : function(){
-				
-			}
-		}, //boolean
-		fOnAppLoad : function(){
-			//예제 코드
-			//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+function coupon_create_goSave() {
+	var regexp = /^[0-9]*g/
+	if ($("#ccode").val().trim() == "") { 
+		 alert("쿠폰코드를 입력해 주세요");
+		 $("#ccode").focus();
+		 return false;
+	} 
+	
+	if ($("#cprice").val().trim() == "") { 
+		 alert("할인금액을 입력해 주세요");
+		 $("#cprice").focus();
+		 return false;
+	}
+	if ($("#cdate").val().trim() == "") {
+		 alert("유효기간을 입력해 주세요");
+		 $("#cdate").focus();
+		 return false;
+	}
+	if (!regexp.test($("#cprice").val())) { //test() 메서드는 주어진 문자열이 정규 표현식을 만족하는지 판별하고, 그 여부를 true 또는 false로 반환합니다.
+		alert("할인금액에 숫자만 입력하세요");
+		$("#cprice").focus();
+		return false;
+	}
+	if (!regexp.test($("#cdate").val())) {
+		alert("유효기간에 숫자만 입력하세요");
+		$("#cdate").focus();
+		return false;
+	}
+	$.ajax({
+		url:'countMemail',
+		data:{
+			memail:$('#memail').val()
 		},
-		fCreator: "createSEditor2"
+		success:function(res) {
+			if(res.trim() == 'true') {
+				if(confirm('이메일이 존재합니다 정말 등록하시겠습니까?')) {
+					$("#frm").submit();
+				}
+			} else {
+				alert('이메일이 존재하지 않습니다 다시한번 입력해주세요');
+			}
+		}
 	});
-});
+	
+	
+}
 </script>
 </head>
 <body> 
@@ -45,7 +70,7 @@ $(function() {
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="" enctype="multipart/form-data">
+							<form method="post" name="frm" id="frm" action="insert" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -57,33 +82,38 @@ $(function() {
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">쿠폰이름</label></th>
+										<th scope="row">쿠폰코드</th>
 										<td colspan="10">
-											<input type="text" id="coupon_name" name="coupon_name" class="w100" />	
+											<input type="text" id="ccode" name="ccode" class="w100" />	
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">할인금액</label></th>
+										<th scope="row">할인금액</th>
 										<td colspan="10">
-											<input type="text" id="sales_money" name="sales_money" class="w100" />		
+											<input type="text" id="cprice" name="cprice" class="w100" />		
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">유효기간</label></th>
+										<th scope="row">유효기간</th>
 										<td colspan="10">
-											<input type="text" id="validity" name="validity" class="w100" />
+											<input type="text" id="cdate" name="cdate" class="w100" />
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">회원이메일</th>
+										<td colspan="10">
+											<input type="text" id="memail" name="memail" class="w100" />
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="cmd" value="write" />
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="<%=request.getContextPath()%>/admin/add_ons/coupon_list.do"><strong>목록</strong></a>
+									<a class="btns" href="list"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;"><strong>저장</strong></a>
+									<a class="btns" style="cursor:pointer;" href="javascript:coupon_create_goSave();"><strong>저장</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

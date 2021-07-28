@@ -3,6 +3,48 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<script>
+function coupon_detail_go_save(){
+	if ($("#ccode").val().trim() == "") { // title 빈값 저장 안되게
+		 alert("쿠폰코드를 입력해 주세요");
+		 $("#ccode").focus();
+		 return false;
+	}
+	
+	if ($("#cprice").val().trim() == "") { //contents 빈값 저장 안되게
+		 alert("할인금액을 입력해 주세요");
+		 $("#cprice").focus();
+		 return false;
+	}
+	if ($("#cdate").val().trim() == "") { //contents 빈값 저장 안되게
+		 alert("유효기간을 입력해 주세요");
+		 $("#cdate").focus();
+		 return false;
+	}
+	$("#frm").submit();
+}
+function coupon_detail_isDel() {
+	$.ajax({
+		url:'delete',
+		data:{
+			'cno':${vo.cno}
+		},
+		method:'post',
+		success:function(res) {
+			console.log(res);
+			if (res.trim() == 'true') {
+				alert('정상적으로 삭제되었습니다.');
+				location.href='list';
+			} else {
+				alert('삭제 실패');
+			}
+		},
+		error : function(res) {
+			console.log(res);
+		}
+	});
+}
+</script>
 </head>
 <body> 
 <div id="wrap">
@@ -23,6 +65,8 @@
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
+							<form method="post" name="frm" id="frm" action="update">
+							<input type="hidden" name="cno" value="${vo.cno}">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
@@ -36,60 +80,55 @@
 									<tr>
 										<th scope="row"><label for="">번호</label></th>
 										<td colspan="10">
-											<input type="text" id="coupon_no" name="coupon_no" class="w100" value="1" />
+											${vo.cno}
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">쿠폰이름</label></th>
+										<th scope="row"><label for="">쿠폰코드</label></th>
 										<td colspan="10">
-											<input type="text" id="coupon_name" name="coupon_name" class="w100" value="여름특가vip쿠폰" />
+											<input type="text" id="ccode" name="ccode" class="w100" value="${vo.ccode }" />
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">할인금액</label></th>
 										<td colspan="10">
-											<input type="text" id="sales_money" name="sales_money" class="w100" value="3000" />
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">유효기간</label></th>
-										<td colspan="10">
-											<input type="text" id="validity" name="validity" class="w100" value="2021-7-24" />
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">사용여부</label></th>
-										<td colspan="10">
-											<input type="text" id="use" name="use" class="w100" value="Y" />
+											<input type="text" id="cprice" name="cprice" class="w100" value="${vo.cprice }" />
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">발급날짜</label></th>
 										<td colspan="10">
-											<input type="text" id="issue_date" name="issue_date" class="w100" value="2021-6-24" />
+											${vo.cregdate }
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">유효기간</label></th>
+										<td colspan="10">
+											<input type="text" id="cdate" name="cdate" class="w100" value="${vo.cdate }" />
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">회원이름</label></th>
 										<td colspan="10">
-											<input type="text" id="member_name" name="member_name" class="w100" value="안두용" />
+											${vo.mname}
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">회원이메일</label></th>
 										<td colspan="10">
-											<input type="text" id="member_email" name="member_email" class="w100" value="ady4709@naver.com" />
+											${vo.memail}
 										</td>
 									</tr>
 								</tbody>
 							</table>
+							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="<%=request.getContextPath()%>/admin/add_ons/coupon_list.do"><strong>목록</strong></a>
+									<a class="btns" href="list"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" href=""><strong>수정</strong></a>
-									<a class="btns" style="cursor:pointer;" href=""><strong>삭제</strong></a>
+									<a class="btns" style="cursor:pointer;" href="javascript:coupon_detail_go_save();"><strong>수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="javascript:coupon_detail_isDel()"><strong>삭제</strong></a>
 								</div>
 							</div>
 							<!--//btn-->
