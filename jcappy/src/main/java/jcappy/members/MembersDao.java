@@ -22,6 +22,10 @@ public class MembersDao {
 		return sqlSession.selectOne("members.isDuplicateEmail", email);
 	}
 	
+	public int isDuplicatePhone(String phone) {
+		return sqlSession.selectOne("members.isDuplicatePhone", phone);
+	}
+	
 	public MembersVo findEmail(MembersVo vo) {
 		return sqlSession.selectOne("members.findEmail", vo);
 	}
@@ -41,8 +45,5 @@ public class MembersDao {
 	public int update(MembersVo vo) {
 		return sqlSession.update("members.update", vo);
 	}
-	
-	public MembersVo detail(MembersVo vo) {
-		return sqlSession.selectOne("members.detail", vo);
-	}
+
 }
