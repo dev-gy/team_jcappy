@@ -119,6 +119,8 @@ join
 .join_content .search_zipcode {width:100px; padding:10px;}
 .join_content .ex { width: 300px; margin: 50px 20px; }
 .join_content #memail{width: 278px; padding: 10px; border: 1px solid #cccccc;}
+.join_content #mzipcode{cursor: pointer;}
+.join_content #maddr{cursor: pointer;}
 /*======================================
 login
 ========================================*/
@@ -308,13 +310,13 @@ mypage/order/detail
 /*======================================
 mypage/memberedit
 ========================================*/
-.mypage_member_update {width: 400px; margin: 30px auto;}
+.mypage_member_update {width: 500px; margin: 30px auto;}
 .mypage_member_update > form button, 
 .mypage_member_update > form input[type="submit"], 
-.mypage_member_update > form input[type="button"] {width: 80px; height: 30px; margin-left: 20px; margin-top: 20px; }
+.mypage_member_update > form input[type="button"] {width: 150px; height: 40px; margin-left: 20px; margin-top: 50px; }
 .mypage_member_update input[type="text"], 
-.mypage_member_update input[type="password"] {width:100%; margin: 1px 0;}
-.mypage_member_update .zipcode {width:150px !important; float: left;}
+.mypage_member_update input[type="password"] {width:300px; margin: 1px 0;}
+.mypage_member_update .zipcode {width:200px !important; float: left;}
 .mypage_member_update .search_zipcode {margin: 0px !important; width: 45px !important; height: 30px !important; margin: 2px 0 !important; float: right !important; }
 
 /*======================================

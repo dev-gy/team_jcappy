@@ -25,6 +25,11 @@ public class MembersServiceImpl implements MembersService{
 	}
 	
 	@Override
+	public int isDuplicatePhone(String phone) {
+		return dao.isDuplicatePhone(phone);
+	}
+	
+	@Override
 	public MembersVo findEmail(MembersVo vo) {
 		return dao.findEmail(vo);
 	}
@@ -64,14 +69,4 @@ public class MembersServiceImpl implements MembersService{
 		return dao.update(vo);
 	}
 	
-	@Override
-	public MembersVo edit(MembersVo vo) {
-		return dao.detail(vo);
-	}
-	
-	@Override
-	public MembersVo detail(MembersVo vo) {
-		return dao.detail(vo);
-	}
-
 }
