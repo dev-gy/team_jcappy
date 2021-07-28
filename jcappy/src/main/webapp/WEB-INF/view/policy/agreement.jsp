@@ -35,8 +35,8 @@
                     <input type="checkbox" name="agreement" id="privacyPolicy"> (필수) 개인정보 수집 및 이용 동의하기<br><br>
                     <input type="checkbox" name="checkAll" id="checkAll"> (전체) 이용약관 및 개인정보 수집 및 이용 동의하기<br><br>
                 </div>
-                <button class="cstyle_btn ex" type="button" id="continue" onclick="location.href='/jcappy/join.do'" disabled>확인</button>
-                <button class="cstyle_btn ex" type="button" onclick="location.href='/jcappy/index.do'" >취소</button>
+                <button class="cstyle_btn ex" type="button" id="continue" onclick="location.href='/jcappy/join'" disabled>확인</button>
+                <button class="cstyle_btn ex" type="button" onclick="location.href='/jcappy/" >취소</button>
             </div>
         </div>
         <%@ include file="/WEB-INF/view/include/bottom.jsp" %>

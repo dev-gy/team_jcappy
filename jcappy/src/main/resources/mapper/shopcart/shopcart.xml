@@ -14,4 +14,12 @@
 		ON shopcart.pno = product.pno
 		ORDER BY shopcart.sno ASC
 	</select>
+	
+	<update id="countUpdate" parameterType="jcappy.shopcart.ShopcartVo">
+		UPDATE shopcart SET scount=#{scount} WHERE sno=#{sno}
+	</update>
+	
+	<delete id="delete" parameterType="jcappy.shopcart.ShopcartVo">
+		DELETE FROM shopcart WHERE sno=#{sno}
+	</delete>
 </mapper>
