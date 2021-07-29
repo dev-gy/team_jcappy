@@ -46,7 +46,7 @@
 
 	<update id="update" parameterType="jcappy.product.ProductVo">
 		UPDATE product SET
-		pno=#{pno}, pprice=#{pprice}, pname=#{pname}, pcount=#{pcount}, pregdate=NOW()
+		pno=#{pno}, pprice=#{pprice}, pname=#{pname}, pcount=#{pcount}, pcompany=#{pcompany}, ptype=#{ptype}, pcate=#{pcate}, pregdate=NOW(), pdetail=#{pdetail}
 		<if test="pimg1_org != null">
 			, pimg1_org=#{pimg1_org}, pimg1_real=#{pimg1_real}
 		</if>

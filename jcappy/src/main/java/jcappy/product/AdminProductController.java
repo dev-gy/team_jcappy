@@ -91,7 +91,6 @@ public class AdminProductController {
 			}
 		}
 		
-		
 		int r = service.insert(vo);
 
 		if (r > 0) {

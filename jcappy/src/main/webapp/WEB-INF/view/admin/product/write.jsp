@@ -200,7 +200,7 @@ function categoryChange(e) {
 									<tr>
 										<th scope="row"><label for="">상품 상세정보</label></th>
 										<td colspan="10">
-											<textarea name="content" id="contents" style="width:100%;"></textarea>
+											<textarea name="contents" id="contents" style="width:100%;"></textarea>
 										</td>
 								</tbody>
 							</table>

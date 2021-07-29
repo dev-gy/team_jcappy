@@ -21,7 +21,7 @@
 				</div>
 				<div class="con">
 					<div class="add_ons_a">
-						<a href="<%=request.getContextPath()%>/admin/add_ons/coupon_list.do">쿠폰관리</a>
+						<a href="<%=request.getContextPath()%>/admin/add/coupon/list">쿠폰관리</a>
 					</div>
 				</div>
 			</div>
