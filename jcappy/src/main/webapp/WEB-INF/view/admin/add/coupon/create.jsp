@@ -70,17 +70,17 @@ function coupon_create_goSave() {
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
-					<div id="bbs">
+					<div id="bbs" class="coupon_create_bbs">
 						<div id="bread">
 							<form method="post" name="frm" id="frm" action="insert" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
-									<col width="10%" />
-									<col width="15%" />
-									<col width="10%" />
+									<col width="20%" />
 									<col width="10%" />
 									<col width="10%" />
-									<col width="15%" />
+									<col width="10%" />
+									<col width="10%" />
+									<col width="20%" />
 								</colgroup>
 								<tbody>
 									<tr>

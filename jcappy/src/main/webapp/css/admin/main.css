@@ -47,3 +47,28 @@ top.jsp
 #admin_members_detail .btns {cursor: pointer;}
 .admin_members_detail_subtitle > div {display: flex; justify-content: center; margin-bottom: 10px;}
 .admin_members_detail_subtitle > div input[name="admin_members_detail_subtitle"] {cursor: pointer; text-align: center;}
+/*======================================
+메뉴 : 리뷰게시판 detail
+========================================*/
+.review_detail_rcontent{min-height:200px;}
+/*======================================
+메뉴 : qna detail
+========================================*/
+.qna_detail_qcontent{min-height:200px;}
+/*======================================
+메뉴 : 공지사항 detail
+========================================*/
+.notice_detail_ncontent{min-height:200px;}
+/*======================================
+메뉴 : 부가기능 
+========================================*/
+.add_ons_div {width:200px;height:50px;margin:0 auto;background-color: #6a6d6f;text-align:center;line-height: 50px;}
+.add_ons_a {display:block; margin:0 auto;width:200px; color:white !important;font-weight: bold;}
+/*======================================
+메뉴 : 부가기능 쿠폰 create
+========================================*/
+.coupon_create_bbs{width:500px !important;}
+/*======================================
+메뉴 : 부가기능 쿠폰 detail
+========================================*/
+.coupon_detail_bbs{width:500px !important;}

@@ -167,68 +167,78 @@
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">번호</label></th>
+										<th scope="row">번호</th>
 										<td colspan="10">
 											${vo.rno}
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">제목</label></th>
+										<th scope="row">제목</th>
 										<td colspan="10">
 											${vo.rtitle }
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">상품명</label></th>
+										<th scope="row">상품명</th>
 										<td colspan="10">
-											${vo.pname }
+											<a href="<%=request.getContextPath()%>/admin/product/detail?pno=${vo.pno}">${vo.pname }</a>
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">작성자</label></th>
+										<th scope="row">작성자</th>
 										<td colspan="10">
 											${vo.mname }
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">이메일</label></th>
+										<th scope="row">이메일</th>
 										<td colspan="10">
 											${vo.memail}
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">전화번호</label></th>
+										<th scope="row">전화번호</th>
 										<td colspan="10">
 											${vo.mphone}
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">별점</label></th>
+										<th scope="row">별점</th>
 										<td colspan="10">
 											${vo.rstar }점
 											<img src="" id="rstar_img"> <!-- 부모 --> 
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">조회수</label></th>
+										<th scope="row">조회수</th>
 										<td colspan="10">
 											${vo.rreadcount}
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">작성날짜</label></th>
+										<th scope="row">작성날짜</th>
 										<td colspan="10">
 											<fmt:formatDate value="${vo.rregdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td> 
 										</td>
 									</tr>
 									<tr>
-										<th scope="row" ><label for="" >내용</label></th>
-										<td colspan="10" style="vertical-align: top;">
-											${vo.rcontent}
+										<th scope="row"><label for="">상품 이미지</label></th>
+										<td colspan="10">
+										<img style="width: 50px;" src="${vo.pimg1_org}">
+										<img style="width: 50px;" src="${vo.pimg2_org}">
+										<img style="width: 50px;" src="${vo.pimg3_org}">
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
+										<th scope="row">내용</th>
+										<td colspan="10" >
+										<div class="review_detail_rcontent">
+											${vo.rcontent}
+										</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">첨부파일</th>
 										<td colspan="10">
 					<!-- 파일다운로드 -->		<a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.rfile_org}&real=${vo.rfile_real}" 
                             				target="_blank">${vo.rfile_org}</a>
