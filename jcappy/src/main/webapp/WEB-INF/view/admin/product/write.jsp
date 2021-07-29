@@ -63,10 +63,10 @@ function categoryChange(e) {
     var pcate_wash = ["일반세탁기", "드럼세탁기", "미니세탁기"];
     var target = document.getElementById("pcate");
  
-    if(e.value == "frez") var d = pcate_frez;
-    else if(e.value == "air") var d = pcate_air;
-    else if(e.value == "tv") var d = pcate_tv;
-    else if(e.value == "wash") var d = pcate_wash;
+    if(e.value == "냉장고") var d = pcate_frez;
+    else if(e.value == "에어컨") var d = pcate_air;
+    else if(e.value == "TV") var d = pcate_tv;
+    else if(e.value == "세탁기") var d = pcate_wash;
  
     target.options.length = 0;
  
@@ -127,13 +127,14 @@ function categoryChange(e) {
 										<th scope="row"><label for="">상품 종류</label></th>
 										<td colspan="10">
 										<div>
-											<select onchange="categoryChange(this)">
+											<select name="ptype" onchange="categoryChange(this)">
 												<option>종류 선택</option>
-												<option value="frez">냉장고</option>
-												<option value="air">에어컨</option>
-												<option value="tv">TV</option>
-												<option value="wash">세탁기</option>
-											</select> <select id="pcate">
+												<option value="냉장고">냉장고</option>
+												<option value="에어컨">에어컨</option>
+												<option value="TV">TV</option>
+												<option value="세탁기">세탁기</option>
+											</select> 
+											<select name="pcate" id="pcate">
 												<option>카테고리 선택</option>
 											</select>
 										</div>
@@ -142,12 +143,13 @@ function categoryChange(e) {
 									<tr>
 										<th scope="row"><label for="">브랜드</label></th>
 										<td colspan="10">
-											<select name="stype" id="stype" title="브랜드">
-											<option value="sam">삼성전자</option>
-											<option value="lg">LG전자</option>
-											<option value="carrier">캐리어</option>
-											<option value="winia">위니아전자</option>
-											<option value="etc">기타</option>
+											<select name="pcompany" id="stype" title="브랜드">
+											<option>브랜드 선택</option>
+											<option value="삼성전자">삼성전자</option>
+											<option value="LG전자">LG전자</option>
+											<option value="캐리어">캐리어</option>
+											<option value="위니아전자">위니아전자</option>
+											<option value="기타">기타</option>
 										</select>
 										<input type="text" id="brandEtc" name="brandEtc" />
 										</td>
@@ -171,36 +173,30 @@ function categoryChange(e) {
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">상품 등록일</label></th>
-										<td colspan="10">
-											<input type="text" id="pregdate" name="pregdate" class="w100"/>	
-										</td>
-									</tr>
-									<tr>
 										<th scope="row"><label for="">상품 이미지1</label></th>
 										<td colspan="10">
 										<div class="imagePreview1"></div>
-											<input id="file1" type="file" name="file1" class="img" />
+											<input type="file" id="file1" name="file1" class="img" />
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 이미지2</label></th>
 										<td>
 										<div class="imagePreview2"></div>	
-											<input id="file2" type="file" name="file2" class="img" />	
+											<input type="file" id="file2" name="file2s" class="img" />	
 										</td>
 									</tr>
 									<tr>	
 										<th scope="row"><label for="">상품 이미지3</label></th>
 										<td>
 										<div class="imagePreview3"></div>
-											<input id="file3" type="file" name="file3" class="img" />	
+											<input type="file" id="file3" name="file3" class="img" />	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 상세정보</label></th>
 										<td colspan="10">
-											<textarea name="contents" id="contents" style="width:100%;"></textarea>
+											<textarea name="pdetail" id="contents" style="width:100%;"></textarea>
 										</td>
 								</tbody>
 							</table>
