@@ -49,4 +49,57 @@
 		WHERE memail=#{memail}
 	</update>
 	
+	<!-- [관리자] 회원 검색 -->
+	<sql id="membersWhere">
+		<where>
+			<if test="sval != null and sval != ''">
+				<if test="stype == 'all'">
+					title LIKE '%${sval}%' OR content LIKE '%${sval}%'
+				</if>		
+				<if test="stype != 'all'">
+					${stype} LIKE '%${sval}%'
+				</if>		
+			</if>
+		</where>
+	</sql>
+	
+	<!-- [관리자] 회원 목록 출력 -->
+	<select id="selectAll" resultType="jcappy.members.MembersVo" parameterType="jcappy.members.MembersVo">
+		SELECT mno, mname, mphone, memail, mgrade, mregdate, mzipcode, maddr, maddrde
+		FROM members
+		<include refid="membersWhere"/>
+		ORDER BY ${orderby} ${direct}, mno DESC 
+		LIMIT ${startIdx}, ${pageRow}
+	</select>
+	
+	<!-- [관리자] 총 회원수 -->
+	<select id="count" resultType="int" parameterType="jcappy.members.MembersVo">
+		SELECT COUNT(*)	
+		FROM members
+		<include refid="membersWhere"/>
+	</select>
+	
+	<!-- [관리자] 목록에서 일괄 삭제 -->
+	<delete id="groupDelete" parameterType="jcappy.members.MembersVo">
+		DELETE FROM members
+		WHERE mno IN
+		<foreach collection="mnos" item="mno" index="index" open="(" close=")" separator=",">
+		${mno}
+		</foreach>
+	</delete>
+	 
+	<!-- [관리자] 회원 상세 -->	
+	<select id="detail" resultType="jcappy.members.MembersVo" parameterType="jcappy.members.MembersVo">
+		SELECT mno, mname, mphone, memail, mgrade, mregdate, mzipcode, maddr, maddrde
+		FROM members 
+		WHERE mno = ${mno}
+	</select>
+	
+	<!-- [관리자] 회원 수정 -->
+	<update id="adminUpdateMembers" parameterType="jcappy.members.MembersVo">
+		UPDATE members 
+		SET mgrade=#{mgrade}, mname=#{mname}, mphone=#{mphone}, mzipcode=#{mzipcode}, maddr=#{maddr}, maddrde=#{maddrde} 
+		<if test="mpwd != ''">, mpwd=MD5(#{mpwd})</if>
+		WHERE mno=${mno}
+	</update>
 </mapper>

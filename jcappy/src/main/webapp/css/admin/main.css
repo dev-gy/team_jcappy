@@ -37,3 +37,13 @@ top.jsp
 .imagePreview1{width: 100px; height: 50px; background-position: center center; background-size: cover; display: inline-block;}
 .imagePreview2{width: 100px; height: 50px; background-position: center center; background-size: cover; display: inline-block;}
 .imagePreview3{width: 100px; height: 50px; background-position: center center; background-size: cover; display: inline-block;}
+
+/*======================================
+메뉴 : 회원관리
+========================================*/
+#admin_members_detail .admin_members_detail_info {width: 500px;}
+#admin_members_detail .admin_members_detail_info select {font-size: 12px;}
+#admin_members_detail .admin_members_detail_table {width: 700px;}
+#admin_members_detail .btns {cursor: pointer;}
+.admin_members_detail_subtitle > div {display: flex; justify-content: center; margin-bottom: 10px;}
+.admin_members_detail_subtitle > div input[name="admin_members_detail_subtitle"] {cursor: pointer; text-align: center;}

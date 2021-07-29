@@ -4,7 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
-<title>Insert title here</title>
 </head>
 <body>
 <div id="wrap">
@@ -29,8 +28,8 @@
 											<col class="w20" />
 											<col class="w15" />
 											<col class="w15" />
-											<col class="w10" />
-											<col class="w10" />
+											<col class="w15" />
+											<col class="w15" />
 										</colgroup>
 										<thead>
 											<tr>
@@ -53,8 +52,8 @@
 												<c:when test="${!empty list }">
 													<c:forEach var="vo" items="${list }" varStatus="status">
 														<tr>
-															<td class="first"><input type="checkbox" name="mnos" value="${vo.ano }" onClick="checkOne('mnos');"/></td>
-															<td><a href="detail?mno=${vo.mno }&orderby=${membersVo.orderby}&direct=${membersVo.direct}&pageRow=${membersVo.pageRow}&stype=${membersVo.stype }&sval=${membersVo.sval }&reqPage=${membersVo.reqPage}">${vo.memail }</a></td>
+															<td class="first"><input type="checkbox" name="mnos" value="${vo.mno }" onClick="checkOne('mnos');"/></td>
+															<td><a href="detail?mno=${vo.mno }&orderby=${membersVo.orderby}&direct=${membersVo.direct}&pageRow=${membersVo.pageRow}&stype=${membersVo.stype }&sval=${membersVo.sval }&reqPage=${membersVo.reqPage}">${vo.mno }</a></td>
 															<td>${vo.memail}</td>
 															<td>${vo.mname}</td>
 															<td>${vo.mphone}</td>
@@ -69,10 +68,7 @@
 								</form>
 								<div class="btn">
 									<div class="btnLeft">
-										<a class="btns" href="javascript:checkDelete('anos');" onclick=""><strong>삭제</strong></a>
-									</div>
-									<div class="btnRight">
-										<a class="wbtn" href="create"><strong>등록</strong> </a>
+										<a class="btns" href="javascript:checkDelete('mnos');" onclick=""><strong>삭제</strong></a>
 									</div>
 								</div>
 								<!--//btn-->
@@ -106,6 +102,7 @@
 									<div class="search">
 											<select id="orderby" name="orderby" class="dSelect" title="정렬기준" onchange="$('#searchForm').submit()">
 												<option value="mregdate" <c:if test="${param.orderby == 'mregdate' }">selected</c:if>>등록일</option>
+												<option value="memail" <c:if test="${param.orderby == 'memail' }">selected</c:if>>이메일</option>
 												<option value="mname" <c:if test="${param.orderby == 'mname' }">selected</c:if>>이름</option>
 											</select>
 											<select id="direct" name="direct" class="dSelect" title="정렬순서" onchange="$('#searchForm').submit()">
