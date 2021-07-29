@@ -23,7 +23,6 @@ public class ShopcartController {
 	@RequestMapping("/cart/countupdate")
 	public String countUpdate(Model model, ShopcartVo vo) throws JsonProcessingException {
 		if (shopcartshopService.update(vo) > 0) {
-			
 			model.addAttribute("result", new ObjectMapper().writeValueAsString(vo));
 		}
 		return "/include/result";
@@ -32,6 +31,7 @@ public class ShopcartController {
 	@RequestMapping("/cart/delete")
 	public String delete(Model model, ShopcartVo vo) {
 		model.addAttribute("result", shopcartshopService.delete(vo));
+		System.out.println(vo.getTotal_price());
 		return "/include/result";
 	}
 }

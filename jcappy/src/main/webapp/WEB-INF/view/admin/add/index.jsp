@@ -20,9 +20,16 @@
 					<h2>부가기능 - [목록]</h2>
 				</div>
 				<div class="con">
-					<div class="add_ons_a">
-						<a href="<%=request.getContextPath()%>/admin/add/coupon/list">쿠폰관리</a>
-					</div>
+					<!-- 내용 : s -->
+					<div id="bbs">
+						<div id="blist">
+							<a class="add_ons_a" href="<%=request.getContextPath()%>/admin/add/coupon/list">
+								<div class="add_ons_div">
+								쿠폰관리
+								</div>
+							</a>
+						</div>
+					</div>	
 				</div>
 			</div>
 		</div>

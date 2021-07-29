@@ -60,7 +60,7 @@ function coupon_list_check() { // 맨위에 체크박스 선택시 전체선택 
 									<col class="w4" />
 									<col class="" />
 									<col class="w6" />
-									<col class="w8" />
+									<col class="w12" />
 									<col class="w6" />
 									<col class="w6" />
 								</colgroup>

@@ -28,8 +28,8 @@
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
 									<col class="w3" />
-									<col class="" />
-									<col class="w4" />
+									<col class="*" />
+									<col class="w10" />
 									<col class="w6" />
 									<col class="w6" />
 								</colgroup>
@@ -53,7 +53,7 @@
 									<tr>
 										<td class="first">${vo.rno}</td>
 										<!-- 상세페이지 링크 and 리플 갯수 -->
-										<td class="title"><a href="detail?rno=${vo.rno}&reqPage=${reviewVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">[${vo.pname}] ${vo.rtitle} [${vo.comment_count}]</a></td>
+										<td class="title"><a href="detail?rno=${vo.rno}&reqPage=${reviewVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><strong style="font-size: 15px;">[${vo.pname}]</strong> ${vo.rtitle} [${vo.comment_count}]</a></td>
 										<td>${vo.mname }</td>
 										<td><fmt:formatDate value="${vo.rregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 										<td>${vo.rreadcount}</td>
@@ -70,7 +70,7 @@
 		                        </c:if>
 		                        <c:forEach var="rp" begin="${reviewVo.startPage}" end="${reviewVo.endPage }">
 		                        <c:if test="${reviewVo.reqPage == rp }">
-									<span><a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'><strong>${rp }</strong></a></span>
+									<span><a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'><strong >${rp }</strong></a></span>
 		                        </c:if>
 		                        <c:if test="${reviewVo.reqPage != rp }">
 		                            <span><a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'>${rp }</a></span>

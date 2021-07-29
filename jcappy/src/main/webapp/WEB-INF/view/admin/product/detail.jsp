@@ -78,29 +78,6 @@ function check() {
 }
 </script>
 <script>
-function categoryChange(e) {
-    var pcate_frez = ["일반형냉장고", "양문형냉장고", "업소용냉장고"];
-    var pcate_air = ["스탠드형에어컨", "벽걸이형에어컨", "창문형에어컨"];
-    var pcate_tv = ["LEDTV", "QLEDTV", "OLEDTV"];
-    var pcate_wash = ["일반세탁기", "드럼세탁기", "미니세탁기"];
-    var target = document.getElementById("pcate");
- 
-    if(e.value == "frez") var d = pcate_frez;
-    else if(e.value == "air") var d = pcate_air;
-    else if(e.value == "tv") var d = pcate_tv;
-    else if(e.value == "wash") var d = pcate_wash;
- 
-    target.options.length = 0;
- 
-    for (x in d) {
-        var opt = document.createElement("option");
-        opt.value = d[x];
-        opt.innerHTML = d[x];
-        target.appendChild(opt);
-    }    
-}
-</script>
-<script>
 $(document).ready(function(){
 	
 	  $("#stype").each(function(){
@@ -142,49 +119,22 @@ $(document).ready(function(){
 												<td colspan="10"><input type="text" id="ino" name="ino"
 													class="w100" value="${vo.pno }" /></td>
 											</tr>
-											<!-- <tr>
-												<th scope="row"><label for="">상품 종류</label></th>
-												<td colspan="10">
-												<div>
-													<select onchange="categoryChange(this)">
-														<option>종류 선택</option>
-														<option value="frez">냉장고</option>
-														<option value="air">에어컨</option>
-														<option value="tv">TV</option>
-														<option value="wash">세탁기</option>
-													</select> <select id="pcate">
-														<option>카테고리 선택</option>
-													</select>
-												</div>
-												</td>
-											</tr> -->
 											<tr>
 												<th scope="row"><label for="">상품 종류</label></th>
 												<td colspan="10">
 												<div>
-													<select onchange="categoryChange(this)">
+													<select name="ptype" onchange="categoryChange(this)">
 														<option>${vo.ptype }</option>
-													</select> <select id="pcate">
+													</select> <select name="pcate" id="pcate">
 														<option>${vo.pcate }</option>
 													</select>
 												</div>
 												</td>
 											</tr>
-											<!-- <tr>
-												<th scope="row"><label for="">브랜드</label></th>
-												<td colspan="10">
-												<select name="stype" id="stype" title="브랜드">
-														<option value="sam">삼성전자</option>
-														<option value="lg">LG전자</option>
-														<option value="carrier">캐리어</option>
-														<option value="winia">위니아전자</option>
-												</select>
-												</td>
-											</tr> -->
 											<tr>
 												<th scope="row"><label for="">브랜드</label></th>
 												<td colspan="10">
-													<select name="stype" id="stype" title="브랜드">
+													<select name="pcompany" id="stype" title="브랜드">
 														<option value="">${vo.pcompany }</option>
 													</select>
 												</td>
@@ -216,15 +166,15 @@ $(document).ready(function(){
 												
 												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
 												<img style="width: 50px;" src="${vo.pimg1_org}">
-												<input type="file" id="file" name="file" class="w100" />
+												<input type="file" id="file1" name="file1" class="w100" />
 												
 												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
 												<img style="width: 50px;" src="${vo.pimg2_org}">
-												<input type="file" id="file" name="file" class="w100" />
+												<input type="file" id="file2" name="file2" class="w100" />
 												
 												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
 												<img style="width: 50px;" src="${vo.pimg3_org}">
-												<input type="file" id="file" name="file" class="w100" />
+												<input type="file" id="file3" name="file3" class="w100" />
 												
 												<a class="btns" style="cursor: pointer;" href="#" onclick="groupDel('nos');"><strong>삭제</strong> </a>
 												</td>
@@ -232,7 +182,7 @@ $(document).ready(function(){
 											<tr>
 												<th scope="row"><label for="">상품 상세정보</label></th>
 												<td colspan="10">
-													<textarea name="contents" id="contents" style="width: 100%;">${vo.pdetail }</textarea>
+													<textarea name="pdetail" id="contents" style="width: 100%;">${vo.pdetail }</textarea>
 												</td>
 										</tbody>
 									</table>

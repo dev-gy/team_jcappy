@@ -29,8 +29,8 @@
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
 									<col class="w3" />
-									<col class="" />
-									<col class="w8" />
+									<col class="*" />
+									<col class="w15" />
 									<col class="w6" />
 								</colgroup>
 								<thead>

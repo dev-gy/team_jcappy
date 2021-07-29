@@ -5,6 +5,8 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
 function coupon_detail_go_save(){
+	var regexp = /^[0-9]*$/ // 숫자가 아닌 모든것
+	
 	if ($("#ccode").val().trim() == "") { // 쿠폰코드 빈값 저장 안되게
 		 alert("쿠폰코드를 입력해 주세요");
 		 $("#ccode").focus();
@@ -20,6 +22,16 @@ function coupon_detail_go_save(){
 		 alert("유효기간을 입력해 주세요");
 		 $("#cdate").focus();
 		 return false;
+	}
+	if (!regexp.test($("#cprice").val())) { //test() 메서드는 주어진 문자열이 정규 표현식을 만족하는지 판별하고, 그 여부를 true 또는 false로 반환합니다.
+		alert("할인금액에 숫자만 입력하세요");		//할인금액에 숫자만 입력하게
+		$("#cprice").focus();
+		return false;
+	}
+	if (!regexp.test($("#cdate").val())) { // 유효기간에 숫자만 입력하게
+		alert("유효기간에 숫자만 입력하세요");
+		$("#cdate").focus();
+		return false;
 	}
 	$("#frm").submit();
 }
@@ -63,16 +75,16 @@ function coupon_detail_isDel() { //쿠폰삭제 ajax
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
-					<div id="bbs">
+					<div id="bbs" class="coupon_detail_bbs">
 						<div id="bread">
 							<form method="post" name="frm" id="frm" action="update">
 							<input type="hidden" name="cno" value="${vo.cno}">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
+									<col width="20%" />
 									<col width="10%" />
-									<col width="15%" />
 									<col width="10%" />
-									<col width="15%" />
+									<col width="10%" />
 									<col width="25%" />
 									<col width="25%" />
 								</colgroup>
