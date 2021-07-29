@@ -11,5 +11,6 @@ public interface CouponService {
 	CouponVo findMno(String memail);
 	int insert(CouponVo vo);
 	int countMemail(CouponVo vo);
+	int deleteGroup(CouponVo vo);
 
 }

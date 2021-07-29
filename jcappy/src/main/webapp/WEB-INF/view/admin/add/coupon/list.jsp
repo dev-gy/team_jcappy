@@ -4,15 +4,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
-function coupon_list_check() {
-	//console.log($("#allChk").prop('checked'));
+function coupon_list_groupDel(name) { // 체크박스에 선택된 쿠폰들 그룹삭제 기능
+	var count=0;
+	for (var i=0; i<$('input[name="'+name+'"]').length; i++) {
+		if ($('input[name="'+name+'"]').eq(i).prop('checked')) {
+			count++;
+			break;
+		}
+	}
+	if (count == 0) {
+		alert('하나 이상 체크해 주세요');
+	} else {
+		if (confirm('삭제하시겠습니까?')) {
+			$("#frm").submit();
+		}
+	}
+}
+function coupon_list_check() { // 맨위에 체크박스 선택시 전체선택 다시한번 클릭시 전체 해제 
 	if ($("#allChk").prop('checked')) {
-		for (var i=0; i<$('input[name="no"]').length; i++) {
-			$('input[name="no"]').eq(i).prop('checked','checked');
+		for (var i=0; i<$('input[name="cnos"]').length; i++) {
+			$('input[name="cnos"]').eq(i).prop('checked','checked');
 		}
 	} else {
-		for (var i=0; i<$('input[name="no"]').length; i++) {
-			$('input[name="no"]').eq(i).prop('checked','');
+		for (var i=0; i<$('input[name="cnos"]').length; i++) {
+			$('input[name="cnos"]').eq(i).prop('checked','');
 		}
 	}
 }
@@ -38,7 +53,7 @@ function coupon_list_check() {
 					<div id="bbs">
 						<div id="blist">
 							<p><span><strong>총 111개</strong>  |  1/12페이지</span></p>
-							<form name="frm" id="frm" action="process.do" method="post">
+							<form name="frm" id="frm" action="groupDelete" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
 									<col class="w3" />
@@ -68,7 +83,7 @@ function coupon_list_check() {
 			                        </c:if>
 									<c:forEach var="vo" items="${list}">
 									<tr>
-										<td class="first"><input type="checkbox" name="no" value="${vo.cno}"/></td>
+										<td class="first"><input type="checkbox" name="cnos" value="${vo.cno}"/></td>
 										<td>${vo.cno}</td>
 										<td class="title"><a href="detail?cno=${vo.cno}&reqPage=${couponVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.ccode} </a></td>
 										<td>${vo.cprice}</td>
@@ -83,10 +98,10 @@ function coupon_list_check() {
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="#" onclick=""><strong>삭제</strong> </a>
+									<a class="btns" href="#" onclick="coupon_list_groupDel('cnos');"><strong>삭제</strong> </a>
 								</div>
 								<div class="btnRight">
-									<a class="wbtn" href="write"><strong>등록</strong> </a>
+									<a class="wbtn" href="create"><strong>등록</strong> </a>
 								</div>
 							</div>
 							<!--//btn-->

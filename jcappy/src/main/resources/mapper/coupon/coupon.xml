@@ -52,4 +52,11 @@
 	<select id="countMemail" parameterType="jcappy.coupon.CouponVo" resultType="int">
 		SELECT COUNT(*) FROM members WHERE memail = #{memail}
 	</select>
+	
+	<delete id="deleteGroup" parameterType="jcappy.coupon.CouponVo">
+		DELETE FROM coupon WHERE cno IN
+		<foreach collection="cnos" index="index" item="no" open="(" close=")" separator=",">
+		#{no}		
+		</foreach>
+	</delete>
 </mapper>

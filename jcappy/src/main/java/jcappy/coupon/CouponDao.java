@@ -45,4 +45,8 @@ public class CouponDao {
 	public int countMemail(CouponVo vo) {
 		return sqlSession.selectOne("coupon.countMemail", vo);
 	}
+
+	public int deleteGroup(CouponVo vo) {
+		return sqlSession.delete("coupon.deleteGroup", vo);
+	}
 }

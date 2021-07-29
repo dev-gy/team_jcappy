@@ -11,6 +11,7 @@ public class CouponVo extends CommonVo{
 	private Timestamp cregdate;
 	private int cdate;
 	private int mno;
+	private int[] cnos;
 	
 	private String memail;
 	private String mname;
@@ -70,5 +71,13 @@ public class CouponVo extends CommonVo{
 
 	public void setMname(String mname) {
 		this.mname = mname;
+	}
+
+	public int[] getCnos() {
+		return cnos;
+	}
+
+	public void setCnos(int[] cnos) {
+		this.cnos = cnos;
 	}
 }

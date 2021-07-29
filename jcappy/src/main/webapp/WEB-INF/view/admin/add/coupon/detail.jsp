@@ -5,25 +5,25 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
 function coupon_detail_go_save(){
-	if ($("#ccode").val().trim() == "") { // title 빈값 저장 안되게
+	if ($("#ccode").val().trim() == "") { // 쿠폰코드 빈값 저장 안되게
 		 alert("쿠폰코드를 입력해 주세요");
 		 $("#ccode").focus();
 		 return false;
 	}
 	
-	if ($("#cprice").val().trim() == "") { //contents 빈값 저장 안되게
+	if ($("#cprice").val().trim() == "") { //할인금액 빈값 저장 안되게
 		 alert("할인금액을 입력해 주세요");
 		 $("#cprice").focus();
 		 return false;
 	}
-	if ($("#cdate").val().trim() == "") { //contents 빈값 저장 안되게
+	if ($("#cdate").val().trim() == "") { //유효기간 빈값 저장 안되게
 		 alert("유효기간을 입력해 주세요");
 		 $("#cdate").focus();
 		 return false;
 	}
 	$("#frm").submit();
 }
-function coupon_detail_isDel() {
+function coupon_detail_isDel() { //쿠폰삭제 ajax
 	$.ajax({
 		url:'delete',
 		data:{

@@ -62,4 +62,9 @@ public class CouponServiceImpl implements CouponService {
 		return dao.countMemail(vo);
 	}
 
+	@Override
+	public int deleteGroup(CouponVo vo) {
+		return dao.deleteGroup(vo);
+	}
+
 }

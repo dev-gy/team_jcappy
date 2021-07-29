@@ -5,34 +5,36 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
 function coupon_create_goSave() {
-	var regexp = /^[0-9]*g/
-	if ($("#ccode").val().trim() == "") { 
+	
+	var regexp = /^[0-9]*$/ // 숫자가 아닌 모든것
+	
+	if ($("#ccode").val().trim() == "") { // 쿠폰코드가 빈값이면 작동
 		 alert("쿠폰코드를 입력해 주세요");
 		 $("#ccode").focus();
 		 return false;
 	} 
 	
-	if ($("#cprice").val().trim() == "") { 
+	if ($("#cprice").val().trim() == "") {  //할인금액가 빈값이면 작동
 		 alert("할인금액을 입력해 주세요");
 		 $("#cprice").focus();
 		 return false;
 	}
-	if ($("#cdate").val().trim() == "") {
+	if ($("#cdate").val().trim() == "") { // 유효기간이 빈값이면 작동
 		 alert("유효기간을 입력해 주세요");
 		 $("#cdate").focus();
 		 return false;
 	}
 	if (!regexp.test($("#cprice").val())) { //test() 메서드는 주어진 문자열이 정규 표현식을 만족하는지 판별하고, 그 여부를 true 또는 false로 반환합니다.
-		alert("할인금액에 숫자만 입력하세요");
+		alert("할인금액에 숫자만 입력하세요");		//할인금액에 숫자만 입력하게
 		$("#cprice").focus();
 		return false;
 	}
-	if (!regexp.test($("#cdate").val())) {
+	if (!regexp.test($("#cdate").val())) { // 유효기간에 숫자만 입력하게
 		alert("유효기간에 숫자만 입력하세요");
 		$("#cdate").focus();
 		return false;
 	}
-	$.ajax({
+	$.ajax({	// 이메일이 존재하면 폼 전송 존재하지 않으면 폼 전송하지 않음
 		url:'countMemail',
 		data:{
 			memail:$('#memail').val()
