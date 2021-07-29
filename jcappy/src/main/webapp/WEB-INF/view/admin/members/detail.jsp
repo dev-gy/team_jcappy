@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=utf-8"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+<%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
 <script type="text/javascript">
 // 비밀번호 체크
 function check_create_pwd(pwd, chkPwd) {
@@ -132,279 +132,177 @@ function delMembers(no) {
 		});
 	}
 }
+
+$(function() {
+	getOrderList();
+	getBoardList();
+});
+
+// 해당 회원이 작성한 게시글 목록
+function getBoardList(reqPage) {
+	$.ajax({
+		url: "<%=request.getContextPath()%>/admin/members/boardList",
+		data: {
+			mno: ${vo.mno},
+			reqPage: reqPage
+		},
+		success: function(res) {
+			$('#boardListArea').html(res);	
+		}
+	});
+}
+
+// 해당 회원의 주문 목록
+function getOrderList(reqPage) {
+	$.ajax({
+		url: "<%=request.getContextPath()%>/admin/members/orderList",
+		data: {
+			mno: ${vo.mno},
+			reqPage: reqPage
+		},
+		success: function(res) {
+			$('#orderListArea').html(res);	
+		}
+	});
+}
 </script>
 </head>
-<body> 
-<div id="wrap">
-	<!-- canvas -->
-	<div id="canvas">
-		<!-- S T A R T :: headerArea-->
-		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
-		<!-- E N D :: headerArea--> 
-		<!-- S T A R T :: containerArea-->
-		<div id="container">
-			<div id="content">
-				<div class="con_tit">
-					<h2>회원관리 - [상세보기]</h2>
-				</div>
-				<!-- //con_tit -->
-				<div class="con">
-					<!-- 내용 : s -->
-				<div id="admin_members_detail">
-					<div id="bbs" class="admin_members_detail_info">
-						<div id="bread">
-							<form method="post" name="frm" id="frm" action="">
-							<table>
-								<colgroup>
-									<col width="30%" />
-									<col width="*" />
-								</colgroup>
-								<tbody>
-									<tr>
-										<th scope="row"><label for="mno">회원번호</label></th>
-										<td colspan="10">
-											<input type="text" id="mno" name="mno" class="w100" value="${vo.mno }" disabled/>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="memail">이메일</label></th>
-										<td colspan="10">
-											<input type="text" id="memail" name="memail" class="w100" value="${vo.memail }" disabled/>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="mgrade">회원등급</label></th>
-										<td colspan="10">
-											<select id="mgrade" name="mgrade" class="dSelect" title="회원등급">
-												<option value="bronze" <c:if test="${vo.mgrade == 'bronze'}">selected</c:if>>BRONZE</option>
-												<option value="silver" <c:if test="${vo.mgrade == 'silver'}">selected</c:if>>SILVER</option>
-												<option value="gold" <c:if test="${vo.mgrade == 'gold'}">selected</c:if>>GOLD</option>
-												<option value="vip" <c:if test="${vo.mgrade == 'vip'}">selected</c:if>>VIP</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="mpwd">비밀번호</label></th>
-										<td colspan="10">
-											<input type="password" id="mpwd" name="mpwd" class="w100" placeholder="영문, 숫자, 특수문자를 각 하나이상 포함한 6~20자"/>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="check_mpwd">비밀번호 확인</label></th>
-										<td colspan="10">
-											<input type="password" id="check_mpwd" name="check_mpwd" class="w100" placeholder="입력하신 비밀번호를 한번 더 입력해주세요."/>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="mname">이름</label></th>
-										<td colspan="10">
-											<input type="text" id="mname" name="mname" class="w100" placeholder="한글, 영문으로 이루어진 1~20자" value="${vo.mname }"/>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="mphone">연락처</label></th>
-										<td colspan="10">
-											<input type="text" id="mphone" name="mphone" class="w100" placeholder="특수문자없이 숫자 9~11자리로만 입력해주세요." value="${vo.mphone }"/>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="mzipcode">우편번호</label></th>
-										<td colspan="10">
-											<input type="text" id="mzipcode" name="mzipcode" class="w100" value="${vo.mzipcode }" onClick="daumPostcode($('#mzipcode'), $('#maddr'), $('#maddrde'));" readonly/>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="maddr">주소</label></th>
-										<td colspan="10">
-											<input type="text" id="maddr" name="maddr" class="w100" value="${vo.maddr }" onClick="daumPostcode(mzipcode, maddr, maddrde);" readonly/>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="maddrde">상세주소</label></th>
-										<td colspan="10">
-											<input type="text" id="maddrde" name="maddrde" class="w100" value="${vo.maddrde }"/>	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="mregdate">가입일</label></th>
-										<td colspan="10">
-											<input type="text" id="mregdate" name="mregdate" class="w100" value="<fmt:formatDate value="${vo.mregdate }" pattern="yyyy-MM-dd"/>" disabled/>	
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<input type="hidden" name="mno" value="${vo.mno }"/>
-							</form>
-							<div class="btn">
-								<div class="btnLeft">
-									<a class="btns" href="#" onClick="history.back();"><strong>목록</strong></a>
-								</div>
-								<div class="btnRight">
-									<a class="btns" onclick="updateMembers();"><strong>수정</strong></a>
-									<a class="btns" onclick="delMembers(${vo.mno});"><strong>삭제</strong></a>
-								</div>
-							</div>
-							<!--//btn-->
-						</div>
-						<!-- //bread -->
+<body>
+	<div id="wrap">
+		<!-- canvas -->
+		<div id="canvas">
+			<!-- S T A R T :: headerArea-->
+			<%@ include file="/WEB-INF/view/admin/include/top.jsp"%>
+			<!-- E N D :: headerArea-->
+			<!-- S T A R T :: containerArea-->
+			<div id="container">
+				<div id="content">
+					<div class="con_tit">
+						<h2>회원관리 - [상세보기]</h2>
 					</div>
-<!--####################################################################################################-->
-					<div id="bbs" class="admin_members_detail_table">
-							<div id="blist">
-								<div class="admin_members_detail_subtitle">
-									<div onClick="location.href='';">
-											<input type="text" name="admin_members_detail_subtitle" value="주문목록" disabled size="30">
-									</div>
-									<p><span><strong>총 ${membersVo.totCount }개</strong>  |  ${membersVo.reqPage }/${membersVo.totPage }페이지</span></p>
-									<form name="frm" id="frm" action="groupDelete" method="post">
-									<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="회원 목록">
+					<!-- //con_tit -->
+					<div class="con">
+						<!-- 내용 : s -->
+						<div id="admin_members_detail">
+							<div id="bbs" class="admin_members_detail_info">
+								<div id="bread">
+									<form method="post" name="frm" id="frm" action="">
+										<table>
 											<colgroup>
-												<col class="w30" />
-												<col class="w30" />
-												<col class="w30" />
+												<col width="30%" />
+												<col width="*" />
 											</colgroup>
-											<thead>
-												<tr>
-													<th scope="col" class="first">주문일</th>
-													<th scope="col">주문번호</th> 
-													<th scope="col">주문총액</th> 
-												</tr>
-											</thead>
 											<tbody>
-												<c:choose>
-													<c:when test="${empty list }">
-														<tr>
-															<td class="first" colspan="10">등록된 글이 없습니다.</td>
-														</tr>
-													</c:when>
-													<c:when test="${!empty list }">
-														<c:forEach var="vo" items="${list }" varStatus="status">
-															<tr>
-																<td class="first"><a href="detail?mno=${vo.mno }&orderby=${membersVo.orderby}&direct=${membersVo.direct}&pageRow=${membersVo.pageRow}&stype=${membersVo.stype }&sval=${membersVo.sval }&reqPage=${membersVo.reqPage}">${vo.mno }</a></td>
-																<td>${vo.mgrade}</td>
-																<td class="date"><fmt:formatDate value="${vo.mregdate }" pattern="yyyy-MM-dd"/></td>
-															</tr>
-														</c:forEach>
-													</c:when>
-												</c:choose>
+												<tr>
+													<th scope="row"><label for="mno">회원번호</label></th>
+													<td colspan="10"><input type="text" id="mno"
+														name="mno" class="w100" value="${vo.mno }" disabled /></td>
+												</tr>
+												<tr>
+													<th scope="row"><label for="memail">이메일</label></th>
+													<td colspan="10"><input type="text" id="memail"
+														name="memail" class="w100" value="${vo.memail }" disabled />
+													</td>
+												</tr>
+												<tr>
+													<th scope="row"><label for="mgrade">회원등급</label></th>
+													<td colspan="10"><select id="mgrade" name="mgrade"
+														class="dSelect" title="회원등급">
+															<option value="bronze"
+																<c:if test="${vo.mgrade == 'bronze'}">selected</c:if>>BRONZE</option>
+															<option value="silver"
+																<c:if test="${vo.mgrade == 'silver'}">selected</c:if>>SILVER</option>
+															<option value="gold"
+																<c:if test="${vo.mgrade == 'gold'}">selected</c:if>>GOLD</option>
+															<option value="vip"
+																<c:if test="${vo.mgrade == 'vip'}">selected</c:if>>VIP</option>
+													</select></td>
+												</tr>
+												<tr>
+													<th scope="row"><label for="mpwd">비밀번호</label></th>
+													<td colspan="10"><input type="password" id="mpwd"
+														name="mpwd" class="w100"
+														placeholder="영문, 숫자, 특수문자를 각 하나이상 포함한 6~20자" /></td>
+												</tr>
+												<tr>
+													<th scope="row"><label for="check_mpwd">비밀번호
+															확인</label></th>
+													<td colspan="10"><input type="password"
+														id="check_mpwd" name="check_mpwd" class="w100"
+														placeholder="입력하신 비밀번호를 한번 더 입력해주세요." /></td>
+												</tr>
+												<tr>
+													<th scope="row"><label for="mname">이름</label></th>
+													<td colspan="10"><input type="text" id="mname"
+														name="mname" class="w100"
+														placeholder="한글, 영문으로 이루어진 1~20자" value="${vo.mname }" />
+													</td>
+												</tr>
+												<tr>
+													<th scope="row"><label for="mphone">연락처</label></th>
+													<td colspan="10"><input type="text" id="mphone"
+														name="mphone" class="w100"
+														placeholder="특수문자없이 숫자 9~11자리로만 입력해주세요."
+														value="${vo.mphone }" /></td>
+												</tr>
+												<tr>
+													<th scope="row"><label for="mzipcode">우편번호</label></th>
+													<td colspan="10"><input type="text" id="mzipcode"
+														name="mzipcode" class="w100" value="${vo.mzipcode }"
+														onClick="daumPostcode($('#mzipcode'), $('#maddr'), $('#maddrde'));"
+														readonly /></td>
+												</tr>
+												<tr>
+													<th scope="row"><label for="maddr">주소</label></th>
+													<td colspan="10"><input type="text" id="maddr"
+														name="maddr" class="w100" value="${vo.maddr }"
+														onClick="daumPostcode(mzipcode, maddr, maddrde);" readonly />
+													</td>
+												</tr>
+												<tr>
+													<th scope="row"><label for="maddrde">상세주소</label></th>
+													<td colspan="10"><input type="text" id="maddrde"
+														name="maddrde" class="w100" value="${vo.maddrde }" /></td>
+												</tr>
+												<tr>
+													<th scope="row"><label for="mregdate">가입일</label></th>
+													<td colspan="10"><input type="text" id="mregdate"
+														name="mregdate" class="w100"
+														value="<fmt:formatDate value="${vo.mregdate }" pattern="yyyy-MM-dd"/>"
+														disabled /></td>
+												</tr>
 											</tbody>
 										</table>
+										<input type="hidden" name="mno" value="${vo.mno }" />
 									</form>
-								</div>
-								<!-- 페이징 처리 -->
-								<div class='page'>
-		                        	<c:if test="${adminVo.endPage > adminVo.pageRange}">
-		                        		<a href="index.do?orderby=${adminVo.orderby}&direct=${adminVo.direct}&pageRow=${adminVo.pageRow}&stype=${adminVo.stype }&sval=${adminVo.sval }&reqPage=${adminVo.startPage - 1 }">이전</a>
-		                        	</c:if>
-		                        	
-		                        	<c:forEach var="page" begin="${adminVo.startPage }" end="${adminVo.endPage }">
-		                        	    <c:if test="${adminVo.reqPage == page }">
-			                        	    <a href='list?orderby=${adminVo.orderby}&direct=${adminVo.direct}&pageRow=${adminVo.pageRow}&stype=${adminVo.stype }&sval=${adminVo.sval }&reqPage=${page}'>
-			                        	    	<strong>
-				                        	    	${page }
-				                        	    </strong>
-			                        	    </a>
-		                        	    </c:if>
-		                        	    <c:if test="${adminVo.reqPage != page }">
-			                        	    <a href='list?orderby=${adminVo.orderby}&direct=${adminVo.direct}&pageRow=${adminVo.pageRow}&stype=${adminVo.stype }&sval=${adminVo.sval }&reqPage=${page}'>
-			                        	    	${page }
-			                        	    </a>
-		                        	    </c:if>
-		                       		</c:forEach>
-		                       		
-		                       		<c:if test="${adminVo.endPage < adminVo.totPage }">
-		                        		<a href="list?orderby=${adminVo.orderby}&direct=${adminVo.direct}&pageRow=${adminVo.pageRow}&stype=${adminVo.stype }&sval=${adminVo.sval }&reqPage=${adminVo.endPage + 1 }">다음</a>
-		                        	</c:if>	
-								</div>
-								<!-- //페이징 처리 -->
-							</div>
-						</div>
-<!--####################################################################################################-->					
-						<div id="bbs" class="admin_members_detail_table">
-							<div id="blist">
-								<div class="admin_members_detail_subtitle">
-									<div onClick="location.href='';">
-											<input type="text" name="admin_members_detail_subtitle" value="작성게시글" disabled size="30">
+									<div class="btn">
+										<div class="btnLeft">
+											<a class="btns" href="#" onClick="history.back();"><strong>목록</strong></a>
+										</div>
+										<div class="btnRight">
+											<a class="btns" onclick="updateMembers();"><strong>수정</strong></a>
+											<a class="btns" onclick="delMembers(${vo.mno});"><strong>삭제</strong></a>
+										</div>
 									</div>
-									<p><span><strong>총 ${membersVo.totCount }개</strong>  |  ${membersVo.reqPage }/${membersVo.totPage }페이지</span></p>
-									<form name="frm" id="frm" action="groupDelete" method="post">
-									<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="회원 목록">
-											<colgroup>
-												<col class="w20" />
-												<col class="w60" />
-												<col class="w20" />
-											</colgroup>
-											<thead>
-												<tr>
-													<th scope="col"class="first">분류</th>
-													<th scope="col">제목</th> 
-													<th scope="col" class="last">작성일</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:choose>
-													<c:when test="${empty list }">
-														<tr>
-															<td class="first" colspan="10">등록된 글이 없습니다.</td>
-														</tr>
-													</c:when>
-													<c:when test="${!empty list }">
-														<c:forEach var="vo" items="${list }" varStatus="status">
-															<tr>
-																<td class="first"><a href="detail?mno=${vo.mno }&orderby=${membersVo.orderby}&direct=${membersVo.direct}&pageRow=${membersVo.pageRow}&stype=${membersVo.stype }&sval=${membersVo.sval }&reqPage=${membersVo.reqPage}">${vo.mno }</a></td>
-																<td>${vo.memail}</td>
-																<td class="date"><fmt:formatDate value="${vo.mregdate }" pattern="yyyy-MM-dd"/></td>
-															</tr>
-														</c:forEach>
-													</c:when>
-												</c:choose>
-											</tbody>
-										</table>
-									</form>
+									<!--//btn-->
 								</div>
-								<!-- 페이징 처리 -->
-								<div class='page'>
-		                        	<c:if test="${adminVo.endPage > adminVo.pageRange}">
-		                        		<a href="index.do?orderby=${adminVo.orderby}&direct=${adminVo.direct}&pageRow=${adminVo.pageRow}&stype=${adminVo.stype }&sval=${adminVo.sval }&reqPage=${adminVo.startPage - 1 }">이전</a>
-		                        	</c:if>
-		                        	
-		                        	<c:forEach var="page" begin="${adminVo.startPage }" end="${adminVo.endPage }">
-		                        	    <c:if test="${adminVo.reqPage == page }">
-			                        	    <a href='list?orderby=${adminVo.orderby}&direct=${adminVo.direct}&pageRow=${adminVo.pageRow}&stype=${adminVo.stype }&sval=${adminVo.sval }&reqPage=${page}'>
-			                        	    	<strong>
-				                        	    	${page }
-				                        	    </strong>
-			                        	    </a>
-		                        	    </c:if>
-		                        	    <c:if test="${adminVo.reqPage != page }">
-			                        	    <a href='list?orderby=${adminVo.orderby}&direct=${adminVo.direct}&pageRow=${adminVo.pageRow}&stype=${adminVo.stype }&sval=${adminVo.sval }&reqPage=${page}'>
-			                        	    	${page }
-			                        	    </a>
-		                        	    </c:if>
-		                       		</c:forEach>
-		                       		
-		                       		<c:if test="${adminVo.endPage < adminVo.totPage }">
-		                        		<a href="list?orderby=${adminVo.orderby}&direct=${adminVo.direct}&pageRow=${adminVo.pageRow}&stype=${adminVo.stype }&sval=${adminVo.sval }&reqPage=${adminVo.endPage + 1 }">다음</a>
-		                        	</c:if>	
-								</div>
-								<!-- //페이징 처리 -->
+								<!-- //bread -->
 							</div>
+							<div id="orderListArea"></div>
+							<div id="boardListArea"></div>
 						</div>
-<!--####################################################################################################-->
+						<!-- //bbs -->
+						<!-- 내용 : e -->
 					</div>
-					<!-- //bbs --> 
-					<!-- 내용 : e -->
+					<!--//con -->
 				</div>
-				<!--//con -->
+				<!--//content -->
 			</div>
-			<!--//content -->
+			<!--//container -->
+			<!-- E N D :: containerArea-->
 		</div>
-		<!--//container --> 
-		<!-- E N D :: containerArea-->
+		<!--//canvas -->
 	</div>
-	<!--//canvas -->
-</div>
-<!--//wrap -->
-
+	<!--//wrap -->
 </body>
 </html>

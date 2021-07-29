@@ -47,3 +47,4 @@ top.jsp
 #admin_members_detail .btns {cursor: pointer;}
 .admin_members_detail_subtitle > div {display: flex; justify-content: center; margin-bottom: 10px;}
 .admin_members_detail_subtitle > div input[name="admin_members_detail_subtitle"] {cursor: pointer; text-align: center;}
+.admin_members_detail_subtitle > div input[name="admin_members_detail_subtitle2"] {text-align: center;}

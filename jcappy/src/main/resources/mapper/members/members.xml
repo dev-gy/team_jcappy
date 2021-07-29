@@ -102,4 +102,32 @@
 		<if test="mpwd != ''">, mpwd=MD5(#{mpwd})</if>
 		WHERE mno=${mno}
 	</update>
+	
+	<!-- [관리자] 회원 작성 글 목록 -->
+	<select id="boardList" resultType="map" parameterType="jcappy.members.MembersVo">
+		SELECT '리뷰' AS cate , rtitle AS title, rregdate AS regdate FROM review WHERE mno=${mno}
+		UNION ALL
+		SELECT '문의', qtitle, qregdate FROM qna WHERE mno=${mno}
+		ORDER BY regdate ${direct}
+		LIMIT ${startIdx}, ${pageRow}
+	</select>
+	
+	<!-- [관리자] 회원 작성 글 카운트 -->
+	<select id="boardCount" resultType="int" parameterType="jcappy.members.MembersVo">
+		SELECT (SELECT COUNT(*) FROM review WHERE mno=${mno}) + (SELECT COUNT(*) FROM qna WHERE mno=${mno})
+	</select>
+	
+	<!-- [관리자] 회원 주문 목록 -->
+	<select id="orderList" resultType="map" parameterType="jcappy.members.MembersVo">
+		SELECT odate AS date, i.ono AS no, SUM(ol_count * ol_price) AS price, o_state AS state
+		FROM orderinfo i JOIN orderlist l ON i.ono = l.ono AND mno=${mno}
+		GROUP BY i.ono      
+		ORDER BY i.odate ${direct}  
+		LIMIT ${startIdx}, ${pageRow}
+	</select>
+	
+	<!-- [관리자] 회원 주문 카운트 -->
+	<select id="orderCount" resultType="int" parameterType="jcappy.members.MembersVo">
+		SELECT COUNT(*) FROM orderinfo WHERE mno = ${mno}
+	</select>
 </mapper>
