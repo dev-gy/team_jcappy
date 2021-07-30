@@ -3,8 +3,7 @@
 <mapper namespace="orderinfo">
 
 	<select id="selectAll" resultType="jcappy.orderinfo.OrderinfoVo" parameterType="jcappy.orderinfo.OrderinfoVo">
-		SELECT *
-		FROM orderinfo
+		SELECT * FROM orderinfo
 	</select>
 	
 	<insert id="insert" parameterType="jcappy.orderinfo.OrderinfoVo">
