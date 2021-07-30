@@ -165,6 +165,24 @@ function getOrderList(reqPage) {
 		}
 	});
 }
+
+// 작성글 상세 페이지로 이동
+function go_board(cate, no) {
+	if (cate == '문의') {
+		location.href='<%=request.getContextPath()%>/admin/board/qna/detail?qno=' + no;
+	} else if (cate == '리뷰') {
+		location.href='<%=request.getContextPath()%>/admin/board/review/detail?rno=' + no;
+	}
+}
+
+// 게시판리스트에서 작성자 이메일 검색
+function go_board_list(cate) {
+	if (cate == '문의') {
+		location.href='<%=request.getContextPath()%>/admin/board/qna/list?stype=memail&sval=${vo.memail}';
+	} else if (cate == '리뷰') {
+		location.href='<%=request.getContextPath()%>/admin/board/review/list?stype=memail&sval=${vo.memail}';
+	}
+}
 </script>
 </head>
 <body>

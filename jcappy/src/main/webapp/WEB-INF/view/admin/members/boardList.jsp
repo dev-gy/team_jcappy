@@ -36,8 +36,16 @@
 							<c:when test="${!empty list }">
 								<c:forEach var="vo" items="${list }" varStatus="status">
 									<tr>
-										<td class="first"><a href="detail?mno=${vo.mno }&orderby=${membersVo.orderby}&direct=${membersVo.direct}&pageRow=${membersVo.pageRow}&reqPage=${membersVo.reqPage}">${vo.cate }</a></td>
-										<td>${vo.title}</td>
+										<td class="first">
+											<a href="javascript:go_board_list('${vo.cate }');">
+												${vo.cate }
+											</a>
+										</td>
+										<td>
+											<a href="javascript:go_board('${vo.cate }', ${vo.no });">
+												${vo.title}
+											</a>
+										</td>
 										<td class="date"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd"/></td>
 									</tr>
 								</c:forEach>
