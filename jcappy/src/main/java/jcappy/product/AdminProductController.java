@@ -91,7 +91,6 @@ public class AdminProductController {
 			}
 		}
 		
-		
 		int r = service.insert(vo);
 
 		if (r > 0) {
@@ -105,22 +104,50 @@ public class AdminProductController {
 	}
 
 	@RequestMapping("/admin/product/update")
-	public String update(Model model, ProductVo vo, @RequestParam MultipartFile file, HttpServletRequest req) {
+	public String update(Model model, ProductVo vo, @RequestParam MultipartFile file1, @RequestParam MultipartFile file2, @RequestParam MultipartFile file3, HttpServletRequest req) {
 
-		if (!file.isEmpty()) {
+		if (!file1.isEmpty()) {
 			try {
-				String org = file.getOriginalFilename();
+				String org = file1.getOriginalFilename();
 				String ext = "";
 				ext = org.substring(org.lastIndexOf("."));
 
 				String real = new Date().getTime() + ext;
 				String path = req.getRealPath("/upload/");
 
-				file.transferTo(new File(path + real));
+				file1.transferTo(new File(path + real));
 				vo.setPimg1_org(org);
 				vo.setPimg1_real(real);
+			} catch (Exception e) {
+			}
+		}
+		
+		if (!file2.isEmpty()) {
+			try {
+				String org = file2.getOriginalFilename();
+				String ext = "";
+				ext = org.substring(org.lastIndexOf("."));
+
+				String real = new Date().getTime() + ext;
+				String path = req.getRealPath("/upload/");
+
+				file2.transferTo(new File(path + real));
 				vo.setPimg2_org(org);
 				vo.setPimg2_real(real);
+			} catch (Exception e) {
+			}
+		}
+		
+		if (!file3.isEmpty()) {
+			try {
+				String org = file3.getOriginalFilename();
+				String ext = "";
+				ext = org.substring(org.lastIndexOf("."));
+
+				String real = new Date().getTime() + ext;
+				String path = req.getRealPath("/upload/");
+
+				file3.transferTo(new File(path + real));
 				vo.setPimg3_org(org);
 				vo.setPimg3_real(real);
 			} catch (Exception e) {

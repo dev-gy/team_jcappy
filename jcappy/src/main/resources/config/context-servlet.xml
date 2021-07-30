@@ -87,8 +87,7 @@
 	<mvc:view-controller path="/admin/order/detail.do"/>
 	
 	<!-- 회원 관리 -->
-	<mvc:view-controller path="/admin/user/list.do"/>
-	<mvc:view-controller path="/admin/user/detail.do"/>
+	<mvc:view-controller path="/admin/members/detail2.do"/>
 	
 	<!-- 상품 관리 -->
 	<mvc:view-controller path="/admin/item/list.do"/>

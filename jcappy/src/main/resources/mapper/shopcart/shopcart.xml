@@ -8,10 +8,26 @@
 	</insert>
 	
 	<select id="selectAll" resultType="jcappy.shopcart.ShopcartVo">
-		SELECT shopcart.*, product.pname as pname, product.pimg1_org as pimg1_org, product.pprice as pprice 
+		SELECT shopcart.*, product.pname as pname, product.pimg1_org as pimg1_org, product.pprice as pprice, shopcart.scount * product.pprice as total_price        
 		FROM shopcart 
 		LEFT JOIN product 
 		ON shopcart.pno = product.pno
 		ORDER BY shopcart.sno ASC
 	</select>
+	
+	<update id="countUpdate" parameterType="jcappy.shopcart.ShopcartVo">
+		UPDATE shopcart SET scount=#{scount} WHERE sno=#{sno}
+		
+		<selectKey keyProperty="total_price" resultType="int" order="AFTER">
+			SELECT shopcart.scount * product.pprice as total_price
+			FROM shopcart 
+			LEFT JOIN product 
+			ON shopcart.pno = product.pno
+			WHERE sno=#{sno}
+		</selectKey>
+	</update>
+	
+	<delete id="delete" parameterType="jcappy.shopcart.ShopcartVo">
+		DELETE FROM shopcart WHERE sno=#{sno}
+	</delete>
 </mapper>

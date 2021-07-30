@@ -271,7 +271,7 @@ function checkbox_value() {
 					<div id="admin_create">
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="insert">
+							<form method="post" name="frm" id="frm" action="">
 							<table>
 								<colgroup>
 									<col width="30%" />

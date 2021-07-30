@@ -45,7 +45,7 @@
 								<tbody>
 									<c:if test="${empty list }">
 			                            <tr>
-			                                <td class="first" colspan="5">등록된 글이 없습니다.</td>
+			                                <td class="first" colspan="4">등록된 글이 없습니다.</td>
 			                            </tr>
 			                        </c:if>
 									<c:forEach var="vo" items="${list}">
@@ -65,7 +65,7 @@
 							<!--//btn-->
 							<div class="btn">
 								<div class="btnRight">
-									<a class="wbtn" href="write?reqPage=${noticeVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><strong>등록</strong> </a>
+									<a class="wbtn" href="create?reqPage=${noticeVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><strong>등록</strong> </a>
 								</div>
 							</div>
 							<!-- 페이징 처리 -->

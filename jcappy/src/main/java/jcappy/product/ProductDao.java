@@ -37,7 +37,7 @@ public class ProductDao {
 	}
 
 	public int updateCount(ProductVo vo) {
-		return sqlSession.selectOne("product.updateCount", vo);
+		return sqlSession.update("product.updateCount", vo);
 	}
 	
 	public int deleteImg(ProductVo vo) {

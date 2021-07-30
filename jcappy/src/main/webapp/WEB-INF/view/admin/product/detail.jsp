@@ -45,28 +45,37 @@ function goSave() {
 /* select id = pcomp와 option id 의 값이 같을경우 그 값을 출력   */
 </script>
 <script>
-																				/* jsp만 만들면 됨 deleteImg */
-/* function isDelImg() {
-    if (confirm('삭제하시겠습니까?')) {
+function groupDel(name) {
 
-       $.ajax({
-          url:'updateImg',
-          data:{
-             'pno':${vo.pno}
-          },
-          method:'post',
-          success:function(res) {
-             console.log(res);
-             if (res.trim() == 'true') {
-                alert('정상적으로 삭제되었습니다.');
-                location.href='detail?pno=${vo.pno}';s
-             } else {
-                alert('삭제 실패');
-             }
-          },
-       });
-    }
- } */
+	var count=0;
+	for (var i=0; i<$('input[name="'+name+'"]').length; i++) {
+
+		if ($('input[name="'+name+'"]').eq(i).prop('checked')) {
+			count++;
+			break;
+		}
+	}
+	if (count == 0) {
+		alert('하나 이상 체크해 주세요');
+	} else {
+		if (confirm('삭제하시겠습니까?')) {
+			$("#frm").submit();
+		}
+	}
+}
+
+function check() {
+
+	if ($("#noimg").prop('checked')) {
+		for (var i=0; i<$('input[name="no"]').length; i++) {
+			$('input[name="no"]').eq(i).prop('checked','checked');
+		}
+	} else {
+		for (var i=0; i<$('input[name="no"]').length; i++) {
+			$('input[name="no"]').eq(i).prop('checked','');
+		}
+	}
+}
 </script>
 <script>
 $(document).ready(function(){
@@ -111,14 +120,23 @@ $(document).ready(function(){
 													class="w100" value="${vo.pno }" /></td>
 											</tr>
 											<tr>
+												<th scope="row"><label for="">상품 종류</label></th>
+												<td colspan="10">
+												<div>
+													<select name="ptype" onchange="categoryChange(this)">
+														<option>${vo.ptype }</option>
+													</select> <select name="pcate" id="pcate">
+														<option>${vo.pcate }</option>
+													</select>
+												</div>
+												</td>
+											</tr>
+											<tr>
 												<th scope="row"><label for="">브랜드</label></th>
 												<td colspan="10">
-												<select name="stype" id="stype" title="브랜드">
-														<option value="sam">삼성전자</option>
-														<option value="lg">LG전자</option>
-														<option value="carrier">캐리어</option>
-														<option value="winia">위니아전자</option>
-												</select>
+													<select name="pcompany" id="stype" title="브랜드">
+														<option value="">${vo.pcompany }</option>
+													</select>
 												</td>
 											</tr>
 											<tr>
@@ -145,19 +163,27 @@ $(document).ready(function(){
 											<tr>
 												<th scope="row"><label for="">상품 이미지</label></th>
 												<td colspan="10" rowspan="1">
-												<input type="checkbox" name="nos" id="noimg" /> <img style="width: 50px;" src="${vo.pimg1_org}">
-												<input type="file" id="file" name="file" class="w100" />
-												<input type="checkbox" name="nos" id="noimg" /> <img style="width: 50px;" src="${vo.pimg2_org}">
-												<input type="file" id="file" name="file" class="w100" />
-												<input type="checkbox" name="nos" id="noimg" /> <img style="width: 50px;" src="${vo.pimg3_org}">
-												<input type="file" id="file" name="file" class="w100" />
-												<a class="btns" style="cursor: pointer;" href="javascript:isDelImg();"><strong>삭제</strong></a>
+												
+												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
+												<img style="width: 50px;" src="${vo.pimg1_org}">
+												<input type="file" id="file1" name="file1" class="w100" />
+												
+												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
+												<img style="width: 50px;" src="${vo.pimg2_org}">
+												<input type="file" id="file2" name="file2" class="w100" />
+												
+												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
+												<img style="width: 50px;" src="${vo.pimg3_org}">
+												<input type="file" id="file3" name="file3" class="w100" />
+												
+												<a class="btns" style="cursor: pointer;" href="#" onclick="groupDel('nos');"><strong>삭제</strong> </a>
 												</td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품 상세정보</label></th>
-												<td colspan="10"><textarea name="content" id="contents"
-														style="width: 100%;"></textarea></td>
+												<td colspan="10">
+													<textarea name="pdetail" id="contents" style="width: 100%;">${vo.pdetail }</textarea>
+												</td>
 										</tbody>
 									</table>
 									<input type="hidden" name="cmd" value="write" /> <input

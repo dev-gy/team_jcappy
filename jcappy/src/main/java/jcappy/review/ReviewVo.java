@@ -24,6 +24,9 @@ public class ReviewVo extends CommonVo {
 	private String mphone;
 	private int comment_count;
 	private String pname;
+	private String pimg1_org;
+	private String pimg2_org;
+	private String pimg3_org;
 
 
 	public ReviewVo() {
@@ -163,4 +166,30 @@ public class ReviewVo extends CommonVo {
 	public void setMphone(String mphone) {
 		this.mphone = mphone;
 	}
+
+	public String getPimg1_org() {
+		return pimg1_org;
+	}
+
+	public void setPimg1_org(String pimg1_org) {
+		this.pimg1_org = pimg1_org;
+	}
+
+	public String getPimg2_org() {
+		return pimg2_org;
+	}
+
+	public void setPimg2_org(String pimg2_org) {
+		this.pimg2_org = pimg2_org;
+	}
+
+	public String getPimg3_org() {
+		return pimg3_org;
+	}
+
+	public void setPimg3_org(String pimg3_org) {
+		this.pimg3_org = pimg3_org;
+	}
+	
+	
 }

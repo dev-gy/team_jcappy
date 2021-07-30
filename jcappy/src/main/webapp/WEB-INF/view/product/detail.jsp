@@ -10,7 +10,7 @@
 $(function() {
 	// 상품가격 및 총합가격 초기화.
 	$("#price").text(Number("${vo.pprice }").toLocaleString("ko-KR")+"원");
-	$("#total_price").text(Number(${vo.pprice } * $("#count").val()).toLocaleString("ko-KR")+"원");
+	$("#total_price").text(Number("${vo.pprice }" * $("#count").val()).toLocaleString("ko-KR")+"원");
 	
 	// 스크롤시 다이얼로드 중앙 고정되도록 다이얼로그 옵션의 포지션 센터 위치 재등록
 	$(window).scroll(function() {
@@ -28,7 +28,7 @@ $(function() {
 				$(this).dialog("close");	// 현재 다이얼로그 닫기
 			},
 			"장바구니": function() {
-				location.href="/jcappy/cart.do";
+				location.href="/jcappy/cart";
 			}
 		},
 	}).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();	// 다이얼로그의 타이틀바를 클래스로 찾아서 제거 (타이틀바 사용안할 것)
@@ -117,15 +117,15 @@ function infoUpdate() {
 	// 새로고침 방지를 위해 ajax로 상품 가격, 총합가격 데이터 갱신 및 업데이트
 	$.ajax({
 		url: "/jcappy/product/detail/calcprice",
+		type: "GET",
 		data: {	
 			price: "${vo.pprice }",
 			totalPrice: "${vo.pprice }" * $("#count").val(),
 		},
-		type: "GET",
+		dataType: "json",
 		success: function(res) {
-			var data = JSON.parse(res);	// 하나 이상의 데이터이기 때문에 json형식으로 받아와 파싱 후 사용
-			$("#price").text(Number(data.price).toLocaleString("ko-KR")+"원");
-			$("#total_price").text(Number(data.totalPrice).toLocaleString("ko-KR")+"원");
+			$("#price").text(Number(res.price).toLocaleString("ko-KR")+"원");
+			$("#total_price").text(Number(res.totalPrice).toLocaleString("ko-KR")+"원");
 		},
 		error: function(res) {
 			console.log("error: " + res);

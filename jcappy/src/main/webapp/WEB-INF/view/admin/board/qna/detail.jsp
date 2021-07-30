@@ -105,7 +105,9 @@ function qna_detail_isDel() {//게시글 삭제
 									<tr>
 										<th scope="row"><label for="">내용</label></th>
 										<td colspan="10" style="vertical-align: top;">
-											${vo.qcontent}
+											<div class="qna_detail_qcontent">
+												${vo.qcontent}
+											</div>
 										</td>
 									</tr>
 									<tr>

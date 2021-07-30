@@ -8,7 +8,8 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
 <title>상품 목록</title>
 <script>
-function goSaveCount() {
+function goSaveCount(no) {
+	$("#pno").val(no);
 	$("#frmListCount").submit();
 }
 
@@ -36,29 +37,6 @@ function goSaveCount() {
 </script>
 <script>
 /* 재고량 버튼 클릭시 변경 */
-</script>
-<script>
-function categoryChange(e) {
-    var pcate_frez = ["일반형냉장고", "양문형냉장고", "업소용냉장고"];
-    var pcate_air = ["스탠드형에어컨", "벽걸이형에어컨", "창문형에어컨"];
-    var pcate_tv = ["LEDTV", "QLEDTV", "OLEDTV"];
-    var pcate_wash = ["일반세탁기", "드럼세탁기", "미니세탁기"];
-    var target = document.getElementById("pcate");
- 
-    if(e.value == "frez") var d = pcate_frez;
-    else if(e.value == "air") var d = pcate_air;
-    else if(e.value == "tv") var d = pcate_tv;
-    else if(e.value == "wash") var d = pcate_wash;
- 
-    target.options.length = 0;
- 
-    for (x in d) {
-        var opt = document.createElement("option");
-        opt.value = d[x];
-        opt.innerHTML = d[x];
-        target.appendChild(opt);
-    }    
-}
 </script>
 </head>
 <body>
@@ -114,7 +92,7 @@ function categoryChange(e) {
 													<td style="text-align: left; padding-left: 10px;"><a href="detail?pno=${vo.pno }">${vo.pname }</a></td>
 													<td><fmt:formatNumber value="${vo.pprice }" pattern="#,###,###"/></td>
 													<td><input type="number" id="pcount" name="pcount" class="w100" value="${vo.pcount }" />
-													<a id="ppcount" class="btns" href="javascript:goSaveCount"><strong>변경</strong></a>	
+													<a id="ppcount" class="btns" href="javascript:goSaveCount(${vo.pno });"><strong>변경</strong></a>	
 													</td>
 													<td class="date">
 													<fmt:formatDate value="${vo.pregdate }" pattern="yyyy-MM-dd HH:mm:ss" />
@@ -126,6 +104,7 @@ function categoryChange(e) {
 											</c:forEach>
 										</tbody>
 									</table>
+									<input type="hidden" name="pno" id="pno" value="">
 								</form>
 								<div class="btn">
 									<div class="btnRight">

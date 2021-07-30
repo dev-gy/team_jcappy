@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="coupon">
+
+	<sql id="couponWhere">
+		<where>
+			<if test="sval != null and sval != ''">
+				<if test="stype == 'all'">
+					ccode LIKE '%${sval}%' OR cprice LIKE '%${sval}%' OR memail LIKE '%${sval}%'
+				</if>
+				<if test="stype != 'all'">
+					${stype} LIKE '%${sval}%'
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectAll" resultType="jcappy.coupon.CouponVo" parameterType="jcappy.coupon.CouponVo">
+		SELECT *
+		FROM coupon c left Join members m ON c.mno = m.mno
+		<include refid="couponWhere"/>
+		ORDER BY ${orderby} ${direct}
+		LIMIT ${startIdx},${pageRow}
+	</select>
+	
+	<select id="count" resultType="int" parameterType="jcappy.coupon.CouponVo">
+		SELECT COUNT(*) FROM coupon c left Join members m ON c.mno = m.mno
+		<include refid="couponWhere"/>
+	</select>
+	
+	<select id="detail" resultType="jcappy.coupon.CouponVo" parameterType="jcappy.coupon.CouponVo">
+		SELECT * FROM coupon c left Join members m ON c.mno = m.mno WHERE cno = #{cno}
+	</select>
+	
+	<update id="update"  parameterType="jcappy.coupon.CouponVo">
+		UPDATE coupon SET ccode=#{ccode}, cprice=#{cprice}, cdate=#{cdate} WHERE cno=#{cno}
+	</update>
+	
+	<delete id="delete" parameterType="jcappy.coupon.CouponVo">
+		DELETE FROM coupon WHERE cno=#{cno} 
+	</delete>
+	
+	<select id="findMno" parameterType="String" resultType="jcappy.coupon.CouponVo">
+		SELECT mno FROM members WHERE memail=#{memail}
+	</select>
+	
+	<insert id="insert" parameterType="jcappy.coupon.CouponVo">
+		INSERT INTO coupon(ccode,cprice,cregdate,cdate,mno)
+		VALUES(#{ccode}, #{cprice}, now(), #{cdate}, #{mno})
+	</insert>
+	
+	<select id="countMemail" parameterType="jcappy.coupon.CouponVo" resultType="int">
+		SELECT COUNT(*) FROM members WHERE memail = #{memail}
+	</select>
+	
+	<delete id="deleteGroup" parameterType="jcappy.coupon.CouponVo">
+		DELETE FROM coupon WHERE cno IN
+		<foreach collection="cnos" index="index" item="no" open="(" close=")" separator=",">
+		#{no}		
+		</foreach>
+	</delete>
+</mapper>

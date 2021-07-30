@@ -29,9 +29,9 @@
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
 									<col class="w3" />
-									<col class="" />
-									<col class="w8" />
-									<col class="w6" />
+									<col class="*" />
+									<col class="w15" />
+									<col class="w10" />
 								</colgroup>
 								<thead>
 									<tr>
@@ -44,7 +44,7 @@
 								<tbody>
 									<c:if test="${empty list }">
 			                            <tr>
-			                                <td class="first" colspan="5">등록된 글이 없습니다.</td>
+			                                <td class="first" colspan="4">등록된 글이 없습니다.</td>
 			                            </tr>
 			                        </c:if>
 									<c:forEach var="vo" items="${list}" varStatus="status">

@@ -17,8 +17,12 @@ public class AdminLoginController {
 	
 	// 로그인 폼
 	@GetMapping("/admin/login")
-	public String loginForm(Model model, AdminVo vo) {
-		return "admin/index";
+	public String loginForm(Model model, AdminVo vo, HttpSession session) {
+		if (session.getAttribute("adminInfo") != null) {
+			return "redirect:/admin/main";
+		} else {
+			return "admin/index";
+		}
 	}
 
 	// 로그인처리

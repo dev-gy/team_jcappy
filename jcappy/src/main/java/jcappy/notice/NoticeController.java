@@ -52,8 +52,8 @@ public class NoticeController {
 		return "admin/board/notice/detail";
 	}
 	//공지사항 쓰기페이지
-	@RequestMapping("/admin/board/notice/write")
-	public String write(Model model, NoticeVo vo) {
+	@RequestMapping("/admin/board/notice/create")
+	public String create(Model model, NoticeVo vo) {
 		return "admin/board/notice/create";
 	}
 	//공지사항 데이터 입력

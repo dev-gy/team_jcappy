@@ -130,7 +130,7 @@
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
-					<div id="bbs">
+					<div id="bbs" class="notice_detail_bbs">
 						<div id="bread">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
@@ -170,7 +170,9 @@
 									<tr>
 										<th scope="row" ><label for="" >내용</label></th>
 										<td colspan="10" style="vertical-align: top;">
-											${vo.ncontent}
+											<div class="notice_detail_ncontent">
+												${vo.ncontent}
+											</div>
 										</td>
 									</tr>
 									<tr>
