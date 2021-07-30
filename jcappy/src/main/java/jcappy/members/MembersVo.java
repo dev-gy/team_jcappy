@@ -10,7 +10,7 @@ public class MembersVo {
 	private String memail;
 	private String mgrade;
 	private String mpwd;
-	private Timestamp mregdete;
+	private Timestamp mregdate;
 	private String mzipcode;
 	private String maddr;
 	private String maddrde;
@@ -62,11 +62,11 @@ public class MembersVo {
 	public void setMpwd(String mpwd) {
 		this.mpwd = mpwd;
 	}
-	public Timestamp getMregdete() {
-		return mregdete;
+	public Timestamp getMregdate() {
+		return mregdate;
 	}
-	public void setMregdete(Timestamp mregdete) {
-		this.mregdete = mregdete;
+	public void setMregdate(Timestamp mregdate) {
+		this.mregdate = mregdate;
 	}
 	public String getMzipcode() {
 		return mzipcode;
