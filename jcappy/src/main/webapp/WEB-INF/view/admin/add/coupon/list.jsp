@@ -1,9 +1,16 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.util.Date" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
+$(function(){
+	var date = ${vo.cregdate}
+	console.log(date);
+});
 function coupon_list_groupDel(name) { // 체크박스에 선택된 쿠폰들 그룹삭제 기능
 	var count=0;
 	for (var i=0; i<$('input[name="'+name+'"]').length; i++) {
@@ -31,6 +38,8 @@ function coupon_list_check() { // 맨위에 체크박스 선택시 전체선택 
 		}
 	}
 }
+
+
 </script>
 </head>
 <body> 
@@ -52,14 +61,14 @@ function coupon_list_check() { // 맨위에 체크박스 선택시 전체선택 
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="blist">
-							<p><span><strong>총 111개</strong>  |  1/12페이지</span></p>
+							<p><span><strong>총 ${couponVo.totCount }개</strong>  | ${couponVo.reqPage}/${couponVo.totPage }페이지</span></p>
 							<form name="frm" id="frm" action="groupDelete" method="post">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<colgroup>
 									<col class="w3" />
 									<col class="w4" />
 									<col class="" />
-									<col class="w6" />
+									<col class="w7" />
 									<col class="w12" />
 									<col class="w6" />
 									<col class="w6" />
@@ -81,15 +90,16 @@ function coupon_list_check() { // 맨위에 체크박스 선택시 전체선택 
 			                                <td class="first" colspan="7">등록된 글이 없습니다.</td>
 			                            </tr>
 			                        </c:if>
-									<c:forEach var="vo" items="${list}">
+									<c:forEach var="vo" items="${list}" varStatus="status">
 									<tr>
 										<td class="first"><input type="checkbox" name="cnos" value="${vo.cno}"/></td>
-										<td>${vo.cno}</td>
+										<td>${(couponVo.totCount-status.index)-((couponVo.reqPage-1)*couponVo.pageRow)}</td>
 										<td class="title"><a href="detail?cno=${vo.cno}&reqPage=${couponVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.ccode} </a></td>
-										<td>${vo.cprice}</td>
+										<td><fmt:formatNumber type="number" value="${vo.cprice}"/></td>
 										<td>${vo.memail}</td>
 										<td><fmt:formatDate value="${vo.cregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
-										<td>${vo.cdate}</td>
+										
+										<td>${vo.cdate}일 </td>
 									</tr>
 									</c:forEach>
 									
@@ -101,7 +111,7 @@ function coupon_list_check() { // 맨위에 체크박스 선택시 전체선택 
 									<a class="btns" href="#" onclick="coupon_list_groupDel('cnos');"><strong>삭제</strong> </a>
 								</div>
 								<div class="btnRight">
-									<a class="wbtn" href="create"><strong>등록</strong> </a>
+									<a class="wbtn" href="create?reqPage=${couponVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><strong>등록</strong> </a>
 								</div>
 							</div>
 							<!--//btn-->
@@ -126,7 +136,7 @@ function coupon_list_check() { // 맨위에 체크박스 선택시 전체선택 
 							<form name="searchForm" id="searchForm" action="list"  method="post">
 								<div class="search">
 									 <select id="orderby" name="orderby" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
-	                                    <option value="cregdate" <c:if test="${param.orderby=='nregdate'}">selected</c:if>>작성일</option>
+	                                    <option value="cregdate" <c:if test="${param.orderby=='cregdate'}">selected</c:if>>작성일</option>
 	                                </select>
 	                                <select id="direct" name="direct" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
 	                                    <option value="DESC" <c:if test="${param.direct=='DESC'}">selected</c:if>>내림차순</option>

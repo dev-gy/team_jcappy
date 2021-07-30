@@ -79,7 +79,7 @@ function coupon_detail_isDel() { //쿠폰삭제 ajax
 						<div id="bread">
 							<form method="post" name="frm" id="frm" action="update">
 							<input type="hidden" name="cno" value="${vo.cno}">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<colgroup>
 									<col width="20%" />
 									<col width="10%" />
@@ -104,7 +104,7 @@ function coupon_detail_isDel() { //쿠폰삭제 ajax
 									<tr>
 										<th scope="row"><label for="">할인금액</label></th>
 										<td colspan="10">
-											<input type="text" id="cprice" name="cprice" class="w100" value="${vo.cprice }" />
+											<input type="text" id="cprice" name="cprice" class="w100" value="<fmt:formatNumber type="number" value="${vo.cprice}"/>" />
 										</td>
 									</tr>
 									<tr>
@@ -136,7 +136,7 @@ function coupon_detail_isDel() { //쿠폰삭제 ajax
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="list"><strong>목록</strong></a>
+									<a class="btns" href="list?<c:if test="${!empty param.reqPage}">reqPage=${param.reqPage}</c:if>&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
 									<a class="btns" style="cursor:pointer;" href="javascript:coupon_detail_go_save();"><strong>수정</strong></a>

@@ -26,7 +26,7 @@
 					<div id="bbs">
 						<div id="blist">
 							<p><span><strong>총 ${qnaVo.totCount}개</strong>  |   ${qnaVo.reqPage}/${qnaVo.totPage }</span></p>
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<colgroup>
 									<col class="w3" />
 									<col class="*" />
