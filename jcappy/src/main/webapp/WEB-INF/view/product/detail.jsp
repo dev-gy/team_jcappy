@@ -9,8 +9,8 @@
 <script>
 $(function() {
 	// 상품가격 및 총합가격 초기화.
-	$("#price").text(Number("${vo.pprice }").toLocaleString("ko-KR")+"원");
-	$("#total_price").text(Number("${vo.pprice }" * $("#count").val()).toLocaleString("ko-KR")+"원");
+	$(".price_txt").text(Number("${vo.pprice }").toLocaleString("ko-KR")+"원");
+	$(".total_price_txt").text(Number("${vo.pprice }" * $(".count").val()).toLocaleString("ko-KR")+"원");
 	
 	// 스크롤시 다이얼로드 중앙 고정되도록 다이얼로그 옵션의 포지션 센터 위치 재등록
 	$(window).scroll(function() {
@@ -87,6 +87,7 @@ $(function() {
 	});
 });
 
+// 장바구니에 상품등록
 function addCart() {
 	if ("${sessionScope.membersInfo.mno }" == "") {
 		location.href="/jcappy/login";
@@ -124,8 +125,9 @@ function infoUpdate() {
 		},
 		dataType: "json",
 		success: function(res) {
-			$("#price").text(Number(res.price).toLocaleString("ko-KR")+"원");
-			$("#total_price").text(Number(res.totalPrice).toLocaleString("ko-KR")+"원");
+			$(".total_price").val(res.totalPrice);
+			$(".price_txt").text(Number(res.price).toLocaleString("ko-KR")+"원");
+			$(".total_price_txt").text(Number(res.totalPrice).toLocaleString("ko-KR")+"원");
 		},
 		error: function(res) {
 			console.log("error: " + res);
@@ -153,8 +155,8 @@ function infoUpdate() {
 							</td>
 							<td class="item_info_area">
 								<div class="top">
-									<h1 class="item_name">${vo.pname }</h1>
-									<h2 class="item_info_price" id="price">${vo.pprice }원</h2>
+									<h1 class="name_txt">${vo.pname }</h1>
+									<h2 class="price_txt" id="price_txt">${vo.pprice }원</h2>
 								</div>
 								<div class="middle">
 									<hr>
@@ -163,22 +165,27 @@ function infoUpdate() {
 									<hr>
 								</div>
 								<div class="bottom">
-								<form action="/jcappy/pay/index.do" method="POST">
+								<form action="/jcappy/pay" method="POST">
 									<p>수량 선택</p>
 										<span class="item_count_area cstyle_border_black">
 										 	<a class="minus_btn cstyle_btn" href="javascript:infoUpdate();">-</a>
-											<input class="count" id="count" type="text" name="pcount" value="1" oninput="onlyNumber(this);" />
+											<input class="count" id="count" type="text" name="count" value="1" oninput="onlyNumber(this);" />
 											<a class="plus_btn cstyle_btn" href="javascript:infoUpdate();">+</a>
 										</span>
 									<div class="total_price_area">
 										<h2>총 상품 금액</h2>
-										<h2 class="total_price" id="total_price">${vo.pprice }원</h2>
-										<input type="hidden" name="pno" value="${vo.pno }">
+										<h2 class="total_price_txt" id="total_price_txt">${vo.pprice }원</h2>
 									</div>
 									<div class="btn_area">
 										<button class="add_cart_btn cstyle_btn" type="button" onclick="addCart();">장바구니</button>
 										<button class="buy_btn cstyle_btn" type="submit">주문하기</button>
 									</div>
+									<input class="pno" type="hidden" name="pno" value="${vo.pno }">
+									<input class="name" type="hidden" name="name" value="${vo.pname }">
+									<input class="img" type="hidden" name="img" value="${vo.pimg1_org }">
+									<input class="total_price" type="hidden" name="total_price" value="${vo.pprice }">
+									
+									
 								</form>
 								</div>
 							</td>

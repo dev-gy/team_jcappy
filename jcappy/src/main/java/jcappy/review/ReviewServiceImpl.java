@@ -10,6 +10,8 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Autowired
 	ReviewDao reviewDao;
+	
+	@Override
 	public List<ReviewVo> selectAll(ReviewVo vo) {
 		vo.setOrderby("rno");
 		vo.setDirect("desc");

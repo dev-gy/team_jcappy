@@ -22,7 +22,7 @@ public class MembersVo extends CommonVo{
 	// NonDB
 	private String checkMemail;
 
-	MembersVo() {
+	public MembersVo() {
 		super.setOrderby("mregdate");
 	}
 	

@@ -69,4 +69,9 @@ public class MembersServiceImpl implements MembersService{
 		return dao.update(vo);
 	}
 	
+	@Override
+	public MembersVo detail(MembersVo vo) {
+		return dao.detail(vo);
+	}
+	
 }

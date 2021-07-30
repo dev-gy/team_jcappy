@@ -11,6 +11,7 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	ProductDao productDao;
 	
+	@Override
 	public List<ProductVo> selectAll(ProductVo vo) {
 		// 페이징 관련 값 세팅
 		int totCount = productDao.count(vo); // 총갯수
@@ -31,6 +32,7 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.selectAll(vo);
 	}
 	
+	@Override
 	public ProductVo detail(ProductVo vo) {
 		return productDao.detail(vo);
 	}
