@@ -20,6 +20,7 @@ public class QnaVo extends CommonVo {
 	private String isDel;
 	
 	private String aname;
+	private String aid;
 	
 	private String mname;
 	private String mphone;
@@ -29,6 +30,13 @@ public class QnaVo extends CommonVo {
 		setOrderby("qregdate");
 	}
 	
+	
+	public String getAid() {
+		return aid;
+	}
+	public void setAid(String aid) {
+		this.aid = aid;
+	}
 	public int getQno() {
 		return qno;
 	}

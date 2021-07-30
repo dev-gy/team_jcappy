@@ -26,6 +26,7 @@ public class MembersVo extends CommonVo{
 		super.setOrderby("mregdate");
 	}
 	
+	
 	// getter & setter
 
 	public String getCheckMemail() {
@@ -83,7 +84,7 @@ public class MembersVo extends CommonVo{
 	public void setMpwd(String mpwd) {
 		this.mpwd = mpwd;
 	}
-
+	
 	public Timestamp getMregdate() {
 		return mregdate;
 	}

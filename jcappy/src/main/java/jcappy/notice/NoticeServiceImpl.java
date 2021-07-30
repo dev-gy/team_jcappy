@@ -38,7 +38,6 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public NoticeVo detail(NoticeVo vo) {
-		dao.updateReadcount(vo);
 		return dao.detail(vo);
 	}
 

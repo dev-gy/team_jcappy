@@ -14,14 +14,22 @@ public class CommentVo extends CommonVo {
 	private int cm_board_no;
 	private int ano;
 	private String cm_tablename;
-	private String name;
+	private String aname;
+	private String mname;
 	
 	
-	public String getName() {
-		return name;
+	
+	public String getMname() {
+		return mname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
+	public String getAname() {
+		return aname;
+	}
+	public void setAname(String aname) {
+		this.aname = aname;
 	}
 	public int getCm_no() {
 		return cm_no;

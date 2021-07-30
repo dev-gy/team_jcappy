@@ -26,12 +26,12 @@
 					<div id="bbs">
 						<div id="blist">
 							<p><span><strong>총 ${qnaVo.totCount}개</strong>  |   ${qnaVo.reqPage}/${qnaVo.totPage }</span></p>
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<colgroup>
 									<col class="w3" />
 									<col class="*" />
 									<col class="w15" />
-									<col class="w6" />
+									<col class="w10" />
 								</colgroup>
 								<thead>
 									<tr>
@@ -59,7 +59,7 @@
 										<td>${vo.mname }(${vo.memail})</td>
 										</c:if>
 										<c:if test="${!empty vo.aname}">
-										<td>관리자</td>
+										<td>[관리자]${vo.aname}(${vo.aid})</td>
 										</c:if>
 										<td><fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 									</tr>
@@ -92,6 +92,9 @@
 										<option value="qtitle" <c:if test="${param.stype=='rtitle'}">selected</c:if>>제목</option>
 										<option value="qcontent" <c:if test="${param.stype=='rcontent'}">selected</c:if>>내용</option>
 										<option value="mname" <c:if test="${param.stype=='mname'}">selected</c:if>>작성자</option>
+										<option value="memail" <c:if test="${param.stype=='memail'}">selected</c:if>>이메일</option>
+										<option value="aname" <c:if test="${param.stype=='aname'}">selected</c:if>>[관리자]작성자</option>
+										<option value="aid" <c:if test="${param.stype=='aid'}">selected</c:if>>[관리자]아이디</option>
 									</select>
 									<input type="text" name="sval" value="${param.sval }"  title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" onclick="$('#searchForm').submit();" />

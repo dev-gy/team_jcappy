@@ -27,9 +27,11 @@
                     <a href="/jcappy/policy/agreement.do" id="join">회원가입</a>
                     <a href="/jcappy/findEmail" id="find">아이디·비밀번호 찾기</a>
                 </div>
+
             </div>
         </div>
         <%@ include file="/WEB-INF/view/include/bottom.jsp" %>
     </div>
 </body>
 </html>
+

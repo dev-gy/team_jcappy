@@ -25,11 +25,11 @@
 						<div id="blist">
 							<p><span><strong>총 ${reviewVo.totCount}개</strong>  | ${reviewVo.reqPage}/${reviewVo.totPage }페이지</span></p>
 							<form name="frm" id="frm" action="process.do" method="post">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<colgroup>
 									<col class="w3" />
 									<col class="*" />
-									<col class="w10" />
+									<col class="w15" />
 									<col class="w6" />
 									<col class="w6" />
 								</colgroup>
@@ -37,7 +37,7 @@
 									<tr>
 										<th scope="col" class="first">번호</th>
 										<th scope="col">[상품명]제목</th> 
-										<th scope="col">작성자</th>
+										<th scope="col">작성자(이메일)</th>
 										<th scope="col">작성일</th>
 										<th scope="col" class="last">조회수</th>
 										
@@ -49,12 +49,12 @@
 			                                <td class="first" colspan="5">등록된 글이 없습니다.</td>
 			                            </tr>
 			                        </c:if>
-									<c:forEach var="vo" items="${list}">
+									<c:forEach var="vo" items="${list}" varStatus="status">
 									<tr>
-										<td class="first">${vo.rno}</td>
+										<td class="first">${(reviewVo.totCount-status.index)-((reviewVo.reqPage-1)*reviewVo.pageRow)}</td>
 										<!-- 상세페이지 링크 and 리플 갯수 -->
 										<td class="title"><a href="detail?rno=${vo.rno}&reqPage=${reviewVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><strong style="font-size: 15px;">[${vo.pname}]</strong> ${vo.rtitle} [${vo.comment_count}]</a></td>
-										<td>${vo.mname }</td>
+										<td>${vo.mname }(${vo.memail})</td>
 										<td><fmt:formatDate value="${vo.rregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 										<td>${vo.rreadcount}</td>
 									</tr>
@@ -97,6 +97,7 @@
 										<option value="rtitle" <c:if test="${param.stype=='rtitle'}">selected</c:if>>제목</option>
 										<option value="rcontent" <c:if test="${param.stype=='rcontent'}">selected</c:if>>내용</option>
 										<option value="mname" <c:if test="${param.stype=='mname'}">selected</c:if>>작성자</option>
+										<option value="memail" <c:if test="${param.stype=='memail'}">selected</c:if>>이메일</option>
 										<option value="pname" <c:if test="${param.stype=='pname'}">selected</c:if>>상품명</option>
 									</select>
 									<input type="text" name="sval" value="${param.sval }"  title="검색할 내용을 입력해주세요" />

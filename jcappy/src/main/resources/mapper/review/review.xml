@@ -6,7 +6,7 @@
 		<where>
 			<if test="sval != null and sval != ''">
 				<if test="stype == 'all'">
-					rtitle LIKE '%${sval}%' OR rcontent LIKE '%${sval}%' OR mname LIKE '%${sval}%' OR pname LIKE '%${sval}%' 
+					rtitle LIKE '%${sval}%' OR rcontent LIKE '%${sval}%' OR mname LIKE '%${sval}%' OR pname LIKE '%${sval}%' OR memail LIKE '%${sval}%'
 				</if>
 				<if test="stype != 'all'">
 					${stype} LIKE '%${sval}%'

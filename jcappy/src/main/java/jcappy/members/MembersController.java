@@ -63,24 +63,24 @@ public class MembersController {
 	
 	// 로그인
 	@GetMapping("/login")
-	public String loginForm(MembersVo vo, @CookieValue(value="cookieId", required = false) Cookie cookie) {
+	public String loginForm(MembersVo vo, @CookieValue(value="cookieEmail", required = false) Cookie cookie) {
 		if (cookie != null) {
 			vo.setMemail(cookie.getValue());
 		}
 		return "members/login";
 	}
-	
+	// 로그인 쿠키
 	@PostMapping("/login")
 	   public String login(Model model, MembersVo vo, HttpServletRequest req, HttpServletResponse res, HttpSession sess) {
 	      MembersVo mv = service.login(vo);
 	      if (mv == null) {
 	         model.addAttribute("msg", "이메일 또는 비밀번호가 올바르지 않습니다");
-	         model.addAttribute("url", "login.do");
+	         model.addAttribute("url", "login");
 	         return "include/alert";
 	      } else {
 	         sess.setAttribute("membersInfo", mv);
 	         // 쿠키에 저장
-	         Cookie cookie = new Cookie("cookieId", vo.getMemail());
+	         Cookie cookie = new Cookie("cookieEmail", vo.getMemail());
 	         cookie.setPath("/");
 	         if ("check".equals(vo.getCheckMemail())) {
 	            cookie.setMaxAge(60*60*5);
@@ -88,7 +88,7 @@ public class MembersController {
 	            cookie.setMaxAge(0);
 	         }
 	         res.addCookie(cookie);
-	          String url = "/jcappy/index.do";
+	          String url = "/jcappy";
 	          if (req.getParameter("url") != null && !"".equals( req.getParameter("url"))) url = req.getParameter("url");
 	            return "redirect: "+url;
 	      }
