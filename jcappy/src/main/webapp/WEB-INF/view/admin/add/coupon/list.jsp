@@ -1,16 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="java.util.Date" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
-$(function(){
-	var date = ${vo.cregdate}
-	console.log(date);
-});
 function coupon_list_groupDel(name) { // 체크박스에 선택된 쿠폰들 그룹삭제 기능
 	var count=0;
 	for (var i=0; i<$('input[name="'+name+'"]').length; i++) {
@@ -135,12 +130,9 @@ function coupon_list_check() { // 맨위에 체크박스 선택시 전체선택 
 							<!-- //페이징 처리 -->
 							<form name="searchForm" id="searchForm" action="list"  method="post">
 								<div class="search">
-									 <select id="orderby" name="orderby" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
-	                                    <option value="cregdate" <c:if test="${param.orderby=='cregdate'}">selected</c:if>>작성일</option>
-	                                </select>
 	                                <select id="direct" name="direct" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
-	                                    <option value="DESC" <c:if test="${param.direct=='DESC'}">selected</c:if>>내림차순</option>
-	                                    <option value="ASC" <c:if test="${param.direct=='ASC'}">selected</c:if>>오름차순</option>
+	                                    <option value="DESC" <c:if test="${param.direct=='DESC'}">selected</c:if>>작성일↓</option>
+	                                    <option value="ASC" <c:if test="${param.direct=='ASC'}">selected</c:if>>작성일↑</option>
 	                                </select>
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all">전체</option>
