@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderinfo">
+
+	<select id="selectAll" resultType="jcappy.orderinfo.OrderinfoVo" parameterType="jcappy.orderinfo.OrderinfoVo">
+		SELECT * FROM orderinfo
+	</select>
+	
+	<insert id="insert" parameterType="jcappy.orderinfo.OrderinfoVo">
+		INSERT INTO orderinfo (ono, odate, orequest, opay, o_state, o_del, mno, oc_cancel, oc_reason)
+		VALUES (#{ono}, #{odate}, #{orequest}, #{opay}, #{o_state}, #{o_del}, #{mno}, #{oc_cancel}, #{oc_reason})
+	</insert>
+	
+	<delete id="delete" parameterType="jcappy.orderinfo.OrderinfoVo">
+		DELETE FROM orderinfo WHERE ono=#{ono}
+	</delete>
+</mapper>

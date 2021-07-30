@@ -105,9 +105,9 @@
 	
 	<!-- [관리자] 회원 작성 글 목록 -->
 	<select id="boardList" resultType="map" parameterType="jcappy.members.MembersVo">
-		SELECT '리뷰' AS cate , rtitle AS title, rregdate AS regdate FROM review WHERE mno=${mno}
+		SELECT '리뷰' AS cate , rtitle AS title, rregdate AS regdate, rno AS no FROM review WHERE mno=${mno}
 		UNION ALL
-		SELECT '문의', qtitle, qregdate FROM qna WHERE mno=${mno}
+		SELECT '문의', qtitle, qregdate, qno FROM qna WHERE mno=${mno}
 		ORDER BY regdate ${direct}
 		LIMIT ${startIdx}, ${pageRow}
 	</select>
