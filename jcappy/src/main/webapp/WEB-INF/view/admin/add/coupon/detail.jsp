@@ -33,7 +33,10 @@ function coupon_detail_go_save(){
 		$("#cdate").focus();
 		return false;
 	}
-	$("#frm").submit();
+	if(confirm('정말로 수정 하시겠습니까')) {
+		$("#frm").submit();
+	}
+	
 }
 function coupon_detail_isDel() { //쿠폰삭제 ajax
 	$.ajax({
@@ -104,7 +107,7 @@ function coupon_detail_isDel() { //쿠폰삭제 ajax
 									<tr>
 										<th scope="row"><label for="">할인금액</label></th>
 										<td colspan="10">
-											<input type="text" id="cprice" name="cprice" class="w100" value="<fmt:formatNumber type="number" value="${vo.cprice}"/>" />
+											<input type="text" id="cprice" name="cprice" class="w100" value="${vo.cprice}" />
 										</td>
 									</tr>
 									<tr>

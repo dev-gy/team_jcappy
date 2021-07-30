@@ -97,6 +97,7 @@
 										<option value="rtitle" <c:if test="${param.stype=='rtitle'}">selected</c:if>>제목</option>
 										<option value="rcontent" <c:if test="${param.stype=='rcontent'}">selected</c:if>>내용</option>
 										<option value="mname" <c:if test="${param.stype=='mname'}">selected</c:if>>작성자</option>
+										<option value="memail" <c:if test="${param.stype=='memail'}">selected</c:if>>이메일</option>
 										<option value="pname" <c:if test="${param.stype=='pname'}">selected</c:if>>상품명</option>
 									</select>
 									<input type="text" name="sval" value="${param.sval }"  title="검색할 내용을 입력해주세요" />

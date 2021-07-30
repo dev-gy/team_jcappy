@@ -6,7 +6,7 @@
 		<where>
 			<if test="sval != null and sval != ''">
 				<if test="stype == 'all'">
-					qtitle LIKE '%${sval}%' OR qcontent LIKE '%${sval}%' OR mname LIKE '%${sval}%'
+					qtitle LIKE '%${sval}%' OR qcontent LIKE '%${sval}%' OR mname LIKE '%${sval}%' OR aname LIKE '%${sval}%' OR memail LIKE '%${sval}%' OR aid LIKE '%${sval}%' 
 				</if>
 				<if test="stype != 'all'">
 					${stype} LIKE '%${sval}%'
@@ -19,23 +19,21 @@
 	</sql>
 	
 	<select id="selectAll" resultType="jcappy.qna.QnaVo" parameterType="jcappy.qna.QnaVo">
-		SELECT *, 
-			(SELECT aname FROM admin WHERE ano = q.ano) AS aname
-		FROM qna q LEFT JOIN members m ON q.mno = m.mno
+		SELECT *
+		FROM qna q LEFT JOIN members m ON q.mno = m.mno LEFT JOIN admin a ON q.ano = a.ano
 		<include refid="qnaWhere"/>
 		ORDER BY q_gno DESC, q_ono ASC, ${orderby} ${direct}
 		LIMIT ${startIdx},${pageRow}
 	</select>
 	
 	<select id="count" resultType="int" parameterType="jcappy.qna.QnaVo">
-		SELECT COUNT(*) FROM qna q LEFT JOIN members m ON q.mno = m.mno
+		SELECT COUNT(*) FROM qna q LEFT JOIN members m ON q.mno = m.mno LEFT JOIN admin a ON q.ano = a.ano
 		<include refid="qnaWhere"/>
 	</select>
 	
 	<select id="detail" resultType="jcappy.qna.QnaVo" parameterType="jcappy.qna.QnaVo">
-		SELECT *,
-		(SELECT aname FROM admin WHERE ano = q.ano) AS aname
-		FROM qna q LEFT JOIN members m ON q.mno = m.mno
+		SELECT *
+		FROM qna q LEFT JOIN members m ON q.mno = m.mno LEFT JOIN admin a ON q.ano = a.ano
 		WHERE qno = #{qno}
 		
 	</select>

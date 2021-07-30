@@ -79,7 +79,7 @@ function qna_detail_isDel() {//게시글 삭제
 										<td colspan="10">${vo.mname }</td>
 										</c:if>
 										<c:if test="${!empty vo.aname}">
-										<td colspan="10">관리자</td>
+										<td colspan="10">[관리자]${vo.aname}</td>
 										</c:if>
 									</tr>
 									<c:if test="${empty vo.aname}">
