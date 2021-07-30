@@ -31,7 +31,7 @@
 									<col class="w3" />
 									<col class="*" />
 									<col class="w15" />
-									<col class="w6" />
+									<col class="w10" />
 								</colgroup>
 								<thead>
 									<tr>
