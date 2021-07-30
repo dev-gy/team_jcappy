@@ -36,7 +36,27 @@ function goSaveCount(no) {
 	}
 </script>
 <script>
-/* 재고량 버튼 클릭시 변경 */
+function categoryChange(e) {
+    var pcate_frez = ["일반형냉장고", "양문형냉장고", "업소용냉장고"];
+    var pcate_air = ["스탠드형에어컨", "벽걸이형에어컨", "창문형에어컨"];
+    var pcate_tv = ["LEDTV", "QLEDTV", "OLEDTV"];
+    var pcate_wash = ["일반세탁기", "드럼세탁기", "미니세탁기"];
+    var target = document.getElementById("pcate");
+ 
+    if(e.value == "냉장고") var d = pcate_frez;
+    else if(e.value == "에어컨") var d = pcate_air;
+    else if(e.value == "TV") var d = pcate_tv;
+    else if(e.value == "세탁기") var d = pcate_wash;
+ 
+    target.options.length = 0;
+ 
+    for (x in d) {
+        var opt = document.createElement("option");
+        opt.value = d[x];
+        opt.innerHTML = d[x];
+        target.appendChild(opt);
+    }    
+}
 </script>
 </head>
 <body>
@@ -145,12 +165,12 @@ function goSaveCount(no) {
 										<select name="stype" title="검색분류선택">
 											<option value="all">전체</option>
 											<option value="pcompany"
-												<c:if test="${param.pcompany=='pcompany' }">selected</c:if>>브랜드명</option>
+												<c:if test="${param.stype=='pcompany' }">selected</c:if>>브랜드명</option>
 											<option value="pname"
-												<c:if test="${param.pname=='pname' }">selected</c:if>>상품명</option>
+												<c:if test="${param.stype=='pname' }">selected</c:if>>상품명</option>
 										</select> 
 										
-										<select name="ptype" title="종류" onchange="categoryChange(this)">
+										<select name="ptype" onchange="categoryChange(this)" title="종류">
 											<option value="all">전체</option>
 											<option value="frez"
 												<c:if test="${param.ptype=='frez' }">selected</c:if>>냉장고</option>
