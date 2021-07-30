@@ -61,7 +61,14 @@ public class MembersController {
 		return "include/alert";
 	}
 	
-	// 로그인
+//	// 로그인
+//	@GetMapping("/login")
+//	public String loginForm(MembersVo vo, @CookieValue(value="cookieEmail", required = false) Cookie cookie) {
+//		if (cookie != null) {
+//			vo.setMemail(cookie.getValue());
+//		}
+//		return "members/login";
+//	}
 	@GetMapping("/login")
 	public String loginForm(MembersVo vo, @CookieValue(value="cookieId", required = false) Cookie cookie) {
 		if (cookie != null) {
@@ -70,27 +77,51 @@ public class MembersController {
 		return "members/login";
 	}
 	
-	@PostMapping("/login")
-	   public String login(Model model, MembersVo vo, HttpServletRequest req, HttpServletResponse res, HttpSession sess) {
-	      MembersVo mv = service.login(vo);
-	      if (mv == null) {
-	         model.addAttribute("msg", "이메일 또는 비밀번호가 올바르지 않습니다");
+//	@PostMapping("/login")
+//	   public String login(Model model, MembersVo vo, HttpServletRequest req, HttpServletResponse res, HttpSession sess) {
+//	      MembersVo mv = service.login(vo);
+//	      if (mv == null) {
+//	         model.addAttribute("msg", "이메일 또는 비밀번호가 올바르지 않습니다");
+//	         model.addAttribute("url", "login");
+//	         return "include/alert";
+//	      } else {
+//	         sess.setAttribute("membersInfo", mv);
+//	         // 쿠키에 저장
+//	         Cookie cookie = new Cookie("cookieEmail", vo.getMemail());
+//	         cookie.setPath("/");
+//	         if ("check".equals(vo.getCheckMemail())) {
+//	            cookie.setMaxAge(60*60*5);
+//	         } else {
+//	            cookie.setMaxAge(0);
+//	         }
+//	         res.addCookie(cookie);
+//	          String url = "/jcappy";
+//	          if (req.getParameter("url") != null && !"".equals( req.getParameter("url"))) url = req.getParameter("url");
+//	            return "redirect: "+url;
+//	      }
+//	   }
+	  @PostMapping("/login")
+	   public String login(Model model, MembersVo vo, HttpServletRequest req,HttpServletResponse res, HttpSession sess) {
+	      MembersVo uv = service.login(vo);
+	      if (uv == null) {
+	         model.addAttribute("msg", "아이디 비밀번호가 올바르지 않습니다");
 	         model.addAttribute("url", "login.do");
 	         return "include/alert";
 	      } else {
-	         sess.setAttribute("membersInfo", mv);
+	         sess.setAttribute("membersInfo", uv);
 	         // 쿠키에 저장
 	         Cookie cookie = new Cookie("cookieId", vo.getMemail());
 	         cookie.setPath("/");
 	         if ("check".equals(vo.getCheckMemail())) {
-	            cookie.setMaxAge(60*60*5);
+	            cookie.setMaxAge(60*60*24*365);
 	         } else {
 	            cookie.setMaxAge(0);
 	         }
 	         res.addCookie(cookie);
-	          String url = "/jcappy/index.do";
+	          String url = "/jcappy";
 	          if (req.getParameter("url") != null && !"".equals( req.getParameter("url"))) url = req.getParameter("url");
 	            return "redirect: "+url;
+
 	      }
 	   }
 	
