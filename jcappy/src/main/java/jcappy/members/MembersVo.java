@@ -26,6 +26,7 @@ public class MembersVo extends CommonVo{
 		super.setOrderby("mregdate");
 	}
 	
+	
 	// getter & setter
 
 	public String getCheckMemail() {
