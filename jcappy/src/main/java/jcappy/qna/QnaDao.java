@@ -58,5 +58,9 @@ public class QnaDao {
 	public int gnoAllDelete(int gnum) {
 		return sqlSession.delete("qna.gnoAllDelete", gnum);
 	}
+	
+	public int insert(QnaVo vo) {
+		return sqlSession.insert("qna.insert", vo);
+	}
 
 }
