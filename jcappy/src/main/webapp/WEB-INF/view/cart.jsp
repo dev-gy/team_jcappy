@@ -60,7 +60,7 @@
 		
 		// 수량 변동 이벤트
 		// count 값이 바뀌면 발생하는 이벤트
-		$(".scount").on("change", function() {
+		$(".count").on("change", function() {
 			// cart 테이블의 최상위 아이템요소
 			var elParent = $(this).closest(".cart_item");
 			// 호출자 요소
@@ -70,9 +70,9 @@
 				type: "POST",
 				data: {
 					sno: elParent.find(".sno").val(),   
-					scount: elParent.find(".scount").val(),
+					scount: elParent.find(".count").val(),
 					pno: elParent.find(".pno").val(),
-					pprice: elParent.find(".pprice").val(),
+					pprice: elParent.find(".price").val(),
 				},
 				dataType: "json",	// json 타입으로 값을 받아옴
 				success: function(res) {
@@ -95,9 +95,9 @@
 		// 빼기버튼 클릭시 값이 1 초과일 경우 값-1 및 값변동 트리거 실행
 		$(".minus_btn").on("click", function() {
 			var elParent = $(this).closest(".cart_item");	// 현재 아이템의 최상위요소
-			var elCount = elParent.find(".scount");		// 현재 아이템의 수량입력요소
+			var elCount = elParent.find(".count");		// 현재 아이템의 수량입력요소
 			var count = Number(elCount.val());				// 현재 수량
-			var price = Number(elParent.find(".pprice").val());	// 현재 상품 가격
+			var price = Number(elParent.find(".price").val());	// 현재 상품 가격
 			if (count > 1) {
 				count -= 1;
 				elCount.val(count).trigger("change");
@@ -108,9 +108,9 @@
 		// 더하기버튼 클릭시 값+1 및 값변동 트리거 실행
 		$(".plus_btn").on("click", function() {
 			var elParent = $(this).closest(".cart_item");	// 현재 아이템의 최상위요소
-			var elCount = elParent.find(".scount");		// 현재 아이템의 수량입력요소
+			var elCount = elParent.find(".count");		// 현재 아이템의 수량입력요소
 			var count = Number(elCount.val());				// 현재 수량
-			var price = Number(elParent.find(".pprice").val());	// 현재 상품 가격
+			var price = Number(elParent.find(".price").val());	// 현재 상품 가격
 			count += 1;
 			elCount.val(count).trigger("change");
 		});
@@ -143,7 +143,7 @@
 		// 각 목록 중 현재 자신이 체크 해제되어있다면 전송 대상 값에 disable 추가 후 서브밋   
 		$.each($(".cart_item"), function(index, item) {
 			if (!$(item).find(".checkbox").prop("checked")) {
-				$(item).find(".pno, .sno, .scount").attr("disabled", "disabled");
+				$(item).find(".pno, .sno, .count, .name, .img, .total_price").attr("disabled", "disabled");
 			}
 		});
 		$("#cart_frm").submit();
@@ -157,7 +157,7 @@
 				<div class="title">
 					<h1 class="cstyle_h1">장바구니</h1>
 				</div>
-				<form id="cart_frm" action="/pay" method="post">
+				<form id="cart_frm" action="/jcappy/pay" method="post">
 					<table class="cstyle_table">
 		                <colgroup>
 		                	<col width="120px">
@@ -184,12 +184,12 @@
 			                    <tr class="cart_item">
 			                        <td><input class="checkbox" type="checkbox" name="checkbox" checked></td>
 			                        <td class="name_area"><span class="pimg" style="background-image: url('${vo.pimg1_org }')"></span><span>${vo.pname }</span></td>
-			                        <td class="price_txt"><fmt:formatNumber value="${vo.pprice }" />원</td>
+			                        <td class="price_area"><span class="price_txt"><fmt:formatNumber value="${vo.pprice }" />원</span></td>
 			                        <td>무료</td>
 			                        <td>
 			                        <div class="input_div">
 			                            <input class="minus_btn num_btn cstyle_btn" type="button" value="-">
-			                            <input class="scount" type="text" name="scount[]" value="${vo.scount }" value="1" oninput="onlyNumber(this);" >
+			                            <input class="count" type="text" name="count" value="${vo.scount }" value="1" oninput="onlyNumber(this);" >
 			                            <input class="plus_btn num_btn cstyle_btn" type="button" value="+">
 			                        </div>
 			                        </td>
@@ -198,10 +198,11 @@
 				                        <div class="input_div">
 				                            <input class="delete_btn cstyle_btn" type="button" value="삭제">
 				                        </div>
-			                            <input class="sno" type="hidden" name="sno[]" value="${vo.sno }">
-			                            <input class="pno" type="hidden" name="pno[]" value="${vo.pno }">
-			                            <input class="pprice" type="hidden" name="pprice" value="${vo.pprice }" disabled>
-			                            <input class="total_price" type="hidden" name="total_price" value="${vo.total_price }" disabled>
+			                            <input class="sno" type="hidden" name="sno" value="${vo.sno }">
+			                            <input class="pno" type="hidden" name="pno" value="${vo.pno }">
+			                            <input class="name" type="hidden" name="name" value="${vo.pname }">
+										<input class="img" type="hidden" name="img" value="${vo.pimg1_org }">
+			                            <input class="total_price" type="hidden" name="total_price" value="${vo.total_price }">
 			                        </td>
 			                    </tr>
 		                	</c:forEach>

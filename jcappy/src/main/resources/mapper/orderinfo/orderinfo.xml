@@ -7,11 +7,16 @@
 	</select>
 	
 	<insert id="insert" parameterType="jcappy.orderinfo.OrderinfoVo">
-		INSERT INTO orderinfo (ono, odate, orequest, opay, o_state, o_del, mno, oc_cancel, oc_reason)
-		VALUES (#{ono}, #{odate}, #{orequest}, #{opay}, #{o_state}, #{o_del}, #{mno}, #{oc_cancel}, #{oc_reason})
+		INSERT INTO orderinfo (ono, odate, orequest, opay, o_state, o_del, mno, oc_cancel, oc_reason, ozipcode, oaddr, oaddrde)
+		VALUES (#{ono}, #{odate}, #{orequest}, #{opay}, #{o_state}, #{o_del}, #{mno}, #{oc_cancel}, #{oc_reason}, #{ozipcode}, #{oaddr}, #{oaddrde})
 	</insert>
 	
 	<delete id="delete" parameterType="jcappy.orderinfo.OrderinfoVo">
 		DELETE FROM orderinfo WHERE ono=#{ono}
 	</delete>
+	
+	<select id="selectLastOne" resultType="jcappy.orderinfo.OrderinfoVo">
+		SELECT * FROM orderinfo ORDER BY ono DESC LIMIT 1
+	</select>
+	
 </mapper>

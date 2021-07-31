@@ -24,7 +24,12 @@
 									<a href="javascript:commentDel(${vo.cm_no});">[X]</a>
                                 </td>
                                 <td class="writer">
-                                    ${vo.name }
+                                    <c:if test="${!empty vo.aname}">
+                                    ${vo.aname }
+                                    </c:if>
+                                    <c:if test="${empty vo.aname}">
+                                    ${vo.mname }
+                                    </c:if>
                                 </td>
                                 <td class="date"><fmt:formatDate value="${vo.cm_regdate }" pattern="yyyy-MM-dd"/></td>
                             </tr>

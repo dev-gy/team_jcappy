@@ -51,7 +51,7 @@ function qna_detail_isDel() {//게시글 삭제
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<colgroup>
 									<col width="10%" />
 									<col width="15%" />
@@ -79,7 +79,7 @@ function qna_detail_isDel() {//게시글 삭제
 										<td colspan="10">${vo.mname }</td>
 										</c:if>
 										<c:if test="${!empty vo.aname}">
-										<td colspan="10">관리자</td>
+										<td colspan="10">[관리자]${vo.aname}</td>
 										</c:if>
 									</tr>
 									<c:if test="${empty vo.aname}">

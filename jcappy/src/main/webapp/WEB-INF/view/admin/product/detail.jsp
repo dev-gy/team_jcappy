@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
 <script src="/jcappy/js/common.js"></script>
-
+<!-- 스마트에디터 -->
 <script>
 var oEditors;
 $(function(){
@@ -18,6 +18,7 @@ function goSave() {
 	$("#frm").submit();
 }
 </script>
+<!-- 상품삭제 -->
 <script>
        function isDel() {
           if (confirm('삭제하시겠습니까?')) {
@@ -41,9 +42,7 @@ function goSave() {
           }
        }
 </script>
-<script>
-/* select id = pcomp와 option id 의 값이 같을경우 그 값을 출력   */
-</script>
+<!-- 이미지삭제 -->
 <script>
 function groupDel(name) {
 
@@ -77,7 +76,8 @@ function check() {
 	}
 }
 </script>
-<script>
+<!--  -->
+<!-- <script>
 $(document).ready(function(){
 	
 	  $("#stype").each(function(){
@@ -86,7 +86,7 @@ $(document).ready(function(){
 	    }
 	  });
 	});
-</script>
+</script> -->
 </head>
 <body>
 	<div id="wrap">
@@ -123,9 +123,9 @@ $(document).ready(function(){
 												<th scope="row"><label for="">상품 종류</label></th>
 												<td colspan="10">
 												<div>
-													<select name="ptype" onchange="categoryChange(this)">
+													<select name="ptype" style="font-size: 13px" onchange="categoryChange(this)">
 														<option>${vo.ptype }</option>
-													</select> <select name="pcate" id="pcate">
+													</select> <select name="pcate" style="font-size: 13px" id="pcate">
 														<option>${vo.pcate }</option>
 													</select>
 												</div>
@@ -134,7 +134,7 @@ $(document).ready(function(){
 											<tr>
 												<th scope="row"><label for="">브랜드</label></th>
 												<td colspan="10">
-													<select name="pcompany" id="stype" title="브랜드">
+													<select name="pcompany" style="font-size: 13px" id="stype" title="브랜드">
 														<option value="">${vo.pcompany }</option>
 													</select>
 												</td>
@@ -146,12 +146,12 @@ $(document).ready(function(){
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품 가격</label></th>
-												<td colspan="10"><input type="text" id="pprice"
-													name="pprice" class="w100" value="${vo.pprice }" /></td>
+												<td colspan="10"><input type="number" style="font-size: 12px" id="pprice"
+													name="pprice" class="w100" value="${vo.pprice }"/></td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품 재고</label></th>
-												<td colspan="10"><input type="text" id="pcount"
+												<td colspan="10"><input type="number" style="font-size: 12px" id="pcount"
 													name="pcount" class="w100" value="${vo.pcount }" /></td>
 											</tr>
 											<tr>

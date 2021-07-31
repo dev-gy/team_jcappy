@@ -25,7 +25,7 @@
 			<div class="mypage_content">
 				<!-- 마이페이지 공통 서브타이틀 -->
 				<div class="mypage_subtitle">
-					<h2>1:1 문의 작성</h2>
+					<h2>내 문의</h2>
 				</div>
 				<table class="cstyle_table">
 					<colgroup>
