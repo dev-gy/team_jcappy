@@ -6,17 +6,19 @@ import jcappy.util.CommonVo;
 
 public class QnaVo extends CommonVo {   
 	
-	private int qno;
-	private String qtitle;
-	private String qcontent;
-	private Timestamp qregdate;
-	private int q_gno;
-	private int q_ono;
-	private int q_nested;
+	
+	private int qno;			// 문의 게시판 번호
+	private String qtitle;		// 문의 제목	
+	private String qcontent;	// 문의 내용
+	private Timestamp qregdate;	// 작성 날짜
+	private int q_gno;			// 그룹 번호
+	private int q_ono;			// 순서 번호
+	private int q_nested;		// 들여쓰기
 	private String qfile_org;	// 사용자가첨부한 원본파일명
 	private String qfile_real;	// 서버에 저장된 실제파일명
-	private int mno;
-	private int ano;
+	private int mno;			// 회원 번호
+	private int ano;			// 관리자 쪽 댓글
+	
 	private String isDel;
 	
 	private String aname;
