@@ -19,7 +19,7 @@
                     <input type="text" class="login_input" name="memail" id="memail" placeholder="이메일" required="required" value="${membersVo.memail }"/><br>
                     <input type="password" class="login_input" name="mpwd" id="mpwd" placeholder="비밀번호" required="required"/><br>
                     <div class="login_checkbox">
-                        <input type="checkbox" name="checkEmail" value="check"<c:if test="${!empty membersVo.memail}"> checked</c:if>> 이메일 저장
+                        <input type="checkbox" name="checkMemail" value="check"<c:if test="${!empty membersVo.memail}"> checked</c:if>> 이메일 저장
                     </div>
                     <input class="cstyle_btn ex" type="submit" id="submit" value="로그인" alt="로그인" onclick=""/>
                 </form>

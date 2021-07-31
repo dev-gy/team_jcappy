@@ -42,6 +42,37 @@ $(function(){
 			}
 		});	
 	});
+    
+ // 비밀번호 정규식
+	$("form").submit(function(){
+		if(!/(?=.*\d)(?=.*[a-zA-ZS])(?=.*?[#?!@$%^&*-]).{6,20}/.test($('#mpwd').val())){
+			alert('비밀번호 : 영문대소문자, 숫자, 특수문자를 각 하나이상 포함한 6~20자');
+			$('#mpwd').val('');
+			$('#mpwd').focus();
+			return false;
+		}
+	});
+	
+	// 이름 정규식
+	$("form").submit(function(){
+		if(!/^[가-힣a-zA-Z]{1,20}$/.test($('#mname').val())){
+			alert('이름 : 한글, 영문으로 이루어진 1~20자');
+	      	$('#mname').val('');
+	      	$('#mname').focus();
+			return false;
+		}
+	});	
+	
+ 	// 연락처 정규식
+	$("form").submit(function(){
+		if(!/^[0-9]{9,11}$/.test($('#mphone').val())){
+			alert('숫자 9~11자리로만 입력해주세요.');
+			$('#mphone').val('');
+			$('#mphone').focus();
+			return false;
+		}
+	});
+    
 });
 </script>
 </head>
@@ -91,7 +122,7 @@ $(function(){
 										</tr>
 										<tr>
 											<td>이름</td>
-											<td><input type="text" name="mname" value="${membersInfo.mname }" required="required"></td>
+											<td><input type="text" name="mname" id="mname" value="${membersInfo.mname }" required="required"></td>
 										</tr>
 										<tr>
 											<td>연락처</td>
