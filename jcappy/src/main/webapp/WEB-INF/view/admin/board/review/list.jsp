@@ -29,14 +29,14 @@
 								<colgroup>
 									<col class="w3" />
 									<col class="*" />
-									<col class="w15" />
-									<col class="w6" />
+									<col class="w18" />
+									<col class="w10" />
 									<col class="w6" />
 								</colgroup>
 								<thead>
 									<tr>
 										<th scope="col" class="first">번호</th>
-										<th scope="col">[상품명]제목</th> 
+										<th scope="col">제목</th> 
 										<th scope="col">작성자(이메일)</th>
 										<th scope="col">작성일</th>
 										<th scope="col" class="last">조회수</th>
@@ -53,8 +53,8 @@
 									<tr>
 										<td class="first">${(reviewVo.totCount-status.index)-((reviewVo.reqPage-1)*reviewVo.pageRow)}</td>
 										<!-- 상세페이지 링크 and 리플 갯수 -->
-										<td class="title"><a href="detail?rno=${vo.rno}&reqPage=${reviewVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><strong style="font-size: 15px;">[${vo.pname}]</strong> ${vo.rtitle} [${vo.comment_count}]</a></td>
-										<td>${vo.mname }(${vo.memail})</td>
+										<td class="title"><a href="detail?rno=${vo.rno}&reqPage=${reviewVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><strong>[${vo.pname}]</strong> ${vo.rtitle} [${vo.comment_count}]</a></td>
+										<td>${vo.mname } (${vo.memail})</td>
 										<td><fmt:formatDate value="${vo.rregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 										<td>${vo.rreadcount}</td>
 									</tr>
@@ -96,9 +96,9 @@
 										<option value="all">전체</option>
 										<option value="rtitle" <c:if test="${param.stype=='rtitle'}">selected</c:if>>제목</option>
 										<option value="rcontent" <c:if test="${param.stype=='rcontent'}">selected</c:if>>내용</option>
-										<option value="mname" <c:if test="${param.stype=='mname'}">selected</c:if>>작성자</option>
-										<option value="memail" <c:if test="${param.stype=='memail'}">selected</c:if>>이메일</option>
 										<option value="pname" <c:if test="${param.stype=='pname'}">selected</c:if>>상품명</option>
+										<option value="memail" <c:if test="${param.stype=='memail'}">selected</c:if>>(회원)이메일</option>
+										<option value="mname" <c:if test="${param.stype=='mname'}">selected</c:if>>(회원)이름</option>
 									</select>
 									<input type="text" name="sval" value="${param.sval }"  title="검색할 내용을 입력해주세요" />
 									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" onclick="$('#searchForm').submit();" />

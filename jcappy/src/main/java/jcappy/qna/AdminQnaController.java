@@ -27,15 +27,6 @@ public class AdminQnaController {
 	//qna 인덱스
 	@RequestMapping("/admin/board/qna/list")
 	public String index(Model model, QnaVo vo, HttpSession sess) {
-//		MembersVo fmv = new MembersVo();
-//		//임시 로그인 세션 이메일
-//		fmv.setMemail("aaa");
-//		//임시 로그인 세션 비밀번호
-//		fmv.setMpwd("aaa");
-//		//임시 로그인 세션 
-//		MembersVo mv = service.temporarySession(fmv);
-//		//임시 로그인 세션
-//		sess.setAttribute("membersInfo", mv);		
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/board/qna/list";
 	}
@@ -51,13 +42,6 @@ public class AdminQnaController {
 	@RequestMapping("/admin/board/qna/reply")
 	public String reply(Model model, QnaVo vo) {
 		model.addAttribute("vo", service.detail(vo));
-		
-		// 답글 q_qno,q_ono,q_nested 값 세팅
-//		QnaVo rv = service.detail(vo);
-//		model.addAttribute("q_gno", rv.getQ_gno());
-//		model.addAttribute("q_ono", rv.getQ_ono());
-//		model.addAttribute("q_nested", rv.getQ_nested());
-		
 		return "admin/board/qna/reply";
 	}
 	

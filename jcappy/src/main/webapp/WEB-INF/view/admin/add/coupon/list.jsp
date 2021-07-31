@@ -62,10 +62,10 @@ function coupon_list_check() { // 맨위에 체크박스 선택시 전체선택 
 								<colgroup>
 									<col class="w3" />
 									<col class="w4" />
-									<col class="" />
-									<col class="w7" />
+									<col class="*" />
+									<col class="w10	" />
 									<col class="w12" />
-									<col class="w6" />
+									<col class="w10" />
 									<col class="w6" />
 								</colgroup>
 								<thead>
@@ -131,8 +131,8 @@ function coupon_list_check() { // 맨위에 체크박스 선택시 전체선택 
 							<form name="searchForm" id="searchForm" action="list"  method="post">
 								<div class="search">
 	                                <select id="direct" name="direct" class="dSelect" title="검색분류 선택" onchange="$('#searchForm').submit();">
-	                                    <option value="DESC" <c:if test="${param.direct=='DESC'}">selected</c:if>>작성일↓</option>
-	                                    <option value="ASC" <c:if test="${param.direct=='ASC'}">selected</c:if>>작성일↑</option>
+	                                    <option value="DESC" <c:if test="${param.direct=='DESC'}">selected</c:if>>발급날짜 ↓</option>
+	                                    <option value="ASC" <c:if test="${param.direct=='ASC'}">selected</c:if>>발급날짜 ↑</option>
 	                                </select>
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all">전체</option>
