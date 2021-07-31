@@ -5,7 +5,7 @@ import java.util.List;
 import jcappy.members.MembersVo;
 
 
-public interface QnaService {
+public interface AdminQnaService {
 	List<QnaVo> selectAll(QnaVo vo);
 	QnaVo detail(QnaVo vo);
 	int update(QnaVo vo);
