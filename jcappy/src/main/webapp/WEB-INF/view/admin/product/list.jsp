@@ -35,6 +35,7 @@ function goSaveCount(no) {
 		}
 	}
 </script>
+<!-- 이중 select box -->
 <script>
 function categoryChange(e) {
     var pcate_frez = ["일반형냉장고", "양문형냉장고", "업소용냉장고"];

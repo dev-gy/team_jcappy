@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
 <script src="/jcappy/js/common.js"></script>
-
+<!-- 스마트에디터 -->
 <script>
 var oEditors;
 $(function(){
@@ -18,6 +18,7 @@ function goSave() {
 	$("#frm").submit();
 }
 </script>
+<!-- 상품삭제 -->
 <script>
        function isDel() {
           if (confirm('삭제하시겠습니까?')) {
@@ -41,6 +42,7 @@ function goSave() {
           }
        }
 </script>
+<!-- 이미지삭제 -->
 <script>
 function groupDel(name) {
 
@@ -74,7 +76,8 @@ function check() {
 	}
 }
 </script>
-<script>
+<!--  -->
+<!-- <script>
 $(document).ready(function(){
 	
 	  $("#stype").each(function(){
@@ -83,7 +86,7 @@ $(document).ready(function(){
 	    }
 	  });
 	});
-</script>
+</script> -->
 </head>
 <body>
 	<div id="wrap">
