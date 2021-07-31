@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import jcappy.members.MembersVo;
 
 @Service
-public class QnaServiceImpl implements QnaService {
+public class AdminQnaServiceImpl implements AdminQnaService {
 
 	@Autowired
 	QnaDao dao;

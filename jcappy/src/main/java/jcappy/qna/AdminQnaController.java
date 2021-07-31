@@ -19,10 +19,10 @@ import jcappy.members.MembersVo;
 
 
 @Controller
-public class QnaController {
+public class AdminQnaController {
 	
 	@Autowired
-	QnaService service;
+	AdminQnaService service;
 	
 	//qna 인덱스
 	@RequestMapping("/admin/board/qna/list")
