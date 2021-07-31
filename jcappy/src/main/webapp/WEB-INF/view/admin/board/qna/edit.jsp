@@ -70,7 +70,7 @@ $(function(){
 					<div id="bbs">
 						<div id="bread">
 							<form method="post" name="frm" id="frm" action="update" enctype="multipart/form-data">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<colgroup>
 									<col width="10%" />
 									<col width="15%" />

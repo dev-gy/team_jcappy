@@ -26,7 +26,7 @@
 					<div id="bbs">
 						<div id="blist">
 							<p><span><strong>총 ${noticeVo.totCount}개</strong>  |  ${noticeVo.reqPage}/${noticeVo.totPage }페이지</span></p>
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<colgroup>
 									<col class="w3" />
 									<col class="" />
@@ -48,9 +48,9 @@
 			                                <td class="first" colspan="4">등록된 글이 없습니다.</td>
 			                            </tr>
 			                        </c:if>
-									<c:forEach var="vo" items="${list}">
+									<c:forEach var="vo" items="${list}" varStatus="status">
 									<tr>
-										<td class="first">${vo.nno}</td>
+										<td class="first">${(noticeVo.totCount-status.index)-((noticeVo.reqPage-1)*noticeVo.pageRow)}</td>
 										<!-- 상세페이지 링크 and 리플 갯수 -->
 										<td class="title"><a href="detail?nno=${vo.nno}&reqPage=${noticeVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.ntitle} [${vo.comment_count}]</a></td>
 										<td><fmt:formatDate value="${vo.nregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->

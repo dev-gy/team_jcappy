@@ -17,6 +17,7 @@ public class NoticeVo extends CommonVo {
 	
 	private int comment_count;
 	private String mname;
+	private String memail;
 	
 	public NoticeVo() {
 		setOrderby("nregdate");
@@ -102,6 +103,12 @@ public class NoticeVo extends CommonVo {
 		this.mname = mname;
 	}
 
-	
-	
+	public String getMemail() {
+		return memail;
+	}
+
+	public void setMemail(String memail) {
+		this.memail = memail;
+	}
+
 }

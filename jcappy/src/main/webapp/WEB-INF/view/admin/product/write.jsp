@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script src="/jcappy/js/common.js"></script>
+<!-- 스마트에디터, 등록 -->
 <script>
 var oEditors;
 $(function(){
@@ -16,6 +17,7 @@ function goSave() {
 	$("#frm").submit();
 }
 </script>
+<!-- 이미지 썸네일 -->
 <script>
 $(function() {
     $("#file1").on("change", function(){
@@ -55,6 +57,7 @@ $(function() {
     });
 });
 </script>
+<!-- 이중 select box -->
 <script>
 function categoryChange(e) {
     var pcate_frez = ["일반형냉장고", "양문형냉장고", "업소용냉장고"];
@@ -78,6 +81,7 @@ function categoryChange(e) {
     }    
 }
 </script>
+<!-- 브랜드에서 기타 선택시 input box 나오는것 -->
 <script>
 	$(function() {
 
@@ -117,24 +121,18 @@ function categoryChange(e) {
 									<col width="10%"/>
 								</colgroup>
 								<tbody>
-									<!-- <tr> 앞으로 나올 번호 구현
-										<th scope="row"><label for="">상품 번호</label></th>
-										<td colspan="10">
-											<input type="text" id="ino" name="ino" class="w100"/>	
-										</td>
-									</tr> -->
 									<tr>
 										<th scope="row"><label for="">상품 종류</label></th>
 										<td colspan="10">
 										<div>
-											<select name="ptype" onchange="categoryChange(this)">
+											<select name="ptype" style="font-size: 13px" onchange="categoryChange(this)">
 												<option>종류 선택</option>
 												<option value="냉장고">냉장고</option>
 												<option value="에어컨">에어컨</option>
 												<option value="TV">TV</option>
 												<option value="세탁기">세탁기</option>
 											</select> 
-											<select name="pcate" id="pcate">
+											<select name="pcate" style="font-size: 13px" id="pcate">
 												<option>카테고리 선택</option>
 											</select>
 										</div>
@@ -143,7 +141,7 @@ function categoryChange(e) {
 									<tr>
 										<th scope="row"><label for="">브랜드</label></th>
 										<td colspan="10">
-											<select name="pcompany" id="stype" title="브랜드">
+											<select name="pcompany" style="font-size: 13px" id="stype" title="브랜드">
 											<option>브랜드 선택</option>
 											<option value="삼성전자">삼성전자</option>
 											<option value="LG전자">LG전자</option>
@@ -157,19 +155,19 @@ function categoryChange(e) {
 									<tr>
 										<th scope="row"><label for="">상품명</label></th>
 										<td colspan="10">
-											<input type="text" id="pname" name="pname" class="w100"/>	
+											<input type="text" id="pname" name="pname" class="w100" placeholder="상품명을 입력해주세요"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 가격</label></th>
 										<td colspan="10">
-											<input type="text" id="pprice" name="pprice" class="w100"/>	
+											<input type="text" id="pprice" name="pprice" class="w100" placeholder="금액을 입력해주세요"/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 재고</label></th>
 										<td colspan="10">
-											<input type="text" id="pcount" name="pcount" class="w100"/>	
+											<input type="text" id="pcount" name="pcount" class="w100" placeholder="재고를 입력해주세요"/>	
 										</td>
 									</tr>
 									<tr>
@@ -183,7 +181,7 @@ function categoryChange(e) {
 										<th scope="row"><label for="">상품 이미지2</label></th>
 										<td>
 										<div class="imagePreview2"></div>	
-											<input type="file" id="file2" name="file2s" class="img" />	
+											<input type="file" id="file2" name="file2" class="img" />	
 										</td>
 									</tr>
 									<tr>	
