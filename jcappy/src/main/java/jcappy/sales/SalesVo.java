@@ -8,8 +8,9 @@ public class SalesVo extends CommonVo{
 	
 	private int year;
 	private int month;
+	private int day;
+	private String date;
 	private int price;
-	
 	
 	public int getYear() {
 		return year;
@@ -22,6 +23,18 @@ public class SalesVo extends CommonVo{
 	}
 	public void setMonth(int month) {
 		this.month = month;
+	}
+	public int getDay() {
+		return day;
+	}
+	public void setDay(int day) {
+		this.day = day;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
 	}
 	public int getPrice() {
 		return price;
