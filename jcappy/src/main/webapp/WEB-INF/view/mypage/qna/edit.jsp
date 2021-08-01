@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>1:1 문의</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 <script>
 function goSave() {

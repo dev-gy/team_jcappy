@@ -15,5 +15,9 @@ public class SalesDao {
 	public List<SalesVo> selectAll(SalesVo vo) {
 		return sqlSession.selectList("sales.selectAll", vo);
 	}
+
+	public int count(SalesVo vo) {
+		return sqlSession.selectOne("sales.count", vo);
+	}
 	
 }
