@@ -1,6 +1,7 @@
 package jcappy.admin;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -91,4 +92,23 @@ public class AdminServiceImpl implements AdminService{
 	public AdminVo login(AdminVo vo) {
 		return dao.login(vo);
 	}
+
+	/*============================
+	 관리자 로그인 시, 메인페이지
+	 ===========================*/
+	@Override
+	public List<Map<String, String>> boardList() {
+		return dao.boardList();
+	}
+
+	@Override
+	public List<Map<String, String>> productList() {
+		return dao.productList();
+	}
+
+	@Override
+	public List<Map<String, String>> orderList() {
+		return dao.orderList();
+	}
+	
 }

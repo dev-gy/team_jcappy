@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin_main">
+	
+	<!-- 최근 게시글 목록 -->
+	<select id="boardList" resultType="map">
+		SELECT '리뷰' AS cate , rtitle AS title, rregdate AS regdate, rno AS no, (SELECT CONCAT(mname, ' (', memail, ')') FROM members WHERE r.mno = mno) AS name, '-' AS isReply FROM review AS r
+		UNION ALL
+		SELECT '문의', qtitle, qregdate, qno, (SELECT CONCAT(mname, ' (', memail, ')') from members where q1.mno = mno), IF((EXISTS(SELECT * FROM qna AS q2 WHERE q1.q_gno = q2.q_gno AND q2.q_ono > 0)), 'O', 'X') FROM qna AS q1 WHERE q_ono = 0
+		UNION ALL
+		SELECT '공지', ntitle, nregdate, nno, '관리자', '-' FROM notice AS n
+		ORDER BY regdate DESC
+		LIMIT 0, 5
+	</select>  
+	
+	<!-- 최근 주문 목록 -->
+	<select id="orderList" resultType="map" parameterType="jcappy.members.MembersVo">
+		SELECT i.ono AS no, CONCAT(m.mname, ' (', m.memail, ')') AS name, SUM(ol_count * ol_price) AS price, odate AS date, o_state AS state 
+		FROM orderinfo AS i 
+		JOIN orderlist AS l ON i.ono = l.ono 
+		JOIN members m ON i.mno = m.mno 
+		GROUP BY i.ono
+		ORDER BY odate DESC
+		LIMIT 0, 5
+	</select>
+	
+	<!-- 품절 임박 상품 목록 -->
+	<select id="productList" resultType="map">
+		SELECT pno AS no, pname AS name, pcount AS count
+		FROM product
+		ORDER BY pcount
+		LIMIT 0, 5
+	</select>
+
+	<!-- 매출조회 -->
+	<select id="accountList" resultType="map">
+		SELECT YEAR(odate) AS year, MONTH(odate) AS month, SUM(ol_count * ol_price) AS price 
+		FROM orderinfo AS i 
+		JOIN orderlist AS l ON i.ono=l.ono 
+		GROUP BY YEAR(odate), MONTH(odate) 
+		ORDER BY year DESC, month DESC
+		LIMIT 0, 5
+	</select>
+</mapper>

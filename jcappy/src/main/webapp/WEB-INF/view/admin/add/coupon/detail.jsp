@@ -60,6 +60,7 @@ function coupon_detail_isDel() { //쿠폰삭제 ajax
 	});
 }
 </script>
+
 </head>
 <body> 
 <div id="wrap">

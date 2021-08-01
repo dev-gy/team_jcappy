@@ -59,7 +59,7 @@
 										<td>${vo.mname } (${vo.memail})</td>
 										</c:if>
 										<c:if test="${!empty vo.aname}">
-										<td>${vo.aname} (${vo.aid})</td>
+										<td><strong>[관리자]</strong> ${vo.aname} (${vo.aid})</td>
 										</c:if>
 										<td><fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 									</tr>

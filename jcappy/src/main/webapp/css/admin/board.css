@@ -149,9 +149,9 @@ textarea{border:1px solid #cccccc;}
 #bbs #blist table .frist{background-image:none !important;}
 #bbs #blist table .first{background-image:none !important;}
 
-#bbs #blist table tbody td{padding:13px 2px; text-align:center; /* font-weight:bold;  */background:url(/jcappy/img/admin/blist_td_line.gif) repeat-y left top; border-bottom:1px solid #cccdd0;}
+#bbs #blist table tbody td{padding:13px 10px; text-align:center; /* font-weight:bold;  */background:url(/jcappy/img/admin/blist_td_line.gif) repeat-y left top; border-bottom:1px solid #cccdd0;}
 #bbs #blist table tbody td.tdLine_l{padding:13px 2px; text-align:center;/*  font-weight:bold; */ background:url(/jcappy/img/admin/blist_td_line.gif) repeat-y left top; border-bottom:1px solid #cccdd0;}
-#bbs #blist table tbody td.title{ text-align: left; padding-left:10px;  }
+#bbs #blist table tbody td.title{text-align: left;}
 
 /*공지*/
 #blist .point{ background:#f9f9f9;}
