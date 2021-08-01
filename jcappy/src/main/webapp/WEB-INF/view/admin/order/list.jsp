@@ -1,131 +1,135 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="UTF-8">
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 </head>
-<body> 
+<body>
 <div id="wrap">
 	<!-- canvas -->
 	<div id="canvas">
-		<!-- S T A R T :: headerArea-->
-		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
-		<!-- E N D :: headerArea--> 
-		
-		<!-- S T A R T :: containerArea-->
+	<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
 					<h2>주문관리 - [목록]</h2>
 				</div>
-				<!-- //con_tit -->
 				<div class="con">
-					<!-- 내용 : s -->
-					<div id="bbs">
-						<div id="blist">
-							<p><span><strong>총 111개</strong>  |  1/12페이지</span></p>
-							<form name="frm" id="frm" action="process.do" method="post">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
-								<colgroup>
-									<col class="w3" />
-									<col class="w4" />
-									<col class="w4" />
-									<col class="w6" />
-									<col class="w10" />
-								</colgroup>
-								<thead>
-									<tr>
-										<th scope="col" class="first">주문번호</th>
-										<th scope="col">배송상태</th> 
-										<th scope="col">결제명</th> 
-										<th scope="col">주문날짜</th>
-										<th scope="col" class="last">요청사항</th>
-										
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td class="first"><a href="<%=request.getContextPath()%>/admin/order/order_view.do">1</a></td>
-										<td>배송완료</td>
-										<td>신용카드</td>
-										<td>2021-7-24</td>
-										<td class="last">문앞에 나두어주세요</td>
-									</tr>
-									<tr>
-										<td class="first"><a href="<%=request.getContextPath()%>/admin/order/order_view.do">2</a></td>
-										<td>배송완료</td>
-										<td>신용카드</td>
-										<td>2021-7-24</td>
-										<td class="last">경비실에 맡겨주세요</td>
-									</tr>
-									<tr>
-										<td class="first"><a href="<%=request.getContextPath()%>/admin/order/order_view.do">3</a></td>
-										<td>배송중</td>
-										<td>무통장입금</td>
-										<td>2021-7-24</td>
-										<td class="last">문앞에 나두어주세요</td>
-									</tr>
-									<tr>
-										<td class="first"><a href="<%=request.getContextPath()%>/admin/order/order_view.do">4</a></td>
-										<td>배송중</td>
-										<td>무통장입금</td>
-										<td>2021-7-24</td>
-										<td class="last">경비실에 맡겨주세요</td>
-									</tr>
-									<tr>
-										<td class="first"><a href="<%=request.getContextPath()%>/admin/order/order_view.do">5</a></td>
-										<td>배송중</td>
-										<td>휴대폰결제</td>
-										<td>2021-7-24</td>
-										<td class="last">문앞에 나두어주세요</td>
-									</tr>
-									<tr>
-										<td class="first"><a href="<%=request.getContextPath()%>/admin/order/order_view.do">6</a></td>
-										<td>배송중</td>
-										<td>휴대폰결제</td>
-										<td>2021-7-24</td>
-										<td class="last">경비실에 맡겨주세요</td>
-									</tr>
-								</tbody>
-							</table>
-							</form>
-							<!--//btn-->
-							<!-- 페이징 처리 -->
-							<div class='page'>
-								<strong>1</strong>
-								<a href="">2</a>
-								<a href="">3</a>
-								<a href="">4</a>
-							</div>
-							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="index.do"  method="post">
-								<div class="search">
-									<select name="stype" title="검색을 선택해주세요">
-										<option value="all">전체</option>
-										<option value="title">요청사항</option>
-										<option value="contents">배송상태</option>
-									</select>
-									<input type="text" name="sval" value="" title="검색할 내용을 입력해주세요" />
-									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
+					<div id="admin_members_list">
+						<div id="bbs">
+							<div id="blist">
+								<p><span><strong>총 ${orderinfoVo.totCount }개</strong>  |  ${orderinfoVo.reqPage }/${orderinfoVo.totPage }페이지</span></p>
+								<form name="frm" id="frm" action="groupDelete" method="post">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="주문목록">
+										<colgroup>
+											<col class="w7" />
+											<col class="w21" />
+											<col class="w28" />
+											<col class="w15" />
+											<col class="w7" />
+											<col class="w15" />
+											<col class="w7" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th scope="col" class="first">주문번호</th>
+												<th scope="col">주문자명</th> 
+												<th scope="col">주문상품</th> 
+												<th scope="col">주문일</th> 
+												<th scope="col">주문상태</th> 
+												<th scope="col">주문금액</th> 
+												<th scope="col" class="last">배송상태</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:choose>
+												<c:when test="${empty list }">
+													<tr>
+														<td class="first" colspan="10">주문이 없습니다.</td>
+													</tr>
+												</c:when>
+												<c:when test="${!empty list }">
+													<c:forEach var="vo" items="${list }" varStatus="status">
+														<tr>
+															<td class="first"><a href="detail?mno=${vo.mno }&orderby=${orderinfoVo.orderby}&direct=${orderinfoVo.direct}&pageRow=${orderinfoVo.pageRow}&stype=${orderinfoVo.stype }&sval=${orderinfoVo.sval }&reqPage=${orderinfoVo.reqPage}">${vo.mno }</a></td>
+															<td>${vo.memail}</td>
+															<td>${vo.mname}</td>
+															<td>${vo.mphone}</td>
+															<td>${vo.mphone}</td>
+															<td>${vo.mgrade}</td>
+															<td class="date"><fmt:formatDate value="${vo.mregdate }" pattern="yyyy-MM-dd"/></td>
+														</tr>
+													</c:forEach>
+												</c:when>
+											</c:choose>
+										</tbody>
+									</table>
+								</form>
+								<div class="btn">
+									<div class="btnLeft">
+										<a class="btns" href="javascript:checkDelete('mnos');" onclick=""><strong>삭제</strong></a>
+									</div>
 								</div>
-							</form>
-							<!-- //search --> 
+								<!--//btn-->
+								<!-- 페이징 처리 -->
+								<div class='page'>
+		                        	<c:if test="${orderinfoVo.endPage > orderinfoVo.pageRange}">
+		                        		<a href="index.do?orderby=${orderinfoVo.orderby}&direct=${orderinfoVo.direct}&pageRow=${orderinfoVo.pageRow}&stype=${orderinfoVo.stype }&sval=${orderinfoVo.sval }&reqPage=${orderinfoVo.startPage - 1 }">이전</a>
+		                        	</c:if>
+		                        	
+		                        	<c:forEach var="page" begin="${orderinfoVo.startPage }" end="${orderinfoVo.endPage }">
+		                        	    <c:if test="${orderinfoVo.reqPage == page }">
+			                        	    <a href='list?orderby=${orderinfoVo.orderby}&direct=${orderinfoVo.direct}&pageRow=${orderinfoVo.pageRow}&stype=${orderinfoVo.stype }&sval=${orderinfoVo.sval }&reqPage=${page}'>
+			                        	    	<strong>
+				                        	    	${page }
+				                        	    </strong>
+			                        	    </a>
+		                        	    </c:if>
+		                        	    <c:if test="${orderinfoVo.reqPage != page }">
+			                        	    <a href='list?orderby=${orderinfoVo.orderby}&direct=${orderinfoVo.direct}&pageRow=${orderinfoVo.pageRow}&stype=${orderinfoVo.stype }&sval=${orderinfoVo.sval }&reqPage=${page}'>
+			                        	    	${page }
+			                        	    </a>
+		                        	    </c:if>
+		                       		</c:forEach>
+		                       		
+		                       		<c:if test="${orderinfoVo.endPage < orderinfoVo.totPage }">
+		                        		<a href="list?orderby=${orderinfoVo.orderby}&direct=${orderinfoVo.direct}&pageRow=${orderinfoVo.pageRow}&stype=${orderinfoVo.stype }&sval=${orderinfoVo.sval }&reqPage=${orderinfoVo.endPage + 1 }">다음</a>
+		                        	</c:if>	
+								</div>
+								<!-- //페이징 처리 -->
+								<form name="searchForm" id="searchForm" action="list"  method="post">
+									<div class="search">
+											<select id="orderby" name="orderby" class="dSelect" title="정렬기준" onchange="$('#searchForm').submit()">
+												<option value="mregdate" <c:if test="${param.orderby == 'mregdate' }">selected</c:if>>등록일</option>
+												<option value="memail" <c:if test="${param.orderby == 'memail' }">selected</c:if>>이메일</option>
+												<option value="mname" <c:if test="${param.orderby == 'mname' }">selected</c:if>>이름</option>
+											</select>
+											<select id="direct" name="direct" class="dSelect" title="정렬순서" onchange="$('#searchForm').submit()">
+												<option value="DESC" <c:if test="${param.direct== 'DESC' }">selected</c:if>>내림차순</option>
+												<option value="ASC" <c:if test="${param.direct == 'ASC' }">selected</c:if>>오름차순</option>
+											</select>
+											<select id="pageRow" name="pageRow" class="dSelect" title="출력갯수" onchange="$('#searchForm').submit()">
+												<option value="10" <c:if test="${param.pageRow == '10' }">selected</c:if>>10</option>
+												<option value="20" <c:if test="${param.pageRow == '20' }">selected</c:if>>20</option>
+												<option value="30" <c:if test="${param.pageRow == '30' }">selected</c:if>>30</option>
+											</select>
+											<select id="stype" name="stype" class="dSelect" title="검색분류">
+												<option value="all">전체</option>
+												<option value="memail" <c:if test="${param.stype == 'memail' }">selected</c:if>>이메일</option>
+												<option value="mname" <c:if test="${param.stype == 'mname' }">selected</c:if>>이름</option>
+											</select>
+										<input type="text" name="sval" value="${param.sval }" title="검색할 내용을 입력해주세요" />
+										<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
+									</div>
+								</form>
+							</div>
 						</div>
-						<!-- //blist -->
 					</div>
-					<!-- //bbs --> 
-					<!-- 내용 : e -->
 				</div>
-				<!--//con -->
 			</div>
-			<!--//content -->
-		</div>
-		<!--//container --> 
-		<!-- E N D :: containerArea-->
+		</div>	
 	</div>
-	<!--//canvas -->
-</div>
-<!--//wrap -->
-
+</div>	
 </body>
 </html>

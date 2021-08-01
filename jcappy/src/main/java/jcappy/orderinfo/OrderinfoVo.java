@@ -2,7 +2,9 @@ package jcappy.orderinfo;
 
 import java.sql.Timestamp;
 
-public class OrderinfoVo {
+import jcappy.util.CommonVo;
+
+public class OrderinfoVo extends CommonVo{
 	private int ono;
 	private Timestamp odate;
 	private String orequest;
@@ -12,6 +14,9 @@ public class OrderinfoVo {
 	private int mno;
 	private int oc_cancel;
 	private String oc_reason;
+	
+	
+	
 	
 	public int getOno() {
 		return ono;

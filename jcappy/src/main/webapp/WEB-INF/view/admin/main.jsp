@@ -172,7 +172,7 @@ function admin_main_go_boardList(cate) {
 										<thead>
 											<tr>
 												<th scope="col" class="first">주문번호</th>
-												<th scope="col">구매자명</th> 
+												<th scope="col">주문자명</th> 
 												<th scope="col">주문금액</th> 
 												<th scope="col">주문일</th> 
 												<th scope="col" class="last">주문상태</th> 
