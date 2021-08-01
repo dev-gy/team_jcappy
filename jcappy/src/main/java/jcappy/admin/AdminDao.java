@@ -1,6 +1,7 @@
 package jcappy.admin;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +47,20 @@ public class AdminDao {
 	
 	public AdminVo login(AdminVo vo) {
 		return sqlSession.selectOne("admin.login", vo);
+	}
+	
+	/*============================
+	 관리자 로그인 시, 메인페이지
+	 ===========================*/
+	public List<Map<String, String>> boardList() {
+		return sqlSession.selectList("admin_main.boardList");
+	}
+	
+	public List<Map<String, String>> productList() {
+		return sqlSession.selectList("admin_main.productList");
+	}
+	
+	public List<Map<String, String>> orderList() {
+		return sqlSession.selectList("admin_main.orderList");
 	}
 }
