@@ -11,6 +11,11 @@ public class QnaServiceImpl implements QnaService{
 	
 	@Override
 	public int insert(QnaVo vo) {
-		return dao.insert(vo);
+		if	(dao.insert(vo) > 0) {
+			dao.gno(vo.getQ_gno());
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 }
