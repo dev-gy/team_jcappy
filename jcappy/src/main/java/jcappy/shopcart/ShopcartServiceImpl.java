@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jcappy.members.MembersVo;
+
 @Service
 public class ShopcartServiceImpl implements ShopcartService {
 	
@@ -17,8 +19,8 @@ public class ShopcartServiceImpl implements ShopcartService {
 	}
 	
 	@Override
-	public List<ShopcartVo> selectAll() {
-		return shopcartDao.selectAll();
+	public List<ShopcartVo> selectAll(ShopcartVo vo) {
+		return shopcartDao.selectAll(vo);
 	}
 	
 	@Override

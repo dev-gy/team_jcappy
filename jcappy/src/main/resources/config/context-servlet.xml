@@ -137,8 +137,15 @@
 
 	<!-- 인터셉터 -->
 	<mvc:interceptors>
+		<!-- 사용자 로그인 체크 -->
 		<mvc:interceptor>
-			<!-- 관리자 로그인 체크 -->
+			<mvc:mapping path="/cart" />
+			<mvc:mapping path="/pay/**" />
+			<mvc:mapping path="/mypage/**/*" />
+			<bean class="jcappy.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+		<!-- 관리자 로그인 체크 -->
+		<mvc:interceptor>
 			<mvc:mapping path="/admin/**" />
 			<mvc:exclude-mapping path="/admin/login" />
 			<bean class="jcappy.interceptor.AdminLoginInterceptor" />
