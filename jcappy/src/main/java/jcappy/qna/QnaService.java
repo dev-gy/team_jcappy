@@ -1,7 +1,11 @@
 package jcappy.qna;
 
+import java.util.List;
 
 public interface QnaService {
+	List<QnaVo> selectAll(QnaVo vo);
 	int insert(QnaVo vo);
-
+	int delete(QnaVo vo);
+	QnaVo detail(QnaVo vo);
+	int update(QnaVo vo);
 }
