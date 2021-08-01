@@ -20,7 +20,7 @@ function admin_main_go_orderList() {
 }
 
 //
-function admin_main_go_account() {
+function admin_main_go_sales() {
 	location.href='';
 }
 
@@ -115,8 +115,8 @@ function admin_main_go_boardList(cate) {
 											<col class="w10" />
 											<col class="w40" />
 											<col class="w27" />
-											<col class="w18" />
-											<col class="w5" />
+											<col class="w16" />
+											<col class="w7" />
 										</colgroup>
 										<thead>
 											<tr>
@@ -201,7 +201,7 @@ function admin_main_go_boardList(cate) {
 									</table>
 								</div>
 								<div class="admin_main_table">
-									<div onClick="admin_main_go_account();">
+									<div onClick="admin_main_go_sales();">
 										<input type="text" name="admin_main_title" value="매출조회" disabled size="30">
 									</div>
 									<table>
@@ -219,17 +219,17 @@ function admin_main_go_boardList(cate) {
 										</thead>
 										<tbody>
 											<c:choose>
-												<c:when test="${empty list }">
+												<c:when test="${empty salesList }">
 													<tr>
 														<td class="first" colspan="3" height="150px">등록된 글이 없습니다.</td>
 													</tr>
 												</c:when>
-												<c:when test="${!empty list }">
-													<c:forEach var="vo" items="${list }" varStatus="status">
+												<c:when test="${!empty salesList }">
+													<c:forEach var="vo" items="${salesList }" varStatus="status">
 														<tr>
-															<td class="first">임시</td>
-															<td>임시</td>
-															<td class="last">임시</td>
+															<td class="first">${vo.year }</td>
+															<td>${vo.month }</td>
+															<td class="last"><fmt:formatNumber value="${vo.price }" pattern="#,###,###원"/></td>
 														</tr>
 													</c:forEach>
 												</c:when>

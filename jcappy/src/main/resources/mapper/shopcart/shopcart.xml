@@ -7,11 +7,12 @@
 		VALUES (#{mno}, #{sno}, #{pno}, #{scount})
 	</insert>
 	
-	<select id="selectAll" resultType="jcappy.shopcart.ShopcartVo">
+	<select id="selectAll" parameterType="jcappy.shopcart.ShopcartVo" resultType="jcappy.shopcart.ShopcartVo">
 		SELECT shopcart.*, product.pname as pname, product.pimg1_org as pimg1_org, product.pprice as pprice, shopcart.scount * product.pprice as total_price        
 		FROM shopcart 
 		LEFT JOIN product 
 		ON shopcart.pno = product.pno
+		WHERE mno = #{mno}
 		ORDER BY shopcart.sno ASC
 	</select>
 	

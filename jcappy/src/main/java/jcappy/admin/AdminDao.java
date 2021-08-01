@@ -63,4 +63,8 @@ public class AdminDao {
 	public List<Map<String, String>> orderList() {
 		return sqlSession.selectList("admin_main.orderList");
 	}
+
+	public List<Map<String, String>> salesList() {
+		return sqlSession.selectList("admin_main.salesList");
+	}
 }

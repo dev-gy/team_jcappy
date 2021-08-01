@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,68 +32,30 @@
 								</colgroup>
 								<thead>
 									<tr>
-										<th scope="col" class="first">매출날짜</th>
-										<th scope="col">상품판매량</th> 
+										<th scope="col" class="first">년</th>
+										<th scope="col">월</th> 
 										<th scope="col">매출액</th> 
-
-
-
 									</tr>
 								</thead>
 								<tbody>
+									<c:if test="${empty list }">
+			                            <tr>
+			                                <td class="first" colspan="4">등록된 글이 없습니다.</td>
+			                            </tr>
+			                        </c:if>
+									<c:forEach var="vo" items="${list}" >
 									<tr>
-										<td class="first">2021-06</td>
-										<td>123</td>
-										<td>23,463,560</td>
+										<td class="first">${vo.year}</td>
+										<td>${vo.month }</td>
+										<td><fmt:formatNumber type="number" value="${vo.price}"/>원</td>
 									</tr>
-									<tr>
-										
-										<td class="first">2021-05</td>
-										<td>324</td>
-										<td>21,253,560</td>
-									</tr>
-									<tr>
-										<td class="first">2021-04</td>
-										<td>423</td>
-										<td>26,267,560</td>
-									</tr>
-									<tr>
-										<td class="first">2021-03</td>
-										<td>56</td>
-										<td>11,293,560</td>
-									</tr>
-									<tr>
-										<td class="first">2021-02</td>
-										<td>324</td>
-										<td>24,763,560</td>
-									</tr>
-									<tr>
-										<td class="first">2021-01</td>
-										<td>145</td>
-										<td>21,223,560</td>
-									</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 							</form>
 							<!-- 페이징 처리 -->
-							<div class='page'>
-								<strong>1</strong>
-								<a href="">2</a>
-								<a href="">3</a>
-								<a href="">4</a>
-							</div>
+							
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="index.do"  method="post">
-								<div class="search">
-									<select name="stype" title="검색을 선택해주세요">
-										<option value="salesDay">매출날짜</option>
-										<option value="productSale">상품판매량</option>
-										<option value="salesMoney">매출액</option>
-									</select>
-									<input type="text" name="sval" value="" title="검색할 내용을 입력해주세요" />
-									<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
-								</div>
-							</form>
 						</div>
 					</div>
 				</div>

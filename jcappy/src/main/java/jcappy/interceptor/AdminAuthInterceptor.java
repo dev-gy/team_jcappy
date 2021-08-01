@@ -20,7 +20,7 @@ public class AdminAuthInterceptor implements HandlerInterceptor {
 		AdminVo vo = (AdminVo) session.getAttribute("adminInfo");
 		vo.setAuthList(vo.getAuth().split(":")); // 등급의 정보가 담겨있는 문자열 데이터를 split으로 쪼개어 배열로 만들어서 담아준다.
 
-		String[] URI = { "/admin/account/", "/admin/add/", "/admin/order/", "/admin/auth/", "/admin/members/",
+		String[] URI = { "/admin/sales/", "/admin/add/", "/admin/order/", "/admin/auth/", "/admin/members/",
 				"/admin/product/", "/admin/board/", "/admin/comment/" }; // 메뉴의 대분류가되는 주소를 배열로
 		
 		String reqURI = req.getServletPath(); // 현재 요청 받은 servletPath
@@ -63,7 +63,7 @@ public class AdminAuthInterceptor implements HandlerInterceptor {
 	
 	private boolean adminAdd(AdminVo vo) throws Exception {if (vo.getAuthList()[4].equals("1")) {return true;} else {return false;}}
 	
-	private boolean adminAccount(AdminVo vo) throws Exception {if (vo.getAuthList()[5].equals("1")) {return true;} else {return false;}}
+	private boolean adminSales(AdminVo vo) throws Exception {if (vo.getAuthList()[5].equals("1")) {return true;} else {return false;}}
 
 	private boolean adminAuth(AdminVo vo) throws Exception {if (vo.getAuthList()[6].equals("1")) {return true;} else {return false;}}
 }
