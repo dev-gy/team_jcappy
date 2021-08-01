@@ -33,8 +33,6 @@ function coupon_list_check() { // 맨위에 체크박스 선택시 전체선택 
 		}
 	}
 }
-
-
 </script>
 </head>
 <body> 
