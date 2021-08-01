@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1:1 문의 작성</title>
+<title>1:1 문의</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 <script>
 function qna_write_setEditor(holder){ //스마트 에디터
@@ -76,8 +76,8 @@ function goSave() {
 						<textarea id="contents" name="qcontent" style="width:100%; height:500px;"></textarea>
 						<input type="file" name="file">
 						<div class="btn_wrap">
-							<input class="cstyle_btn" type="button" value="작성" onclick="goSave();">
-							<input class="cstyle_btn" type="button" value="취소" onclick="location.href='/mypage/qna/index.do'">
+							<input class="cstyle_btn" id="button" type="button" value="작성" onclick="goSave();">
+							<input class="cstyle_btn" id="button" type="button" value="취소" onclick="location.href='/jcappy/mypage/qna/list'">
 						</div>
 					</form>
 				</div>

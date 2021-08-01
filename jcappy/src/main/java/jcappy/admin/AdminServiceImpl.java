@@ -110,5 +110,10 @@ public class AdminServiceImpl implements AdminService{
 	public List<Map<String, String>> orderList() {
 		return dao.orderList();
 	}
+
+	@Override
+	public List<Map<String, String>> salesList() {
+		return dao.salesList();
+	}
 	
 }

@@ -33,7 +33,7 @@
 	</select>
 
 	<!-- 매출조회 -->
-	<select id="accountList" resultType="map">
+	<select id="salesList" resultType="map">
 		SELECT YEAR(odate) AS year, MONTH(odate) AS month, SUM(ol_count * ol_price) AS price 
 		FROM orderinfo AS i 
 		JOIN orderlist AS l ON i.ono=l.ono 

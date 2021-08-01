@@ -99,7 +99,7 @@ public class MembersController {
 	public String logout(Model model, HttpSession sess) {
 		sess.invalidate();
 		model.addAttribute("msg", "로그아웃 되었습니다.");
-		model.addAttribute("url", "/jcappy/index.do");
+		model.addAttribute("url", "/jcappy");
 		return "include/alert";
 	}
 	

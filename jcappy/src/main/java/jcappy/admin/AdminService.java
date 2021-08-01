@@ -22,5 +22,6 @@ public interface AdminService {
 	List<Map<String, String>> boardList();
 	List<Map<String, String>> productList();
 	List<Map<String, String>> orderList();
+	List<Map<String, String>> salesList();
 
 }
