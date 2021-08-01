@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import jcappy.members.MembersVo;
+
 @Repository
 public class ShopcartDao {
 
@@ -16,8 +18,8 @@ public class ShopcartDao {
 		return sqlSession.insert("shopcart.insert", vo);
 	}
 	
-	public List<ShopcartVo> selectAll() { 
-		return sqlSession.selectList("shopcart.selectAll");
+	public List<ShopcartVo> selectAll(ShopcartVo vo) { 
+		return sqlSession.selectList("shopcart.selectAll", vo);
 	}
 	
 	public int update(ShopcartVo vo) {

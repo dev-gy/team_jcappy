@@ -88,7 +88,7 @@ function coupon_list_check() { // 맨위에 체크박스 선택시 전체선택 
 										<td class="first"><input type="checkbox" name="cnos" value="${vo.cno}"/></td>
 										<td>${(couponVo.totCount-status.index)-((couponVo.reqPage-1)*couponVo.pageRow)}</td>
 										<td class="title"><a href="detail?cno=${vo.cno}&reqPage=${couponVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.ccode} </a></td>
-										<td><fmt:formatNumber type="number" value="${vo.cprice}"/></td>
+										<td><fmt:formatNumber type="number" value="${vo.cprice}"/>원</td>
 										<td>${vo.memail}</td>
 										<td><fmt:formatDate value="${vo.cregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 										

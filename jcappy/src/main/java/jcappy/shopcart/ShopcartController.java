@@ -1,5 +1,7 @@
 package jcappy.shopcart;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jcappy.members.MembersVo;
+
 @Controller
 public class ShopcartController {
 	
@@ -15,8 +19,11 @@ public class ShopcartController {
 	ShopcartService shopcartshopService;
 	
 	@RequestMapping("/cart")
-	public String index(Model model) {
-		model.addAttribute("list", shopcartshopService.selectAll());
+	public String index(Model model, HttpServletRequest request) {
+		// 세션정보의 회원번호를 통해 회원의 장바구니 내역을 받아와 전달
+		ShopcartVo vo = new ShopcartVo();
+		vo.setMno(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno());
+		model.addAttribute("list", shopcartshopService.selectAll(vo));
 		return "/cart";
 	}
 	
