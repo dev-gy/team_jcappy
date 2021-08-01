@@ -63,6 +63,7 @@ public class AdminLoginController {
 		model.addAttribute("boardList", service.boardList());
 		model.addAttribute("productList", service.productList());
 		model.addAttribute("orderList", service.orderList());
+		model.addAttribute("salesList", service.salesList());
 		return "admin/main";
 	}
 }

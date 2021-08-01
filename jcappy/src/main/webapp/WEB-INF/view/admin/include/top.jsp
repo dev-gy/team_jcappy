@@ -28,7 +28,7 @@ function checkAuth(servletPath) {
 	} else if (servletPath == '/admin/add/index' && ${adminInfo.authList[4] eq 1}) {
 		location.href='<%=request.getContextPath()%>' + servletPath;
 		return;
-	} else if (servletPath == '/admin/account/index' && ${adminInfo.authList[5] eq 1}) {
+	} else if (servletPath == '/admin/sales/index' && ${adminInfo.authList[5] eq 1}) {
 		location.href='<%=request.getContextPath()%>' + servletPath;
 		return;
 	} else if (servletPath == '/admin/auth/list' && ${adminInfo.authList[6] eq 1}) {
@@ -73,7 +73,7 @@ function checkAuth(servletPath) {
 					</div>
 				</li>
 				<li><a href="#" onClick="checkAuth('/admin/add/index');" class="parent"><span>부가기능</span></a></li>
-				<li><a href="#" onClick="checkAuth('/admin/account/index');" class="parent"><span>매출조회</span></a></li>
+				<li><a href="#" onClick="checkAuth('/admin/sales/index');" class="parent"><span>매출조회</span></a></li>
 				<li><a href="#" onClick="checkAuth('/admin/auth/list');" class="parent"><span>관리자계정</span></a></li>
 			</ul>
 		</div>
