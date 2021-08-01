@@ -78,4 +78,13 @@
 		DELETE FROM qna WHERE q_gno=#{q_gno} 
 	</delete>
 	
+<!-- 	사용자 qna -->
+	<insert id="insert" parameterType="jcappy.qna.QnaVo">
+		INSERT INTO qna (qtitle, qcontent, qregdate, qfile_org, qfile_real, ano, mno, q_gno, q_ono, q_nested)
+		VALUES (#{qtitle}, #{qcontent}, NOW(), #{qfile_org}, #{qfile_real}, #{ano},#{mno}, #{q_gno}, #{q_ono}, #{q_nested})
+		<selectKey keyProperty="q_gno" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
 </mapper>

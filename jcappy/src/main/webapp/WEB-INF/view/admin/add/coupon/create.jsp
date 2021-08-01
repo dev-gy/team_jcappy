@@ -49,8 +49,6 @@ function coupon_create_goSave() {
 			}
 		}
 	});
-	
-	
 }
 </script>
 </head>

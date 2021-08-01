@@ -14,6 +14,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="<%=request.getContextPath()%>/js/common.js"></script>
 <script src="<%=request.getContextPath()%>/js/admin/common.js"></script>
+<script src="<%=request.getContextPath()%>/js/admin/admin_auth.js"></script> <!-- 메뉴 : 관리자 계정 -->
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>	<!-- 다음 주소검색 api -->
 <script src="<%=request.getContextPath()%>/smarteditor/js/HuskyEZCreator.js"></script> <!-- 네이버 스마트에디터2 api -->

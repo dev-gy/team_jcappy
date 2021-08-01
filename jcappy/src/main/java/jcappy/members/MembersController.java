@@ -88,9 +88,9 @@ public class MembersController {
 	            cookie.setMaxAge(0);
 	         }
 	         res.addCookie(cookie);
-	          String url = "/jcappy";
-	          if (req.getParameter("url") != null && !"".equals( req.getParameter("url"))) url = req.getParameter("url");
-	            return "redirect: "+url;
+	         String url = "/jcappy";
+	         if (req.getParameter("url") != null && !"".equals( req.getParameter("url"))) url = req.getParameter("url");
+	         return "redirect: "+url;
 	      }
 	   }
 	

@@ -47,7 +47,7 @@
 												pattern="yyyy-MM-dd HH:mm:ss" /></td>
 										<td><a
 											href="detail?mno=${vo.mno }&orderby=${membersVo.orderby}&direct=${membersVo.direct}&pageRow=${membersVo.pageRow}&stype=${membersVo.stype }&sval=${membersVo.sval }&reqPage=${membersVo.reqPage}">${vo.no }</a></td>
-										<td>${vo.price}</td>
+										<td><fmt:formatNumber value="${vo.price}" pattern="#,###,###원"/></td>
 										<td>${vo.state}</td>
 									</tr>
 								</c:forEach>

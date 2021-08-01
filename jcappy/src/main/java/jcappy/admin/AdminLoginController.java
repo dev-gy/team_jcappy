@@ -52,10 +52,17 @@ public class AdminLoginController {
 		
 		return "include/alert";
 	}
+
+	/*============================
+	 관리자 로그인 시, 메인페이지
+	 ===========================*/
 	
-	// 관리자 로그인시, 메인페이지
+	// 메인페이지
 	@RequestMapping("/admin/main")
-	public String main(Model model, AdminVo vo) {
+	public String main(Model model) {
+		model.addAttribute("boardList", service.boardList());
+		model.addAttribute("productList", service.productList());
+		model.addAttribute("orderList", service.orderList());
 		return "admin/main";
 	}
 }

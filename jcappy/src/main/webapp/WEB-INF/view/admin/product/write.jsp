@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script src="/jcappy/js/common.js"></script>
+<!-- 스마트에디터, 등록 -->
 <script>
 var oEditors;
 $(function(){
@@ -16,6 +17,7 @@ function goSave() {
 	$("#frm").submit();
 }
 </script>
+<!-- 이미지 썸네일 -->
 <script>
 $(function() {
     $("#file1").on("change", function(){
@@ -55,6 +57,7 @@ $(function() {
     });
 });
 </script>
+<!-- 이중 select box -->
 <script>
 function categoryChange(e) {
     var pcate_frez = ["일반형냉장고", "양문형냉장고", "업소용냉장고"];
@@ -78,6 +81,7 @@ function categoryChange(e) {
     }    
 }
 </script>
+<!-- 브랜드에서 기타 선택시 input box 나오는것 -->
 <script>
 	$(function() {
 
