@@ -81,7 +81,7 @@
 			        	<table class="pay_list cstyle_table">
 			        		<thead>
 			        		<tr>
-			        			<th colspan="2">상품명</th>
+			        			<th>상품명</th>
 			        			<th>수량</th>
 			        			<th class="">가격</th>
 			        		</tr>
@@ -89,8 +89,10 @@
 			        		<tbody>
 			        			<c:forEach var="item" items="${list }" varStatus="index">
 				        			<tr class="order_item">
-				        				<td><div class="prev_img" style="background-image: url('${item.img}');"></div></td>
-				        				<td class="cstyle_text_align_left"><a href="/jcappy/product/detail/${item.pno }" class="name">${item.name}</a></td>
+				        				<td class="cstyle_text_align_left">
+				        					<div class="prev_img" style="background-image: url('${item.img}');"></div>
+				        					<a href="/jcappy/product/detail/${item.pno }" class="name">${item.name}</a>
+			        					</td>
 				        				<td>${item.count}</td>
 				        				<td class="cstyle_text_align_right"><fmt:formatNumber value="${item.total_price}"/>원</td>
 				        			</tr>
@@ -130,40 +132,14 @@
 	        					</tr>
 	        				</tbody>
 			        	</table>
-			            
-			            <div class="couname">쿠폰</div><br>
-			            <div class="coupon">
-			                <table>
-			                    <thead>
-			                    </thead>
-			                    <tbody>
-			                        <tr>
-			                        <th>상품 할인</th>
-			                        <td>0원</td>
-			                        </tr>
-			                        <tr>
-			                        <th>회원 할인</th>
-			                        <td>18000원</td>
-			                        </tr>
-			                        <tr>
-			                        <th>쿠폰 할인</th>
-			                        <td><input type="button" value="쿠폰적용" onClick="location.href='/jcappy/pay/coupon.do'"></td>
-			                        </tr>
-			                        <tr>
-			                            <th>할인 합계</th>
-			                            <td>18000원</td>
-			                        </tr>
-			                    </tbody>
-			                </table>
-			            </div>
 			        </div>
 		        </div>
 		        <div class="right">
 		            <div class="size">
-		                <div class="shop2">최종 결제금액</div><br>
-		                <span id="cash">상품 가격</span> <span id="cash1">2,600,000원</span><br><br>
-		                <span id="cash">배송비</span> <span id="cash1">0원</span><br><br><hr><br>
-		                <span id="cash">최종 결제 금액</span> <span id="cash1">2,600,000원</span><br>
+		                <div class="shop2">상품금액</div><br>
+		                <div><span id="cash">배송비</span> <span id="cash1">2,600,000원</span></div>
+		                <div><span id="cash">배송비</span> <span id="cash1">0원</span></div>
+		                <div><span id="cash">최종 결제 금액</span> <span id="cash1">2,600,000원</span></div>
 		            </div>
 		            <div class="size1"><br>
 		                <form name="form">
