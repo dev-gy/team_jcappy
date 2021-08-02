@@ -161,7 +161,7 @@ function infoUpdate() {
 								<div class="middle">
 									<hr>
 										<p class="delivery_type">배송 방법 - 택배</p>
-										<p class="delivery_price">배송비 무료</p>
+										<p class="delivery_price_txt">배송비 <c:if test="${vo.pdelprice == 0 }">무료</c:if></p>
 									<hr>
 								</div>
 								<div class="bottom">
@@ -183,9 +183,8 @@ function infoUpdate() {
 									<input class="pno" type="hidden" name="pno" value="${vo.pno }">
 									<input class="name" type="hidden" name="name" value="${vo.pname }">
 									<input class="img" type="hidden" name="img" value="${vo.pimg1_org }">
-									<input class="total_price" type="hidden" name="total_price" value="${vo.pprice }">
-									
-									
+		                            <input class="delivery_price" type="hidden" name="pdelprice" value="${vo.pdelprice }">
+		                            <input class="total_price" type="hidden" name="total_price" value="${vo.total_price }">
 								</form>
 								</div>
 							</td>

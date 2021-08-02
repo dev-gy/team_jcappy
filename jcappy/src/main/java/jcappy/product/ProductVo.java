@@ -22,6 +22,8 @@ public class ProductVo extends CommonVo {
 	private Timestamp pregdate;
 	private String pdetail;
 	
+	private int pdelprice;
+	
 	private String tval;
 	private String cval;
 	
@@ -145,6 +147,14 @@ public class ProductVo extends CommonVo {
 		this.pdetail = pdetail;
 	}
 	
+	public int getPdelprice() {
+		return pdelprice;
+	}
+
+	public void setPdelprice(int pdelprice) {
+		this.pdelprice = pdelprice;
+	}
+
 	public String getTval() {
 		return tval;
 	}

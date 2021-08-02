@@ -124,10 +124,23 @@
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.12.3</version>
 		</dependency>
-	
-				
+		
+		<dependency>
+		    <groupId>com.github.iamport</groupId>
+		    <artifactId>iamport-rest-client-java</artifactId>
+		    <version>0.2.15</version>
+		</dependency>
 
 	</dependencies>
+	
+	<!-- jitpack 배포플랫폼을 등록해 위의 com.github.iamport maven을 설정한다 -->
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+	
 	<build>
 		<finalName>jcappy</finalName>
 		<plugins>
