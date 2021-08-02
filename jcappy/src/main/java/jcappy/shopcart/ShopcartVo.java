@@ -9,6 +9,7 @@ public class ShopcartVo {
 	private String pname;
 	private String pimg1_org;
 	private int pprice;
+	private int pdelprice;
 	private int total_price;
 
 	public int getMno() {
@@ -53,6 +54,12 @@ public class ShopcartVo {
 	}
 	public void setPprice(int pprice) {
 		this.pprice = pprice;
+	}
+	public int getPdelprice() {
+		return pdelprice;
+	}
+	public void setPdelprice(int pdelprice) {
+		this.pdelprice = pdelprice;
 	}
 	public int getTotal_price() {
 		return total_price;

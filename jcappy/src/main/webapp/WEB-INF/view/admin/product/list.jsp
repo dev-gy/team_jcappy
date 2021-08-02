@@ -138,8 +138,6 @@ function categoryChange(e) {
 									</div>
 								</div>
 								
-								
-								
 								<!-- 페이징 처리 -->
 								<div class='page'>
 									<c:if test="${productVo.startPage > productVo.pageRange}">
@@ -178,14 +176,14 @@ function categoryChange(e) {
 										
 										<select name="ptype" onchange="categoryChange(this)" title="종류">
 											<option value="all">전체</option>
-											<option value="frez"
-												<c:if test="${param.ptype=='frez' }">selected</c:if>>냉장고</option>
-											<option value="air"
-												<c:if test="${param.ptype=='air' }">selected</c:if>>에어컨</option>
-											<option value="tv"
-												<c:if test="${param.ptype=='tv' }">selected</c:if>>TV</option>
-											<option value="wash"
-												<c:if test="${param.ptype=='wash' }">selected</c:if>>세탁기</option>
+											<option value="냉장고"
+												<c:if test="${param.ptype=='냉장고' }">selected</c:if>>냉장고</option>
+											<option value="에어컨"
+												<c:if test="${param.ptype=='에어컨' }">selected</c:if>>에어컨</option>
+											<option value="TV"
+												<c:if test="${param.ptype=='TV' }">selected</c:if>>TV</option>
+											<option value="세탁기"
+												<c:if test="${param.ptype=='세탁기' }">selected</c:if>>세탁기</option>
 										</select>
 										
 										<select name="pcate" id="pcate" title="카테고리">
