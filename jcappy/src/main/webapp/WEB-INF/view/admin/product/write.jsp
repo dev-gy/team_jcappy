@@ -88,7 +88,7 @@ function categoryChange(e) {
 		$("#brandEtc").hide();
 		$("#stype").change(function() {
 
-			if ($("#stype").val() == "etc") {
+			if ($("#stype").val() == "기타") {
 				$("#brandEtc").show();
 			} else {
 				$("#brandEtc").hide();

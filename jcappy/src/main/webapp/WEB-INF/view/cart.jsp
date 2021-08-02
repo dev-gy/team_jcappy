@@ -202,6 +202,7 @@
 			                            <input class="pno" type="hidden" name="pno" value="${vo.pno }">
 			                            <input class="name" type="hidden" name="name" value="${vo.pname }">
 										<input class="img" type="hidden" name="img" value="${vo.pimg1_org }">
+										<input class="delivery_price" type="hidden" name="pdelprice" value="${vo.pdelprice }">
 			                            <input class="total_price" type="hidden" name="total_price" value="${vo.total_price }">
 			                        </td>
 			                    </tr>
