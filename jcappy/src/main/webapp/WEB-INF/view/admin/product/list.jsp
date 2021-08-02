@@ -16,6 +16,7 @@ $(function() {
 			$("#frmListCount").submit()
 		})
 	}); 
+	$("#tval").trigger("change");
 });
 
 function isDel(no) {
@@ -42,16 +43,16 @@ function isDel(no) {
 
 <!-- 이중 select box -->
 function categoryChange(e) {
-    var pcate_frez = ["일반형냉장고", "양문형냉장고", "업소용냉장고"];
-    var pcate_air = ["스탠드형에어컨", "벽걸이형에어컨", "창문형에어컨"];
-    var pcate_tv = ["LEDTV", "QLEDTV", "OLEDTV"];
-    var pcate_wash = ["일반세탁기", "드럼세탁기", "미니세탁기"];
-    var target = document.getElementById("pcate");
+    var cval_frez = ["일반형냉장고", "양문형냉장고", "업소용냉장고"];
+    var cval_air = ["스탠드형에어컨", "벽걸이형에어컨", "창문형에어컨"];
+    var cval_tv = ["LEDTV", "QLEDTV", "OLEDTV"];
+    var cval_wash = ["일반세탁기", "드럼세탁기", "미니세탁기"];
+    var target = document.getElementById("cval");
  
-    if(e.value == "냉장고") var d = pcate_frez;
-    else if(e.value == "에어컨") var d = pcate_air;
-    else if(e.value == "TV") var d = pcate_tv;
-    else if(e.value == "세탁기") var d = pcate_wash;
+    if(e.value == "냉장고") var d = cval_frez;
+    else if(e.value == "에어컨") var d = cval_air;
+    else if(e.value == "TV") var d = cval_tv;
+    else if(e.value == "세탁기") var d = cval_wash;
  
     target.options.length = 0;
  
@@ -174,19 +175,19 @@ function categoryChange(e) {
 												<c:if test="${param.stype=='pname' }">selected</c:if>>상품명</option>
 										</select> 
 										
-										<select name="ptype" onchange="categoryChange(this)" title="종류">
+										<select name="tval" onchange="categoryChange(this)" title="종류">
 											<option value="all">전체</option>
 											<option value="냉장고"
-												<c:if test="${param.ptype=='냉장고' }">selected</c:if>>냉장고</option>
+												<c:if test="${param.tval=='냉장고' }">selected</c:if>>냉장고</option>
 											<option value="에어컨"
-												<c:if test="${param.ptype=='에어컨' }">selected</c:if>>에어컨</option>
+												<c:if test="${param.tval=='에어컨' }">selected</c:if>>에어컨</option>
 											<option value="TV"
-												<c:if test="${param.ptype=='TV' }">selected</c:if>>TV</option>
+												<c:if test="${param.tval=='TV' }">selected</c:if>>TV</option>
 											<option value="세탁기"
-												<c:if test="${param.ptype=='세탁기' }">selected</c:if>>세탁기</option>
+												<c:if test="${param.tval=='세탁기' }">selected</c:if>>세탁기</option>
 										</select>
 										
-										<select name="pcate" id="pcate" title="카테고리">
+										<select name="cval" id="cval" title="카테고리">
 											<option value="all">전체</option>
 										</select>
 										<input type="text" id="sval" name="sval" value="${param.sval }" title="검색할 내용을 입력해주세요" />
