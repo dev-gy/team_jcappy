@@ -15,7 +15,7 @@ $(function() {
 			$('#pcount').val($('input[name=pcount_ex]').eq(idx).val());
 			$("#frmListCount").submit()
 		})
-	}); 
+	});
 	$("#tval").trigger("change");
 });
 

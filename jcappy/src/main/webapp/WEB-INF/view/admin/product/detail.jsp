@@ -47,9 +47,9 @@ function goSave() {
 function groupDel(name) {
 
 	var count=0;
-	for (var i=0; i<$('input[name="'+name+'"]').length; i++) {
+	for (var i=0; i<$("noimg").length; i++) {
 
-		if ($('input[name="'+name+'"]').eq(i).prop('checked')) {
+		if ($("noimg").eq(i).prop('checked')) {
 			count++;
 			break;
 		}
@@ -127,11 +127,7 @@ function categoryChange(e) {
 	});
 </script>
 <script>
-	$(function() {
-		if(${vo.pcompany} == "삼성전자"){
-			$("#pcompany[value='삼성전자']").hide();
-		}
-	})
+
 </script>
 </head>
 <body>
@@ -220,15 +216,15 @@ function categoryChange(e) {
 												<th scope="row"><label for="">상품 이미지</label></th>
 												<td colspan="10" rowspan="1">
 												
-												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
+												<input type="checkbox" name="pimg1_real" id="noimg" onClick="check()" value=1 />
 												<img style="width: 100px;" src="${vo.pimg1_real}">
 												<input type="file" id="file1" name="file1" class="w100" />
 												
-												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
+												<input type="checkbox" name="pimg2_real" id="noimg" onClick="check()" value=1/>
 												<img style="width: 100px;" src="${vo.pimg2_real}">
 												<input type="file" id="file2" name="file2" class="w100" />
-												
-												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
+												 
+												<input type="checkbox" name="pimg3_real" id="noimg" onClick="check()" value=1/>
 												<img style="width: 100px;" src="${vo.pimg3_real}">
 												<input type="file" id="file3" name="file3" class="w100" />
 												
