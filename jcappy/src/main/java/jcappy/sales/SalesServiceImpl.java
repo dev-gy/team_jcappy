@@ -30,5 +30,10 @@ public class SalesServiceImpl implements SalesService {
 		vo.setTotPage(totPage);
 		return dao.selectAll(vo);
 	}
+	@Override
+	public SalesVo daySelect(SalesVo vo) {
+		return dao.daySelect(vo);
+	}
+
 
 }

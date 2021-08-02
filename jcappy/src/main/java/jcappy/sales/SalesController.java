@@ -11,9 +11,14 @@ public class SalesController {
 	@Autowired
 	SalesService service;
 	
-	@RequestMapping("/admin/account/index")
+	@RequestMapping("/admin/sales/index")
 	public String index(Model model, SalesVo vo) {
-		model.addAttribute("list", service.selectAll(vo));
+		if(vo.getDatepicker()== null || "".equals(vo.getDatepicker())) {
+			model.addAttribute("list", service.selectAll(vo));
+		} else {
+			model.addAttribute("daySelect",service.daySelect(vo));
+		}
+		
 		return "admin/sales/index";
 	}
 }
