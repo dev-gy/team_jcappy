@@ -165,7 +165,7 @@ $(document).ready(function(){
 												<td colspan="10" rowspan="1">
 												
 												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
-												<img style="width: 50px;" src="${vo.pimg1_org}">
+												<img style="width: 50px;" src="${vo.pimg1_real}">
 												<input type="file" id="file1" name="file1" class="w100" />
 												
 												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>

@@ -36,7 +36,16 @@ public class AdminProductServiceImpl implements AdminProductService {
 
 	@Override
 	public ProductVo detail(ProductVo vo) {
-		return dao.detail(vo);
+		ProductVo pv = dao.detail(vo);
+		String img1 = pv.getPimg1_real();
+		if (img1 != null) {
+			if(!img1.startsWith("https://")) {
+				img1 = "/jcappy/upload/" + img1;
+				pv.setPimg1_real(img1);
+			}
+		}
+		
+		return pv;
 	}
 
 	@Override
