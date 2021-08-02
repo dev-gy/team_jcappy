@@ -8,35 +8,39 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
 <title>상품 목록</title>
 <script>
-function goSaveCount(no) {
-	$("#pno").val(no);
-	$("#frmListCount").submit();
+$(function() {
+	$('.btns.change').each(function(idx, item) {
+		$(item).click(function() {
+			$('#pno').val($('.pno').eq(idx).text());
+			$('#pcount').val($('input[name=pcount_ex]').eq(idx).val());
+			$("#frmListCount").submit()
+		})
+	}); 
+});
+
+function isDel(no) {
+	if (confirm('삭제하시겠습니까?')) {
+		$.ajax({
+			url : 'delete',
+			data : {
+				'pno' : no
+			},
+			method : 'post',
+			success : function(res) {
+				if (res.trim() == 'true') {
+					alert('정상적으로 삭제되었습니다.');
+					location.href = 'list';
+				} else {
+					alert('삭제 실패');
+				}
+			},
+			error : function(res) {
+			}
+		});
+	}
 }
 
-	function isDel(no) {
-		if (confirm('삭제하시겠습니까?')) {
-			$.ajax({
-				url : 'delete',
-				data : {
-					'pno' : no
-				},
-				method : 'post',
-				success : function(res) {
-					if (res.trim() == 'true') {
-						alert('정상적으로 삭제되었습니다.');
-						location.href = 'list';
-					} else {
-						alert('삭제 실패');
-					}
-				},
-				error : function(res) {
-				}
-			});
-		}
-	}
-</script>
 <!-- 이중 select box -->
-<script>
 function categoryChange(e) {
     var pcate_frez = ["일반형냉장고", "양문형냉장고", "업소용냉장고"];
     var pcate_air = ["스탠드형에어컨", "벽걸이형에어컨", "창문형에어컨"];
@@ -108,12 +112,12 @@ function categoryChange(e) {
 											</c:if>
 											<c:forEach var="vo" items="${list }" varStatus="status">
 												<tr>
-													<td class="first">${vo.pno }</td>
+													<td class="first pno">${vo.pno }</td>
 													<td>${vo.pcompany }</td>
 													<td style="text-align: left; padding-left: 10px;"><a href="detail?pno=${vo.pno }">${vo.pname }</a></td>
 													<td><fmt:formatNumber value="${vo.pprice }" pattern="#,###,###"/></td>
-													<td><input type="number" name="pcount" class="w100" value="${vo.pcount }" />
-													<a class="btns" href="javascript:goSaveCount(${vo.pno });"><strong>변경</strong></a>	
+													<td><input type="number" name="pcount_ex" class="w100" value="${vo.pcount }" />
+													<a class="btns change" href="#"><strong>변경</strong></a>	
 													</td>
 													<td class="date">
 													<fmt:formatDate value="${vo.pregdate }" pattern="yyyy-MM-dd HH:mm:ss" />
@@ -126,6 +130,7 @@ function categoryChange(e) {
 										</tbody>
 									</table>
 									<input type="hidden" name="pno" id="pno" value="">
+									<input type="hidden" name="pcount" id="pcount" value="">
 								</form>
 								<div class="btn">
 									<div class="btnRight">
