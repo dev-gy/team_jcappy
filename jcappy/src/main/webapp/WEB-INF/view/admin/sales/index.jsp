@@ -97,6 +97,27 @@ $(function(){
 							<!-- //페이징 처리 -->
 							<form name="searchForm" id="searchForm" action="index"  method="post">
 								<div class="search">
+									<select name="year" title="검색을 선택해주세요" onchange="$('#searchForm').submit();">
+										<option value="0">전체</option>
+										<option value="2019" <c:if test="${param.stype=='2019'}">selected</c:if>>2019년</option>
+										<option value="2020" <c:if test="${param.stype=='2020'}">selected</c:if>>2020년</option>
+										<option value="2021" <c:if test="${param.stype=='2021'}">selected</c:if>>2021년</option>
+									</select>
+									<select name="month" title="검색을 선택해주세요" onchange="$('#searchForm').submit();">
+										<option value="0">전체</option>
+										<option value="1" <c:if test="${param.stype=='1'}">selected</c:if>>1월</option>
+										<option value="2" <c:if test="${param.stype=='2'}">selected</c:if>>2월</option>
+										<option value="3" <c:if test="${param.stype=='3'}">selected</c:if>>3월</option>
+										<option value="4" <c:if test="${param.stype=='4'}">selected</c:if>>4월</option>
+										<option value="5" <c:if test="${param.stype=='5'}">selected</c:if>>5월</option>
+										<option value="6" <c:if test="${param.stype=='6'}">selected</c:if>>6월</option>
+										<option value="7" <c:if test="${param.stype=='7'}">selected</c:if>>7월</option>
+										<option value="8" <c:if test="${param.stype=='8'}">selected</c:if>>8월</option>
+										<option value="9" <c:if test="${param.stype=='9'}">selected</c:if>>9월</option>
+										<option value="10" <c:if test="${param.stype=='10'}">selected</c:if>>10월</option>
+										<option value="11" <c:if test="${param.stype=='11'}">selected</c:if>>11월</option>
+										<option value="12" <c:if test="${param.stype=='12'}">selected</c:if>>12월</option>
+									</select>
 	                                <input type="text" id="datepicker" name="datepicker">
 	                                <input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" onclick="$('#searchForm').submit();" />
 								</div>

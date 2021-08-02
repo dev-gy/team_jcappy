@@ -4,8 +4,11 @@
 	
 	<sql id="salesWhere">
 		<where>
-			<if test="year != 0 or month != 0 or day != 0">
-				year = #{year} and month = #{month} and day = #{day}
+			<if test="year != 0">
+				year = #{year} 
+			</if>
+			<if test="month != 0">
+				and month = #{month} 
 			</if>
 		</where>
 	</sql>
@@ -52,10 +55,11 @@
 					else month
 				end
 			) as date from dates group by date ) as d  LEFT JOIN (select *, SUBSTR(DATE_FORMAT(odate, '%Y%m%d'),1, 6) date from orderinfo) oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
+			<include refid="salesWhere"/>
 			group by d.date 
 			ORDER BY d.date desc
 		) a
-		<include refid="salesWhere"/>
+		
 	</select>
 	
 	<select id="daySelect" resultType="jcappy.sales.SalesVo" parameterType="jcappy.sales.SalesVo">
