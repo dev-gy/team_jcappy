@@ -77,7 +77,7 @@ function check() {
 }
 </script>
 <!--  -->
-<!-- <script>
+<script>
 $(document).ready(function(){
 	
 	  $("#stype").each(function(){
@@ -86,7 +86,53 @@ $(document).ready(function(){
 	    }
 	  });
 	});
-</script> -->
+</script>
+<!-- 이중 select box -->
+<script>
+function categoryChange(e) {
+    var pcate_frez = ["일반형냉장고", "양문형냉장고", "업소용냉장고"];
+    var pcate_air = ["스탠드형에어컨", "벽걸이형에어컨", "창문형에어컨"];
+    var pcate_tv = ["LEDTV", "QLEDTV", "OLEDTV"];
+    var pcate_wash = ["일반세탁기", "드럼세탁기", "미니세탁기"];
+    var target = document.getElementById("pcate");
+ 
+    if(e.value == "냉장고") var d = pcate_frez;
+    else if(e.value == "에어컨") var d = pcate_air;
+    else if(e.value == "TV") var d = pcate_tv;
+    else if(e.value == "세탁기") var d = pcate_wash;
+ 
+    target.options.length = 0;
+ 
+    for (x in d) {
+        var opt = document.createElement("option");
+        opt.value = d[x];
+        opt.innerHTML = d[x];
+        target.appendChild(opt);
+    }    
+}
+</script>
+<!-- 브랜드에서 기타 선택시 input box 나오는것 -->
+<script>
+	$(function() {
+
+		$("#brandEtc").hide();
+		$("#stype").change(function() {
+
+			if ($("#stype").val() == "기타") {
+				$("#brandEtc").show();
+			} else {
+				$("#brandEtc").hide();
+			}
+		})
+	});
+</script>
+<script>
+	$(function() {
+		if(${vo.pcompany} == "삼성전자"){
+			$("#pcompany[value='삼성전자']").hide();
+		}
+	})
+</script>
 </head>
 <body>
 	<div id="wrap">
@@ -125,6 +171,10 @@ $(document).ready(function(){
 												<div>
 													<select name="ptype" style="font-size: 13px" onchange="categoryChange(this)">
 														<option>${vo.ptype }</option>
+														<option value="냉장고">냉장고</option>
+														<option value="에어컨">에어컨</option>
+														<option value="TV">TV</option>
+														<option value="세탁기">세탁기</option>
 													</select> <select name="pcate" style="font-size: 13px" id="pcate">
 														<option>${vo.pcate }</option>
 													</select>
@@ -134,9 +184,15 @@ $(document).ready(function(){
 											<tr>
 												<th scope="row"><label for="">브랜드</label></th>
 												<td colspan="10">
-													<select name="pcompany" style="font-size: 13px" id="stype" title="브랜드">
-														<option value="">${vo.pcompany }</option>
+													<select id="pcompany" name="pcompany" style="font-size: 13px" id="stype" title="브랜드">
+														<option value="${vo.pcompany }">${vo.pcompany }</option>
+														<option value="삼성전자">삼성전자</option>
+														<option value="LG전자">LG전자</option>
+														<option value="캐리어">캐리어</option>
+														<option value="위니아전자">위니아전자</option>
+														<option value="기타">기타</option>
 													</select>
+													<input type="text" id="brandEtc" name="brandEtc" />
 												</td>
 											</tr>
 											<tr>
@@ -165,15 +221,15 @@ $(document).ready(function(){
 												<td colspan="10" rowspan="1">
 												
 												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
-												<img style="width: 50px;" src="${vo.pimg1_org}">
+												<img style="width: 100px;" src="${vo.pimg1_real}">
 												<input type="file" id="file1" name="file1" class="w100" />
 												
 												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
-												<img style="width: 50px;" src="${vo.pimg2_org}">
+												<img style="width: 100px;" src="${vo.pimg2_real}">
 												<input type="file" id="file2" name="file2" class="w100" />
 												
 												<input type="checkbox" name="nos" id="noimg" onClick="check()"/>
-												<img style="width: 50px;" src="${vo.pimg3_org}">
+												<img style="width: 100px;" src="${vo.pimg3_real}">
 												<input type="file" id="file3" name="file3" class="w100" />
 												
 												<a class="btns" style="cursor: pointer;" href="#" onclick="groupDel('nos');"><strong>삭제</strong> </a>

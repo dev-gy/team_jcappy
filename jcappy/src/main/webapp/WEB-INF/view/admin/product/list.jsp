@@ -112,8 +112,8 @@ function categoryChange(e) {
 													<td>${vo.pcompany }</td>
 													<td style="text-align: left; padding-left: 10px;"><a href="detail?pno=${vo.pno }">${vo.pname }</a></td>
 													<td><fmt:formatNumber value="${vo.pprice }" pattern="#,###,###"/></td>
-													<td><input type="number" id="pcount" name="pcount" class="w100" value="${vo.pcount }" />
-													<a id="ppcount" class="btns" href="javascript:goSaveCount(${vo.pno });"><strong>변경</strong></a>	
+													<td><input type="number" name="pcount" class="w100" value="${vo.pcount }" />
+													<a class="btns" href="javascript:goSaveCount(${vo.pno });"><strong>변경</strong></a>	
 													</td>
 													<td class="date">
 													<fmt:formatDate value="${vo.pregdate }" pattern="yyyy-MM-dd HH:mm:ss" />
@@ -132,8 +132,6 @@ function categoryChange(e) {
 										<a class="wbtn" href="write"><strong>등록</strong> </a>
 									</div>
 								</div>
-								
-								
 								
 								<!-- 페이징 처리 -->
 								<div class='page'>
@@ -173,14 +171,14 @@ function categoryChange(e) {
 										
 										<select name="ptype" onchange="categoryChange(this)" title="종류">
 											<option value="all">전체</option>
-											<option value="frez"
-												<c:if test="${param.ptype=='frez' }">selected</c:if>>냉장고</option>
-											<option value="air"
-												<c:if test="${param.ptype=='air' }">selected</c:if>>에어컨</option>
-											<option value="tv"
-												<c:if test="${param.ptype=='tv' }">selected</c:if>>TV</option>
-											<option value="wash"
-												<c:if test="${param.ptype=='wash' }">selected</c:if>>세탁기</option>
+											<option value="냉장고"
+												<c:if test="${param.ptype=='냉장고' }">selected</c:if>>냉장고</option>
+											<option value="에어컨"
+												<c:if test="${param.ptype=='에어컨' }">selected</c:if>>에어컨</option>
+											<option value="TV"
+												<c:if test="${param.ptype=='TV' }">selected</c:if>>TV</option>
+											<option value="세탁기"
+												<c:if test="${param.ptype=='세탁기' }">selected</c:if>>세탁기</option>
 										</select>
 										
 										<select name="pcate" id="pcate" title="카테고리">

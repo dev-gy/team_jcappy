@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sales">
+	
+	<sql id="salesWhere">
+		<where>
+			<if test="sval != null and sval != ''">
+				<if test="stype == 'all'">
+					ccode LIKE '%${sval}%' OR cprice LIKE '%${sval}%' OR memail LIKE '%${sval}%'
+				</if>
+				<if test="stype != 'all'">
+					${stype} LIKE '%${sval}%'
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectAll" resultType="jcappy.sales.SalesVo" parameterType="jcappy.sales.SalesVo">
+		select * , SUM(ol_count * ol_price) AS price
+		from ( 
+		select *,concat (year,
+			case 
+				when month = 1 then '01'
+				when month = 2 then '02'
+				when month = 3 then '03'
+				when month = 4 then '04'
+				when month = 5 then '05'
+				when month = 6 then '06'
+				when month = 7 then '07'
+				when month = 8 then '08'
+				when month = 9 then '09'
+				else month
+			end
+		,
+			case 
+				when day = 1 then '01'
+				when day = 2 then '02'
+				when day = 3 then '03'
+				when day = 4 then '04'
+				when day = 5 then '05'
+				when day = 6 then '06'
+				when day = 7 then '07'
+				when day = 8 then '08'
+				when day = 9 then '09'
+				else day
+			end) as date from dates) as d  LEFT JOIN (select *, DATE_FORMAT(odate, '%Y%m%d') date from orderinfo) oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
+		<include refid="salesWhere"/>
+		group by d.date 
+		ORDER BY d.date desc
+		LIMIT ${startIdx},${pageRow}
+	</select>
+	
+	<select id="count" resultType="int" parameterType="jcappy.sales.SalesVo">
+		select count(*)
+		from ( 
+		select *,concat (year,
+			case 
+				when month = 1 then '01'
+				when month = 2 then '02'
+				when month = 3 then '03'
+				when month = 4 then '04'
+				when month = 5 then '05'
+				when month = 6 then '06'
+				when month = 7 then '07'
+				when month = 8 then '08'
+				when month = 9 then '09'
+				else month
+			end
+		,
+			case 
+				when day = 1 then '01'
+				when day = 2 then '02'
+				when day = 3 then '03'
+				when day = 4 then '04'
+				when day = 5 then '05'
+				when day = 6 then '06'
+				when day = 7 then '07'
+				when day = 8 then '08'
+				when day = 9 then '09'
+				else day
+			end) as date from dates) as d  LEFT JOIN (select *, DATE_FORMAT(odate, '%Y%m%d') date from orderinfo) oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
+		<include refid="salesWhere"/>
+	</select>
+</mapper>
