@@ -54,7 +54,7 @@
 		<where>
 			<if test="sval != null and sval != ''">
 				<if test="stype == 'all'">
-					title LIKE '%${sval}%' OR content LIKE '%${sval}%'
+					mname LIKE '%${sval}%' OR memail LIKE '%${sval}%' 
 				</if>		
 				<if test="stype != 'all'">
 					${stype} LIKE '%${sval}%'
