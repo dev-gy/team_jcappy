@@ -16,7 +16,7 @@ $(function() {
 			$("#frmListCount").submit()
 		})
 	});
-	$("#tval").trigger("change");
+	categoryChange();
 });
 
 function isDel(no) {
@@ -42,26 +42,30 @@ function isDel(no) {
 }
 
 <!-- 이중 select box -->
-function categoryChange(e) {
+function categoryChange() {
     var cval_frez = ["일반형냉장고", "양문형냉장고", "업소용냉장고"];
     var cval_air = ["스탠드형에어컨", "벽걸이형에어컨", "창문형에어컨"];
     var cval_tv = ["LEDTV", "QLEDTV", "OLEDTV"];
     var cval_wash = ["일반세탁기", "드럼세탁기", "미니세탁기"];
     var target = document.getElementById("cval");
- 
-    if(e.value == "냉장고") var d = cval_frez;
-    else if(e.value == "에어컨") var d = cval_air;
-    else if(e.value == "TV") var d = cval_tv;
-    else if(e.value == "세탁기") var d = cval_wash;
- 
+ 	var src = document.getElementById("tval");
+ 	
+ 	var arrCval;
+    if(src.value == "냉장고") arrCval = cval_frez;
+    else if(src.value == "에어컨") arrCval = cval_air;
+    else if(src.value == "TV") arrCval = cval_tv;
+    else if(src.value == "세탁기") arrCval = cval_wash;
+
     target.options.length = 0;
- 
-    for (x in d) {
-        var opt = document.createElement("option");
-        opt.value = d[x];
-        opt.innerHTML = d[x];
-        target.appendChild(opt);
-    }    
+	
+    var html = "<option value='all'>전체</option>";
+    for (idx in arrCval) {
+   		html += "<option value=" + arrCval[idx];
+    	if ("${param.cval}" == arrCval[idx]) html += " selected";
+    	html += ">" + arrCval[idx] + "</option>";
+    }
+    
+    $(target).html(html);
 }
 </script>
 </head>
@@ -142,40 +146,32 @@ function categoryChange(e) {
 								<!-- 페이징 처리 -->
 								<div class='page'>
 									<c:if test="${productVo.startPage > productVo.pageRange}">
-										<a
-											href="list?reqPage=${productVo.startPage-1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a>
-									</c:if>
-									<c:forEach var="rp" begin="${productVo.startPage}" end="${productVo.endPage }">
-										 <c:if test="${productVo.reqPage == rp }">
-			                        	    <a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'>
-												<strong>
-				                        	    	${rp }
-				                        	    </strong>
-			                        	    </a>
-		                        	    </c:if>
-		                        	    <c:if test="${productVo.reqPage != rp }">
-			                        	    <a href='list?reqPage=${rp}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}'>
-												${rp }
-											</a>
-		                        	    </c:if>
-									</c:forEach>
-									<c:if test="${productVo.totPage > productVo.endPage}">
-										<a
-											href="list?reqPage=${productVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a>
-									</c:if>
+			                        	<a href="list?reqPage=${productVo.endPage+1 }&stype=${param.stype}&tval=${param.tval}&cval=${param.cval}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a>
+			                        </c:if>
+			                        <c:forEach var="rp" begin="${productVo.startPage}" end="${productVo.endPage }">
+			                        	<c:if test="${rp==productVo.reqPage }">
+			                        		<strong>${productVo.reqPage}</strong>
+			                        	</c:if>
+			                        	<c:if test="${rp!=productVo.reqPage }">
+			                            <a href='list?reqPage=${rp}&stype=${param.stype}&tval=${param.tval}&cval=${param.cval}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}' >${rp }</a>
+			                            </c:if>
+			                        </c:forEach>
+			                        <c:if test="${productVo.totPage > productVo.endPage}">
+			                        	<a href="list?reqPage=${productVo.endPage+1 }&stype=${param.stype}&tval=${param.tval}&cval=${param.cval}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a>
+			                        </c:if>
 								</div>
 								<!-- //페이징 처리 -->
+								
 								<form name="searchForm" id="searchForm" action="" method="get">
 									<div class="search">
 										<select name="stype" title="검색분류선택">
-											<option value="all">전체</option>
 											<option value="pcompany"
 												<c:if test="${param.stype=='pcompany' }">selected</c:if>>브랜드명</option>
 											<option value="pname"
 												<c:if test="${param.stype=='pname' }">selected</c:if>>상품명</option>
 										</select> 
 										
-										<select name="tval" onchange="categoryChange(this)" title="종류">
+										<select id="tval" name="tval" onchange="categoryChange()" title="상품종류">
 											<option value="all">전체</option>
 											<option value="냉장고"
 												<c:if test="${param.tval=='냉장고' }">selected</c:if>>냉장고</option>
@@ -187,8 +183,8 @@ function categoryChange(e) {
 												<c:if test="${param.tval=='세탁기' }">selected</c:if>>세탁기</option>
 										</select>
 										
-										<select name="cval" id="cval" title="카테고리">
-											<option value="all">전체</option>
+										<select id="cval" name="cval" title="상품카테고리">
+											
 										</select>
 										<input type="text" id="sval" name="sval" value="${param.sval }" title="검색할 내용을 입력해주세요" />
 										<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />

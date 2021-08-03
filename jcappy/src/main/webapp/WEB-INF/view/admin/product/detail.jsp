@@ -44,45 +44,35 @@ function goSave() {
 </script>
 <!-- 이미지삭제 -->
 <script>
-function groupDel(name) {
-
-	var count=0;
-	for (var i=0; i<$("noimg").length; i++) {
-
-		if ($("noimg").eq(i).prop('checked')) {
-			count++;
-			break;
-		}
-	}
-	if (count == 0) {
-		alert('하나 이상 체크해 주세요');
-	} else {
-		if (confirm('삭제하시겠습니까?')) {
-			$("#frm").submit();
-		}
-	}
-}
-
-function check() {
-
-	if ($("#noimg").prop('checked')) {
-		for (var i=0; i<$('input[name="no"]').length; i++) {
-			$('input[name="no"]').eq(i).prop('checked','checked');
-		}
-	} else {
-		for (var i=0; i<$('input[name="no"]').length; i++) {
-			$('input[name="no"]').eq(i).prop('checked','');
-		}
+function deleteImg(name) {
+	if (confirm('삭제하시겠습니까?')) {
+			
+		$.ajax({
+			url:'deleteImg',
+            data:{
+            	'pno':${vo.pno}
+			},
+			method:'post',
+            success:function(res) {
+            	console.log(res);
+            	if (res.trim() == 'true') {
+                  alert('정상적으로 삭제되었습니다.');
+                  location.href='list';
+               } else {
+                  alert('삭제 실패');
+               }
+            },
+		});
 	}
 }
 </script>
-<!--  -->
+<!-- 브랜드 DB에서 갖고온것과 같을떄 숨기기 -->
 <script>
 $(document).ready(function(){
 	
 	  $("#stype").each(function(){
 	    if($(this).val()=="${vo.pcompany}"){
-	      $(this).prop("selected","selected"); // attr적용안될경우 prop으로 
+			$(this).val().hide();
 	    }
 	  });
 	});
@@ -126,9 +116,6 @@ function categoryChange(e) {
 		})
 	});
 </script>
-<script>
-
-</script>
 </head>
 <body>
 	<div id="wrap">
@@ -148,7 +135,7 @@ function categoryChange(e) {
 						<!-- 내용 : s -->
 						<div id="bbs">
 							<div id="bread">
-								<form method="post" name="frm" id="frm" action="update	"
+								<form method="post" name="frm" id="frm" action="update"
 									enctype="multipart/form-data">
 									<table width="100%" border="0" cellspacing="0" cellpadding="0"
 										summary="상품정보 상세보기">
@@ -164,32 +151,31 @@ function categoryChange(e) {
 											<tr>
 												<th scope="row"><label for="">상품 종류</label></th>
 												<td colspan="10">
-												<div>
-													<select name="ptype" style="font-size: 13px" onchange="categoryChange(this)">
-														<option>${vo.ptype }</option>
-														<option value="냉장고">냉장고</option>
-														<option value="에어컨">에어컨</option>
-														<option value="TV">TV</option>
-														<option value="세탁기">세탁기</option>
-													</select> <select name="pcate" style="font-size: 13px" id="pcate">
-														<option>${vo.pcate }</option>
-													</select>
-												</div>
+													<div>
+														<select name="ptype" style="font-size: 13px"
+															onchange="categoryChange(this)">
+															<option>${vo.ptype }</option>
+															<option value="냉장고">냉장고</option>
+															<option value="에어컨">에어컨</option>
+															<option value="TV">TV</option>
+															<option value="세탁기">세탁기</option>
+														</select> <select name="pcate" style="font-size: 13px" id="pcate">
+															<option>${vo.pcate }</option>
+														</select>
+													</div>
 												</td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">브랜드</label></th>
-												<td colspan="10">
-													<select id="pcompany" name="pcompany" style="font-size: 13px" id="stype" title="브랜드">
+												<td colspan="10"><select id="pcompany" name="pcompany"
+													style="font-size: 13px" id="stype" title="브랜드">
 														<option value="${vo.pcompany }">${vo.pcompany }</option>
 														<option value="삼성전자">삼성전자</option>
 														<option value="LG전자">LG전자</option>
 														<option value="캐리어">캐리어</option>
 														<option value="위니아전자">위니아전자</option>
 														<option value="기타">기타</option>
-													</select>
-													<input type="text" id="brandEtc" name="brandEtc" />
-												</td>
+												</select> <input type="text" id="brandEtc" name="brandEtc" /></td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품명</label></th>
@@ -198,13 +184,15 @@ function categoryChange(e) {
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품 가격</label></th>
-												<td colspan="10"><input type="number" style="font-size: 12px" id="pprice"
-													name="pprice" class="w100" value="${vo.pprice }"/></td>
+												<td colspan="10"><input type="number"
+													style="font-size: 12px" id="pprice" name="pprice"
+													class="w100" value="${vo.pprice }" /></td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품 재고</label></th>
-												<td colspan="10"><input type="number" style="font-size: 12px" id="pcount"
-													name="pcount" class="w100" value="${vo.pcount }" /></td>
+												<td colspan="10"><input type="number"
+													style="font-size: 12px" id="pcount" name="pcount"
+													class="w100" value="${vo.pcount }" /></td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품 등록일</label></th>
@@ -216,26 +204,25 @@ function categoryChange(e) {
 												<th scope="row"><label for="">상품 이미지</label></th>
 												<td colspan="10" rowspan="1">
 												
-												<input type="checkbox" name="pimg1_real" id="noimg" onClick="check()" value=1 />
+												<input type="checkbox" name="nos" id="noimg" onClick="check()" value="${vo.pimg1_real}"/>
 												<img style="width: 100px;" src="${vo.pimg1_real}">
 												<input type="file" id="file1" name="file1" class="w100" />
 												
-												<input type="checkbox" name="pimg2_real" id="noimg" onClick="check()" value=1/>
+												<input type="checkbox" name="nos" id="noimg" onClick="check()" value="${vo.pimg2_real}"/>
 												<img style="width: 100px;" src="${vo.pimg2_real}">
 												<input type="file" id="file2" name="file2" class="w100" />
 												 
-												<input type="checkbox" name="pimg3_real" id="noimg" onClick="check()" value=1/>
+												<input type="checkbox" name="nos" id="noimg" onClick="check()" value="${vo.pimg3_real}"/>
 												<img style="width: 100px;" src="${vo.pimg3_real}">
 												<input type="file" id="file3" name="file3" class="w100" />
 												
-												<a class="btns" style="cursor: pointer;" href="#" onclick="groupDel('nos');"><strong>삭제</strong> </a>
+												<a class="btns" style="cursor: pointer;" href="#" onclick="deleteImg('nos');"><strong>삭제</strong> </a>
 												</td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품 상세정보</label></th>
-												<td colspan="10">
-													<textarea name="pdetail" id="contents" style="width: 100%;">${vo.pdetail }</textarea>
-												</td>
+												<td colspan="10"><textarea name="pdetail" id="contents"
+														style="width: 100%;">${vo.pdetail }</textarea></td>
 										</tbody>
 									</table>
 									<input type="hidden" name="cmd" value="write" /> <input
