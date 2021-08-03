@@ -14,7 +14,6 @@ public class SalesController {
 	@RequestMapping("/admin/sales/index")
 	public String index(Model model, SalesVo vo) {
 		if(vo.getDatepicker()== null || "".equals(vo.getDatepicker())) {
-			System.out.println("실험" + vo.getYear());
 			model.addAttribute("list", service.selectAll(vo));
 		} else {
 			model.addAttribute("daySelect",service.daySelect(vo));
