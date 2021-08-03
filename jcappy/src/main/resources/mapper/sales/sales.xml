@@ -29,7 +29,7 @@
 					when month = 9 then '09'
 					else month
 				end
-			) as date from dates group by date) as d  LEFT JOIN (select *, SUBSTR(DATE_FORMAT(odate, '%Y%m%d'),1, 6) date from orderinfo where oc_cancel != 1) oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono
+			) as date from dates group by date) as d  LEFT JOIN (select *, SUBSTR(DATE_FORMAT(odate, '%Y%m%d'),1, 6) date from orderinfo where o_state = '결제완료') oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono
 			<include refid="salesWhere"/>
 			group by d.date 
 			ORDER BY d.date desc
@@ -54,7 +54,7 @@
 					when month = 9 then '09'
 					else month
 				end
-			) as date from dates group by date ) as d  LEFT JOIN (select *, SUBSTR(DATE_FORMAT(odate, '%Y%m%d'),1, 6) date from orderinfo where oc_cancel != 1) oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
+			) as date from dates group by date ) as d  LEFT JOIN (select *, SUBSTR(DATE_FORMAT(odate, '%Y%m%d'),1, 6) date from orderinfo where o_state = '결제완료') oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
 			<include refid="salesWhere"/>
 			group by d.date 
 			ORDER BY d.date desc
@@ -90,7 +90,7 @@
 					when day = 8 then '08'
 					when day = 9 then '09'
 					else day
-				end) as date from dates) as d  LEFT JOIN (select *, DATE_FORMAT(odate, '%Y%m%d') date from orderinfo where oc_cancel != 1) oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
+				end) as date from dates) as d  LEFT JOIN (select *, DATE_FORMAT(odate, '%Y%m%d') date from orderinfo where o_state = '결제완료') oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
 			WHERE d.date = #{datepicker}
 			group by d.date 
 			ORDER BY d.date desc
@@ -113,7 +113,7 @@
 					when month = 9 then '09'
 					else month
 				end
-			) as date from dates group by date) as d  LEFT JOIN (select *, SUBSTR(DATE_FORMAT(odate, '%Y%m%d'),1, 6) date from orderinfo where oc_cancel != 1) oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
+			) as date from dates group by date) as d  LEFT JOIN (select *, SUBSTR(DATE_FORMAT(odate, '%Y%m%d'),1, 6) date from orderinfo where o_state = '결제완료') oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
 			<include refid="salesWhere"/>
 			group by d.date 
 			ORDER BY d.date desc

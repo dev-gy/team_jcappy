@@ -60,19 +60,19 @@ function qna_detail_isDel() {//게시글 삭제
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">번호</label></th>
+										<th scope="row">번호</th>
 										<td colspan="10">
 											${vo.qno}
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">제목</label></th>
+										<th scope="row">제목</th>
 										<td colspan="10">
 											${vo.qtitle}
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">작성자</label></th>
+										<th scope="row">작성자</th>
 										<c:if test="${empty vo.aname}">
 										<td colspan="10">${vo.mname }</td>
 										</c:if>
@@ -82,26 +82,26 @@ function qna_detail_isDel() {//게시글 삭제
 									</tr>
 									<c:if test="${empty vo.aname}">
 									<tr>
-										<th scope="row"><label for="">이메일</label></th>
+										<th scope="row">이메일</th>
 										<td colspan="10">
 											${vo.memail}
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">전화번호</label></th>
+										<th scope="row">전화번호</th>
 										<td colspan="10">
 											${vo.mphone}
 										</td>
 									</tr>
 									</c:if>	
 									<tr>
-										<th scope="row"><label for="">작성날짜</label></th>
+										<th scope="row">작성날짜</th>
 										<td colspan="10">
 											<fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">내용</label></th>
+										<th scope="row">내용</th>
 										<td colspan="10" style="vertical-align: top;">
 											<div class="qna_detail_qcontent">
 												${vo.qcontent}
@@ -109,7 +109,7 @@ function qna_detail_isDel() {//게시글 삭제
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
+										<th scope="row">첨부파일</th>
 										<td colspan="10">
 					<!-- 파일다운로드 -->		<a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.qfile_org}&real=${vo.qfile_real}" 
                             				target="_blank">${vo.qfile_org}</a>

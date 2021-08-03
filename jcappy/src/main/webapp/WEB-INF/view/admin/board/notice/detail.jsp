@@ -141,32 +141,32 @@
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">번호</label></th>
+										<th scope="row">번호</th>
 										<td colspan="10">
 											${vo.nno}
 										
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">제목</label></th>
+										<th scope="row">제목</th>
 										<td colspan="10">
 											${vo.ntitle }
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">조회수</label></th>
+										<th scope="row">조회수</th>
 										<td colspan="10">
 											${vo.nreadcount}
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">작성날짜</label></th>
+										<th scope="row">작성날짜</th>
 										<td colspan="10">
 											<fmt:formatDate value="${vo.nregdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td> 
 										</td>
 									</tr>
 									<tr>
-										<th scope="row" ><label for="" >내용</label></th>
+										<th scope="row" >내용</th>
 										<td colspan="10" style="vertical-align: top;">
 											<div class="notice_detail_ncontent">
 												${vo.ncontent}
@@ -174,7 +174,7 @@
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
+										<th scope="row">첨부파일</th>
 										<td colspan="10">
 					<!-- 파일다운로드 -->		<a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.nfile_org}&real=${vo.nfile_real}" 
                             				target="_blank">${vo.nfile_org}</a>
