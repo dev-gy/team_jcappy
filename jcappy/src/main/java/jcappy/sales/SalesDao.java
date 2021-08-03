@@ -19,5 +19,13 @@ public class SalesDao {
 	public int count(SalesVo vo) {
 		return sqlSession.selectOne("sales.count", vo);
 	}
+
+	public SalesVo daySelect(SalesVo vo) {
+		return sqlSession.selectOne("sales.daySelect", vo);
+	}
+
+	public int totalSales(SalesVo vo) {
+		return sqlSession.selectOne("sales.totalSales", vo);
+	}
 	
 }

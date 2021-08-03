@@ -147,7 +147,7 @@ function categoryChange(e) {
 											<option value="LG전자">LG전자</option>
 											<option value="캐리어">캐리어</option>
 											<option value="위니아전자">위니아전자</option>
-											<option value="기타">기타</option>
+											<option value="">기타</option>
 										</select>
 										<input type="text" id="brandEtc" name="brandEtc" />
 										</td>
