@@ -21,7 +21,7 @@ function admin_main_go_orderList() {
 
 //
 function admin_main_go_sales() {
-	location.href='';
+	location.href='sales/index';
 }
 
 //최근 등록 게시글 : 글 제목 클릭 시, 해당 글 상세페이지로 이동
