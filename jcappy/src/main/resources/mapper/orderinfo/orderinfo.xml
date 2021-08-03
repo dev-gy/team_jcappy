@@ -19,4 +19,60 @@
 		SELECT * FROM orderinfo ORDER BY ono DESC LIMIT 1
 	</select>
 	
+	<!-- [관리자] 주문 검색 -->
+	<sql id="orderWhere">
+		<where>
+			<if test="sval != null and sval != ''">
+				<if test="stype == 'all'">
+					mname LIKE '%${sval}%' OR memail LIKE '%${sval}%' OR o_state LIKE '%${sval}%' OR o_del LIKE '%${sval}%'
+				</if>		 
+				<if test="stype != 'all'">
+					${stype} LIKE '%${sval}%'
+				</if>		
+			</if>
+		</where>
+	</sql> 
+	
+	<!-- [관리자] 주문관리 목록출력 -->
+	<select id="admin_selectList" resultType="map" parameterType="jcappy.orderinfo.OrderinfoVo">
+		SELECT
+			ono, odate, o_state, o_del,
+			mname, memail,
+			(SELECT SUBSTR(pname, 1, 25) FROM product WHERE pno = (SELECT MIN(pno) FROM orderlist AS ol WHERE ol.ono = oi.ono)) AS pname,
+			(SELECT COUNT(pno) FROM orderlist WHERE ono = oi.ono) AS total_pcount,
+			(SELECT SUM(ol_price * ol_count) FROM orderlist WHERE ono = oi.ono) AS total_price
+		FROM orderinfo AS oi 
+		JOIN members AS m ON oi.mno = m.mno
+		<include refid="orderWhere"/>
+		ORDER BY ${orderby} ${direct}, ono DESC 
+		LIMIT ${startIdx}, ${pageRow}
+	</select>
+	 
+	<!-- [관리자] 총 주문건수 -->
+	<select id="count" resultType="int" parameterType="jcappy.orderinfo.OrderinfoVo">
+		SELECT COUNT(*)	
+		FROM orderinfo AS oi
+		JOIN members AS m ON oi.mno = m.mno
+		<include refid="orderWhere"/>
+	</select>
+	
+	<!-- [관리자] 일괄 입금확인 -->
+	<update id="pay_check" parameterType="jcappy.orderinfo.OrderinfoVo">
+		UPDATE orderinfo
+		SET o_state = '결제완료'
+		WHERE ono in
+		<foreach collection="onos" item="ono" index="index" open="(" close=")" separator=",">
+		${ono}
+		</foreach>
+	</update> 
+	
+	<!-- [관리자] 일괄 출고처리 -->
+	<update id="delivery_check" parameterType="jcappy.orderinfo.OrderinfoVo">
+		UPDATE orderinfo
+		SET o_del = '배송완료'
+		WHERE ono in
+		<foreach collection="onos" item="ono" index="index" open="(" close=")" separator=",">
+		${ono}
+		</foreach>
+	</update> 
 </mapper>

@@ -16,7 +16,7 @@ function admin_main_go_productList() {
 
 //
 function admin_main_go_orderList() {
-	location.href='';
+	location.href='order/list';
 }
 
 //
