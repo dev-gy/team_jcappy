@@ -116,6 +116,25 @@ function categoryChange(e) {
 		})
 	});
 </script>
+<!-- input에 숫자 콤마찍기 -->
+<!-- <script>
+function commas(comma) {
+
+	var x = comma.value;			
+
+	x = x.replace(/,/gi, '');
+
+	var regexp = /^[0-9]*$/;
+	
+	if(!regexp.test(x)){ 
+		$(comma).val(""); 
+		alert("숫자만 입력 가능합니다.");
+	} else {
+		x = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");			
+		$(comma).val(x);			
+	}
+}
+</script> -->
 </head>
 <body>
 	<div id="wrap">
@@ -186,13 +205,13 @@ function categoryChange(e) {
 												<th scope="row"><label for="">상품 가격</label></th>
 												<td colspan="10"><input type="number"
 													style="font-size: 12px" id="pprice" name="pprice"
-													class="w100" value="${vo.pprice }" /></td>
+													class="w100" value="${vo.pprice }"/></td>  <!-- onkeyup="commas(this)" -->
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품 재고</label></th>
 												<td colspan="10"><input type="number"
 													style="font-size: 12px" id="pcount" name="pcount"
-													class="w100" value="${vo.pcount }" /></td>
+													class="w100" value="${vo.pcount }"/></td> <!-- onkeyup="commas(this)" -->
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품 등록일</label></th>
