@@ -13,6 +13,9 @@ public class SalesVo extends CommonVo{
 	private int price;
 	private String datepicker;
 	
+	public SalesVo() {
+		setPageRow(12);
+	}
 	
 	public String getDatepicker() {
 		return datepicker;

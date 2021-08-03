@@ -15,6 +15,7 @@ public class SalesController {
 	public String index(Model model, SalesVo vo) {
 		if(vo.getDatepicker()== null || "".equals(vo.getDatepicker())) {
 			model.addAttribute("list", service.selectAll(vo));
+			model.addAttribute("total_sales", service.totalSales(vo));
 		} else {
 			model.addAttribute("daySelect",service.daySelect(vo));
 		}

@@ -6,5 +6,6 @@ public interface SalesService {
 
 	List<SalesVo> selectAll(SalesVo vo);
 	SalesVo daySelect(SalesVo vo);
+	int totalSales(SalesVo vo);
 
 }

@@ -29,7 +29,7 @@
 					when month = 9 then '09'
 					else month
 				end
-			) as date from dates group by date) as d  LEFT JOIN (select *, SUBSTR(DATE_FORMAT(odate, '%Y%m%d'),1, 6) date from orderinfo) oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
+			) as date from dates group by date) as d  LEFT JOIN (select *, SUBSTR(DATE_FORMAT(odate, '%Y%m%d'),1, 6) date from orderinfo where oc_cancel != 1) oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono
 			<include refid="salesWhere"/>
 			group by d.date 
 			ORDER BY d.date desc
@@ -54,7 +54,7 @@
 					when month = 9 then '09'
 					else month
 				end
-			) as date from dates group by date ) as d  LEFT JOIN (select *, SUBSTR(DATE_FORMAT(odate, '%Y%m%d'),1, 6) date from orderinfo) oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
+			) as date from dates group by date ) as d  LEFT JOIN (select *, SUBSTR(DATE_FORMAT(odate, '%Y%m%d'),1, 6) date from orderinfo where oc_cancel != 1) oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
 			<include refid="salesWhere"/>
 			group by d.date 
 			ORDER BY d.date desc
@@ -90,10 +90,34 @@
 					when day = 8 then '08'
 					when day = 9 then '09'
 					else day
-				end) as date from dates) as d  LEFT JOIN (select *, DATE_FORMAT(odate, '%Y%m%d') date from orderinfo) oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
+				end) as date from dates) as d  LEFT JOIN (select *, DATE_FORMAT(odate, '%Y%m%d') date from orderinfo where oc_cancel != 1) oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
 			WHERE d.date = #{datepicker}
 			group by d.date 
 			ORDER BY d.date desc
 	</select>
 	
+	<select id="totalSales" resultType="int" parameterType="jcappy.sales.SalesVo">
+		select SUM(price) from(
+		select  IFNULL(SUM(ol_count * ol_price),0) AS price
+			from ( 
+			select *,concat (year,
+				case 
+					when month = 1 then '01'
+					when month = 2 then '02'
+					when month = 3 then '03'
+					when month = 4 then '04'
+					when month = 5 then '05'
+					when month = 6 then '06'
+					when month = 7 then '07'
+					when month = 8 then '08'
+					when month = 9 then '09'
+					else month
+				end
+			) as date from dates group by date) as d  LEFT JOIN (select *, SUBSTR(DATE_FORMAT(odate, '%Y%m%d'),1, 6) date from orderinfo where oc_cancel != 1) oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
+			<include refid="salesWhere"/>
+			group by d.date 
+			ORDER BY d.date desc
+			LIMIT ${startIdx},${pageRow}
+		) a
+	</select>
 </mapper>
