@@ -68,7 +68,7 @@
 									</td>
 									<td><fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd"/></td>
 									<td>
-										<div class="item_state">접수대기</div>
+										<div class="item_state">답변대기</div>
 									</td>
 		                       </c:forEach>
 						</tbody>
@@ -90,8 +90,9 @@
                         	<span><a href="list?reqPage=${qnaVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}">></a></span>
                         </c:if>
 					</div>
+					<br>
 					<!-- //페이징 처리 -->
-					<form name="searchForm" id="searchForm" action="index"  method="post">
+					<form name="searchForm" id="searchForm" action="list"  method="post">
 						<div class="search">
 							<select name="stype" title="검색을 선택해주세요">
 								<option value="all">전체</option>

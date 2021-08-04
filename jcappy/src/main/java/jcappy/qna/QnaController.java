@@ -115,7 +115,12 @@ public class QnaController {
 		return "include/alert";
 	}
 	
-	
+	// 문의 수정페이지
+	@RequestMapping("/mypage/qna/edit")
+	public String edit(Model model, QnaVo vo) {
+		model.addAttribute("vo", service.edit(vo));
+		return "mypage/qna/edit";
+	}
 	
 	
 }

@@ -13,7 +13,7 @@
 				</if>
 			</if>
 			<if test="mno != 0">
-				AND mno=#{mno}
+				AND mno = #{mno}
 			</if>
 		</where>
 	</sql>

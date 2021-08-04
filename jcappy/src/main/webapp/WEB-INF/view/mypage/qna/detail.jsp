@@ -66,7 +66,7 @@ function qna_detail_isDel() {//게시글 삭제
 						<thead>
 							<tr>
 								<th class="cstyle_text_align_left">${vo.qtitle}</th>
-								<th>${vo.qregdate }</th>
+								<td><fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd"/></td>
 							</tr>
 						</thead>
 						<tbody>
@@ -75,14 +75,16 @@ function qna_detail_isDel() {//게시글 삭제
 									<div class="cont">${vo.qcontent} </div>
 								</td>
 							</tr>
-							<tr>
-		                       	<th class="cstyle_text_align_left">	첨부파일 </th>
-		                           <th><a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.qfile_org}&real=${vo.qfile_real}"  target="_blank">${vo.qfile_org}</a></th>
+	                       	<c:if test="${null ne vo.qfile_org}">
+								<tr>
+			                       	<th class="cstyle_text_align_left">	첨부파일 </th>
+		                           	<th><a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.qfile_org}&real=${vo.qfile_real}"  target="_blank">${vo.qfile_org}</a></th>
 		                    	</tr>
+							</c:if>
 						</tbody>
 					</table>
 					<div class="btn_wrap">
-						<input class="cstyle_btn" id="button" type="button" value="수정" onclick="location.href='/jcappy/mypage/qna/list'">
+						<input class="cstyle_btn" id="button" type="button" value="수정" onclick="location.href='edit?qno=${vo.qno}'">
 						<input class="cstyle_btn" id="button" type="button" value="삭제" onclick="qna_detail_isDel();">
 					</div>
 				</div>

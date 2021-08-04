@@ -8,4 +8,5 @@ public interface QnaService {
 	int delete(QnaVo vo);
 	QnaVo detail(QnaVo vo);
 	int update(QnaVo vo);
+	QnaVo edit(QnaVo vo);
 }
