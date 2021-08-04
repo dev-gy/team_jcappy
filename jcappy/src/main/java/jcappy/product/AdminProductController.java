@@ -157,7 +157,7 @@ public class AdminProductController {
 
 		if (r > 0) {
 			model.addAttribute("msg", "정상적으로 수정되었습니다.");
-			model.addAttribute("url", "list");
+			model.addAttribute("url", "detail?pno=" + vo.getPno());
 		} else {
 			model.addAttribute("msg", "수정실패");
 			model.addAttribute("url", "detail?pno=" + vo.getPno());

@@ -31,7 +31,7 @@ $(function(){
 					<h2>매출조회 - [목록]</h2>
 				</div>
 				<div class="con">
-					<div id="bbs">
+					<div id="bbs" style="width:500px !important;">
 						<div id="blist">
 							<p><span><strong>총 ${salesVo.totCount }개</strong>  |  ${salesVo.reqPage}/${salesVo.totPage }페이지</span></p>
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
@@ -69,20 +69,14 @@ $(function(){
 										<td><fmt:formatNumber type="number" value="${daySelect.price}"/>원</td>
 									</tr>
 									</c:if>
+									<c:if test="${empty daySelect}">
+									<tr style="border-top: #4a4b4f 2px solid;">
+										<td class="first" style="background: #eeeff0;">매출액 합계</td>
+										<td colspan="2"><div id="total_sales"><fmt:formatNumber type="number" value="${total_sales}"/>원</div></td>
+									</tr>
+									</c:if>
 								</tbody>
 							</table>
-							<c:if test="${empty daySelect}">
-							<table style="float: right; width:300px; margin: 50px 0 0 0;">
-								<colgroup>
-									<col class="w10" />
-									<col class="w10" />
-								</colgroup>
-								<tr>
-									<td>매출액 합계</td>
-									<td><div id="total_sales"><fmt:formatNumber type="number" value="${total_sales}"/>원</div></td>
-								</tr>
-							</table>
-							</c:if>
 							<!-- 페이징 처리 -->
 							<c:if test="${empty daySelect}">
 								<div class='page'>

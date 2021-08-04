@@ -20,10 +20,10 @@ import jcappy.members.MembersVo;
 
 
 @Controller
-public class NoticeController {
+public class AdminNoticeController {
 	
 	@Autowired
-	NoticeService service;
+	AdminNoticeService service;
 	@Autowired
 	CommentService cService;
 	//tablename 변수 설정하여 comment insert, list 에서 사용

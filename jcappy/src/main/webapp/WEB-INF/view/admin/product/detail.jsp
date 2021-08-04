@@ -44,14 +44,12 @@ function goSave() {
 </script>
 <!-- 이미지삭제 -->
 <script>
-function deleteImg(name) {
+function deleteImg() {
 	if (confirm('삭제하시겠습니까?')) {
 			
 		$.ajax({
 			url:'deleteImg',
-            data:{
-            	'pno':${vo.pno}
-			},
+            data: $('#frm').serialize(),
 			method:'post',
             success:function(res) {
             	console.log(res);
@@ -104,18 +102,42 @@ function categoryChange(e) {
 <!-- 브랜드에서 기타 선택시 input box 나오는것 -->
 <script>
 	$(function() {
-
 		$("#brandEtc").hide();
-		$("#stype").change(function() {
 
-			if ($("#stype").val() == "기타") {
-				$("#brandEtc").show();
-			} else {
-				$("#brandEtc").hide();
-			}
-		})
+		$("#stype").change(function() {
+			pcompEct();
+		});
+		
+		pcompEct();
+		
 	});
+	function pcompEct() {
+		if ($("#stype").val() == "기타") {
+			$("#brandEtc").show();
+		} else {
+			$("#brandEtc").hide();
+		}
+	}
 </script>
+<!-- input에 숫자 콤마찍기 -->
+<!-- <script>
+function commas(comma) {
+
+	var x = comma.value;			
+
+	x = x.replace(/,/gi, '');
+
+	var regexp = /^[0-9]*$/;
+	
+	if(!regexp.test(x)){ 
+		$(comma).val(""); 
+		alert("숫자만 입력 가능합니다.");
+	} else {
+		x = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");			
+		$(comma).val(x);			
+	}
+}
+</script> -->
 </head>
 <body>
 	<div id="wrap">
@@ -167,56 +189,69 @@ function categoryChange(e) {
 											</tr>
 											<tr>
 												<th scope="row"><label for="">브랜드</label></th>
-												<td colspan="10"><select id="pcompany" name="pcompany"
-													style="font-size: 13px" id="stype" title="브랜드">
-														<option value="${vo.pcompany }">${vo.pcompany }</option>
-														<option value="삼성전자">삼성전자</option>
-														<option value="LG전자">LG전자</option>
-														<option value="캐리어">캐리어</option>
-														<option value="위니아전자">위니아전자</option>
-														<option value="기타">기타</option>
-												</select> <input type="text" id="brandEtc" name="brandEtc" /></td>
+												<td colspan="10">
+												<select name="pcompany" style="font-size: 13px" id="stype" title="브랜드">
+														<option value="삼성전자"
+														<c:if test="${vo.pcompany == '삼성전자'}">selected</c:if>>삼성전자</option>
+														<option value="LG전자"
+														<c:if test="${vo.pcompany == 'LG전자'}">selected</c:if>>LG전자</option>
+														<option value="캐리어"
+														<c:if test="${vo.pcompany == '캐리어'}">selected</c:if>>캐리어</option>
+														<option value="위니아전자"
+														<c:if test="${vo.pcompany == '위니아전자'}">selected</c:if>>위니아전자</option>
+														<option value="기타"
+														<c:if test="${vo.pcompany != '삼성전자' && vo.pcompany != 'LG전자' && vo.pcompany != '캐리어' && vo.pcompany != '위니아전자'}">selected</c:if>>기타</option>
+												</select> 
+												<input type="text" id="brandEtc" name="pcomp" value="${vo.pcompany}"/>
+												</td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품명</label></th>
-												<td colspan="10"><input type="text" id="pname"
-													name="pname" class="w100" value="${vo.pname }" /></td>
+												<td colspan="10">
+													<input type="text" id="pname" name="pname" class="w100" value="${vo.pname }"/>
+												</td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품 가격</label></th>
-												<td colspan="10"><input type="number"
-													style="font-size: 12px" id="pprice" name="pprice"
-													class="w100" value="${vo.pprice }" /></td>
+												<td colspan="10">
+													<input type="number" style="font-size: 12px" id="pprice" name="pprice" class="w100" value="${vo.pprice }"/>
+												</td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품 재고</label></th>
-												<td colspan="10"><input type="number"
-													style="font-size: 12px" id="pcount" name="pcount"
-													class="w100" value="${vo.pcount }" /></td>
+												<td colspan="10">
+												<input type="number"style="font-size: 12px" id="pcount" name="pcount" class="w100" value="${vo.pcount }"/>
+												</td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품 등록일</label></th>
-												<td colspan="10"><input type="text" id="pregdate"
-													name="pregdate" class="w100" value="${vo.pregdate }"
-													readonly /></td>
+												<td colspan="10">
+												<input type="text" id="pregdate" name="pregdate" class="w100" value="${vo.pregdate }" readonly />
+												</td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">상품 이미지</label></th>
 												<td colspan="10" rowspan="1">
 												
-												<input type="checkbox" name="nos" id="noimg" onClick="check()" value="${vo.pimg1_real}"/>
-												<img style="width: 100px;" src="${vo.pimg1_real}">
+												<c:if test="${!empty vo.pimg1_org}">
+													<input type="checkbox" name="delImg1" id="delImg1" value="1"/>
+													<img style="width: 100px;" src="${vo.pimg1_real}">
+												</c:if>
 												<input type="file" id="file1" name="file1" class="w100" />
 												
-												<input type="checkbox" name="nos" id="noimg" onClick="check()" value="${vo.pimg2_real}"/>
-												<img style="width: 100px;" src="${vo.pimg2_real}">
+												<c:if test="${!empty vo.pimg2_org}">
+													<input type="checkbox" name="delImg2" id="delImg2" value="1"/>
+													<img style="width: 100px;" src="${vo.pimg2_real}">
+												</c:if>
 												<input type="file" id="file2" name="file2" class="w100" />
 												 
-												<input type="checkbox" name="nos" id="noimg" onClick="check()" value="${vo.pimg3_real}"/>
-												<img style="width: 100px;" src="${vo.pimg3_real}">
+												 <c:if test="${!empty vo.pimg3_org}">
+													<input type="checkbox" name="delImg3" id="delImg3" value="1"/>
+													<img style="width: 100px;" src="${vo.pimg3_real}">
+												</c:if>
 												<input type="file" id="file3" name="file3" class="w100" />
 												
-												<a class="btns" style="cursor: pointer;" href="#" onclick="deleteImg('nos');"><strong>삭제</strong> </a>
+												<a class="btns" style="cursor: pointer;" href="#" onclick="deleteImg();"><strong>삭제</strong> </a>
 												</td>
 											</tr>
 											<tr>
@@ -233,10 +268,8 @@ function categoryChange(e) {
 										<a class="btns" href="list"><strong>목록</strong></a>
 									</div>
 									<div class="btnRight">
-										<a class="btns" style="cursor: pointer;"
-											href="javascript:goSave();"><strong>수정</strong></a> <a
-											class="btns" style="cursor: pointer;"
-											href="javascript:isDel();"><strong>삭제</strong></a>
+										<a class="btns" style="cursor: pointer;" href="javascript:goSave();"><strong>수정</strong></a>
+										<a class="btns" style="cursor: pointer;" href="javascript:isDel();"><strong>삭제</strong></a>
 									</div>
 								</div>
 								<!--//btn-->

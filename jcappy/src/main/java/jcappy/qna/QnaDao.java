@@ -62,5 +62,8 @@ public class QnaDao {
 	public int insert(QnaVo vo) {
 		return sqlSession.insert("qna.insert", vo);
 	}
-
+	
+	public int haveRe(QnaVo vo) {
+		return sqlSession.selectOne("qna.haveRe", vo);
+	}
 }

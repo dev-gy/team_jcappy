@@ -73,7 +73,7 @@ function goSave() {
 					<form method="post" name="frm" id="frm" action="insert" enctype="multipart/form-data" >
 					<input type="hidden" name="mno" value="${membersInfo.mno }">
 						<input class="qna_title" id="title" name="qtitle" type="text">
-						<textarea id="contents" name="qcontent" style="width:100%; height:500px;"></textarea>
+						<textarea id="contents" name="qcontent"></textarea>
 						<input type="file" name="file">
 						<div class="btn_wrap">
 							<input class="cstyle_btn" id="button" type="button" value="작성" onclick="goSave();">

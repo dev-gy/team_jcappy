@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,15 +9,50 @@
 <title>1:1 문의</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 <script>
+function qna_edit_setEditor(holder){ //스마트 에디터
+	var oEditors = [];
+	nhn.husky.EZCreator.createInIFrame({
+		oAppRef: oEditors,
+		elPlaceHolder: holder,
+		sSkinURI: "<%=request.getContextPath()%>/smarteditor/SmartEditor2Skin.html",	
+		htParams : {
+			bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+			bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+			bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+			fOnBeforeUnload : function(){
+			}
+		}, //boolean
+		fOnAppLoad : function(){
+			//예제 코드
+			//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+		},
+		fCreator: "createSEditor2"
+	});
+	
+	return oEditors;
+}
+
 function goSave() {
-    oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []); // submit 할 때, Smarteditor에서 작성한 데이터 전송하기 위한 코드
+    oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []); // submit 할 때, Smarteditor에서 작성한 데이터 전송하기 위한 코드
+    if ($("#title").val().trim() == "") { //title 빈값이면 저장안되게
+		 alert("제목을 입력해 주세요");
+		 console.log($("#contents").val().trim());
+		 $("#title").focus();
+		 return false;
+	 }
+	
+	 if ($("#contents").val().trim() == "<p>&nbsp;</p>") { //contents 빈값이면 저장안되게
+		 alert("내용을 입력해 주세요");
+		 $("#contents").focus();
+		 return false;
+	 }
     $('#frm').submit();
  }
-     
- var oEditors;
- $(function(){
-    oEditors = setEditor("content"); // textarea 아이디 값
- });
+ 
+var oEditors;
+$(function(){
+	 oEditors = setEditor("contents"); // textarea 아이디 값
+});
 </script>
 </head>
 <body>
@@ -34,13 +71,18 @@ function goSave() {
 				<!-- 현재 페이지 컨텐츠 구현부 -->
 				<div class="mypage_for_line"></div>
 				<div class="qna_edit_content">
-					<form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data" >
-						<input class="qna_title" type="text" value="{수정할 글 제목}">
-						<textarea id="content">{수정할 글 내용}</textarea>
+					<form method="post" name="frm" id="frm" action="update" enctype="multipart/form-data" >
+						<input class="qna_title" id="title" name="qtitle" type="text" value="${vo.qtitle}">
+						<textarea id="contents" name="qcontent">${vo.qcontent }</textarea>
+						<input type="file" name="file">
+						<c:if test="${null ne vo.qfile_org}">
+							<div id="file_org">기존파일 : ${vo.qfile_org}</div>
+						</c:if>
 						<div class="btn_wrap">
-							<button class="cstyle_btn" onclick="javascript:goSave();">수정</button>
-							<button class="cstyle_btn" onclick="location.href='/mypage/qna/index'">취소</button>
+							<input class="cstyle_btn" id="button" type="button" value="수정" onclick="goSave();">
+							<input class="cstyle_btn" id="button" type="button" value="취소" onclick="location.href='/jcappy/mypage/qna/list'">
 						</div>
+						<input type="hidden" name="qno" value="${vo.qno}">
 					</form>
 				</div>
 				

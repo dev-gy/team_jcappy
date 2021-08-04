@@ -61,14 +61,19 @@
 		                       		<td>${(qnaVo.totCount-status.index)-((qnaVo.reqPage-1)*qnaVo.pageRow)}</td>
 		                       		<td class="title">
 		                       			<a href="detail?qno=${vo.qno}&reqPage=${qnaVo.reqPage}&stype=${param.stype}&sval=${param.sval}">
-		                       				<c:forEach begin="1" end="${vo.q_nested}">&nbsp;&nbsp;&nbsp;</c:forEach>
-		                                   	<c:if test="${vo.q_nested > 0}"><img src="/jcappy/img/admin/answer_icon.gif"></c:if>
+<%-- 		                       				<c:forEach begin="1" end="${vo.q_nested}">&nbsp;&nbsp;&nbsp;</c:forEach> --%>
+<%-- 		                                   	<c:if test="${vo.q_nested > 0}"><img src="/jcappy/img/admin/answer_icon.gif"></c:if> --%>
 											${vo.qtitle} 
 										</a>
 									</td>
 									<td><fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd"/></td>
 									<td>
-										<div class="item_state">접수대기</div>
+										<c:if test="">
+											<div>답변대기</div>
+										</c:if>
+										<c:if test="">
+											<div>답변완료</div>
+										</c:if>
 									</td>
 		                       </c:forEach>
 						</tbody>
@@ -90,8 +95,9 @@
                         	<span><a href="list?reqPage=${qnaVo.endPage+1 }&stype=${param.stype}&sval=${param.sval}">></a></span>
                         </c:if>
 					</div>
+					<br>
 					<!-- //페이징 처리 -->
-					<form name="searchForm" id="searchForm" action="index"  method="post">
+					<form name="searchForm" id="searchForm" action="list"  method="post">
 						<div class="search">
 							<select name="stype" title="검색을 선택해주세요">
 								<option value="all">전체</option>

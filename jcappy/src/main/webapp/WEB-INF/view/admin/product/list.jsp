@@ -58,7 +58,7 @@ function categoryChange() {
 
     target.options.length = 0;
 	
-    var html = "<option value='all'>전체</option>";
+    var html = "<option value=''>전체</option>";
     for (idx in arrCval) {
    		html += "<option value=" + arrCval[idx];
     	if ("${param.cval}" == arrCval[idx]) html += " selected";
@@ -165,14 +165,14 @@ function categoryChange() {
 								<form name="searchForm" id="searchForm" action="" method="get">
 									<div class="search">
 										<select name="stype" title="검색분류선택">
+										<option value="pname"
+												<c:if test="${param.stype=='pname' }">selected</c:if>>상품명</option>
 											<option value="pcompany"
 												<c:if test="${param.stype=='pcompany' }">selected</c:if>>브랜드명</option>
-											<option value="pname"
-												<c:if test="${param.stype=='pname' }">selected</c:if>>상품명</option>
 										</select> 
 										
 										<select id="tval" name="tval" onchange="categoryChange()" title="상품종류">
-											<option value="all">전체</option>
+											<option value="">전체</option>
 											<option value="냉장고"
 												<c:if test="${param.tval=='냉장고' }">selected</c:if>>냉장고</option>
 											<option value="에어컨"
