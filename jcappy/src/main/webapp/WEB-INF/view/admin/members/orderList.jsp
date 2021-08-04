@@ -6,7 +6,7 @@
 <div id="bbs" class="admin_members_detail_table">
 	<div id="blist">
 		<div class="admin_members_detail_subtitle">
-			<div onClick="location.href='';">
+			<div onClick="go_order_list();">
 				<input type="text" name="admin_members_detail_subtitle" value="주문목록"
 					disabled size="30">
 			</div>

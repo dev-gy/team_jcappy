@@ -183,6 +183,11 @@ function go_board_list(cate) {
 		location.href='<%=request.getContextPath()%>/admin/board/review/list?stype=memail&sval=${vo.memail}';
 	}
 }
+
+// 주문관리목록에서 작성자 이메일 검색
+function go_order_list() {
+	location.href='<%=request.getContextPath()%>/admin/order/list?stype=memail&sval=${vo.memail}';
+}
 </script>
 </head>
 <body>

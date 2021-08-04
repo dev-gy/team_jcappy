@@ -37,7 +37,8 @@
 		SELECT YEAR(odate) AS year, MONTH(odate) AS month, SUM(ol_count * ol_price) AS price 
 		FROM orderinfo AS i 
 		JOIN orderlist AS l ON i.ono=l.ono 
-		GROUP BY YEAR(odate), MONTH(odate) 
+		WHERE o_state LIKE '결제완료' 
+		GROUP BY YEAR(odate), MONTH(odate) 	
 		ORDER BY year DESC, month DESC
 		LIMIT 0, 5
 	</select>

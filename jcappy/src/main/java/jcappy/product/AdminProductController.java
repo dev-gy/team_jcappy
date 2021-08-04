@@ -20,7 +20,6 @@ public class AdminProductController {
 
 	@RequestMapping("/admin/product/list")
 	public String list(Model model, ProductVo vo) {
-		System.out.println(vo.getTval());
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/product/list";
 	}
@@ -196,7 +195,8 @@ public class AdminProductController {
 	// detail에서 이미지 삭제
 	@RequestMapping("/admin/product/deleteImg")
 	public String deleteImg(Model model, ProductVo vo, HttpServletRequest req) {
-		int r = service.delete(vo);
+		
+		int r = service.deleteImg(vo);
 		if (r > 0) {
 			model.addAttribute("result", "true");
 		} else {
@@ -204,5 +204,4 @@ public class AdminProductController {
 		}
 		return "include/result";
 	}
-
 }
