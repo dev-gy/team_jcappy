@@ -6,40 +6,59 @@
 <meta charset="UTF-8">
 <title>결제</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
+
 <script>
 	$(function(){
+		console.log(JSON.stringify("${plist}"));
+		// ===== 배송지 버튼 클릭 =====
 		// 배송지 버튼 클릭시
 	     $(".addr_type").on("click", function() {
 	    	 var val = $(this).val();
 				if (val == 1) {	// 기본배송지일 경우 readonly 추가 및 배송지 정보 회원정보 값으로 초기화, 클릭이벤트 제거
 					$(".addr_info_area").find("input").attr("readonly", "readonly");
 					
-					$(".mname").val("${mVo.mname}");
-					$(".phone").val("${mVo.mphone}");
-					$(".zipcode").val("${mVo.mzipcode}");
-					$(".addr").val("${mVo.maddr}");
-					$(".addrde").val("${mVo.maddrde}");
+					$("#mname").val("${mVo.mname}");
+					$("#phone").val("${mVo.mphone}");
+					$("#zipcode").val("${mVo.mzipcode}");
+					$("#addr").val("${mVo.maddr}");
+					$("#addrde").val("${mVo.maddrde}");
 					
 					$(".addr_info_area").find("a").off("click");
 				} else if (val == 2) {	// 최근배송지일 경우 readonly 추가 및 배송지 최근주문정보 값으로 초기화, 클릭이벤트 제거
 					$(this).find("input").attr("readonly", "readonly");
 					
-					$(".mname").val("${mVo.mname}");
-					$(".phone").val("${mVo.mphone}");
-					$(".zipcode").val("${oVo.ozipcode}");
-					$(".addr").val("${oVo.oaddr}");
-					$(".addrde").val("${oVo.oaddrde}");
+					$("#mname").val("${mVo.mname}");
+					$("#phone").val("${mVo.mphone}");
+					$("#zipcode").val("${oVo.ozipcode}");
+					$("#addr").val("${oVo.oaddr}");
+					$("#addrde").val("${oVo.oaddrde}");
 					
 					$(".addr_info_area").find("a").off("click");
 				} else if (val == 3) {	// 직접입력일 경우 readonly 제거 및 입력값 초기화, 주소 클릭이벤트에 주소Api오픈 함수 추가
 					$(".addr_info_area").find("input").removeAttr("readonly").val("");
-				
+					
 					$(".addr_info_area").find("a").on("click", function() {
-				    	 daumPostcode($(".zipcode"), $(".addr"), $(".addrde"));
+				    	 daumPostcode($("#zipcode"), $("#addr"), $("#addrde"));
 					});
 				}
 	     });
 		
+		// ===== 요청사항 =====
+		// 요청사항 선택, 직접입력 선택시 input 활성화, 비선택시 비활성화
+		$(".request_select").on("change", function() {
+			
+			if ($(this).val() != 5) {
+				$("#request").hide();
+				$("#request").val($(this).find("option:selected").text());
+			} else {
+				$("#request").show();
+				$("#request").val("");
+			}
+			
+		})
+		
+		// ===== 구매조건 동의 =====
+		// 구매조건 동의 체크시에만 버튼 활성화
 		$("#agree_check").on("click", function() {
 			if ($(this).prop("checked")) {
 		    	$("#pay_btn").removeAttr("disabled");			
@@ -47,209 +66,345 @@
 				$("#pay_btn").attr("disabled", "disabled");
 			}
 		});
-		  
-		// 우측 결제 정보 상품가격 값 초기화
-		var totalAllPrice = 0;
-		$.each($(".total_price"), function() {
-			totalAllPrice += Number($(this).val());
+		
+		
+		// ===== 쿠폰 =====		
+		$("#coupon_dialog").dialog({
+			width: 600,	// 가로 300px
+			modal: true,	// 모달(뒷페이지 클릭방지) 활성화 true
+			autoOpen: false,	// 페이지 로드시 자동 활성화 false
+			resizable: false,		// 사이즈 조절 false
+			buttons: {			// 계속 쇼핑, 장바구니 이동 버튼 생성 및 함수 구현
+				"취소": function() {
+					$(this).dialog("close");	// 현재 다이얼로그 닫기
+				}
+			},
+		}).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();	// 다이얼로그의 타이틀바를 클래스로 찾아서 제거 (타이틀바 사용안할 것)
+		
+		// 스크롤시 다이얼로드 중앙 고정되도록 다이얼로그 옵션의 포지션 센터 위치 재등록
+		$(window).scroll(function() {
+			$("#coupon_dialog").dialog("option", "position", { my: "center", at: "center", of: window });
 		});
-		$(".total_all_price").val(totalAllPrice);
-	    $(".total_all_price_txt").text(totalAllPrice.toLocaleString("ko-KR")+"원");
+		
+		$("#coupon_btn").on("click", function() {
+			$("#coupon_dialog").dialog("open");
+		});
+		
+		
+		// ===== 쿠폰 사용 버튼 클릭 이벤트 =====
+		$(".use_coupon_btn").on("click", function() {
+			var couponPrice = Number($(this).closest(".coupon_item").find(".cprice").val());	// 쿠폰 할인가격
+			var resultPrice = Number($("#result_price").val());	// 최종 결제 금액
+			var newResultPrice = Number("${totalAllPrice}") + Number("${deliveryAllPrice}") - couponPrice;			// 새로 갱신된 최종 결제 금액
+			
+			// 쿠폰 할인 금액 갱신
+			$(".coupon_price").val(couponPrice);
+			$(".coupon_price_txt").text(couponPrice != 0 ? Number(-couponPrice).toLocaleString("ko-KR")+"원" : "0원");
+			
+			// 최종 결제 금액 갱신
+			$("#result_price").val(newResultPrice);
+			$(".result_price_txt").text(newResultPrice.toLocaleString("ko-KR")+"원");
+			
+			// 적용한 쿠폰 번호 저장
+			$("#coupon_no").val($(this).closest(".coupon_item").find(".cno").val());
+			
+			$("#coupon_dialog").dialog("close");
+		})
+		
+		// ===== 페이지 값 초기화 ======
+		// 우측 결제 정보 상품가격 값 초기화
+		$("#total_all_price").val("${totalAllPrice}");
+	    $(".total_all_price_txt").text(Number("${totalAllPrice}").toLocaleString("ko-KR")+"원");
 	   
 		// 우측 결제 정보 배송비 값 초기화
-		var deliveryPrice = 0;
-		$.each($(".delivery_price"), function() {
-			deliveryPrice += Number($(this).val());
-		});
-		$(".delivery_all_price_txt").val(deliveryPrice);
-		$(".delivery_all_price_txt").text(deliveryPrice.toLocaleString("ko-KR")+"원");
+		$("#delivery_all_price").val("${deliveryAllPrice}");
+		$(".delivery_all_price_txt").text(Number("${deliveryAllPrice}").toLocaleString("ko-KR")+"원");
 		
 		// 우측 결제 정보 최종결제금액 값 초기화
-		var resultPrice = totalAllPrice + deliveryPrice;
-		$(".result_price").val(resultPrice);
+		var resultPrice = Number("${totalAllPrice}") + Number("${deliveryAllPrice}");
+		$("#result_price").val(resultPrice);
 		$(".result_price_txt").text(resultPrice.toLocaleString("ko-KR")+"원");
+		
+		// 동의여부 기준으로 결제버튼 상태 초기화
+		if ($("#agree_check").prop("checked")) {
+	    	$("#pay_btn").removeAttr("disabled");			
+		} else {
+			$("#pay_btn").attr("disabled", "disabled");
+		}
 	});
 	
 	
+	// ===== 결제 API =====
 	var IMP = window.IMP; // 생략해도 괜찮습니다.
 	  IMP.init("imp81733705"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
 	
 	
 	function requestPay() {
-		  // 주문상품들 이름 합치기
-		  var name = "";
-		  $each($(".pname"), function() {
-			name += ($(this).val() + " ");
+		  
+		// 주문상품들 이름 합치기
+	  	
+  		// ===== 주문처리 실패시 결제취소 처리 =====
+		var paymentFail = function(imp_uid) {
+				$.ajax({
+					url : "/jcappy/pay/cancel",
+					type : "POST",
+					data : {
+						imp_uid : imp_uid, // 주문번호
+					},
+					dataType : "json",
+					success : function(res) {
+					}
+				});
+	
+				alert("결제에 실패하였습니다.");
+			}
+
+  		// ===== 주문내역 서버에 저장 =====
+  		var pnoList = [];
+  		$.each($(".pno"), function(i, v) {
+  			pnoList[i] = $(v).val();
+  			console.log(v);
+  			console.log(pnoList);
+  		});
+  		var pcountList = [];
+  		$.each($(".pcount"), function(i, v) {
+  			pcountList[i] = $(v).val();
+  			console.log(v);
+  			console.log(pcountList);
+  		});
+		var orderinfoSave = function(imp_uid) {
+	  			$.ajax({
+					url : "/jcappy/pay/complete",
+					type : "POST",
+					data : {
+						orequest : $("#request").val(),
+						opay : "card",
+						o_state : "결제완료",
+						o_del : "상품준비중",
+						mno : "${mVo.mno }",
+						ozipcode : $("#zipcode").val(),
+						oaddr : $("#addr").val(),
+						oaddrde : $("#addrde").val(),
+						cno : $("#coupon_no").val(),
+						imp_uid : imp_uid,
+						pnoList: pnoList,
+						pcountList: pcountList,
+					},
+					success : function(res) {
+						alert("결제가 완료되었습니다.");
+			        	location.href="/jcappy/mypage/order/index.do";
+					},
+					error : function(res) {
+						paymentFail(imp_uid);
+					}
+				});
+			} 
+	  	
+		var pname = "";
+		$.each($(".pname"), function() {
+			pname += ($(this).val() + " ");
 		})
 		// IMP.request_pay(param, callback) 호출
 		IMP.request_pay({ // param
 			pg : "html5_inicis",
 			pay_method : "card",
-			merchant_uid : 'merchant_' + new Date().getTime(),
-			name : name,
-			amount : 64900,
+			merchant_uid : "merchant_" + new Date().getTime(),
+			name : pname,
+			amount : $("#result_price").val(),
 			buyer_email : "${mVo.memail }",
-			buyer_name : "${mVo.mname }",
-			buyer_tel : "${mVo.mphone }",
-			buyer_addr : "${mVo.maddr }"+"${mVo.addrde }",
-			buyer_postcode : "${mVo.mzipcode }"
+			buyer_name : $("#mname").val(),
+			buyer_tel : $("#phone").val(),
+			buyer_addr : $("#addr").val() + " " + $("#addrde").val(),
+			buyer_postcode : $("#zipcode").val(),
 		}, function(rsp) { // callback
 			if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
 				// jQuery로 HTTP 요청
-				jQuery.ajax({
-					url : "jcappy/pay/complete", // 가맹점 서버
-					method : "POST",
-					headers : {
-						"Content-Type" : "application/json"
-					},
+				$.ajax({
+					url : "/jcappy/pay/check", // 가맹점 서버
+					type : "POST",
+					dataType : "json",
 					data : {
 						imp_uid : rsp.imp_uid,
-						merchant_uid : rsp.merchant_uid
+					},
+					success : function(data) {
+						// 가맹점 서버 결제 API 성공시 로직
+						// 결제 금액과 검증 금액이 일치여부 확인 일치할경우 결제완료 서버 처리
+						if (rsp.paid_amount == data.response.amount) {
+							orderinfoSave(rsp.imp_uid);
+						}
+					},
+					error : function(res) {
+						paymentFail(rsp.imp_uid);
 					}
-				}).done(function(data) {
-					// 가맹점 서버 결제 API 성공시 로직
-					alert("결제에 성공하였습니다.");
-				})
+				});
 			} else {
-				alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+				paymentFail(rsp.imp_uid);
 			}
 		});
 	}
 </script>
     <style>
     .pay_content { overflow: hidden; padding-bottom: 50px; }
-    .pay_content > .title { margin: 50px; }
-    .pay_content > .left { width: 800px; float: left; box-sizing: border-box; }
-    .pay_content > .right { width: 400px; float: right; box-sizing: border-box; padding-left: 40px; }
+    .pay_content .title { margin: 50px; }
+    .pay_content .left { width: 800px; float: left; box-sizing: border-box; }
+    .pay_content .right { width: 400px; float: right; box-sizing: border-box; padding-left: 40px; }
     .pay_content .sub_title_area { height: 40px; line-height: 40px; margin-top: 40px; margin-bottom: 20px; }
-    .pay_content > .left .order_item > td > .prev_img { width: 70px; height: 70px; background-size: 70px 70px; background-repeat: no-repeat; display: inline-block; margin: -20px 10px; }
-    .pay_content > .left > .addr_info > .sub_title_area > .sub_title { float: left; }
-    .pay_content > .left > .addr_info .addr_select_area { text-align: left; }
-    .pay_content > .left > .addr_info .addr_select_area > label { margin-right: 20px; cursor: pointer; }
-    .pay_content > .left > .addr_info .addr_info_area { text-align: left; line-height: 3; }
-    .pay_content > .left > .addr_info .addr_info_area .mname { width: 150px; }
-    .pay_content > .left > .addr_info .addr_info_area .phone { width: 150px; }
-    .pay_content > .left > .addr_info .addr_info_area .zipcode { width: 80px; }
-    .pay_content > .left > .addr_info .addr_info_area .addr { width: 400px; }
-    .pay_content > .left > .addr_info .addr_info_area .addrde { width: 300px; }
-    .pay_content > .right > .price_info table tr > td:nth-child(1) { text-align: left; line-height: 2; }
-    .pay_content > .right > .price_info table tr > td:nth-child(2) { text-align: right; line-height: 2; }
-    .pay_content > .right > .pay_type #pay_frm .check_type_area > label { margin-right: 20px; }
-    .pay_content > .right > .pay_type #pay_frm #pay_btn { width: 120px; margin-top: 20px; }
+    .pay_content .left .order_item > td > .prev_img { width: 70px; height: 70px; background-size: 70px 70px; background-repeat: no-repeat; display: inline-block; margin: -20px 10px; }
+    .pay_content .left > .pay_list_info > .pay_list { margin-bottom: 20px; }
+    .pay_content .left > .pay_list_info > div > #coupon_btn { width: 100px; }
+    .pay_content .left > .addr_info > .sub_title_area > .sub_title { float: left; }
+    .pay_content .left > .addr_info .addr_select_area { text-align: left; }
+    .pay_content .left > .addr_info .addr_select_area > label { margin-right: 20px; cursor: pointer; }
+    .pay_content .left > .addr_info .addr_info_area { text-align: left; line-height: 3; }
+    .pay_content .left > .addr_info .addr_info_area #mname { width: 150px; }
+    .pay_content .left > .addr_info .addr_info_area #phone { width: 150px; }
+    .pay_content .left > .addr_info .addr_info_area #zipcode { width: 80px; }
+    .pay_content .left > .addr_info .addr_info_area #addr { width: 400px; }
+    .pay_content .left > .addr_info .addr_info_area #addrde { width: 300px; }
+    .pay_content .right > .price_info table tr > td:nth-child(1) { text-align: left; line-height: 2; }
+    .pay_content .right > .price_info table tr > td:nth-child(2) { text-align: right; line-height: 2; }
+    .pay_content .right > .pay_type .check_type_area > label { margin-right: 20px; }
+    .pay_content .right > .pay_type #pay_btn { width: 120px; margin-top: 20px; }
+    .pay_content .left > .addr_info .request_select { width: 500px; height: 32px; } 
+    .pay_content .left > .addr_info #request { width: 500px; }
+    #coupon_dialog .use_coupon_btn { width: 60px; }
+    #coupon_dialog > table tr td { padding-top: 10px; padding-bottom: 10px }
     </style>
 </head>
 <body>
     <div id="wrap">
         <%@ include file="/WEB-INF/view/include/top.jsp" %>
         <div id="container">
-
 			<div class="pay_content">
-		        <div class="title">
-		        	<h1 class="cstyle_h1">결제하기</h1>
-	        	</div>
-	        	<div class="left">
-	        		<div class="pay_list_info">
-	        			<div class="sub_title_area">
-				        	<h2 class="sub_title">주문 상품 정보</h2>
-	        			</div>
-			        	<table class="pay_list cstyle_table">
-			        		<thead>
-			        		<tr>
-			        			<th>상품명</th>
-			        			<th>수량</th>
-			        			<th class="">가격</th>
-			        		</tr>
-			        		</thead>
-			        		<tbody>
-			        			<c:forEach var="item" items="${list }" varStatus="index">
-				        			<tr class="order_item">
-				        				<td class="cstyle_text_align_left">
-				        					<div class="prev_img" style="background-image: url('${item.img}');"></div>
-				        					<a class="pname_txt" href="/jcappy/product/detail/${item.pno }">${item.name}</a>
-			        					</td>
-				        				<td>${item.count}</td>
-				        				<td class="cstyle_text_align_right">
-				        					<fmt:formatNumber value="${item.total_price}"/>원
-				        					<input class="delivery_price" type="hidden" value="${item.pdelprice }">
-				        					<input class="pname" type="hidden" value="${item.name}">
-				        					<input class="total_price" type="hidden" value="${item.total_price }">
-				        				</td>
-				        			</tr>
-			        			</c:forEach>
-			        		</tbody>
-			        	</table>
+            	<form id="pay_frm">
+			        <div class="title">
+			        	<h1 class="cstyle_h1">결제하기</h1>
 		        	</div>
-			        <div class="addr_info">
-			        	<div class="sub_title_area">
-				            <h2 class="sub_title">배송 정보</h2>
+		        	<div class="left">
+		        		<div class="pay_list_info">
+		        			<div class="sub_title_area">
+					        	<h2 class="sub_title">주문 상품 정보</h2>
+		        			</div>
+				        	<table class="pay_list cstyle_table">
+				        		<thead>
+				        		<tr>
+				        			<th>상품명</th>
+				        			<th>수량</th>
+				        			<th class="">가격</th>
+				        		</tr>
+				        		</thead>
+				        		<tbody>
+				        			<c:forEach var="item" items="${pList }" varStatus="index">
+					        			<tr class="order_item">
+					        				<td class="cstyle_text_align_left">
+					        					<div class="prev_img" style="background-image: url('${item.img}');"></div>
+					        					<a class="pname_txt" href="/jcappy/product/detail/${item.pno }">${item.name}</a>
+				        					</td>
+					        				<td>${item.count}</td>
+					        				<td class="cstyle_text_align_right">
+					        					<fmt:formatNumber value="${item.total_price}"/>원
+					        					<input class="pno" type="hidden" value="${item.pno }">
+					        					<input class="pcount" type="hidden" value="${item.count}">
+					        					<input class="delivery_price" type="hidden" value="${item.delivery_price }">
+					        					<input class="pname" type="hidden" value="${item.name}">
+					        					<input class="total_price" type="hidden" value="${item.total_price }">
+					        				</td>
+					        			</tr>
+				        			</c:forEach>
+				        		</tbody>
+				        	</table>
+				        	<div class="cstyle_text_align_right">
+				        		<input class="cstyle_btn" id="coupon_btn" type="button" value="쿠폰">
+				        	</div>
 			        	</div>
-			        	<table class="cstyle_table">
-			        		<thead>
-			        			<tr>
-			        				<td class="addr_select_area">
-			        					<label><input class="addr_type" type="radio" name="addr_type" value="1" checked> 기본배송지</label>
-			        					<c:if test=" ${!empty oVo }">
-			        						<label><input class="addr_type" type="radio" name="addr_type" value="2" disabled> 최근배송지</label>
-		        						</c:if>
-			        					<label><input class="addr_type" type="radio" name="addr_type" value="3"> 직접입력</label>
-			        				</td>
-		        				</tr>
-	        				</thead>
-	        				<tbody>
-	        					<tr>
-	        						<td class="addr_info_area">
-	       								<input class="mname" type="text" value="${mVo.mname }" placeholder="수령인" readonly>
-	       								<input class="phone" type="text" value="${mVo.mphone }" placeholder="연락처" readonly>
-	       								<div>
-	        								<a href="#;">
-		        								<input class="zipcode" type="text" value="${mVo.mzipcode }" placeholder="우편번호" readonly><br>
-		        								<input class="addr" type="text" value="${mVo.maddr }" placeholder="주소" readonly><br>
-		        								<input class="addrde" type="text" value="${mVo.maddrde }" placeholder="상세주소" readonly>
-											</a>
-	       								</div>
-	        						</td>
-	        					</tr>
-	        				</tbody>
-			        	</table>
+				        <div class="addr_info">
+				        	<div class="sub_title_area">
+					            <h2 class="sub_title">배송 정보</h2>
+				        	</div>
+				        	<table class="cstyle_table">
+				        		<thead>
+				        			<tr>
+				        				<td class="addr_select_area">
+				        					<label><input class="addr_type" type="radio" name="addr_type" value="1" checked> 기본배송지</label>
+				        					<c:if test=" ${!empty oVo }">
+				        						<label><input class="addr_type" type="radio" name="addr_type" value="2" disabled> 최근배송지</label>
+			        						</c:if>
+				        					<label><input class="addr_type" type="radio" name="addr_type" value="3"> 직접입력</label>
+				        				</td>
+			        				</tr>
+		        				</thead>
+		        				<tbody>
+		        					<tr>
+		        						<td class="addr_info_area">
+		       								<input id="mname" type="text" value="${mVo.mname }" placeholder="수령인" readonly>
+		       								<input id="phone" type="text" value="${mVo.mphone }" placeholder="연락처" oninput="phoneFomatter(this)" readonly>
+		       								<div>
+		        								<a href="javascript:;">
+			        								<input id="zipcode" type="text" value="${mVo.mzipcode }" placeholder="우편번호" readonly><br>
+			        								<input id="addr" type="text" value="${mVo.maddr }" placeholder="주소" readonly><br>
+												</a>
+		        								<input id="addrde" type="text" value="${mVo.maddrde }" placeholder="상세주소" readonly>
+		       								</div>
+		        						</td>
+		        					</tr>
+		        					<tr>
+		        						<td class="cstyle_text_align_left">
+		        							<div>
+			        							<select class="request_select">
+			        								<option value="1" hidden="">요청사항을 선택해 주세요.
+			        								<option value="2">배송 전에 미리 연락 바랍니다.
+			        								<option value="3">부재시 경비실에 맡겨주세요.
+			        								<option value="4">부재시 전화나 문자를 남겨주세요.
+			        								<option value="5">직접입력
+			        							</select>
+		        							</div>
+		        							<div>
+		        								<input id="request" type="text" placeholder="요청사항을 입력해 주세요" hidden="">
+		        							</div>
+		        						</td>
+		        					</tr>
+		        				</tbody>
+				        	</table>
+				        </div>
 			        </div>
-		        </div>
-		        <div class="right">
-		            <div class="price_info">
-			            <div class="sub_title_area">
-			            	<h2 class="sub_title">최종 결제금액</h2>
+			        <div class="right">
+			            <div class="price_info">
+				            <div class="sub_title_area">
+				            	<h2 class="sub_title">최종 결제금액</h2>
+				            </div>
+				            <table class="cstyle_table">
+				            	<tbody>
+					            	<tr>
+					            		<td>
+							                <p>상품금액</p>
+							                <p>배송비</p>
+							                <p>쿠폰할인</p>
+				            			</td>
+				            			<td>
+				            				<p class="total_all_price_txt">-9999999원</p>
+				            				<p class="delivery_all_price_txt">-999999원</p>
+				            				<p class="coupon_price_txt">0원</p>
+				            			</td>
+				            		</tr>
+				            		<tr>
+					            		<td>
+							                최종 결제 금액
+						                </td>
+						                <td> 
+						                	<p class="result_price_txt">-999999999원</p>
+							            
+							                <input type="hidden" id="coupon_price">
+							                <input type="hidden" id="coupon_no" value="0">
+							                <input type="hidden" id="result_price">
+					            		</td>
+				            		</tr>
+				            	</tbody>
+				            </table>
 			            </div>
-			            <table class="cstyle_table">
-			            	<tbody>
-				            	<tr>
-				            		<td>
-						                <p>상품금액</p>
-						                <p>배송비</p>
-			            			</td>
-			            			<td>
-			            				<p class="total_all_price_txt">-9999999원</p>
-			            				<p class="delivery_all_price_txt">0원</p>
-			            			</td>
-			            		</tr>
-			            		<tr>
-				            		<td>
-						                최종 결제 금액
-					                </td>
-					                <td> 
-					                	<p class="result_price_txt">-999999999원</p>
-						            
-						                <input type="hidden" class="total_all_price">
-						                <input type="hidden" class="delivery_all_price">
-						                <input type="hidden" class="result_price">
-				            		</td>
-			            		</tr>
-			            	</tbody>
-			            </table>
-		            </div>
-		            <div class="pay_type"><br>
-		              	<div class="sub_title_area">
-		                    <h2 class="sub_title">결제 방법</h2>
-	                    </div>
-		                <form id="pay_frm">
+			            <div class="pay_type"><br>
+			              	<div class="sub_title_area">
+			                    <h2 class="sub_title">결제 방법</h2>
+		                    </div>
 		                    <table class="cstyle_table">
 			                    <tbody>
 					            	<tr>
@@ -261,17 +416,61 @@
 				            		<tr>
 					            		<td>
 				                            <p><label><input id="agree_check" type="checkbox"> 구매조건 확인 및 결제 진행에 동의</label></p>
-				                            <input id="pay_btn" class="cstyle_btn" type="submit" value="결제하기" disabled>
+				                            <input id="pay_btn" class="cstyle_btn" type="button" value="결제하기" onclick="requestPay();" disabled>
 					            		</td>
 				            		</tr>
 			            		</tbody>
 		                    </table>
-	                    </form> 				            		
-	                </div>
-	            </div>
+		                </div>
+		            </div>
+	         	</form>
 	        </div>
         </div>
         <%@ include file="/WEB-INF/view/include/bottom.jsp" %>
     </div>
+    <div id="coupon_dialog">
+	         		<table class="cstyle_table">
+	         			<colgroup>
+	         				<col>
+	         				<col width="200px">
+	         				<col width="80px">
+	         			</colgroup>
+		         		<thead>
+		         			<tr>
+		         				<th scope="col">쿠폰이름</th>
+		         				<th class="cstyle_text_align_right" scope="col">할인가격</th>
+		         			</tr>
+		         		</thead>
+	         				<tbody>
+	         					<tr class="coupon_item">
+			        				<td class="cstyle_text_align_right">
+			        					<p>쿠폰 선택 안함</p>
+		        					</td>
+		        					<td>
+		        						<input class="cprice" type="hidden" value="0">
+		        					</td>
+			        				<td class="cstyle_text_align_right">
+			        					<button class="use_coupon_btn cstyle_btn">선택</button>
+			        				</td>
+			        			</tr>
+	         				<c:forEach var="item" items="${cList }" varStatus="index">
+			        			<tr class="coupon_item">
+			        				<td class="cstyle_text_align_right">
+			        					<p class="cname_txt">${item.cname }</p>
+			        					<input class="cname" type="hidden" value="${item.cname }">
+		        					</td>
+			        				<td class="cstyle_text_align_right">
+			        					<fmt:formatNumber value="${item.cprice }"/>원
+			        					<input class="cprice" type="hidden" value="${item.cprice }">
+			        				</td>
+			        				<td class="cstyle_text_align_right">
+			        					<button class="use_coupon_btn cstyle_btn">선택</button>
+			        					<input class="cno" type="text" hidden=""value="${item.cno }">
+			        				</td>
+			        			</tr>
+		        			</c:forEach>
+	         			</tbody>
+	         		</table>
+	         	</div>
 </body>
 </html>

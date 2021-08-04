@@ -1,4 +1,4 @@
-package jcappy.orderinfo;
+package jcappy.orderlist;
 
 public class OrderlistVo {
 

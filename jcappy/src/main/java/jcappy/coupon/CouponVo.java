@@ -6,7 +6,7 @@ import jcappy.util.CommonVo;
 
 public class CouponVo extends CommonVo{
 	private int cno;
-	private String ccode;
+	private String cname;
 	private int cprice;
 	private Timestamp cregdate;
 	private int cdate;
@@ -26,11 +26,11 @@ public class CouponVo extends CommonVo{
 	public void setCno(int cno) {
 		this.cno = cno;
 	}
-	public String getCcode() {
-		return ccode;
+	public String getCname() {
+		return cname;
 	}
-	public void setCcode(String ccode) {
-		this.ccode = ccode;
+	public void setCname(String cname) {
+		this.cname = cname;
 	}
 	public int getCprice() {
 		return cprice;

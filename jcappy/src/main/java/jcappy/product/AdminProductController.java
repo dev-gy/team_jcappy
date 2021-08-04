@@ -20,7 +20,6 @@ public class AdminProductController {
 
 	@RequestMapping("/admin/product/list")
 	public String list(Model model, ProductVo vo) {
-		System.out.println(vo.getPtype());
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/product/list";
 	}
