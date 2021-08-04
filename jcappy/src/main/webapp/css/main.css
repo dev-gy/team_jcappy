@@ -282,7 +282,7 @@ mypage/qna/detail
 mypage/qna/write
 ========================================*/
 .qna_write_content > form > .qna_title { width: 100%; font-size: 12px; font-family: '돋움',Dotum,'굴림',Gulim,Helvetica,Sans-serif; line-height: 2; padding: 5px 15px; margin: 10px 0px; }
-.qna_write_content > form > #content { width: 100%; min-width: 800px; height: 300px; display: none; }
+.qna_write_content > form > #contents { width: 100%; min-width: 800px; height: 300px; display: none; }
 .qna_write_content > form > .btn_wrap { float: right; margin: 10px 0px; }
 .qna_write_content > form > .btn_wrap > #button { width: 100px; height: 40px; margin-left: 20px; }
 
@@ -290,9 +290,10 @@ mypage/qna/write
 mypage/qna/edit
 ========================================*/
 .qna_edit_content > form > .qna_title { width: 100%; font-size: 12px; font-family: '돋움',Dotum,'굴림',Gulim,Helvetica,Sans-serif; line-height: 2; padding: 5px 15px; margin: 10px 0px; }
-.qna_edit_content > form > #content { width: 100%; min-width: 800px; height: 300px; display: none; }
+.qna_edit_content > form > #contents { width: 100%; min-width: 800px; height: 300px; display: none; }
 .qna_edit_content > form > .btn_wrap { float: right; margin: 10px 0px; }
-.qna_edit_content > form > .btn_wrap > button { width: 100px; height: 40px; margin-left: 20px; }
+.qna_edit_content > form > .btn_wrap > #button { width: 100px; height: 40px; margin-left: 20px; }
+.qna_edit_content  #file_org {text-align:left;}
  
 /*======================================
 mypage/order/canceldetail

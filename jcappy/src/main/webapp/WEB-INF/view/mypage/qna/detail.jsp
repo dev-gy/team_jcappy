@@ -82,7 +82,7 @@ function qna_detail_isDel() {//게시글 삭제
 						</tbody>
 					</table>
 					<div class="btn_wrap">
-						<input class="cstyle_btn" id="button" type="button" value="수정" onclick="location.href='/jcappy/mypage/qna/list'">
+						<input class="cstyle_btn" id="button" type="button" value="수정" onclick="location.href='edit?qno=${vo.qno}'">
 						<input class="cstyle_btn" id="button" type="button" value="삭제" onclick="qna_detail_isDel();">
 					</div>
 				</div>
