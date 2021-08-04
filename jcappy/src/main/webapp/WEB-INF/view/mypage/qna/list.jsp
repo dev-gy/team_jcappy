@@ -68,7 +68,7 @@
 									</td>
 									<td><fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd"/></td>
 									<td>
-										<div class="item_state">접수대기</div>
+										<div class="item_state">답변대기</div>
 									</td>
 		                       </c:forEach>
 						</tbody>

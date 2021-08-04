@@ -13,7 +13,7 @@
 				</if>
 			</if>
 			<if test="mno != 0">
-				AND mno=#{mno}
+				AND mno = #{mno}
 			</if>
 		</where>
 	</sql>
@@ -21,7 +21,6 @@
 	<select id="selectAll" resultType="jcappy.qna.QnaVo" parameterType="jcappy.qna.QnaVo">
 		SELECT *
 		FROM qna q LEFT JOIN members m ON q.mno = m.mno LEFT JOIN admin a ON q.ano = a.ano
-		where mno=#{mno}
 		<include refid="qnaWhere"/>
 		ORDER BY q_gno DESC, q_ono ASC, ${orderby} ${direct}
 		LIMIT ${startIdx},${pageRow}
