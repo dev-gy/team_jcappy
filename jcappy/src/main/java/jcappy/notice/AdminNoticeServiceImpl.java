@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import jcappy.members.MembersVo;
 
 @Service
-public class NoticeServiceImpl implements NoticeService {
+public class AdminNoticeServiceImpl implements AdminNoticeService {
 
 	@Autowired
 	NoticeDao dao;

@@ -5,7 +5,7 @@ import java.util.List;
 import jcappy.members.MembersVo;
 
 
-public interface NoticeService {
+public interface AdminNoticeService {
 	List<NoticeVo> selectAll(NoticeVo vo);
 	NoticeVo detail(NoticeVo vo);
 	int insert(NoticeVo vo);
