@@ -6,7 +6,7 @@
 		<where>
 			<if test="sval != null and sval != ''">
 				<if test="stype == 'all'">
-					ccode LIKE '%${sval}%' OR cprice LIKE '%${sval}%' OR memail LIKE '%${sval}%'
+					cname LIKE '%${sval}%' OR cprice LIKE '%${sval}%' OR memail LIKE '%${sval}%'
 				</if>
 				<if test="stype != 'all'">
 					${stype} LIKE '%${sval}%'
@@ -33,7 +33,7 @@
 	</select>
 	
 	<update id="update"  parameterType="jcappy.coupon.CouponVo">
-		UPDATE coupon SET ccode=#{ccode}, cprice=#{cprice}, cdate=#{cdate} WHERE cno=#{cno}
+		UPDATE coupon SET cname=#{cname}, cprice=#{cprice}, cdate=#{cdate} WHERE cno=#{cno}
 	</update>
 	
 	<delete id="delete" parameterType="jcappy.coupon.CouponVo">
@@ -45,8 +45,8 @@
 	</select>
 	
 	<insert id="insert" parameterType="jcappy.coupon.CouponVo">
-		INSERT INTO coupon(ccode,cprice,cregdate,cdate,mno)
-		VALUES(#{ccode}, #{cprice}, now(), #{cdate}, #{mno})
+		INSERT INTO coupon(cname,cprice,cregdate,cdate,mno)
+		VALUES(#{cname}, #{cprice}, now(), #{cdate}, #{mno})
 	</insert>
 	
 	<select id="countMemail" parameterType="jcappy.coupon.CouponVo" resultType="int">
