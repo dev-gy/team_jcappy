@@ -23,6 +23,7 @@ public class QnaController {
 	@RequestMapping("/mypage/qna/list")
 	public String index(Model model, QnaVo vo, HttpSession sess) {
 		model.addAttribute("list", service.selectAll(vo));
+		model.addAttribute("haveRe", service.haveRe(vo));
 		return "mypage/qna/list";
 	}
 	
@@ -115,7 +116,12 @@ public class QnaController {
 		return "include/alert";
 	}
 	
-	
+	// 문의 수정페이지
+	@RequestMapping("/mypage/qna/edit")
+	public String edit(Model model, QnaVo vo) {
+		model.addAttribute("vo", service.edit(vo));
+		return "mypage/qna/edit";
+	}
 	
 	
 }

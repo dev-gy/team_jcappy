@@ -157,7 +157,7 @@ public class AdminProductController {
 
 		if (r > 0) {
 			model.addAttribute("msg", "정상적으로 수정되었습니다.");
-			model.addAttribute("url", "list");
+			model.addAttribute("url", "detail?pno=" + vo.getPno());
 		} else {
 			model.addAttribute("msg", "수정실패");
 			model.addAttribute("url", "detail?pno=" + vo.getPno());
@@ -195,7 +195,8 @@ public class AdminProductController {
 	// detail에서 이미지 삭제
 	@RequestMapping("/admin/product/deleteImg")
 	public String deleteImg(Model model, ProductVo vo, HttpServletRequest req) {
-		int r = service.delete(vo);
+		
+		int r = service.deleteImg(vo);
 		if (r > 0) {
 			model.addAttribute("result", "true");
 		} else {
@@ -203,5 +204,4 @@ public class AdminProductController {
 		}
 		return "include/result";
 	}
-
 }

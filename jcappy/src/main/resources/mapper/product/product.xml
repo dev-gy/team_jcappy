@@ -35,8 +35,8 @@
 	</select>
 
 	<insert id="insert" parameterType="jcappy.product.ProductVo">
-		INSERT INTO product (pno, pimg1_org, pimg1_real, pimg2_org, pimg2_real, pimg3_org, pimg3_real, pprice, pname, pcompany, pcount, ptype, pcate, pregdate, pdetail)
-		VALUES (#{pno}, #{pimg1_org}, #{pimg1_real}, #{pimg2_org}, #{pimg2_real}, #{pimg3_org}, #{pimg3_real}, #{pprice}, #{pname}, #{pcompany}, #{pcount}, #{ptype}, #{pcate}, NOW(), #{pdetail})
+		INSERT INTO product (pimg1_org, pimg1_real, pimg2_org, pimg2_real, pimg3_org, pimg3_real, pprice, pname, pcompany, pcount, ptype, pcate, pregdate, pdetail)
+		VALUES (#{pimg1_org}, #{pimg1_real}, #{pimg2_org}, #{pimg2_real}, #{pimg3_org}, #{pimg3_real}, #{pprice}, #{pname}, #{pcompany}, #{pcount}, #{ptype}, #{pcate}, NOW(), #{pdetail})
 	</insert>
 
 	<select id="count" resultType="int" parameterType="jcappy.product.ProductVo">
@@ -46,7 +46,7 @@
 
 	<update id="update" parameterType="jcappy.product.ProductVo">
 		UPDATE product SET
-		pno=#{pno}, pprice=#{pprice}, pname=#{pname}, pcount=#{pcount}, pcompany=#{pcompany}, ptype=#{ptype}, pcate=#{pcate}, pregdate=NOW(), pdetail=#{pdetail}
+		pprice=#{pprice}, pname=#{pname}, pcount=#{pcount}, pcompany=#{pcompany}, ptype=#{ptype}, pcate=#{pcate}, pregdate=NOW(), pdetail=#{pdetail}
 		<if test="pimg1_org != null">
 			, pimg1_org=#{pimg1_org}, pimg1_real=#{pimg1_real}
 		</if>
@@ -71,12 +71,19 @@
 	
 	<update id="deleteImg" parameterType="jcappy.product.ProductVo">
 		UPDATE product SET 
+			pname = pname
+		<if test="delImg1 == 1">
+			,pimg1_org='', pimg1_real=''
+		</if>
+		<if test="delImg2 == 1">
+			,pimg2_org='', pimg2_real=''
+			
+		</if>
+		<if test="delImg3 == 1">
+			,pimg3_org='', pimg3_real=''
+		</if>
 		
-		pimg1_org="", pimg1_real="",
-		pimg2_org="", pimg2_real="",
- 		pimg3_org="", pimg3_real=""
-
 		WHERE pno=#{pno}
-	</update>
+	</update>   
 	
 </mapper>

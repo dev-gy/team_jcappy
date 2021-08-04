@@ -7,9 +7,9 @@
 function coupon_detail_go_save(){
 	var regexp = /^[0-9]*$/ // 숫자가 아닌 모든것
 	
-	if ($("#ccode").val().trim() == "") { // 쿠폰코드 빈값 저장 안되게
-		 alert("쿠폰코드를 입력해 주세요");
-		 $("#ccode").focus();
+	if ($("#cname").val().trim() == "") { // 쿠폰코드 빈값 저장 안되게
+		 alert("쿠폰이름을 입력해 주세요");
+		 $("#cname").focus();
 		 return false;
 	}
 	
@@ -94,43 +94,43 @@ function coupon_detail_isDel() { //쿠폰삭제 ajax
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">번호</label></th>
+										<th scope="row">번호</th>
 										<td colspan="10">
 											${vo.cno}
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">쿠폰코드</label></th>
+										<th scope="row">쿠폰이름</th>
 										<td colspan="10">
-											<input type="text" id="ccode" name="ccode" class="w100" value="${vo.ccode }" />
+											<input type="text" id="cname" name="cname" class="w100" value="${vo.cname }" />
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">할인금액</label></th>
+										<th scope="row">할인금액</th>
 										<td colspan="10">
 											<input type="text" id="cprice" name="cprice" class="w100" value="${vo.cprice}" />
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">발급날짜</label></th>
+										<th scope="row">발급날짜</th>
 										<td colspan="10">
 											${vo.cregdate }
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">유효기간</label></th>
+										<th scope="row">유효기간</th>
 										<td colspan="10">
 											<input type="text" id="cdate" name="cdate" class="w100" value="${vo.cdate }" />
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">회원이름</label></th>
+										<th scope="row">회원이름</th>
 										<td colspan="10">
 											${vo.mname}
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">회원이메일</label></th>
+										<th scope="row">회원이메일</th>
 										<td colspan="10">
 											${vo.memail}
 										</td>

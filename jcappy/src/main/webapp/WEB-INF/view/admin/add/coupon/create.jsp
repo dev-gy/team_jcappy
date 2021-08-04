@@ -8,9 +8,9 @@ function coupon_create_goSave() {
 	
 	var regexp = /^[0-9]*$/ // 숫자가 아닌 모든것
 	
-	if ($("#ccode").val().trim() == "") { // 쿠폰코드가 빈값이면 작동
-		 alert("쿠폰코드를 입력해 주세요");
-		 $("#ccode").focus();
+	if ($("#cname").val().trim() == "") { // 쿠폰코드가 빈값이면 작동
+		 alert("쿠폰이름을 입력해 주세요");
+		 $("#cname").focus();
 		 return false;
 	} 
 	
@@ -82,9 +82,9 @@ function coupon_create_goSave() {
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row">쿠폰코드</th>
+										<th scope="row">쿠폰이름</th>
 										<td colspan="10">
-											<input type="text" id="ccode" name="ccode" class="w100" />	
+											<input type="text" id="cname" name="cname" class="w100" />	
 										</td>
 									</tr>
 									<tr>

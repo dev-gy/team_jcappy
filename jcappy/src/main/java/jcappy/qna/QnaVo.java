@@ -18,6 +18,17 @@ public class QnaVo extends CommonVo {
 	private String qfile_real;	// 서버에 저장된 실제파일명
 	private int mno;			// 회원 번호
 	private int ano;			// 관리자 쪽 댓글
+	private int q_havere;
+	
+	public int getQ_havere() {
+		return q_havere;
+	}
+
+
+	public void setQ_havere(int q_havere) {
+		this.q_havere = q_havere;
+	}
+	
 	
 	private String isDel;
 	

@@ -21,6 +21,18 @@ public class MembersVo extends CommonVo{
 
 	// NonDB
 	private String checkMemail;
+	private int haveRe;
+	
+
+	public int getHaveRe() {
+		return haveRe;
+	}
+
+
+	public void setHaveRe(int haveRe) {
+		this.haveRe = haveRe;
+	}
+
 
 	public MembersVo() {
 		super.setOrderby("mregdate");

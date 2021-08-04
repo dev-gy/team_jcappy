@@ -1,6 +1,4 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -70,7 +68,7 @@ function coupon_list_check() { // 맨위에 체크박스 선택시 전체선택 
 									<tr>
 										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="coupon_list_check()"/></th>
 										<th scope="col">번호</th>
-										<th scope="col">쿠폰코드</th> 
+										<th scope="col">쿠폰이름</th> 
 										<th scope="col">할인금액</th> 
 										<th scope="col">회원이메일</th>
 										<th scope="col" class="last">발급날짜</th>
@@ -87,11 +85,10 @@ function coupon_list_check() { // 맨위에 체크박스 선택시 전체선택 
 									<tr>
 										<td class="first"><input type="checkbox" name="cnos" value="${vo.cno}"/></td>
 										<td>${(couponVo.totCount-status.index)-((couponVo.reqPage-1)*couponVo.pageRow)}</td>
-										<td class="title"><a href="detail?cno=${vo.cno}&reqPage=${couponVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.ccode} </a></td>
+										<td class="title"><a href="detail?cno=${vo.cno}&reqPage=${couponVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.cname} </a></td>
 										<td><fmt:formatNumber type="number" value="${vo.cprice}"/>원</td>
 										<td>${vo.memail}</td>
 										<td><fmt:formatDate value="${vo.cregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
-										
 										<td>${vo.cdate}일 </td>
 									</tr>
 									</c:forEach>
@@ -134,7 +131,7 @@ function coupon_list_check() { // 맨위에 체크박스 선택시 전체선택 
 	                                </select>
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all">전체</option>
-										<option value="ccode" <c:if test="${param.stype=='ccode'}">selected</c:if>>쿠폰코드</option>
+										<option value="cname" <c:if test="${param.stype=='cname'}">selected</c:if>>쿠폰이름</option>
 										<option value="cprice" <c:if test="${param.stype=='cprice'}">selected</c:if>>할인금액</option>
 										<option value="memail" <c:if test="${param.stype=='memail'}">selected</c:if>>이메일</option>
 									</select>
