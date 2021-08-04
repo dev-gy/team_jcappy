@@ -31,6 +31,9 @@ public class AdminProductServiceImpl implements AdminProductService {
 		if ("".equals(vo.getOrderby()) || vo.getOrderby() == null) {
 			vo.setOrderby("pno");
 		}
+		
+		vo.setOrderby("pregdate");
+		
 		return dao.selectAll(vo);
 	}
 

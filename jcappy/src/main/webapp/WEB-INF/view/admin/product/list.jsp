@@ -90,13 +90,13 @@ function categoryChange() {
 									<table width="100%" border="0" cellspacing="0" cellpadding="0"
 										summary="상품 목록">
 										<colgroup>
-											<col width="80px" />
-											<col width="80px" />
+											<col class="w7" />
+											<col class="w7" />
 											<col width="*" />
-											<col width="120px" />
-											<col width="80px" />
-											<col width="160px" />
-											<col width="80px" />
+											<col class="w10" />
+											<col class="w15" />
+											<col class="w15" />
+											<col class="w6" />
 										</colgroup>
 										<thead>
 											<tr>
@@ -120,8 +120,8 @@ function categoryChange() {
 													<td class="first pno">${vo.pno }</td>
 													<td>${vo.pcompany }</td>
 													<td style="text-align: left; padding-left: 10px;"><a href="detail?pno=${vo.pno }">${vo.pname }</a></td>
-													<td><fmt:formatNumber value="${vo.pprice }" pattern="#,###,###"/></td>
-													<td><input type="number" name="pcount_ex" class="w100" value="${vo.pcount }" />
+													<td><fmt:formatNumber value="${vo.pprice }" pattern="#,###,###원"/></td>
+													<td><input type="number" name="pcount_ex" class="w50" value="${vo.pcount }" />
 													<a class="btns change" href="#"><strong>변경</strong></a>	
 													</td>
 													<td class="date">
