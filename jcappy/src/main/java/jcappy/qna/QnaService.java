@@ -9,4 +9,5 @@ public interface QnaService {
 	QnaVo detail(QnaVo vo);
 	int update(QnaVo vo);
 	QnaVo edit(QnaVo vo);
+	int haveRe(QnaVo vo);
 }

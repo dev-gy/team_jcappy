@@ -65,8 +65,9 @@ public class QnaServiceImpl implements QnaService{
 	public QnaVo edit(QnaVo vo) {
 		return dao.detail(vo);
 	}
-	
-	
-	
-	
+
+	@Override
+	public int haveRe(QnaVo vo) {
+		return dao.haveRe(vo);
+	}
 }

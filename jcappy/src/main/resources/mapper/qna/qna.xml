@@ -87,4 +87,8 @@
 		</selectKey>
 	</insert>
 	
+	<select id="haveRe" parameterType="jcappy.qna.QnaVo" resultType="int">
+		SELECT COUNT(q_gno) FROM qna WHERE q_gno=#{q_gno}
+	</select>
+	
 </mapper>

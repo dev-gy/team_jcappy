@@ -23,6 +23,7 @@ public class QnaController {
 	@RequestMapping("/mypage/qna/list")
 	public String index(Model model, QnaVo vo, HttpSession sess) {
 		model.addAttribute("list", service.selectAll(vo));
+		model.addAttribute("haveRe", service.haveRe(vo));
 		return "mypage/qna/list";
 	}
 	
