@@ -201,7 +201,7 @@ function go_order_list() {
 			<div id="container">
 				<div id="content">
 					<div class="con_tit">
-						<h2>회원관리 - [상세보기]</h2>
+						<h2>회원관리 - [상세]</h2>
 					</div>
 					<!-- //con_tit -->
 					<div class="con">
