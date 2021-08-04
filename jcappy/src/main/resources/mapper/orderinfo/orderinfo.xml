@@ -7,8 +7,8 @@
 	</select>
 	
 	<insert id="insert" parameterType="jcappy.orderinfo.OrderinfoVo" useGeneratedKeys="true" keyProperty="ono">
-		INSERT INTO orderinfo (ono, odate, orequest, opay, o_state, o_del, mno, oc_cancel, oc_reason, ozipcode, oaddr, oaddrde, cno, imp_uid)
-		VALUES (#{ono}, NOW(), #{orequest}, #{opay}, #{o_state}, #{o_del}, #{mno}, #{oc_cancel}, #{oc_reason}, #{ozipcode}, #{oaddr}, #{oaddrde}, #{cno}, #{imp_uid})
+		INSERT INTO orderinfo (ono, odate, orequest, opay, o_state, o_del, mno, oc_cancel, oc_reason, oname, ophone, ozipcode, oaddr, oaddrde, cno, imp_uid)
+		VALUES (#{ono}, NOW(), #{orequest}, #{opay}, #{o_state}, #{o_del}, #{mno}, #{oc_cancel}, #{oc_reason}, #{oname}, #{ophone}, #{ozipcode}, #{oaddr}, #{oaddrde}, #{cno}, #{imp_uid})
 	</insert>
 	
 	<delete id="delete" parameterType="jcappy.orderinfo.OrderinfoVo">

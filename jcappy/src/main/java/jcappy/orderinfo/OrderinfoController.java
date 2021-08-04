@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -93,6 +92,8 @@ public class OrderinfoController {
 		model.addAttribute("mVo", membersVo);
 		
 		// 최근 배송 데이터를 전달
+		OrderinfoVo vv = orderinfoService.selectLastOne();
+		System.out.println(vv);
 		model.addAttribute("oVo", orderinfoService.selectLastOne());
 		
 		// 회원의 쿠폰 리스트를 전달
@@ -120,8 +121,8 @@ public class OrderinfoController {
 	@PostMapping("/pay/complete")
 	public String complete(Model model, 
 			OrderinfoVo vo, 
-			@RequestParam("pnoList[]") List<Integer> pnoList, 
-			@RequestParam("pcountList[]") List<Integer> pcountList) throws IamportResponseException, IOException {
+			@RequestParam("pnoList[]") int[] pnoList, 
+			@RequestParam("pcountList[]") int[] pcountList) throws IamportResponseException, IOException {
 		System.out.println("pnoList: " + pnoList+", "+"pcountList: "+pcountList);
 		// 주문내역 추가 및 추가한 데이터의 ono를 vo에 반환 (주문상품 데이터 추가할때 쓸 것)
 		boolean isSuccess = true;
@@ -129,20 +130,20 @@ public class OrderinfoController {
 			// 주문상품내역 데이터 담아서 추가
 			OrderlistVo olVo = null;
 			ProductVo pVo = null; 
-			for (int i = 0; i < pnoList.size(); i++) {
+			for (int i = 0; i < pnoList.length; i++) {
 				if (!isSuccess) {
 					break;
 				}
 				// product pno 값으로 해당 상품 데이터 찾기
 				pVo = new ProductVo();
-				pVo.setPno(pnoList.get(i));
+				pVo.setPno(pnoList[i]);
 				pVo = productService.detail(pVo);
 				
 				// orderlist 값 셋팅 후 저장
 				olVo = new OrderlistVo();
 				olVo.setOno(vo.getOno());
 				olVo.setPno(pVo.getPno());
-				olVo.setOl_count(pcountList.get(i));
+				olVo.setOl_count(pcountList[i]);
 				olVo.setOl_price(pVo.getPprice());
 				olVo.setOl_pname(pVo.getPname());
 				

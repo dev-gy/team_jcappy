@@ -9,7 +9,6 @@
 
 <script>
 	$(function(){
-		console.log(JSON.stringify("${plist}"));
 		// ===== 배송지 버튼 클릭 =====
 		// 배송지 버튼 클릭시
 	     $(".addr_type").on("click", function() {
@@ -17,8 +16,8 @@
 				if (val == 1) {	// 기본배송지일 경우 readonly 추가 및 배송지 정보 회원정보 값으로 초기화, 클릭이벤트 제거
 					$(".addr_info_area").find("input").attr("readonly", "readonly");
 					
-					$("#mname").val("${mVo.mname}");
-					$("#phone").val("${mVo.mphone}");
+					$("#oname").val("${mVo.mname}");
+					$("#ophone").val("${mVo.mphone}");
 					$("#zipcode").val("${mVo.mzipcode}");
 					$("#addr").val("${mVo.maddr}");
 					$("#addrde").val("${mVo.maddrde}");
@@ -27,8 +26,8 @@
 				} else if (val == 2) {	// 최근배송지일 경우 readonly 추가 및 배송지 최근주문정보 값으로 초기화, 클릭이벤트 제거
 					$(this).find("input").attr("readonly", "readonly");
 					
-					$("#mname").val("${mVo.mname}");
-					$("#phone").val("${mVo.mphone}");
+					$("#oname").val("${oVo.oname}");
+					$("#ophone").val("${oVo.ophone}");
 					$("#zipcode").val("${oVo.ozipcode}");
 					$("#addr").val("${oVo.oaddr}");
 					$("#addrde").val("${oVo.oaddrde}");
@@ -140,27 +139,18 @@
 	
 	
 	function requestPay() {
-		  
-		// 주문상품들 이름 합치기
-	  	
-  		// ===== 주문처리 실패시 결제취소 처리 =====
-		var paymentFail = function(imp_uid) {
-				$.ajax({
-					url : "/jcappy/pay/cancel",
-					type : "POST",
-					data : {
-						imp_uid : imp_uid, // 주문번호
-					},
-					dataType : "json",
-					success : function(res) {
-					}
-				});
-	
-				alert("결제에 실패하였습니다.");
-			}
-
-  		// ===== 주문내역 서버에 저장 =====
-  		var pnoList = [];
+		// 배송정보란에 입력 안한 항목이 있을경우 안내 띄우고 끝내기
+		if ($("#mname").val() == "" ||
+		$("#phone").val() == "" ||
+		$("#zipcode").val() == "" ||
+		$("#addr").val() == "" ||
+		$("#addrde").val() == "") {
+			alert("배송 정보를 모두 입력해주세요.");
+			return;
+		}
+		
+		// 주문상품 pno, pcount들 전송을 위해 배열로 담기
+		var pnoList = [];
   		$.each($(".pno"), function(i, v) {
   			pnoList[i] = $(v).val();
   			console.log(v);
@@ -172,75 +162,135 @@
   			console.log(v);
   			console.log(pcountList);
   		});
-		var orderinfoSave = function(imp_uid) {
-	  			$.ajax({
-					url : "/jcappy/pay/complete",
-					type : "POST",
-					data : {
-						orequest : $("#request").val(),
-						opay : "card",
-						o_state : "결제완료",
-						o_del : "상품준비중",
-						mno : "${mVo.mno }",
-						ozipcode : $("#zipcode").val(),
-						oaddr : $("#addr").val(),
-						oaddrde : $("#addrde").val(),
-						cno : $("#coupon_no").val(),
-						imp_uid : imp_uid,
-						pnoList: pnoList,
-						pcountList: pcountList,
-					},
-					success : function(res) {
-						alert("결제가 완료되었습니다.");
-			        	location.href="/jcappy/mypage/order/index.do";
-					},
-					error : function(res) {
-						paymentFail(imp_uid);
-					}
-				});
-			} 
-	  	
+		
+		// 주문상품들 이름 합치기
 		var pname = "";
 		$.each($(".pname"), function() {
 			pname += ($(this).val() + " ");
 		})
+	  	
+	  	if ($(".pay_type:checked").val() == 1) {	// 카드결제로 체크했을시
+	  		requestCardPay();
+	  	} else if ($(".pay_type:checked").val() == 2) {	// 가상계좌로 체크했을시
+	  		requestVbankPay();
+	  	}
+	  	
+	  	// -- 카드 결제함수 --
+	  	function requestCardPay() {
 		// IMP.request_pay(param, callback) 호출
-		IMP.request_pay({ // param
-			pg : "html5_inicis",
-			pay_method : "card",
-			merchant_uid : "merchant_" + new Date().getTime(),
-			name : pname,
-			amount : $("#result_price").val(),
-			buyer_email : "${mVo.memail }",
-			buyer_name : $("#mname").val(),
-			buyer_tel : $("#phone").val(),
-			buyer_addr : $("#addr").val() + " " + $("#addrde").val(),
-			buyer_postcode : $("#zipcode").val(),
-		}, function(rsp) { // callback
-			if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-				// jQuery로 HTTP 요청
-				$.ajax({
-					url : "/jcappy/pay/check", // 가맹점 서버
-					type : "POST",
-					dataType : "json",
-					data : {
-						imp_uid : rsp.imp_uid,
-					},
-					success : function(data) {
-						// 가맹점 서버 결제 API 성공시 로직
-						// 결제 금액과 검증 금액이 일치여부 확인 일치할경우 결제완료 서버 처리
-						if (rsp.paid_amount == data.response.amount) {
-							orderinfoSave(rsp.imp_uid);
+			IMP.request_pay({ // param
+				pg : "html5_inicis",
+				pay_method : "card",
+				merchant_uid : "merchant_" + new Date().getTime(),
+				name : pname,
+				amount : $("#result_price").val(),
+				buyer_email : "${mVo.memail }",
+				buyer_name : $("#oname").val(),
+				buyer_tel : $("#ophone").val(),
+				buyer_addr : $("#addr").val() + " " + $("#addrde").val(),
+				buyer_postcode : $("#zipcode").val(),
+			}, function(rsp) { // callback
+				if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+					// jQuery로 HTTP 요청
+					$.ajax({
+						url : "/jcappy/pay/check", // 가맹점 서버
+						type : "POST",
+						dataType : "json",
+						data : {
+							imp_uid : rsp.imp_uid,
+						},
+						success : function(data) {
+							// 가맹점 서버 결제 API 성공시 로직
+							// 결제 금액과 검증 금액이 일치여부 확인 일치할경우 결제완료 서버 처리
+							if (rsp.paid_amount == data.response.amount) {
+								orderinfoSave(rsp.imp_uid);
+							}
+						},
+						error : function(res) {
+							paymentFail(rsp.imp_uid);
 						}
-					},
-					error : function(res) {
-						paymentFail(rsp.imp_uid);
-					}
-				});
-			} else {
-				paymentFail(rsp.imp_uid);
-			}
-		});
+					});
+				} else {
+					paymentFail(rsp.imp_uid);
+				}
+			});
+		}
+	  	
+		// -- 계좌이체(가정) 결제시 --
+		function requestVbankPay() {
+			$.ajax({
+				url : "/jcappy/pay/complete",
+				type : "POST",
+				data : {
+					orequest : $("#request").val(),
+					opay : "vbank",
+					o_state : "결제대기",
+					o_del : "상품준비중",
+					mno : "${mVo.mno }",
+					ozipcode : $("#zipcode").val(),
+					oaddr : $("#addr").val(),
+					oaddrde : $("#addrde").val(),
+					cno : $("#coupon_no").val(),
+					imp_uid : "",
+					pnoList: pnoList,
+					pcountList: pcountList,
+				},
+				success : function(res) {
+					alert("결제신청이 완료되었습니다.");
+		        	location.href="/jcappy/mypage/order/index.do";
+				},
+				error : function(res) {
+					alert("결제에 실패하였습니다.");
+				}
+			});
+		}
+			
+		// -- 주문처리 실패시 결제취소 처리 --
+		function paymentFail(imp_uid) {
+			$.ajax({
+				url : "/jcappy/pay/cancel",
+				type : "POST",
+				data : {
+					imp_uid : imp_uid, // 주문번호
+				},
+				dataType : "json",
+				success : function(res) {
+				}
+			});
+
+			alert("결제에 실패하였습니다.");
+		}
+
+  		// -- 주문내역 서버에 저장 --
+		function orderinfoSave(imp_uid) {
+  			$.ajax({
+				url : "/jcappy/pay/complete",
+				type : "POST",
+				data : {
+					orequest : $("#request").val(),
+					opay : "card",
+					o_state : "결제완료",
+					o_del : "상품준비중",
+					mno : "${mVo.mno }",
+					oname : $("#oname").val(),
+					ophone : $("#ophone").val(),
+					ozipcode : $("#zipcode").val(),
+					oaddr : $("#addr").val(),
+					oaddrde : $("#addrde").val(),
+					cno : $("#coupon_no").val(),
+					imp_uid : imp_uid,
+					pnoList: pnoList,
+					pcountList: pcountList,
+				},
+				success : function(res) {
+					alert("결제가 완료되었습니다.");
+		        	location.href="/jcappy/mypage/order/index.do";
+				},
+				error : function(res) {
+					paymentFail(imp_uid);
+				}
+			});
+		}
 	}
 </script>
     <style>
@@ -325,19 +375,24 @@
 				        		<thead>
 				        			<tr>
 				        				<td class="addr_select_area">
-				        					<label><input class="addr_type" type="radio" name="addr_type" value="1" checked> 기본배송지</label>
-				        					<c:if test=" ${!empty oVo }">
-				        						<label><input class="addr_type" type="radio" name="addr_type" value="2" disabled> 최근배송지</label>
-			        						</c:if>
-				        					<label><input class="addr_type" type="radio" name="addr_type" value="3"> 직접입력</label>
+				        					<input class="addr_type" id="addr_type1" type="radio" name="addr_type" value="1" checked>
+				        					<label for="addr_type1"> 기본배송지</label>
+				        					
+				        					<c:if test="${!empty oVo }">
+				        					<input class="addr_type" id="addr_type2" type="radio" name="addr_type" value="2">
+			        						<label for="addr_type2"> 최근배송지</label>
+				        					</c:if>
+			        						
+			        						<input class="addr_type" id="addr_type3" type="radio" name="addr_type" value="3">
+				        					<label for="addr_type3"> 직접입력</label>
 				        				</td>
 			        				</tr>
 		        				</thead>
 		        				<tbody>
 		        					<tr>
 		        						<td class="addr_info_area">
-		       								<input id="mname" type="text" value="${mVo.mname }" placeholder="수령인" readonly>
-		       								<input id="phone" type="text" value="${mVo.mphone }" placeholder="연락처" oninput="phoneFomatter(this)" readonly>
+		       								<input id="oname" type="text" value="${mVo.mname }" placeholder="수령인" readonly>
+		       								<input id="ophone" type="text" value="${mVo.mphone }" placeholder="연락처" oninput="phoneFomatter(this)" readonly>
 		       								<div>
 		        								<a href="javascript:;">
 			        								<input id="zipcode" type="text" value="${mVo.mzipcode }" placeholder="우편번호" readonly><br>
@@ -409,8 +464,11 @@
 			                    <tbody>
 					            	<tr>
 					            		<td class="check_type_area">
-				                            <label><input type=radio name="type" checked>신용카드</label>
-				                            <label><input type=radio name="type">계좌이체</label>
+				                            <input class="pay_type" id="pay_type1" type=radio name="type" value="1" checked>
+				                            <label for="pay_type1"> 신용카드</label>
+				                            
+				                            <input class="pay_type" id="pay_type2" type=radio name="type" value="2">
+				                            <label for="pay_type2"> 계좌이체</label>
 					            		</td>
 				            		</tr>
 				            		<tr>
