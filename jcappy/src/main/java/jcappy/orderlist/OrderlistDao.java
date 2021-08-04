@@ -13,10 +13,10 @@ public class OrderlistDao {
 	SqlSessionTemplate sqlSession;
 	
 	public List<OrderlistVo> selectAll(OrderlistVo vo) {
-		return sqlSession.selectList("orderinfo.selectAll", vo);
+		return sqlSession.selectList("orderlist.selectAll", vo);
 	}
 	
 	public int insert(OrderlistVo vo) {
-		return sqlSession.insert("orderinfo.insert", vo);
+		return sqlSession.insert("orderlist.insert", vo);
 	}
 }

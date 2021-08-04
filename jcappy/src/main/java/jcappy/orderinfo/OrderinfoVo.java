@@ -14,6 +14,8 @@ public class OrderinfoVo extends CommonVo {
 	private int mno;
 	private int oc_cancel;
 	private String oc_reason;
+	private String oname;
+	private String ophone;
 	private String ozipcode;
 	private String oaddr;
 	private String oaddrde;
@@ -81,6 +83,22 @@ public class OrderinfoVo extends CommonVo {
 	public void setOc_reason(String oc_reason) {
 		this.oc_reason = oc_reason;
 	}
+	public String getOname() {
+		return oname;
+	}
+
+	public void setOname(String oname) {
+		this.oname = oname;
+	}
+
+	public String getOphone() {
+		return ophone;
+	}
+
+	public void setOphone(String ophone) {
+		this.ophone = ophone;
+	}
+
 	public String getOzipcode() {
 		return ozipcode;
 	}
