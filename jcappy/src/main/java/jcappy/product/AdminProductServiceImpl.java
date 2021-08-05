@@ -32,8 +32,6 @@ public class AdminProductServiceImpl implements AdminProductService {
 			vo.setOrderby("pno");
 		}
 		
-		vo.setOrderby("pregdate");
-		
 		return dao.selectAll(vo);
 	}
 
