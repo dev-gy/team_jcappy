@@ -31,6 +31,9 @@ public class AdminProductServiceImpl implements AdminProductService {
 		if ("".equals(vo.getOrderby()) || vo.getOrderby() == null) {
 			vo.setOrderby("pno");
 		}
+		
+		vo.setOrderby("pregdate");
+		
 		return dao.selectAll(vo);
 	}
 
@@ -39,36 +42,42 @@ public class AdminProductServiceImpl implements AdminProductService {
 		ProductVo pv = dao.detail(vo);
 		String img1 = pv.getPimg1_real();
 		if (img1 != null) {
-			if(!img1.startsWith("https://")) {
+			if (!img1.startsWith("https://")) {
 				img1 = "/jcappy/upload/" + img1;
 				pv.setPimg1_real(img1);
 			}
 		}
 		String img2 = pv.getPimg2_real();
 		if (img2 != null) {
-			if(!img2.startsWith("https://")) {
+			if (!img2.startsWith("https://")) {
 				img2 = "/jcappy/upload/" + img2;
 				pv.setPimg2_real(img2);
 			}
 		}
 		String img3 = pv.getPimg3_real();
 		if (img3 != null) {
-			if(!img3.startsWith("https://")) {
+			if (!img3.startsWith("https://")) {
 				img3 = "/jcappy/upload/" + img3;
 				pv.setPimg3_real(img3);
 			}
 		}
-		
+
 		return pv;
 	}
 
 	@Override
 	public int insert(ProductVo vo) {
+		if(vo.getPcompany().equals("기타")) {
+			vo.setPcompany(vo.getPcomp());
+		}
 		return dao.insert(vo);
 	}
 
 	@Override
 	public int update(ProductVo vo) {
+		if(vo.getPcompany().equals("기타")) {
+			vo.setPcompany(vo.getPcomp());
+		}
 		return dao.update(vo);
 	}
 

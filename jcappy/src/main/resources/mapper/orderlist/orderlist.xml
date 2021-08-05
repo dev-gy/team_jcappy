@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderlist">
+
+	<select id="selectAll" resultType="jcappy.orderlist.OrderlistVo" parameterType="jcappy.orderlist.OrderlistVo">
+		SELECT * FROM orderlist 
+		<if test="ono != null">
+			WHERE ono=#{ono}
+		</if>
+	</select>
+	
+	<insert id="insert" parameterType="jcappy.orderlist.OrderlistVo">
+		INSERT INTO orderlist (ono, pno, ol_count, ol_price, ol_pname)
+		VALUES (#{ono}, #{pno}, #{ol_count}, #{ol_price}, #{ol_pname})
+	</insert>
+</mapper>

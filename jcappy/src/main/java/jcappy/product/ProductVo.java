@@ -27,6 +27,44 @@ public class ProductVo extends CommonVo {
 	private String tval;
 	private String cval;
 	
+	private int delImg1;
+	private int delImg2;
+	private int delImg3;
+	
+	private String pcomp;
+	
+	public String getPcomp() {
+		return pcomp;
+	}
+
+	public void setPcomp(String pcomp) {
+		this.pcomp = pcomp;
+	}
+
+	public int getDelImg1() {
+		return delImg1;
+	}
+
+	public void setDelImg1(int delImg1) {
+		this.delImg1 = delImg1;
+	}
+
+	public int getDelImg2() {
+		return delImg2;
+	}
+
+	public void setDelImg2(int delImg2) {
+		this.delImg2 = delImg2;
+	}
+
+	public int getDelImg3() {
+		return delImg3;
+	}
+
+	public void setDelImg3(int delImg3) {
+		this.delImg3 = delImg3;
+	}
+
 	public int getPno() {
 		return pno;
 	}

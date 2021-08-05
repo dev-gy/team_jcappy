@@ -1,6 +1,11 @@
 @charset "UTF-8";
 
 /*======================================
+전체
+========================================*/
+table {border-top: #4a4b4f 2px solid !important;}
+
+/*======================================
 top.jsp
 ========================================*/
 #header .header_inner h1 span {font-weight:bold; color:#d01b5d;}
@@ -82,3 +87,15 @@ top.jsp
 메뉴 : 부가기능 쿠폰 detail
 ========================================*/
 .coupon_detail_bbs{width:500px !important;}
+
+/*======================================
+메뉴 : 주문관리 detail
+========================================*/
+#admin_order_detail td {font-size: 13px; color: #656668;}
+#admin_order_detail .admin_order_detail_info {width: 810px; margin-bottom: 0px;}
+#admin_order_detail .admin_order_detail_product {width: 810px;}
+#admin_order_detail .admin_order_detail_product #bread {height: 40px;}
+#admin_order_detail .admin_order_detail_cancel {width: 810px;}
+#admin_order_detail .admin_order_detail_info table:nth-child(1) {float: left; width: 400px !important; margin-bottom: 0 !important;}
+#admin_order_detail .admin_order_detail_info table:nth-child(2) {float: right; width: 400px !important; margin-bottom: 0 !important;}
+#admin_order_detail .btns {cursor: pointer;}

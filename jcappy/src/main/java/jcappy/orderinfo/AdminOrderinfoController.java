@@ -45,4 +45,9 @@ public class AdminOrderinfoController {
 		
 		return "include/result";
 	}
+	
+	@RequestMapping("/admin/order/detail")
+	public String detail(Model model, OrderinfoVo vo) {
+		return "admin/order/detail";
+	}
 }

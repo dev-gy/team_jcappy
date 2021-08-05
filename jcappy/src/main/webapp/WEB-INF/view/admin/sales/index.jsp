@@ -34,7 +34,7 @@ $(function(){
 					<div id="bbs" style="width:500px !important;">
 						<div id="blist">
 							<p><span><strong>총 ${salesVo.totCount }개</strong>  |  ${salesVo.reqPage}/${salesVo.totPage }페이지</span></p>
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="매출조회">
 								<colgroup>
 									<col class="w10" />
 									<col class="w10" />
@@ -100,13 +100,13 @@ $(function(){
 							<div class="search">
 								<form name="searchForm" id="searchForm" action="index"  method="post" style="display:inline;">
 									<select name="year" title="검색을 선택해주세요" onchange="$('#searchForm').submit();">
-										<option value="0">전체</option>
+										<option value="0">전체(년)</option>
 										<option value="2021" <c:if test="${param.year=='2021'}">selected</c:if>>2021년</option>
 										<option value="2020" <c:if test="${param.year=='2020'}">selected</c:if>>2020년</option>
 										<option value="2019" <c:if test="${param.year=='2019'}">selected</c:if>>2019년</option>
 									</select>
 									<select name="month" title="검색을 선택해주세요" onchange="$('#searchForm').submit();" >
-										<option value="0">전체</option>
+										<option value="0">전체(월)</option>
 										<option value="12" <c:if test="${param.month=='12'}">selected</c:if>>12월</option>
 										<option value="11" <c:if test="${param.month=='11'}">selected</c:if>>11월</option>
 										<option value="10" <c:if test="${param.month=='10'}">selected</c:if>>10월</option>
@@ -122,7 +122,7 @@ $(function(){
 									</select>
 								</form>
 								<form name="daySearchForm" id="daySearchForm" action="index"  method="post" style="display:inline;">
-	                                <input type="text" id="datepicker" name="datepicker" value="${param.datepicker }">
+	                                <input type="text" id="datepicker" name="datepicker" value="${param.datepicker }" style="width: 80px;" placeholder="전체(일)" autocomplete="off">
 	                                <input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" onclick="$('#daySearchForm').submit();" />
 								</form>	
 							</div>

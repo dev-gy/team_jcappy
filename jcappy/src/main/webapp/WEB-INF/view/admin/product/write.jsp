@@ -160,15 +160,14 @@ function commas(t) {
 									<tr>
 										<th scope="row"><label for="">브랜드</label></th>
 										<td colspan="10">
-											<select name="pcompany" style="font-size: 13px" id="stype" title="브랜드">
-											<option>브랜드 선택</option>
-											<option value="삼성전자">삼성전자</option>
-											<option value="LG전자">LG전자</option>
-											<option value="캐리어">캐리어</option>
-											<option value="위니아전자">위니아전자</option>
-											<option value="">기타</option>
-										</select>
-										<input type="text" id="brandEtc" name="brandEtc" />
+										<select name="pcompany" style="font-size: 13px" id="stype" title="브랜드">
+												<option value="삼성전자">삼성전자</option>
+												<option value="LG전자">LG전자</option>
+												<option value="캐리어">캐리어</option>
+												<option value="위니아전자">위니아전자</option>
+												<option value="기타">기타</option>
+										</select> 
+										<input type="text" id="brandEtc" name="pcomp" value="${vo.pcompany}"/>
 										</td>
 									</tr>
 									<tr>

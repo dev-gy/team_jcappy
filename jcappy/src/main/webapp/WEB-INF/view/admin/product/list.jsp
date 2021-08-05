@@ -58,7 +58,7 @@ function categoryChange() {
 
     target.options.length = 0;
 	
-    var html = "<option value='all'>전체</option>";
+    var html = "<option value=''>전체</option>";
     for (idx in arrCval) {
    		html += "<option value=" + arrCval[idx];
     	if ("${param.cval}" == arrCval[idx]) html += " selected";
@@ -90,13 +90,13 @@ function categoryChange() {
 									<table width="100%" border="0" cellspacing="0" cellpadding="0"
 										summary="상품 목록">
 										<colgroup>
-											<col width="80px" />
-											<col width="80px" />
+											<col class="w7" />
+											<col class="w7" />
 											<col width="*" />
-											<col width="120px" />
-											<col width="80px" />
-											<col width="160px" />
-											<col width="80px" />
+											<col class="w10" />
+											<col class="w15" />
+											<col class="w15" />
+											<col class="w6" />
 										</colgroup>
 										<thead>
 											<tr>
@@ -120,8 +120,8 @@ function categoryChange() {
 													<td class="first pno">${vo.pno }</td>
 													<td>${vo.pcompany }</td>
 													<td style="text-align: left; padding-left: 10px;"><a href="detail?pno=${vo.pno }">${vo.pname }</a></td>
-													<td><fmt:formatNumber value="${vo.pprice }" pattern="#,###,###"/></td>
-													<td><input type="number" name="pcount_ex" class="w100" value="${vo.pcount }" />
+													<td><fmt:formatNumber value="${vo.pprice }" pattern="#,###,###원"/></td>
+													<td><input type="number" name="pcount_ex" class="w50" value="${vo.pcount }" />
 													<a class="btns change" href="#"><strong>변경</strong></a>	
 													</td>
 													<td class="date">
@@ -165,14 +165,14 @@ function categoryChange() {
 								<form name="searchForm" id="searchForm" action="" method="get">
 									<div class="search">
 										<select name="stype" title="검색분류선택">
+										<option value="pname"
+												<c:if test="${param.stype=='pname' }">selected</c:if>>상품명</option>
 											<option value="pcompany"
 												<c:if test="${param.stype=='pcompany' }">selected</c:if>>브랜드명</option>
-											<option value="pname"
-												<c:if test="${param.stype=='pname' }">selected</c:if>>상품명</option>
 										</select> 
 										
 										<select id="tval" name="tval" onchange="categoryChange()" title="상품종류">
-											<option value="all">전체</option>
+											<option value="">전체</option>
 											<option value="냉장고"
 												<c:if test="${param.tval=='냉장고' }">selected</c:if>>냉장고</option>
 											<option value="에어컨"

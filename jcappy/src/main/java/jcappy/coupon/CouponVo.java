@@ -26,15 +26,12 @@ public class CouponVo extends CommonVo{
 	public void setCno(int cno) {
 		this.cno = cno;
 	}
-	
 	public String getCname() {
 		return cname;
 	}
-
 	public void setCname(String cname) {
 		this.cname = cname;
 	}
-
 	public int getCprice() {
 		return cprice;
 	}
