@@ -29,7 +29,7 @@
 	            <li><a href="/jcappy/product/washer">세탁기</a></li>
 	            <li><a href="/jcappy/notice/index.do">SERVICE</a>
 	                <ul class="depth2">
-	                    <li><a href="/jcappy/notice/index.do">공지사항</a>
+	                    <li><a href="/jcappy/notice/list">공지사항</a>
 	                    <li><a href="/jcappy/review.do">리뷰게시판</a>
 	                    <li><a href="/jcappy/notice/index.do">회사소개</a>
 	                </ul>
