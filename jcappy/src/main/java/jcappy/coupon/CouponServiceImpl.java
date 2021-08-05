@@ -41,6 +41,11 @@ public class CouponServiceImpl implements CouponService {
 	public int update(CouponVo vo) {
 		return dao.update(vo);
 	}
+	
+	@Override
+	public int use(CouponVo vo) {
+		return dao.use(vo);
+	}
 
 	@Override
 	public int delete(CouponVo vo) {
