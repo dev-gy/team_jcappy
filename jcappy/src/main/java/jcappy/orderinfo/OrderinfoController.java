@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -51,7 +52,7 @@ public class OrderinfoController {
 	}
 	
 	@PostMapping("/pay")
-	public String index(Model model, HttpServletRequest request,
+	public String payIndex(Model model, HttpServletRequest request,
 			@RequestParam(value = "sno", required = false) List<Integer> snoList, 
 			@RequestParam("pno") List<Integer> pnoList, 
 			@RequestParam("count") List<Integer> countList,
@@ -92,14 +93,14 @@ public class OrderinfoController {
 		model.addAttribute("mVo", membersVo);
 		
 		// 최근 배송 데이터를 전달
-		OrderinfoVo vv = orderinfoService.selectLastOne();
-		System.out.println(vv);
 		model.addAttribute("oVo", orderinfoService.selectLastOne());
 		
 		// 회원의 쿠폰 리스트를 전달
+		// 사용안한 쿠폰 중 쿠폰의 두배 값이 총상품금액 이하인 쿠폰만 담는다 
 		CouponVo couponVo = new CouponVo();
 		couponVo.setMno(membersVo.getMno());
-		
+		couponVo.setStype("c_exist");	// 검색타입: 사용 여부
+		couponVo.setSval("1");	// 검색조건: 사용안함
 		List<CouponVo> cList = new ArrayList<CouponVo>();
 		for (CouponVo vo : couponService.selectAll(couponVo)) {
 			if (vo.getCprice() * 2 <= totalAllPrice) {
@@ -112,14 +113,14 @@ public class OrderinfoController {
 	}
 	
 	@PostMapping("/pay/check")
-	public String check(Model model, String imp_uid) throws IamportResponseException, IOException {
+	public String payCheck(Model model, String imp_uid) throws IamportResponseException, IOException {
 		
 		model.addAttribute("result", new ObjectMapper().writeValueAsString(client.paymentByImpUid(imp_uid)));
 		return "/include/result"; 
 	}
 	
 	@PostMapping("/pay/complete")
-	public String complete(Model model, 
+	public String payComplete(Model model, 
 			OrderinfoVo vo, 
 			@RequestParam("pnoList[]") int[] pnoList, 
 			@RequestParam("pcountList[]") int[] pcountList) throws IamportResponseException, IOException {
@@ -127,6 +128,13 @@ public class OrderinfoController {
 		// 주문내역 추가 및 추가한 데이터의 ono를 vo에 반환 (주문상품 데이터 추가할때 쓸 것)
 		boolean isSuccess = true;
 		if (orderinfoService.insert(vo) > 0) {
+			
+			// 
+			if (vo.getCno() != 0) {
+				CouponVo cVo = new CouponVo();
+				cVo.setCno(vo.getCno());
+				couponService.use(cVo);
+			}
 			// 주문상품내역 데이터 담아서 추가
 			OrderlistVo olVo = null;
 			ProductVo pVo = null; 
@@ -159,7 +167,12 @@ public class OrderinfoController {
 	public String cancel(Model model, String imp_uid) throws IamportResponseException, IOException {
 		CancelData cancelData = new CancelData(imp_uid, true);
 		model.addAttribute("result", new ObjectMapper().writeValueAsString(client.cancelPaymentByImpUid(cancelData)));
-		
 		return "/include/result";
+	}
+	
+	@RequestMapping("/mypage/order")
+	public String orderIndex(Model model, HttpServletRequest request) {
+		model.addAttribute("list", orderinfoService.selectAll(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno()));
+		return "mypage/order/index";
 	}
 }

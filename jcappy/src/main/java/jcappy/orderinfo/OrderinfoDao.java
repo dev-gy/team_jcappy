@@ -13,8 +13,8 @@ public class OrderinfoDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
-	public List<OrderinfoVo> selectAll() {
-		return sqlSession.selectList("orderinfo.selectAll");
+	public List<OrderinfoVo> selectAll(int mno) {
+		return sqlSession.selectList("orderinfo.selectAll", mno);
 	}
 
 	public int insert(OrderinfoVo vo) {

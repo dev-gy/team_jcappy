@@ -80,7 +80,7 @@ function categoryChange() {
 						<h2>상품관리 - [목록]</h2>
 					</div>
 					<div class="con">
-						<div id="bbs">
+						<div id="bbs" class="admin_product_list">
 							<div id="blist">
 								<p>
 									<span><strong>총 ${productVo.totCount }개</strong> | ${productVo.reqPage}/${productVo.totPage }페이지</span>
@@ -88,7 +88,7 @@ function categoryChange() {
 								<form name="frmListCount" id="frmListCount" action="updateCount"
 									method="post">
 									<table width="100%" border="0" cellspacing="0" cellpadding="0"
-										summary="상품 목록">
+										summary="상품 목록"">
 										<colgroup>
 											<col class="w7" />
 											<col class="w7" />
@@ -121,8 +121,11 @@ function categoryChange() {
 													<td>${vo.pcompany }</td>
 													<td style="text-align: left; padding-left: 10px;"><a href="detail?pno=${vo.pno }">${vo.pname }</a></td>
 													<td><fmt:formatNumber value="${vo.pprice }" pattern="#,###,###원"/></td>
-													<td><input type="number" name="pcount_ex" class="w50" value="${vo.pcount }" />
-													<a class="btns change" href="#"><strong>변경</strong></a>	
+													<td>
+													<div>
+														<input type="number" name="pcount_ex" class="w50" value="${vo.pcount }" />
+														<a class="btns change" href="#"><strong>변경</strong></a>
+													</div>	
 													</td>
 													<td class="date">
 													<fmt:formatDate value="${vo.pregdate }" pattern="yyyy-MM-dd HH:mm:ss" />
@@ -160,11 +163,17 @@ function categoryChange() {
 			                        	<a href="list?reqPage=${productVo.endPage+1 }&stype=${param.stype}&tval=${param.tval}&cval=${param.cval}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a>
 			                        </c:if>
 								</div>
-								<!-- //페이징 처리 -->
-								
-								<form name="searchForm" id="searchForm" action="" method="get">
+								<form name="searchForm" id="searchForm" action="list"  method="post">
 									<div class="search">
-										<select name="stype" title="검색분류선택">
+											<select id="orderby" name="orderby" class="dSelect" title="정렬기준" onchange="$('#searchForm').submit()">
+												<option value="pregdate" <c:if test="${param.orderby == 'pregdate' }">selected</c:if>>등록일</option>
+												<option value="pcount" <c:if test="${param.orderby == 'pcount' }">selected</c:if>>재고량</option>
+											</select>
+											<select id="direct" name="direct" class="dSelect" title="정렬순서" onchange="$('#searchForm').submit()">
+												<option value="desc" <c:if test="${param.direct== 'desc' }">selected</c:if>>내림차순</option>
+												<option value="asc" <c:if test="${param.direct == 'asc' }">selected</c:if>>오름차순</option>
+											</select>
+											<select name="stype" title="검색분류선택">
 										<option value="pname"
 												<c:if test="${param.stype=='pname' }">selected</c:if>>상품명</option>
 											<option value="pcompany"

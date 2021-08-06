@@ -42,6 +42,9 @@ top.jsp
 /*======================================
 메뉴 : 상품관리
 ========================================*/
+.admin_product_list * {white-space: nowrap; text-overflow: ellipsis;}
+.admin_product_list table {table-layout: fixed;}
+.admin_product_list table td { overflow: hidden;}
 .imagePreview1{width: 100px; height: 50px; background-position: center center; background-size: cover;}
 .imagePreview2{width: 100px; height: 50px; background-position: center center; background-size: cover;}
 .imagePreview3{width: 100px; height: 50px; background-position: center center; background-size: cover;}

@@ -24,10 +24,10 @@
 					<table class="cstyle_table">
 						<colgroup>
 							<col width="100px">
-							<col width="250px">
-							<col width="200px">
+							<col>
+							<col width="120px">
 							<col width="100px">
-							<col width="150px">
+							<col width="100px">
 						</colgroup>
 						<tr>
 							<th>주문번호</th>
@@ -36,27 +36,19 @@
 							<th>주문날짜</th>
 							<th>배송상태</th>
 						</tr>
-						<tr>
-							<td><a href="/jcappy/mypage/order/detail.do"><div>9999</div></a></td>
-							<td class="cstyle_text_align_left">냉장고 외1건</td>
-							<td>10,000,000원</td>
-							<td>2021-05-05</td>
-							<td>상품준비중</td>
-						</tr>
-						<tr>
-							<td><a href="/jcappy/mypage/order/detail.do"><div>8888</div></a></td>
-							<td class="cstyle_text_align_left">세탁기 외2건</td>
-							<td>10,000,000원</td>
-							<td>2021-05-05</td>
-							<td>배송준비중</td>
-						</tr>
-						<tr>
-							<td><a href="/jcappy/mypage/order/detail.do"><div>7777</div></a></td>
-							<td class="cstyle_text_align_left">에어컨</td>
-							<td>1,000,000원</td>
-							<td>2021-05-05</td>
-							<td>배송완료</td>
-						</tr>
+						<c:forEach var="vo" varStatus="status" items="${list }">
+							<tr>
+								<td>
+									<a href="/jcappy/mypage/order/detail.do">${vo.ono }</a>
+								</td>
+								<td class="cstyle_text_align_left">
+									<a href="/jcappy/mypage/order/detail.do">${vo.oi_pname }</a>
+								</td>
+								<td><fmt:formatNumber maxFractionDigits="3" type="number" value="${vo.total_price }"/>원</td>
+								<td><fmt:formatDate value="${vo.odate }" pattern="yyyy-MM-dd"/></td>
+								<td>${vo.o_del }</td>
+							</tr>
+						</c:forEach>
 					</table>
 				</div>
 			</div>

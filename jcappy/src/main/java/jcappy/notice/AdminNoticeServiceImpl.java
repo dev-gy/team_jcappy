@@ -65,8 +65,5 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 		return dao.delete(vo);
 	}
 
-	@Override
-	public MembersVo temporarySession(MembersVo fmv) {
-		return dao.temporarySession(fmv);
-	}
+	
 }

@@ -55,7 +55,7 @@ function deleteImg() {
             	console.log(res);
             	if (res.trim() == 'true') {
                   alert('정상적으로 삭제되었습니다.');
-                  location.href='list';
+                  location.reload();
                } else {
                   alert('삭제 실패');
                }
@@ -63,17 +63,6 @@ function deleteImg() {
 		});
 	}
 }
-</script>
-<!-- 브랜드 DB에서 갖고온것과 같을떄 숨기기 -->
-<script>
-$(document).ready(function(){
-	
-	  $("#stype").each(function(){
-	    if($(this).val()=="${vo.pcompany}"){
-			$(this).val().hide();
-	    }
-	  });
-	});
 </script>
 <!-- 이중 select box -->
 <script>
@@ -107,10 +96,9 @@ function categoryChange(e) {
 		$("#stype").change(function() {
 			pcompEct();
 		});
-		
 		pcompEct();
-		
 	});
+	
 	function pcompEct() {
 		if ($("#stype").val() == "기타") {
 			$("#brandEtc").show();
@@ -202,7 +190,7 @@ function commas(comma) {
 														<option value="기타"
 														<c:if test="${vo.pcompany != '삼성전자' && vo.pcompany != 'LG전자' && vo.pcompany != '캐리어' && vo.pcompany != '위니아전자'}">selected</c:if>>기타</option>
 												</select> 
-												<input type="text" id="brandEtc" name="pcomp" value="${vo.pcompany}"/>
+												<input type="text" id="brandEtc" name="pcomp" <c:if test="${vo.pcompany != '삼성전자' && vo.pcompany != 'LG전자' && vo.pcompany != '캐리어' && vo.pcompany != '위니아전자'}">value="${vo.pcompany}"</c:if>/>
 												</td>
 											</tr>
 											<tr>
