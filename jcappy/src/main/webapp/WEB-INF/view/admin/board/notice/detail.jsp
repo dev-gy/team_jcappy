@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script>
-	function notice_detail_isDel() {//게시글 삭제
+	function notice_detail_isDel() {// 댓글이 달린 게시글 삭제
 		$.ajax({
 			url:'/jcappy/admin/board/notice/comment/ccount',
 			data:{
@@ -87,7 +87,7 @@
     		});
 		}
 	}
-	function notice_detail_del() {
+	function notice_detail_del() { //게시글 삭제
 		$.ajax({
 			url:'delete',
 			data:{

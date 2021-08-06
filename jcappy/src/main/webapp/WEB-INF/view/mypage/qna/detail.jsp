@@ -9,15 +9,6 @@
 <title>1:1 문의</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 </head>
-<style> 
-/* 성재형에게 물어볼것 */
-.notice_write_content { margin: 50px 0px; }
-.notice_write_content > .title { margin: 50px; }
-.notice_write_content table { margin-bottom: 20px; }
-.notice_write_content > .btn_wrap { margin: 20px 0px; box-sizing: border-box; overflow: hidden; }
-.notice_write_content > .btn_wrap > input[type="button"] { width: 100px; height: 40px; float: right; }
-.notice_write_content .notice_context { min-height: 300px; display: block; }
-</style>
 <script>
 function qna_detail_isDel() {//게시글 삭제
 	if (confirm('문의를 삭제하시겠습니까?')) {  
@@ -71,7 +62,7 @@ function qna_detail_isDel() {//게시글 삭제
 						</thead>
 						<tbody>
 							<tr>
-								<td class="notice_context cstyle_text_align_left" colspan="2">
+								<td class="qna_context cstyle_text_align_left" colspan="2">
 									<div class="cont">${vo.qcontent} </div>
 								</td>
 							</tr>
@@ -83,11 +74,47 @@ function qna_detail_isDel() {//게시글 삭제
 							</c:if>
 						</tbody>
 					</table>
-					<div class="btn_wrap">
-						<input class="cstyle_btn" id="button" type="button" value="수정" onclick="location.href='edit?qno=${vo.qno}'">
-						<input class="cstyle_btn" id="button" type="button" value="삭제" onclick="qna_detail_isDel();">
-					</div>
+<%-- 					<c:if test=""> --%>
+						<div class="btn_wrap">
+							<input class="cstyle_btn" id="button" type="button" value="수정" onclick="location.href='edit?qno=${vo.qno}'">
+							<input class="cstyle_btn" id="button" type="button" value="삭제" onclick="qna_detail_isDel();">
+						</div>
+<%-- 					</c:if> --%>
 				</div>
+<!-- 					답변 -->
+<%-- 					<c:if test=""> --%>
+						<div class="mypage_subtitle">
+							<h2 class="qnatitle">내 답변</h2>
+						</div>
+						<div class="qna_detail_content">
+							<table class="cstyle_table">
+								<colgroup>
+									<col>
+									<col width="120">
+								</colgroup>
+								<thead>
+									<tr>
+										<th class="cstyle_text_align_left">${vo.qtitle}</th>
+										<td><fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd"/></td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="qna_context cstyle_text_align_left" colspan="2">
+											<div class="cont">${vo.qcontent} </div>
+										</td>
+									</tr>
+			                       	<c:if test="${null ne vo.qfile_org}">
+										<tr>
+					                       	<th class="cstyle_text_align_left">	첨부파일 </th>
+				                           	<th><a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.qfile_org}&real=${vo.qfile_real}"  target="_blank">${vo.qfile_org}</a></th>
+				                    	</tr>
+									</c:if>
+								</tbody>
+							</table>
+						</div>
+<%-- 					</c:if> --%>
+				
 			</div>
         </div>
         <%@ include file="/WEB-INF/view/include/bottom.jsp" %>

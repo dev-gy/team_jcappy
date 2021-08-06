@@ -152,16 +152,18 @@ cart
 .cart_content .cart_item > .total_price_txt { text-align: right; }
 
 /*======================================
-notice/index
+notice/list
 ========================================*/
 .notice_content { margin: 50px 0px; }
-.notice_content > .title { margin: 50px; }
+.notice_content > .title { margin: 50px;}
+.notice_content .qtitle { text-align:left;}
 
 /*======================================
 notice/datail
 ========================================*/
 .notice_detail_content { margin: 50px 0px; }
 .notice_detail_content > .title { margin: 50px; }
+.notice_detail_content .notice_context { min-height: 300px; display: block; }
 .notice_detail_content table { margin-bottom: 20px; }
 .notice_detail_content > .btn_wrap { margin: 20px 0px; box-sizing: border-box; overflow: hidden; }
 .notice_detail_content > .btn_wrap > input[type="button"] { width: 100px; height: 40px; float: right; }
@@ -274,6 +276,8 @@ mypage/qna/index
 /*======================================
 mypage/qna/detail
 ========================================*/
+.qna_detail_content { margin: 50px 0px; }
+.qna_detail_content .qna_context { min-height: 300px; display: block; }
 .qnatitle {float:left;}
 #qnalistbutton{float:right; width: 100px; height: 40px; margin: 10px 0px;}
 .qna_detail_content > .btn_wrap {text-align:right;}

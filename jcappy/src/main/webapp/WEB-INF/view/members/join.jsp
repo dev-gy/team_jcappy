@@ -88,8 +88,8 @@ $(function() {
                     <div>비밀번호는 영문대소문자, 숫자, 특수문자를 각 하나이상 포함한 6~20자로 입력해주세요.</div><br>
                     <input type="text" class="join_input" id="mname" name="mname"  placeholder="이름을(를) 입력하세요" required="required"/><br>
                     <input type="text" class="join_input" name="mphone" id="mphone" placeholder="연락처" required="required"/><br><br>
-                    <input type="text" class="join_input" name="mzipcode" id="mzipcode" placeholder="우편번호 검색" required="required"  onclick="daumPostcode($('#mzipcode'), $('#maddr'), $('#maddrde'));"/><br>
-                    <input type="text" class="join_input" name="maddr"  id="maddr" placeholder="주소" required="required" onclick="daumPostcode($('#mzipcode'), $('#maddr'), $('#maddrde'));"/><br>
+                    <input type="text" class="join_input" name="mzipcode" id="mzipcode" placeholder="우편번호 검색" required="required" readonly onclick="daumPostcode($('#mzipcode'), $('#maddr'), $('#maddrde'));"/><br>
+                    <input type="text" class="join_input" name="maddr"  id="maddr" placeholder="주소" required="required" readonly onclick="daumPostcode($('#mzipcode'), $('#maddr'), $('#maddrde'));"/><br>
                     <input type="text" class="join_input" name="maddrde" id="maddrde" placeholder="상세주소" required="required" /><br><br>
                     <input class="cstyle_btn ex" type="submit" id="submit" value="가입하기"/>
                 </form>
