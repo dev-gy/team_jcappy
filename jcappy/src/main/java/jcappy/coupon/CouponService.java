@@ -7,6 +7,7 @@ public interface CouponService {
 	List<CouponVo> selectAll(CouponVo vo);
 	CouponVo detail(CouponVo vo);
 	int update(CouponVo vo);
+	int use(CouponVo vo);
 	int delete(CouponVo vo);
 	CouponVo findMno(String memail);
 	int insert(CouponVo vo);

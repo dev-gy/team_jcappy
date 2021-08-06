@@ -19,7 +19,9 @@ public class AdminProductController {
 	AdminProductService service;
 
 	@RequestMapping("/admin/product/list")
-	public String list(Model model, ProductVo vo) {
+	public String list(Model model, ProductVo vo, @RequestParam(name = "orderby", required = false) String orderby, @RequestParam(name = "direct", required = false) String direct) {
+		vo.setOrderby(orderby);
+		vo.setDirect(direct);
 		model.addAttribute("list", service.selectAll(vo));
 		return "admin/product/list";
 	}
@@ -157,7 +159,7 @@ public class AdminProductController {
 
 		if (r > 0) {
 			model.addAttribute("msg", "정상적으로 수정되었습니다.");
-			model.addAttribute("url", "detail?pno=" + vo.getPno());
+			model.addAttribute("url", "list");
 		} else {
 			model.addAttribute("msg", "수정실패");
 			model.addAttribute("url", "detail?pno=" + vo.getPno());

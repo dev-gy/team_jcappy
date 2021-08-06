@@ -22,7 +22,10 @@ public class OrderinfoVo extends CommonVo {
 	private int cno;
 	private String imp_uid;
 	
-
+	
+	private int total_price;
+	private String oi_pname;
+	
 	private int[] onos;
 
 	OrderinfoVo() {
@@ -130,11 +133,26 @@ public class OrderinfoVo extends CommonVo {
 		this.imp_uid = imp_uid;
 	}
 
+	public int getTotal_price() {
+		return total_price;
+	}
+
+	public void setTotal_price(int total_price) {
+		this.total_price = total_price;
+	}
+
 	public int[] getOnos() {
 		return onos;
 	}
 
 	public void setOnos(int[] onos) {
 		this.onos = onos;
+	}
+	public String getOi_pname() {
+		return oi_pname;
+	}
+
+	public void setOi_pname(String oi_pname) {
+		this.oi_pname = oi_pname;
 	}
 }

@@ -33,7 +33,11 @@
 	</select>
 	
 	<update id="update"  parameterType="jcappy.coupon.CouponVo">
-		UPDATE coupon SET cname=#{cname}, cprice=#{cprice}, cdate=#{cdate} WHERE cno=#{cno}
+		UPDATE coupon SET cname=#{cname}, cprice=#{cprice}, cdate=#{cdate}, c_exist=#{c_exist} WHERE cno=#{cno}
+	</update>
+	
+	<update id="use"  parameterType="jcappy.coupon.CouponVo">
+		UPDATE coupon SET c_exist=0 WHERE cno=#{cno}
 	</update>
 	
 	<delete id="delete" parameterType="jcappy.coupon.CouponVo">

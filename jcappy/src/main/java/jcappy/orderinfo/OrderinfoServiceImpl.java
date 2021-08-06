@@ -12,8 +12,8 @@ public class OrderinfoServiceImpl implements OrderinfoService {
 	OrderinfoDao orderinfoDao;
 	
 	@Override
-	public List<OrderinfoVo> selectAll() {
-		return orderinfoDao.selectAll();
+	public List<OrderinfoVo> selectAll(int mno) {
+		return orderinfoDao.selectAll(mno);
 	}
 	
 	@Override

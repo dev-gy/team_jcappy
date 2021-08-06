@@ -1,4 +1,4 @@
-package jcappy.coupon;
+package jcappy.notice;
 
 import java.util.List;
 
@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CouponServiceImpl implements CouponService {
-	
+public class NoticeServiceImpl implements NoticeService {
+
 	@Autowired
-	CouponDao dao;
+	NoticeDao dao;
 	
 	@Override
-	public List<CouponVo> selectAll(CouponVo vo) {
+	public List<NoticeVo> selectAll(NoticeVo vo) {
 		int totCount = dao.count(vo); // 총갯수
 		// 총페이지수
 		int totPage = totCount / vo.getPageRow();
@@ -33,43 +33,8 @@ public class CouponServiceImpl implements CouponService {
 	}
 
 	@Override
-	public CouponVo detail(CouponVo vo) {
+	public NoticeVo detail(NoticeVo vo) {
 		return dao.detail(vo);
-	}
-
-	@Override
-	public int update(CouponVo vo) {
-		return dao.update(vo);
-	}
-	
-	@Override
-	public int use(CouponVo vo) {
-		return dao.use(vo);
-	}
-
-	@Override
-	public int delete(CouponVo vo) {
-		return dao.delete(vo);
-	}
-
-	@Override
-	public CouponVo findMno(String memail) {
-		return dao.findMno(memail);
-	}
-
-	@Override
-	public int insert(CouponVo vo) {
-		return dao.insert(vo);
-	}
-
-	@Override
-	public int countMemail(CouponVo vo) {
-		return dao.countMemail(vo);
-	}
-
-	@Override
-	public int deleteGroup(CouponVo vo) {
-		return dao.deleteGroup(vo);
 	}
 
 }

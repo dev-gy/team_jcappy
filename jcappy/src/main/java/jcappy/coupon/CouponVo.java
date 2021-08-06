@@ -11,6 +11,7 @@ public class CouponVo extends CommonVo{
 	private Timestamp cregdate;
 	private int cdate;
 	private int mno;
+	private int c_exist; 
 	private int[] cnos;
 	
 	private String memail;
@@ -55,6 +56,13 @@ public class CouponVo extends CommonVo{
 	}
 	public void setMno(int mno) {
 		this.mno = mno;
+	}
+	public int getC_exist() {
+		return c_exist;
+	}
+
+	public void setC_exist(int c_exist) {
+		this.c_exist = c_exist;
 	}
 
 	public String getMemail() {

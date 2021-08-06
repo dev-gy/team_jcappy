@@ -14,7 +14,7 @@
             	<a href="/jcappy/login">로그인</a> | <a href="/jcappy/policy/agreement.do">회원가입</a>
             </c:if>
             <c:if test="${!empty membersInfo }">
-            	<a href="/jcappy/logout">로그아웃</a> | <a href="/jcappy/mypage/order/index.do">마이페이지</a>
+            	<a href="/jcappy/logout">로그아웃</a> | <a href="/jcappy/mypage/order">마이페이지</a>
              </c:if>
             <!-- <a href="">김조은님</a> | <a href="">마이페이지</a> | <a href="">장바구니</a> | <a href="">로그아웃</a> -->
         </div>
@@ -29,7 +29,7 @@
 	            <li><a href="/jcappy/product/washer">세탁기</a></li>
 	            <li><a href="/jcappy/notice/index.do">SERVICE</a>
 	                <ul class="depth2">
-	                    <li><a href="/jcappy/notice/index.do">공지사항</a>
+	                    <li><a href="/jcappy/notice/list">공지사항</a>
 	                    <li><a href="/jcappy/review.do">리뷰게시판</a>
 	                    <li><a href="/jcappy/notice/index.do">회사소개</a>
 	                </ul>
