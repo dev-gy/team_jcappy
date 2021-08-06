@@ -5,61 +5,37 @@
 	<sql id="salesWhere">
 		<where>
 			<if test="year != 0">
-				year = #{year} 
+				d.year = #{year} 
 			</if>
 			<if test="month != 0">
-				and month = #{month} 
+				and d.month = #{month} 
 			</if>
 		</where>
 	</sql>
 	
 	<select id="selectAll" resultType="jcappy.sales.SalesVo" parameterType="jcappy.sales.SalesVo">
-			select * , SUM(ol_count * ol_price) AS price
-			from ( 
-			select *,concat (year,
-				case 
-					when month = 1 then '01'
-					when month = 2 then '02'
-					when month = 3 then '03'
-					when month = 4 then '04'
-					when month = 5 then '05'
-					when month = 6 then '06'
-					when month = 7 then '07'
-					when month = 8 then '08'
-					when month = 9 then '09'
-					else month
-				end
-			) as date from dates group by date) as d  LEFT JOIN (select *, SUBSTR(DATE_FORMAT(odate, '%Y%m%d'),1, 6) date from orderinfo where o_state = '결제완료') oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono
-			<include refid="salesWhere"/>
-			group by d.date 
-			ORDER BY d.date desc
-			LIMIT ${startIdx},${pageRow}
+		SELECT d.year, d.month, a.price 
+		FROM (SELECT year, month FROM dates GROUP BY year, month) AS d LEFT JOIN (
+			SELECT year(odate) AS year, month(odate) AS month, SUM(ol_count*ol_price) AS price
+			FROM orderinfo AS oi join orderlist AS ol on oi.ono = ol.ono AND oi.o_state = '결제완료'
+			GROUP BY year(odate), month(odate)
+		) AS a ON d.year = a.year AND d.month = a.month
+		<include refid="salesWhere"/>
+		ORDER BY d.year DESC, d.month DESC
+		LIMIT ${startIdx},${pageRow}
 	</select>
 	
 	<select id="count" resultType="int" parameterType="jcappy.sales.SalesVo">
-		select count(*) 
-		from (
-			select SUM(ol_count * ol_price) AS price
-			from ( 
-			select *,concat (year,
-				case 
-					when month = 1 then '01'
-					when month = 2 then '02'
-					when month = 3 then '03'
-					when month = 4 then '04'
-					when month = 5 then '05'
-					when month = 6 then '06'
-					when month = 7 then '07'
-					when month = 8 then '08'
-					when month = 9 then '09'
-					else month
-				end
-			) as date from dates group by date ) as d  LEFT JOIN (select *, SUBSTR(DATE_FORMAT(odate, '%Y%m%d'),1, 6) date from orderinfo where o_state = '결제완료') oi ON d.date = oi.date LEFT JOIN orderlist ol ON oi.ono = ol.ono 
-			<include refid="salesWhere"/>
-			group by d.date 
-			ORDER BY d.date desc
-		) a
-		
+		SELECT COUNT(*) FROM (
+		SELECT d.year, d.month, a.price 
+		FROM (SELECT year, month FROM dates GROUP BY year, month) AS d LEFT JOIN (
+			SELECT year(odate) AS year, month(odate) AS month, SUM(ol_count*ol_price) AS price
+			FROM orderinfo AS oi join orderlist AS ol on oi.ono = ol.ono AND oi.o_state = '결제완료'
+			GROUP BY year(odate), month(odate)
+		) AS a ON d.year = a.year AND d.month = a.month
+		<include refid="salesWhere"/>
+		ORDER BY d.year DESC, d.month DESC
+		) AS b
 	</select>
 	
 	<select id="daySelect" resultType="jcappy.sales.SalesVo" parameterType="jcappy.sales.SalesVo">

@@ -12,5 +12,4 @@ public interface AdminNoticeService {
 	NoticeVo edit(NoticeVo vo);
 	int update(NoticeVo vo);
 	int delete(NoticeVo vo);
-	MembersVo temporarySession(MembersVo fmv);
 }
