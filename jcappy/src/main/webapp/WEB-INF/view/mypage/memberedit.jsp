@@ -131,13 +131,13 @@ $(function(){
 										<tr>
 											<td>우편번호</td>
 											<td class="zipcode_td">
-												<input class="zipcode" id="zipcode" type="text" name="mzipcode" value="${membersInfo.mzipcode }" required="required">
+												<input class="zipcode" id="zipcode" type="text" name="mzipcode" value="${membersInfo.mzipcode }" required="required" readonly>
 												<input class="cstyle_btn search_zipcode" type="button" value="검색" onclick="daumPostcode($('#zipcode'), $('#addr1'), $('#addr2'));">
 											</td>
 										</tr>
 										<tr>
 											<td>주소</td>
-											<td><input type="text" id="addr1" name="maddr"  value="${membersInfo.maddr }" required="required"></td>
+											<td><input type="text" id="addr1" name="maddr"  value="${membersInfo.maddr }" required="required" readonly></td>
 										</tr>
 										<tr>
 											<td>상세주소</td>

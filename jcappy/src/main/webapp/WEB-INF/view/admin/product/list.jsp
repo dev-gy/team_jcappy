@@ -149,7 +149,7 @@ function categoryChange() {
 								<!-- 페이징 처리 -->
 								<div class='page'>
 									<c:if test="${productVo.startPage > productVo.pageRange}">
-			                        	<a href="list?reqPage=${productVo.endPage+1 }&stype=${param.stype}&tval=${param.tval}&cval=${param.cval}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a>
+			                        	<a href="list?reqPage=${productVo.startPage-1 }&stype=${param.stype}&tval=${param.tval}&cval=${param.cval}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a>
 			                        </c:if>
 			                        <c:forEach var="rp" begin="${productVo.startPage}" end="${productVo.endPage }">
 			                        	<c:if test="${rp==productVo.reqPage }">
@@ -163,7 +163,7 @@ function categoryChange() {
 			                        	<a href="list?reqPage=${productVo.endPage+1 }&stype=${param.stype}&tval=${param.tval}&cval=${param.cval}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a>
 			                        </c:if>
 								</div>
-								<form name="searchForm" id="searchForm" action="list"  method="post">
+								<form name="searchForm" id="searchForm" action="list"  method="get">
 									<div class="search">
 											<select id="orderby" name="orderby" class="dSelect" title="정렬기준" onchange="$('#searchForm').submit()">
 												<option value="pregdate" <c:if test="${param.orderby == 'pregdate' }">selected</c:if>>등록일</option>

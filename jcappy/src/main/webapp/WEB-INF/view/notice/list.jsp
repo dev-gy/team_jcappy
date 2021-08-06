@@ -38,7 +38,7 @@
 					<c:forEach var="vo" items="${list}" varStatus="status">
 						<tr>
 							<td class="first">${(noticeVo.totCount-status.index)-((noticeVo.reqPage-1)*noticeVo.pageRow)}</td>
-							<td class="title"><a href="detail?nno=${vo.nno}&reqPage=${noticeVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.ntitle} [${vo.comment_count}]</a></td>
+							<td class="qtitle"><a href="detail?nno=${vo.nno}&reqPage=${noticeVo.reqPage}&stype=${param.stype}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">${vo.ntitle} [${vo.comment_count}]</a></td>
 							<td><fmt:formatDate value="${vo.nregdate }" pattern="yyyy-MM-dd"/> </td> <!-- 년월일 포맷 폼 -->
 						</tr>
 					</c:forEach>
