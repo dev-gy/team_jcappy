@@ -44,7 +44,7 @@
 								<td class="cstyle_text_align_left">
 									<a href="/jcappy/mypage/order/detail.do">${vo.oi_pname }</a>
 								</td>
-								<td><fmt:formatNumber maxFractionDigits="3" type="number" value="${vo.total_price }"/>원</td>
+								<td class="cstyle_text_align_right"><fmt:formatNumber maxFractionDigits="3" type="number" value="${vo.total_price }"/>원</td>
 								<td><fmt:formatDate value="${vo.odate }" pattern="yyyy-MM-dd"/></td>
 								<td>${vo.o_del }</td>
 							</tr>

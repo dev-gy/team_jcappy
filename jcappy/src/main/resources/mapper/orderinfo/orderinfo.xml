@@ -7,7 +7,7 @@
 			SUM(ol.ol_price * ol.ol_count) AS total_price,
 			ol.ol_pname AS ol_pname,
 			COUNT(ol.pno) AS ol_count,
-			CONCAT(ol.ol_pname, " 외", COUNT(ol.pno), "건") AS oi_pname
+			IF(COUNT(ol.pno) > 1, CONCAT(SUBSTR(ol.ol_pname, 1, 25), '... 외', COUNT(ol.pno)-1, '건'), ol.ol_pname) AS oi_pname
 		FROM orderinfo AS oi
 		JOIN orderlist AS ol 
 		ON ol.ono = oi.ono
