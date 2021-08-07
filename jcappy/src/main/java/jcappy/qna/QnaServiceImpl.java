@@ -29,6 +29,7 @@ public class QnaServiceImpl implements QnaService{
 		vo.setEndPage(endPage);
 		vo.setTotCount(totCount);
 		vo.setTotPage(totPage);
+		
 		return dao.selectAll(vo);
 	}
 	
@@ -69,5 +70,24 @@ public class QnaServiceImpl implements QnaService{
 	@Override
 	public int haveRe(QnaVo vo) {
 		return dao.haveRe(vo);
+	}
+	
+	@Override
+	public List<QnaVo> selectAllUser(QnaVo vo) {
+		int totCount = dao.countUser(vo); // 총 개수
+		//총 페이지수
+		int totPage = totCount / vo.getPageRow();
+		if(totCount % vo.getPageRow() > 0) totPage++;
+		
+		//시작 페이지
+		int startPage = (vo.getReqPage() -1) / vo.getPageRange() * vo.getPageRange() + 1;
+		int endPage = startPage + (vo.getPageRange()-1);
+		if (endPage > totPage) endPage = totPage;
+		
+		vo.setStartPage(startPage);
+		vo.setEndPage(endPage);
+		vo.setTotCount(totCount);
+		vo.setTotPage(totPage);
+		return dao.selectAllUser(vo);
 	}
 }

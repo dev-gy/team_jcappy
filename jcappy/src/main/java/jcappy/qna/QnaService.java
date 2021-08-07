@@ -10,4 +10,5 @@ public interface QnaService {
 	int update(QnaVo vo);
 	QnaVo edit(QnaVo vo);
 	int haveRe(QnaVo vo);
+	List<QnaVo> selectAllUser(QnaVo vo);
 }

@@ -164,5 +164,6 @@ public class MembersController {
 	public String updateView() {
 		return "mypage/memberedit";
 	}
+	
 
 }

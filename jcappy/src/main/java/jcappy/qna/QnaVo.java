@@ -19,7 +19,19 @@ public class QnaVo extends CommonVo {
 	private int mno;			// 회원 번호
 	private int ano;			// 관리자 쪽 댓글
 	private int q_havere;
+	private int user_no;
 	
+	
+	public int getUser_no() {
+		return user_no;
+	}
+
+
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
+
+
 	public int getQ_havere() {
 		return q_havere;
 	}

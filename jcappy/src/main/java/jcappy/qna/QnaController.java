@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import jcappy.members.MembersVo;
+
 @Controller
 public class QnaController {
 
@@ -21,9 +23,9 @@ public class QnaController {
 	
 	// 문의 목록
 	@RequestMapping("/mypage/qna/list")
-	public String index(Model model, QnaVo vo, HttpSession sess) {
-		model.addAttribute("list", service.selectAll(vo));
-		model.addAttribute("haveRe", service.haveRe(vo));
+	public String list(Model model, MembersVo mv, QnaVo vo, HttpSession sess) {
+		vo.setMno(((MembersVo)sess.getAttribute("membersInfo")).getMno());
+		model.addAttribute("list", service.selectAllUser(vo));
 		return "mypage/qna/list";
 	}
 	
