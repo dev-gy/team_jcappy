@@ -28,6 +28,8 @@ import jcappy.orderlist.OrderlistService;
 import jcappy.orderlist.OrderlistVo;
 import jcappy.product.ProductService;
 import jcappy.product.ProductVo;
+import jcappy.shopcart.ShopcartService;
+import jcappy.shopcart.ShopcartVo;
 
 @Controller
 public class OrderinfoController {
@@ -42,6 +44,8 @@ public class OrderinfoController {
 	CouponService couponService;
 	@Autowired
 	OrderlistService orderlistService;
+	@Autowired
+	ShopcartService shopcartService;
 	
 	IamportClient client;
 	
@@ -116,25 +120,36 @@ public class OrderinfoController {
 	public String payCheck(Model model, String imp_uid) throws IamportResponseException, IOException {
 		
 		model.addAttribute("result", new ObjectMapper().writeValueAsString(client.paymentByImpUid(imp_uid)));
-		return "/include/result"; 
+		return "/include/result";
 	}
 	
 	@PostMapping("/pay/complete")
 	public String payComplete(Model model, 
 			OrderinfoVo vo, 
+			@RequestParam("snoList[]") int[] snoList,
 			@RequestParam("pnoList[]") int[] pnoList, 
 			@RequestParam("pcountList[]") int[] pcountList) throws IamportResponseException, IOException {
-		System.out.println("pnoList: " + pnoList+", "+"pcountList: "+pcountList);
+
 		// 주문내역 추가 및 추가한 데이터의 ono를 vo에 반환 (주문상품 데이터 추가할때 쓸 것)
 		boolean isSuccess = true;
 		if (orderinfoService.insert(vo) > 0) {
-			
-			// 
+			// 사용된 쿠폰 사용여부 사용으로 변경 
 			if (vo.getCno() != 0) {
 				CouponVo cVo = new CouponVo();
 				cVo.setCno(vo.getCno());
 				couponService.use(cVo);
 			}
+			
+			// 결제한 상품 중 장바구니 상품이 있다면 장바구니 목록에서 삭제
+			ShopcartVo sVo = new ShopcartVo();
+			for (int i = 0; i < snoList.length; i++) {
+				if (!isSuccess) {
+					break;
+				}
+				sVo.setSno(snoList[i]);
+				isSuccess = shopcartService.delete(sVo) > 0;
+			}
+			
 			// 주문상품내역 데이터 담아서 추가
 			OrderlistVo olVo = null;
 			ProductVo pVo = null; 
@@ -154,7 +169,6 @@ public class OrderinfoController {
 				olVo.setOl_count(pcountList[i]);
 				olVo.setOl_price(pVo.getPprice());
 				olVo.setOl_pname(pVo.getPname());
-				
 				isSuccess = orderlistService.insert(olVo) > 0;
 			}
 		}

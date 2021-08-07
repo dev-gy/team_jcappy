@@ -55,18 +55,37 @@ function check_create_name(name) {
 
 // 회원 연락처 체크
 function check_create_phone(phone) {
+	var check = true;
 	
 	if (phone.val().trim() == '') {
 		alert('연락처를 입력해주세요.');
 		phone.focus();
-		return false;
+		check = false;
 	} else if (!/^[0-9]{9,11}$/.test(phone.val())) {
 		alert('숫자 9~11자리로만 입력해주세요.');
 		phone.focus();
-		return false;
+		check = false;
+	} else if (${vo.mphone} == phone.val()) {
+		check = true;
 	} else {
-		return true;
+		$.ajax({
+			url: '<%=request.getContextPath()%>/members/isDuplicatePhone',
+			data: {
+				'phone' : phone.val()
+			},
+			async: false,
+			success: function(res) {
+				if (res.trim() == 'false') {
+					check = true;
+				} else {
+					alert('입력하신 연락처가 이미 존재합니다.\n다른 번호를 입력해주세요.');
+					phone.focus();
+					check = false;
+				}
+			},
+		});
 	}
+	return check;
 }
 
 // 우편번호, 주소, 상세주소 체크

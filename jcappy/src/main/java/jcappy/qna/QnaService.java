@@ -7,7 +7,9 @@ public interface QnaService {
 	int insert(QnaVo vo);
 	int delete(QnaVo vo);
 	QnaVo detail(QnaVo vo);
+	QnaVo detailRe(QnaVo vo);
 	int update(QnaVo vo);
 	QnaVo edit(QnaVo vo);
 	int haveRe(QnaVo vo);
+	List<QnaVo> selectAllUser(QnaVo vo);
 }

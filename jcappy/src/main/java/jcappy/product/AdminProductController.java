@@ -19,7 +19,7 @@ public class AdminProductController {
 	AdminProductService service;
 
 	@RequestMapping("/admin/product/list")
-	public String list(Model model, ProductVo vo, @RequestParam(name = "orderby", required = false) String orderby, @RequestParam(name = "direct", required = false) String direct) {
+	public String list(Model model, ProductVo vo, @RequestParam(name = "orderby", required = false, defaultValue = "pregdate" ) String orderby, @RequestParam(name = "direct", required = false, defaultValue = "desc") String direct) {
 		vo.setOrderby(orderby);
 		vo.setDirect(direct);
 		model.addAttribute("list", service.selectAll(vo));

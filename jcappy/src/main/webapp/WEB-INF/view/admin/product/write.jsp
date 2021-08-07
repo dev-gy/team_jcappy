@@ -5,6 +5,49 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
 <script src="/jcappy/js/common.js"></script>
+<!-- 필수입력칸 구현 -->
+<script>
+$(function(){
+	
+	$('#save').click(function(){
+		
+		if($("#ptype").val() == ''){
+			alert("상품 종류를 입력해주세요");
+			return false;
+		} 
+		if($("#stype").val() == ''){
+			alert("브랜드를 입력해주세요");
+			return false;
+		}
+		if($("#pname").val() == ''){
+			alert("상품명을 입력해주세요");
+			return false;
+		}
+		if($("#pprice").val() == ''){
+			alert("상품 가격을 입력해주세요");
+			return false;
+		}
+		if($("#pprice").val() > '2000000000'){
+			alert("상품 가격을 2,000,000,000원 이하로 입력해주세요")
+			return false;
+		}
+		if($("#pcount").val() == ''){
+			alert("상품 재고를 입력해주세요");
+			return false;
+		}
+		return true;
+	})
+})
+</script>
+ <script>
+ $(function(){
+ 
+   $("input:text[numberOnly]").on("keyup", function() {
+      $(this).val($(this).val().replace(/[^0-9]/g,""));
+   });
+   
+ });
+ </script>
 <!-- 스마트에디터, 등록 -->
 <script>
 var oEditors;
@@ -96,25 +139,6 @@ function categoryChange(e) {
 		})
 	});
 </script>
-<!-- input에 숫자 콤마찍기 -->
-<!-- <script>
-function commas(t) {
-
-	var x = t.value;			
-
-	x = x.replace(/,/gi, '');
-
-	var regexp = /^[0-9]*$/;
-	
-	if(!regexp.test(x)){ 
-		$(t).val(""); 
-		alert("숫자만 입력 가능합니다.");
-	} else {
-		x = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");			
-		$(t).val(x);			
-	}
-}
-</script> -->
 </head>
 <body> 
 <div id="wrap">
@@ -144,8 +168,8 @@ function commas(t) {
 										<th scope="row"><label for="">상품 종류</label></th>
 										<td colspan="10">
 										<div>
-											<select name="ptype" style="font-size: 13px" onchange="categoryChange(this)">
-												<option>종류 선택</option>
+											<select id="ptype" name="ptype" style="font-size: 13px" onchange="categoryChange(this)">
+												<option value="">종류 선택</option>
 												<option value="냉장고">냉장고</option>
 												<option value="에어컨">에어컨</option>
 												<option value="TV">TV</option>
@@ -160,7 +184,8 @@ function commas(t) {
 									<tr>
 										<th scope="row"><label for="">브랜드</label></th>
 										<td colspan="10">
-										<select name="pcompany" style="font-size: 13px" id="stype" title="브랜드">
+										<select id="stype" name="pcompany" style="font-size: 13px" title="브랜드">
+												<option value="">브랜드 선택</option>
 												<option value="삼성전자">삼성전자</option>
 												<option value="LG전자">LG전자</option>
 												<option value="캐리어">캐리어</option>
@@ -179,13 +204,13 @@ function commas(t) {
 									<tr>
 										<th scope="row"><label for="">상품 가격</label></th>
 										<td colspan="10">
-											<input type="text" id="pprice" name="pprice" class="w100" placeholder="금액을 입력해주세요"/>	<!-- onkeyup="commas(this)" -->
+											<input type="text" id="pprice" name="pprice" class="w100" placeholder="금액을 입력해주세요" numberOnly/>	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">상품 재고</label></th>
 										<td colspan="10">
-											<input type="text" id="pcount" name="pcount" class="w100" placeholder="재고를 입력해주세요"/>	<!-- onkeyup="commas(this)" -->
+											<input type="text" id="pcount" name="pcount" class="w100" placeholder="재고를 입력해주세요" numberOnly/>
 										</td>
 									</tr>
 									<tr>
@@ -223,7 +248,7 @@ function commas(t) {
 									<a class="btns" href="list"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" href="javascript:goSave();" style="cursor:pointer;"><strong>등록</strong></a>
+									<a class="btns" id="save" href="javascript:goSave();" style="cursor:pointer;"><strong>등록</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

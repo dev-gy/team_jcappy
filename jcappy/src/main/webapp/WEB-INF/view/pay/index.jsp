@@ -150,18 +150,22 @@
 			return;
 		}
 		
-		// 주문상품 pno, pcount들 전송을 위해 배열로 담기
+		// 주문상품 sno, pno, pcount들 전송을 위해 배열로 담기
+		var snoList = [];
+		$.each($(".sno"), function(i, v) {
+  			var val = $(v).val();
+			if (val != "") {
+				snoList[i] = val;  				
+  			}
+  		});
+		
 		var pnoList = [];
   		$.each($(".pno"), function(i, v) {
   			pnoList[i] = $(v).val();
-  			console.log(v);
-  			console.log(pnoList);
   		});
   		var pcountList = [];
   		$.each($(".pcount"), function(i, v) {
   			pcountList[i] = $(v).val();
-  			console.log(v);
-  			console.log(pcountList);
   		});
 		
 		// 주문상품들 이름 합치기
@@ -237,6 +241,7 @@
 					oaddrde : $("#addrde").val(),	// 상세주소
 					cno : $("#coupon_no").val(),	// 사용 쿠폰번호
 					imp_uid : "",	// 결제 고유번호
+					snoList: snoList,	// 결제한 각 상품 장바구니 번호 리스트 
 					pnoList: pnoList,	// 결제한 각 상품 번호 리스트
 					pcountList: pcountList,	// 결제한 각 상품 갯수 리스트
 				},
@@ -284,12 +289,13 @@
 					oaddrde : $("#addrde").val(),	// 상세주소
 					cno : $("#coupon_no").val(),	// 사용 쿠폰번호
 					imp_uid : imp_uid,	// 결제 고유번호
+					snoList: snoList,	// 결제한 각 상품 장바구니 번호 리스트
 					pnoList: pnoList,	// 결제한 각 상품 번호 리스트
 					pcountList: pcountList,	// 결제한 각 상품 갯수 리스트
 				},
 				success : function(res) {
 					alert("결제가 완료되었습니다.");
-		        	location.href="/jcappy/mypage/order/index.do";
+		        	location.href="/jcappy/mypage/order";
 				},
 				error : function(res) {
 					paymentFail(imp_uid);	// 결제데이터 저장 실패
@@ -298,33 +304,6 @@
 		}
 	}
 </script>
-    <style>
-    .pay_content { overflow: hidden; padding-bottom: 50px; }
-    .pay_content .title { margin: 50px; }
-    .pay_content .left { width: 800px; float: left; box-sizing: border-box; }
-    .pay_content .right { width: 400px; float: right; box-sizing: border-box; padding-left: 40px; }
-    .pay_content .sub_title_area { height: 40px; line-height: 40px; margin-top: 40px; margin-bottom: 20px; }
-    .pay_content .left .order_item > td > .prev_img { width: 70px; height: 70px; background-size: 70px 70px; background-repeat: no-repeat; display: inline-block; margin: -20px 10px; }
-    .pay_content .left > .pay_list_info > .pay_list { margin-bottom: 20px; }
-    .pay_content .left > .pay_list_info > div > #coupon_btn { width: 100px; }
-    .pay_content .left > .addr_info > .sub_title_area > .sub_title { float: left; }
-    .pay_content .left > .addr_info .addr_select_area { text-align: left; }
-    .pay_content .left > .addr_info .addr_select_area > label { margin-right: 20px; cursor: pointer; }
-    .pay_content .left > .addr_info .addr_info_area { text-align: left; line-height: 3; }
-    .pay_content .left > .addr_info .addr_info_area #mname { width: 150px; }
-    .pay_content .left > .addr_info .addr_info_area #phone { width: 150px; }
-    .pay_content .left > .addr_info .addr_info_area #zipcode { width: 80px; }
-    .pay_content .left > .addr_info .addr_info_area #addr { width: 400px; }
-    .pay_content .left > .addr_info .addr_info_area #addrde { width: 300px; }
-    .pay_content .right > .price_info table tr > td:nth-child(1) { text-align: left; line-height: 2; }
-    .pay_content .right > .price_info table tr > td:nth-child(2) { text-align: right; line-height: 2; }
-    .pay_content .right > .pay_type .check_type_area > label { margin-right: 20px; }
-    .pay_content .right > .pay_type #pay_btn { width: 120px; margin-top: 20px; }
-    .pay_content .left > .addr_info .request_select { width: 500px; height: 32px; } 
-    .pay_content .left > .addr_info #request { width: 500px; }
-    #coupon_dialog .use_coupon_btn { width: 60px; }
-    #coupon_dialog > table tr td { padding-top: 10px; padding-bottom: 10px }
-    </style>
 </head>
 <body>
     <div id="wrap">
@@ -358,6 +337,7 @@
 					        				<td>${item.count}</td>
 					        				<td class="cstyle_text_align_right">
 					        					<fmt:formatNumber value="${item.total_price}"/>원
+					        					<input class="sno" type="hidden" value="${item.sno }">
 					        					<input class="pno" type="hidden" value="${item.pno }">
 					        					<input class="pcount" type="hidden" value="${item.count}">
 					        					<input class="delivery_price" type="hidden" value="${item.delivery_price }">
@@ -397,7 +377,7 @@
 		        					<tr>
 		        						<td class="addr_info_area">
 		       								<input id="oname" type="text" value="${mVo.mname }" placeholder="수령인" readonly>
-		       								<input id="ophone" type="text" value="${mVo.mphone }" placeholder="연락처" oninput="phoneFomatter(this)" readonly>
+		       								<input id="ophone" type="text" value="${mVo.mphone }" placeholder="연락처" oninput="phoneNumber(this)" readonly>
 		       								<div>
 		        								<a href="javascript:;">
 			        								<input id="zipcode" type="text" value="${mVo.mzipcode }" placeholder="우편번호" readonly><br>
