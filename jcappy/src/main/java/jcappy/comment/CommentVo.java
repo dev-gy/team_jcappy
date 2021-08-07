@@ -13,12 +13,18 @@ public class CommentVo extends CommonVo {
 	private Timestamp cm_regdate;
 	private int cm_board_no;
 	private int ano;
+	private int mno;
 	private String cm_tablename;
 	private String aname;
 	private String mname;
 	
 	
-	
+	public int getMno() {
+		return mno;
+	}
+	public void setMno(int mno) {
+		this.mno = mno;
+	}
 	public String getMname() {
 		return mname;
 	}

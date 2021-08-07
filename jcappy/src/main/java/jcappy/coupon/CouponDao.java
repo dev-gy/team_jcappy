@@ -29,6 +29,10 @@ public class CouponDao {
 	public int update(CouponVo vo) {
 		return sqlSession.update("coupon.update", vo);
 	}
+	
+	public int use(CouponVo vo) {
+		return sqlSession.update("coupon.use", vo);
+	}
 
 	public int delete(CouponVo vo) {
 		return sqlSession.delete("coupon.delete", vo);

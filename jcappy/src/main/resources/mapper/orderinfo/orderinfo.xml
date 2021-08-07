@@ -2,8 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="orderinfo">
 
-	<select id="selectAll" resultType="jcappy.orderinfo.OrderinfoVo" parameterType="jcappy.orderinfo.OrderinfoVo">
-		SELECT * FROM orderinfo
+	<select id="selectAll" resultType="jcappy.orderinfo.OrderinfoVo" parameterType="int">
+		SELECT oi.*, 
+			SUM(ol.ol_price * ol.ol_count) AS total_price,
+			ol.ol_pname AS ol_pname,
+			COUNT(ol.pno) AS ol_count,
+			IF(COUNT(ol.pno) > 1, CONCAT(SUBSTR(ol.ol_pname, 1, 25), '... 외', COUNT(ol.pno)-1, '건'), ol.ol_pname) AS oi_pname
+		FROM orderinfo AS oi
+		JOIN orderlist AS ol 
+		ON ol.ono = oi.ono
+		GROUP BY ol.ono
+		HAVING mno = 26
+		ORDER BY ono DESC
 	</select>
 	
 	<insert id="insert" parameterType="jcappy.orderinfo.OrderinfoVo" useGeneratedKeys="true" keyProperty="ono">

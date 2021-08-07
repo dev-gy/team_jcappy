@@ -6,6 +6,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
 <script src="/jcappy/js/common.js"></script>
+<!-- 필수입력칸 구현 -->
+<script>
+$(function(){
+	
+	$('#save').click(function(){
+		if($("#ptype").val() == ''){
+			alert("상품 종류를 입력해주세요");
+			return false;
+		}
+		if($("#stype").val() == ''){
+			alert("브랜드를 입력해주세요");
+			return false;
+		}
+		if($("#pname").val() == ''){
+			alert("상품명을 입력해주세요");
+			return false;
+		}
+		if($("#pprice").val() == ''){
+			alert("상품 가격을 입력해주세요");
+			return false;
+		}
+		if($("#pprice").val() > '2000000000'){
+			alert("상품 가격을 2,000,000,000원 이하로 입력해주세요")
+			return false;
+		}
+		if($("#pcount").val() == ''){
+			alert("상품 재고를 입력해주세요");
+			return false;
+		}
+		return true;
+	})
+})
+</script>
 <!-- 스마트에디터 -->
 <script>
 var oEditors;
@@ -55,7 +88,7 @@ function deleteImg() {
             	console.log(res);
             	if (res.trim() == 'true') {
                   alert('정상적으로 삭제되었습니다.');
-                  location.href='list';
+                  location.reload();
                } else {
                   alert('삭제 실패');
                }
@@ -64,16 +97,45 @@ function deleteImg() {
 	}
 }
 </script>
-<!-- 브랜드 DB에서 갖고온것과 같을떄 숨기기 -->
+<!-- 이미지 썸네일 -->
 <script>
-$(document).ready(function(){
-	
-	  $("#stype").each(function(){
-	    if($(this).val()=="${vo.pcompany}"){
-			$(this).val().hide();
-	    }
-	  });
-	});
+$(function() {
+    $("#file1").on("change", function(){
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; 
+        if (/^image/.test( files[0].type)){ 
+            var reader = new FileReader(); 
+            reader.readAsDataURL(files[0]); 
+            reader.onloadend = function(){ 
+             $('.imagePreview1').css("background-image", "url("+this.result+")"); 
+            };
+        }
+    });
+    
+    $("#file2").on("change", function(){
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; 
+        if (/^image/.test( files[0].type)){ 
+            var reader = new FileReader(); 
+            reader.readAsDataURL(files[0]); 
+            reader.onloadend = function(){ 
+             $('.imagePreview2').css("background-image", "url("+this.result+")"); 
+            };
+        }
+    });
+    
+    $("#file3").on("change", function(){
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; 
+        if (/^image/.test( files[0].type)){ 
+            var reader = new FileReader(); 
+            reader.readAsDataURL(files[0]); 
+            reader.onloadend = function(){ 
+             $('.imagePreview3').css("background-image", "url("+this.result+")"); 
+            };
+        }
+    });
+});
 </script>
 <!-- 이중 select box -->
 <script>
@@ -107,10 +169,9 @@ function categoryChange(e) {
 		$("#stype").change(function() {
 			pcompEct();
 		});
-		
 		pcompEct();
-		
 	});
+	
 	function pcompEct() {
 		if ($("#stype").val() == "기타") {
 			$("#brandEtc").show();
@@ -119,25 +180,6 @@ function categoryChange(e) {
 		}
 	}
 </script>
-<!-- input에 숫자 콤마찍기 -->
-<!-- <script>
-function commas(comma) {
-
-	var x = comma.value;			
-
-	x = x.replace(/,/gi, '');
-
-	var regexp = /^[0-9]*$/;
-	
-	if(!regexp.test(x)){ 
-		$(comma).val(""); 
-		alert("숫자만 입력 가능합니다.");
-	} else {
-		x = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");			
-		$(comma).val(x);			
-	}
-}
-</script> -->
 </head>
 <body>
 	<div id="wrap">
@@ -166,15 +208,15 @@ function commas(comma) {
 										</colgroup>
 										<tbody>
 											<tr>
-												<th scope="row"><label for="">상품 번호</label></th>
+												<th scope="row"><label for="ino">상품 번호</label></th>
 												<td colspan="10"><input type="text" id="ino" name="ino"
 													class="w100" value="${vo.pno }" /></td>
 											</tr>
 											<tr>
-												<th scope="row"><label for="">상품 종류</label></th>
+												<th scope="row"><label for="ptype">상품 종류</label></th>
 												<td colspan="10">
 													<div>
-														<select name="ptype" style="font-size: 13px"
+														<select id="ptype" name="ptype" style="font-size: 13px"
 															onchange="categoryChange(this)">
 															<option>${vo.ptype }</option>
 															<option value="냉장고">냉장고</option>
@@ -188,7 +230,7 @@ function commas(comma) {
 												</td>
 											</tr>
 											<tr>
-												<th scope="row"><label for="">브랜드</label></th>
+												<th scope="row"><label for="stype">브랜드</label></th>
 												<td colspan="10">
 												<select name="pcompany" style="font-size: 13px" id="stype" title="브랜드">
 														<option value="삼성전자"
@@ -202,29 +244,29 @@ function commas(comma) {
 														<option value="기타"
 														<c:if test="${vo.pcompany != '삼성전자' && vo.pcompany != 'LG전자' && vo.pcompany != '캐리어' && vo.pcompany != '위니아전자'}">selected</c:if>>기타</option>
 												</select> 
-												<input type="text" id="brandEtc" name="pcomp" value="${vo.pcompany}"/>
+												<input type="text" id="brandEtc" name="pcomp" <c:if test="${vo.pcompany != '삼성전자' && vo.pcompany != 'LG전자' && vo.pcompany != '캐리어' && vo.pcompany != '위니아전자'}">value="${vo.pcompany}"</c:if>/>
 												</td>
 											</tr>
 											<tr>
-												<th scope="row"><label for="">상품명</label></th>
+												<th scope="row"><label for="pname">상품명</label></th>
 												<td colspan="10">
 													<input type="text" id="pname" name="pname" class="w100" value="${vo.pname }"/>
 												</td>
 											</tr>
 											<tr>
-												<th scope="row"><label for="">상품 가격</label></th>
+												<th scope="row"><label for="pprice">상품 가격</label></th>
 												<td colspan="10">
 													<input type="number" style="font-size: 12px" id="pprice" name="pprice" class="w100" value="${vo.pprice }"/>
 												</td>
 											</tr>
 											<tr>
-												<th scope="row"><label for="">상품 재고</label></th>
+												<th scope="row"><label for="pcount">상품 재고</label></th>
 												<td colspan="10">
 												<input type="number"style="font-size: 12px" id="pcount" name="pcount" class="w100" value="${vo.pcount }"/>
 												</td>
 											</tr>
 											<tr>
-												<th scope="row"><label for="">상품 등록일</label></th>
+												<th scope="row"><label for="pregdate">상품 등록일</label></th>
 												<td colspan="10">
 												<input type="text" id="pregdate" name="pregdate" class="w100" value="${vo.pregdate }" readonly />
 												</td>
@@ -233,18 +275,21 @@ function commas(comma) {
 												<th scope="row"><label for="">상품 이미지</label></th>
 												<td colspan="10" rowspan="1">
 												
+												<div class="imagePreview1"></div>
 												<c:if test="${!empty vo.pimg1_org}">
 													<input type="checkbox" name="delImg1" id="delImg1" value="1"/>
 													<img style="width: 100px;" src="${vo.pimg1_real}">
 												</c:if>
 												<input type="file" id="file1" name="file1" class="w100" />
 												
+												<div class="imagePreview2"></div>
 												<c:if test="${!empty vo.pimg2_org}">
 													<input type="checkbox" name="delImg2" id="delImg2" value="1"/>
 													<img style="width: 100px;" src="${vo.pimg2_real}">
 												</c:if>
 												<input type="file" id="file2" name="file2" class="w100" />
 												 
+												 <div class="imagePreview3"></div>
 												 <c:if test="${!empty vo.pimg3_org}">
 													<input type="checkbox" name="delImg3" id="delImg3" value="1"/>
 													<img style="width: 100px;" src="${vo.pimg3_real}">
@@ -255,7 +300,7 @@ function commas(comma) {
 												</td>
 											</tr>
 											<tr>
-												<th scope="row"><label for="">상품 상세정보</label></th>
+												<th scope="row"><label for="contents">상품 상세정보</label></th>
 												<td colspan="10"><textarea name="pdetail" id="contents"
 														style="width: 100%;">${vo.pdetail }</textarea></td>
 										</tbody>
@@ -268,7 +313,7 @@ function commas(comma) {
 										<a class="btns" href="list"><strong>목록</strong></a>
 									</div>
 									<div class="btnRight">
-										<a class="btns" style="cursor: pointer;" href="javascript:goSave();"><strong>수정</strong></a>
+										<a class="btns" id="save" style="cursor: pointer;" href="javascript:goSave();"><strong>수정</strong></a>
 										<a class="btns" style="cursor: pointer;" href="javascript:isDel();"><strong>삭제</strong></a>
 									</div>
 								</div>

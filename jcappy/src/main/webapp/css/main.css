@@ -152,16 +152,18 @@ cart
 .cart_content .cart_item > .total_price_txt { text-align: right; }
 
 /*======================================
-notice/index
+notice/list
 ========================================*/
 .notice_content { margin: 50px 0px; }
-.notice_content > .title { margin: 50px; }
+.notice_content > .title { margin: 50px;}
+.notice_content .qtitle { text-align:left;}
 
 /*======================================
 notice/datail
 ========================================*/
 .notice_detail_content { margin: 50px 0px; }
 .notice_detail_content > .title { margin: 50px; }
+.notice_detail_content .notice_context { min-height: 300px; display: block; }
 .notice_detail_content table { margin-bottom: 20px; }
 .notice_detail_content > .btn_wrap { margin: 20px 0px; box-sizing: border-box; overflow: hidden; }
 .notice_detail_content > .btn_wrap > input[type="button"] { width: 100px; height: 40px; float: right; }
@@ -242,13 +244,33 @@ product/detail
 #cart_btn_dialog > p { padding: 20px 0px; font-size: 16px; text-align: center; }
 
 /*======================================
-pay/complete
+pay/index
 ========================================*/
-.complete_content > .pay {margin: 150px; font-weight: bold; font-size: 32px; text-align: center;}
-.complete_content > p {font-size: 16px; text-align: center; height: 100px;}
-.complete_content > #cb1 {width: 75px; height: 25px; background-color: gold;}
-.complete_content > #cb2 {width: 50px; height: 25px; background-color: gray;}
-.complete_content > .cbb {padding-bottom: 100px}
+.pay_content { overflow: hidden; padding-bottom: 50px; }
+.pay_content .title { margin: 50px; }
+.pay_content .left { width: 800px; float: left; box-sizing: border-box; }
+.pay_content .right { width: 400px; float: right; box-sizing: border-box; padding-left: 40px; }
+.pay_content .sub_title_area { height: 40px; line-height: 40px; margin-top: 40px; margin-bottom: 20px; }
+.pay_content .left .order_item > td > .prev_img { width: 70px; height: 70px; background-size: 70px 70px; background-repeat: no-repeat; display: inline-block; margin: -20px 10px; }
+.pay_content .left > .pay_list_info > .pay_list { margin-bottom: 20px; }
+.pay_content .left > .pay_list_info > div > #coupon_btn { width: 100px; }
+.pay_content .left > .addr_info > .sub_title_area > .sub_title { float: left; }
+.pay_content .left > .addr_info .addr_select_area { text-align: left; }
+.pay_content .left > .addr_info .addr_select_area > label { margin-right: 20px; cursor: pointer; }
+.pay_content .left > .addr_info .addr_info_area { text-align: left; line-height: 3; }
+.pay_content .left > .addr_info .addr_info_area #mname { width: 150px; }
+.pay_content .left > .addr_info .addr_info_area #phone { width: 150px; }
+.pay_content .left > .addr_info .addr_info_area #zipcode { width: 80px; }
+.pay_content .left > .addr_info .addr_info_area #addr { width: 400px; }
+.pay_content .left > .addr_info .addr_info_area #addrde { width: 300px; }
+.pay_content .right > .price_info table tr > td:nth-child(1) { text-align: left; line-height: 2; }
+.pay_content .right > .price_info table tr > td:nth-child(2) { text-align: right; line-height: 2; }
+.pay_content .right > .pay_type .check_type_area > label { margin-right: 20px; }
+.pay_content .right > .pay_type #pay_btn { width: 120px; margin-top: 20px; }
+.pay_content .left > .addr_info .request_select { width: 500px; height: 32px; } 
+.pay_content .left > .addr_info #request { width: 500px; }
+#coupon_dialog .use_coupon_btn { width: 60px; }
+#coupon_dialog > table tr td { padding-top: 10px; padding-bottom: 10px }
 
 /*======================================
 review/index
@@ -274,6 +296,8 @@ mypage/qna/index
 /*======================================
 mypage/qna/detail
 ========================================*/
+.qna_detail_content { margin: 50px 0px; }
+.qna_detail_content .qna_context { min-height: 300px; display: block; }
 .qnatitle {float:left;}
 #qnalistbutton{float:right; width: 100px; height: 40px; margin: 10px 0px;}
 .qna_detail_content > .btn_wrap {text-align:right;}

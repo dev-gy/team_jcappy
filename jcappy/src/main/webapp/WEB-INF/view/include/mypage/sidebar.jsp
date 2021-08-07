@@ -36,7 +36,7 @@
 	
 </script>
 <div class="mypage_sidebar">
-	<div><a href="/jcappy/mypage/order/index.do">주문조회</a></div>
+	<div><a href="/jcappy/mypage/order">주문조회</a></div>
 	<div><a href="/jcappy/mypage/memberedit">정보수정</a></div>
 	<div><a href="/jcappy/mypage/coupon.do">쿠폰함</a></div>
 	<div><a href="/jcappy/mypage/qna/list">1:1문의</a></div>

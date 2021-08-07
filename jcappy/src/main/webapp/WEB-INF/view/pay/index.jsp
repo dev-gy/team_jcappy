@@ -14,29 +14,29 @@
 	     $(".addr_type").on("click", function() {
 	    	 var val = $(this).val();
 				if (val == 1) {	// 기본배송지일 경우 readonly 추가 및 배송지 정보 회원정보 값으로 초기화, 클릭이벤트 제거
-					$(".addr_info_area").find("input").attr("readonly", "readonly");
+					$(".addr_info_area").find("input").attr("readonly", "readonly");	// 배송관련 입력란을 읽기전용으로 변경 
 					
-					$("#oname").val("${mVo.mname}");
-					$("#ophone").val("${mVo.mphone}");
-					$("#zipcode").val("${mVo.mzipcode}");
-					$("#addr").val("${mVo.maddr}");
-					$("#addrde").val("${mVo.maddrde}");
+					$("#oname").val("${mVo.mname}");	// 수령인 이름을 회원 이름으로 초기화
+					$("#ophone").val("${mVo.mphone}");	// 수령인 연락처를 회원 연락처로 초기화
+					$("#zipcode").val("${mVo.mzipcode}");	// 회원의 주소번호로 초기화
+					$("#addr").val("${mVo.maddr}");		// 회원의 주소로 초기화
+					$("#addrde").val("${mVo.maddrde}");	// 회원의 상세주소로 초기화
 					
-					$(".addr_info_area").find("a").off("click");
+					$(".addr_info_area").find("a").off("click");	// 주소찾기 이벤트영역 클릭이벤트 제거
 				} else if (val == 2) {	// 최근배송지일 경우 readonly 추가 및 배송지 최근주문정보 값으로 초기화, 클릭이벤트 제거
-					$(this).find("input").attr("readonly", "readonly");
+					$(".addr_info_area").find("input").attr("readonly", "readonly");	// 배송관련 입력란을 읽기전용으로 변경 
 					
-					$("#oname").val("${oVo.oname}");
-					$("#ophone").val("${oVo.ophone}");
-					$("#zipcode").val("${oVo.ozipcode}");
-					$("#addr").val("${oVo.oaddr}");
-					$("#addrde").val("${oVo.oaddrde}");
+					$("#oname").val("${oVo.oname}");	// 수령인 이름을 최근배송지의 수령인 이름으로 초기화
+					$("#ophone").val("${oVo.ophone}");	// 수령인 연락처를 최근배송지의 수령인 연락처로 초기화
+					$("#zipcode").val("${oVo.ozipcode}");	// 최근배송지의 수령인 주소번호로 초기화
+					$("#addr").val("${oVo.oaddr}");		// 최근배송지의 수령인 주소로 초기화
+					$("#addrde").val("${oVo.oaddrde}");	// 최근배송지의 수령인 상세주소로 초기화
 					
-					$(".addr_info_area").find("a").off("click");
+					$(".addr_info_area").find("a").off("click");	// 주소찾기 이벤트영역 클릭이벤트 제거
 				} else if (val == 3) {	// 직접입력일 경우 readonly 제거 및 입력값 초기화, 주소 클릭이벤트에 주소Api오픈 함수 추가
-					$(".addr_info_area").find("input").removeAttr("readonly").val("");
+					$(".addr_info_area").find("input").removeAttr("readonly").val("");	// 배송관련 입력란의 읽기전용 해제 및 값을 빈값으로 초기화
 					
-					$(".addr_info_area").find("a").on("click", function() {
+					$(".addr_info_area").find("a").on("click", function() {		// 주소찾기 이벤트영역 클릭이벤트 주소찾기 이벤트 추가
 				    	 daumPostcode($("#zipcode"), $("#addr"), $("#addrde"));
 					});
 				}
@@ -46,12 +46,12 @@
 		// 요청사항 선택, 직접입력 선택시 input 활성화, 비선택시 비활성화
 		$(".request_select").on("change", function() {
 			
-			if ($(this).val() != 5) {
-				$("#request").hide();
-				$("#request").val($(this).find("option:selected").text());
-			} else {
-				$("#request").show();
-				$("#request").val("");
+			if ($(this).val() != 5) {	// 직접입력이 아닐경우
+				$("#request").hide();	// 요청사항 입력란 숨김
+				$("#request").val($(this).find("option:selected").text());	// 요청사항 값을 선택한 요청사항의 내용으로 변경
+			} else {					// 직접입력일 경우
+				$("#request").show();	// 요청사항 입력란 나타내기
+				$("#request").val("");	// 요청사항 값을 빈값으로 초기화
 			}
 			
 		})
@@ -59,10 +59,10 @@
 		// ===== 구매조건 동의 =====
 		// 구매조건 동의 체크시에만 버튼 활성화
 		$("#agree_check").on("click", function() {
-			if ($(this).prop("checked")) {
-		    	$("#pay_btn").removeAttr("disabled");			
-			} else {
-				$("#pay_btn").attr("disabled", "disabled");
+			if ($(this).prop("checked")) {	// 동의 체크박스가 체크일경우
+		    	$("#pay_btn").prop("disabled", false);	// 결제버튼 활성화
+			} else {						// 동의 체크박스가 체크가 아닐경우
+				$("#pay_btn").prop("disabled", true);	// 결제버튼 비활성화
 			}
 		});
 		
@@ -85,6 +85,7 @@
 			$("#coupon_dialog").dialog("option", "position", { my: "center", at: "center", of: window });
 		});
 		
+		// 쿠폰버튼 클릭시 쿠폰목록 다이얼로그 열기
 		$("#coupon_btn").on("click", function() {
 			$("#coupon_dialog").dialog("open");
 		});
@@ -149,18 +150,22 @@
 			return;
 		}
 		
-		// 주문상품 pno, pcount들 전송을 위해 배열로 담기
+		// 주문상품 sno, pno, pcount들 전송을 위해 배열로 담기
+		var snoList = [];
+		$.each($(".sno"), function(i, v) {
+  			var val = $(v).val();
+			if (val != "") {
+				snoList[i] = val;  				
+  			}
+  		});
+		
 		var pnoList = [];
   		$.each($(".pno"), function(i, v) {
   			pnoList[i] = $(v).val();
-  			console.log(v);
-  			console.log(pnoList);
   		});
   		var pcountList = [];
   		$.each($(".pcount"), function(i, v) {
   			pcountList[i] = $(v).val();
-  			console.log(v);
-  			console.log(pcountList);
   		});
 		
 		// 주문상품들 이름 합치기
@@ -204,14 +209,16 @@
 							// 결제 금액과 검증 금액이 일치여부 확인 일치할경우 결제완료 서버 처리
 							if (rsp.paid_amount == data.response.amount) {
 								orderinfoSave(rsp.imp_uid);
+							} else {
+								paymentFail(rsp.imp_uid);	// 데이터 변조 감지로 인한 결제실패
 							}
 						},
 						error : function(res) {
-							paymentFail(rsp.imp_uid);
+							paymentFail(rsp.imp_uid);	// 데이터 변조여부 확인 실패로 인한 결제실패
 						}
 					});
 				} else {
-					paymentFail(rsp.imp_uid);
+					paymentFail(rsp.imp_uid);	// 결제 처리 실패로인한 결제실패
 				}
 			});
 		}
@@ -222,22 +229,25 @@
 				url : "/jcappy/pay/complete",
 				type : "POST",
 				data : {
-					orequest : $("#request").val(),
-					opay : "vbank",
-					o_state : "결제대기",
-					o_del : "상품준비중",
-					mno : "${mVo.mno }",
-					ozipcode : $("#zipcode").val(),
-					oaddr : $("#addr").val(),
-					oaddrde : $("#addrde").val(),
-					cno : $("#coupon_no").val(),
-					imp_uid : "",
-					pnoList: pnoList,
-					pcountList: pcountList,
+					orequest : $("#request").val(),	// 요청사항값
+					opay : "vbank",	// 결제방식 계좌이체
+					o_state : "결제대기",	// 결제상태 결제대기
+					o_del : "상품준비중",	// 배송상태 상품준비중
+					mno : "${mVo.mno }",	// 로그인 회원번호
+					oname : $("#oname").val(),		// 수령인 이름
+					ophone : $("#ophone").val(),	// 수령인 연락처
+					ozipcode : $("#zipcode").val(),	// 우편번호
+					oaddr : $("#addr").val(),	// 주소
+					oaddrde : $("#addrde").val(),	// 상세주소
+					cno : $("#coupon_no").val(),	// 사용 쿠폰번호
+					imp_uid : "",	// 결제 고유번호
+					snoList: snoList,	// 결제한 각 상품 장바구니 번호 리스트 
+					pnoList: pnoList,	// 결제한 각 상품 번호 리스트
+					pcountList: pcountList,	// 결제한 각 상품 갯수 리스트
 				},
 				success : function(res) {
 					alert("결제신청이 완료되었습니다.");
-		        	location.href="/jcappy/mypage/order/index.do";
+		        	location.href="/jcappy/mypage/order/index";
 				},
 				error : function(res) {
 					alert("결제에 실패하였습니다.");
@@ -267,59 +277,33 @@
 				url : "/jcappy/pay/complete",
 				type : "POST",
 				data : {
-					orequest : $("#request").val(),
-					opay : "card",
-					o_state : "결제완료",
-					o_del : "상품준비중",
-					mno : "${mVo.mno }",
-					oname : $("#oname").val(),
-					ophone : $("#ophone").val(),
-					ozipcode : $("#zipcode").val(),
-					oaddr : $("#addr").val(),
-					oaddrde : $("#addrde").val(),
-					cno : $("#coupon_no").val(),
-					imp_uid : imp_uid,
-					pnoList: pnoList,
-					pcountList: pcountList,
+					orequest : $("#request").val(),	// 요청사항값
+					opay : "card",	// 결제방식 카드
+					o_state : "결제완료",	// 결제상태 결제완료
+					o_del : "상품준비중",	// 배송상태 상품준비중
+					mno : "${mVo.mno }",	// 로그인 회원번호
+					oname : $("#oname").val(),		// 수령인 이름
+					ophone : $("#ophone").val(),	// 수령인 연락처
+					ozipcode : $("#zipcode").val(),	// 우편번호
+					oaddr : $("#addr").val(),	// 주소
+					oaddrde : $("#addrde").val(),	// 상세주소
+					cno : $("#coupon_no").val(),	// 사용 쿠폰번호
+					imp_uid : imp_uid,	// 결제 고유번호
+					snoList: snoList,	// 결제한 각 상품 장바구니 번호 리스트
+					pnoList: pnoList,	// 결제한 각 상품 번호 리스트
+					pcountList: pcountList,	// 결제한 각 상품 갯수 리스트
 				},
 				success : function(res) {
 					alert("결제가 완료되었습니다.");
-		        	location.href="/jcappy/mypage/order/index.do";
+		        	location.href="/jcappy/mypage/order";
 				},
 				error : function(res) {
-					paymentFail(imp_uid);
+					paymentFail(imp_uid);	// 결제데이터 저장 실패
 				}
 			});
 		}
 	}
 </script>
-    <style>
-    .pay_content { overflow: hidden; padding-bottom: 50px; }
-    .pay_content .title { margin: 50px; }
-    .pay_content .left { width: 800px; float: left; box-sizing: border-box; }
-    .pay_content .right { width: 400px; float: right; box-sizing: border-box; padding-left: 40px; }
-    .pay_content .sub_title_area { height: 40px; line-height: 40px; margin-top: 40px; margin-bottom: 20px; }
-    .pay_content .left .order_item > td > .prev_img { width: 70px; height: 70px; background-size: 70px 70px; background-repeat: no-repeat; display: inline-block; margin: -20px 10px; }
-    .pay_content .left > .pay_list_info > .pay_list { margin-bottom: 20px; }
-    .pay_content .left > .pay_list_info > div > #coupon_btn { width: 100px; }
-    .pay_content .left > .addr_info > .sub_title_area > .sub_title { float: left; }
-    .pay_content .left > .addr_info .addr_select_area { text-align: left; }
-    .pay_content .left > .addr_info .addr_select_area > label { margin-right: 20px; cursor: pointer; }
-    .pay_content .left > .addr_info .addr_info_area { text-align: left; line-height: 3; }
-    .pay_content .left > .addr_info .addr_info_area #mname { width: 150px; }
-    .pay_content .left > .addr_info .addr_info_area #phone { width: 150px; }
-    .pay_content .left > .addr_info .addr_info_area #zipcode { width: 80px; }
-    .pay_content .left > .addr_info .addr_info_area #addr { width: 400px; }
-    .pay_content .left > .addr_info .addr_info_area #addrde { width: 300px; }
-    .pay_content .right > .price_info table tr > td:nth-child(1) { text-align: left; line-height: 2; }
-    .pay_content .right > .price_info table tr > td:nth-child(2) { text-align: right; line-height: 2; }
-    .pay_content .right > .pay_type .check_type_area > label { margin-right: 20px; }
-    .pay_content .right > .pay_type #pay_btn { width: 120px; margin-top: 20px; }
-    .pay_content .left > .addr_info .request_select { width: 500px; height: 32px; } 
-    .pay_content .left > .addr_info #request { width: 500px; }
-    #coupon_dialog .use_coupon_btn { width: 60px; }
-    #coupon_dialog > table tr td { padding-top: 10px; padding-bottom: 10px }
-    </style>
 </head>
 <body>
     <div id="wrap">
@@ -353,6 +337,7 @@
 					        				<td>${item.count}</td>
 					        				<td class="cstyle_text_align_right">
 					        					<fmt:formatNumber value="${item.total_price}"/>원
+					        					<input class="sno" type="hidden" value="${item.sno }">
 					        					<input class="pno" type="hidden" value="${item.pno }">
 					        					<input class="pcount" type="hidden" value="${item.count}">
 					        					<input class="delivery_price" type="hidden" value="${item.delivery_price }">
@@ -392,7 +377,7 @@
 		        					<tr>
 		        						<td class="addr_info_area">
 		       								<input id="oname" type="text" value="${mVo.mname }" placeholder="수령인" readonly>
-		       								<input id="ophone" type="text" value="${mVo.mphone }" placeholder="연락처" oninput="phoneFomatter(this)" readonly>
+		       								<input id="ophone" type="text" value="${mVo.mphone }" placeholder="연락처" oninput="phoneNumber(this)" readonly>
 		       								<div>
 		        								<a href="javascript:;">
 			        								<input id="zipcode" type="text" value="${mVo.mzipcode }" placeholder="우편번호" readonly><br>

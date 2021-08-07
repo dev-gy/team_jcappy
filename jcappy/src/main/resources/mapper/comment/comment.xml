@@ -18,8 +18,8 @@
 	</select>
 	
 	<insert id="insert" parameterType="jcappy.comment.CommentVo">
-		INSERT INTO comment (cm_content, cm_regdate,cm_board_no, cm_tablename, ano)
-		VALUES (#{cm_content}, NOW(), #{cm_board_no}, #{cm_tablename}, #{ano})
+		INSERT INTO comment (cm_content, cm_regdate,cm_board_no, cm_tablename, ano, mno)
+		VALUES (#{cm_content}, NOW(), #{cm_board_no}, #{cm_tablename}, #{ano}, #{mno})
 	</insert>
 	
 	<delete id="delete" parameterType="jcappy.comment.CommentVo">
