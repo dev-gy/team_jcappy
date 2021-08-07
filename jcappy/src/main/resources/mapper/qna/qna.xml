@@ -121,7 +121,7 @@
 	<select id="detailRe" resultType="jcappy.qna.QnaVo" parameterType="jcappy.qna.QnaVo">
 		SELECT *, (SELECT COUNT(q_gno) FROM qna WHERE q_gno=q.q_gno) as q_havere
 		FROM qna q LEFT JOIN members m ON q.mno = m.mno LEFT JOIN admin a ON q.ano = a.ano
-		WHERE q_gno = #{q_gno} AND q_ono > 0 
+		WHERE q_gno = #{qno} AND q_ono > 0 
 	</select>
 	
 </mapper>

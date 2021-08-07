@@ -92,25 +92,27 @@ function qna_detail_isDel() {//게시글 삭제
 								<col>
 								<col width="120">
 							</colgroup>
-							<thead>
-								<tr>
-									<th class="cstyle_text_align_left">${vr.qtitle}</th>
-									<td><fmt:formatDate value="${vr.qregdate }" pattern="yyyy-MM-dd"/></td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td class="qna_context cstyle_text_align_left" colspan="2">
-										<div class="cont">${vr.qcontent} </div>
-									</td>
-								</tr>
-		                       	<c:if test="${null ne vr.qfile_org}">
+							<c:forEach var="vr" items="${vr}">
+								<thead>
 									<tr>
-				                       	<th class="cstyle_text_align_left">	첨부파일 </th>
-			                           	<th><a href="/jcappy/common/download.jsp?path=/upload/&org=${vr.qfile_org}&real=${vr.qfile_real}"  target="_blank">${vr.qfile_org}</a></th>
-			                    	</tr>
-								</c:if>
-							</tbody>
+										<th class="cstyle_text_align_left">${vr.qtitle}</th>
+										<td><fmt:formatDate value="${vr.qregdate }" pattern="yyyy-MM-dd"/></td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="qna_context cstyle_text_align_left" colspan="2">
+											<div class="cont">${vr.qcontent} </div>
+										</td>
+									</tr>
+			                       	<c:if test="${null ne vr.qfile_org}">
+										<tr>
+					                       	<th class="cstyle_text_align_left">	첨부파일 </th>
+				                           	<th><a href="/jcappy/common/download.jsp?path=/upload/&org=${vr.qfile_org}&real=${vr.qfile_real}"  target="_blank">${vr.qfile_org}</a></th>
+				                    	</tr>
+									</c:if>
+								</tbody>
+							</c:forEach>
 						</table>
 					</div>
 				</c:if>

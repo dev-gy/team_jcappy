@@ -54,7 +54,7 @@ public class QnaServiceImpl implements QnaService{
 	}
 	
 	@Override
-	public QnaVo detailRe(QnaVo vo) {
+	public List<QnaVo> detailRe(QnaVo vo) {
 		return dao.detailRe(vo);
 	}
 	
