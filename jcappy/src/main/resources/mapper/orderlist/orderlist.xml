@@ -13,4 +13,5 @@
 		INSERT INTO orderlist (ono, pno, ol_count, ol_price, ol_pname)
 		VALUES (#{ono}, #{pno}, #{ol_count}, #{ol_price}, #{ol_pname})
 	</insert>
+	
 </mapper>

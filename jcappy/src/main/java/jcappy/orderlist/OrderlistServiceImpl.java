@@ -15,7 +15,6 @@ public class OrderlistServiceImpl implements OrderlistService {
 	public List<OrderlistVo> selectAll(OrderlistVo vo) {
 		return orderinfoDao.selectAll(vo);
 	}
-	
 	@Override
 	public int insert(OrderlistVo vo) {
 		return orderinfoDao.insert(vo);

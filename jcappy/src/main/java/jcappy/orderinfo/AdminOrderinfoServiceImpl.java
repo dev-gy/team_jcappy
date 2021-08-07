@@ -41,4 +41,14 @@ public class AdminOrderinfoServiceImpl implements AdminOrderinfoService {
 	public int delivery_check(OrderinfoVo vo) {
 		return dao.delivery_check(vo);
 	}
+
+	@Override
+	public OrderinfoVo detail(OrderinfoVo vo) {
+		return dao.detail(vo);
+	}
+
+	@Override
+	public Map<String, String> admin_pre_del(OrderinfoVo vo) {
+		return dao.admin_pre_del(vo);
+	}
 }

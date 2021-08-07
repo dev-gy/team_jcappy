@@ -22,7 +22,6 @@ public class OrderinfoVo extends CommonVo {
 	private int cno;
 	private String imp_uid;
 	
-
 	private int[] onos;
 
 	OrderinfoVo() {

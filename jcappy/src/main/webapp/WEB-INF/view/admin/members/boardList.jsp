@@ -41,7 +41,7 @@
 												${vo.cate }
 											</a>
 										</td>
-										<td>
+										<td class="title">
 											<a href="javascript:go_board('${vo.cate }', ${vo.no });">
 												${vo.title}
 											</a>
