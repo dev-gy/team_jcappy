@@ -44,4 +44,12 @@ public class OrderinfoDao {
 	public int delivery_check(OrderinfoVo vo) {
 		return sqlSession.update("orderinfo.delivery_check", vo);
 	}
+	
+	public OrderinfoVo detail(OrderinfoVo vo) {
+		return sqlSession.selectOne("orderinfo.detail", vo);
+	}
+	
+	public Map<String, String> admin_pre_del(OrderinfoVo vo) {
+		return sqlSession.selectOne("orderinfo.admin_pre_del", vo);
+	}
 }

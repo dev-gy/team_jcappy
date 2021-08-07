@@ -20,23 +20,16 @@ function priceToString(price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-function phoneFomatter(el) {
+function phoneNumber(el) {
 	onlyNumber(el);
 	
-	var formatNum = '';
 	var num = el.value;
-	if (num.length == 11) {
-		formatNum = num.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
-	} else if (num.length == 8) {
-		formatNum = num.replace(/(\d{4})(\d{4})/, '$1-$2');
-	} else {
-		if (num.indexOf('02') == 0) {
-			formatNum = num.replace(/(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
-		} else {
-			formatNum = num.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
-		}
+	if (num.length < 9) {
+		num = 9;
+	} else if (num.length > 11) {
+		num = 11;
 	}
-	el.value = formatNum;
+	el.value = num;
 }
 
 
