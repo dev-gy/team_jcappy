@@ -9,10 +9,10 @@
 					qtitle LIKE '%${sval}%' OR qcontent LIKE '%${sval}%' OR mname LIKE '%${sval}%' OR aname LIKE '%${sval}%' OR memail LIKE '%${sval}%' OR aid LIKE '%${sval}%' 
 				</if>
 				<if test="stype != 'all'">
-					${stype} LIKE '%${sval}%'
+					${stype} LIKE '%${sval}%' 
 				</if>
 			</if>
-			<if test="mno != 0">
+			<if test="mno != 0"><!-- 내가 쓴글 가져 오려고 마이페이지 이용 -->
 				AND mno = #{mno}
 			</if>
 		</where>
@@ -22,7 +22,7 @@
 		SELECT *
 		FROM qna q LEFT JOIN members m ON q.mno = m.mno LEFT JOIN admin a ON q.ano = a.ano
 		<include refid="qnaWhere"/>
-		ORDER BY q_gno DESC, q_ono ASC, ${orderby} ${direct}
+		ORDER BY q_gno DESC, q_ono ASC
 		LIMIT ${startIdx},${pageRow}
 	</select>
 	
