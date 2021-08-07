@@ -21,6 +21,18 @@ public class QnaVo extends CommonVo {
 	private int q_havere;
 	private int user_no;
 	
+//	private String qtitleRe;
+//	private String qcontentRe;
+//	private Timestamp qregdateRe;
+//	private String qfile_orgRe;
+//	private String qfile_realRe;
+	
+	private String isDel;
+	private String aname;
+	private String aid;
+	private String mname;
+	private String mphone;
+	private String memail;
 	
 	public int getUser_no() {
 		return user_no;
@@ -40,17 +52,6 @@ public class QnaVo extends CommonVo {
 	public void setQ_havere(int q_havere) {
 		this.q_havere = q_havere;
 	}
-	
-	
-	private String isDel;
-	
-	private String aname;
-	private String aid;
-	
-	private String mname;
-	private String mphone;
-	private String memail;
-	
 	public QnaVo() {
 		setOrderby("qregdate");
 	}
@@ -158,5 +159,55 @@ public class QnaVo extends CommonVo {
 	public void setAname(String aname) {
 		this.aname = aname;
 	}
+	
+	
+//	public String getQtitleRe() {
+//		return qtitleRe;
+//	}
+//
+//
+//	public void setQtitleRe(String qtitleRe) {
+//		this.qtitleRe = qtitleRe;
+//	}
+//
+//
+//	public String getQcontentRe() {
+//		return qcontentRe;
+//	}
+//
+//
+//	public void setQcontentRe(String qcontentRe) {
+//		this.qcontentRe = qcontentRe;
+//	}
+//
+//
+//	public Timestamp getQregdateRe() {
+//		return qregdateRe;
+//	}
+//
+//
+//	public void setQregdateRe(Timestamp qregdateRe) {
+//		this.qregdateRe = qregdateRe;
+//	}
+//
+//
+//	public String getQfile_orgRe() {
+//		return qfile_orgRe;
+//	}
+//
+//
+//	public void setQfile_orgRe(String qfile_orgRe) {
+//		this.qfile_orgRe = qfile_orgRe;
+//	}
+//
+//
+//	public String getQfile_realRe() {
+//		return qfile_realRe;
+//	}
+//
+//
+//	public void setQfile_realRe(String qfile_realRe) {
+//		this.qfile_realRe = qfile_realRe;
+//	}
 	
 }

@@ -73,4 +73,8 @@ public class QnaDao {
 	public int countUser(QnaVo vo) {
 		return sqlSession.selectOne("qna.countUser", vo);
 	}
+	
+	public QnaVo detailRe(QnaVo vo) {
+		return sqlSession.selectOne("qna.detailRe", vo);
+	}
 }

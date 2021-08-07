@@ -78,6 +78,7 @@ public class QnaController {
 	@RequestMapping("/mypage/qna/detail")
 	public String detail(Model model, QnaVo vo) {
 		model.addAttribute("vo", service.detail(vo));
+		model.addAttribute("vr", service.detailRe(vo));
 		return "mypage/qna/detail";
 	}
 	
@@ -124,7 +125,5 @@ public class QnaController {
 		model.addAttribute("vo", service.edit(vo));
 		return "mypage/qna/edit";
 	}
-	
-	
 	
 }

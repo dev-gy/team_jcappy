@@ -74,47 +74,46 @@ function qna_detail_isDel() {//게시글 삭제
 							</c:if>
 						</tbody>
 					</table>
-<%-- 					<c:if test=""> --%>
+					<c:if test="${vo.q_havere == 1}">
 						<div class="btn_wrap">
 							<input class="cstyle_btn" id="button" type="button" value="수정" onclick="location.href='edit?qno=${vo.qno}'">
 							<input class="cstyle_btn" id="button" type="button" value="삭제" onclick="qna_detail_isDel();">
 						</div>
-<%-- 					</c:if> --%>
+					</c:if>
 				</div>
 <!-- 					답변 -->
-<%-- 					<c:if test=""> --%>
-						<div class="mypage_subtitle">
-							<h2 class="qnatitle">내 답변</h2>
-						</div>
-						<div class="qna_detail_content">
-							<table class="cstyle_table">
-								<colgroup>
-									<col>
-									<col width="120">
-								</colgroup>
-								<thead>
+				<c:if test="${vo.q_havere > 1}">
+					<div class="mypage_subtitle">
+						<h2 class="qnatitle">내 답변</h2>
+					</div>
+					<div class="qna_detail_content">
+						<table class="cstyle_table">
+							<colgroup>
+								<col>
+								<col width="120">
+							</colgroup>
+							<thead>
+								<tr>
+									<th class="cstyle_text_align_left">${vr.qtitle}</th>
+									<td><fmt:formatDate value="${vr.qregdate }" pattern="yyyy-MM-dd"/></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="qna_context cstyle_text_align_left" colspan="2">
+										<div class="cont">${vr.qcontent} </div>
+									</td>
+								</tr>
+		                       	<c:if test="${null ne vr.qfile_org}">
 									<tr>
-										<th class="cstyle_text_align_left">${vo.qtitle}</th>
-										<td><fmt:formatDate value="${vo.qregdate }" pattern="yyyy-MM-dd"/></td>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td class="qna_context cstyle_text_align_left" colspan="2">
-											<div class="cont">${vo.qcontent} </div>
-										</td>
-									</tr>
-			                       	<c:if test="${null ne vo.qfile_org}">
-										<tr>
-					                       	<th class="cstyle_text_align_left">	첨부파일 </th>
-				                           	<th><a href="/jcappy/common/download.jsp?path=/upload/&org=${vo.qfile_org}&real=${vo.qfile_real}"  target="_blank">${vo.qfile_org}</a></th>
-				                    	</tr>
-									</c:if>
-								</tbody>
-							</table>
-						</div>
-<%-- 					</c:if> --%>
-				
+				                       	<th class="cstyle_text_align_left">	첨부파일 </th>
+			                           	<th><a href="/jcappy/common/download.jsp?path=/upload/&org=${vr.qfile_org}&real=${vr.qfile_real}"  target="_blank">${vr.qfile_org}</a></th>
+			                    	</tr>
+								</c:if>
+							</tbody>
+						</table>
+					</div>
+				</c:if>
 			</div>
         </div>
         <%@ include file="/WEB-INF/view/include/bottom.jsp" %>

@@ -54,6 +54,11 @@ public class QnaServiceImpl implements QnaService{
 	}
 	
 	@Override
+	public QnaVo detailRe(QnaVo vo) {
+		return dao.detailRe(vo);
+	}
+	
+	@Override
 	public int update(QnaVo vo) {
 		//isDel이 1값이면 파일이름 초기화
 		if ("1".equals(vo.getIsDel())) {
