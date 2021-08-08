@@ -5,6 +5,6 @@ import java.util.List;
 public interface OrderinfoService {
 	List<OrderinfoVo> selectAll(int mno);
 	int insert(OrderinfoVo vo);
-	OrderinfoVo selectLastOne();
+	OrderinfoVo selectLastOne(int mno);
 	int delete(OrderinfoVo vo);
 }

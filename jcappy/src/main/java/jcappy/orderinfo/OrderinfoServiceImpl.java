@@ -21,8 +21,8 @@ public class OrderinfoServiceImpl implements OrderinfoService {
 		return orderinfoDao.insert(vo);
 	}
 	@Override
-	public OrderinfoVo selectLastOne() {
-		return orderinfoDao.selectLastOne();
+	public OrderinfoVo selectLastOne(int mno) {
+		return orderinfoDao.selectLastOne(mno);
 	}
 	
 	@Override

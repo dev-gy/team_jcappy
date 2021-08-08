@@ -97,7 +97,7 @@ public class OrderinfoController {
 		model.addAttribute("mVo", membersVo);
 		
 		// 최근 배송 데이터를 전달
-		model.addAttribute("oVo", orderinfoService.selectLastOne());
+		model.addAttribute("oVo", orderinfoService.selectLastOne(membersVo.getMno()));
 		
 		// 회원의 쿠폰 리스트를 전달
 		// 사용안한 쿠폰 중 쿠폰의 두배 값이 총상품금액 이하인 쿠폰만 담는다 
@@ -188,5 +188,11 @@ public class OrderinfoController {
 	public String orderIndex(Model model, HttpServletRequest request) {
 		model.addAttribute("list", orderinfoService.selectAll(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno()));
 		return "mypage/order/index";
+	}
+	
+	@RequestMapping("/mypage/detail")
+	public String orderDetail(Model model, HttpServletRequest request) {
+		model.addAttribute("list", orderinfoService.selectAll(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno()));
+		return "mypage/order/detail";
 	}
 }

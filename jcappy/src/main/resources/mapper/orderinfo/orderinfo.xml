@@ -25,8 +25,8 @@
 		DELETE FROM orderinfo WHERE ono=#{ono}
 	</delete>
 	
-	<select id="selectLastOne" resultType="jcappy.orderinfo.OrderinfoVo">
-		SELECT * FROM orderinfo ORDER BY ono DESC LIMIT 1
+	<select id="selectLastOne" parameterType="int" resultType="jcappy.orderinfo.OrderinfoVo">
+		SELECT * FROM orderinfo WHERE mno = #{mno} ORDER BY ono DESC LIMIT 1
 	</select>
 	
 	<!-- [관리자] 주문 검색 -->

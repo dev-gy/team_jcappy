@@ -21,8 +21,8 @@ public class OrderinfoDao {
 		return sqlSession.insert("orderinfo.insert", vo);
 	}
 
-	public OrderinfoVo selectLastOne() {
-		return sqlSession.selectOne("orderinfo.selectLastOne");
+	public OrderinfoVo selectLastOne(int mno) {
+		return sqlSession.selectOne("orderinfo.selectLastOne", mno);
 	}
 
 	public int delete(OrderinfoVo vo) {
