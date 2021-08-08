@@ -27,7 +27,7 @@
 	            <li><a href="/jcappy/product/airconditioner">에어컨</a></li>
 	            <li><a href="/jcappy/product/tv">TV</a></li>
 	            <li><a href="/jcappy/product/washer">세탁기</a></li>
-	            <li><a href="/jcappy/notice/index.do">SERVICE</a>
+	            <li><a href="/jcappy/notice/list">SERVICE</a>
 	                <ul class="depth2">
 	                    <li><a href="/jcappy/notice/list">공지사항</a>
 	                    <li><a href="/jcappy/review.do">리뷰게시판</a>

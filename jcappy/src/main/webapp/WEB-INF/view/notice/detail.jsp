@@ -111,8 +111,7 @@ function commentDel(no) { //댓글 삭제
 				<div class="btn_wrap">
 					<input class="cstyle_btn" type="button" value="목록" onclick="location.href='/jcappy/notice/list'">
 				</div>
-				
-				<table class="board_write">
+				<table class="cstyle_table">
                		<colgroup>
 	                    <col width="*" />
 	                    <col width="80px" />
@@ -122,11 +121,11 @@ function commentDel(no) { //댓글 삭제
 	                        <td>
 	                            <textarea name="content" id="contents" style="width:100%;height:80px;"></textarea>
 	                        </td>
-                         <td>
-							<div class="btnRight">
-								<a class="btns" style="cursor:pointer;" href="javascript:notice_detail_goSave();"><strong>저장</strong></a>
-							</div>
-                         </td>
+	                        <td>
+								<div class="btnRight">
+									<a class="btns" style="cursor:pointer;" href="javascript:notice_detail_goSave();"><strong>저장</strong></a>
+								</div>
+	                        </td>
                      	</tr>
                     </tbody>
                  </table>
