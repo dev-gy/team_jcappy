@@ -102,3 +102,4 @@ top.jsp
 #admin_order_detail .admin_order_detail_info table:nth-child(1) {float: left; width: 400px !important; margin-bottom: 0 !important;}
 #admin_order_detail .admin_order_detail_info table:nth-child(2) {float: right; width: 400px !important; margin-bottom: 0 !important;}
 #admin_order_detail .btns {cursor: pointer;}
+.admin_order_detail_product .title {font-size: 12px !important;}

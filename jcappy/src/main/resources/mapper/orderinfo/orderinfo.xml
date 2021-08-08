@@ -85,4 +85,28 @@
 		${ono}
 		</foreach>
 	</update> 
+	
+	<!-- [관리자] 주문관리 상세 -->
+	<select id="detail" resultType="jcappy.orderinfo.OrderinfoVo" parameterType="jcappy.orderinfo.OrderinfoVo">
+		SELECT ono, mno, odate, o_state, o_del, opay, oname, ophone, ozipcode, oaddr, oaddrde, orequest, cno, oc_cancel, oc_reason
+		FROM orderinfo
+		WHERE ono = ${ono}
+	</select>
+	
+	<!-- [관리자] 주문관리 종전 배송지 정보 -->
+	<select id="admin_pre_del" resultType="map" parameterType="jcappy.orderinfo.OrderinfoVo">
+		SELECT oname, ophone, ozipcode, oaddr, oaddrde, orequest
+		FROM orderinfo 
+		WHERE ono =	(
+					SELECT MAX(ono) 
+					FROM orderinfo 
+					WHERE oc_cancel = 0 
+					AND mno = ${mno} 
+					AND ono &lt; (
+								SELECT MAX(ono) 
+								FROM orderinfo 
+								WHERE mno = ${mno}
+					)
+		) 
+	</select> 
 </mapper>

@@ -11,4 +11,5 @@ public interface MembersService {
 	int delete(MembersVo vo);
 	int update(MembersVo vo);
 	MembersVo detail(MembersVo vo);
+	
 }

@@ -9,20 +9,20 @@
 					qtitle LIKE '%${sval}%' OR qcontent LIKE '%${sval}%' OR mname LIKE '%${sval}%' OR aname LIKE '%${sval}%' OR memail LIKE '%${sval}%' OR aid LIKE '%${sval}%' 
 				</if>
 				<if test="stype != 'all'">
-					${stype} LIKE '%${sval}%'
+					${stype} LIKE '%${sval}%' 
 				</if>
 			</if>
-			<if test="mno != 0">
+			<if test="mno != 0"><!-- 내가 쓴글 가져 오려고 마이페이지 이용 -->
 				AND mno = #{mno}
 			</if>
 		</where>
 	</sql>
 	
 	<select id="selectAll" resultType="jcappy.qna.QnaVo" parameterType="jcappy.qna.QnaVo">
-		SELECT *
-		FROM qna q LEFT JOIN members m ON q.mno = m.mno LEFT JOIN admin a ON q.ano = a.ano
+		SELECT *, (SELECT COUNT(q_gno) FROM qna WHERE q_gno=q.q_gno) as q_havere
+      	FROM qna q LEFT JOIN members m ON q.mno = m.mno LEFT JOIN admin a ON q.ano = a.ano
 		<include refid="qnaWhere"/>
-		ORDER BY q_gno DESC, q_ono ASC, ${orderby} ${direct}
+		ORDER BY q_gno DESC, q_ono ASC
 		LIMIT ${startIdx},${pageRow}
 	</select>
 	
@@ -32,10 +32,9 @@
 	</select>
 	
 	<select id="detail" resultType="jcappy.qna.QnaVo" parameterType="jcappy.qna.QnaVo">
-		SELECT *
+		SELECT *, (SELECT COUNT(q_gno) FROM qna WHERE q_gno=q.q_gno) as q_havere
 		FROM qna q LEFT JOIN members m ON q.mno = m.mno LEFT JOIN admin a ON q.ano = a.ano
 		WHERE qno = #{qno}
-		
 	</select>
 	
 	<insert id="insertReply" parameterType="jcappy.qna.QnaVo">
@@ -88,7 +87,41 @@
 	</insert>
 	
 	<select id="haveRe" parameterType="jcappy.qna.QnaVo" resultType="int">
-		SELECT COUNT(q_gno) FROM qna WHERE q_gno=#{q_gno}
+		SELECT COUNT(q_gno) FROM qna WHERE q_gno=${q_gno}
+	</select>
+	
+	<select id="countUser" resultType="int" parameterType="jcappy.qna.QnaVo">
+		SELECT COUNT(*) FROM qna q LEFT JOIN members m ON q.mno = m.mno LEFT JOIN admin a ON q.ano = a.ano
+		<include refid="qnaWhereUser"/>
+	</select>
+	
+	<select id="selectAllUser" resultType="jcappy.qna.QnaVo" parameterType="jcappy.qna.QnaVo">
+		SELECT *, (SELECT COUNT(q_gno) FROM qna WHERE q_gno=q.q_gno) as q_havere
+      	FROM qna q LEFT JOIN members m ON q.mno = m.mno LEFT JOIN admin a ON q.ano = a.ano
+		<include refid="qnaWhereUser"/>
+		ORDER BY q_gno DESC, q_ono ASC, ${orderby} ${direct}
+		LIMIT ${startIdx},${pageRow}
+	</select>
+	
+	<sql id="qnaWhereUser">
+		WHERE q_ono = 0
+			<if test="sval != null and sval != ''">
+				<if test="stype == 'all'">
+					AND qtitle LIKE '%${sval}%' OR qcontent LIKE '%${sval}%' OR mname LIKE '%${sval}%' OR aname LIKE '%${sval}%'OR memail LIKE '%${sval}%'  OR aid LIKE '%${sval}%' 
+				</if>
+				<if test="stype != 'all'">
+					AND ${stype} LIKE '%${sval}%'
+				</if>
+			</if>
+			<if test="mno != 0">
+				AND m.mno = #{mno}
+			</if>
+	</sql>
+	
+	<select id="detailRe" resultType="jcappy.qna.QnaVo" parameterType="jcappy.qna.QnaVo">
+		SELECT *, (SELECT COUNT(q_gno) FROM qna WHERE q_gno=q.q_gno) as q_havere
+		FROM qna q LEFT JOIN members m ON q.mno = m.mno LEFT JOIN admin a ON q.ano = a.ano
+		WHERE q_gno = #{qno} AND q_ono > 0 
 	</select>
 	
 </mapper>
