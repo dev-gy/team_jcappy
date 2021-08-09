@@ -20,7 +20,7 @@ import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.CancelData;
 
-import jcappy.coupon.CouponService;
+import jcappy.coupon.AdminCouponService;
 import jcappy.coupon.CouponVo;
 import jcappy.members.MembersService;
 import jcappy.members.MembersVo;
@@ -41,7 +41,7 @@ public class OrderinfoController {
 	@Autowired
 	MembersService membersService;
 	@Autowired
-	CouponService couponService;
+	AdminCouponService couponService;
 	@Autowired
 	OrderlistService orderlistService;
 	@Autowired

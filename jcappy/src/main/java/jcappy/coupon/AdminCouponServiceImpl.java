@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CouponServiceImpl implements CouponService {
+public class AdminCouponServiceImpl implements AdminCouponService {
 	
 	@Autowired
 	CouponDao dao;
