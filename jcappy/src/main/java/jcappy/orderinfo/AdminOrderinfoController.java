@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import jcappy.coupon.CouponService;
+import jcappy.coupon.AdminCouponService;
 import jcappy.coupon.CouponVo;
 import jcappy.members.AdminMembersService;
 import jcappy.members.MembersVo;
@@ -28,7 +28,7 @@ public class AdminOrderinfoController {
 	OrderlistService olService;
 
 	@Autowired
-	CouponService cService;
+	AdminCouponService cService;
 
 	@RequestMapping("/admin/order/list")
 	public String index(Model model, OrderinfoVo vo) {
