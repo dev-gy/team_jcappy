@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 <script>
 $(function(){ 
@@ -30,6 +29,7 @@ $(function(){
         }    
     });
     $('.mypage_member_update #mphone').blur(function() {
+    	if(${membersInfo.mphone} != $('#mphone').val()){
 		$.ajax({
 			url:'<%=request.getContextPath()%>/members/isDuplicatePhone',
 			data:{phone:$('#mphone').val()},
@@ -41,6 +41,7 @@ $(function(){
 				}
 			}
 		});	
+    	}
 	});
     
  // 비밀번호 정규식
