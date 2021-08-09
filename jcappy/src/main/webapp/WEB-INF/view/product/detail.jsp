@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 상세페이지</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 <script>
 $(function() {

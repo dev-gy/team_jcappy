@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1:1문의</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 <script>
     function move() {

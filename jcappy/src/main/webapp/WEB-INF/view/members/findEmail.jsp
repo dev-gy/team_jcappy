@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>계정 찾기</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 <script>
 	function findEmail(){
