@@ -19,6 +19,11 @@ $(function(){
 			alert("브랜드를 입력해주세요");
 			return false;
 		}
+		if($("#stype").val() == '기타'){
+			if($('#brandEtc').val().trim() == ''){
+				$('#brandEtc').val('기타');
+			}
+		}
 		if($("#pname").val() == ''){
 			alert("상품명을 입력해주세요");
 			return false;
@@ -27,7 +32,7 @@ $(function(){
 			alert("상품 가격을 입력해주세요");
 			return false;
 		}
-		if($("#pprice").val() > '2000000000'){
+		if(Number($("#pprice").val()) > 2000000000){
 			alert("상품 가격을 2,000,000,000원 이하로 입력해주세요")
 			return false;
 		}
