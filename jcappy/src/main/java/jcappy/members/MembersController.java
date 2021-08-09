@@ -102,7 +102,7 @@ public class MembersController {
 	      if (mv == null) {
 	         model.addAttribute("msg", "이메일 또는 비밀번호가 올바르지 않습니다");
 	         model.addAttribute("url", "login");
-	         return "include/alert";
+	         return "include/alert";  
 	      } else {
 	         sess.setAttribute("membersInfo", mv);
 	         // 쿠키에 저장
