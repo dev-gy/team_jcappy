@@ -7,10 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class CouponController {
+public class AdminCouponController {
 	
 	@Autowired
-	CouponService service;
+	AdminCouponService service;
 	
 	//부가기능 인덱스
 	@RequestMapping("/admin/add/index")

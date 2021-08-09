@@ -2,7 +2,7 @@ package jcappy.coupon;
 
 import java.util.List;
 
-public interface CouponService {
+public interface AdminCouponService {
 
 	List<CouponVo> selectAll(CouponVo vo);
 	CouponVo detail(CouponVo vo);
