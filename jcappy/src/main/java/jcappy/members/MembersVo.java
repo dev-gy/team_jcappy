@@ -22,7 +22,18 @@ public class MembersVo extends CommonVo{
 	// NonDB
 	private String checkMemail;
 	private int haveRe;
+	private String membersInfo;
 	
+
+	public String getMembersInfo() {
+		return membersInfo;
+	}
+
+
+	public void setMembersInfo(String membersInfo) {
+		this.membersInfo = membersInfo;
+	}
+
 
 	public int getHaveRe() {
 		return haveRe;

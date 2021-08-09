@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지 쿠폰함</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 </head>
 <body>

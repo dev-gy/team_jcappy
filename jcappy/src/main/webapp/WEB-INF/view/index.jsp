@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 </head>
 <body>
@@ -14,10 +13,10 @@
             <div class="banner">
                 <div class="swiper-container swiper">
                     <div class="swiper-wrapper swiper_area">
-                        <div class="swiper-slide" style="background-image: url(/jcappy/img/img1.jpg)" ></div>
-                        <div class="swiper-slide" style="background-image: url(/jcappy/img/img2.jpg)" ></div>
-                        <div class="swiper-slide" style="background-image: url(/jcappy/img/img3.jpg)" ></div>
-                        <div class="swiper-slide" style="background-image: url(/jcappy/img/img4.jpg)" ></div>
+                        <div class="swiper-slide" style="background-image: url(/jcappy/img/img1-1.jpg)" ></div>
+                        <div class="swiper-slide" style="background-image: url(/jcappy/img/img2-1.jpg)" ></div>
+                        <div class="swiper-slide" style="background-image: url(/jcappy/img/img3-1.jpg)" ></div>
+                        <div class="swiper-slide" style="background-image: url(/jcappy/img/img4-1.jpg)" ></div>
                     </div>
                     <div class="swiper_content">
                         <div class="btn_area">

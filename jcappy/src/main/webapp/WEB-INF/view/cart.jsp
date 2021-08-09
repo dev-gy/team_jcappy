@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>장바구니</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 </head>
 <script>

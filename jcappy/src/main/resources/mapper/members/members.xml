@@ -119,7 +119,7 @@
 	
 	<!-- [관리자] 회원 주문 목록 -->
 	<select id="orderList" resultType="map" parameterType="jcappy.members.MembersVo">
-		SELECT odate AS date, i.ono AS no, SUM(ol_count * ol_price) AS price, o_state AS state
+		SELECT odate AS date, i.ono AS no, SUM(ol_count * ol_price) AS price, o_state AS state, o_del AS del
 		FROM orderinfo i JOIN orderlist l ON i.ono = l.ono AND mno=${mno}
 		GROUP BY i.ono      
 		ORDER BY i.odate ${direct}  

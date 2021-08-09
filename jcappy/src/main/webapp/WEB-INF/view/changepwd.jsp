@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 <script type="text/javascript">
     function test() {
