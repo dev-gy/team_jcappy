@@ -74,4 +74,5 @@ public class MembersServiceImpl implements MembersService{
 		return dao.detail(vo);
 	}
 	
+	
 }

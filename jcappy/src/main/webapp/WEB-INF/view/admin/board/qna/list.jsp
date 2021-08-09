@@ -87,8 +87,8 @@
 								<div class="search">
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all">전체</option>
-										<option value="qtitle" <c:if test="${param.stype=='rtitle'}">selected</c:if>>제목</option>
-										<option value="qcontent" <c:if test="${param.stype=='rcontent'}">selected</c:if>>내용</option>
+										<option value="qtitle" <c:if test="${param.stype=='qtitle'}">selected</c:if>>제목</option>
+										<option value="qcontent" <c:if test="${param.stype=='qcontent'}">selected</c:if>>내용</option>
 										<option value="memail" <c:if test="${param.stype=='memail'}">selected</c:if>>(회원)이메일</option>
 										<option value="mname" <c:if test="${param.stype=='mname'}">selected</c:if>>(회원)이름</option>
 										<option value="aid" <c:if test="${param.stype=='aid'}">selected</c:if>>(관리자)아이디</option>

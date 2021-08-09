@@ -18,6 +18,9 @@ public class QnaDao {
 	public List<QnaVo> selectAll(QnaVo vo) {
 		return sqlSession.selectList("qna.selectAll", vo);
 	}
+	public List<QnaVo> selectAllUser(QnaVo vo) {
+		return sqlSession.selectList("qna.selectAllUser", vo);
+	}
 	
 	public int count(QnaVo vo) {
 		return sqlSession.selectOne("qna.count", vo);
@@ -65,5 +68,13 @@ public class QnaDao {
 	
 	public int haveRe(QnaVo vo) {
 		return sqlSession.selectOne("qna.haveRe", vo);
+	}
+	
+	public int countUser(QnaVo vo) {
+		return sqlSession.selectOne("qna.countUser", vo);
+	}
+	
+	public List<QnaVo> detailRe(QnaVo vo) {
+		return sqlSession.selectList("qna.detailRe", vo);
 	}
 }
