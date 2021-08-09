@@ -89,7 +89,7 @@ public class MembersController {
 			}
 		}
 		
-		session.setAttribute("redirectURI", uri);
+		session.setAttribute("redirectURI", "http://localhost:8080/jcappy");
 
 		System.out.println(uri);
 		
