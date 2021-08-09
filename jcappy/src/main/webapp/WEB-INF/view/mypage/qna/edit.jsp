@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1:1 문의</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 <script>
 function qna_edit_setEditor(holder){ //스마트 에디터

@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 <script>
 $(function(){
