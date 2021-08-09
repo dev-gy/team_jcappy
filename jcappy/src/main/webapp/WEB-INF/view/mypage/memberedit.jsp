@@ -96,6 +96,7 @@ $(function(){
 					<div>
 						<div class="mypage_member_update">
 							<form action="/jcappy/mypage/update" method="POST">
+								<input type="hidden" name="mno" value="${membersInfo.mno }">
 								<div>
 									<table class="">
 									<colgroup>
