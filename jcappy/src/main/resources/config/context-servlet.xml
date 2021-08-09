@@ -123,9 +123,9 @@
 	<mvc:interceptors>
 		<!-- 사용자 로그인 체크 -->
 		<mvc:interceptor>
-			<mvc:mapping path="/cart" />
+			<mvc:mapping path="/cart/**" />
 			<mvc:mapping path="/pay/**" />
-			<mvc:mapping path="/mypage/**/*" />
+			<mvc:mapping path="/mypage/**" />
 			<bean class="jcappy.interceptor.LoginInterceptor" />
 		</mvc:interceptor>
 		
