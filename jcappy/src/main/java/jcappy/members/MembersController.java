@@ -1,5 +1,7 @@
 package jcappy.members;
 
+import java.util.Arrays;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -69,29 +71,44 @@ public class MembersController {
 		}
 		
 		String uri = req.getHeader("Referer"); // 이전페이지
-		String sessionUri = String.valueOf(session.getAttribute("redirectURI")); // 
+		String[] uris = null;
+		String uri2 = null;
+		if (uri != null) {
+			uris = uri.split("/");
+			uri2 = uris[uris.length-1];
+		}
+		
+		String reqUrl = String.valueOf(req.getRequestURL()); // 현재페이지
+		String sessionUri = String.valueOf(session.getAttribute("redirectURI")); 
 		
 		System.out.println(uri);
+		System.out.println(uri2);
 		System.out.println(sessionUri);
-		System.out.println(req.getRequestURL());
-		System.out.println("".equals(sessionUri));
+		System.out.println(reqUrl);
+		System.out.println(req.getContextPath());
+		
+		
 		if (uri == null) {
-			uri = "http://localhost:8080/jcappy";
+			uri = "/";
 		} else {
-			if (!"".equals(sessionUri)) {
-				uri = sessionUri;
+			if (!"null".equals(sessionUri)) {
+				if ("login".equals(uri2)) {
+					uri = sessionUri;
+				} else if (!Arrays.asList(uris).contains("jcappy")) {
+					uri = "/";
+				}
 			} else {
-				if ("http://localhost:8080/jcappy/login".equals(uri)) {
-					uri = "http://localhost:8080/jcappy";
-				} else if (!uri.startsWith("http://localhost:8080/jcappy")) {
-					uri = "http://localhost:8080/jcappy";
+				if ("login".equals(uri2)) {
+					uri = req.getContextPath() + "/";
+				} else if (!Arrays.asList(uris).contains("jcappy")) {
+					uri = "/";
 				}
 			}
 		}
 		
-		session.setAttribute("redirectURI", "http://localhost:8080/jcappy");
+		session.setAttribute("redirectURI", uri);
 
-		System.out.println(uri);
+		System.out.println("최종 저장된 경로 : " + uri);
 		
 		return "members/login";
 	}
