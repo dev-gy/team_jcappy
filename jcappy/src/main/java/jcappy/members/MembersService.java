@@ -1,5 +1,7 @@
 package jcappy.members;
 
+import javax.servlet.http.HttpSession;
+
 public interface MembersService {
 
 	MembersVo login(MembersVo vo);
@@ -9,7 +11,7 @@ public interface MembersService {
 	MembersVo findEmail(MembersVo vo);
 	MembersVo findPwd(MembersVo vo);
 	int delete(MembersVo vo);
-	int update(MembersVo vo);
+	int update(MembersVo vo, HttpSession sess);
 	MembersVo detail(MembersVo vo);
 	
 }

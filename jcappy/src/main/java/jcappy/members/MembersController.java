@@ -148,8 +148,8 @@ public class MembersController {
 	
 	// 회원 정보 수정
 	@RequestMapping("mypage/update")
-	public String update(Model model, MembersVo vo) {
-		int r = service.update(vo);
+	public String update(Model model, MembersVo vo, HttpSession sess) {
+		int r = service.update(vo, sess);
 		if (r>0) {
 		model.addAttribute("msg", "정상적으로 수정되었습니다");
 		model.addAttribute("url", "/jcappy");

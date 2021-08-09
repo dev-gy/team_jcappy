@@ -1,5 +1,7 @@
 package jcappy.members;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,8 +67,13 @@ public class MembersServiceImpl implements MembersService{
 	}
 	
 	@Override
-	public int update(MembersVo vo) {
-		return dao.update(vo);
+	public int update(MembersVo vo, HttpSession sess) {
+		MembersVo membersInfo = (MembersVo)sess.getAttribute("membersInfo");
+		 membersInfo.setMno(vo.getMno());
+		   int result = dao.update(vo);
+		   sess.setAttribute("membersInfo", dao.detail(membersInfo));
+
+		   return result;
 	}
 	
 	@Override
