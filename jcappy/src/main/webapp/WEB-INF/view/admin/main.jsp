@@ -14,12 +14,17 @@ function admin_main_go_productList() {
 	location.href='product/list?orderby=pcount&direct=asc';
 }
 
-//
+// 최근 주문 목록 : 타이틀 클릭 시, 주문관리 목록으로 이동
 function admin_main_go_orderList() {
 	location.href='order/list';
 }
 
-//
+// 최근 주문 목록 : 주문번호 클릭 시, 해당 주문 상세페이지로 이동
+function admin_main_go_order(no) {
+	location.href='<%=request.getContextPath()%>/admin/order/detail?ono=' + no;
+}
+
+// 매출조회 : 타이틀 클릭 시, 매출조회로 이동
 function admin_main_go_sales() {
 	location.href='sales/index';
 }
@@ -182,13 +187,13 @@ function admin_main_go_boardList(cate) {
 											<c:choose>
 												<c:when test="${empty orderList }">
 													<tr>
-														<td class="first" colspan="5" height="150px">등록된 글이 없습니다.</td>
+														<td class="first" colspan="5" height="150px">주문이 없습니다.</td>
 													</tr>
 												</c:when>
 												<c:when test="${!empty orderList }">
 													<c:forEach var="vo" items="${orderList }" varStatus="status">
 														<tr>
-															<td class="first">${vo.no }</td>
+															<td class="first"><a href="javascript:admin_main_go_order('${vo.no }');">${vo.no }</a></td>
 															<td>${vo.name }</td>
 															<td><fmt:formatNumber value="${vo.price }" pattern="#,###,###원"/></td>
 															<td><fmt:formatDate value="${vo.date }" pattern="yyyy-MM-dd"/></td>

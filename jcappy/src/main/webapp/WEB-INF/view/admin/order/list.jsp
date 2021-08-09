@@ -41,17 +41,17 @@ function pay_check(name) {
 		alert("'주문상태'가 '결제대기'인 상품들만 선택해주세요.");
 		return false;
 	} else {
-		if (confirm('총 ' + count1 + '건이 결제완료 처리됩니다.')) {
+		if (confirm('총 ' + count1 + '건이 입금확인 됩니다.')) {
 			$.ajax({
 				url: "/jcappy/admin/order/pay_check",
 				method: 'POST',
 				data: $('#frm').serialize(),
 				success: function(res) {
 					if (res.trim() == 'true') {
-						alert('총 ' + count1 + '건이 결제완료 처리되었습니다.');
+						alert('총 ' + count1 + '건이 입금확인 되었습니다.');
 						location.href="/jcappy/admin/order/list";
 					} else {
-						alert('오류발생, 결제완료 처리에 실패하였습니다.');
+						alert('오류발생, 입금확인에 실패하였습니다.');
 					}
 				},
 			});
@@ -177,7 +177,7 @@ function delivery_check(name) {
 										<a class="btns" href="javascript:delivery_check('onos');" onclick=""><strong>배송처리</strong></a>
 									</div>
 									<div class="btnRight">
-										<a class="wbtn" href="create"><strong>등록</strong> </a>
+										<a class="wbtn" href="add"><strong>등록</strong> </a>
 									</div>
 								</div>
 								<!--//btn-->

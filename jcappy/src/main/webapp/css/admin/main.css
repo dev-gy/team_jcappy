@@ -4,6 +4,7 @@
 전체
 ========================================*/
 table {border-top: #4a4b4f 2px solid !important;}
+.class_for_padding {padding: 8px 10px !important;}
 
 /*======================================
 top.jsp
@@ -44,7 +45,7 @@ top.jsp
 ========================================*/
 .admin_product_list * {white-space: nowrap; text-overflow: ellipsis;}
 .admin_product_list table {table-layout: fixed;}
-.admin_product_list table td { overflow: hidden;}
+.admin_product_list table td {overflow: hidden;}
 .imagePreview1{width: 100px; height: 50px; background-position: center center; background-size: cover;}
 .imagePreview2{width: 100px; height: 50px; background-position: center center; background-size: cover;}
 .imagePreview3{width: 100px; height: 50px; background-position: center center; background-size: cover;}
@@ -103,3 +104,18 @@ top.jsp
 #admin_order_detail .admin_order_detail_info table:nth-child(2) {float: right; width: 400px !important; margin-bottom: 0 !important;}
 #admin_order_detail .btns {cursor: pointer;}
 .admin_order_detail_product .title {font-size: 12px !important;}
+
+/*======================================
+메뉴 : 주문관리 add
+========================================*/
+#admin_order_add td {font-size: 13px; color: #656668;}
+#admin_order_add .admin_order_add_info {width: 810px; margin-bottom: 0px;}
+#admin_order_add .admin_order_add_info #bread table {margin: 0 auto;}
+#admin_order_add .admin_order_add_product {width: 810px;}
+#admin_order_add .admin_order_add_product table td {height: 45px !important; padding: 0 !important;}
+#admin_order_add .admin_order_add_product #bread {height: 40px;}
+#admin_order_add .admin_order_add_info .admin_order_add_table1 {width: 400px !important; margin-bottom: 15px !important;}
+#admin_order_add .admin_order_add_info .admin_order_add_table2 {width: 400px !important; margin-bottom: 15px !important;}
+#admin_order_add .admin_order_add_info .admin_order_add_table3 {width: 400px !important; margin-bottom: 5px !important;}
+#admin_order_add .btns {cursor: pointer;}
+.admin_order_add_product .title {font-size: 12px !important;}

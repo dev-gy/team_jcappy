@@ -55,7 +55,7 @@ public class OrderinfoController {
 		client = new IamportClient(api_key, api_secret);
 	}
 	
-	@PostMapping("/pay")
+	@RequestMapping("/pay") // 인터셉터 걸기위해 PostMapping을 RequestMapping으로 바꿈.
 	public String payIndex(Model model, HttpServletRequest request,
 			@RequestParam(value = "sno", required = false) List<Integer> snoList, 
 			@RequestParam("pno") List<Integer> pnoList, 

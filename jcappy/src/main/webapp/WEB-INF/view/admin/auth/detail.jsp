@@ -85,7 +85,7 @@
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="#" onClick="history.back();"><strong>목록</strong></a>
+									<a class="btns" href="#" onClick="location.href='list?reqPage=${param.reqPage}';"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
 									<a class="btns" onclick="updateAdmin();"><strong>수정</strong></a>

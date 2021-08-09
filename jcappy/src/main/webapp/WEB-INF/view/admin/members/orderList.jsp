@@ -21,9 +21,10 @@
 					summary="주문목록">
 					<colgroup>
 						<col class="w25" />
+						<col class="w10" />
 						<col class="w25" />
-						<col class="w25" />
-						<col class="w25" />
+						<col class="w20" />
+						<col class="w20" />
 					</colgroup>
 					<thead>
 						<tr>
@@ -31,6 +32,7 @@
 							<th scope="col">주문번호</th>
 							<th scope="col">주문총액</th>
 							<th scope="col">주문상태</th>
+							<th scope="col">배송상태</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -46,9 +48,10 @@
 										<td class="first"><fmt:formatDate value="${vo.date }"
 												pattern="yyyy-MM-dd HH:mm:ss" /></td>
 										<td><a
-											href="detail?mno=${vo.mno }&orderby=${membersVo.orderby}&direct=${membersVo.direct}&pageRow=${membersVo.pageRow}&stype=${membersVo.stype }&sval=${membersVo.sval }&reqPage=${membersVo.reqPage}">${vo.no }</a></td>
+											href="javascript:go_order(${vo.no });">${vo.no }</a></td>
 										<td><fmt:formatNumber value="${vo.price}" pattern="#,###,###원"/></td>
 										<td>${vo.state}</td>
+										<td>${vo.del}</td>
 									</tr>
 								</c:forEach>
 							</c:when>
