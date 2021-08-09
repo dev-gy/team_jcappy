@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -190,9 +191,14 @@ public class OrderinfoController {
 		return "mypage/order/index";
 	}
 	
-	@RequestMapping("/mypage/detail")
-	public String orderDetail(Model model, HttpServletRequest request) {
-		model.addAttribute("list", orderinfoService.selectAll(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno()));
+	@RequestMapping("/mypage/order/detail/{ono}")
+	public String orderDetail(Model model, @PathVariable int ono) {
+		OrderinfoVo oiVo = new OrderinfoVo();
+		oiVo.setOno(ono);
+		model.addAttribute("oiVo", orderinfoService.detail(oiVo));
+		OrderlistVo olVo = new OrderlistVo();
+		olVo.setOno(ono);
+		model.addAttribute("olList", orderlistService.selectAll(olVo));
 		return "mypage/order/detail";
 	}
 }

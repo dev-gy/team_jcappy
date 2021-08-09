@@ -7,5 +7,7 @@ $(function() {
 	};
 	
 	// 숫자 평점을 별로 변환하도록 호출하는 함수
-	$("#review_score").generateStars();
+	$(".review_score").each(function(index, item) {
+		$(item).generateStars();
+	});
 });

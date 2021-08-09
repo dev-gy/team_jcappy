@@ -17,4 +17,10 @@ public class ReviewServiceImpl implements ReviewService {
 		vo.setDirect("desc");
 		return reviewDao.selectAll(vo);
 	}
+	
+	@Override
+	public int insert(ReviewVo vo) {
+		return reviewDao.insert(vo);
+	}
+	
 }

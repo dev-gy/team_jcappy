@@ -7,4 +7,5 @@ public interface OrderinfoService {
 	int insert(OrderinfoVo vo);
 	OrderinfoVo selectLastOne(int mno);
 	int delete(OrderinfoVo vo);
+	OrderinfoVo detail(OrderinfoVo vo);
 }
