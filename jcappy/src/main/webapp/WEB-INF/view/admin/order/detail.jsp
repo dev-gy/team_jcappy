@@ -5,18 +5,17 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
 </head>
 <script>
+// 결제금액 출력 : 결제금액 = (각 상품 수량 * 각 상품 가격)을 더한 값 - 쿠폰
 function priceForCalc() {
 	var totalPrice = 0;
 	var couponPrice = $('.couponPrice').val();
-// 	console.log(couponPrice);
 	for(var i = 0; i < $('.priceForCalc').length; i++) {
-// 		console.log($('.priceForCalc').eq(i).val());
 		totalPrice += Number($('.priceForCalc').eq(i).val());
 	}
-// 		console.log(totalPrice - couponPrice);
 	return totalPrice - couponPrice;
 }
 
+// radio버튼 주소값 변경
 function checkAddr() {
 	$('.adds').each(function(i, v) {
 		if ($('.adds').eq(i).prop('checked')) {
@@ -50,6 +49,7 @@ function checkAddr() {
 	});
 }
 
+// radio버튼 클릭이벤트
 function clickAddr() {
 	$('.adds').on('click', function() {
 		checkAddr();
@@ -61,6 +61,196 @@ $(function() {
 	checkAddr();
 	clickAddr();
 });
+
+// 빈칸확인
+function empty_check(){
+	if ($('#oname').val().trim() == '' ||
+			$('#ophone').val().trim() == '' ||
+			$('#ozipcode').val().trim() == '' ||
+			$('#oaddr').val().trim() == '' ||
+			$('#oaddrde').val().trim() == '') {
+		alert('배송지정보에 빈값이 존재합니다.')
+		return false;
+	}
+	return true;
+}
+
+
+// 수정 버튼
+function admin_order_update() {
+	if (empty_check()) {
+		
+		if (!/^[0-9]{9,11}$/.test($('#ophone').val())) {
+			alert('숫자 9~11자리로만 입력해주세요.');
+			$('#ophone').focus();
+			return false;
+		}
+		
+		if (confirm('수정하시겠습니까?')) {
+			$.ajax({
+				url: '/jcappy/admin/order/admin_order_update',
+				method: 'POST',
+				data: $('#frm').serialize(),
+				success: function(res) {
+					if (res.trim() == 'true') {
+						alert('주문정보가 수정되었습니다.');
+						location.href="/jcappy/admin/order/list";
+					} else {
+						alert('오류발생, 주문정보 수정에 실패하였습니다.');
+						location.reload();
+					}
+				},
+			});
+		}
+	}
+}
+
+// 입금확인 버튼
+function detail_pay_check() {
+	if (empty_check()) {
+		if (confirm('입금확인 하시겠습니까?')) {
+			$.ajax({
+				url: '/jcappy/admin/order/detail_pay_check',
+				method: 'POST',
+				data: {
+					ono: ${vo.ono}
+				},
+				success: function(res) {
+					if (res.trim() == 'true') {
+						alert('입금확인 되었습니다.');
+						location.reload();
+					} else {
+						alert('오류발생, 입금확인에 실패하였습니다.');
+						location.reload();
+					}
+				},
+			});
+		}
+	}
+}
+
+// 배송처리 버튼
+function detail_delivery_check() {
+	if (empty_check()) {
+		if (confirm('출고처리 하시겠습니까?')) {
+			$.ajax({
+				url: '/jcappy/admin/order/detail_delivery_check',
+				method: 'POST',
+				data: {
+					ono: ${vo.ono}
+				},
+				success: function(res) {
+					if (res.trim() == 'true') {
+						alert('출고처리 되었습니다.');
+						location.reload();
+					} else {
+						alert('오류발생, 출고처리에 실패하였습니다.');
+						location.reload();
+					}
+				},
+			});
+		}
+	}
+}
+
+// 취소/반품 버튼
+function request_cancel() {
+
+	var temp_o_del = $('.temp_o_del').val();
+		
+	if (empty_check()) {
+		if (confirm('취소/반품처리 하시겠습니까?')) {
+			$.ajax({
+				url: '/jcappy/admin/order/request_cancel',
+				method: 'POST',
+				data: {
+					ono: ${vo.ono},
+					o_state: '${vo.o_state}',
+					o_del: temp_o_del,
+					oc_reason: '<strong>[관리자] 취소/반품 처리</strong>',
+				},
+				success: function(res) {
+					if (res.trim() == 'true') {
+						alert('취소요청 되었습니다.');
+						location.reload();
+					} else {
+						alert('오류발생, 취소요청에 실패하였습니다.');
+						location.reload();
+					}
+				},
+			});
+		}
+	}
+}
+
+// 취소/반품승인 버튼
+function accept_cancel() {
+	if (empty_check()) {
+		if (confirm('취소/반품 요청을 승인 하시겠습니까?')) {
+			$.ajax({
+				url: '/jcappy/admin/order/accept_cancel',
+				method: 'POST',
+				data: {
+					ono: ${vo.ono},
+					o_state: '${vo.o_state}'
+				},
+				success: function(res) {
+					if (res.trim() == 'true') {
+						alert('취소/반품요청이 승인 되었습니다.');
+						if (${!empty vo.cno}) {
+							if (confirm('사용한 쿠폰을 복구하시겠습니까?\n쿠폰 발급날짜가 오늘로 설정됩니다.')) {
+								$.ajax({
+									url: '/jcappy/admin/order/remake_coupon',
+									method: 'POST',
+									data: {
+										cno: ${vo.cno}
+									},
+									success: function(res) {
+										if (res.trim() == 'true') {
+											alert('사용한 쿠폰이 복구 되었습니다.');
+											location.reload();
+										} else {
+											alert('오류발생, 쿠폰 복구에 실패하였습니다.');
+											location.reload();
+										}
+									},
+								});
+							}
+						}
+						location.reload();
+					} else {
+						alert('오류발생, 취소/반품요청 승인에 실패하였습니다.');
+						location.reload();
+					}
+				},
+			});
+		}
+	}
+}
+
+// 취소/반품거부 버튼
+function reject_cancel() {
+	if (empty_check()) {
+		if (confirm('취소/반품 요청을 거부 하시겠습니까?')) {
+			$.ajax({
+				url: '/jcappy/admin/order/reject_cancel',
+				method: 'POST',
+				data: {
+					ono: ${vo.ono},
+				},
+				success: function(res) {
+					if (res.trim() == 'true') {
+						alert('취소/반품요청이 거부 되었습니다.');
+						location.reload();
+					} else {
+						alert('오류발생, 취소/반품요청 거부에 실패하였습니다.');
+						location.reload();
+					}
+				},
+			});
+		}
+	}
+}
 </script>
 <body>
 	<div id="wrap">
@@ -91,31 +281,34 @@ $(function() {
 											<tbody>
 												<tr>
 													<th scope="row"><label for="ono">주문번호</label></th>
-													<td colspan="10"><input type="text" id="ono" name="ono" class="w100" value="${vo.ono}" disabled /></td>
+													<td colspan="10"><input type="text" id="ono" name="ono" class="w100" value="${vo.ono}" readonly /></td>
 												</tr>
 												<tr>
 													<th scope="row"><label for="mname">주문자이름</label></th>
-													<td colspan="10"><input type="text" id="mname" name="mname" class="w100" value="${members.mname }" disabled /></td>
+													<td colspan="10"><input type="text" id="mname" name="mname" class="w100" value="${members.mname }" readonly /></td>
 												</tr>
 												<tr>
 													<th scope="row"><label for="memail">주문자이메일</label></th>
-													<td colspan="10"><input type="text" id="memail" name="memail" class="w100" value="${members.memail }" disabled /></td>
+													<td colspan="10"><input type="text" id="memail" name="memail" class="w100" value="${members.memail }" readonly /></td>
 												</tr>
 												<tr>
 													<th scope="row"><label for="odate">주문일</label></th>
-													<td colspan="10"><input type="text" id="odate" name="odate" class="w100" value="<fmt:formatDate value="${vo.odate }" pattern="yyyy-MM-dd HH:mm:ss"/>" disabled /></td>
+													<td colspan="10"><input type="text" id="odate" name="odate" class="w100" value="<fmt:formatDate value="${vo.odate }" pattern="yyyy-MM-dd HH:mm:ss"/>" readonly /></td>
 												</tr>
 												<tr>
 													<th scope="row"><label for="o_state">주문상태</label></th>
-													<td colspan="10"><input type="text" id="o_state" name="o_state" class="w100" value="${vo.o_state }" disabled /></td>
+													<td colspan="10"><input type="text" id="o_state" name="o_state" class="w100" value="${vo.o_state }" readonly /></td>
 												</tr>
 												<tr>
 													<th scope="row"><label for="o_del">배송상태</label></th>
-													<td colspan="10"><input type="text" id="o_del" name="o_del" class="w100" value="${vo.o_del }" disabled /></td>
+													<td colspan="10">
+														<input type="text" id="o_del" name="o_del" class="w100" value="${vo.o_del }" readonly />
+														<input type="hidden" name="temp_o_del" class="temp_o_del" value="${vo.o_del }">	
+													</td>
 												</tr>
 												<tr>
 													<th scope="row"><label for="opay">결제정보</label></th>
-													<td colspan="10"><input type="text" id="opay" name="opay" class="w100" value="${vo.opay }" disabled /></td>
+													<td colspan="10"><input type="text" id="opay" name="opay" class="w100" value="${vo.opay }" readonly /></td>
 												</tr>
 											</tbody>
 										</table>
@@ -129,7 +322,7 @@ $(function() {
 													<th scope="row"><label for="ono">배송지정보</label></th>
 													<td colspan="10">
 														<label><input type="radio" class="adds" name="adds" value="1" checked="checked"/>&nbsp;현재</label>&nbsp;
-														<c:if test="${empty vo.o_del || vo.o_del == '상품준비중' }">
+														<c:if test="${vo.oc_cancel == 0 && (empty vo.o_del || vo.o_del == '상품준비중')}">
 															<label><input type="radio" class="adds" name="adds" value="2" />&nbsp;기본</label>&nbsp;
 															<c:if test="${!empty preDelivery.oname }">
 																<label><input type="radio" class="adds" name="adds" value="3" />&nbsp;배송</label>&nbsp;
@@ -213,7 +406,7 @@ $(function() {
 											</tbody>
 										</table>
 										</div>
-										<c:if test="${!empty vo.oc_reason }">
+										<c:if test="${!empty vo.oc_reason}">
 											<div id="bread">
 												<table>
 													<colgroup>
@@ -233,18 +426,22 @@ $(function() {
 										<div class="btnLeft">
 											<a class="btns" href="#" onClick="location.href='list?reqPage=${param.reqPage}';"><strong>목록</strong></a>
 											<c:if test="${(empty vo.o_del || vo.o_del == '상품준비중') && vo.oc_cancel == 0 }">
-												<a class="btns" onclick="updateMembers();"><strong>수정</strong></a>
+												<a class="btns" onclick="admin_order_update();"><strong>수정</strong></a>
 											</c:if>
-											<a class="btns" href="#" onClick="history.back();"><strong>입금확인</strong></a>
-											<a class="btns" onclick="updateMembers();"><strong>배송처리</strong></a>
+											<c:if test="${vo.o_state == '결제대기'}">
+												<a class="btns" href="#" onClick="detail_pay_check();"><strong>입금확인</strong></a>
+											</c:if>
+											<c:if test="${vo.o_del == '상품준비중'}">
+												<a class="btns" onclick="detail_delivery_check();"><strong>배송처리</strong></a>
+											</c:if>
 										</div>
 										<div class="btnRight">
 											<c:if test="${vo.oc_cancel == 0 }">
-												<a class="btns" onclick="delMembers(${vo.mno});"><strong>취소 / 반품</strong></a>
+												<a class="btns" onclick="request_cancel();"><strong>취소 / 반품</strong></a>
 											</c:if>
 											<c:if test="${vo.oc_cancel == 1 && (vo.o_state == '취소요청' || vo.o_state == '반품요청')}">
-												<a class="btns" onclick="delMembers(${vo.mno});"><strong>취소 / 반품 승인</strong></a>
-												<a class="btns" onclick="delMembers(${vo.mno});"><strong>취소 / 반품 거부</strong></a>
+												<a class="btns" onclick="accept_cancel();"><strong>취소 / 반품 승인</strong></a>
+												<a class="btns" onclick="reject_cancel();"><strong>취소 / 반품 거부</strong></a>
 											</c:if>
 										</div>
 									</div>

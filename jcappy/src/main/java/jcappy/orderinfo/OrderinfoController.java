@@ -21,7 +21,7 @@ import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.CancelData;
 
-import jcappy.coupon.CouponService;
+import jcappy.coupon.AdminCouponService;
 import jcappy.coupon.CouponVo;
 import jcappy.members.MembersService;
 import jcappy.members.MembersVo;
@@ -42,7 +42,7 @@ public class OrderinfoController {
 	@Autowired
 	MembersService membersService;
 	@Autowired
-	CouponService couponService;
+	AdminCouponService couponService;
 	@Autowired
 	OrderlistService orderlistService;
 	@Autowired
@@ -56,7 +56,7 @@ public class OrderinfoController {
 		client = new IamportClient(api_key, api_secret);
 	}
 	
-	@PostMapping("/pay")
+	@RequestMapping("/pay") // 인터셉터 걸기위해 PostMapping을 RequestMapping으로 바꿈.
 	public String payIndex(Model model, HttpServletRequest request,
 			@RequestParam(value = "sno", required = false) List<Integer> snoList, 
 			@RequestParam("pno") List<Integer> pnoList, 

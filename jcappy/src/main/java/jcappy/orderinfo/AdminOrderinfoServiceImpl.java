@@ -51,4 +51,39 @@ public class AdminOrderinfoServiceImpl implements AdminOrderinfoService {
 	public Map<String, String> admin_pre_del(OrderinfoVo vo) {
 		return dao.admin_pre_del(vo);
 	}
+
+	@Override
+	public int detail_pay_check(OrderinfoVo vo) {
+		return dao.detail_pay_check(vo);
+	}
+
+	@Override
+	public int detail_delivery_check(OrderinfoVo vo) {
+		return dao.detail_delivery_check(vo);
+	}
+
+	@Override
+	public int admin_order_update(OrderinfoVo vo) {
+		return dao.admin_order_update(vo);
+	}
+
+	@Override
+	public int request_cancel(OrderinfoVo vo) {
+		return dao.request_cancel(vo);
+	}
+
+	@Override
+	public int accept_cancel(OrderinfoVo vo) {
+		return dao.accept_cancel(vo);
+	}
+
+	@Override
+	public int reject_cancel(OrderinfoVo vo) {
+		return dao.reject_cancel(vo);
+	}
+
+	@Override
+	public int remake_coupon(OrderinfoVo vo) {
+		return dao.remake_coupon(vo);
+	}
 }

@@ -109,4 +109,83 @@
 					)
 		) 
 	</select> 
+	
+	<!-- [관리자] 상세 입금확인 -->
+	<update id="detail_pay_check" parameterType="jcappy.orderinfo.OrderinfoVo">
+		UPDATE orderinfo
+		SET o_state = '결제완료', o_del = '상품준비중' 
+		WHERE ono=${ono}
+	</update> 
+	
+	<!-- [관리자] 상세 출고처리 -->
+	<update id="detail_delivery_check" parameterType="jcappy.orderinfo.OrderinfoVo">
+		UPDATE orderinfo
+		SET o_del = '배송완료'
+		WHERE ono=${ono}
+	</update>
+	
+	<!-- [관리자] 상세 수정 -->
+	<update id="admin_order_update" parameterType="jcappy.orderinfo.OrderinfoVo">
+		UPDATE orderinfo
+		SET oname=#{oname}, ophone=#{ophone}, ozipcode=#{ozipcode}, oaddr=#{oaddr}, oaddrde=#{oaddrde}, orequest=#{orequest}
+		WHERE ono=${ono}
+	</update>
+	
+	<!-- [관리자] 주문 / 반품처리 -->
+	<update id="request_cancel" parameterType="jcappy.orderinfo.OrderinfoVo">
+		UPDATE orderinfo
+		<choose>
+			<when test="o_state == '결제대기'">
+				SET oc_cancel=1, o_state='취소완료', oc_reason=#{oc_reason}
+			</when>
+			<otherwise>
+				<if test="o_del == '상품준비중'">
+					SET oc_cancel=1, o_state='취소요청', oc_reason=#{oc_reason}
+				</if>
+				<if test="o_del != '상품준비중'">
+					SET oc_cancel=1, o_state='반품요청', oc_reason=#{oc_reason}
+				</if>
+			</otherwise>
+		</choose>
+		WHERE ono=${ono}
+	</update>  
+
+	<!-- [관리자] 주문 / 반품 승인 -->
+	<update id="accept_cancel" parameterType="jcappy.orderinfo.OrderinfoVo">
+		UPDATE orderinfo
+		<choose>  
+			<when test="o_state == '취소요청'">
+				SET o_state='취소완료'
+			</when>
+			<otherwise>
+				SET o_state='반품완료'
+			</otherwise>
+		</choose>
+		WHERE ono=${ono}
+	</update>
+
+	<!-- [관리자] 주문 / 반품 거부 -->
+	<update id="reject_cancel" parameterType="jcappy.orderinfo.OrderinfoVo">
+		UPDATE orderinfo
+		<![CDATA[  
+		SET 
+			o_state='결제완료',
+			oc_cancel=0, 
+			oc_reason=(
+					SELECT msg 
+					FROM (
+						SELECT CONCAT((SELECT oc_reason FROM orderinfo WHERE ono=${ono}), ' / <strong>[관리자] 요청거부 : 고객센터로 문의하세요.</strong>') AS msg 
+						FROM orderinfo WHERE ono=${ono}
+						) AS org
+					)
+	 	]]>
+		WHERE ono=${ono}
+	</update>
+	
+	<!-- [관리자] 주문 취소/반품완료 시, 쿠폰재발급 -->
+	<update id="remake_coupon" parameterType="jcappy.orderinfo.OrderinfoVo">
+		UPDATE coupon
+		SET c_exist=1, cregdate=NOW()
+		WHERE cno=${cno}	
+	</update>
 </mapper>

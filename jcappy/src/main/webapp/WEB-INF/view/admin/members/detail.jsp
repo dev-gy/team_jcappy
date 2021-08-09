@@ -203,6 +203,11 @@ function go_board_list(cate) {
 	}
 }
 
+// 주문 상세 페이지로 이동
+function go_order(no) {
+	location.href='<%=request.getContextPath()%>/admin/order/detail?ono=' + no;
+}
+
 // 주문관리목록에서 작성자 이메일 검색
 function go_order_list() {
 	location.href='<%=request.getContextPath()%>/admin/order/list?stype=memail&sval=${vo.memail}';
@@ -319,7 +324,7 @@ function go_order_list() {
 									</form>
 									<div class="btn">
 										<div class="btnLeft">
-											<a class="btns" href="#" onClick="history.back();"><strong>목록</strong></a>
+											<a class="btns" href="#" onClick="location.href='list?reqPage=${param.reqPage}';"><strong>목록</strong></a>
 										</div>
 										<div class="btnRight">
 											<a class="btns" onclick="updateMembers();"><strong>수정</strong></a>

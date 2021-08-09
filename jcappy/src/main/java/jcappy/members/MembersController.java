@@ -63,10 +63,36 @@ public class MembersController {
 	
 	// 로그인
 	@GetMapping("/login")
-	public String loginForm(MembersVo vo, @CookieValue(value="cookieEmail", required = false) Cookie cookie) {
+	public String loginForm(MembersVo vo, @CookieValue(value="cookieEmail", required = false) Cookie cookie, HttpSession session, HttpServletRequest req) {
 		if (cookie != null) {
 			vo.setMemail(cookie.getValue());
 		}
+		
+		String uri = req.getHeader("Referer"); // 이전페이지
+		String sessionUri = String.valueOf(session.getAttribute("redirectURI")); // 
+		
+		System.out.println(uri);
+		System.out.println(sessionUri);
+		System.out.println(req.getRequestURL());
+		System.out.println("".equals(sessionUri));
+		if (uri == null) {
+			uri = "http://localhost:8080/jcappy";
+		} else {
+			if (!"".equals(sessionUri)) {
+				uri = sessionUri;
+			} else {
+				if ("http://localhost:8080/jcappy/login".equals(uri)) {
+					uri = "http://localhost:8080/jcappy";
+				} else if (!uri.startsWith("http://localhost:8080/jcappy")) {
+					uri = "http://localhost:8080/jcappy";
+				}
+			}
+		}
+		
+		session.setAttribute("redirectURI", "http://localhost:8080/jcappy");
+
+		System.out.println(uri);
+		
 		return "members/login";
 	}
 	// 로그인 쿠키
@@ -76,7 +102,7 @@ public class MembersController {
 	      if (mv == null) {
 	         model.addAttribute("msg", "이메일 또는 비밀번호가 올바르지 않습니다");
 	         model.addAttribute("url", "login");
-	         return "include/alert";
+	         return "include/alert";  
 	      } else {
 	         sess.setAttribute("membersInfo", mv);
 	         // 쿠키에 저장
@@ -88,9 +114,10 @@ public class MembersController {
 	            cookie.setMaxAge(0);
 	         }
 	         res.addCookie(cookie);
-	         String url = "/jcappy";
-	         if (req.getParameter("url") != null && !"".equals( req.getParameter("url"))) url = req.getParameter("url");
-	         return "redirect: "+url;
+	         
+	         String url = String.valueOf(sess.getAttribute("redirectURI"));
+	         sess.removeAttribute("redirectURI");
+	         return "redirect:" + url;
 	      }
 	   }
 	
@@ -148,8 +175,8 @@ public class MembersController {
 	
 	// 회원 정보 수정
 	@RequestMapping("mypage/update")
-	public String update(Model model, MembersVo vo) {
-		int r = service.update(vo);
+	public String update(Model model, MembersVo vo, HttpSession sess) {
+		int r = service.update(vo, sess);
 		if (r>0) {
 		model.addAttribute("msg", "정상적으로 수정되었습니다");
 		model.addAttribute("url", "/jcappy");

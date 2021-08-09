@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>약관 및 정책</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 </head>
 <body>
