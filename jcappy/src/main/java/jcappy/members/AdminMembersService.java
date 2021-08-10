@@ -12,4 +12,5 @@ public interface AdminMembersService {
 	int adminUpdateMembers(MembersVo vo);
 	List<Map<String, String>> boardList(MembersVo vo);
 	List<Map<String, String>> orderList(MembersVo vo);
+	MembersVo find_members(MembersVo vo);
 }

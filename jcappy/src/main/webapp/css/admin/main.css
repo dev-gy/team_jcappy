@@ -112,7 +112,7 @@ top.jsp
 #admin_order_add .admin_order_add_info {width: 810px; margin-bottom: 0px;}
 #admin_order_add .admin_order_add_info #bread table {margin: 0 auto;}
 #admin_order_add .admin_order_add_product {width: 810px;}
-#admin_order_add .admin_order_add_product table td {height: 45px !important; padding: 0 !important;}
+#admin_order_add .admin_order_add_product table td {height: 45px !important;}
 #admin_order_add .admin_order_add_product #bread {height: 40px;}
 #admin_order_add .admin_order_add_info .admin_order_add_table1 {width: 400px !important; margin-bottom: 15px !important;}
 #admin_order_add .admin_order_add_info .admin_order_add_table2 {width: 400px !important; margin-bottom: 15px !important;}

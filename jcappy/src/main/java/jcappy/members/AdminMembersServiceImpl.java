@@ -98,4 +98,9 @@ public class AdminMembersServiceImpl implements AdminMembersService{
 		
 		return dao.orderList(vo);
 	}
+
+	@Override
+	public MembersVo find_members(MembersVo vo) {
+		return dao.find_members(vo);
+	}
 }

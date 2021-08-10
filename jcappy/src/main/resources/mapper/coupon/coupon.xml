@@ -63,4 +63,10 @@
 		#{no}		
 		</foreach>
 	</delete>
+	
+	<select id="addOrderCheckCoupon" resultType="jcappy.coupon.CouponVo" parameterType="jcappy.coupon.CouponVo">
+		SELECT cno, cname, cprice, cregdate, cdate, mno, c_exist
+		FROM coupon
+		WHERE mno=${mno} AND c_exist = 1
+	</select>
 </mapper>
