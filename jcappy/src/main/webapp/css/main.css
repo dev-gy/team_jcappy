@@ -69,6 +69,12 @@ include/bottom
 #footer > .size > .info > .right { right: 0px; position: absolute; text-align: right; text-decoration: underline; }
 
 /*======================================
+include/review
+========================================*/
+#img_detail_area { padding: 0px !important; text-align: center; overflow: hidden; }
+.img_detail { width: 600px; height: 592px; background-repeat: no-repeat; background-size: contain; display: inline-block; }
+
+/*======================================
 mypage/*
 ========================================*/
 .mypage_content { width: 800px; float: left; }

@@ -333,3 +333,28 @@ var cartSubmit = function() {
 	});
 	$("#cart_frm").submit();
 }
+
+
+/*======================================
+include/review
+========================================*/
+$(function() {
+		$("#img_detail_area").dialog({
+			width: 600,	
+			height: 600,
+			modal: true,	// 모달(뒷페이지 클릭방지) 활성화 true
+			autoOpen: false,	// 페이지 로드시 자동 활성화 false
+			resizable: false,		// 사이즈 조절 false
+			open: function() {
+				$("#img_detail_area").on("click", function() {
+					$(this).dialog("close").off();
+				});
+			},
+		}).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();	// 다이얼로그의 타이틀바를 클래스로 찾아서 제거 (타이틀바 사용안할 것)
+		
+		// 이미지 클릭시 다이얼로그로 큰 이미지 나타내기
+		$(".review_img").on("click", function() {
+			$("#img_detail_area").find(".img_detail").css("background-image", $(this).css("background-image"));
+			$("#img_detail_area").dialog("open");
+		});
+	});
