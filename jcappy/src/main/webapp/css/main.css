@@ -282,7 +282,7 @@ pay/index
 
 /* /*====================================== */
 /* review/index */
-/* ========================================*/ */
+/* ========================================*/ 
 /* .review_board_wrap * {box-sizing: border-box;} */
 /* .review_board_wrap {width: 1200px;margin: 0 auto;} */
 /* .review_board_title{margin: 100px 0 0 0;} */
@@ -298,9 +298,9 @@ pay/index
 /* .review_board_page_navigation {clear:both; margin:0 auto; width:200px; height:50px;} */
 
 /*======================================
-mypage/qna/index
+mypage/qna/list
 ========================================*/
-.qna_write_btn { width: 100px; height: 40px; margin:20px 0px; float: right; }
+.qna_list_btn { width: 100px; height: 40px; margin:20px 0px; float: right; border:1px solid #000000;}
 /*======================================
 mypage/qna/detail
 ========================================*/
