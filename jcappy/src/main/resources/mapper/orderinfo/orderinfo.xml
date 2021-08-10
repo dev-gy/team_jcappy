@@ -7,10 +7,13 @@
 			SUM(ol.ol_price * ol.ol_count) AS total_price,
 			ol.ol_pname AS ol_pname,
 			COUNT(ol.pno) AS ol_count,
-			IF(COUNT(ol.pno) > 1, CONCAT(SUBSTR(ol.ol_pname, 1, 25), '... 외', COUNT(ol.pno)-1, '건'), ol.ol_pname) AS oi_pname
-		FROM orderinfo AS oi
-		JOIN orderlist AS ol 
+			IF(COUNT(ol.pno) > 1, CONCAT(SUBSTR(ol.ol_pname, 1, 25), '... 외', COUNT(ol.pno)-1, '건'), ol.ol_pname) AS oi_pname,
+			SUM(ol.ol_price * ol.ol_count) - IF(c.cprice != null, c.cprice, 0) AS result_price
+		FROM orderinfo oi
+		JOIN orderlist ol 
 		ON ol.ono = oi.ono
+		LEFT JOIN coupon c
+		ON oi.cno = c.cno
 		GROUP BY ol.ono
 		HAVING mno = 26
 		ORDER BY ono DESC
@@ -22,11 +25,15 @@
 	</insert>
 	
 	<delete id="delete" parameterType="jcappy.orderinfo.OrderinfoVo">
-		DELETE FROM orderinfo WHERE ono=#{ono}
+		DELETE FROM orderinfo WHERE ono = #{ono}
 	</delete>
 	
-	<select id="selectLastOne" resultType="jcappy.orderinfo.OrderinfoVo">
-		SELECT * FROM orderinfo ORDER BY ono DESC LIMIT 1
+	<update id="cancelUpdate" parameterType="jcappy.orderinfo.OrderinfoVo">
+		UPDATE orderinfo SET o_state = #{o_state}, oc_reason = #{oc_reason} WHERE ono = #{ono}
+	</update>
+	
+	<select id="selectLastOne" parameterType="int" resultType="jcappy.orderinfo.OrderinfoVo">
+		SELECT * FROM orderinfo WHERE mno = #{mno} ORDER BY ono DESC LIMIT 1
 	</select>
 	
 	<!-- [관리자] 주문 검색 -->

@@ -34,6 +34,11 @@
 		WHERE rno = #{rno}
 	</select>
 	
+	<insert id="insert" parameterType="jcappy.review.ReviewVo">
+		INSERT INTO review (rstar, rtitle, rcontent, rregdate, rfile_org, rfile_real, pno, ono, mno)
+		VALUES (#{rstar}, #{rtitle}, #{rcontent}, NOW(), #{rfile_org}, #{rfile_real}, #{pno}, #{ono}, #{mno})
+	</insert>
+	
 	<update id="updateReadcount" parameterType="jcappy.review.ReviewVo">
 		UPDATE review SET rreadcount=rreadcount+1 WHERE rno = #{rno}
 	</update>

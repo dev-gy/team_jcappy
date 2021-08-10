@@ -72,4 +72,9 @@ public class AdminCouponServiceImpl implements AdminCouponService {
 		return dao.deleteGroup(vo);
 	}
 
+	@Override
+	public List<CouponVo> addOrderCheckCoupon(CouponVo vo) {
+		return dao.addOrderCheckCoupon(vo);
+	}
+
 }

@@ -63,8 +63,7 @@
 	<mvc:view-controller path="/mypage/qna/detail.do"/>
 	<mvc:view-controller path="/mypage/memberedit.do"/>
 	<mvc:view-controller path="/mypage/coupon.do"/> 
-	         
-	<mvc:view-controller path="/review/write.do"/> 
+	<mvc:view-controller path="/mypage/review/write.do"/> 
 
 	<!-- 삭제된 페이지 -->	
 	<!-- <mvc:view-controller path="/review/index.do"/> -->

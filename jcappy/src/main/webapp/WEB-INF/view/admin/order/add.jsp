@@ -1,3 +1,4 @@
+<%@page import="jcappy.members.MembersVo"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <html>
 <head>
@@ -5,82 +6,75 @@
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
 </head>
 <script>
-// 결제금액 출력 : 결제금액 = (각 상품 수량 * 각 상품 가격)을 더한 값 - 쿠폰
-function priceForCalc() {
-	var totalPrice = 0;
-	var couponPrice = $('.couponPrice').val();
-	for(var i = 0; i < $('.priceForCalc').length; i++) {
-		totalPrice += Number($('.priceForCalc').eq(i).val());
-	}
-	return totalPrice - couponPrice;
-}
-
-// radio버튼 주소값 변경
-function checkAddr() {
-	$('.adds').each(function(i, v) {
-		if ($('.adds').eq(i).prop('checked')) {
-//				console.log($('.adds').eq(i).val());
-			if ($('.adds').eq(i).val() == '1') {
-				$('#oname').val('${vo.oname}').attr('readonly', 'readonly');
-				$('#ophone').val('${vo.ophone}').attr('readonly', 'readonly');
-				$('#ozipcode').val('${vo.ozipcode}').removeAttr('onclick', "daumPostcode($('#ozipcode'), $('#oaddr'), $('#oaddrde'));");
-				$('#oaddr').val('${vo.oaddr}').removeAttr('onclick', "daumPostcode($('#ozipcode'), $('#oaddr'), $('#oaddrde'));");
-				$('#oaddrde').val('${vo.oaddrde}').attr('readonly', 'readonly');
-			} else if ($('.adds').eq(i).val() == '2') {
-				$('#oname').val('${members.mname}').attr('readonly', 'readonly');
-				$('#ophone').val('${members.mphone}').attr('readonly', 'readonly');
-				$('#ozipcode').val('${members.mzipcode}').removeAttr('onclick', "daumPostcode($('#ozipcode'), $('#oaddr'), $('#oaddrde'));");
-				$('#oaddr').val('${members.maddr}').removeAttr('onclick', "daumPostcode($('#ozipcode'), $('#oaddr'), $('#oaddrde'));");
-				$('#oaddrde').val('${members.maddrde}').attr('readonly', 'readonly');
-			} else if ($('.adds').eq(i).val() == '3') {
-				$('#oname').val('${preDelivery.oname}').attr('readonly', 'readonly');
-				$('#ophone').val('${preDelivery.ophone}').attr('readonly', 'readonly');
-				$('#ozipcode').val('${preDelivery.ozipcode}').removeAttr('onclick', "daumPostcode($('#ozipcode'), $('#oaddr'), $('#oaddrde'));");
-				$('#oaddr').val('${preDelivery.oaddr}').removeAttr('onclick', "daumPostcode($('#ozipcode'), $('#oaddr'), $('#oaddrde'));");
-				$('#oaddrde').val('${preDelivery.oaddrde}').attr('readonly', 'readonly');
-			} else if ($('.adds').eq(i).val() == '4') {
-				$('#oname').val('').removeAttr('readonly');
-				$('#ophone').val('').removeAttr('readonly');
-				$('#ozipcode').val('').attr('onclick', "daumPostcode($('#ozipcode'), $('#oaddr'), $('#oaddrde'));");
-				$('#oaddr').val('').attr('onclick', "daumPostcode($('#ozipcode'), $('#oaddr'), $('#oaddrde'));");
-				$('#oaddrde').val('').removeAttr('readonly');
-			} 
-		}
+$(function (){
+	// ===== 쿠폰 =====		
+	$("#coupon_dialog").dialog({
+		width: 600,	// 가로 300px
+		modal: true,	// 모달(뒷페이지 클릭방지) 활성화 true
+		autoOpen: false,	// 페이지 로드시 자동 활성화 false
+		resizable: false,		// 사이즈 조절 false
+		buttons: {			// 계속 쇼핑, 장바구니 이동 버튼 생성 및 함수 구현
+			"취소": function() {
+				$(this).dialog("close");	// 현재 다이얼로그 닫기
+			}
+		},
+	}).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();	// 다이얼로그의 타이틀바를 클래스로 찾아서 제거 (타이틀바 사용안할 것)
+	
+	// 스크롤시 다이얼로드 중앙 고정되도록 다이얼로그 옵션의 포지션 센터 위치 재등록
+	$(window).scroll(function() {
+		$("#coupon_dialog").dialog("option", "position", { my: "center", at: "center", of: window });
 	});
-}
+	
+	// 쿠폰버튼 클릭시 쿠폰목록 다이얼로그 열기
+	$(document).on("click", "input[name=couponPrice]", function(){
+		$("#coupon_dialog").dialog("open");
+	});
 
-// radio버튼 클릭이벤트
-function clickAddr() {
-	$('.adds').on('click', function() {
-		checkAddr();
+	$(document).on("click", ".use_coupon_btn", function(){
+		var couponPrice = Number($(this).closest(".coupon_item").find(".cprice").val());	// 쿠폰 할인가격
+		var resultPrice = Number($("#result_price").val());	// 최종 결제 금액
+		var newResultPrice = Number("${totalAllPrice}") + Number("${deliveryAllPrice}") - couponPrice;			// 새로 갱신된 최종 결제 금액
+		
+		// 쿠폰 할인 금액 갱신
+		$(".coupon_price").val(couponPrice);
+		$(".coupon_price_txt").text(couponPrice != 0 ? Number(-couponPrice).toLocaleString("ko-KR")+"원" : "0원");
+		
+		// 최종 결제 금액 갱신
+		$("#result_price").val(newResultPrice);
+		$(".result_price_txt").text(newResultPrice.toLocaleString("ko-KR")+"원");
+		
+		// 적용한 쿠폰 번호 저장
+		$("#coupon_no").val($(this).closest(".coupon_item").find(".cno").val());
+		
+		$("#coupon_dialog").dialog("close");
 	})
+});
+
+function find_members() {
+	
+	if($('#find_members').val().trim() == '') {
+		alert('회원의 이메일을 입력해주세요.');		
+		return;
+	} else {
+		$.ajax({
+			url:'<%=request.getContextPath()%>/admin/order/find_members',
+			method: 'POST',
+			data: {
+				memail: $('#find_members').val(),
+			},
+			success: function(res) {
+				if (res.trim() == 'true') {
+					getForAdd();
+					getForAddProduct();				
+				} else {
+					alert('존재하지 않는 회원입니다.');
+					return;
+				}
+			},
+		});
+	}
 }
 
-$(function() {
-	
-	$('.totalPrice').text(priceForCalc().toLocaleString('ko-KR') + '원');
-	checkAddr();
-	clickAddr();
-	
-	$('.add_product').click(function() {
-		var html = '';
-		
-		html += '<tr class="product_row">';
-		html += '<td class="first"></td>';
-		html += '<td class="title"</td>';
-		html += '<td></td>';
-		html += '<td><input type="text" name="product_count" size="5" numberOnly></td>';
-		html += '<td></td>';
-		html += '<td><span><a class="btns delete"><strong>삭제</strong></a></span></td>';
-		html += '</tr>';
-		
-		$('.admin_order_add_product table tbody .for_area').before(html);
-		
-		$('.delete').click(function() {
-			$(this).closest('.product_row').remove();
-		});
-	});
-});
 
 // 빈칸확인
 function empty_check(){
@@ -124,6 +118,28 @@ function admin_order_update() {
 		}
 	}
 }
+
+function getForAdd(mno) {
+	$.ajax({
+		url: "<%=request.getContextPath()%>/admin/order/include_forAdd",
+		data: {
+		},
+		success: function(res) {
+			$('#include_forAdd_Area').html(res);	
+		}
+	});
+}
+
+function getForAddProduct(mno) {
+	$.ajax({
+		url: "<%=request.getContextPath()%>/admin/order/include_forAddProduct",
+		data: {
+		},
+		success: function(res) {
+			$('#include_forAddProduct_Area').html(res);	
+		}
+	});
+}
 </script>
 <body>
 	<div id="wrap">
@@ -155,129 +171,17 @@ function admin_order_update() {
 												<tr>
 													<th scope="row"><label for="aid">회원 이메일 검색</label></th>
 													<td colspan="10" class="class_for_padding">
-														<input type="text" id="aid" name="aid" class="w80"/>
-														<span><a class="btns" href="#" onClick="check_create_id_button($('#aid'), '<%=request.getContextPath()%>/admin/auth/isDuplicateId');"><strong>검색</strong></a></span>
+														<input type="text" id="find_members" name="find_members" class="w80"/>
+														<span><a class="btns" href="#" onClick="find_members();"><strong>검색</strong></a></span>
 													</td>
 												</tr>
 											</tbody>
 										</table>
-										<table class="admin_order_add_table2">
-											<colgroup>
-												<col width="30%" />
-												<col width="*" />
-											</colgroup>
-											<tbody>
-												<tr>
-													<th scope="row"><label for="memail">주문자이메일</label></th>
-													<td colspan="10"><input type="text" id="memail" name="memail" class="w100" value="${members.memail }" readonly /></td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="mname">주문자이름</label></th>
-													<td colspan="10"><input type="text" id="mname" name="mname" class="w100" value="${members.mname }" readonly /></td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="opay">결제정보</label></th>
-													<td colspan="10"><input type="text" id="opay" name="opay" class="w100" value="계좌이체" readonly /></td>
-												</tr>
-											</tbody>
-										</table>
-										<table class="admin_order_add_table3">
-											<colgroup>
-												<col width="30%" />
-												<col width="*" />
-											</colgroup>
-											<tbody>
-												<tr>
-													<th scope="row"><label for="ono">배송지정보</label></th>
-													<td colspan="10">
-														<label><input type="radio" class="adds" name="adds" value="1" />&nbsp;기본</label>&nbsp;
-														<c:if test="${!empty preDelivery.oname }">
-															<label><input type="radio" class="adds" name="adds" value="2" />&nbsp;배송</label>&nbsp;
-														</c:if>
-														<label><input type="radio" class="adds" name="adds" value="3" />&nbsp;직접</label>
-													</td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="oname">수령인</label></th>
-													<td colspan="10"><input type="text" id="oname" name="oname" class="w100" value="" readonly /></td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="ophone">연락처</label></th>
-													<td colspan="10"><input type="text" id="ophone" name="ophone" class="w100" value="" readonly /></td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="ozipcode">우편번호</label></th>
-													<td colspan="10"><input type="text" id="ozipcode" name="ozipcode" class="w100" value="" readonly /></td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="oaddr">주소</label></th>
-													<td colspan="10"><input type="text" id="oaddr" name="oaddr" class="w100" value="" readonly /></td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="oaddrde">상세주소</label></th>
-													<td colspan="10"><input type="text" id="oaddrde" name="oaddrde" class="w100" value="" readonly /></td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="orequest">배송메시지</label></th>
-													<td colspan="10"><input type="text" id="orequest" name="orequest" class="w100" value="${vo.orequest}" /></td>
-												</tr>
-											</tbody>
-										</table>
+										<div id="include_forAdd_Area"></div>
 									</div>
 									<!-- //bread -->
 								</div>
-								<div id="bbs" class="admin_order_add_product">
-									<div id="blist">
-										<div class="btn">
-												<div class="btnRight">
-													<a class="btns add_product" href="#"><strong>추가</strong></a>
-												</div>
-										</div>
-										<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="주문상품목록">
-											<colgroup>
-												<col class="w7" />
-												<col width="*" />
-												<col class="w20" />
-												<col class="w7" />
-												<col class="w20" />
-												<col class="w7" />
-											</colgroup>
-											<thead>
-												<tr>
-													<th scope="col" class="first"><strong>주문상품</strong></th>
-													<th scope="col">상품명</th>
-													<th scope="col">상품금액</th>
-													<th scope="col">상품수량</th>
-													<th scope="col">합계</th>
-													<th scope="col" class="last"></th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr class="for_area">
-													<td class="first" colspan="4">할인금액</td>
-													<td class="coupon class_for_padding">
-														<input type="text" name="couponPrice" class="couponPrice" value="${coupon.cprice}" readonly>	
-													</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td class="first" colspan="4">결제금액</td>
-													<td class="totalPrice"></td>
-													<td></td>
-												</tr>
-											</tbody>
-										</table>
-										</div>
-									<div class="btn">
-										<div class="btnLeft">
-											<a class="btns" href="#" onClick="location.href='list?reqPage=${param.reqPage}';"><strong>목록</strong></a>
-										</div>
-										<div class="btnRight">
-											<a class="btns" onclick="request_cancel();"><strong>등록</strong></a>
-										</div>
-									</div>
-									<!--//btn-->
-								</div>
+								<div id="include_forAddProduct_Area"></div>
 							</form>
 						</div>
 						<!-- //bbs -->
@@ -293,5 +197,49 @@ function admin_order_update() {
 		<!--//canvas -->
 	</div>
 	<!--//wrap -->
+<div id="coupon_dialog">
+	<table class="cstyle_table">
+		<colgroup>
+			<col>
+			<col width="200px">
+			<col width="80px">
+		</colgroup>
+		<thead>
+			<tr>
+				<th scope="col">쿠폰이름</th>
+				<th class="cstyle_text_align_right" scope="col">할인가격</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="coupon_item">
+				<td class="cstyle_text_align_right">
+					<p>쿠폰 선택 안함</p>
+				</td>
+				<td>
+					<input class="cprice" type="hidden" value="0">
+				</td>
+				<td class="cstyle_text_align_right">
+					<button class="use_coupon_btn cstyle_btn">선택</button>
+				</td>
+			</tr>
+			<c:forEach var="item" items="${cList }" varStatus="index">
+				<tr class="coupon_item">
+					<td class="cstyle_text_align_right">
+						<p class="cname_txt">${item.cname }</p>
+						<input class="cname" type="hidden" value="${item.cname }">
+					</td>
+					<td class="cstyle_text_align_right">
+						<fmt:formatNumber value="${item.cprice }"/>원
+						<input class="cprice" type="hidden" value="${item.cprice }">
+					</td>
+					<td class="cstyle_text_align_right">
+						<button class="use_coupon_btn cstyle_btn">선택</button>
+						<input class="cno" type="text" hidden=""value="${item.cno }">
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+</div>
 </body>
 </html>

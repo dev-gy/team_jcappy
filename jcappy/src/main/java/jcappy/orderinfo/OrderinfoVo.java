@@ -4,6 +4,10 @@ import java.sql.Timestamp;
 
 import jcappy.util.CommonVo;
 
+/**
+ * @author ummnaa
+ *
+ */
 public class OrderinfoVo extends CommonVo {
 	private int ono;
 	private Timestamp odate;
@@ -23,7 +27,9 @@ public class OrderinfoVo extends CommonVo {
 	private String imp_uid;
 
 	private int total_price;
+	private int result_price;
 	private String oi_pname;
+	
 
 	private int[] onos;
 
@@ -165,6 +171,14 @@ public class OrderinfoVo extends CommonVo {
 
 	public void setTotal_price(int total_price) {
 		this.total_price = total_price;
+	}
+
+	public int getResult_price() {
+		return result_price;
+	}
+
+	public void setResult_price(int result_price) {
+		this.result_price = result_price;
 	}
 
 	public int[] getOnos() {

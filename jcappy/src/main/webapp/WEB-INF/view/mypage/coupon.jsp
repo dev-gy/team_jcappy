@@ -30,16 +30,13 @@
 	                        </tr>
 	                    </thead>
 	                    <tbody>
-	                        <tr>
-	                            <td>생일축하합니다!!</td>
-	                            <td>10,000</td>
-	                            <td>~2021-08-31</td>
-	                        </tr> 
-	                        <tr>
-	                            <td>5월 개근상!!</td>
-	                            <td>5,000</td>
-	                            <td>~2021-07-30</td>
-	                        </tr>
+		                    <c:forEach var="vo" items="${list }">
+		                        <tr>
+		                            <td>${vo.cname }</td>
+		                            <td><fmt:formatNumber maxFractionDigits="3" type="number" value="${vo.cprice }"/>원</td>
+		                            <td><fmt:formatDate value="${vo.cenddate }" pattern="yyyy-MM-dd"/></td>
+		                        </tr>
+		                    </c:forEach>
 	                    </tbody>
 	                </table>
 	            </div>

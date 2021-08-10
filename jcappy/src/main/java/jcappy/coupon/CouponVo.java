@@ -16,6 +16,7 @@ public class CouponVo extends CommonVo{
 	
 	private String memail;
 	private String mname;
+	private Timestamp cenddate;
 	
 	public CouponVo() {
 		setOrderby("cregdate");
@@ -88,4 +89,13 @@ public class CouponVo extends CommonVo{
 	public void setCnos(int[] cnos) {
 		this.cnos = cnos;
 	}
+
+	public Timestamp getCenddate() {
+		return cenddate;
+	}
+
+	public void setCenddate(Timestamp cenddate) {
+		this.cenddate = cenddate;
+	}
+	
 }

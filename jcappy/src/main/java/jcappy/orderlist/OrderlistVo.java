@@ -7,6 +7,8 @@ public class OrderlistVo {
 	private int ol_count;
 	private int ol_price;
 	private String ol_pname;
+	private String pimg1_org;
+	private int total_price;
 
 	public int getOno() {
 		return ono;
@@ -47,4 +49,21 @@ public class OrderlistVo {
 	public void setOl_pname(String ol_pname) {
 		this.ol_pname = ol_pname;
 	}
+
+	public String getPimg1_org() {
+		return pimg1_org;
+	}
+
+	public void setPimg1_org(String pimg1_org) {
+		this.pimg1_org = pimg1_org;
+	}
+
+	public int getTotal_price() {
+		return total_price;
+	}
+
+	public void setTotal_price(int total_price) {
+		this.total_price = total_price;
+	}
+	
 }

@@ -143,8 +143,8 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/product/detail/{no}")
-	public String detail(Model model, ProductVo vo,  @PathVariable String no) {
-		vo.setPno(Integer.parseInt(no));
+	public String detail(Model model, ProductVo vo,  @PathVariable int no) {
+		vo.setPno(no);
 		model.addAttribute("vo", productService.detail(vo));
 		return "/product/detail";
 	}

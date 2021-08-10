@@ -21,12 +21,16 @@ public class OrderinfoDao {
 		return sqlSession.insert("orderinfo.insert", vo);
 	}
 
-	public OrderinfoVo selectLastOne() {
-		return sqlSession.selectOne("orderinfo.selectLastOne");
+	public OrderinfoVo selectLastOne(int mno) {
+		return sqlSession.selectOne("orderinfo.selectLastOne", mno);
 	}
 
 	public int delete(OrderinfoVo vo) {
 		return sqlSession.delete("orderinfo.delete", vo);
+	}
+	
+	public int cancelUpdate(OrderinfoVo vo) {
+		return sqlSession.update("orderinfo.cancelUpdate", vo);
 	}
 
 	public List<Map<String, String>> admin_selectList(OrderinfoVo vo) {

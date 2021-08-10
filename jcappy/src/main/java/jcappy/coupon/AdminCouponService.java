@@ -13,5 +13,5 @@ public interface AdminCouponService {
 	int insert(CouponVo vo);
 	int countMemail(CouponVo vo);
 	int deleteGroup(CouponVo vo);
-
+	List<CouponVo> addOrderCheckCoupon(CouponVo vo);
 }

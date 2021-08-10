@@ -130,4 +130,11 @@
 	<select id="orderCount" resultType="int" parameterType="jcappy.members.MembersVo">
 		SELECT COUNT(*) FROM orderinfo WHERE mno = ${mno}
 	</select>
+	
+	<!-- [관리자] 주문추가 : 이메일로 회원정보 찾기 -->
+	<select id="find_members" resultType="jcappy.members.MembersVo" parameterType="jcappy.members.MembersVo">
+		SELECT mno, mname, mphone, memail, mgrade, mregdate, mzipcode, maddr, maddrde
+		FROM members
+		WHERE memail=#{memail}
+	</select>
 </mapper>

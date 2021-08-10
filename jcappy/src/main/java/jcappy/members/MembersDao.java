@@ -88,4 +88,8 @@ public class MembersDao {
 	public int orderCount(MembersVo vo) {
 		return sqlSession.selectOne("members.orderCount", vo);
 	}
+
+	public MembersVo find_members(MembersVo vo) {
+		return sqlSession.selectOne("members.find_members", vo);
+	}
 }
