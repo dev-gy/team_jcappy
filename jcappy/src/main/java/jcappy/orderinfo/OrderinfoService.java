@@ -8,4 +8,5 @@ public interface OrderinfoService {
 	OrderinfoVo selectLastOne(int mno);
 	int delete(OrderinfoVo vo);
 	OrderinfoVo detail(OrderinfoVo vo);
+	int cancelUpdate(OrderinfoVo vo);
 }

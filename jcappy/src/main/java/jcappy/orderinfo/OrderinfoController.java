@@ -22,6 +22,7 @@ import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.CancelData;
 
 import jcappy.coupon.AdminCouponService;
+import jcappy.coupon.CouponService;
 import jcappy.coupon.CouponVo;
 import jcappy.members.MembersService;
 import jcappy.members.MembersVo;
@@ -42,7 +43,7 @@ public class OrderinfoController {
 	@Autowired
 	MembersService membersService;
 	@Autowired
-	AdminCouponService couponService;
+	CouponService couponService;
 	@Autowired
 	OrderlistService orderlistService;
 	@Autowired
@@ -188,17 +189,79 @@ public class OrderinfoController {
 	@RequestMapping("/mypage/order")
 	public String orderIndex(Model model, HttpServletRequest request) {
 		model.addAttribute("list", orderinfoService.selectAll(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno()));
-		return "mypage/order/index";
+		return "/mypage/order/index";
 	}
 	
 	@RequestMapping("/mypage/order/detail/{ono}")
 	public String orderDetail(Model model, @PathVariable int ono) {
 		OrderinfoVo oiVo = new OrderinfoVo();
 		oiVo.setOno(ono);
+		oiVo = orderinfoService.detail(oiVo);
+		
+		OrderlistVo olVo = new OrderlistVo();
+		olVo.setOno(ono);
+		List<OrderlistVo> olList = orderlistService.selectAll(olVo);
+		
+		// 주문목록의 최종결제금액 구해서 추가
+		int resultPrice = 0;
+		
+		int couponPrice = 0;	// 해상 주문당시의 쿠폰 데이터 구해오기
+		if (oiVo.getCno() != 0) {
+			CouponVo cVo = new CouponVo();
+			cVo.setCno(oiVo.getCno());
+			couponPrice = couponService.detail(cVo).getCprice();
+		}
+		
+		int sum = 0;
+		for (int i = 0; i < olList.size(); i++) {	// 상품목록의 통합가격을 모두 더한 후 쿠폰값을 빼서 최종 결제금액 구하기
+			sum += olList.get(i).getTotal_price();
+		}
+		resultPrice = sum - couponPrice;
+		
+		oiVo.setResult_price(resultPrice);
+		
+		model.addAttribute("oiVo", oiVo);
+		model.addAttribute("olList", olList);
+		return "/mypage/order/detail";
+	}
+	
+	@RequestMapping("/mypage/order/cancel")
+	public String orderCancel(Model model, HttpServletRequest request) {
+		model.addAttribute("list", orderinfoService.selectAll(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno()));
+		return "/mypage/order/cancel";
+	}
+	
+	@RequestMapping("/mypage/order/canceldetail/{ono}")
+	public String orderCanceldetail(Model model, @PathVariable int ono, HttpServletRequest request) {
+		OrderinfoVo oiVo = new OrderinfoVo();
+		oiVo.setOno(ono);
 		model.addAttribute("oiVo", orderinfoService.detail(oiVo));
 		OrderlistVo olVo = new OrderlistVo();
 		olVo.setOno(ono);
 		model.addAttribute("olList", orderlistService.selectAll(olVo));
-		return "mypage/order/detail";
+		return "/mypage/order/canceldetail";
+	}
+	
+	@RequestMapping("/mypage/order/cancelwrite/{ono}")
+	public String orderCancelwrite(Model model, @PathVariable int ono, HttpServletRequest request) {
+		OrderinfoVo vo = new OrderinfoVo();
+		vo.setOno(ono);
+		model.addAttribute("vo", orderinfoService.detail(vo));
+		return "/mypage/order/cancelwrite";
+	}
+	
+	@RequestMapping("/mypage/order/update")
+	public String orderUpdate(Model model, OrderinfoVo vo, HttpServletRequest request) {
+		int res = orderinfoService.cancelUpdate(vo);	
+		// r > 0 : 정상 -> alert -> 목록으로 이동
+		// r == 0 : 비정상 -> alert -> 이전페이지로 이동
+		if (res > 0) {
+			model.addAttribute("msg", "정상적으로 등록되었습니다.");
+			model.addAttribute("url", "/jcappy/mypage/order/detail/"+vo.getOno());
+		} else {
+			model.addAttribute("msg", "등록실패");
+			model.addAttribute("url", "/jcappy/mypage/order/cancelwrite/"+vo.getOno());
+		}
+		return "include/alert";
 	}
 }

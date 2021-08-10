@@ -4,25 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
 <%@ include file="/WEB-INF/view/include/head.jsp"%>
 <script type="text/javascript" src="/jcappy/js/starrating.js"></script>
 <link rel="stylesheet" type="text/css" href="/jcappy/css/starrating.css" />
-<style type="text/css">
-	
-</style>
-<script type="text/javascript">
-$(function() {
-	$(".rstar_area").on("click", function() {
-		$("#rstar").val($(this).index()+1);
-		$(".review_score").text($("#rstar").val());
-		$(".review_score").generateStars();
-		
-	});
-})
-
- 
-</script>
 </head>
 <body>
 	<div id="wrap">

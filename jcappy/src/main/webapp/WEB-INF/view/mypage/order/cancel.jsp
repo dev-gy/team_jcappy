@@ -39,20 +39,19 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td><a href="/jcappy/mypage/order/cancelwrite.do">9999</a></td>
-								<td class="cstyle_text_align_left">냉장고 외1건</td>
-								<td>10,000,000원</td>
-								<td>2021-05-05</td>
-								<td>취소/교환/반품 요청</td>
-							</tr>
-							<tr>
-								<td><a href="/jcappy/mypage/order/cancelwrite.do">8888</a></td>
-								<td class="cstyle_text_align_left">세탁기 외2건</td>
-								<td>10,000,000원</td>
-								<td>2021-05-05</td>
-								<td>취소완료</td>
-							</tr>
+							<c:forEach var="vo" items="${list }">
+								<tr>
+									<td>
+										<a <c:if test="${vo.oc_cancel == 1 }">href="/jcappy/mypage/order/canceldetail/${vo.ono }"</c:if>>${vo.ono }</a>
+										</td>
+									<td class="cstyle_text_align_left">
+										<a <c:if test="${vo.oc_cancel == 1 }">href="/jcappy/mypage/order/canceldetail/${vo.ono }"</c:if>>${vo.oi_pname }</a>
+									</td>
+									<td><fmt:formatNumber maxFractionDigits="3" type="number" value="${vo.result_price }"/>원</td>
+									<td><fmt:formatDate value="${vo.odate }" pattern="yyyy-MM-dd"/></td>
+									<td>${vo.o_state }</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>

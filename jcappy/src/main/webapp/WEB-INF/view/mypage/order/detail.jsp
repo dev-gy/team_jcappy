@@ -39,7 +39,7 @@
 									<th>주문날짜</th>
 									<td class="cstyle_text_align_left"><fmt:formatDate value="${oiVo.odate }" pattern="yyyy-MM-dd"/></td>
 									<th>배송상태</th>
-									<td class="cstyle_text_align_left"><div>${oiVo.o_state }</div></td>
+									<td class="cstyle_text_align_left"><div>${oiVo.o_del }</div></td>
 								</tr>
 							</table>
 						</div>
@@ -134,7 +134,7 @@
 						<div class="mypage_for_blank"></div>
 						<!-- 취소/교환/반품 요청 -->
 						<div class="btn_wrap">
-							<button class="cstyle_btn" onclick="location.href='/jcappy/mypage/order/cancel.do'">취소/교환/반품 요청</button>
+							<button class="cstyle_btn" onclick="location.href='/jcappy/mypage/order/cancelwrite/${oiVo.ono}'">취소/교환/반품 요청</button>
 						</div>
 					</div>
 				</div>

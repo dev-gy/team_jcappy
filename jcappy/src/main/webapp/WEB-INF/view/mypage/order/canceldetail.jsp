@@ -32,11 +32,11 @@
 							</colgroup>
 							<tr>
 								<th>주문번호</th>
-								<td>9999</td>
+								<td>${oiVo.ono }</td>
 								<th>주문날짜</th>
-								<td>2021-05-05</td>
+								<td><fmt:formatDate value="${oiVo.odate }" pattern="yyyy-MM-dd"/></td>
 								<th>처리상태</th>
-								<td><div>취소/교환/반품 요청</div></td>
+								<td><div>${oiVo.o_state }</div></td>
 							</tr>
 						</table>
 					</div>
@@ -56,24 +56,14 @@
 								<th>상품금액</th>
 								<th>합계</th>
 							</tr>
-							<tr>
-								<td class="cstyle_text_align_left"><a href=""><img src="/jcappy/img/냉장고.jpg"></a>냉장고1</td>
-								<td>1</td>
-								<td>1,000,000</td>
-								<td>1,000,000</td>
-							</tr>
-							<tr>
-								<td class="cstyle_text_align_left"><a href=""><img src="/jcappy/img/냉장고.jpg"></a>에어컨1</td>
-								<td>2</td>
-								<td>1,000,000</td>
-								<td>2,000,000</td>
-							</tr>
-							<tr>
-								<td class="cstyle_text_align_left"><a href=""><img src="/jcappy/img/냉장고.jpg"></a>세탁기1</td>
-								<td>2</td>
-								<td>1,000,000</td>
-								<td>2,000,000</td>
-							</tr>
+							<c:forEach var="olVo" items="${olList} }">
+								<tr>
+									<td class="cstyle_text_align_left"><a href=""><img src="${olVo.pimg1_org }"></a>${olVo.pname }</td>
+									<td>${olVo.pno }</td>
+									<td>${olVo.ol_price }</td>
+									<td>${olVo.total_price }</td>
+								</tr>
+							</c:forEach>
 						</table>
 					</div>
 					<div class="mypage_for_blank"></div>
@@ -87,19 +77,22 @@
 							</colgroup>
 							<tr>
 								<th>받는사람</th>
-								<td>이강인</td>
+								<td>${oiVo.oname }</td>
 							</tr>
 							<tr>
 								<th>연락처</th>
-								<td>123-456-789</td>
+								<td>${oiVo.ophone }</td>
 							</tr>
 							<tr>
 								<th>받는주소</th>
-								<td>경기도 고양시 일산서구</td>
+								<td>
+									<p>${oiVo.ozipcode }</p>
+									${oiVo.oaddr } ${oiVo.oaddr }
+								</td>
 							</tr>
 							<tr>
 								<th>배송메시지</th>
-								<td>빠른 배송 희망</td>
+								<td>${oiVo.orequest }</td>
 							</tr>
 						</table>
 					</div>
@@ -118,7 +111,7 @@
 							</tr>
 							<tr>
 								<th>총 결제금액</th>
-								<td>5,000,000</td>
+								<td><fmt:formatNumber maxFractionDigits="3" type="number" value="${oiVo.result_price }" /></td>
 							</tr>
 						</table>
 					</div>
@@ -128,7 +121,7 @@
 						<div class="mypage_for_subtitle">취소/교환/반품 사유</div>
 						<table class="cstyle_table cstyle_text_align_left">
 							<tr>
-								<td>단순변심</td>
+								<td>${oiVo.oc_reason }</td>
 							</tr>
 						</table>
 					</div>

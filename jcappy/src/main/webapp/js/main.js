@@ -25,9 +25,9 @@ function phoneNumber(el) {
 	
 	var num = el.value;
 	if (num.length < 9) {
-		num = 9;
+		num.substring(0, 9);
 	} else if (num.length > 11) {
-		num = 11;
+		num.substring(0, 11);
 	}
 	el.value = num;
 }
@@ -181,10 +181,155 @@ $(function(){
 });
 
 /*======================================
-product/detail
+mypage/review/write
 ========================================*/
 $(function() {
-	
-	
-	
+	$(".rstar_area").on("click", function() {
+		$("#rstar").val($(this).index()+1);
+		$(".review_score").text($("#rstar").val());
+		$(".review_score").generateStars();
+	});
 });
+
+/*======================================
+cart
+========================================*/
+$(function() {
+	// 체크박스 체크/해제 되면 최종금액 갱신 및 모두체크박스 갱신
+	$(".checkbox").on("click", function() {
+		updateResultPrice();
+		
+		// 현재 체크박스값과 모든 체크박스 값이 같지 않을경우 모두체크박스 체크해제
+		var isAll = true;
+		var b = $(this).prop("checked");
+		var items = $(".checkbox");
+		for (var i = 0; i < items.length; i++) {
+			if ($(items[i]).prop("checked") != b) {
+				isAll = false;
+				break;
+			}
+		}
+		// 모든 체크박스 값이 같다면 모두체크박스 체크
+		$(".checkbox_all").prop("checked", isAll);
+	});
+	
+	// 체크여부에 따른 합산금액 갱신 및 금액단위 표시
+	$(".total_price").on("change", function() {
+		$(this).closest(".cart_item").find(".total_price_txt").text(Number($(this).val()).toLocaleString("ko-KR")+"원");
+		
+		updateResultPrice();
+	});
+	
+	// 최종금액 갱신 함수
+	// 체크박스 체크된 목록의 합산금액을 모두 더해 갱신 및 금액단위 표시
+	var updateResultPrice = function() {
+		var res = 0;
+		$.each($(".cart_item"), function(index, item) {
+			if ($(item).find(".checkbox").prop("checked")) {
+				res += (Number($(item).find(".total_price").val()));
+			}
+		});
+		$(".result_price_txt").text(res.toLocaleString("ko-KR")+"원");
+	}
+	// 페이지 진입시 최종금액 갱신 (합산금액 코드보다 위로 올리면 순서때문에 갱신안됨..)
+	updateResultPrice();
+	
+	// 모두체크 박스
+	// 모두체크박스 체크/해제시 상태가 다른 모든 체크박스 클릭이벤트 발생시켜 동일하게 변경 (클릭이벤트를 발생시켜야 최종금액이 갱신된다)
+	$(".checkbox_all").on("click", function() {
+		var elThis = $(".checkbox_all");
+		$(".checkbox").prop("checked", $(".checkbox_all").prop("checked"));
+		
+		updateResultPrice();
+	});
+	
+	// 수량 변동 이벤트
+	// count 값이 바뀌면 발생하는 이벤트
+	$(".count").on("change", function() {
+		// cart 테이블의 최상위 아이템요소
+		var elParent = $(this).closest(".cart_item");
+		// 호출자 요소
+		var elThis = $(this);
+		$.ajax({
+			url: "/jcappy/cart/countupdate",
+			type: "POST",
+			data: {
+				sno: elParent.find(".sno").val(),   
+				scount: elParent.find(".count").val(),
+				pno: elParent.find(".pno").val(),
+				pprice: elParent.find(".price").val(),
+			},
+			dataType: "json",	// json 타입으로 값을 받아옴
+			success: function(res) {
+				// 갯수가 성공적으로 갱신되었을 경우
+				if (res != "") {
+					// 데이터와 ui의 값이 일치하지 않을경우를 위해 데이터값으로 ui를 재갱신
+					// 현재 count input에 값 갱신 및 포커싱 끊기
+					elThis.val(res.scount).blur();
+					// 합산가격 갱신 및 금액단위 표시
+					elParent.find(".total_price").val(res.total_price).trigger("change");
+				}
+			},
+			error: function(res) {
+				console.log("error: num change");
+			}
+		});
+	});
+	
+	// 빼기버튼
+	// 빼기버튼 클릭시 값이 1 초과일 경우 값-1 및 값변동 트리거 실행
+	$(".minus_btn").on("click", function() {
+		var elParent = $(this).closest(".cart_item");	// 현재 아이템의 최상위요소
+		var elCount = elParent.find(".count");		// 현재 아이템의 수량입력요소
+		var count = Number(elCount.val());				// 현재 수량
+		var price = Number(elParent.find(".price").val());	// 현재 상품 가격
+		if (count > 1) {
+			count -= 1;
+			elCount.val(count).trigger("change");
+		}
+	});
+	
+	// 더하기버튼
+	// 더하기버튼 클릭시 값+1 및 값변동 트리거 실행
+	$(".plus_btn").on("click", function() {
+		var elParent = $(this).closest(".cart_item");	// 현재 아이템의 최상위요소
+		var elCount = elParent.find(".count");		// 현재 아이템의 수량입력요소
+		var count = Number(elCount.val());				// 현재 수량
+		var price = Number(elParent.find(".price").val());	// 현재 상품 가격
+		count += 1;
+		elCount.val(count).trigger("change");
+	});
+	
+	// 삭제버튼
+	// 삭제버튼 클릭 시 sno의 값을 전달해 db에서 삭제 후 새로고침
+	$(".delete_btn").on("click", function() {
+		var elParent = $(this).closest(".cart_item");
+		$.ajax({
+			url: "/jcappy/cart/delete",
+			type:"POST",
+			data: {
+				sno: elParent.find(".sno").val(),
+			},
+			success: function(res) {
+				if (res > 0) {
+					location.reload();	// 삭제 성공 시 페이지 새로고침
+				}
+			},
+			error: function(res) {
+				console.log("error: cart.jsp");
+			}
+		});
+	})
+});
+
+// 서브밋
+// 결제페이지로 서브밋 하기 전 체크해제한 상품의 정보는 disable을 추가해 파라미터값으로 넘어오지 않도록 한다
+var cartSubmit = function() {
+	// 각 목록 중 현재 자신이 체크 해제되어있다면 전송 대상 값에 disable 추가 후 서브밋   
+	$.each($(".cart_item"), function(index, item) {
+		if (!$(item).find(".checkbox").prop("checked")) {
+			$(item).find(".pno, .sno, .count, .name, .img, .total_price").attr("disabled", "disabled");
+		}
+	});
+	$("#cart_frm").submit();
+}

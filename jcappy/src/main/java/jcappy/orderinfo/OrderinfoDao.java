@@ -28,6 +28,10 @@ public class OrderinfoDao {
 	public int delete(OrderinfoVo vo) {
 		return sqlSession.delete("orderinfo.delete", vo);
 	}
+	
+	public int cancelUpdate(OrderinfoVo vo) {
+		return sqlSession.update("orderinfo.cancelUpdate", vo);
+	}
 
 	public List<Map<String, String>> admin_selectList(OrderinfoVo vo) {
 		return sqlSession.selectList("orderinfo.admin_selectList", vo);

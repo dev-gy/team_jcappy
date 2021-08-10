@@ -20,7 +20,7 @@ import jcappy.product.ProductVo;
 @Controller
 public class ReviewController {
 	@Autowired
-	ReviewService reviewservice;
+	ReviewService reviewService;
 	@Autowired
 	ProductService productService;
 	
@@ -55,7 +55,7 @@ public class ReviewController {
 			}
 		}
 		vo.setMno(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno());
-		int res = reviewservice.insert(vo);
+		int res = reviewService.insert(vo);
 		// r > 0 : 정상 -> alert -> 목록으로 이동
 		// r == 0 : 비정상 -> alert -> 이전페이지로 이동
 		if (res > 0) {
