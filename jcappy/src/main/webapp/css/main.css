@@ -71,8 +71,8 @@ include/bottom
 /*======================================
 include/review
 ========================================*/
-#img_detail_area { padding: 0px !important; text-align: center; overflow: hidden; }
-.img_detail { width: 600px; height: 592px; background-repeat: no-repeat; background-size: contain; display: inline-block; }
+.review_content #img_detail_area { padding: 0px !important; text-align: center; overflow: hidden; }
+.review_content .img_detail { width: 600px; height: 592px; background-repeat: no-repeat; background-size: contain; display: inline-block; }
 
 /*======================================
 mypage/*
