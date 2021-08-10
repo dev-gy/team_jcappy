@@ -26,70 +26,10 @@
       <mvc:jsp suffix=".jsp"/>
    </mvc:view-resolvers>
    
-   <!-- viewcontroller -->
-	<!-- ex) <mvc:view-controller path="/folder/test.do"/> -->
-	
 	<!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓사용자↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
-	<!-- 임시등록입니다 -->
-	<mvc:view-controller path="/sample.do"/>
 	<mvc:view-controller path="/policy/agreement.do"/>
 	<mvc:view-controller path="/policy/servicepolicy.do"/>
-	
-	<!-- 완료된 경로 -->
-	<mvc:view-controller path="/login.do"/>
-	<mvc:view-controller path="/index.do"/>
-	<mvc:view-controller path="/cart.do"/>
-	<mvc:view-controller path="/join.do"/>
-	<mvc:view-controller path="/changepwd.do"/>
-	<mvc:view-controller path="/findaccountpwd.do"/>
-
-	<mvc:view-controller path="/product/index.do"/>
-	<mvc:view-controller path="/product/detail.do"/>
-
-	<mvc:view-controller path="/pay/index.do"/>
-	<mvc:view-controller path="/pay/complete.do"/>
-
-	<mvc:view-controller path="/notice/index.do"/>
-	<mvc:view-controller path="/notice/detail.do"/>
-	
-	<mvc:view-controller path="/mypage/order/index.do"/>
-	<mvc:view-controller path="/mypage/order/detail.do"/>
-	<mvc:view-controller path="/mypage/order/cancel.do"/>
-	<mvc:view-controller path="/mypage/order/canceldetail.do"/>
-	<mvc:view-controller path="/mypage/order/cancelwrite.do"/>
-	<mvc:view-controller path="/mypage/qna/index.do"/>
-	<mvc:view-controller path="/mypage/qna/write.do"/>	 
-	<mvc:view-controller path="/mypage/qna/edit.do"/>
-	<mvc:view-controller path="/mypage/qna/detail.do"/>
-	<mvc:view-controller path="/mypage/memberedit.do"/>
-	<mvc:view-controller path="/mypage/coupon.do"/> 
-	<mvc:view-controller path="/mypage/review/write.do"/> 
-
-	<!-- 삭제된 페이지 -->	
-	<!-- <mvc:view-controller path="/review/index.do"/> -->
-	<!-- <mvc:view-controller path="/review/detail.do"/>   -->
 	<!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑사용자↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
-	
-	
-	<!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓관리자↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
-	<!-- 매출조회 -->
-	<mvc:view-controller path="/admin/account/index.do"/>
-	
-	<!-- 부가기능 -->
-	<mvc:view-controller path="/admin/add/index.do"/>
-	<mvc:view-controller path="/admin/add/coupon/list.do"/>
-	<mvc:view-controller path="/admin/add/coupon/detail.do"/>
-	<mvc:view-controller path="/admin/add/coupon/create.do"/>
-	
-	<!-- 주문 관리 -->
-	<mvc:view-controller path="/admin/order/list.do"/>
-	<mvc:view-controller path="/admin/order/detail.do"/>
-	
-	<!-- 상품 관리 -->
-	<mvc:view-controller path="/admin/item/list.do"/>
-	<mvc:view-controller path="/admin/item/detail.do"/>
-	<mvc:view-controller path="/admin/item/edit.do"/>
-	<!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑관리자↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
 	
 	<!-- DBCP -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
