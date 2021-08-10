@@ -53,4 +53,8 @@ public class CouponDao {
 	public int deleteGroup(CouponVo vo) {
 		return sqlSession.delete("coupon.deleteGroup", vo);
 	}
+	
+	public List<CouponVo> addOrderCheckCoupon(CouponVo vo) {
+		return sqlSession.selectList("coupon.addOrderCheckCoupon", vo);
+	}
 }

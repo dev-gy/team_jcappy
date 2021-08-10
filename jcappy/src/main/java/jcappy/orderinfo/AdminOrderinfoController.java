@@ -3,6 +3,8 @@ package jcappy.orderinfo;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -191,5 +193,40 @@ public class AdminOrderinfoController {
 	@RequestMapping("/admin/order/add")
 	public String add(Model model, OrderinfoVo vo) {
 		return "admin/order/add";
+	}
+
+	@RequestMapping("/admin/order/find_members") 
+	public String find_members(Model model, MembersVo mVo, HttpSession session) {
+		
+		MembersVo mv = mService.find_members(mVo);
+		
+		if (mv != null) {
+			
+			OrderinfoVo vo = new OrderinfoVo();
+			vo.setMno(mv.getMno());
+			Map<String, String> preDelivery = service.admin_pre_del(vo);
+			
+			session.setAttribute("preDelivery", preDelivery);
+			session.setAttribute("find_members", mv);
+			
+			model.addAttribute("result", "true");
+		} else {
+			model.addAttribute("result", "false");
+		}
+		return "include/result";
+	}
+	
+	@RequestMapping("/admin/order/include_forAdd")
+	public String include_forAdd(Model model) {
+		return "admin/order/include_forAdd";
+	}
+
+	@RequestMapping("/admin/order/include_forAddProduct")
+	public String include_forAddProduct(Model model, HttpSession session) {
+		MembersVo vo = (MembersVo)session.getAttribute("find_members");
+		CouponVo cVo = new CouponVo();
+		cVo.setMno(vo.getMno());
+		model.addAttribute("find_coupon", cService.addOrderCheckCoupon(cVo));
+		return "admin/order/include_forAddProduct";
 	}
 }
