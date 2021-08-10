@@ -13,8 +13,8 @@ public class OrderinfoDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
-	public List<OrderinfoVo> selectAll(int mno) {
-		return sqlSession.selectList("orderinfo.selectAll", mno);
+	public List<OrderinfoVo> selectAll(OrderinfoVo vo) {
+		return sqlSession.selectList("orderinfo.selectAll", vo);
 	}
 
 	public int insert(OrderinfoVo vo) {
@@ -27,6 +27,10 @@ public class OrderinfoDao {
 
 	public int delete(OrderinfoVo vo) {
 		return sqlSession.delete("orderinfo.delete", vo);
+	}
+	
+	public int userCount(OrderinfoVo vo) {
+		return sqlSession.selectOne("orderinfo.userCount", vo);
 	}
 	
 	public int cancelUpdate(OrderinfoVo vo) {

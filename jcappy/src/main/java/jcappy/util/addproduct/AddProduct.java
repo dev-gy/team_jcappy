@@ -65,8 +65,8 @@ public class AddProduct {
 		AddProduct ai = new AddProduct();
 		ProductVo vo;
 
-		String clientId = ""; // 애플리케이션 클라이언트 아이디값"
-		String clientSecret = ""; // 애플리케이션 클라이언트 시크릿값"
+		String clientId = "6V_W6Ret29dbLdBxbya1"; // 애플리케이션 클라이언트 아이디값"
+		String clientSecret = "hIC86Y8ANh"; // 애플리케이션 클라이언트 시크릿값"
 
 		String[] searchArr = { "일반형냉장고", "양문형냉장고", "업소용냉장고", "벽걸이형에어컨", "스탠드형에어컨", "창문형에어컨", "일반세탁기", "드럼세탁기", "미니세탁기",
 				"LEDTV", "OLEDTV", "QLEDTV" };

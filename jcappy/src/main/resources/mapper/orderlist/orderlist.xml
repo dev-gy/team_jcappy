@@ -3,13 +3,13 @@
 <mapper namespace="orderlist">
 
 	<select id="selectAll" resultType="jcappy.orderlist.OrderlistVo" parameterType="jcappy.orderlist.OrderlistVo">
-		SELECT oi.*, 
+		SELECT ol.*, 
 			p.pimg1_org AS pimg1_org, 
-			oi.ol_count * oi.ol_price AS total_price
-		FROM orderlist oi
-		JOIN product p ON oi.pno=p.pno
+			ol.ol_count * ol.ol_price AS total_price
+		FROM orderlist ol
+		JOIN product p ON ol.pno=p.pno
 		<if test="ono != null">
-			WHERE ono=#{ono}
+			WHERE ol.ono = #{ono}
 		</if>
 	</select>
 	

@@ -108,7 +108,7 @@ public class OrderinfoController {
 		couponVo.setStype("c_exist");	// 검색타입: 사용 여부
 		couponVo.setSval("1");	// 검색조건: 사용안함
 		List<CouponVo> cList = new ArrayList<CouponVo>();
-		for (CouponVo vo : couponService.selectAll(couponVo)) {
+		for (CouponVo vo : couponService.userSelectAll(couponVo)) {
 			if (vo.getCprice() * 2 <= totalAllPrice) {
 				cList.add(vo);
 			}
@@ -187,8 +187,9 @@ public class OrderinfoController {
 	}
 	
 	@RequestMapping("/mypage/order")
-	public String orderIndex(Model model, HttpServletRequest request) {
-		model.addAttribute("list", orderinfoService.selectAll(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno()));
+	public String orderIndex(Model model, OrderinfoVo vo, HttpServletRequest request) {
+		vo.setMno(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno());
+		model.addAttribute("list", orderinfoService.selectAll(vo));
 		return "/mypage/order/index";
 	}
 	
@@ -226,8 +227,9 @@ public class OrderinfoController {
 	}
 	
 	@RequestMapping("/mypage/order/cancel")
-	public String orderCancel(Model model, HttpServletRequest request) {
-		model.addAttribute("list", orderinfoService.selectAll(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno()));
+	public String orderCancel(Model model, OrderinfoVo vo, HttpServletRequest request) {
+		vo.setMno(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno());
+		model.addAttribute("list", orderinfoService.selectAll(vo));
 		return "/mypage/order/cancel";
 	}
 	

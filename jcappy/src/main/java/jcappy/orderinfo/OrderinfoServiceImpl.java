@@ -17,8 +17,26 @@ public class OrderinfoServiceImpl implements OrderinfoService {
 	OrderinfoDao orderinfoDao;
 	
 	@Override
-	public List<OrderinfoVo> selectAll(int mno) {
-		return orderinfoDao.selectAll(mno);
+	public List<OrderinfoVo> selectAll(OrderinfoVo vo) {
+		// 페이징 관련 값 세팅
+		vo.setStype("mno");
+		vo.setSval(Integer.toString(vo.getMno()));
+		int totCount = orderinfoDao.userCount(vo); // 총갯수
+		// 총페이지수
+		int totPage = totCount / vo.getPageRow();
+		if (totCount % vo.getPageRow() > 0) totPage++;
+		// 시작페이지
+		int startPage = (vo.getReqPage() - 1) / vo.getPageRange() * vo.getPageRange() + 1;
+		int endPage = startPage + vo.getPageRange() - 1;
+		if (endPage > totPage) {
+			endPage = totPage;
+		}
+		
+		vo.setStartPage(startPage);
+		vo.setEndPage(endPage);
+		vo.setTotCount(totCount);
+		vo.setTotPage(totPage);
+		return orderinfoDao.selectAll(vo);
 	}
 	
 	@Override

@@ -15,7 +15,7 @@ public class CouponServiceImpl implements CouponService {
 	CouponDao couponDao;
 	
 	@Override
-	public List<CouponVo> selectAll(CouponVo vo) {
+	public List<CouponVo> userSelectAll(CouponVo vo) {
 		int totCount = couponDao.count(vo); // 총갯수
 		// 총페이지수
 		int totPage = totCount / vo.getPageRow();

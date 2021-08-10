@@ -18,6 +18,10 @@ public class CouponDao {
 		return sqlSession.selectList("coupon.selectAll", vo);
 	}
 	
+	public List<CouponVo> userSelectAll(CouponVo vo) {
+		return sqlSession.selectList("coupon.userSelectAll", vo);
+	}
+	
 	public int count(CouponVo vo) {
 		return sqlSession.selectOne("coupon.count", vo);
 	}

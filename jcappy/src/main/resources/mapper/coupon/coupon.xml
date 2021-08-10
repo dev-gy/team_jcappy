@@ -15,6 +15,14 @@
 		</where>
 	</sql>
 	
+	<select id="userSelectAll" resultType="jcappy.coupon.CouponVo" parameterType="jcappy.coupon.CouponVo">
+		SELECT *
+		FROM coupon c left Join members m ON c.mno = m.mno
+		WHERE c.mno = #{mno}
+		ORDER BY ${orderby} ${direct}
+		LIMIT ${startIdx},${pageRow}
+	</select>
+	
 	<select id="selectAll" resultType="jcappy.coupon.CouponVo" parameterType="jcappy.coupon.CouponVo">
 		SELECT *
 		FROM coupon c left Join members m ON c.mno = m.mno
