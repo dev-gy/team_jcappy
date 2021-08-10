@@ -10,7 +10,7 @@ public class SalesController {
 
 	@Autowired
 	SalesService service;
-	
+	//매출조회 목록
 	@RequestMapping("/admin/sales/index")
 	public String index(Model model, SalesVo vo) {
 		if(vo.getDatepicker()== null || "".equals(vo.getDatepicker())) {
