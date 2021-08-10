@@ -176,9 +176,9 @@ function delivery_check(name) {
 										<a class="btns" href="javascript:pay_check('onos');" onclick=""><strong>입금확인</strong></a>
 										<a class="btns" href="javascript:delivery_check('onos');" onclick=""><strong>배송처리</strong></a>
 									</div>
-<!-- 									<div class="btnRight"> -->
-<!-- 										<a class="wbtn" href="add"><strong>등록</strong> </a> -->
-<!-- 									</div> -->
+									<div class="btnRight">
+										<a class="wbtn" href="add"><strong>등록</strong> </a>
+									</div>
 								</div>
 								<!--//btn-->
 								<!-- 페이징 처리 -->
