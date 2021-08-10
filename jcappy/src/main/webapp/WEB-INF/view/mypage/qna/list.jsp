@@ -107,7 +107,7 @@
 						</div>
 					</form>
 					<div>
-						<button class="qna_write_btn cstyle_btn" onclick="location.href='/jcappy/mypage/qna/write'">문의작성</button>
+						<button class="qna_list_btn" onclick="location.href='/jcappy/mypage/qna/write'">문의작성</button>
 					</div>
 				</div>
 			</div>

@@ -282,7 +282,7 @@ pay/index
 
 /* /*====================================== */
 /* review/index */
-/* ======================================== */
+/* ========================================*/ 
 /* .review_board_wrap * {box-sizing: border-box;} */
 /* .review_board_wrap {width: 1200px;margin: 0 auto;} */
 /* .review_board_title{margin: 100px 0 0 0;} */
@@ -298,9 +298,9 @@ pay/index
 /* .review_board_page_navigation {clear:both; margin:0 auto; width:200px; height:50px;} */
 
 /*======================================
-mypage/qna/index
+mypage/qna/list
 ========================================*/
-.qna_write_btn { width: 100px; height: 40px; margin:20px 0px; float: right; }
+.qna_list_btn { width: 100px; height: 40px; margin:20px 0px; float: right; border:1px solid #000000;}
 /*======================================
 mypage/qna/detail
 ========================================*/
@@ -333,6 +333,7 @@ mypage/order/canceldetail
 .mypage_for_blank {height: 20px;}
 .mypage_for_subtitle {font-size: 15px; font-weight: bold; text-align: left; padding-bottom: 5px;}
 .ordertable_img img {width: 80px; height: 80px;}
+.ordertable_img .item_name { width: 280px; display: inline-block; text-align: left; }
 
 /*======================================
 mypage/order/cancelwrite
@@ -351,6 +352,7 @@ mypage/order/detail
 .ordertable_button button { width: 60px; height: 30px; }
 .order_detail_content .item_image { width: 70px; height: 70px; background-repeat: no-repeat; background-size: 70px 70px; display: inline-block; margin: -20px 0px; }
 .order_detail_content .order_list_table td > a { display:block; overflow: hidden; }  
+.order_list_table .item_name { width: 234px; display: inline-block; text-align: left; }
 
 /*======================================
 mypage/memberedit

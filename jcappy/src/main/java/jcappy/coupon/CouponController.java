@@ -20,7 +20,7 @@ public class CouponController {
 		
 		CouponVo vo = new CouponVo();
 		vo.setMno(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno());
-		model.addAttribute("list", couponService.selectAll(vo));
+		model.addAttribute("list", couponService.userSelectAll(vo));
 		return "/mypage/coupon";
 	}
 }

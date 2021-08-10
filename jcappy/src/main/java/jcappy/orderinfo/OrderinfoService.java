@@ -3,7 +3,7 @@ package jcappy.orderinfo;
 import java.util.List;
 
 public interface OrderinfoService {
-	List<OrderinfoVo> selectAll(int mno);
+	List<OrderinfoVo> selectAll(OrderinfoVo vo);
 	int insert(OrderinfoVo vo);
 	OrderinfoVo selectLastOne(int mno);
 	int delete(OrderinfoVo vo);

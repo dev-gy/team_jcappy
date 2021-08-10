@@ -56,9 +56,9 @@
 								<th>상품금액</th>
 								<th>합계</th>
 							</tr>
-							<c:forEach var="olVo" items="${olList} }">
+							<c:forEach var="olVo" items="${olList }">
 								<tr>
-									<td class="cstyle_text_align_left"><a href=""><img src="${olVo.pimg1_org }"></a>${olVo.pname }</td>
+									<td class="cstyle_text_align_left"><a href=""><img src="${olVo.pimg1_org }"></a><span class="item_name">${olVo.ol_pname }</span></td>
 									<td>${olVo.pno }</td>
 									<td>${olVo.ol_price }</td>
 									<td>${olVo.total_price }</td>

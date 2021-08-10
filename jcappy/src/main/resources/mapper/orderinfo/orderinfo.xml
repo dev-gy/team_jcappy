@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="orderinfo">
 
-	<select id="selectAll" resultType="jcappy.orderinfo.OrderinfoVo" parameterType="int">
+	<select id="selectAll" resultType="jcappy.orderinfo.OrderinfoVo" parameterType="jcappy.orderinfo.OrderinfoVo">
 		SELECT oi.*, 
 			SUM(ol.ol_price * ol.ol_count) AS total_price,
 			ol.ol_pname AS ol_pname,
@@ -15,14 +15,22 @@
 		LEFT JOIN coupon c
 		ON oi.cno = c.cno
 		GROUP BY ol.ono
-		HAVING mno = 26
-		ORDER BY ono DESC
+		HAVING oi.mno = #{mno}
+		ORDER BY odate DESC, ono DESC 
+		LIMIT ${startIdx}, ${pageRow}
 	</select>
 	
 	<insert id="insert" parameterType="jcappy.orderinfo.OrderinfoVo" useGeneratedKeys="true" keyProperty="ono">
 		INSERT INTO orderinfo (ono, odate, orequest, opay, o_state, o_del, mno, oc_cancel, oc_reason, oname, ophone, ozipcode, oaddr, oaddrde, cno, imp_uid)
 		VALUES (#{ono}, NOW(), #{orequest}, #{opay}, #{o_state}, #{o_del}, #{mno}, #{oc_cancel}, #{oc_reason}, #{oname}, #{ophone}, #{ozipcode}, #{oaddr}, #{oaddrde}, #{cno}, #{imp_uid})
 	</insert>
+	
+	<select id="userCount" resultType="int" parameterType="jcappy.orderinfo.OrderinfoVo">
+		SELECT COUNT(*)	
+		FROM orderinfo AS oi
+		JOIN members AS m ON oi.mno = m.mno
+		WHERE oi.mno = #{mno} 
+	</select>
 	
 	<delete id="delete" parameterType="jcappy.orderinfo.OrderinfoVo">
 		DELETE FROM orderinfo WHERE ono = #{ono}
