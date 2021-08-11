@@ -119,7 +119,7 @@ function admin_order_update() {
 	}
 }
 
-function getForAdd(mno) {
+function getForAdd() {
 	$.ajax({
 		url: "<%=request.getContextPath()%>/admin/order/include_forAdd",
 		data: {
@@ -130,7 +130,7 @@ function getForAdd(mno) {
 	});
 }
 
-function getForAddProduct(mno) {
+function getForAddProduct() {
 	$.ajax({
 		url: "<%=request.getContextPath()%>/admin/order/include_forAddProduct",
 		data: {
