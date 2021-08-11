@@ -16,7 +16,7 @@
 			<div class="mypage_content">
 				<!-- 마이페이지 공통 서브타이틀 -->
 				<div class="mypage_subtitle">
-					<h2>취소/교환/반품</h2>
+					<h2>취소/반품</h2>
 				</div>
 
 				<!-- 현재 페이지 컨텐츠 구현부 -->
@@ -54,6 +54,19 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<div class="pagenate clear">
+						<ul class="paging">
+							<c:if test="${orderinfoVo.startPage > orderinfoVo.pageRange }">
+								<li><a href="/jcappy/mypage/order/cancel?reqPage=${couponVo.startPage - 1 }">&lt;</a></li>
+							</c:if>
+							<c:forEach var="rp" begin="${orderinfoVo.startPage }" end="${orderinfoVo.endPage }">
+							    <li><a href="/jcappy/mypage/order/cancel?reqPage=${rp}" <c:if test="${rp==orderinfoVo.reqPage }">class='current'</c:if>>${rp }</a></li>
+							</c:forEach>
+							<c:if test="${orderinfoVo.totPage > orderinfoVo.endPage }">
+								<li><a href="/jcappy/mypage/order/cancel?reqPage=${orderinfoVo.endPage + 1 }">&gt;</a></li>
+							</c:if>
+						</ul> 
+					</div>
 				</div>
 			</div>
 		</div>

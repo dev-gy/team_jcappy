@@ -52,13 +52,13 @@
 					<div class="pagenate clear">
 						<ul class="paging">
 							<c:if test="${orderinfoVo.startPage > orderinfoVo.pageRange }">
-								<li><a href="/jcappy/mypage/order/${type }?reqPage=${orderinfoVo.startPage - 1 }">&lt;</a></li>
+								<li><a href="/jcappy/mypage/order?reqPage=${orderinfoVo.startPage - 1 }">&lt;</a></li>
 							</c:if>
 							<c:forEach var="rp" begin="${orderinfoVo.startPage }" end="${orderinfoVo.endPage }">
-							    <li><a href="/jcappy/mypage/order/${type }?reqPage=${rp}" <c:if test="${rp==orderinfoVo.reqPage }">class='current'</c:if>>${rp }</a></li>
+							    <li><a href="/jcappy/mypage/order?reqPage=${rp}" <c:if test="${rp==orderinfoVo.reqPage }">class='current'</c:if>>${rp }</a></li>
 							</c:forEach>
 							<c:if test="${orderinfoVo.totPage > orderinfoVo.endPage }">
-								<li><a href="/jcappy/mypage/order/${type }?reqPage=${orderinfoVo.endPage + 1 }">&gt;</a></li>
+								<li><a href="/jcappy/mypage/order?reqPage=${orderinfoVo.endPage + 1 }">&gt;</a></li>
 							</c:if>
 						</ul> 
 					</div>

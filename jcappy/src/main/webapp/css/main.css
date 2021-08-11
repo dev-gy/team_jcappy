@@ -69,12 +69,6 @@ include/bottom
 #footer > .size > .info > .right { right: 0px; position: absolute; text-align: right; text-decoration: underline; }
 
 /*======================================
-include/review
-========================================*/
-.review_content #img_detail_area { padding: 0px !important; text-align: center; overflow: hidden; }
-.review_content .img_detail { width: 600px; height: 592px; background-repeat: no-repeat; background-size: contain; display: inline-block; }
-
-/*======================================
 mypage/*
 ========================================*/
 .mypage_content { width: 800px; float: left; }
@@ -156,6 +150,7 @@ cart
 .cart_content .cart_item > td > .pimg { width: 70px; height: 70px; background-size: 70px 70px; background-repeat: no-repeat; display: inline-block; margin: -20px 10px; }
 .cart_content .cart_item > .price_area { text-align: right; }
 .cart_content .cart_item > .total_price_txt { text-align: right; }
+.cart_content .item_name { width: 430px; display: inline-block; }
 
 /*======================================
 notice/list
@@ -277,6 +272,7 @@ pay/index
 .pay_content .right > .pay_type #pay_btn { width: 120px; margin-top: 20px; }
 .pay_content .left > .addr_info .request_select { width: 500px; height: 32px; } 
 .pay_content .left > .addr_info #request { width: 500px; }
+.pay_content .pname_txt { widows: 530px; display: inline-block; }
 #coupon_dialog .use_coupon_btn { width: 60px; }
 #coupon_dialog > table tr td { padding-top: 10px; padding-bottom: 10px }
 

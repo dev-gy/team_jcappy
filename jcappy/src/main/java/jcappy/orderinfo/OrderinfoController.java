@@ -21,7 +21,6 @@ import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.CancelData;
 
-import jcappy.coupon.AdminCouponService;
 import jcappy.coupon.CouponService;
 import jcappy.coupon.CouponVo;
 import jcappy.members.MembersService;
@@ -105,10 +104,8 @@ public class OrderinfoController {
 		// 사용안한 쿠폰 중 쿠폰의 두배 값이 총상품금액 이하인 쿠폰만 담는다 
 		CouponVo couponVo = new CouponVo();
 		couponVo.setMno(membersVo.getMno());
-		couponVo.setStype("c_exist");	// 검색타입: 사용 여부
-		couponVo.setSval("1");	// 검색조건: 사용안함
 		List<CouponVo> cList = new ArrayList<CouponVo>();
-		for (CouponVo vo : couponService.userSelectAll(couponVo)) {
+		for (CouponVo vo : couponService.selectAllByMno(couponVo)) {
 			if (vo.getCprice() * 2 <= totalAllPrice) {
 				cList.add(vo);
 			}
@@ -128,7 +125,7 @@ public class OrderinfoController {
 	@PostMapping("/pay/complete")
 	public String payComplete(Model model, 
 			OrderinfoVo vo, 
-			@RequestParam("snoList[]") int[] snoList,
+			@RequestParam(required = false, value = "snoList[]") int[] snoList,
 			@RequestParam("pnoList[]") int[] pnoList, 
 			@RequestParam("pcountList[]") int[] pcountList) throws IamportResponseException, IOException {
 
@@ -143,13 +140,15 @@ public class OrderinfoController {
 			}
 			
 			// 결제한 상품 중 장바구니 상품이 있다면 장바구니 목록에서 삭제
-			ShopcartVo sVo = new ShopcartVo();
-			for (int i = 0; i < snoList.length; i++) {
-				if (!isSuccess) {
-					break;
+			if (snoList != null) {
+				ShopcartVo sVo = new ShopcartVo();
+				for (int i = 0; i < snoList.length; i++) {
+					if (!isSuccess) {
+						break;
+					}
+					sVo.setSno(snoList[i]);
+					isSuccess = shopcartService.delete(sVo) > 0;
 				}
-				sVo.setSno(snoList[i]);
-				isSuccess = shopcartService.delete(sVo) > 0;
 			}
 			
 			// 주문상품내역 데이터 담아서 추가
@@ -197,38 +196,20 @@ public class OrderinfoController {
 	public String orderDetail(Model model, @PathVariable int ono) {
 		OrderinfoVo oiVo = new OrderinfoVo();
 		oiVo.setOno(ono);
-		oiVo = orderinfoService.detail(oiVo);
 		
 		OrderlistVo olVo = new OrderlistVo();
 		olVo.setOno(ono);
 		List<OrderlistVo> olList = orderlistService.selectAll(olVo);
 		
-		// 주문목록의 최종결제금액 구해서 추가
-		int resultPrice = 0;
-		
-		int couponPrice = 0;	// 해상 주문당시의 쿠폰 데이터 구해오기
-		if (oiVo.getCno() != 0) {
-			CouponVo cVo = new CouponVo();
-			cVo.setCno(oiVo.getCno());
-			couponPrice = couponService.detail(cVo).getCprice();
-		}
-		
-		int sum = 0;
-		for (int i = 0; i < olList.size(); i++) {	// 상품목록의 통합가격을 모두 더한 후 쿠폰값을 빼서 최종 결제금액 구하기
-			sum += olList.get(i).getTotal_price();
-		}
-		resultPrice = sum - couponPrice;
-		
-		oiVo.setResult_price(resultPrice);
-		
-		model.addAttribute("oiVo", oiVo);
-		model.addAttribute("olList", olList);
+		model.addAttribute("oiVo", orderinfoService.detailIncludingPrice(oiVo));	// 주문정보
+		model.addAttribute("olList", olList);	// 주문목록들
 		return "/mypage/order/detail";
 	}
 	
 	@RequestMapping("/mypage/order/cancel")
 	public String orderCancel(Model model, OrderinfoVo vo, HttpServletRequest request) {
 		vo.setMno(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno());
+		
 		model.addAttribute("list", orderinfoService.selectAll(vo));
 		return "/mypage/order/cancel";
 	}
@@ -237,7 +218,7 @@ public class OrderinfoController {
 	public String orderCanceldetail(Model model, @PathVariable int ono, HttpServletRequest request) {
 		OrderinfoVo oiVo = new OrderinfoVo();
 		oiVo.setOno(ono);
-		model.addAttribute("oiVo", orderinfoService.detail(oiVo));
+		model.addAttribute("oiVo", orderinfoService.detailIncludingPrice(oiVo));
 		OrderlistVo olVo = new OrderlistVo();
 		olVo.setOno(ono);
 		model.addAttribute("olList", orderlistService.selectAll(olVo));
@@ -248,13 +229,13 @@ public class OrderinfoController {
 	public String orderCancelwrite(Model model, @PathVariable int ono, HttpServletRequest request) {
 		OrderinfoVo vo = new OrderinfoVo();
 		vo.setOno(ono);
-		model.addAttribute("vo", orderinfoService.detail(vo));
+		model.addAttribute("vo", orderinfoService.detailIncludingPrice(vo));
 		return "/mypage/order/cancelwrite";
 	}
 	
-	@RequestMapping("/mypage/order/update")
-	public String orderUpdate(Model model, OrderinfoVo vo, HttpServletRequest request) {
-		int res = orderinfoService.cancelUpdate(vo);	
+	@RequestMapping("/mypage/order/cancelupdate")
+	public String orderCancelupdate(Model model, OrderinfoVo vo, HttpServletRequest request) {
+		int res = orderinfoService.orderCancelupdate(vo);
 		// r > 0 : 정상 -> alert -> 목록으로 이동
 		// r == 0 : 비정상 -> alert -> 이전페이지로 이동
 		if (res > 0) {

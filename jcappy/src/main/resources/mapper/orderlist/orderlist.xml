@@ -5,14 +5,15 @@
 	<select id="selectAll" resultType="jcappy.orderlist.OrderlistVo" parameterType="jcappy.orderlist.OrderlistVo">
 		SELECT ol.*, 
 			p.pimg1_org AS pimg1_org, 
-			ol.ol_count * ol.ol_price AS total_price
+			ol.ol_count * ol.ol_price AS total_price,
+			r.rno AS rno
 		FROM orderlist ol
-		JOIN product p ON ol.pno=p.pno
+		JOIN product p ON ol.pno=p.pno 
 		<if test="ono != null">
-			WHERE ol.ono = #{ono}
+			AND ol.ono = #{ono}
 		</if>
+		LEFT JOIN review r ON r.pno = ol.pno AND r.ono = ol.ono
 	</select>
-	
 	<insert id="insert" parameterType="jcappy.orderlist.OrderlistVo">
 		INSERT INTO orderlist (ono, pno, ol_count, ol_price, ol_pname)
 		VALUES (#{ono}, #{pno}, #{ol_count}, #{ol_price}, #{ol_pname})

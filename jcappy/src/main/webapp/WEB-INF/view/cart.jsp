@@ -40,7 +40,7 @@
 		                	<c:forEach var="vo" items="${list }" varStatus="index">
 			                    <tr class="cart_item">
 			                        <td><input class="checkbox" type="checkbox" name="checkbox" checked></td>
-			                        <td class="name_area"><span class="pimg" style="background-image: url('${vo.pimg1_org }')"></span><span>${vo.pname }</span></td>
+			                        <td class="name_area"><span class="pimg" style="background-image: url('${vo.pimg1_org }')"></span><span class="item_name">${vo.pname }</span></td>
 			                        <td class="price_area"><span class="price_txt"><fmt:formatNumber value="${vo.pprice }" />원</span></td>
 			                        <td>무료</td>
 			                        <td>

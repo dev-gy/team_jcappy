@@ -37,6 +37,6 @@
 	<div><a href="/jcappy/mypage/memberedit">정보수정</a></div>
 	<div><a href="/jcappy/mypage/coupon">쿠폰함</a></div>
 	<div><a href="/jcappy/mypage/qna/list">1:1문의</a></div>
-	<div><a href="/jcappy/mypage/order/cancel">취소/교환/반품 조회</a></div>
+	<div><a href="/jcappy/mypage/order/cancel">취소/반품 조회</a></div>
 	<div><a href="javascript:isDel();">회원탈퇴</a></div>
 </div>

@@ -157,7 +157,7 @@ public class ProductController {
 	
 	@RequestMapping ("/product/detail/review")
 	public String list(Model model, ReviewVo vo) { 
-		model.addAttribute("list", reviewService.selectAll(vo));
+		model.addAttribute("list", reviewService.selectAllByPno(vo));
 		return "/include/review";
 	}
 	

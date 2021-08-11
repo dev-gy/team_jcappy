@@ -29,7 +29,7 @@ public class OrderinfoVo extends CommonVo {
 	private int total_price;
 	private int result_price;
 	private String oi_pname;
-	
+	private int oi_count;
 
 	private int[] onos;
 
@@ -196,4 +196,13 @@ public class OrderinfoVo extends CommonVo {
 	public void setOi_pname(String oi_pname) {
 		this.oi_pname = oi_pname;
 	}
+
+	public int getOi_count() {
+		return oi_count;
+	}
+
+	public void setOi_count(int oi_count) {
+		this.oi_count = oi_count;
+	}
+	
 }

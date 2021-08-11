@@ -1,8 +1,5 @@
 package jcappy.coupon;
 
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +12,8 @@ public class CouponServiceImpl implements CouponService {
 	CouponDao couponDao;
 	
 	@Override
-	public List<CouponVo> userSelectAll(CouponVo vo) {
-		int totCount = couponDao.count(vo); // 총갯수
+	public List<CouponVo> selectAllByMno(CouponVo vo) {
+		int totCount = couponDao.countByMno(vo); // 총갯수
 		// 총페이지수
 		int totPage = totCount / vo.getPageRow();
 		if (totCount % vo.getPageRow() > 0) totPage++;
@@ -33,16 +30,7 @@ public class CouponServiceImpl implements CouponService {
 		vo.setTotCount(totCount);
 		vo.setTotPage(totPage);
 		
-		List<CouponVo> list = couponDao.selectAll(vo);
-		
-		// 쿠폰 종료일 계산
-		Calendar cal = Calendar.getInstance();
-		for (int i = 0; i < list.size(); i++) {
-			cal.setTime(list.get(i).getCregdate());
-			cal.add(Calendar.DATE, list.get(i).getCdate());
-			list.get(i).setCenddate(new Timestamp(cal.getTimeInMillis()));
-		}
-		return list;
+		return couponDao.selectAllByMno(vo);
 	}
 	
 	@Override

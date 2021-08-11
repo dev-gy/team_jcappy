@@ -15,12 +15,18 @@
 		</where>
 	</sql>
 	
-	<select id="userSelectAll" resultType="jcappy.coupon.CouponVo" parameterType="jcappy.coupon.CouponVo">
-		SELECT *
-		FROM coupon c left Join members m ON c.mno = m.mno
-		WHERE c.mno = #{mno}
+	<select id="selectAllByMno" resultType="jcappy.coupon.CouponVo" parameterType="jcappy.coupon.CouponVo">
+		SELECT *,
+			ADDDATE(cregdate,INTERVAL cdate DAY) AS cenddate
+		FROM coupon c 
+		JOIN members m 
+		ON c.mno = m.mno AND c.mno = #{mno} AND NOW() > ADDDATE(cregdate,INTERVAL cdate DAY) AND c.c_exist = 1
 		ORDER BY ${orderby} ${direct}
 		LIMIT ${startIdx},${pageRow}
+	</select>
+	
+	<select id="countByMno" resultType="int" parameterType="jcappy.coupon.CouponVo">
+		SELECT COUNT(*) FROM coupon c JOIN members m ON c.mno = m.mno AND c.mno = #{mno}
 	</select>
 	
 	<select id="selectAll" resultType="jcappy.coupon.CouponVo" parameterType="jcappy.coupon.CouponVo">

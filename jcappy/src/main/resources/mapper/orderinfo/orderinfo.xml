@@ -7,15 +7,15 @@
 			SUM(ol.ol_price * ol.ol_count) AS total_price,
 			ol.ol_pname AS ol_pname,
 			COUNT(ol.pno) AS ol_count,
-			IF(COUNT(ol.pno) > 1, CONCAT(SUBSTR(ol.ol_pname, 1, 25), '... 외', COUNT(ol.pno)-1, '건'), ol.ol_pname) AS oi_pname,
-			SUM(ol.ol_price * ol.ol_count) - IF(c.cprice != null, c.cprice, 0) AS result_price
+			IF(COUNT(ol.pno) > 1, CONCAT(SUBSTR(ol.ol_pname, 1, 20), IF(CHAR_LENGTH(ol.ol_pname) > 20, '... 외', ' 외'), COUNT(ol.pno)-1, '건'), ol.ol_pname) AS oi_pname,
+			SUM(ol.ol_price * ol.ol_count) - IFNULL(c.cprice, 0) AS result_price
 		FROM orderinfo oi
 		JOIN orderlist ol 
-		ON ol.ono = oi.ono
+		ON ol.ono = oi.ono AND oi.mno = #{mno}
 		LEFT JOIN coupon c
 		ON oi.cno = c.cno
+		<include refid="orderWhere"/>
 		GROUP BY ol.ono
-		HAVING oi.mno = #{mno}
 		ORDER BY odate DESC, ono DESC 
 		LIMIT ${startIdx}, ${pageRow}
 	</select>
@@ -25,19 +25,30 @@
 		VALUES (#{ono}, NOW(), #{orequest}, #{opay}, #{o_state}, #{o_del}, #{mno}, #{oc_cancel}, #{oc_reason}, #{oname}, #{ophone}, #{ozipcode}, #{oaddr}, #{oaddrde}, #{cno}, #{imp_uid})
 	</insert>
 	
-	<select id="userCount" resultType="int" parameterType="jcappy.orderinfo.OrderinfoVo">
+	<select id="detailIncludingPrice" resultType="jcappy.orderinfo.OrderinfoVo" parameterType="jcappy.orderinfo.OrderinfoVo">
+		SELECT oi.*,
+			SUM(ol.ol_price) AS total_price,
+			SUM(ol.ol_price) - IFNULL(c.cprice, 0) AS result_price
+		FROM orderinfo oi
+		JOIN orderlist ol
+		ON oi.ono = ol.ono
+		LEFT JOIN coupon c
+		ON oi.cno = c.cno
+		WHERE oi.ono = #{ono}
+	</select>
+	
+	<select id="cancelcountByMno" resultType="int" parameterType="jcappy.orderinfo.OrderinfoVo">
 		SELECT COUNT(*)	
 		FROM orderinfo AS oi
-		JOIN members AS m ON oi.mno = m.mno
-		WHERE oi.mno = #{mno} 
+		JOIN members AS m ON oi.mno = m.mno AND oi.oc_cancel = 1 AND oi.mno = #{mno}
 	</select>
 	
 	<delete id="delete" parameterType="jcappy.orderinfo.OrderinfoVo">
 		DELETE FROM orderinfo WHERE ono = #{ono}
 	</delete>
 	
-	<update id="cancelUpdate" parameterType="jcappy.orderinfo.OrderinfoVo">
-		UPDATE orderinfo SET o_state = #{o_state}, oc_reason = #{oc_reason} WHERE ono = #{ono}
+	<update id="orderCancelupdate" parameterType="jcappy.orderinfo.OrderinfoVo">
+		UPDATE orderinfo SET o_state = #{o_state}, oc_reason = #{oc_reason}, oc_cancel = 1 WHERE ono = #{ono}
 	</update>
 	
 	<select id="selectLastOne" parameterType="int" resultType="jcappy.orderinfo.OrderinfoVo">

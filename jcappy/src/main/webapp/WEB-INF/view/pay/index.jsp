@@ -155,6 +155,7 @@ function requestPay() {
 			snoList[i] = val;  				
 		}
 	});
+	console.log(snoList);
 	
 	var pnoList = [];
 	$.each($(".pno"), function(i, v) {
@@ -222,6 +223,7 @@ function requestPay() {
   	
 	// -- 계좌이체(가정) 결제시 --
 	function requestVbankPay() {
+		console.log($("#coupon_no").val());
 		$.ajax({
 			url : "/jcappy/pay/complete",
 			type : "POST",
@@ -244,7 +246,7 @@ function requestPay() {
 			},
 			success : function(res) {
 				alert("결제신청이 완료되었습니다.");
-	        	location.href="/jcappy/mypage/order/index";
+	        	location.href="/jcappy/mypage/order";
 			},
 			error : function(res) {
 				alert("결제에 실패하였습니다.");
@@ -505,7 +507,7 @@ function requestPay() {
 			        				</td>
 			        				<td class="cstyle_text_align_right">
 			        					<button class="use_coupon_btn cstyle_btn">선택</button>
-			        					<input class="cno" type="text" hidden=""value="${item.cno }">
+			        					<input class="cno" type="hidden" value="${item.cno }">
 			        				</td>
 			        			</tr>
 		        			</c:forEach>

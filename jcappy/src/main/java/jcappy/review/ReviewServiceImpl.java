@@ -12,15 +12,20 @@ public class ReviewServiceImpl implements ReviewService {
 	ReviewDao reviewDao;
 	
 	@Override
-	public List<ReviewVo> selectAll(ReviewVo vo) {
+	public List<ReviewVo> selectAllByPno(ReviewVo vo) {
 		vo.setOrderby("rno");
 		vo.setDirect("desc");
-		return reviewDao.selectAll(vo);
+		return reviewDao.selectAllByPno(vo);
 	}
 	
 	@Override
 	public int insert(ReviewVo vo) {
 		return reviewDao.insert(vo);
+	}
+	
+	@Override
+	public int countByOno(ReviewVo vo) {
+		return reviewDao.countByOnoPno(vo);
 	}
 	
 }
