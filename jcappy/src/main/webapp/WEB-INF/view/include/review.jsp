@@ -29,9 +29,13 @@
 <style>
 	#review_img_detail_area { padding: 0px !important; text-align: center; overflow: hidden; }
 	.review_img_detail { width: 600px; height: 592px; background-repeat: no-repeat; background-size: contain; background-position: center; display: inline-block; }
+	.not_exist_guid { width:1200px; margin: 20px 0px; text-align: center; }
 </style>
 <div>
 	<ul>
+		<c:if test="${empty list }">
+		<p class="not_exist_guid">등록된 리뷰가 없습니다.</p>
+		</c:if>
 		<c:forEach var="vo" items="${list }">
 			<li>
 				<div class="review_content">

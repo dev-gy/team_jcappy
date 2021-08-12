@@ -206,10 +206,10 @@ $(function() {
 		
 		// 현재 체크박스값과 모든 체크박스 값이 같지 않을경우 모두체크박스 체크해제
 		var isAll = true;
-		var b = $(this).prop("checked");
+		var isAll = $(this).prop("checked");
 		var items = $(".checkbox");
 		for (var i = 0; i < items.length; i++) {
-			if ($(items[i]).prop("checked") != b) {
+			if ($(items[i]).prop("checked") != isAll) {
 				isAll = false;
 				break;
 			}

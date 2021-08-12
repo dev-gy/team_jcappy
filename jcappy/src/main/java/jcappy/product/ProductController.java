@@ -139,6 +139,7 @@ public class ProductController {
 		model.addAttribute("a", a);
 		model.addAttribute("b", b);
 		model.addAttribute("c", c);
+		model.addAttribute("cate", cate);
 		return "/product/index";
 	}
 	
