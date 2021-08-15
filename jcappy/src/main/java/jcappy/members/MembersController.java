@@ -55,7 +55,7 @@ public class MembersController {
 		int r = service.insert(vo);
 		if (r>0) {
 			model.addAttribute("msg", "정상적으로 가입되었습니다");
-			model.addAttribute("url", "/jcappy/index.do");
+			model.addAttribute("url", "/jcappy");
 		} else {
 			model.addAttribute("msg", "가입 실패");
 			model.addAttribute("url", "/join");
