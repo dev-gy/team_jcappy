@@ -19,7 +19,7 @@ public class CommentDao {
 	public int count(CommentVo vo) {
 		return sqlSession.selectOne("comment.count", vo);
 	}
-	
+	 
 	public int insert(CommentVo vo) {
 		return sqlSession.insert("comment.insert", vo);
 	}
