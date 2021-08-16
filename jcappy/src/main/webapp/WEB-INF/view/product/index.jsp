@@ -21,7 +21,7 @@
 					<div class="cstyle_btn"><a href="/jcappy/product/${type }/c">${c }</a></div>
 				</div>
 			</div>
-			<form id="searchForm" method="GET" action="/jcappy/product/${type }?orderby=${param.orderby }&sval=${param.sval }">
+			<form id="searchForm" method="GET" action="/jcappy/product/${type }/${cate }?orderby=${param.orderby }&sval=${param.sval }">
 				<p class="itemList_count">${productVo.tval } ${productVo.totCount }(총 개수)</p>
 				<div class="itemList_search">
 					<select name="orderby">
@@ -50,13 +50,13 @@
 			<div class="pagenate clear">
 				<ul class="paging">
 					<c:if test="${productVo.startPage > productVo.pageRange }">
-						<li><a href="/jcappy/product/${type }?reqPage=${productVo.startPage - 1 }&orderby=${param.orderby }&sval=${param.sval }">&lt;</a></li>
+						<li><a href="/jcappy/product/${type }/${cate }?reqPage=${productVo.startPage - 1 }&orderby=${param.orderby }&sval=${param.sval }">&lt;</a></li>
 					</c:if>
 					<c:forEach var="rp" begin="${productVo.startPage }" end="${productVo.endPage }">
-					    <li><a href="/jcappy/product/${type }?reqPage=${rp}&orderby=${param.orderby }&sval=${param.sval }" <c:if test="${rp==productVo.reqPage }">class='current'</c:if>>${rp }</a></li>
+					    <li><a href="/jcappy/product/${type }/${cate }?reqPage=${rp}&orderby=${param.orderby }&sval=${param.sval }" <c:if test="${rp==productVo.reqPage }">class='current'</c:if>>${rp }</a></li>
 					</c:forEach>
 					<c:if test="${productVo.totPage > productVo.endPage }">
-						<li><a href="/jcappy/product/${type }?reqPage=${productVo.endPage + 1 }&orderby=${param.orderby }&sval=${param.sval }">&gt;</a></li>
+						<li><a href="/jcappy/product/${type }/${cate }?reqPage=${productVo.endPage + 1 }&orderby=${param.orderby }&sval=${param.sval }">&gt;</a></li>
 					</c:if>
 				</ul> 
 			</div>

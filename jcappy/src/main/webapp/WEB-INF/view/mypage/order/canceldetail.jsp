@@ -16,7 +16,7 @@
 			<div class="mypage_content">
 				<!-- 마이페이지 공통 서브타이틀 -->
 				<div class="mypage_subtitle">
-					<h2>취소/교환/반품 정보</h2>
+					<h2>취소/반품 정보</h2>
 				</div>
 				<div class="mypage_content">
 					<!-- 현재 페이지 컨텐츠 구현부 -->
@@ -58,10 +58,10 @@
 							</tr>
 							<c:forEach var="olVo" items="${olList }">
 								<tr>
-									<td class="cstyle_text_align_left"><a href=""><img src="${olVo.pimg1_org }"></a><span class="item_name">${olVo.ol_pname }</span></td>
+									<td class="cstyle_text_align_left"><a href="/jcappy/product/detail/${olVo.pno }"><img src="${olVo.pimg1_org }"><span class="item_name">${olVo.ol_pname }</span></a></td>
 									<td>${olVo.pno }</td>
-									<td>${olVo.ol_price }</td>
-									<td>${olVo.total_price }</td>
+									<td class="cstyle_text_align_right"><fmt:formatNumber maxFractionDigits="3" type="number" value="${olVo.ol_price }"/>원</td>
+									<td class="cstyle_text_align_right"><fmt:formatNumber maxFractionDigits="3" type="number" value="${olVo.total_price }"/>원</td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -111,14 +111,14 @@
 							</tr>
 							<tr>
 								<th>총 결제금액</th>
-								<td><fmt:formatNumber maxFractionDigits="3" type="number" value="${oiVo.result_price }" /></td>
+								<td><fmt:formatNumber maxFractionDigits="3" type="number" value="${oiVo.result_price }" />원</td>
 							</tr>
 						</table>
 					</div>
 					<div class="mypage_for_blank"></div>
 					<!-- 취소/교환/반품 사유 -->
 					<div>
-						<div class="mypage_for_subtitle">취소/교환/반품 사유</div>
+						<div class="mypage_for_subtitle">취소/반품 사유</div>
 						<table class="cstyle_table cstyle_text_align_left">
 							<tr>
 								<td>${oiVo.oc_reason }</td>

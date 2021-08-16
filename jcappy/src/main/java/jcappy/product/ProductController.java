@@ -139,6 +139,7 @@ public class ProductController {
 		model.addAttribute("a", a);
 		model.addAttribute("b", b);
 		model.addAttribute("c", c);
+		model.addAttribute("cate", cate);
 		return "/product/index";
 	}
 	
@@ -157,7 +158,7 @@ public class ProductController {
 	
 	@RequestMapping ("/product/detail/review")
 	public String list(Model model, ReviewVo vo) { 
-		model.addAttribute("list", reviewService.selectAll(vo));
+		model.addAttribute("list", reviewService.selectAllByPno(vo));
 		return "/include/review";
 	}
 	

@@ -52,7 +52,7 @@
 									<col width="100px">
 									<col width="130px">
 									<col width="130px">
-									<col width="*">
+									<col width="100px">
 								</colgroup>
 								<tr>
 									<th>상품</th>
@@ -79,7 +79,9 @@
 											<fmt:formatNumber maxFractionDigits="3" type="number" value="${olVo.total_price }"/>원
 										</td>
 										<td>
-											<button class="cstyle_btn" onclick="location.href='/jcappy/mypage/review/write/${olVo.ono }/${olVo.pno }'">리뷰작성</button>
+											<c:if test="${olVo.rno == ''}">
+												<button class="cstyle_btn" onclick="location.href='/jcappy/mypage/review/write/${olVo.ono }/${olVo.pno }'">리뷰작성</button>
+											</c:if>
 										</td>
 									</tr>
 								</c:forEach>
@@ -134,7 +136,7 @@
 						<div class="mypage_for_blank"></div>
 						<!-- 취소/교환/반품 요청 -->
 						<div class="btn_wrap">
-							<button class="cstyle_btn" onclick="location.href='/jcappy/mypage/order/cancelwrite/${oiVo.ono}'">취소/교환/반품 요청</button>
+							<button class="cstyle_btn" onclick="location.href='/jcappy/mypage/order/cancelwrite/${oiVo.ono}'">취소/반품 요청</button>
 						</div>
 					</div>
 				</div>

@@ -34,7 +34,7 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/mypage/review/insert")
-	public String write(Model model, ReviewVo vo, @RequestParam MultipartFile file, HttpServletRequest request) { 
+	public String insert(Model model, ReviewVo vo, @RequestParam MultipartFile file, HttpServletRequest request) { 
 		if (!file.isEmpty()) { // 첨부파일이 있으면
 			try {
 				String org = file.getOriginalFilename(); // 원본파일명
@@ -49,7 +49,7 @@ public class ReviewController {
 				// vo에 set
 				vo.setRfile_org(org);
 				vo.setRfile_real(real);
-				
+				System.out.println(org+"////////"+real);
 			} catch (Exception e) {
 				
 			}

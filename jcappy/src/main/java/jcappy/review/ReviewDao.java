@@ -14,8 +14,15 @@ public class ReviewDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	public List<ReviewVo> selectAllByPno(ReviewVo vo) {
+		return sqlSession.selectList("review.selectAllByPno", vo);
+	}
 	public List<ReviewVo> selectAll(ReviewVo vo) {
 		return sqlSession.selectList("review.selectAll", vo);
+	}
+	
+	public int countByOnoPno(ReviewVo vo) {
+		return sqlSession.selectOne("review.countByOnoPno", vo);
 	}
 	
 	public int count(ReviewVo vo) {

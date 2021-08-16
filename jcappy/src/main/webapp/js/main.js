@@ -195,16 +195,21 @@ $(function() {
 cart
 ========================================*/
 $(function() {
+	// 진입시 장바구니에 상품이 없으면 모두체크박스 체크해제
+	if ($(".cart_item").length == 0) {
+		$(".checkbox_all").prop("checked", false);
+	}
+	
 	// 체크박스 체크/해제 되면 최종금액 갱신 및 모두체크박스 갱신
 	$(".checkbox").on("click", function() {
 		updateResultPrice();
 		
 		// 현재 체크박스값과 모든 체크박스 값이 같지 않을경우 모두체크박스 체크해제
 		var isAll = true;
-		var b = $(this).prop("checked");
+		var isAll = $(this).prop("checked");
 		var items = $(".checkbox");
 		for (var i = 0; i < items.length; i++) {
-			if ($(items[i]).prop("checked") != b) {
+			if ($(items[i]).prop("checked") != isAll) {
 				isAll = false;
 				break;
 			}
@@ -326,35 +331,19 @@ $(function() {
 // 결제페이지로 서브밋 하기 전 체크해제한 상품의 정보는 disable을 추가해 파라미터값으로 넘어오지 않도록 한다
 var cartSubmit = function() {
 	// 각 목록 중 현재 자신이 체크 해제되어있다면 전송 대상 값에 disable 추가 후 서브밋   
+	var buyCount = 0;
 	$.each($(".cart_item"), function(index, item) {
 		if (!$(item).find(".checkbox").prop("checked")) {
 			$(item).find(".pno, .sno, .count, .name, .img, .total_price").attr("disabled", "disabled");
+		} else {
+			buyCount += 1;
 		}
 	});
+	if (buyCount == 0) {
+		alert("구매 대상이 선택되지 않았습니다.");
+		return false;
+	}
+	
 	$("#cart_frm").submit();
 }
 
-
-/*======================================
-include/review
-========================================*/
-$(function() {
-		$("#img_detail_area").dialog({
-			width: 600,	
-			height: 600,
-			modal: true,	// 모달(뒷페이지 클릭방지) 활성화 true
-			autoOpen: false,	// 페이지 로드시 자동 활성화 false
-			resizable: false,		// 사이즈 조절 false
-			open: function() {
-				$("#img_detail_area").on("click", function() {
-					$(this).dialog("close").off();
-				});
-			},
-		}).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();	// 다이얼로그의 타이틀바를 클래스로 찾아서 제거 (타이틀바 사용안할 것)
-		
-		// 이미지 클릭시 다이얼로그로 큰 이미지 나타내기
-		$(".review_img").on("click", function() {
-			$("#img_detail_area").find(".img_detail").css("background-image", $(this).css("background-image"));
-			$("#img_detail_area").dialog("open");
-		});
-	});

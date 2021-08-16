@@ -9,6 +9,7 @@ public class OrderlistVo {
 	private String ol_pname;
 	private String pimg1_org;
 	private int total_price;
+	private int rno;
 
 	public int getOno() {
 		return ono;
@@ -65,5 +66,14 @@ public class OrderlistVo {
 	public void setTotal_price(int total_price) {
 		this.total_price = total_price;
 	}
+
+	public int getRno() {
+		return rno;
+	}
+
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
+
 	
 }

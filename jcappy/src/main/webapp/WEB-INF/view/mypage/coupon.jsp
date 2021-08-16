@@ -33,12 +33,25 @@
 		                    <c:forEach var="vo" items="${list }">
 		                        <tr>
 		                            <td>${vo.cname }</td>
-		                            <td><fmt:formatNumber maxFractionDigits="3" type="number" value="${vo.cprice }"/>원</td>
+		                            <td class="cstyle_text_align_right"><fmt:formatNumber maxFractionDigits="3" type="number" value="${vo.cprice }"/>원</td>
 		                            <td><fmt:formatDate value="${vo.cenddate }" pattern="yyyy-MM-dd"/></td>
 		                        </tr>
 		                    </c:forEach>
 	                    </tbody>
 	                </table>
+	                <div class="pagenate clear">
+						<ul class="paging">
+							<c:if test="${couponVo.startPage > couponVo.pageRange }">
+								<li><a href="/jcappy/mypage/coupon?reqPage=${couponVo.startPage - 1 }">&lt;</a></li>
+							</c:if>
+							<c:forEach var="rp" begin="${couponVo.startPage }" end="${couponVo.endPage }">
+							    <li><a href="/jcappy/mypage/coupon?reqPage=${rp}" <c:if test="${rp==couponVo.reqPage }">class='current'</c:if>>${rp }</a></li>
+							</c:forEach>
+							<c:if test="${couponVo.totPage > couponVo.endPage }">
+								<li><a href="/jcappy/mypage/coupon?reqPage=${couponVo.endPage + 1 }">&gt;</a></li>
+							</c:if>
+						</ul> 
+					</div>
 	            </div>
 			</div>
 		</div>

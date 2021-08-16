@@ -5,11 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jcappy.coupon.CouponDao;
-import jcappy.coupon.CouponVo;
-import jcappy.orderlist.OrderlistDao;
-import jcappy.orderlist.OrderlistVo;
-
 @Service
 public class OrderinfoServiceImpl implements OrderinfoService {
 	
@@ -19,9 +14,7 @@ public class OrderinfoServiceImpl implements OrderinfoService {
 	@Override
 	public List<OrderinfoVo> selectAll(OrderinfoVo vo) {
 		// 페이징 관련 값 세팅
-		vo.setStype("mno");
-		vo.setSval(Integer.toString(vo.getMno()));
-		int totCount = orderinfoDao.userCount(vo); // 총갯수
+		int totCount = orderinfoDao.cancelcountByMno(vo); // 총갯수
 		// 총페이지수
 		int totPage = totCount / vo.getPageRow();
 		if (totCount % vo.getPageRow() > 0) totPage++;
@@ -32,16 +25,23 @@ public class OrderinfoServiceImpl implements OrderinfoService {
 			endPage = totPage;
 		}
 		
+		vo.setStype("oc_cancel");
+		vo.setSval("1");
 		vo.setStartPage(startPage);
 		vo.setEndPage(endPage);
 		vo.setTotCount(totCount);
 		vo.setTotPage(totPage);
+		
 		return orderinfoDao.selectAll(vo);
 	}
 	
 	@Override
 	public int insert(OrderinfoVo vo) {
 		return orderinfoDao.insert(vo);
+	}
+	@Override
+	public OrderinfoVo detailIncludingPrice(OrderinfoVo vo) {
+		return orderinfoDao.detailIncludingPrice(vo);
 	}
 	@Override
 	public OrderinfoVo selectLastOne(int mno) {
@@ -59,7 +59,7 @@ public class OrderinfoServiceImpl implements OrderinfoService {
 	}
 	
 	@Override
-	public int cancelUpdate(OrderinfoVo vo) {
-		return orderinfoDao.cancelUpdate(vo);
+	public int orderCancelupdate(OrderinfoVo vo) {
+		return orderinfoDao.orderCancelupdate(vo);
 	}
 }

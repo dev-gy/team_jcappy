@@ -21,6 +21,10 @@ public class OrderinfoDao {
 		return sqlSession.insert("orderinfo.insert", vo);
 	}
 
+	public OrderinfoVo detailIncludingPrice(OrderinfoVo vo) {
+		return sqlSession.selectOne("orderinfo.detailIncludingPrice", vo);
+	}
+	
 	public OrderinfoVo selectLastOne(int mno) {
 		return sqlSession.selectOne("orderinfo.selectLastOne", mno);
 	}
@@ -29,12 +33,12 @@ public class OrderinfoDao {
 		return sqlSession.delete("orderinfo.delete", vo);
 	}
 	
-	public int userCount(OrderinfoVo vo) {
-		return sqlSession.selectOne("orderinfo.userCount", vo);
+	public int cancelcountByMno(OrderinfoVo vo) {
+		return sqlSession.selectOne("orderinfo.cancelcountByMno", vo);
 	}
 	
-	public int cancelUpdate(OrderinfoVo vo) {
-		return sqlSession.update("orderinfo.cancelUpdate", vo);
+	public int orderCancelupdate(OrderinfoVo vo) {
+		return sqlSession.update("orderinfo.orderCancelupdate", vo);
 	}
 
 	public List<Map<String, String>> admin_selectList(OrderinfoVo vo) {

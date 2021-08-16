@@ -16,11 +16,9 @@ public class CouponController {
 	CouponService couponService;
 	
 	@RequestMapping("/mypage/coupon")
-	public String index(Model model, HttpServletRequest request) {
-		
-		CouponVo vo = new CouponVo();
+	public String index(Model model, CouponVo vo, HttpServletRequest request) {
 		vo.setMno(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno());
-		model.addAttribute("list", couponService.userSelectAll(vo));
+		model.addAttribute("list", couponService.selectAllByMno(vo));
 		return "/mypage/coupon";
 	}
 }
