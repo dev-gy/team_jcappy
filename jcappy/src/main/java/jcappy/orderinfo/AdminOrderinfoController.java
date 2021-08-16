@@ -16,6 +16,7 @@ import jcappy.members.AdminMembersService;
 import jcappy.members.MembersVo;
 import jcappy.orderlist.OrderlistService;
 import jcappy.orderlist.OrderlistVo;
+import jcappy.product.AdminProductService;
 
 @Controller
 public class AdminOrderinfoController {
@@ -31,6 +32,9 @@ public class AdminOrderinfoController {
 
 	@Autowired
 	AdminCouponService cService;
+
+	@Autowired
+	AdminProductService pService;
 
 	@RequestMapping("/admin/order/list")
 	public String index(Model model, OrderinfoVo vo) {
@@ -201,32 +205,24 @@ public class AdminOrderinfoController {
 		MembersVo mv = mService.find_members(mVo);
 		
 		if (mv != null) {
-			
 			OrderinfoVo vo = new OrderinfoVo();
 			vo.setMno(mv.getMno());
+
 			Map<String, String> preDelivery = service.admin_pre_del(vo);
 			
-			session.setAttribute("preDelivery", preDelivery);
-			session.setAttribute("find_members", mv);
+			CouponVo cVo = new CouponVo();
+			cVo.setMno(mv.getMno());
 			
-			model.addAttribute("result", "true");
+			List<CouponVo> find_coupon = cService.addOrderCheckCoupon(cVo);
+			
+			model.addAttribute("preDelivery", preDelivery);
+			model.addAttribute("find_members", mv);
+			model.addAttribute("find_coupon", find_coupon);
+			return "admin/order/add";
 		} else {
-			model.addAttribute("result", "false");
+			model.addAttribute("msg", "존재하지 않는 회원입니다.");
+			model.addAttribute("url", "add");
+			return "include/alert";
 		}
-		return "include/result";
-	}
-	
-	@RequestMapping("/admin/order/include_forAdd")
-	public String include_forAdd(Model model) {
-		return "admin/order/include_forAdd";
-	}
-
-	@RequestMapping("/admin/order/include_forAddProduct")
-	public String include_forAddProduct(Model model, HttpSession session) {
-		MembersVo vo = (MembersVo)session.getAttribute("find_members");
-		CouponVo cVo = new CouponVo();
-		cVo.setMno(vo.getMno());
-		model.addAttribute("find_coupon", cService.addOrderCheckCoupon(cVo));
-		return "admin/order/include_forAddProduct";
 	}
 }

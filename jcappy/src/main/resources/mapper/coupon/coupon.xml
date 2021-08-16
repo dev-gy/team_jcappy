@@ -74,7 +74,7 @@
 	
 	<select id="addOrderCheckCoupon" resultType="jcappy.coupon.CouponVo" parameterType="jcappy.coupon.CouponVo">
 		SELECT cno, cname, cprice, cregdate, cdate, mno, c_exist
-		FROM coupon
-		WHERE mno=${mno} AND c_exist = 1
+		FROM coupon 
+		WHERE mno=${mno} AND c_exist = 1 AND DATE_FORMAT(DATE_ADD(cregdate, INTERVAL cdate DAY), '%Y-%m-%d') > DATE_FORMAT(NOW(), '%Y-%m-%d')
 	</select>
 </mapper>

@@ -119,3 +119,4 @@ top.jsp
 #admin_order_add .admin_order_add_info .admin_order_add_table3 {width: 400px !important; margin-bottom: 5px !important;}
 #admin_order_add .btns {cursor: pointer;}
 .admin_order_add_product .title {font-size: 12px !important;}
+input[name=couponPrice_text] {text-align: center;}
