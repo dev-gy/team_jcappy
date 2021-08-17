@@ -25,8 +25,6 @@ public class OrderinfoServiceImpl implements OrderinfoService {
 			endPage = totPage;
 		}
 		
-		vo.setStype("oc_cancel");
-		vo.setSval("1");
 		vo.setStartPage(startPage);
 		vo.setEndPage(endPage);
 		vo.setTotCount(totCount);

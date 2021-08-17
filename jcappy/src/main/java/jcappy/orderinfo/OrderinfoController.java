@@ -210,6 +210,8 @@ public class OrderinfoController {
 	public String orderCancel(Model model, OrderinfoVo vo, HttpServletRequest request) {
 		vo.setMno(((MembersVo)request.getSession().getAttribute("membersInfo")).getMno());
 		
+		vo.setStype("oc_cancel");
+		vo.setSval("1");
 		model.addAttribute("list", orderinfoService.selectAll(vo));
 		return "/mypage/order/cancel";
 	}
