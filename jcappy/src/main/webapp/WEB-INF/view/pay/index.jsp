@@ -183,7 +183,7 @@ function requestPay() {
 	// IMP.request_pay(param, callback) 호출
 		IMP.request_pay({ // param
 			pg : "html5_inicis",
-			pay_method : "card",
+			pay_method : "신용카드",
 			merchant_uid : "merchant_" + new Date().getTime(),
 			name : pname,
 			amount : $("#result_price").val(),
@@ -229,7 +229,7 @@ function requestPay() {
 			type : "POST",
 			data : {
 				orequest : $("#request").val(),	// 요청사항값
-				opay : "vbank",	// 결제방식 계좌이체
+				opay : "계좌이체",	// 결제방식 계좌이체
 				o_state : "결제대기",	// 결제상태 결제대기
 				o_del : "상품준비중",	// 배송상태 상품준비중
 				mno : "${mVo.mno}",	// 로그인 회원번호
@@ -277,7 +277,7 @@ function requestPay() {
 			type : "POST",
 			data : {
 				orequest : $("#request").val(),	// 요청사항값
-				opay : "card",	// 결제방식 카드
+				opay : "신용카드",	// 결제방식 카드
 				o_state : "결제완료",	// 결제상태 결제완료
 				o_del : "상품준비중",	// 배송상태 상품준비중
 				mno : "${mVo.mno}",	// 로그인 회원번호
