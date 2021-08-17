@@ -16,7 +16,7 @@ public class AdminLoginController {
 	AdminService service;
 	
 	// 로그인 폼
-	@GetMapping("/admin/login")
+	@GetMapping({"/admin/login", "/admin"})
 	public String loginForm(Model model, AdminVo vo, HttpSession session) {
 		if (session.getAttribute("adminInfo") != null) {
 			return "redirect:/admin/main";

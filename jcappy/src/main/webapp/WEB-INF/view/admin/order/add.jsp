@@ -5,6 +5,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp"%>
 </head>
+<style>
+.productListTable > thead > tr > th {padding-top: 0 !important; padding-bottom: 0 !important;}
+.productListTable > tbody > tr > td {padding-top: 0 !important; padding-bottom: 0 !important;}
+</style>
 <script>
 $(function(){
 
@@ -13,10 +17,12 @@ $(function(){
 
 	checkAddr();
 	clickAddr();
-
+	
+	getProductList();
+	
 // ===== 상품 =====	
 	$("#product_dialog").dialog({
-		width: 800,	// 가로 300px
+		width: 1000,	// 가로 300px
 		modal: true,	// 모달(뒷페이지 클릭방지) 활성화 true
 		autoOpen: false,	// 페이지 로드시 자동 활성화 false
 		resizable: false,		// 사이즈 조절 false
@@ -80,7 +86,7 @@ $(function(){
 			pNumCalc();
 		});
 	});
-
+	
 // ===== 쿠폰 =====		
 	$("#coupon_dialog").dialog({
 		width: 600,	// 가로 300px
@@ -132,6 +138,24 @@ function pNumCalc() {
 	for(var i = 0; i < $('.pNum').length; i++) {
 		$('.pNum').eq(i).text(i + 1);
 	}
+}
+
+function getProductList(reqPage, orderby, direct, stype, tval, cval, sval) {
+	$.ajax({
+		url: "<%=request.getContextPath()%>/admin/order/productList",
+		data: {
+			reqPage: reqPage,
+			orderby: orderby,
+			direct: direct,
+			stype: stype,
+			tval: tval,
+			cval: cval,
+			sval: sval
+		},
+		success: function(res) {
+			$('#product_dialog').html(res);	
+		}
+	});
 }
 
 //radio버튼 주소값 변경
@@ -271,133 +295,135 @@ function priceForCalc() {
 										</table>
 									</div>
 								</div>
-								</form>
-							<form method="post" name="frm2" id="frm2" action="">
-								<input type="hidden" name="mno" value="${vo.mno }">
-								<div id="bbs" class="admin_order_add_info">
-									<div id="bread">
-										<table class="admin_order_add_table2">
-											<colgroup>
-												<col width="30%" />
-												<col width="*" />
-											</colgroup>
-											<tbody>
-												<tr>
-													<th scope="row"><label for="memail">주문자이메일</label></th>
-													<td colspan="10"><input type="text" id="memail" name="memail" class="w100" value="${find_members.memail }" readonly /></td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="mname">주문자이름</label></th>
-													<td colspan="10"><input type="text" id="mname" name="mname" class="w100" value="${find_members.mname }" readonly /></td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="opay">결제정보</label></th>
-													<td colspan="10"><input type="text" id="opay" name="opay" class="w100" value="계좌이체" readonly /></td>
-												</tr>
-											</tbody>
-										</table>
-										<table class="admin_order_add_table3">
-											<colgroup>
-												<col width="30%" />
-												<col width="*" />
-											</colgroup>
-											<tbody>
-												<tr>
-													<th scope="row"><label for="ono">배송지정보</label></th>
-													<td colspan="10">
-														<label><input type="radio" class="adds" name="adds" value="1" checked="checked" />&nbsp;기본</label>&nbsp;
-														<c:if test="${!empty preDelivery.oname }">
-															<label><input type="radio" class="adds" name="adds" value="2" />&nbsp;배송</label>&nbsp;
-														</c:if>
-														<label><input type="radio" class="adds" name="adds" value="3" />&nbsp;직접</label>
-													</td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="oname">수령인</label></th>
-													<td colspan="10"><input type="text" id="oname" name="oname" class="w100" value="" readonly /></td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="ophone">연락처</label></th>
-													<td colspan="10"><input type="text" id="ophone" name="ophone" class="w100" value="" readonly /></td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="ozipcode">우편번호</label></th>
-													<td colspan="10"><input type="text" id="ozipcode" name="ozipcode" class="w100" value="" readonly /></td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="oaddr">주소</label></th>
-													<td colspan="10"><input type="text" id="oaddr" name="oaddr" class="w100" value="" readonly /></td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="oaddrde">상세주소</label></th>
-													<td colspan="10"><input type="text" id="oaddrde" name="oaddrde" class="w100" value="" readonly /></td>
-												</tr>
-												<tr>
-													<th scope="row"><label for="orequest">배송메시지</label></th>
-													<td colspan="10"><input type="text" id="orequest" name="orequest" class="w100" value="" /></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									<!-- //bread -->
-								</div>
-								<div id="bbs" class="admin_order_add_product">
-									<div id="blist">
-										<div class="btn">
-												<div class="btnRight">
-													<a class="btns add_product" href="#"><strong>추가</strong></a>
-												</div>
-										</div>
-										<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="주문상품목록">
-											<colgroup>
-												<col class="w7" />
-												<col width="*" />
-												<col class="w20" />
-												<col class="w7" />
-												<col class="w20" />
-												<col class="w7" />
-											</colgroup>
-											<thead>
-												<tr>
-													<th scope="col" class="first"><strong>주문상품</strong></th>
-													<th scope="col">상품명</th>
-													<th scope="col">상품금액</th>
-													<th scope="col">상품수량</th>
-													<th scope="col">합계</th>
-													<th scope="col" class="last"></th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr class="for_area">
-													<td class="first" colspan="4">할인금액</td>
-													<td class="coupon class_for_padding">
-														<input type="text" name="couponPrice_text" id="couponPrice_text" value="" readonly>	
-														<input type="hidden" name="couponPrice" id="couponPrice" value="0">
-														<input type="hidden" name="cno" id="cno" value="0">
-													</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td class="first" colspan="4">결제금액</td>
-													<td id="totalPrice_text">
-													</td>
-													<td></td>
-												</tr>
-											</tbody>
-										</table>
-										<input type="hidden" name="totalPrice" id="totalPrice" value="0">
-									</div>
-									<div class="btn">
-										<div class="btnLeft">
-											<a class="btns" href="#" onClick="location.href='list';"><strong>목록</strong></a>
-										</div>
-										<div class="btnRight">
-											<a class="btns" onclick="request_cancel();"><strong>등록</strong></a>
-										</div>
-									</div>
-									<!--//btn-->
-								</div>
 							</form>
+							<c:if test="${!empty find_members }">
+								<form method="post" name="frm2" id="frm2" action="">
+									<input type="hidden" name="mno" value="${vo.mno }">
+									<div id="bbs" class="admin_order_add_info">
+										<div id="bread">
+											<table class="admin_order_add_table2">
+												<colgroup>
+													<col width="30%" />
+													<col width="*" />
+												</colgroup>
+												<tbody>
+													<tr>
+														<th scope="row"><label for="memail">주문자이메일</label></th>
+														<td colspan="10"><input type="text" id="memail" name="memail" class="w100" value="${find_members.memail }" readonly /></td>
+													</tr>
+													<tr>
+														<th scope="row"><label for="mname">주문자이름</label></th>
+														<td colspan="10"><input type="text" id="mname" name="mname" class="w100" value="${find_members.mname }" readonly /></td>
+													</tr>
+													<tr>
+														<th scope="row"><label for="opay">결제정보</label></th>
+														<td colspan="10"><input type="text" id="opay" name="opay" class="w100" value="계좌이체" readonly /></td>
+													</tr>
+												</tbody>
+											</table>
+											<table class="admin_order_add_table3">
+												<colgroup>
+													<col width="30%" />
+													<col width="*" />
+												</colgroup>
+												<tbody>
+													<tr>
+														<th scope="row"><label for="ono">배송지정보</label></th>
+														<td colspan="10">
+															<label><input type="radio" class="adds" name="adds" value="1" checked="checked" />&nbsp;기본</label>&nbsp;
+															<c:if test="${!empty preDelivery.oname }">
+																<label><input type="radio" class="adds" name="adds" value="2" />&nbsp;배송</label>&nbsp;
+															</c:if>
+															<label><input type="radio" class="adds" name="adds" value="3" />&nbsp;직접</label>
+														</td>
+													</tr>
+													<tr>
+														<th scope="row"><label for="oname">수령인</label></th>
+														<td colspan="10"><input type="text" id="oname" name="oname" class="w100" value="" readonly /></td>
+													</tr>
+													<tr>
+														<th scope="row"><label for="ophone">연락처</label></th>
+														<td colspan="10"><input type="text" id="ophone" name="ophone" class="w100" value="" readonly /></td>
+													</tr>
+													<tr>
+														<th scope="row"><label for="ozipcode">우편번호</label></th>
+														<td colspan="10"><input type="text" id="ozipcode" name="ozipcode" class="w100" value="" readonly /></td>
+													</tr>
+													<tr>
+														<th scope="row"><label for="oaddr">주소</label></th>
+														<td colspan="10"><input type="text" id="oaddr" name="oaddr" class="w100" value="" readonly /></td>
+													</tr>
+													<tr>
+														<th scope="row"><label for="oaddrde">상세주소</label></th>
+														<td colspan="10"><input type="text" id="oaddrde" name="oaddrde" class="w100" value="" readonly /></td>
+													</tr>
+													<tr>
+														<th scope="row"><label for="orequest">배송메시지</label></th>
+														<td colspan="10"><input type="text" id="orequest" name="orequest" class="w100" value="" /></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<!-- //bread -->
+									</div>
+									<div id="bbs" class="admin_order_add_product">
+										<div id="blist">
+											<div class="btn">
+													<div class="btnRight">
+														<a class="btns add_product" href="#"><strong>추가</strong></a>
+													</div>
+											</div>
+											<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="주문상품목록">
+												<colgroup>
+													<col class="w7" />
+													<col width="*" />
+													<col class="w20" />
+													<col class="w7" />
+													<col class="w20" />
+													<col class="w7" />
+												</colgroup>
+												<thead>
+													<tr>
+														<th scope="col" class="first"><strong>주문상품</strong></th>
+														<th scope="col">상품명</th>
+														<th scope="col">상품금액</th>
+														<th scope="col">상품수량</th>
+														<th scope="col">합계</th>
+														<th scope="col" class="last"></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr class="for_area">
+														<td class="first" colspan="4">할인금액</td>
+														<td class="coupon class_for_padding">
+															<input type="text" name="couponPrice_text" id="couponPrice_text" value="" readonly>	
+															<input type="hidden" name="couponPrice" id="couponPrice" value="0">
+															<input type="hidden" name="cno" id="cno" value="0">
+														</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td class="first" colspan="4">결제금액</td>
+														<td id="totalPrice_text">
+														</td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+											<input type="hidden" name="totalPrice" id="totalPrice" value="0">
+										</div>
+										<div class="btn">
+											<div class="btnLeft">
+												<a class="btns" href="#" onClick="location.href='list';"><strong>목록</strong></a>
+											</div>
+											<div class="btnRight">
+												<a class="btns" onclick="request_cancel();"><strong>등록</strong></a>
+											</div>
+										</div>
+										<!--//btn-->
+									</div>
+								</form>
+							</c:if>
 						</div>
 						<!-- //bbs -->
 						<!-- 내용 : e -->
@@ -412,111 +438,7 @@ function priceForCalc() {
 		<!--//canvas -->
 	</div>
 	<!--//wrap -->
-<div id="product_dialog">
-<div id="bbs" class="admin_product_list" style="width: 700px;">
-	<div id="blist">
-		<p>
-			<span><strong>총 ${productVo.totCount }개</strong> | ${productVo.reqPage}/${productVo.totPage }페이지</span>
-		</p>
-		<form name="frmListCount" id="frmListCount" action="updateCount"
-			method="post">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0"
-				summary="상품 목록"">
-				<colgroup>
-					<col class="w6" />
-					<col class="w10" />
-					<col width="*" />
-					<col class="w15" />
-					<col class="w6" />
-					<col class="w6" />
-				</colgroup>
-				<thead>
-					<tr>
-						<th scope="col" class="first">번호</th>
-						<th scope="col">브랜드</th>
-						<th scope="col">상품명</th>
-						<th scope="col">가격</th>
-						<th scope="col">재고</th>
-						<th scope="col"></th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:if test="${empty list }">
-						<tr>
-							<td colspan="6" class="first">등록된 글이 없습니다.</td>
-						</tr>
-					</c:if>
-					<c:forEach var="vo" items="${list }" varStatus="status">
-						<tr>
-							<td class="first pno">${vo.pno }</td>
-							<td>${vo.pcompany }</td>
-							<td style="text-align: left; padding-left: 10px;">${vo.pname }</td>
-							<td><fmt:formatNumber value="${vo.pprice }" pattern="#,###,###원"/></td>
-							<td>${vo.pcount }</td>
-							<td>
-							<a href="javascript:isDel(${vo.pno });" class="btns"><strong>선택</strong></a>
-							</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</form>
-		<!-- 페이징 처리 -->
-		<div class='page'>
-			<c:if test="${productVo.startPage > productVo.pageRange}">
-            	<a href="list?reqPage=${productVo.startPage-1 }&stype=${param.stype}&tval=${param.tval}&cval=${param.cval}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}"><</a>
-            </c:if>
-            <c:forEach var="rp" begin="${productVo.startPage}" end="${productVo.endPage }">
-            	<c:if test="${rp==productVo.reqPage }">
-            		<strong>${productVo.reqPage}</strong>
-            	</c:if>
-            	<c:if test="${rp!=productVo.reqPage }">
-                <a href='list?reqPage=${rp}&stype=${param.stype}&tval=${param.tval}&cval=${param.cval}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}' >${rp }</a>
-                </c:if>
-            </c:forEach>
-            <c:if test="${productVo.totPage > productVo.endPage}">
-            	<a href="list?reqPage=${productVo.endPage+1 }&stype=${param.stype}&tval=${param.tval}&cval=${param.cval}&sval=${param.sval}&orderby=${param.orderby}&direct=${param.direct}">></a>
-            </c:if>
-		</div>
-		<form name="searchForm" id="searchForm" action="list"  method="get">
-			<div class="search">
-					<select id="orderby" name="orderby" class="dSelect" title="정렬기준" onchange="$('#searchForm').submit()">
-						<option value="pregdate" <c:if test="${param.orderby == 'pregdate' }">selected</c:if>>등록일</option>
-						<option value="pcount" <c:if test="${param.orderby == 'pcount' }">selected</c:if>>재고량</option>
-					</select>
-					<select id="direct" name="direct" class="dSelect" title="정렬순서" onchange="$('#searchForm').submit()">
-						<option value="desc" <c:if test="${param.direct== 'desc' }">selected</c:if>>내림차순</option>
-						<option value="asc" <c:if test="${param.direct == 'asc' }">selected</c:if>>오름차순</option>
-					</select>
-					<select name="stype" title="검색분류선택">
-				<option value="pname"
-						<c:if test="${param.stype=='pname' }">selected</c:if>>상품명</option>
-					<option value="pcompany"
-						<c:if test="${param.stype=='pcompany' }">selected</c:if>>브랜드명</option>
-				</select> 
-				
-				<select id="tval" name="tval" onchange="categoryChange()" title="상품종류">
-					<option value="">전체</option>
-					<option value="냉장고"
-						<c:if test="${param.tval=='냉장고' }">selected</c:if>>냉장고</option>
-					<option value="에어컨"
-						<c:if test="${param.tval=='에어컨' }">selected</c:if>>에어컨</option>
-					<option value="TV"
-						<c:if test="${param.tval=='TV' }">selected</c:if>>TV</option>
-					<option value="세탁기"
-						<c:if test="${param.tval=='세탁기' }">selected</c:if>>세탁기</option>
-				</select>
-				
-				<select id="cval" name="cval" title="상품카테고리">
-					
-				</select>
-				<input type="text" id="sval" name="sval" value="${param.sval }" title="검색할 내용을 입력해주세요" />
-				<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
-			</div>
-		</form>
-	</div>
-</div>
-</div>
+<div id="product_dialog"></div>
 <div id="coupon_dialog">
 	<div id="bbs" style="width:550px;">
 		<div id="blist" style="width:550px;">

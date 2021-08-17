@@ -37,6 +37,11 @@
 		SELECT COUNT(*) FROM review WHERE pno=#{pno} AND ono=#{ono}
 	</select>
 	
+	<select id="count" resultType="int" parameterType="jcappy.review.ReviewVo">
+		SELECT COUNT(*) FROM review r LEFT JOIN product p ON r.pno = p.pno JOIN members m ON r.mno = m.mno
+		<include refid="reviewWhere"/>
+	</select>
+	
 	<select id="detail" resultType="jcappy.review.ReviewVo" parameterType="jcappy.review.ReviewVo">
 		SELECT * FROM review r LEFT JOIN product p ON r.pno = p.pno JOIN members m ON r.mno = m.mno
 		WHERE rno = #{rno}

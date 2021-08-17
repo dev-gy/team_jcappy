@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jcappy.coupon.AdminCouponService;
 import jcappy.coupon.CouponVo;
@@ -17,6 +18,7 @@ import jcappy.members.MembersVo;
 import jcappy.orderlist.OrderlistService;
 import jcappy.orderlist.OrderlistVo;
 import jcappy.product.AdminProductService;
+import jcappy.product.ProductVo;
 
 @Controller
 public class AdminOrderinfoController {
@@ -224,5 +226,25 @@ public class AdminOrderinfoController {
 			model.addAttribute("url", "add");
 			return "include/alert";
 		}
+	}
+	
+	@RequestMapping("/admin/order/productList")
+	public String productList(Model model, ProductVo vo, 
+			@RequestParam(name = "orderby", required = false, defaultValue = "pregdate" ) String orderby, 
+			@RequestParam(name = "direct", required = false, defaultValue = "desc") String direct,
+			@RequestParam(name = "stype", required = false, defaultValue = "pname") String stype,
+			@RequestParam(name = "tval", required = false, defaultValue = "") String tval,
+			@RequestParam(name = "cval", required = false, defaultValue = "") String cval,
+			@RequestParam(name = "sval", required = false, defaultValue = "") String sval) {
+		
+		vo.setOrderby(orderby);
+		vo.setDirect(direct);
+		vo.setStype(stype);
+		vo.setTval(tval);
+		vo.setCval(cval);
+		vo.setSval(sval);
+		
+		model.addAttribute("productList", pService.selectAll(vo));
+		return "admin/order/productList";
 	}
 }
