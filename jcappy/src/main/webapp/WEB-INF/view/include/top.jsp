@@ -29,7 +29,7 @@
 	            <li><a href="/jcappy/notice/list">SERVICE</a>
 	                <ul class="depth2">
 	                    <li><a href="/jcappy/notice/list">공지사항</a>
-	                    <li><a href="/jcappy/notice/index.do">회사소개</a>
+<!-- 	                    <li><a href="/jcappy/notice/index.do">회사소개</a> -->
 	                </ul>
 	            </li>
 	        </ul>

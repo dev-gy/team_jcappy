@@ -79,7 +79,7 @@
 											<fmt:formatNumber maxFractionDigits="3" type="number" value="${olVo.total_price }"/>원
 										</td>
 										<td>
-											<c:if test="${olVo.rno == ''}">
+											<c:if test="${olVo.rno == '' and oiVo.o_del == '배송완료'}">
 												<button class="cstyle_btn" onclick="location.href='/jcappy/mypage/review/write/${olVo.ono }/${olVo.pno }'">리뷰작성</button>
 											</c:if>
 										</td>

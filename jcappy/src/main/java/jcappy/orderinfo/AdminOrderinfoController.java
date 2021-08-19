@@ -3,6 +3,7 @@ package jcappy.orderinfo;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -246,5 +247,39 @@ public class AdminOrderinfoController {
 		
 		model.addAttribute("productList", pService.selectAll(vo));
 		return "admin/order/productList";
+	}
+	
+	@RequestMapping("/admin/order/admin_order_add")
+	public String admin_order_add(Model model, HttpServletRequest req) {
+		
+		OrderinfoVo oi = new OrderinfoVo();
+		int mno = Integer.parseInt(req.getParameter("mno"));
+		int cno = Integer.parseInt(req.getParameter("cno"));
+		String oname = req.getParameter("oname");
+		String ophone = req.getParameter("ophone");
+		String ozipcode = req.getParameter("ozipcode");
+		String oaddr = req.getParameter("oaddr");
+		String oaddrde = req.getParameter("oaddrde");
+		String orequest = req.getParameter("orequest");
+		String opay = req.getParameter("opay");
+
+		OrderlistVo ol = new OrderlistVo();
+		// ono는 orderinfo insert 후에 값 가져오기
+		String[] pcount = req.getParameterValues("pcount");
+		String[] pname = req.getParameterValues("pname");
+		String[] pno = req.getParameterValues("pno");
+		String[] pprice = req.getParameterValues("pprice");
+
+		ProductVo pv = new ProductVo(); 
+		// pno
+		// pcount
+		
+		CouponVo cv = new CouponVo();
+		// cno
+		
+		model.addAttribute("result", "true");
+		model.addAttribute("result", "false");
+
+		return "include/result";
 	}
 }

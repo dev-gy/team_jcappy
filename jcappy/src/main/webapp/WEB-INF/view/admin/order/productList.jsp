@@ -33,13 +33,21 @@ function categoryChange() {
     
     $(target).html(html);
 }
+
+$('#sval').keypress(function(event){
+    if ( event.which == 13 ) {
+        $('.sbtn').click();
+        return false;
+    }
+});
+
 </script>
 <div id="bbs" class="admin_product_list" style="width: 100%; height: 400px">
 	<div id="blist">
 		<p>
 			<span><strong>총 ${productVo.totCount }개</strong> | ${productVo.reqPage}/${productVo.totPage }페이지</span>
 		</p>
-		<form name="frmListCount" id="frmListCount" action="updateCount" method="post" style="width: 100%;">
+		<form name="frmListCount" id="frmListCount" action="" method="post" style="width: 100%;">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="상품 목록" class="productListTable">
 				<colgroup>
 					<col class="w6" />
@@ -62,18 +70,19 @@ function categoryChange() {
 				<tbody>
 					<c:if test="${empty productList }">
 						<tr>
-							<td colspan="6" class="first">등록된 글이 없습니다.</td>
+							<td colspan="6" class="first">등록된 상품이 없습니다.</td>
 						</tr>
 					</c:if>
 					<c:forEach var="vo" items="${productList }" varStatus="status">
-						<tr>
-							<td class="first pno">${vo.pno }</td>
+						<tr class="product_item">
+							<td class="first product_pno">${vo.pno }</td>
 							<td>${vo.pcompany }</td>
-							<td style="text-align: left; padding-left: 10px;">${vo.pname }</td>
+							<td style="text-align: left; padding-left: 10px;" class="product_name">${vo.pname }</td>
 							<td><fmt:formatNumber value="${vo.pprice }" pattern="#,###,###원"/></td>
-							<td>${vo.pcount }</td>
+							<td class="product_pcount">${vo.pcount }</td>
 							<td>
-							<a href="javascript:isDel(${vo.pno });" class="btns"><strong>선택</strong></a>
+								<a href="javascript:;" class="btns selectProduct"><strong>선택</strong></a>
+								<input type="hidden" class="product_pprice" name="pprice" value="${vo.pprice }">
 							</td>
 						</tr>
 					</c:forEach>
@@ -101,7 +110,6 @@ function categoryChange() {
             	<a href="javascript:getProductList(${productVo.endPage + 1 }, '${productVo.orderby }', '${productVo.direct}', '${productVo.stype}', '${productVo.tval}', '${productVo.cval}', '${productVo.sval }');">></a>
             </c:if>
 		</div>
-		<form name="searchForm" id="searchForm" action=""  method="get">
 			<div class="search">
 				<select id="orderby" name="orderby" class="dSelect" title="정렬기준" onchange="getProductList(${productVo.reqPage }, $('#orderby').val(), '${productVo.direct}', '${productVo.stype}', '${productVo.tval}', '${productVo.cval}', '${productVo.sval }');">
 					<option value="pregdate" <c:if test="${param.orderby == 'pregdate' }">selected</c:if>>등록일</option>
@@ -111,7 +119,7 @@ function categoryChange() {
 					<option value="desc" <c:if test="${param.direct== 'desc' }">selected</c:if>>내림차순</option>
 					<option value="asc" <c:if test="${param.direct == 'asc' }">selected</c:if>>오름차순</option>
 				</select>
-				<select name="stype" title="검색분류선택">
+				<select id="stype" name="stype" title="검색분류선택">
 				<option value="pname"
 					<c:if test="${param.stype=='pname' }">selected</c:if>>상품명</option>
 				<option value="pcompany"
@@ -134,8 +142,7 @@ function categoryChange() {
 					
 				</select>
 				<input type="text" id="sval" name="sval" value="${param.sval }" title="검색할 내용을 입력해주세요" />
-				<input type="image" src="<%=request.getContextPath()%>/img/admin/btn_search.gif" class="sbtn" alt="검색" />
+				<input type="button" class="sbtn" alt="검색" onclick="getProductList(1, '${productVo.orderby }', '${productVo.direct}', $('#stype').val(), $('#tval').val(), $('#cval').val(), $('#sval').val());"/>
 			</div>
-		</form>
 	</div>
 </div>

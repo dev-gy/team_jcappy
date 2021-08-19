@@ -8,6 +8,7 @@
 <style>
 .productListTable > thead > tr > th {padding-top: 0 !important; padding-bottom: 0 !important;}
 .productListTable > tbody > tr > td {padding-top: 0 !important; padding-bottom: 0 !important;}
+.sbtn {background: url( "<%=request.getContextPath()%>/img/admin/btn_search.gif" ) no-repeat; cursor: pointer;}
 </style>
 <script>
 $(function(){
@@ -22,11 +23,11 @@ $(function(){
 	
 // ===== 상품 =====	
 	$("#product_dialog").dialog({
-		width: 1000,	// 가로 300px
+		width: 1000,	
 		modal: true,	// 모달(뒷페이지 클릭방지) 활성화 true
 		autoOpen: false,	// 페이지 로드시 자동 활성화 false
 		resizable: false,		// 사이즈 조절 false
-		buttons: {			// 계속 쇼핑, 장바구니 이동 버튼 생성 및 함수 구현
+		buttons: {
 			"취소": function() {
 				$(this).dialog("close");	// 현재 다이얼로그 닫기
 			}
@@ -38,62 +39,84 @@ $(function(){
 		$("#product_dialog").dialog("option", "position", { my: "center", at: "center", of: window });
 	});
 	
+	// 다이얼로그 열기
 	$(document).on("click", ".btns.add_product", function(){
-	// 쿠폰버튼 클릭시 쿠폰목록 다이얼로그 열기
 		$("#product_dialog").dialog("open");
+	});	
 		
+	// 상품목록에서 상품 선택
+	$(document).on("click", ".selectProduct", function(){
+		// 선택한 상품명
+		var product_pname = $(this).closest(".product_item").find(".product_name").text();
+		// 선택한 상품번호
+		var product_pno = $(this).closest(".product_item").find(".product_pno").text();
+		// 선택한 상품 재고
+		var product_pcount = $(this).closest(".product_item").find(".product_pcount").text();
+		// 선택한 상품가격
+		var product_pprice = $(this).closest(".product_item").find(".product_pprice").val();
+		// 선택한 상품가격 포맷
+		var product_pprice_text = Number(product_pprice).toLocaleString("ko-KR")+"원";
+
+		// 품절상품 선택 불가
+		if (product_pcount <= 0) {
+			alert('선택하신 상품은 품절입니다.');
+			return false;
+		}		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		if (!check_product_name(product_pname)) {
+			alert('이미 추가하신 상품입니다.');
+			return false;
+		}
 		
 		var html = '';
-		html += '<tr class="product_row">';
+		html += '<tr class="product_list">';
 		html += '<td class="first pNum"></td>';
-		html += '<td class="title pname"></td>';
-		html += '<td class="pprice">가격</td>';
-		html += '<td><input type="number" name="pcount" class="pcount" min="1" max="99" style="width: 50px;">수량</td>';
-		html += '<td>합계</td>';
+		html += '<td class="title pname">' + product_pname + '</td>'; // 상품명
+		html += '<td class="pprice_text">' + product_pprice_text + '</td>'; // 상품가격 출력
+		html += '<td><input type="number" name="pcount" class="pcount" min="1" max="' + product_pcount + '" value="1" style="width: 50px;" onchange="setCountForPrice();"></td>'; // 상품수량
+		html += '<td class="totalCountPrice">' + product_pprice_text +'</td>'; // 합계
 		html += '<td>';
 		html += '<span><a class="btns delete">';
 		html += '<strong>삭제</strong>';
-		html += '<input type="hidden" name="pno" class="pno" value="">';
-		html += '<input type="hidden" name="priceForCalc" class="priceForCalc" value="">';
+		html += '<input type="hidden" name="pno" class="pno" value="' + product_pno + '">';
+		html += '<input type="hidden" name="pname" value="' + product_pname + '">';
+		html += '<input type="hidden" name="pprice" class="pprice" value="' + product_pprice + '">';
+		html += '<input type="hidden" name="priceForCalc" class="priceForCalc" value="' + product_pprice + '">';
+		html += '<input type="hidden" name="maxCount" class="maxCount" value="' + product_pcount + '">';
 		html += '</a></span></td>';
 		html += '</tr>';
 		
+		// 행 추가
 		$('.admin_order_add_product table tbody .for_area').before(html);
 		pNumCalc();
 		
-		$('.pname').off('click');
-		$('.pname').click(function() {
-		})
-		
+		// 행 삭제
 		$('.delete').click(function() {
-			$(this).closest('.product_row').remove();
+			$(this).closest('.product_list').remove();
 			pNumCalc();
+			
+			if (priceForCalc() < Number($("#couponPrice").val())*2) {
+				$("#couponPrice").val(0);
+				$("#couponPrice_text").val("0원");
+				$("#cno").val(0);
+			}
+			setTotalPrice();
 		});
+		
+		setTotalPrice();
+		
+		// 다이얼로그 닫기
+		$("#product_dialog").dialog("close");
 	});
+		
 	
 // ===== 쿠폰 =====		
 	$("#coupon_dialog").dialog({
-		width: 600,	// 가로 300px
+		width: 600,
 		modal: true,	// 모달(뒷페이지 클릭방지) 활성화 true
 		autoOpen: false,	// 페이지 로드시 자동 활성화 false
 		resizable: false,		// 사이즈 조절 false
-		buttons: {			// 계속 쇼핑, 장바구니 이동 버튼 생성 및 함수 구현
+		buttons: {			
 			"취소": function() {
 				$(this).dialog("close");	// 현재 다이얼로그 닫기
 			}
@@ -126,7 +149,6 @@ $(function(){
 			// 적용한 쿠폰 번호 저장
 			$("#cno").val($(this).closest(".coupon_item").find(".cno").val());
 		
-			
 			$("#coupon_dialog").dialog("close");
 		} else {
 			alert('결제금액이 쿠폰의 할인금액의 2배이상 이어야 합니다.');
@@ -134,12 +156,46 @@ $(function(){
 	})
 });
 
+// 이미 추가한 상품인지 체크
+function check_product_name(pname) {
+	var check = true;
+	for(var i = 0; i < $('.product_list').length; i++) {
+		var check_pname = $('.pname').eq(i).text();
+		if (pname == check_pname) {
+			check = false;
+			break;
+		}
+	}
+	return check;
+}
+
+
+// 상품 수량변경시, 가격 반영
+function setCountForPrice() {
+	for(var i = 0; i < $('.product_list').length; i++) {
+		var price = $('.pprice').eq(i).val();
+		var count = $('.pcount').eq(i).val();
+
+		if (Number(count) > Number($('.maxCount').eq(i).val())) {
+			count = $('.maxCount').eq(i).val();
+		}
+		
+		var result = price * count;
+		var result_text = Number(result).toLocaleString("ko-KR")+"원"
+		$('.priceForCalc').eq(i).val(result);
+		$('.totalCountPrice').eq(i).text(result_text);
+		setTotalPrice();
+	}
+}
+
+// 상품 추가시, 상품 번호
 function pNumCalc() {
 	for(var i = 0; i < $('.pNum').length; i++) {
 		$('.pNum').eq(i).text(i + 1);
 	}
 }
 
+// 상품목록출력, 검색, 페이징, 정렬
 function getProductList(reqPage, orderby, direct, stype, tval, cval, sval) {
 	$.ajax({
 		url: "<%=request.getContextPath()%>/admin/order/productList",
@@ -219,8 +275,23 @@ function empty_check(){
 	return true;
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-function admin_order_update() {
+// 결제금액 계산 : 결제금액 = (각 상품 수량 * 각 상품 가격)을 더한 값 - 쿠폰
+function priceForCalc() {
+	var totalPrice = 0;
+	var couponPrice = $('#couponPrice').val();
+	for(var i = 0; i < $('.priceForCalc').length; i++) {
+		totalPrice += Number($('.priceForCalc').eq(i).val());
+	}
+	return totalPrice - couponPrice;
+}
+
+// 결제금액 출력, 값 저장
+function setTotalPrice() {
+	$('#totalPrice').val(priceForCalc());
+	$('#totalPrice_text').text(priceForCalc().toLocaleString('ko-KR') + '원');
+}
+
+function addOrderByAdmin() {
 	if (empty_check()) {
 		
 		if (!/^[0-9]{9,11}$/.test($('#ophone').val())) {
@@ -229,33 +300,28 @@ function admin_order_update() {
 			return false;
 		}
 		
-		if (confirm('수정하시겠습니까?')) {
+		if ($('.product_list').length == 0) {
+			alert('선택한 상품이 없습니다');
+			return false;
+		}
+		
+		if (confirm('등록하시겠습니까?')) {
 			$.ajax({
-				url: '/jcappy/admin/order/admin_order_update',
+				url: '/jcappy/admin/order/admin_order_add',
 				method: 'POST',
-				data: $('#frm').serialize(),
+				data: $('#frm2').serialize(),
 				success: function(res) {
 					if (res.trim() == 'true') {
-						alert('주문정보가 수정되었습니다.');
+						alert('주문이 등록되었습니다.');
 						location.href="/jcappy/admin/order/list";
 					} else {
-						alert('오류발생, 주문정보 수정에 실패하였습니다.');
+						alert('오류발생, 주문등록에 실패하였습니다.');
 						location.reload();
 					}
 				},
 			});
 		}
 	}
-}
-
-//결제금액 출력 : 결제금액 = (각 상품 수량 * 각 상품 가격)을 더한 값 - 쿠폰
-function priceForCalc() {
-	var totalPrice = 0;
-	var couponPrice = $('#couponPrice').val();
-	for(var i = 0; i < $('.priceForCalc').length; i++) {
-		totalPrice += Number($('.priceForCalc').eq(i).val());
-	}
-	return totalPrice - couponPrice;
 }
 </script>
 <body>
@@ -298,7 +364,7 @@ function priceForCalc() {
 							</form>
 							<c:if test="${!empty find_members }">
 								<form method="post" name="frm2" id="frm2" action="">
-									<input type="hidden" name="mno" value="${vo.mno }">
+									<input type="hidden" name="mno" value="${find_members.mno }">
 									<div id="bbs" class="admin_order_add_info">
 										<div id="bread">
 											<table class="admin_order_add_table2">
@@ -417,7 +483,7 @@ function priceForCalc() {
 												<a class="btns" href="#" onClick="location.href='list';"><strong>목록</strong></a>
 											</div>
 											<div class="btnRight">
-												<a class="btns" onclick="request_cancel();"><strong>등록</strong></a>
+												<a class="btns" onclick="addOrderByAdmin();"><strong>등록</strong></a>
 											</div>
 										</div>
 										<!--//btn-->
