@@ -7,7 +7,7 @@ public class OrderlistVo {
 	private int ol_count;
 	private int ol_price;
 	private String ol_pname;
-	private String pimg1_org;
+	private String pimg1_real;
 	private int total_price;
 	private int rno;
 
@@ -51,12 +51,12 @@ public class OrderlistVo {
 		this.ol_pname = ol_pname;
 	}
 
-	public String getPimg1_org() {
-		return pimg1_org;
+	public String getPimg1_real() {
+		return pimg1_real;
 	}
 
-	public void setPimg1_org(String pimg1_org) {
-		this.pimg1_org = pimg1_org;
+	public void setPimg1_real(String pimg1_real) {
+		this.pimg1_real = pimg1_real;
 	}
 
 	public int getTotal_price() {

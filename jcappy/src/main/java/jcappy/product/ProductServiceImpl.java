@@ -12,7 +12,7 @@ public class ProductServiceImpl implements ProductService {
 	ProductDao productDao;
 	
 	@Override
-	public List<ProductVo> selectAll(ProductVo vo) {
+	public List<ProductVo> selectAll(String filePath, ProductVo vo) {
 		// 페이징 관련 값 세팅
 		int totCount = productDao.count(vo); // 총갯수
 		// 총페이지수
@@ -29,11 +29,50 @@ public class ProductServiceImpl implements ProductService {
 		vo.setEndPage(endPage);
 		vo.setTotCount(totCount);
 		vo.setTotPage(totPage);
-		return productDao.selectAll(vo);
+		
+		List<ProductVo> list = productDao.selectAll(vo);
+		
+		for(int i = 0; i < list.size(); i++) {
+			
+			checkAndUpdateImgPath(filePath, list.get(i));
+		}
+		return list;
 	}
 	
 	@Override
-	public ProductVo detail(ProductVo vo) {
-		return productDao.detail(vo);
+	public ProductVo detail(String filePath, ProductVo vo) {
+		
+		ProductVo retVo = productDao.detail(vo);
+		checkAndUpdateImgPath(filePath, retVo);
+		
+		return retVo;
+	}
+	
+	private void checkAndUpdateImgPath(String filePath, ProductVo vo) {
+		String img = vo.getPimg1_org();
+		if (!img.startsWith("https")) {
+			vo.setPimg1_org(filePath + "/" + img);
+		}
+		img = vo.getPimg2_org();
+		if (!img.startsWith("https")) {
+			vo.setPimg2_org(filePath + "/" + img);
+		}
+		img = vo.getPimg3_org();
+		if (!img.startsWith("https")) {
+			vo.setPimg3_org(filePath + "/" + img);
+		}
+		
+		img = vo.getPimg1_real();
+		if (!img.startsWith("https")) {
+			vo.setPimg1_real(filePath + "/" + img);
+		}
+		img = vo.getPimg2_real();
+		if (!img.startsWith("https")) {
+			vo.setPimg2_real(filePath + "/" + img);
+		}
+		img = vo.getPimg3_real();
+		if (!img.startsWith("https")) {
+			vo.setPimg3_real(filePath + "/" + img);
+		}
 	}
 }

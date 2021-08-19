@@ -147,9 +147,9 @@ function infoUpdate() {
 							<td class="item_img_area"><!-- style="background-image: url('/jcappy/img/상세 이미지1.jpg');" -->
 								<span class="item_major_img cstyle_border_gray" ></span>
 								<span class="item_img_list">
-									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img1" style="background-image: url('${vo.pimg1_org }');"></span>
-									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img2" style="background-image: url('${vo.pimg2_org }');"></span>
-									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img3" style="background-image: url('${vo.pimg3_org }');"></span>
+									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img1" style="background-image: url('${vo.pimg1_real }');"></span>
+									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img2" style="background-image: url('${vo.pimg2_real }');"></span>
+									<span class="item_minor_img cstyle_btn cstyle_border_gray" id="minor_img3" style="background-image: url('${vo.pimg3_real }');"></span>
 								</span>
 							</td>
 							<td class="item_info_area">
@@ -181,7 +181,7 @@ function infoUpdate() {
 									</div>
 									<input class="pno" type="hidden" name="pno" value="${vo.pno }">
 									<input class="name" type="hidden" name="name" value="${vo.pname }">
-									<input class="img" type="hidden" name="img" value="${vo.pimg1_org }">
+									<input class="img" type="hidden" name="img" value="${vo.pimg1_real }">
 		                            <input class="delivery_price" type="hidden" name="delivery_price" value="${vo.pdelprice }">
 		                            <input class="total_price" type="hidden" name="total_price" value="${vo.pprice }">
 								</form>
@@ -194,8 +194,10 @@ function infoUpdate() {
 						</tr>
 						<tr>
 							<td class="detail_area tab_item" colspan="2">
-								
-								<img class="itemInfo_info_img" src="/jcappy/img/상세 설명 이미지1.jpg">
+								<c:if test="${empty vo.pdetail}">
+									<img class="itemInfo_info_img" src="/jcappy/img/상세 설명 이미지1.jpg">
+								</c:if>
+								${vo.pdetail }
 							</td>
 							<td class="review_area tab_item" id="review_area" colspan="2">
 								

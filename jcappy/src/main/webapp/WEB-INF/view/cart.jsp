@@ -40,7 +40,7 @@
 		                	<c:forEach var="vo" items="${list }" varStatus="index">
 			                    <tr class="cart_item">
 			                        <td><input class="checkbox" type="checkbox" name="checkbox" checked></td>
-			                        <td class="name_area"><span class="pimg" style="background-image: url('${vo.pimg1_org }')"></span><span class="item_name">${vo.pname }</span></td>
+			                        <td class="name_area"><span class="pimg" style="background-image: url('${vo.pimg1_real }')"></span><span class="item_name">${vo.pname }</span></td>
 			                        <td class="price_area"><span class="price_txt"><fmt:formatNumber value="${vo.pprice }" />원</span></td>
 			                        <td>무료</td>
 			                        <td>
@@ -58,7 +58,7 @@
 			                            <input class="sno" type="hidden" name="sno" value="${vo.sno }">
 			                            <input class="pno" type="hidden" name="pno" value="${vo.pno }">
 			                            <input class="name" type="hidden" name="name" value="${vo.pname }">
-										<input class="img" type="hidden" name="img" value="${vo.pimg1_org }">
+										<input class="img" type="hidden" name="img" value="${vo.pimg1_real }">
 										<input class="delivery_price" type="hidden" name="delivery_price" value="${vo.pdelprice }">
 			                            <input class="total_price" type="hidden" name="total_price" value="${vo.total_price }">
 			                        </td>

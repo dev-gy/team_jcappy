@@ -127,8 +127,9 @@ public class OrderinfoController {
 			OrderinfoVo vo, 
 			@RequestParam(required = false, value = "snoList[]") int[] snoList,
 			@RequestParam("pnoList[]") int[] pnoList, 
-			@RequestParam("pcountList[]") int[] pcountList) throws IamportResponseException, IOException {
-
+			@RequestParam("pcountList[]") int[] pcountList,
+			HttpServletRequest request) throws IamportResponseException, IOException {
+		String filePath = request.getServletContext().getContextPath() + "/upload/";
 		// 주문내역 추가 및 추가한 데이터의 ono를 vo에 반환 (주문상품 데이터 추가할때 쓸 것)
 		boolean isSuccess = true;
 		if (orderinfoService.insert(vo) > 0) {
@@ -161,7 +162,7 @@ public class OrderinfoController {
 				// product pno 값으로 해당 상품 데이터 찾기
 				pVo = new ProductVo();
 				pVo.setPno(pnoList[i]);
-				pVo = productService.detail(pVo);
+				pVo = productService.detail(filePath, pVo);
 				
 				// orderlist 값 셋팅 후 저장
 				olVo = new OrderlistVo();
