@@ -44,4 +44,7 @@ public class ProductDao {
 		return sqlSession.delete("product.deleteImg", vo);
 	}
 
+	public int pcountUpdate(ProductVo vo) {
+		return sqlSession.update("product.pcountUpdate", vo);
+	}
 }

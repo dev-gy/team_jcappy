@@ -175,7 +175,7 @@
 		</choose>
 		WHERE ono=${ono}
 	</update>  
-
+  
 	<!-- [관리자] 주문 / 반품 승인 -->
 	<update id="accept_cancel" parameterType="jcappy.orderinfo.OrderinfoVo">
 		UPDATE orderinfo

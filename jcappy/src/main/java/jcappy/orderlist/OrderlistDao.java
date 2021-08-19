@@ -25,4 +25,8 @@ public class OrderlistDao {
 	public List<OrderlistVo> admin_orderlist(OrderinfoVo vo) {
 		return sqlSession.selectList("orderlist.admin_orderlist", vo);
 	}
+	
+	public List<OrderlistVo> listForUpdateCount(OrderinfoVo vo) {
+		return sqlSession.selectList("orderlist.listForUpdateCount", vo);
+	}
 }

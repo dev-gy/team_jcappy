@@ -155,9 +155,7 @@ function detail_delivery_check() {
 
 // 취소/반품 버튼
 function request_cancel() {
-
 	var temp_o_del = $('.temp_o_del').val();
-		
 	if (empty_check()) {
 		if (confirm('취소/반품처리 하시겠습니까?')) {
 			$.ajax({
@@ -172,6 +170,26 @@ function request_cancel() {
 				success: function(res) {
 					if (res.trim() == 'true') {
 						alert('취소요청 되었습니다.');
+						if (${!empty vo.cno && vo.cno != 0 && vo.o_state == '결제대기'}) {
+							if (confirm('사용한 쿠폰을 복구하시겠습니까?\n쿠폰 발급날짜가 오늘로 설정됩니다.')) {
+								$.ajax({
+									url: '/jcappy/admin/order/remake_coupon',
+									method: 'POST',
+									data: {
+										cno: ${vo.cno}
+									},
+									success: function(res) {
+										if (res.trim() == 'true') {
+											alert('사용한 쿠폰이 복구 되었습니다.');
+											location.reload();
+										} else {
+											alert('오류발생, 쿠폰 복구에 실패하였습니다.');
+											location.reload();
+										}
+									},
+								});
+							}
+						}
 						location.reload();
 					} else {
 						alert('오류발생, 취소요청에 실패하였습니다.');
@@ -197,7 +215,7 @@ function accept_cancel() {
 				success: function(res) {
 					if (res.trim() == 'true') {
 						alert('취소/반품요청이 승인 되었습니다.');
-						if (${!empty vo.cno}) {
+						if (${!empty vo.cno && vo.cno != 0}) {
 							if (confirm('사용한 쿠폰을 복구하시겠습니까?\n쿠폰 발급날짜가 오늘로 설정됩니다.')) {
 								$.ajax({
 									url: '/jcappy/admin/order/remake_coupon',

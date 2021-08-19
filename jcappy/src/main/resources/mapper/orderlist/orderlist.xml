@@ -19,4 +19,8 @@
 		VALUES (#{ono}, #{pno}, #{ol_count}, #{ol_price}, #{ol_pname})
 	</insert>
 	
+	<!-- [관리자] 취소시 재고수정을 위한 목록 -->
+	<select id="listForUpdateCount" resultType="jcappy.orderlist.OrderlistVo" parameterType="jcappy.orderinfo.OrderinfoVo">
+		SELECT * FROM orderlist WHERE ono=${ono}  
+	</select>
 </mapper>

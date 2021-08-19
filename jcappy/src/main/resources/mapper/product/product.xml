@@ -85,5 +85,10 @@
 		
 		WHERE pno=#{pno}
 	</update>   
-	
+	<!-- [관리자] 주문등록시, 상품 재고 수정 -->
+	<update id="pcountUpdate" parameterType="jcappy.product.ProductVo">
+		UPDATE product SET
+			pcount = pcount + ${pcount}
+		WHERE pno = ${pno}
+	</update>
 </mapper>
