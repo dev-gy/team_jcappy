@@ -36,7 +36,7 @@
 		ON oi.cno = c.cno
 		WHERE oi.ono = #{ono}
 	</select>
-	
+	     
 	<select id="cancelcountByMno" resultType="int" parameterType="jcappy.orderinfo.OrderinfoVo">
 		SELECT COUNT(*)	
 		FROM orderinfo AS oi
@@ -44,7 +44,7 @@
 	</select>
 	
 	<delete id="delete" parameterType="jcappy.orderinfo.OrderinfoVo">
-		DELETE FROM orderinfo WHERE ono = #{ono}
+		DELETE FROM orderinfo WHERE ono = #{ono} 
 	</delete>
 	
 	<update id="orderCancelupdate" parameterType="jcappy.orderinfo.OrderinfoVo">
