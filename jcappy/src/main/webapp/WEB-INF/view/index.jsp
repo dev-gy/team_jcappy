@@ -34,7 +34,7 @@
                 <c:forEach var="vo" items="${rList }">
                     <div class="item cstyle_border_gray">
                         <a href="/jcappy/product/detail/${vo.pno }">
-                            <span class="image" style="background-image: url('${vo.pimg1_org }');"></span>
+                            <span class="image" style="background-image: url('${vo.pimg1_real }');"></span>
                             <span class="name">${vo.pname }</span>
                             <span class="price"><fmt:formatNumber maxFractionDigits="3" type="number" value="${vo.pprice }"/>원</span>
                         </a>
@@ -55,7 +55,7 @@
                 <c:forEach var="vo" items="${aList }">
                     <div class="item cstyle_border_gray">
                         <a href="/jcappy/product/detail/${vo.pno }">
-                            <span class="image" style="background-image: url('${vo.pimg1_org }');"></span>
+                            <span class="image" style="background-image: url('${vo.pimg1_real }');"></span>
                             <span class="name">${vo.pname }</span>
                             <span class="price"><fmt:formatNumber maxFractionDigits="3" type="number" value="${vo.pprice }"/>원</span>
                         </a>
@@ -75,7 +75,7 @@
                 <c:forEach var="vo" items="${tList }">
                     <div class="item cstyle_border_gray">
                         <a href="/jcappy/product/detail/${vo.pno }">
-                            <span class="image" style="background-image: url('${vo.pimg1_org }');"></span>
+                            <span class="image" style="background-image: url('${vo.pimg1_real }');"></span>
                             <span class="name">${vo.pname }</span>
                             <span class="price"><fmt:formatNumber maxFractionDigits="3" type="number" value="${vo.pprice }"/>원</span>
                         </a>
@@ -95,7 +95,7 @@
                 <c:forEach var="vo" items="${wList }">
                     <div class="item cstyle_border_gray">
                         <a href="/jcappy/product/detail/${vo.pno }">
-                            <span class="image" style="background-image: url('${vo.pimg1_org }');"></span>
+                            <span class="image" style="background-image: url('${vo.pimg1_real }');"></span>
                             <span class="name">${vo.pname }</span>
                             <span class="price"><fmt:formatNumber maxFractionDigits="3" type="number" value="${vo.pprice }"/>원</span>
                         </a>

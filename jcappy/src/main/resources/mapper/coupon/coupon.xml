@@ -16,13 +16,15 @@
 	</sql>
 	
 	<select id="selectAllByMno" resultType="jcappy.coupon.CouponVo" parameterType="jcappy.coupon.CouponVo">
-		SELECT *,
-			ADDDATE(cregdate,INTERVAL cdate DAY) AS cenddate
-		FROM coupon c 
-		JOIN members m 
-		ON c.mno = m.mno AND c.mno = #{mno} AND NOW() > ADDDATE(cregdate,INTERVAL cdate DAY) AND c.c_exist = 1
-		ORDER BY ${orderby} ${direct}
-		LIMIT ${startIdx},${pageRow}
+		<![CDATA[
+			SELECT *,
+				ADDDATE(cregdate,INTERVAL cdate DAY) AS cenddate
+			FROM coupon c 
+			JOIN members m 
+			ON c.mno = m.mno AND c.mno = 1 AND NOW() <= ADDDATE(cregdate,INTERVAL cdate DAY) AND c.c_exist = 1
+			ORDER BY ${orderby} ${direct}
+			LIMIT ${startIdx},${pageRow}
+		]]>
 	</select>
 	
 	<select id="countByMno" resultType="int" parameterType="jcappy.coupon.CouponVo">

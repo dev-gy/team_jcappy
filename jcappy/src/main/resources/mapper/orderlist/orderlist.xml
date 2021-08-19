@@ -4,7 +4,7 @@
 
 	<select id="selectAll" resultType="jcappy.orderlist.OrderlistVo" parameterType="jcappy.orderlist.OrderlistVo">
 		SELECT ol.*, 
-			p.pimg1_org AS pimg1_org, 
+			p.pimg1_real AS pimg1_real, 
 			ol.ol_count * ol.ol_price AS total_price,
 			r.rno AS rno
 		FROM orderlist ol

@@ -27,7 +27,7 @@
 						<table class="cstyle_table">
 							<tbody>
 								<tr>
-									<td><span class="item_image" style="background-image: url('${pVo.pimg1_org }');"></span> ${pVo.pname }</td>
+									<td><span class="item_image" style="background-image: url('${pVo.pimg1_real }');"></span> ${pVo.pname }</td>
 								</tr>
 								<tr>
 									<td>

@@ -25,10 +25,11 @@ public class ReviewController {
 	ProductService productService;
 	
 	@RequestMapping("/mypage/review/write/{ono}/{pno}")
-	public String write(Model model, @PathVariable int ono, @PathVariable int pno) { 
+	public String write(Model model, @PathVariable int ono, @PathVariable int pno, HttpServletRequest request) { 
 		ProductVo pVo = new ProductVo();
+		String filePath = request.getServletContext().getContextPath() + "/upload/";
 		pVo.setPno(pno);
-		model.addAttribute("pVo", productService.detail(pVo));
+		model.addAttribute("pVo", productService.detail(filePath, pVo));
 		model.addAttribute("ono", ono);
 		return "mypage/review/write";
 	}

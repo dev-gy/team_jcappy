@@ -2,6 +2,8 @@ package jcappy.product;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,28 +29,31 @@ public class ProductController {
 	
 	
 	@RequestMapping("/")
-	public String index(Model model) {
+	public String index(Model model, HttpServletRequest request) {
 		// 등록일 최신순으로 3개씩..냉장고, 에어컨, TV, 세탁기를 가져와 전달
 		ProductVo vo = new ProductVo();
+		String filePath = request.getServletContext().getContextPath() + "/upload/";
+		
 		vo.setDirect("DESC");
 		vo.setOrderby("pno");
 		vo.setPageRow(3);
-		
 		vo.setTval("냉장고");
-		model.addAttribute("rList", productService.selectAll(vo));
+		model.addAttribute("rList", productService.selectAll(filePath, vo));
 		vo.setTval("에어컨");
-		model.addAttribute("aList", productService.selectAll(vo));
+		model.addAttribute("aList", productService.selectAll(filePath, vo));
 		vo.setTval("TV");
-		model.addAttribute("tList", productService.selectAll(vo));
+		model.addAttribute("tList", productService.selectAll(filePath, vo));
 		vo.setTval("세탁기");
-		model.addAttribute("wList", productService.selectAll(vo));
+		model.addAttribute("wList", productService.selectAll(filePath, vo));
 		
 		return "/index";
 	}
 	
 	@RequestMapping(value = {"/product/{type}", "/product/{type}/{cate}"})
 	public String productIndex(Model model, ProductVo vo, @PathVariable String type, @PathVariable(required = false) String cate, 
-			@RequestParam(required = false) String orderby) {
+			@RequestParam(required = false) String orderby, HttpServletRequest request) {
+		String filePath = request.getServletContext().getContextPath() + "/upload/";
+		
 		// 검색 타입 및 페이지 아이템 갯수 설정
 		vo.setStype("pname");
 		vo.setPageRow(15);
@@ -135,7 +140,7 @@ public class ProductController {
 			return "error";
 		}
 		// 세팅된 a, b, c 및 vo에 저장된 정보로 데이터를 구하여 전달 
-		model.addAttribute("list", productService.selectAll(vo));
+		model.addAttribute("list", productService.selectAll(filePath, vo));
 		model.addAttribute("a", a);
 		model.addAttribute("b", b);
 		model.addAttribute("c", c);
@@ -144,9 +149,11 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/product/detail/{no}")
-	public String detail(Model model, ProductVo vo,  @PathVariable int no) {
+	public String detail(Model model, ProductVo vo,  @PathVariable int no, HttpServletRequest request) {
+		String filePath = request.getServletContext().getContextPath() + "/upload/";
 		vo.setPno(no);
-		model.addAttribute("vo", productService.detail(vo));
+		
+		model.addAttribute("vo", productService.detail(filePath, vo));
 		return "/product/detail";
 	}
 	

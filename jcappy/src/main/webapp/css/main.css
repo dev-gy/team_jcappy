@@ -100,7 +100,7 @@ index
 .main_content > .flex { width: 100%; height: 100%; overflow: hidden; display: flex; justify-content: space-between; }
 .main_content > .flex > .item { width: 300px; height: 400px; position: relative; margin: 30px; }
 .main_content > .flex > .item > a { display: block; }
-.main_content > .flex > .item > a > .image { width: 300px; height: 300px; display: inline-block; background-size: contain; background-repeat: no-repeat;  }
+.main_content > .flex > .item > a > .image { width: 300px; height: 300px; display: inline-block; background-size: 300px 300px; background-position: center; background-repeat: no-repeat;  }
 .main_content > .flex > .item > a > .name { height: 40px; }
 .main_content > .flex > .item > a > .price { padding-top: 20px; }
 .main_content > .flex > .item > a > span { display: block; }
@@ -203,9 +203,9 @@ product/index
 .itemList_search > button { height: 30px; box-sizing: border-box; width: 30px; height: 30px; }
 .product_content { width: 100%; height: 100%; margin: 30px 0px; }
 .product_content > .flex { width: 100%; height: 100%; overflow: hidden; display: flex; justify-content: flex-start; flex-wrap: wrap; }
-.product_content > .flex > .item { width: 300px; height: 400px; position: relative; margin: 49px; }
+.product_content > .flex > .item { width: 300px; height: 400px; position: relative; margin: 48.5px; }
 .product_content > .flex > .item > a { display: block; }
-.product_content > .flex > .item > a > .image { width: 300px; height: 300px; display: inline-block; background-size: contain; background-repeat: no-repeat; box-sizing: border-box;  }
+.product_content > .flex > .item > a > .image { width: 300px; height: 300px; display: inline-block; background-size: 300px 300px; background-repeat: no-repeat; box-sizing: border-box; background-position: center; }
 .product_content > .flex > .item > a > .name { height: 40px; }
 .product_content > .flex > .item > a > .price { padding-top: 20px; }
 .product_content > .flex > .item > a > span { display: block; }
@@ -235,13 +235,14 @@ product/detail
 .item_info_area > .bottom > form > .btn_area { display: flex; justify-content: center; }
 .item_info_area > .bottom > form > .btn_area > button { width: 200px; height: 40px; margin: 30px 10px; }
 .product_detail_content > table > tbody > tr > .cstyle_tab { width: 100px; height: 40px; }
+.product_detail_content .detail_area { height: 100px; }
 .review_area { text-align: left; }
 .review_area > div > ul > li { width:100%; padding: 20px; border-bottom: 1px solid #a7a7a7; display: table; }
 .review_area > div > ul > li > .review_info { width: 200px; display: table-cell; padding: 20px 0px; }
 .review_area > div > ul > li > .review_content { width:auto;  display: table-cell; padding:20px 40px 20px 20px; }
 .review_area > div > ul > li > .review_content > .review_title { width:938px; }
 .review_area > div > ul > li > .review_content > .review_context { width:938px; padding: 10px 0px; }
-.review_area > div > ul > li > .review_content > .review_img { width: 70px; height: 70px; margin-right: 10px; background-size: cover; display: inline-block; cursor: pointer; }
+.review_area > div > ul > li > .review_content > .review_img { width: 70px; height: 70px; margin-right: 10px; background-size: 70px 70px; background-position: center; display: inline-block; cursor: pointer; }
 .review_area > div > ul > li > .review_btn { width: 200px; height: 25px; margin: 40px;}
 .review_area > div > ul > li > .review_btn { width: 200px; height: 25px; margin: 40px; }
 #cart_btn_dialog > p { padding: 20px 0px; font-size: 16px; text-align: center; }

@@ -65,7 +65,7 @@
 									<tr>
 										<td class="cstyle_text_align_left">
 											<a href="/jcappy/product/detail/${olVo.pno }">
-											<span class="item_image" style="background-image: url('${olVo.pimg1_org }');"></span>
+											<span class="item_image" style="background-image: url('${olVo.pimg1_real }');"></span>
 											<span class="item_name">${olVo.ol_pname }</span>
 											</a>
 										</td>

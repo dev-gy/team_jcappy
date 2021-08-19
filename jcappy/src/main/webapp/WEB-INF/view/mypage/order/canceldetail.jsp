@@ -58,7 +58,7 @@
 							</tr>
 							<c:forEach var="olVo" items="${olList }">
 								<tr>
-									<td class="cstyle_text_align_left"><a href="/jcappy/product/detail/${olVo.pno }"><img src="${olVo.pimg1_org }"><span class="item_name">${olVo.ol_pname }</span></a></td>
+									<td class="cstyle_text_align_left"><a href="/jcappy/product/detail/${olVo.pno }"><img src="${olVo.pimg1_real }"><span class="item_name">${olVo.ol_pname }</span></a></td>
 									<td>${olVo.pno }</td>
 									<td class="cstyle_text_align_right"><fmt:formatNumber maxFractionDigits="3" type="number" value="${olVo.ol_price }"/>원</td>
 									<td class="cstyle_text_align_right"><fmt:formatNumber maxFractionDigits="3" type="number" value="${olVo.total_price }"/>원</td>
