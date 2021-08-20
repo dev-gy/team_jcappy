@@ -50,29 +50,40 @@ public class ProductServiceImpl implements ProductService {
 	
 	private void checkAndUpdateImgPath(String filePath, ProductVo vo) {
 		String img = vo.getPimg1_org();
-		if (!img.startsWith("https")) {
-			vo.setPimg1_org(filePath + "/" + img);
+		if (img != null) {
+			if (!img.startsWith("https")) {
+				vo.setPimg1_org(filePath + "/" + img);
+			}
 		}
 		img = vo.getPimg2_org();
-		if (!img.startsWith("https")) {
-			vo.setPimg2_org(filePath + "/" + img);
+		if (img != null) {
+			if (!img.startsWith("https")) {
+				vo.setPimg2_org(filePath + "/" + img);
+			}
 		}
 		img = vo.getPimg3_org();
-		if (!img.startsWith("https")) {
-			vo.setPimg3_org(filePath + "/" + img);
+		if (img != null) {
+			if (!img.startsWith("https")) {
+				vo.setPimg3_org(filePath + "/" + img);
+			}
 		}
-		
 		img = vo.getPimg1_real();
-		if (!img.startsWith("https")) {
-			vo.setPimg1_real(filePath + "/" + img);
+		if (img != null) {
+			if (!img.startsWith("https")) {
+				vo.setPimg1_real(filePath + "/" + img);
+			}
 		}
 		img = vo.getPimg2_real();
-		if (!img.startsWith("https")) {
-			vo.setPimg2_real(filePath + "/" + img);
+		if (img != null) {
+			if (!img.startsWith("https")) {
+				vo.setPimg2_real(filePath + "/" + img);
+			}
 		}
 		img = vo.getPimg3_real();
-		if (!img.startsWith("https")) {
-			vo.setPimg3_real(filePath + "/" + img);
+		if (img != null) {
+			if (!img.startsWith("https")) {
+				vo.setPimg3_real(filePath + "/" + img);
+			}
 		}
 	}
 }

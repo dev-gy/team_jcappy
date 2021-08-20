@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import jcappy.coupon.CouponDao;
 import jcappy.coupon.CouponVo;
@@ -83,6 +85,7 @@ public class AdminOrderinfoServiceImpl implements AdminOrderinfoService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)
 	public int request_cancel(OrderinfoVo vo) {
 		List<OrderlistVo> list = null;
 		if ("결제대기".equals(vo.getO_state())) {
@@ -101,6 +104,7 @@ public class AdminOrderinfoServiceImpl implements AdminOrderinfoService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)
 	public int accept_cancel(OrderinfoVo vo) {
 		int result = dao.accept_cancel(vo);
 		
@@ -127,6 +131,7 @@ public class AdminOrderinfoServiceImpl implements AdminOrderinfoService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)
 	public int insert(OrderinfoVo vo, HttpServletRequest req) {
 		
 		int result = 0;
@@ -179,7 +184,7 @@ public class AdminOrderinfoServiceImpl implements AdminOrderinfoService {
 			pv.setPcount(Integer.parseInt(pcount[i]) * -1);
 			// product 재고 update
 			result += pDao.pcountUpdate(pv);
-		}
+		} 
 
 		if (cno != 0) {
 			CouponVo cv = new CouponVo();

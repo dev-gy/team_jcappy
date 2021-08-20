@@ -141,32 +141,44 @@ public class AdminOrderinfoController {
 		return "include/result";
 	}
 
+	@SuppressWarnings("finally")
 	@RequestMapping("/admin/order/request_cancel")
 	public String request_cancel(Model model, OrderinfoVo vo) {
-
-		int result = service.request_cancel(vo);
-
-		if (result > 0) {
-			model.addAttribute("result", "true");
-		} else {
-			model.addAttribute("result", "false");
+		
+		int result = 0;
+		
+		try {
+			result = service.request_cancel(vo);
+		} catch(Exception e) {
+			result = 0;
+		} finally {
+			if (result > 0) {
+				model.addAttribute("result", "true");
+			} else {
+				model.addAttribute("result", "false");
+			}
+			return "include/result";
 		}
-
-		return "include/result";
 	}
 
+	@SuppressWarnings("finally")
 	@RequestMapping("/admin/order/accept_cancel")
 	public String accept_cancel(Model model, OrderinfoVo vo) {
 
-		int result = service.accept_cancel(vo);
-
-		if (result > 0) {
-			model.addAttribute("result", "true");
-		} else {
-			model.addAttribute("result", "false");
+		int result = 0;
+		
+		try {
+			result = service.accept_cancel(vo);
+		} catch(Exception e) {
+			result = 0;
+		} finally {
+			if (result > 0) {
+				model.addAttribute("result", "true");
+			} else {
+				model.addAttribute("result", "false");
+			}
+			return "include/result";
 		}
-
-		return "include/result";
 	}
 
 	@RequestMapping("/admin/order/reject_cancel")
@@ -249,15 +261,22 @@ public class AdminOrderinfoController {
 		return "admin/order/productList";
 	}
 	
+	@SuppressWarnings("finally")
 	@RequestMapping("/admin/order/admin_order_add")
 	public String admin_order_add(Model model, OrderinfoVo vo, HttpServletRequest req) {
+		int result = 0;
 		
-		int result = service.insert(vo, req);
-		if (result > 2) {
-			model.addAttribute("result", "true");
-		} else {
-			model.addAttribute("result", "false");
+		try {
+			result = service.insert(vo, req);
+		} catch(Exception e) {
+			result = 0;
+		} finally {
+			if (result > 2) {
+				model.addAttribute("result", "true");
+			} else {
+				model.addAttribute("result", "false");
+			}
+			return "include/result";
 		}
-		return "include/result";
 	}
 }
